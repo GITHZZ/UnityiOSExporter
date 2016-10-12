@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "luaM_realloc_:lmem.c">
+         <PersistentStrings>
+            <PersistentString
+               value = "g-&gt;GCdebt">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "singlestep:lgc.c">
+         <PersistentStrings>
+            <PersistentString
+               value = "g-&gt;gcstate">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[LuaCammond callLuaMain]:LuaCammond.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "view.info.unityProjPath">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
