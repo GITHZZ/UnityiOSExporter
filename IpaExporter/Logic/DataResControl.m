@@ -40,7 +40,7 @@
 - (void)start:(ExportInfo*)info
 {
     _dstPath = [NSString stringWithFormat:@"%s/Assets/Editor", info->unityProjPath];
-    [self copyResSrcPath:_srcPath toDst:_dstPath];
+    [self copyResSrcPath:_srcPath toDst:_dstPath]; 
     //[self replaceBuilderCS:_dstPath];
 }
 
