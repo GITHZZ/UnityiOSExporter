@@ -27,26 +27,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 {
     //init
     [[LuaCammond instance] startUp];
-    
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
-    
-    NSFileHandle* fileHandle = [NSFileHandle fileHandleForUpdatingAtPath:@"/Users/apple/Documents/Xcode Project/IpaExporter/IpaExporter/Data_t/Templete_t/Builder_t.cs"];
-    NSData* contentData = [fileHandle readDataToEndOfFile];
-    NSString* contentStr = [NSString stringWithUTF8String:[contentData bytes]];
-    NSArray *lines=[contentStr componentsSeparatedByString:@"\n"];
-    NSEnumerator *iter=[lines objectEnumerator];
-
-    NSString* result = [[NSString alloc] init];
-    NSString* line;
-    while (line=[iter nextObject])
-    {
-        NSString* changeStr = [line stringByReplacingOccurrencesOfString:@"${bundleIdentifier}" withString:@"\"com.4399sy.zzsj.online\""];
-        result = [result stringByAppendingFormat:@"%@\n", changeStr];
-        //NSLog(@"===%@",line);
-    }
-    
-    NSLog(@"%@", result);
-    [fileHandle closeFile];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification

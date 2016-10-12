@@ -18,7 +18,7 @@
 
 @property (nonatomic, readonly) NSArray* lines;
 
-+ (DataCSCodeEdit*)openCSFile:(NSString*)path;
+- (BOOL)initWithPath:(NSString*)path;
 - (void)replaceContent:(NSString*) newContent;
 
 @end

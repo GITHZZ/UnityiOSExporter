@@ -10,30 +10,22 @@
 
 @implementation DataCSCodeEdit
 
-+ (DataCSCodeEdit*)openCSFile:(NSString*)path
+- (BOOL)initWithPath:(NSString*)path
 {
-    DataCSCodeEdit* codeEdit = [[DataCSCodeEdit alloc] initWithPath:path];
-    return codeEdit;
-}
-
-- (id)initWithPath:(NSString*)path
-{
-    if(self = [super init])
+    _path = path;
+        
+    NSError* error;
+    _content = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
+    if(error != nil)
     {
-        _path = path;
-        
-        NSError* error;
-        _content = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
-        if(error != nil)
-        {
-            NSLog(@"%@", error);
-            NSLog(@"%@", [error userInfo]);
-        }
-        
-        _lines = [_content componentsSeparatedByString:@"\n"];
+        NSLog(@"%@", error);
+        NSLog(@"%@", [error userInfo]);
+        return NO;
     }
+        
+    _lines = [_content componentsSeparatedByString:@"\n"];
     
-    return self;
+    return YES;
 }
 
 - (void)replaceContent:(NSString*) newContent

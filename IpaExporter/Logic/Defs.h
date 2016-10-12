@@ -10,6 +10,17 @@
 #define Defs_h
 
 #define DATA_PATH @"/Data_t"
+#define BUILDER_CS_PATH @"/Assets/Editor/Data_t/Templete_t/Builder_t.cs"
+#define XCODEPROJECT_CS_PATH @"/Assets/Editor/Data_t/XcodeApi_t/XcodeProjectMod_t.cs"
+
+typedef struct IpaPackInfo
+{
+    const char* bundleIdentifier;
+    const char* appName;//应用名字
+    const char* frameworks;//自带框架名字
+    const char* outputPath;//导出路径
+    const char* codesignidentity;//开发者账号名字
+}IpaPackInfo;
 
 typedef struct ExportInfo{
     BOOL isRelease;

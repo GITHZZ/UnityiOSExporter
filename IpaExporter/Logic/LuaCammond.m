@@ -8,6 +8,7 @@
 #import "LuaCammond.h"
 #import "ExportInfoModel.h"
 #import "DataResControl.h"
+#import "BuilderCSFileEdit.h"
 
 #include <stdio.h>
 #include <assert.h>
@@ -104,8 +105,11 @@
     [self open];
     NSString* mainLuaPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"LuaMain.lua"];
     ExportInfoModel* view = [ExportInfoModel instance];
-
+    BuilderCSFileEdit* builderEdit = [[BuilderCSFileEdit alloc] init];
+    IpaPackInfo packInfo;
+    
     [[DataResControl instance] start:view.info];
+    [builderEdit start:[NSString stringWithUTF8String:view.info->unityProjPath] withPackInfo:packInfo];
     [self dofile:mainLuaPath];
     [self callLuaMain];
     [[DataResControl instance] end];

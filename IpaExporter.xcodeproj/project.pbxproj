@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1813547E1DACC890008BC37E /* Data_t in Resources */ = {isa = PBXBuildFile; fileRef = 1813547D1DACC890008BC37E /* Data_t */; };
+		18322A8E1DAE193B0049660B /* BuilderCSFileEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 18322A8D1DAE193B0049660B /* BuilderCSFileEdit.m */; };
 		183780121D766C84004E3BAD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 183780111D766C84004E3BAD /* AppDelegate.m */; };
 		183780151D766C84004E3BAD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 183780141D766C84004E3BAD /* main.m */; };
 		1837801A1D766C84004E3BAD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 183780191D766C84004E3BAD /* Assets.xcassets */; };
@@ -61,6 +62,7 @@
 		18750AA71D9BBBD000FECCA6 /* LuaCammond.m in Sources */ = {isa = PBXBuildFile; fileRef = 18750AA31D9BBBD000FECCA6 /* LuaCammond.m */; };
 		18750AAB1D9BBCF200FECCA6 /* ExportIpaUtil.lua in Resources */ = {isa = PBXBuildFile; fileRef = 18750AA91D9BBCF200FECCA6 /* ExportIpaUtil.lua */; };
 		18750AAC1D9BBCF200FECCA6 /* LuaMain.lua in Resources */ = {isa = PBXBuildFile; fileRef = 18750AAA1D9BBCF200FECCA6 /* LuaMain.lua */; };
+		18769D931DAE34050023E255 /* XcodeProjModCSFileEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 18769D921DAE34050023E255 /* XcodeProjModCSFileEdit.m */; };
 		18B35C981D814B390034C4AD /* EventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B35C971D814B390034C4AD /* EventManager.m */; };
 		18CA13961D78164C006595E5 /* ViewMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CA13951D78164C006595E5 /* ViewMain.m */; };
 /* End PBXBuildFile section */
@@ -85,6 +87,8 @@
 /* Begin PBXFileReference section */
 		1813547D1DACC890008BC37E /* Data_t */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Data_t; path = IpaExporter/Data_t; sourceTree = "<group>"; };
 		182EB30B1DAB2A5D00601290 /* Defs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Defs.h; sourceTree = "<group>"; };
+		18322A8C1DAE193B0049660B /* BuilderCSFileEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuilderCSFileEdit.h; sourceTree = "<group>"; };
+		18322A8D1DAE193B0049660B /* BuilderCSFileEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuilderCSFileEdit.m; sourceTree = "<group>"; };
 		1837800D1D766C84004E3BAD /* IpaExporter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IpaExporter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		183780101D766C84004E3BAD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		183780111D766C84004E3BAD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -181,6 +185,8 @@
 		18750AA31D9BBBD000FECCA6 /* LuaCammond.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaCammond.m; sourceTree = "<group>"; };
 		18750AA91D9BBCF200FECCA6 /* ExportIpaUtil.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ExportIpaUtil.lua; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.lua; };
 		18750AAA1D9BBCF200FECCA6 /* LuaMain.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LuaMain.lua; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.lua; };
+		18769D911DAE34050023E255 /* XcodeProjModCSFileEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XcodeProjModCSFileEdit.h; sourceTree = "<group>"; };
+		18769D921DAE34050023E255 /* XcodeProjModCSFileEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XcodeProjModCSFileEdit.m; sourceTree = "<group>"; };
 		18B35C961D814B390034C4AD /* EventManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventManager.h; sourceTree = "<group>"; };
 		18B35C971D814B390034C4AD /* EventManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventManager.m; sourceTree = "<group>"; };
 		18CA13941D78164C006595E5 /* ViewMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewMain.h; sourceTree = "<group>"; };
@@ -377,14 +383,18 @@
 			isa = PBXGroup;
 			children = (
 				182EB30B1DAB2A5D00601290 /* Defs.h */,
+				18750AA21D9BBBD000FECCA6 /* LuaCammond.h */,
+				18750AA31D9BBBD000FECCA6 /* LuaCammond.m */,
 				18750A9D1D9BBBD000FECCA6 /* ExportInfoModel.h */,
 				18750A9E1D9BBBD000FECCA6 /* ExportInfoModel.m */,
 				186088FB1DAA4AE10055E4BB /* DataResControl.h */,
 				186088FC1DAA4AE10055E4BB /* DataResControl.m */,
 				1841FA751DACC7C10050FE12 /* DataCSCodeEdit.h */,
 				1841FA761DACC7C10050FE12 /* DataCSCodeEdit.m */,
-				18750AA21D9BBBD000FECCA6 /* LuaCammond.h */,
-				18750AA31D9BBBD000FECCA6 /* LuaCammond.m */,
+				18322A8C1DAE193B0049660B /* BuilderCSFileEdit.h */,
+				18322A8D1DAE193B0049660B /* BuilderCSFileEdit.m */,
+				18769D911DAE34050023E255 /* XcodeProjModCSFileEdit.h */,
+				18769D921DAE34050023E255 /* XcodeProjModCSFileEdit.m */,
 				18750AA81D9BBCF200FECCA6 /* Lua */,
 			);
 			path = Logic;
@@ -558,6 +568,7 @@
 				18750AA71D9BBBD000FECCA6 /* LuaCammond.m in Sources */,
 				18750A891D9BBBC100FECCA6 /* lmem.c in Sources */,
 				18750A831D9BBBC100FECCA6 /* lfunc.c in Sources */,
+				18769D931DAE34050023E255 /* XcodeProjModCSFileEdit.m in Sources */,
 				18750A841D9BBBC100FECCA6 /* lgc.c in Sources */,
 				18750A921D9BBBC100FECCA6 /* ltable.c in Sources */,
 				18750A8D1D9BBBC100FECCA6 /* loslib.c in Sources */,
@@ -582,6 +593,7 @@
 				18750A911D9BBBC100FECCA6 /* lstrlib.c in Sources */,
 				18750A981D9BBBC100FECCA6 /* lutf8lib.c in Sources */,
 				18750A851D9BBBC100FECCA6 /* linit.c in Sources */,
+				18322A8E1DAE193B0049660B /* BuilderCSFileEdit.m in Sources */,
 				18750A961D9BBBC100FECCA6 /* luac.c in Sources */,
 				18750A901D9BBBC100FECCA6 /* lstring.c in Sources */,
 				18CA13961D78164C006595E5 /* ViewMain.m in Sources */,
