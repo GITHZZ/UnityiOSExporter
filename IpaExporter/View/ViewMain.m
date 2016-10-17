@@ -9,6 +9,7 @@
 #import "ViewMain.h"
 #import "EventManager.h"
 #import "LuaCammond.h"
+#import "DetailsInfoView.h"
 
 @implementation ViewMain
 
@@ -19,7 +20,6 @@
     [_unityPathBox removeAllItems];
     [_exportPathBox removeAllItems];
     [_developProfileBox removeAllItems];
-
 }
 
 - (IBAction)sureBtnClick:(id)sender

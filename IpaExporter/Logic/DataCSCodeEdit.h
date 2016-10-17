@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Defs.h"
 
 @interface DataCSCodeEdit : NSObject
 {
@@ -18,6 +19,7 @@
 
 @property (nonatomic, readonly) NSArray* lines;
 
+- (void)start:(NSString*)dstPath withPackInfo:(IpaPackInfo)info;
 - (BOOL)initWithPath:(NSString*)path;
 - (void)replaceContent:(NSString*) newContent;
 

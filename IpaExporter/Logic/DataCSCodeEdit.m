@@ -10,6 +10,10 @@
 
 @implementation DataCSCodeEdit
 
+- (void)start:(NSString*)dstPath withPackInfo:(IpaPackInfo)info
+{    
+}
+
 - (BOOL)initWithPath:(NSString*)path
 {
     _path = path;

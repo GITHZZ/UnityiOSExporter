@@ -8,6 +8,7 @@
 
 #include <math.h>
 #include <stdlib.h>
+#include <string.h>
 #include "LuaDLL.h"
 #include "lfs.h"
 
@@ -139,7 +140,48 @@ int call_lua_function()
     return 1;
 }
 
-int pcall_lua(lua_State *L, int nargs, int nresults, int errfunc)
+void push_lua_args_string(lua_State *L, int count, const char* args1, ...)
+{
+    //定义参数列表
+    va_list ap;
+    //初始化参数列表
+    va_start(ap, args1);
+    lua_pushstring(L, args1);
+    
+    int i = 1;
+    //获取参数值
+    while (i < count)
+    {
+        char* args = va_arg(ap, char*);
+        lua_pushstring(L, args);
+        i++;
+    }
+    
+    
+    va_end(ap);
+}
+
+void push_lua_args_boolean(lua_State *L, int count, int args1, ...)
+{
+    //定义参数列表
+    va_list ap;
+    //初始化参数列表
+    va_start(ap, args1);
+    lua_pushboolean(L, args1);
+    
+    int i = 1;
+    //获取参数值
+    while (i < count)
+    {
+        int args = va_arg(ap, int);
+        lua_pushboolean(L, args);
+        i++;
+    }
+    
+    va_end(ap);
+}
+
+int start_call_lua_func(lua_State *L, int nargs, int nresults, int errfunc)
 {
     int s = lua_pcall(L, nargs, nresults, errfunc);
     if(s != LUA_OK)
@@ -152,7 +194,7 @@ int pcall_lua(lua_State *L, int nargs, int nresults, int errfunc)
     return LUA_DLL_OK;
 }
 
-int get_lua_global_data(lua_State *L, const char *name)
+int get_call_lua_func(lua_State *L, const char *name)
 {
     int s = lua_getglobal(L, name);
     if (s != LUA_OK)

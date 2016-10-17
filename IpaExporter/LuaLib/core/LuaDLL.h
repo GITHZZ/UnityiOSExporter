@@ -10,6 +10,7 @@
 #define LuaDLL_h
 
 #include "LuaException.h"
+#include <stdarg.h>
 
 //检测内核版本是否一致
 void check_version(lua_State* L);
@@ -34,7 +35,9 @@ int do_lua_string(lua_State* L, const char* content);
 int pop_lua_data(lua_State* L, int idx);
 
 //获取Lua表全局数据(_G)
-int get_lua_global_data(lua_State *L, const char *name);
-int pcall_lua(lua_State *L, int nargs, int nresults, int errfunc);
+int get_call_lua_func(lua_State *L, const char *name);
+void push_lua_args_string(lua_State *L, int count, const char* args1, ...);
+void push_lua_args_boolean(lua_State *L, int count, int args1, ...);
+int start_call_lua_func(lua_State *L, int nargs, int nresults, int errfunc);
 
 #endif /* LuaDLL_h */

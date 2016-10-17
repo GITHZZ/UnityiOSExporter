@@ -19,3 +19,4 @@ function MainStart(unityPath, exportFolder, profilePath, isRelease)
     
     ExportIpaUtil.Start(exportInfo)
 end
+

@@ -3,14 +3,6 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "luaM_realloc_:lmem.c">
-         <PersistentStrings>
-            <PersistentString
-               value = "g-&gt;GCdebt">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "singlestep:lgc.c">
          <PersistentStrings>
             <PersistentString
@@ -23,6 +15,28 @@
          <PersistentStrings>
             <PersistentString
                value = "view.info.unityProjPath">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "push_lua_var:LuaDLL.c">
+         <PersistentStrings>
+            <PersistentString
+               value = "count">
+            </PersistentString>
+            <PersistentString
+               value = "args">
+            </PersistentString>
+            <PersistentString
+               value = "strlen(t)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "luaM_realloc_:lmem.c">
+         <PersistentStrings>
+            <PersistentString
+               value = "g-&gt;GCdebt">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

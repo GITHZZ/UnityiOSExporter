@@ -65,6 +65,7 @@
 		18769D931DAE34050023E255 /* XcodeProjModCSFileEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 18769D921DAE34050023E255 /* XcodeProjModCSFileEdit.m */; };
 		18B35C981D814B390034C4AD /* EventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B35C971D814B390034C4AD /* EventManager.m */; };
 		18CA13961D78164C006595E5 /* ViewMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CA13951D78164C006595E5 /* ViewMain.m */; };
+		18DD5E6C1DAF1C150071B654 /* DetailsInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD5E6B1DAF1C150071B654 /* DetailsInfoView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -191,6 +192,8 @@
 		18B35C971D814B390034C4AD /* EventManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventManager.m; sourceTree = "<group>"; };
 		18CA13941D78164C006595E5 /* ViewMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewMain.h; sourceTree = "<group>"; };
 		18CA13951D78164C006595E5 /* ViewMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewMain.m; sourceTree = "<group>"; };
+		18DD5E6A1DAF1C150071B654 /* DetailsInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsInfoView.h; sourceTree = "<group>"; };
+		18DD5E6B1DAF1C150071B654 /* DetailsInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsInfoView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -413,6 +416,8 @@
 		18CA13931D78163C006595E5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				18DD5E6A1DAF1C150071B654 /* DetailsInfoView.h */,
+				18DD5E6B1DAF1C150071B654 /* DetailsInfoView.m */,
 				18CA13941D78164C006595E5 /* ViewMain.h */,
 				18CA13951D78164C006595E5 /* ViewMain.m */,
 			);
@@ -601,6 +606,7 @@
 				18750A8E1D9BBBC100FECCA6 /* lparser.c in Sources */,
 				18750A7C1D9BBBC100FECCA6 /* lcorolib.c in Sources */,
 				18750A991D9BBBC100FECCA6 /* lvm.c in Sources */,
+				18DD5E6C1DAF1C150071B654 /* DetailsInfoView.m in Sources */,
 				18750A931D9BBBC100FECCA6 /* ltablib.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

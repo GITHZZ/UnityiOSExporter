@@ -8,9 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Defs.h"
+#import "DataCSCodeEdit.h"
 
-@interface XcodeProjModCSFileEdit : NSObject
-
-- (void)start:(NSString*)dstPath withPackInfo:(IpaPackInfo)info;
-
+@interface XcodeProjModCSFileEdit : DataCSCodeEdit
 @end

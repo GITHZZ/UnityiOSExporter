@@ -11,7 +11,4 @@
 #import "Defs.h"
 
 @interface BuilderCSFileEdit : DataCSCodeEdit
-
-- (void)start:(NSString*)dstPath withPackInfo:(IpaPackInfo)info;
-
 @end

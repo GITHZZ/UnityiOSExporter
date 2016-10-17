@@ -91,13 +91,14 @@
 {
     ExportInfoModel* view = [ExportInfoModel instance];
     
-    get_lua_global_data(L, "MainStart");
-    lua_pushstring(L, view.info->unityProjPath);
-    lua_pushstring(L, view.info->exportFolderParh);
-    lua_pushstring(L, view.info->developProfilePath);
-    lua_pushboolean(L, view.info->isRelease ? 1 : 0);
-    
-    pcall_lua(L, 4, 0, 0);
+    get_call_lua_func(L, "MainStart");
+    push_lua_args_string(L,
+                    3,
+                    view.info->unityProjPath,
+                    view.info->exportFolderParh,
+                    view.info->developProfilePath);
+    push_lua_args_boolean(L, 1, view.info->isRelease ? 1 : 0);
+    start_call_lua_func(L, 4, 0, 0);
 }
 
 - (void)startExport
