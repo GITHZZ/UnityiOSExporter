@@ -28,7 +28,7 @@
 {
     if(self =[super init])
     {
-        _info = (ExportInfo*)malloc(sizeof(ExportInfo));
+        _info = (ExportInfo*)malloc(sizeof(ExportInfo)); 
         _info->developProfilePath = "";
         _info->exportFolderParh = "";
         _info->publishProfilePath = "";

@@ -92,12 +92,12 @@
     ExportInfoModel* view = [ExportInfoModel instance];
     
     get_call_lua_func(L, "MainStart");
-    push_lua_args_string(L,
-                    3,
-                    view.info->unityProjPath,
-                    view.info->exportFolderParh,
-                    view.info->developProfilePath);
-    push_lua_args_boolean(L, 1, view.info->isRelease ? 1 : 0);
+    push_lua_string_args(L,
+                         3,
+                         view.info->unityProjPath,
+                         view.info->exportFolderParh,
+                         view.info->developProfilePath);
+    push_lua_boolean_args(L, 1, view.info->isRelease ? 1 : 0);
     start_call_lua_func(L, 4, 0, 0);
 }
 

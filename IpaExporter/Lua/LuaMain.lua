@@ -17,6 +17,6 @@ function MainStart(unityPath, exportFolder, profilePath, isRelease)
         ipaName = "test",
     }
     
-    ExportIpaUtil.Start(exportInfo)
+    --ExportIpaUtil.Start(exportInfo)
 end
 

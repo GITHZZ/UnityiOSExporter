@@ -19,6 +19,11 @@ void check_version(lua_State* L)
 
 lua_State* open_lua()
 {
+    //重定向log输出
+    FILE* stream = freopen("/Users/apple/Desktop/test.txt", "w", stdout); // 重定向
+    if(stream == NULL)
+        printf("重定向出错");
+
     lua_State* L = luaL_newstate();
     
     if(L == NULL)
@@ -135,12 +140,7 @@ int pop_lua_data(lua_State* L, int idx)
     return LUA_DLL_OK;
 }
 
-int call_lua_function()
-{
-    return 1;
-}
-
-void push_lua_args_string(lua_State *L, int count, const char* args1, ...)
+void push_lua_string_args(lua_State *L, int count, const char* args1, ...)
 {
     //定义参数列表
     va_list ap;
@@ -161,7 +161,7 @@ void push_lua_args_string(lua_State *L, int count, const char* args1, ...)
     va_end(ap);
 }
 
-void push_lua_args_boolean(lua_State *L, int count, int args1, ...)
+void push_lua_boolean_args(lua_State *L, int count, int args1, ...)
 {
     //定义参数列表
     va_list ap;

@@ -34,10 +34,10 @@ int do_lua_string(lua_State* L, const char* content);
 //出栈
 int pop_lua_data(lua_State* L, int idx);
 
-//获取Lua表全局数据(_G)
+//调用lua方法
 int get_call_lua_func(lua_State *L, const char *name);
-void push_lua_args_string(lua_State *L, int count, const char* args1, ...);
-void push_lua_args_boolean(lua_State *L, int count, int args1, ...);
+void push_lua_string_args(lua_State *L, int count, const char* args1, ...);
+void push_lua_boolean_args(lua_State *L, int count, int args1, ...);
 int start_call_lua_func(lua_State *L, int nargs, int nresults, int errfunc);
 
 #endif /* LuaDLL_h */
