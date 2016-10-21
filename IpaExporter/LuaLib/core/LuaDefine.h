@@ -9,6 +9,9 @@
 #ifndef LuaDefine_h
 #define LuaDefine_h
 
+
+#define LOG_TXT_FILE "/logFile.txt"
+
 union LuaVal
 {
     int num;

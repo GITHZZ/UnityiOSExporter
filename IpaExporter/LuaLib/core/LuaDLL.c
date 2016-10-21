@@ -11,16 +11,29 @@
 #include <string.h>
 #include "LuaDLL.h"
 #include "lfs.h"
+#include "LuaDefine.h"
 
 void check_version(lua_State* L)
 {
     luaL_checkversion(L);
 }
 
-lua_State* open_lua()
+char* combine_string(const char *s1, const char *s2)
 {
-    //重定向log输出
-    FILE* stream = freopen("/Users/apple/Desktop/test.txt", "w", stdout); // 重定向
+    char* result = malloc(strlen(s1) + strlen(s2) + 1);
+    if(result == NULL) exit(1);
+    
+    strcpy(result, s1);
+    strcat(result, s2);
+    
+    return result;
+}
+
+lua_State* open_lua(const char* logFilePath)
+{
+    //创建和重定向log输出
+    char* path = combine_string(logFilePath, LOG_TXT_FILE);
+    FILE* stream = freopen(path, "w", stdout); // 重定向
     if(stream == NULL)
         printf("重定向出错");
 

@@ -15,7 +15,7 @@
 //检测内核版本是否一致
 void check_version(lua_State* L);
 //初始化Lua堆栈
-lua_State* open_lua();
+lua_State* open_lua(const char* logFilePath);
 int open_lua_libs(lua_State* L);
 //释放Lua主线程堆栈
 void close_lua(lua_State* L);

@@ -60,7 +60,9 @@
     if(L != nil)
         return;
     
-    L = open_lua();
+    NSString* resourcePath = [[NSBundle mainBundle] resourcePath];
+    
+    L = open_lua([resourcePath UTF8String]);
     int code = open_lua_libs(L);
     
     [self printErrorByCode:code];
