@@ -13,7 +13,6 @@
 @interface ViewMain : NSViewController
 
 @property(nonatomic, retain) IBOutlet NSTextField* infoLabel;
-@property(nonatomic, retain) IBOutlet NSButton* startBtn;
 @property(nonatomic, retain) IBOutlet NSComboBox* unityPathBox;
 @property(nonatomic, retain) IBOutlet NSComboBox* exportPathBox;
 @property(nonatomic, retain) IBOutlet NSComboBox* developProfileBox;

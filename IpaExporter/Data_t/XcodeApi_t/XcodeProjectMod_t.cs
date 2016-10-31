@@ -40,9 +40,7 @@ public class XcodeProjectMod_t
 			proj.SetBuildProperty(target, "ENABLE_BITCODE", "NO");
 			proj.SetBuildProperty(target, "PROVISIONING_PROFILE_SPECIFIER", "ZZSJDevelopment");
             proj.SetBuildProperty(target, "CODE_SIGN_IDENTITY", "iPhone Developer: he zunzu (2R43QP4H5A)");
-
-
-
+            
             File.WriteAllText(projPath, proj.WriteToString());
 		}
 	}	

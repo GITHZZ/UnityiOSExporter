@@ -41,7 +41,6 @@
     {
         for(NSURL* url in [openDlg URLs])
         {
-            //NSLog(@"%@", [url path]);
             NSString* selectPath = [url path];
             
             switch (et)

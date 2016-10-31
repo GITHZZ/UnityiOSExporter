@@ -491,6 +491,8 @@
 				TargetAttributes = {
 					1837800C1D766C84004E3BAD = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 5GW4L26KUL;
+						ProvisioningStyle = Automatic;
 					};
 					183780221D766C84004E3BAD = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -739,7 +741,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 5GW4L26KUL;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				INFOPLIST_FILE = IpaExporter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -757,7 +761,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 5GW4L26KUL;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				INFOPLIST_FILE = IpaExporter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";

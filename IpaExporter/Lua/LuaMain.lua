@@ -2,7 +2,7 @@ local ExportIpaUtil = dofile("/Users/apple/Documents/Xcode Project/IpaExporter/I
 
 function MainStart(unityPath, exportFolder, profilePath, isRelease)
     if unityPath == "" or exportFolder == "" then -- or profilePath == ""
-        print("路径参数不能为空.")
+        print("路径参数不能为空~~.")
         print("unityPath:" .. unityPath)
         print("exportFolder:" .. exportFolder)
         print("profilePath:" .. profilePath)
