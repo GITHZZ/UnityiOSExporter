@@ -16,6 +16,7 @@
 		183780281D766C84004E3BAD /* IpaExporterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 183780271D766C84004E3BAD /* IpaExporterTests.m */; };
 		183780331D766C85004E3BAD /* IpaExporterUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 183780321D766C85004E3BAD /* IpaExporterUITests.m */; };
 		1841FA771DACC7C10050FE12 /* DataCSCodeEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 1841FA761DACC7C10050FE12 /* DataCSCodeEdit.m */; };
+		184BEA501DC742FA00CCEC4D /* DetailsInfoSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 184BEA4F1DC742FA00CCEC4D /* DetailsInfoSetting.m */; };
 		186088FD1DAA4AE10055E4BB /* DataResControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 186088FC1DAA4AE10055E4BB /* DataResControl.m */; };
 		18750A721D9BBBC100FECCA6 /* LuaDictionary.c in Sources */ = {isa = PBXBuildFile; fileRef = 18750A221D9BBBC100FECCA6 /* LuaDictionary.c */; };
 		18750A731D9BBBC100FECCA6 /* LuaDLL.c in Sources */ = {isa = PBXBuildFile; fileRef = 18750A241D9BBBC100FECCA6 /* LuaDLL.c */; };
@@ -66,6 +67,7 @@
 		18B35C981D814B390034C4AD /* EventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B35C971D814B390034C4AD /* EventManager.m */; };
 		18CA13961D78164C006595E5 /* ViewMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CA13951D78164C006595E5 /* ViewMain.m */; };
 		18DD5E6C1DAF1C150071B654 /* DetailsInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD5E6B1DAF1C150071B654 /* DetailsInfoView.m */; };
+		18FA65B41DCAE30300ECAA48 /* DetailsInfoData.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FA65B21DCAE30300ECAA48 /* DetailsInfoData.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,7 +89,6 @@
 
 /* Begin PBXFileReference section */
 		1813547D1DACC890008BC37E /* Data_t */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Data_t; path = IpaExporter/Data_t; sourceTree = "<group>"; };
-		182EB30B1DAB2A5D00601290 /* Defs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Defs.h; sourceTree = "<group>"; };
 		18322A8C1DAE193B0049660B /* BuilderCSFileEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuilderCSFileEdit.h; sourceTree = "<group>"; };
 		18322A8D1DAE193B0049660B /* BuilderCSFileEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuilderCSFileEdit.m; sourceTree = "<group>"; };
 		1837800D1D766C84004E3BAD /* IpaExporter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IpaExporter.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,6 +106,8 @@
 		183780341D766C85004E3BAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1841FA751DACC7C10050FE12 /* DataCSCodeEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataCSCodeEdit.h; sourceTree = "<group>"; };
 		1841FA761DACC7C10050FE12 /* DataCSCodeEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataCSCodeEdit.m; sourceTree = "<group>"; };
+		184BEA4E1DC742FA00CCEC4D /* DetailsInfoSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsInfoSetting.h; sourceTree = "<group>"; };
+		184BEA4F1DC742FA00CCEC4D /* DetailsInfoSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsInfoSetting.m; sourceTree = "<group>"; };
 		186088FB1DAA4AE10055E4BB /* DataResControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataResControl.h; sourceTree = "<group>"; };
 		186088FC1DAA4AE10055E4BB /* DataResControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataResControl.m; sourceTree = "<group>"; };
 		18750A211D9BBBC100FECCA6 /* LuaDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaDefine.h; sourceTree = "<group>"; };
@@ -186,6 +189,7 @@
 		18750AA31D9BBBD000FECCA6 /* LuaCammond.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaCammond.m; sourceTree = "<group>"; };
 		18750AA91D9BBCF200FECCA6 /* ExportIpaUtil.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ExportIpaUtil.lua; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.lua; };
 		18750AAA1D9BBCF200FECCA6 /* LuaMain.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LuaMain.lua; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.lua; };
+		18758A111DC9DD910054517D /* Defs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Defs.h; sourceTree = "<group>"; };
 		18769D911DAE34050023E255 /* XcodeProjModCSFileEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XcodeProjModCSFileEdit.h; sourceTree = "<group>"; };
 		18769D921DAE34050023E255 /* XcodeProjModCSFileEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XcodeProjModCSFileEdit.m; sourceTree = "<group>"; };
 		18B35C961D814B390034C4AD /* EventManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventManager.h; sourceTree = "<group>"; };
@@ -194,6 +198,8 @@
 		18CA13951D78164C006595E5 /* ViewMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewMain.m; sourceTree = "<group>"; };
 		18DD5E6A1DAF1C150071B654 /* DetailsInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsInfoView.h; sourceTree = "<group>"; };
 		18DD5E6B1DAF1C150071B654 /* DetailsInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsInfoView.m; sourceTree = "<group>"; };
+		18FA65B11DCAE30300ECAA48 /* DetailsInfoData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsInfoData.h; sourceTree = "<group>"; };
+		18FA65B21DCAE30300ECAA48 /* DetailsInfoData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsInfoData.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -252,6 +258,7 @@
 				183780111D766C84004E3BAD /* AppDelegate.m */,
 				18B35C961D814B390034C4AD /* EventManager.h */,
 				18B35C971D814B390034C4AD /* EventManager.m */,
+				18758A111DC9DD910054517D /* Defs.h */,
 				183780191D766C84004E3BAD /* Assets.xcassets */,
 				1837801B1D766C84004E3BAD /* Main.storyboard */,
 				1837801E1D766C84004E3BAD /* Info.plist */,
@@ -385,7 +392,6 @@
 		18750A9C1D9BBBD000FECCA6 /* Logic */ = {
 			isa = PBXGroup;
 			children = (
-				182EB30B1DAB2A5D00601290 /* Defs.h */,
 				18750AA21D9BBBD000FECCA6 /* LuaCammond.h */,
 				18750AA31D9BBBD000FECCA6 /* LuaCammond.m */,
 				18750A9D1D9BBBD000FECCA6 /* ExportInfoModel.h */,
@@ -416,10 +422,14 @@
 		18CA13931D78163C006595E5 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				18DD5E6A1DAF1C150071B654 /* DetailsInfoView.h */,
-				18DD5E6B1DAF1C150071B654 /* DetailsInfoView.m */,
 				18CA13941D78164C006595E5 /* ViewMain.h */,
 				18CA13951D78164C006595E5 /* ViewMain.m */,
+				18DD5E6A1DAF1C150071B654 /* DetailsInfoView.h */,
+				18DD5E6B1DAF1C150071B654 /* DetailsInfoView.m */,
+				184BEA4E1DC742FA00CCEC4D /* DetailsInfoSetting.h */,
+				184BEA4F1DC742FA00CCEC4D /* DetailsInfoSetting.m */,
+				18FA65B11DCAE30300ECAA48 /* DetailsInfoData.h */,
+				18FA65B21DCAE30300ECAA48 /* DetailsInfoData.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -585,6 +595,7 @@
 				18B35C981D814B390034C4AD /* EventManager.m in Sources */,
 				18750A751D9BBBC100FECCA6 /* LuaNodeList.c in Sources */,
 				18750A8B1D9BBBC100FECCA6 /* lobject.c in Sources */,
+				184BEA501DC742FA00CCEC4D /* DetailsInfoSetting.m in Sources */,
 				183780151D766C84004E3BAD /* main.m in Sources */,
 				18750A971D9BBBC100FECCA6 /* lundump.c in Sources */,
 				18750A781D9BBBC100FECCA6 /* lauxlib.c in Sources */,
@@ -593,6 +604,7 @@
 				18750A7A1D9BBBC100FECCA6 /* lbitlib.c in Sources */,
 				18750A731D9BBBC100FECCA6 /* LuaDLL.c in Sources */,
 				18750A721D9BBBC100FECCA6 /* LuaDictionary.c in Sources */,
+				18FA65B41DCAE30300ECAA48 /* DetailsInfoData.m in Sources */,
 				186088FD1DAA4AE10055E4BB /* DataResControl.m in Sources */,
 				18750A7E1D9BBBC100FECCA6 /* ldblib.c in Sources */,
 				183780121D766C84004E3BAD /* AppDelegate.m in Sources */,
