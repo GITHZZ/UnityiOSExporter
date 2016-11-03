@@ -15,7 +15,6 @@
 @property(nonatomic, retain) IBOutlet NSTextField* infoLabel;
 @property(nonatomic, retain) IBOutlet NSComboBox* unityPathBox;
 @property(nonatomic, retain) IBOutlet NSComboBox* exportPathBox;
-@property(nonatomic, retain) IBOutlet NSComboBox* developProfileBox;
 
 - (IBAction)sureBtnClick:(id)sender;
 - (IBAction)unityPathSelect:(id)sender;

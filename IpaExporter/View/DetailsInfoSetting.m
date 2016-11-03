@@ -14,21 +14,32 @@
 
 @implementation DetailsInfoSetting
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do view setup here.
 }
 
--(IBAction)ViewHasBeenClosed:(id)sender
+-(IBAction)sureBtnClickFuncion:(id)sender
 {
+    NSString* appName = _appName.stringValue;
     NSString* appID = _appID.stringValue;
     NSString* codeSignIdentity = _codeSignIdentity.stringValue;
+    NSString* provisioning = _provisioningProfile.stringValue;
     
     DetailsInfoData* info = [[DetailsInfoData alloc] init];
-    [info setInfoWithAppID:appID codeSignIdentity:codeSignIdentity];
+    [info setInfoWithAppName:appName
+                       appID:appID
+            codeSignIdentity:codeSignIdentity
+         provisioningProfile:provisioning];
     
     [[EventManager instance] send:EventDetailsInfoSettingClose
                          withData:info];
+    
+    [self dismissViewController:self];
+}
+
+-(IBAction)cancelBtnClickFunction:(id)sender
+{
     [self dismissViewController:self];
 }
 

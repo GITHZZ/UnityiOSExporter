@@ -19,7 +19,6 @@
     
     [_unityPathBox removeAllItems];
     [_exportPathBox removeAllItems];
-    [_developProfileBox removeAllItems];
 }
 
 - (IBAction)sureBtnClick:(id)sender
@@ -55,10 +54,6 @@
                     [ExportInfoModel instance].info = tInfo;
                     _exportPathBox.stringValue = selectPath;
                     break;
-                case EventDevelopProfileSelectEnd:
-                    tInfo->developProfilePath = [selectPath UTF8String];
-                    [ExportInfoModel instance].info = tInfo;
-                    _developProfileBox.stringValue = selectPath;
                 default:
                     break;
             }
@@ -80,13 +75,6 @@
     [self openFolderSelectDialog:EventExportPathSelectEnd
                  IsCanSelectFile:NO
           IsCanSelectDirectories:YES];
-}
-
-- (IBAction)developProfileSelect:(id)sender
-{
-    [self openFolderSelectDialog:EventDevelopProfileSelectEnd
-                 IsCanSelectFile:YES
-          IsCanSelectDirectories:NO];
 }
 
 - (void)viewDidLoad

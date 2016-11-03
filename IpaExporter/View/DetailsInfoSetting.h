@@ -13,10 +13,10 @@
 
 @interface DetailsInfoSetting : NSViewController
 
--(IBAction)ViewHasBeenClosed:(id)sender;
-
-@property(nonatomic, retain) IBOutlet NSTextField* appID;
-@property(nonatomic, retain) IBOutlet NSTextField* codeSignIdentity;
+@property (nonatomic, retain) IBOutlet NSTextField* appName;
+@property (nonatomic, retain) IBOutlet NSTextField* appID;
+@property (nonatomic, retain) IBOutlet NSTextField* codeSignIdentity;
+@property (nonatomic, retain) IBOutlet NSTextField* provisioningProfile;
 
 @end
 

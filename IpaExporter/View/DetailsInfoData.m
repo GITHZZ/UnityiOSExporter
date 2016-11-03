@@ -10,12 +10,15 @@
 
 @implementation DetailsInfoData
 
--(void)setInfoWithAppID:(NSString*)appID
-       codeSignIdentity:(NSString*)codeS
+-(void)setInfoWithAppName:(NSString*)appName
+                    appID:(NSString*)appID
+         codeSignIdentity:(NSString*)codeS
+      provisioningProfile:(NSString*)profile
 {
-    _appID = appID;
-    _codeSignIdentity = codeS;
-    _provisioningProfile = @"123";
+    [self setValue:appName forKey:App_Name_Key];
+    [self setValue:appID forKey:App_ID_Key];
+    [self setValue:codeS forKey:Code_Sign_Identity_Key];
+    [self setValue:profile forKey:Provisioning_Profile_key];
 }
 
 @end

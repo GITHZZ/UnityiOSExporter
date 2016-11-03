@@ -21,6 +21,7 @@
                                self:self];
     
     _dataDict = [[NSMutableArray alloc] initWithCapacity:10];
+    [self roadSaveData];
     
     //设置数据源
     _infoTbls.delegate = self;
@@ -33,7 +34,17 @@
 
 - (IBAction)removeInfo:(id)sender
 {
-    NSLog(@"++++removeInfo++++");
+    NSInteger row = [_infoTbls selectedRow];
+    if(row > -1)
+    {
+        [_dataDict removeObjectAtIndex:row];
+        [_infoTbls reloadData];
+    }
+}
+
+- (void)roadSaveData
+{
+    //读取存储数据并显示
 }
 
 - (void)DetailsInfoViewClose:(NSNotification*)notification
@@ -49,33 +60,29 @@
     return [_dataDict count];
 }
 
+//初始化新行内容
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
+{
+    NSString *columnIdentifier=[tableColumn identifier];
+    if(columnIdentifier == nil)
+    {
+        NSLog(@"存在没有设置Identifier列");
+        return nil;
+    }
+
+    DetailsInfoData* info = [_dataDict objectAtIndex:row];
+    return [info valueForKey:columnIdentifier];
+}
+
+//修改行内容
+- (void)tableView:(NSTableView *)tableView setObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
     NSString *columnIdentifier=[tableColumn identifier];
     DetailsInfoData* info = [_dataDict objectAtIndex:row];
     
-    if ([columnIdentifier isEqualToString:@"bundleIdentifier"])
-    {
-        return info.appID;
-    }
-    else if([columnIdentifier isEqualToString:@"codeSignIdentity"])
-    {
-        return info.codeSignIdentity;
-    }
-    else if([columnIdentifier isEqualToString:@"provisioningProfile"])
-    {
-        return info.provisioningProfile;
-    }
-    else
-    {
-        NSLog(@"无效的类型%@", columnIdentifier);
-    }
-    return nil;
+    NSString* newValue = (NSString*)object;
+    [info setValue:newValue forKey:columnIdentifier];
 }
 
-- (void)tableView:(NSTableView *)tableView setObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
-{
-    NSLog(@"123");
-}
 
 @end

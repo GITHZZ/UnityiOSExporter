@@ -30,4 +30,10 @@ typedef struct ExportInfo{
     const char* publishProfilePath;
 }ExportInfo;
 
+typedef struct DetailsInfo{
+    const char* appID;
+    const char* codeSignIdentity;
+    const char* provisioningProfile;
+}DetailsInfo;
+
 #endif /* Defs_h */

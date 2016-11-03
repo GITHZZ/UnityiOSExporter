@@ -189,9 +189,9 @@
 		18750AA31D9BBBD000FECCA6 /* LuaCammond.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaCammond.m; sourceTree = "<group>"; };
 		18750AA91D9BBCF200FECCA6 /* ExportIpaUtil.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ExportIpaUtil.lua; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.lua; };
 		18750AAA1D9BBCF200FECCA6 /* LuaMain.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LuaMain.lua; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.lua; };
-		18758A111DC9DD910054517D /* Defs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Defs.h; sourceTree = "<group>"; };
 		18769D911DAE34050023E255 /* XcodeProjModCSFileEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XcodeProjModCSFileEdit.h; sourceTree = "<group>"; };
 		18769D921DAE34050023E255 /* XcodeProjModCSFileEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XcodeProjModCSFileEdit.m; sourceTree = "<group>"; };
+		1887E01E1DCB1B58005AA97A /* Defs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Defs.h; sourceTree = "<group>"; };
 		18B35C961D814B390034C4AD /* EventManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventManager.h; sourceTree = "<group>"; };
 		18B35C971D814B390034C4AD /* EventManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventManager.m; sourceTree = "<group>"; };
 		18CA13941D78164C006595E5 /* ViewMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewMain.h; sourceTree = "<group>"; };
@@ -258,7 +258,6 @@
 				183780111D766C84004E3BAD /* AppDelegate.m */,
 				18B35C961D814B390034C4AD /* EventManager.h */,
 				18B35C971D814B390034C4AD /* EventManager.m */,
-				18758A111DC9DD910054517D /* Defs.h */,
 				183780191D766C84004E3BAD /* Assets.xcassets */,
 				1837801B1D766C84004E3BAD /* Main.storyboard */,
 				1837801E1D766C84004E3BAD /* Info.plist */,
@@ -392,6 +391,7 @@
 		18750A9C1D9BBBD000FECCA6 /* Logic */ = {
 			isa = PBXGroup;
 			children = (
+				1887E01E1DCB1B58005AA97A /* Defs.h */,
 				18750AA21D9BBBD000FECCA6 /* LuaCammond.h */,
 				18750AA31D9BBBD000FECCA6 /* LuaCammond.m */,
 				18750A9D1D9BBBD000FECCA6 /* ExportInfoModel.h */,
