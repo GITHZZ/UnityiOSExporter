@@ -19,3 +19,5 @@ iOS打包工具(IpaExporter)
 以后再说吧.这次我主要是为了增加可视化界面而已.
 
 
+###遇到的坑(随笔):
+*坑爹的NSTableView 使用的时候一直显示不了内容 解决方法是:要把属性contentMode改成View Based设置成Cell Based 不是不能显示 还好从这里找到方案了:http://www.07net01.com/2015/10/937976.html
