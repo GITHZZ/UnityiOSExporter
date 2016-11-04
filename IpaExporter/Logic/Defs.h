@@ -22,18 +22,22 @@ typedef struct IpaPackInfo
     const char* codesignidentity;//开发者账号名字
 }IpaPackInfo;
 
-typedef struct ExportInfo{
+//绑定到界面的数据(包界面)
+typedef struct DetailsInfo
+{
+    const char* appName;//应用名字
+    const char* appID;//id
+    const char* codeSignIdentity;
+    const char* provisioningProfile;
+}DetailsInfo;
+
+typedef struct ExportInfo
+{
     BOOL isRelease;
     const char* unityProjPath;
     const char* exportFolderParh;
     const char* developProfilePath;
     const char* publishProfilePath;
 }ExportInfo;
-
-typedef struct DetailsInfo{
-    const char* appID;
-    const char* codeSignIdentity;
-    const char* provisioningProfile;
-}DetailsInfo;
 
 #endif /* Defs_h */

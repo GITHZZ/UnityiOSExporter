@@ -21,7 +21,6 @@
 @property (nonatomic, readonly) NSMutableArray* dataDict;
 @property (weak) IBOutlet NSTableView *infoTbls;
 
-- (IBAction)addInfo:(id)sender;
-- (IBAction)removeInfo:(id)sender;
+- (IBAction)removeBtnClick:(id)sender;
 
 @end

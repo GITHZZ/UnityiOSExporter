@@ -28,11 +28,18 @@
     _infoTbls.dataSource = self;
 }
 
-- (IBAction)addInfo:(id)sender
+- (IBAction)removeBtnClick:(id)sender
 {
+    [self removeInfo];
 }
 
-- (IBAction)removeInfo:(id)sender
+- (void)addInfo:(DetailsInfoData*)info
+{
+    [_dataDict addObject:info];
+    [_infoTbls reloadData];
+}
+
+- (void)removeInfo
 {
     NSInteger row = [_infoTbls selectedRow];
     if(row > -1)
@@ -50,8 +57,7 @@
 - (void)DetailsInfoViewClose:(NSNotification*)notification
 {
     DetailsInfoData* info = (DetailsInfoData*)[notification object];
-    [_dataDict addObject:info];
-    [_infoTbls reloadData];
+    [self addInfo:info];
 }
 
 //返回表格的行数
@@ -66,7 +72,7 @@
     NSString *columnIdentifier=[tableColumn identifier];
     if(columnIdentifier == nil)
     {
-        NSLog(@"存在没有设置Identifier列");
+        NSLog(@"存在没有设置Identifier属性");
         return nil;
     }
 
@@ -83,6 +89,5 @@
     NSString* newValue = (NSString*)object;
     [info setValue:newValue forKey:columnIdentifier];
 }
-
 
 @end

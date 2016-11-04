@@ -19,7 +19,12 @@
     [super viewDidLoad];
 }
 
--(IBAction)sureBtnClickFuncion:(id)sender
+- (BOOL)checkContent
+{
+    return NO;
+}
+
+- (IBAction)sureBtnClickFuncion:(id)sender
 {
     NSString* appName = _appName.stringValue;
     NSString* appID = _appID.stringValue;
@@ -38,7 +43,7 @@
     [self dismissViewController:self];
 }
 
--(IBAction)cancelBtnClickFunction:(id)sender
+- (IBAction)cancelBtnClickFunction:(id)sender
 {
     [self dismissViewController:self];
 }

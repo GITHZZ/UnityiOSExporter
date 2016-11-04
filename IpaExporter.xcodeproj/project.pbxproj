@@ -59,7 +59,6 @@
 		18750A991D9BBBC100FECCA6 /* lvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 18750A6D1D9BBBC100FECCA6 /* lvm.c */; };
 		18750A9A1D9BBBC100FECCA6 /* lzio.c in Sources */ = {isa = PBXBuildFile; fileRef = 18750A6F1D9BBBC100FECCA6 /* lzio.c */; };
 		18750A9B1D9BBBC100FECCA6 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 18750A711D9BBBC100FECCA6 /* Makefile */; };
-		18750AA41D9BBBD000FECCA6 /* ExportInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18750A9E1D9BBBD000FECCA6 /* ExportInfoModel.m */; };
 		18750AA71D9BBBD000FECCA6 /* LuaCammond.m in Sources */ = {isa = PBXBuildFile; fileRef = 18750AA31D9BBBD000FECCA6 /* LuaCammond.m */; };
 		18750AAB1D9BBCF200FECCA6 /* ExportIpaUtil.lua in Resources */ = {isa = PBXBuildFile; fileRef = 18750AA91D9BBCF200FECCA6 /* ExportIpaUtil.lua */; };
 		18750AAC1D9BBCF200FECCA6 /* LuaMain.lua in Resources */ = {isa = PBXBuildFile; fileRef = 18750AAA1D9BBCF200FECCA6 /* LuaMain.lua */; };
@@ -67,7 +66,8 @@
 		18B35C981D814B390034C4AD /* EventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B35C971D814B390034C4AD /* EventManager.m */; };
 		18CA13961D78164C006595E5 /* ViewMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CA13951D78164C006595E5 /* ViewMain.m */; };
 		18DD5E6C1DAF1C150071B654 /* DetailsInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD5E6B1DAF1C150071B654 /* DetailsInfoView.m */; };
-		18FA65B41DCAE30300ECAA48 /* DetailsInfoData.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FA65B21DCAE30300ECAA48 /* DetailsInfoData.m */; };
+		18F102771DCC2813008312E5 /* DetailsInfoData.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F102741DCC2813008312E5 /* DetailsInfoData.m */; };
+		18F102781DCC2813008312E5 /* ExportInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F102761DCC2813008312E5 /* ExportInfoModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -183,8 +183,6 @@
 		18750A6F1D9BBBC100FECCA6 /* lzio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lzio.c; sourceTree = "<group>"; };
 		18750A701D9BBBC100FECCA6 /* lzio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lzio.h; sourceTree = "<group>"; };
 		18750A711D9BBBC100FECCA6 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
-		18750A9D1D9BBBD000FECCA6 /* ExportInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportInfoModel.h; sourceTree = "<group>"; };
-		18750A9E1D9BBBD000FECCA6 /* ExportInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportInfoModel.m; sourceTree = "<group>"; };
 		18750AA21D9BBBD000FECCA6 /* LuaCammond.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaCammond.h; sourceTree = "<group>"; };
 		18750AA31D9BBBD000FECCA6 /* LuaCammond.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaCammond.m; sourceTree = "<group>"; };
 		18750AA91D9BBCF200FECCA6 /* ExportIpaUtil.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ExportIpaUtil.lua; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.lua; };
@@ -198,8 +196,10 @@
 		18CA13951D78164C006595E5 /* ViewMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewMain.m; sourceTree = "<group>"; };
 		18DD5E6A1DAF1C150071B654 /* DetailsInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsInfoView.h; sourceTree = "<group>"; };
 		18DD5E6B1DAF1C150071B654 /* DetailsInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsInfoView.m; sourceTree = "<group>"; };
-		18FA65B11DCAE30300ECAA48 /* DetailsInfoData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsInfoData.h; sourceTree = "<group>"; };
-		18FA65B21DCAE30300ECAA48 /* DetailsInfoData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsInfoData.m; sourceTree = "<group>"; };
+		18F102731DCC2813008312E5 /* DetailsInfoData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsInfoData.h; sourceTree = "<group>"; };
+		18F102741DCC2813008312E5 /* DetailsInfoData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsInfoData.m; sourceTree = "<group>"; };
+		18F102751DCC2813008312E5 /* ExportInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportInfoModel.h; sourceTree = "<group>"; };
+		18F102761DCC2813008312E5 /* ExportInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportInfoModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -252,6 +252,7 @@
 			isa = PBXGroup;
 			children = (
 				18750A1F1D9BBBC100FECCA6 /* LuaLib */,
+				18F102721DCC2813008312E5 /* Common */,
 				18750A9C1D9BBBD000FECCA6 /* Logic */,
 				18CA13931D78163C006595E5 /* View */,
 				183780101D766C84004E3BAD /* AppDelegate.h */,
@@ -394,8 +395,6 @@
 				1887E01E1DCB1B58005AA97A /* Defs.h */,
 				18750AA21D9BBBD000FECCA6 /* LuaCammond.h */,
 				18750AA31D9BBBD000FECCA6 /* LuaCammond.m */,
-				18750A9D1D9BBBD000FECCA6 /* ExportInfoModel.h */,
-				18750A9E1D9BBBD000FECCA6 /* ExportInfoModel.m */,
 				186088FB1DAA4AE10055E4BB /* DataResControl.h */,
 				186088FC1DAA4AE10055E4BB /* DataResControl.m */,
 				1841FA751DACC7C10050FE12 /* DataCSCodeEdit.h */,
@@ -428,10 +427,19 @@
 				18DD5E6B1DAF1C150071B654 /* DetailsInfoView.m */,
 				184BEA4E1DC742FA00CCEC4D /* DetailsInfoSetting.h */,
 				184BEA4F1DC742FA00CCEC4D /* DetailsInfoSetting.m */,
-				18FA65B11DCAE30300ECAA48 /* DetailsInfoData.h */,
-				18FA65B21DCAE30300ECAA48 /* DetailsInfoData.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		18F102721DCC2813008312E5 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				18F102731DCC2813008312E5 /* DetailsInfoData.h */,
+				18F102741DCC2813008312E5 /* DetailsInfoData.m */,
+				18F102751DCC2813008312E5 /* ExportInfoModel.h */,
+				18F102761DCC2813008312E5 /* ExportInfoModel.m */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -576,7 +584,6 @@
 				18750A791D9BBBC100FECCA6 /* lbaselib.c in Sources */,
 				18750A7D1D9BBBC100FECCA6 /* lctype.c in Sources */,
 				1841FA771DACC7C10050FE12 /* DataCSCodeEdit.m in Sources */,
-				18750AA41D9BBBD000FECCA6 /* ExportInfoModel.m in Sources */,
 				18750A8C1D9BBBC100FECCA6 /* lopcodes.c in Sources */,
 				18750A771D9BBBC100FECCA6 /* lapi.c in Sources */,
 				18750A9A1D9BBBC100FECCA6 /* lzio.c in Sources */,
@@ -602,9 +609,9 @@
 				18750A7B1D9BBBC100FECCA6 /* lcode.c in Sources */,
 				18750A801D9BBBC100FECCA6 /* ldo.c in Sources */,
 				18750A7A1D9BBBC100FECCA6 /* lbitlib.c in Sources */,
+				18F102781DCC2813008312E5 /* ExportInfoModel.m in Sources */,
 				18750A731D9BBBC100FECCA6 /* LuaDLL.c in Sources */,
 				18750A721D9BBBC100FECCA6 /* LuaDictionary.c in Sources */,
-				18FA65B41DCAE30300ECAA48 /* DetailsInfoData.m in Sources */,
 				186088FD1DAA4AE10055E4BB /* DataResControl.m in Sources */,
 				18750A7E1D9BBBC100FECCA6 /* ldblib.c in Sources */,
 				183780121D766C84004E3BAD /* AppDelegate.m in Sources */,
@@ -618,6 +625,7 @@
 				18CA13961D78164C006595E5 /* ViewMain.m in Sources */,
 				18750A7F1D9BBBC100FECCA6 /* ldebug.c in Sources */,
 				18750A8E1D9BBBC100FECCA6 /* lparser.c in Sources */,
+				18F102771DCC2813008312E5 /* DetailsInfoData.m in Sources */,
 				18750A7C1D9BBBC100FECCA6 /* lcorolib.c in Sources */,
 				18750A991D9BBBC100FECCA6 /* lvm.c in Sources */,
 				18DD5E6C1DAF1C150071B654 /* DetailsInfoView.m in Sources */,

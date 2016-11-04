@@ -14,12 +14,11 @@
 #define Provisioning_Profile_key @"provisioningProfile"
 
 @interface DetailsInfoData : NSObject
-{
-    NSString* _appName;
-    NSString* _bundleIdentifier;
-    NSString* _codeSignIdentity;
-    NSString* _provisioningProfile;
-}
+
+@property(nonatomic, readonly) NSString* appName;
+@property(nonatomic, readonly) NSString* bundleIdentifier;
+@property(nonatomic, readonly) NSString* codeSignIdentity;
+@property(nonatomic, readonly) NSString* provisioningProfile;
 
 -(void)setInfoWithAppName:(NSString*)appName
                     appID:(NSString*)appID
