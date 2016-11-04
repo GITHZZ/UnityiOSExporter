@@ -63,11 +63,11 @@
 		18750AAB1D9BBCF200FECCA6 /* ExportIpaUtil.lua in Resources */ = {isa = PBXBuildFile; fileRef = 18750AA91D9BBCF200FECCA6 /* ExportIpaUtil.lua */; };
 		18750AAC1D9BBCF200FECCA6 /* LuaMain.lua in Resources */ = {isa = PBXBuildFile; fileRef = 18750AAA1D9BBCF200FECCA6 /* LuaMain.lua */; };
 		18769D931DAE34050023E255 /* XcodeProjModCSFileEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 18769D921DAE34050023E255 /* XcodeProjModCSFileEdit.m */; };
-		18B35C981D814B390034C4AD /* EventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B35C971D814B390034C4AD /* EventManager.m */; };
 		18CA13961D78164C006595E5 /* ViewMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CA13951D78164C006595E5 /* ViewMain.m */; };
 		18DD5E6C1DAF1C150071B654 /* DetailsInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD5E6B1DAF1C150071B654 /* DetailsInfoView.m */; };
 		18F102771DCC2813008312E5 /* DetailsInfoData.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F102741DCC2813008312E5 /* DetailsInfoData.m */; };
 		18F102781DCC2813008312E5 /* ExportInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F102761DCC2813008312E5 /* ExportInfoModel.m */; };
+		18F1027B1DCC2AEB008312E5 /* EventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F1027A1DCC2AEB008312E5 /* EventManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -190,8 +190,6 @@
 		18769D911DAE34050023E255 /* XcodeProjModCSFileEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XcodeProjModCSFileEdit.h; sourceTree = "<group>"; };
 		18769D921DAE34050023E255 /* XcodeProjModCSFileEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XcodeProjModCSFileEdit.m; sourceTree = "<group>"; };
 		1887E01E1DCB1B58005AA97A /* Defs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Defs.h; sourceTree = "<group>"; };
-		18B35C961D814B390034C4AD /* EventManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventManager.h; sourceTree = "<group>"; };
-		18B35C971D814B390034C4AD /* EventManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventManager.m; sourceTree = "<group>"; };
 		18CA13941D78164C006595E5 /* ViewMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewMain.h; sourceTree = "<group>"; };
 		18CA13951D78164C006595E5 /* ViewMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewMain.m; sourceTree = "<group>"; };
 		18DD5E6A1DAF1C150071B654 /* DetailsInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsInfoView.h; sourceTree = "<group>"; };
@@ -200,6 +198,8 @@
 		18F102741DCC2813008312E5 /* DetailsInfoData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsInfoData.m; sourceTree = "<group>"; };
 		18F102751DCC2813008312E5 /* ExportInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportInfoModel.h; sourceTree = "<group>"; };
 		18F102761DCC2813008312E5 /* ExportInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportInfoModel.m; sourceTree = "<group>"; };
+		18F102791DCC2AEB008312E5 /* EventManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventManager.h; sourceTree = "<group>"; };
+		18F1027A1DCC2AEB008312E5 /* EventManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -257,8 +257,6 @@
 				18CA13931D78163C006595E5 /* View */,
 				183780101D766C84004E3BAD /* AppDelegate.h */,
 				183780111D766C84004E3BAD /* AppDelegate.m */,
-				18B35C961D814B390034C4AD /* EventManager.h */,
-				18B35C971D814B390034C4AD /* EventManager.m */,
 				183780191D766C84004E3BAD /* Assets.xcassets */,
 				1837801B1D766C84004E3BAD /* Main.storyboard */,
 				1837801E1D766C84004E3BAD /* Info.plist */,
@@ -434,6 +432,8 @@
 		18F102721DCC2813008312E5 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				18F102791DCC2AEB008312E5 /* EventManager.h */,
+				18F1027A1DCC2AEB008312E5 /* EventManager.m */,
 				18F102731DCC2813008312E5 /* DetailsInfoData.h */,
 				18F102741DCC2813008312E5 /* DetailsInfoData.m */,
 				18F102751DCC2813008312E5 /* ExportInfoModel.h */,
@@ -584,6 +584,7 @@
 				18750A791D9BBBC100FECCA6 /* lbaselib.c in Sources */,
 				18750A7D1D9BBBC100FECCA6 /* lctype.c in Sources */,
 				1841FA771DACC7C10050FE12 /* DataCSCodeEdit.m in Sources */,
+				18F1027B1DCC2AEB008312E5 /* EventManager.m in Sources */,
 				18750A8C1D9BBBC100FECCA6 /* lopcodes.c in Sources */,
 				18750A771D9BBBC100FECCA6 /* lapi.c in Sources */,
 				18750A9A1D9BBBC100FECCA6 /* lzio.c in Sources */,
@@ -599,7 +600,6 @@
 				18750A861D9BBBC100FECCA6 /* liolib.c in Sources */,
 				18750A8A1D9BBBC100FECCA6 /* loadlib.c in Sources */,
 				18750A9B1D9BBBC100FECCA6 /* Makefile in Sources */,
-				18B35C981D814B390034C4AD /* EventManager.m in Sources */,
 				18750A751D9BBBC100FECCA6 /* LuaNodeList.c in Sources */,
 				18750A8B1D9BBBC100FECCA6 /* lobject.c in Sources */,
 				184BEA501DC742FA00CCEC4D /* DetailsInfoSetting.m in Sources */,
