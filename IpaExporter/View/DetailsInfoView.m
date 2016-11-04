@@ -9,6 +9,8 @@
 #import "DetailsInfoView.h"
 #import "DetailsInfoData.h"
 
+#import "ExportInfoModel.h"
+
 @implementation DetailsInfoView
 
 - (void)viewDidLoad
@@ -20,8 +22,8 @@
                            withData:nil
                                self:self];
     
-    _dataDict = [[NSMutableArray alloc] initWithCapacity:10];
-    [self roadSaveData];
+    NSMutableArray* saveArray = [[ExportInfoModel instance] reLoad];
+    _dataDict = [[NSMutableArray alloc] initWithArray:saveArray];
     
     //设置数据源
     _infoTbls.delegate = self;
@@ -36,6 +38,7 @@
 - (void)addInfo:(DetailsInfoData*)info
 {
     [_dataDict addObject:info];
+    [[ExportInfoModel instance] addDetail:info];
     [_infoTbls reloadData];
 }
 
@@ -45,13 +48,9 @@
     if(row > -1)
     {
         [_dataDict removeObjectAtIndex:row];
+        [[ExportInfoModel instance] removeDetail:row];
         [_infoTbls reloadData];
     }
-}
-
-- (void)roadSaveData
-{
-    //读取存储数据并显示
 }
 
 - (void)DetailsInfoViewClose:(NSNotification*)notification

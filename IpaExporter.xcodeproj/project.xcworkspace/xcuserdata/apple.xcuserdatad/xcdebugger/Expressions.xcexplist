@@ -3,18 +3,10 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "singlestep:lgc.c">
+         contextName = "luaM_realloc_:lmem.c">
          <PersistentStrings>
             <PersistentString
-               value = "g-&gt;gcstate">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[LuaCammond callLuaMain]:LuaCammond.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "view.info.unityProjPath">
+               value = "g-&gt;GCdebt">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -33,10 +25,26 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "luaM_realloc_:lmem.c">
+         contextName = "-[LuaCammond callLuaMain]:LuaCammond.m">
          <PersistentStrings>
             <PersistentString
-               value = "g-&gt;GCdebt">
+               value = "view.info.unityProjPath">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[DetailsInfoView addInfo:]:DetailsInfoView.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[_dataDict count]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "singlestep:lgc.c">
+         <PersistentStrings>
+            <PersistentString
+               value = "g-&gt;gcstate">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

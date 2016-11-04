@@ -13,7 +13,7 @@
 #define Code_Sign_Identity_Key @"codeSignIdentity"
 #define Provisioning_Profile_key @"provisioningProfile"
 
-@interface DetailsInfoData : NSObject
+@interface DetailsInfoData : NSObject<NSCoding>
 
 @property(nonatomic, readonly) NSString* appName;
 @property(nonatomic, readonly) NSString* bundleIdentifier;
