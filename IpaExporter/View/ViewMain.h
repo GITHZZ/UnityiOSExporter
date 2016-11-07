@@ -10,9 +10,10 @@
 #import <Foundation/Foundation.h>
 #import "ExportInfoModel.h"
 
-@interface ViewMain : NSViewController
+@interface ViewMain : NSViewController<NSTableViewDataSource, NSTableViewDelegate>
 
-@property(nonatomic, retain) IBOutlet NSTextField* infoLabel;
+@property(nonatomic, retain) IBOutlet NSTableView* platformTbl;
+@property(nonatomic, retain) IBOutlet NSTextView* infoLabel;
 @property(nonatomic, retain) IBOutlet NSComboBox* unityPathBox;
 @property(nonatomic, retain) IBOutlet NSComboBox* exportPathBox;
 

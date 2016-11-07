@@ -26,6 +26,7 @@
 
 - (void)dealloc
 {
+    free(_info);
 }
 
 - (id)init
@@ -46,10 +47,22 @@
     return self;
 }
 
+//主路径部分
+- (void)reloadPaths
+{
+    NSString* projPath = (NSString*)[_saveData objectForKey:SAVE_PROJECT_PATH_KEY];
+    NSString* exportPath = (NSString*)[_saveData objectForKey:SAVE_EXPORT_PATH_KEY];
+    
+    _info->unityProjPath = [projPath UTF8String];
+    _info->exportFolderParh = [exportPath UTF8String];
+}
+
 - (void)saveData
 {
-    //NSValue* value = [NSValue valueWithBytes:_info objCType:@encode(ExportInfo)];
-    //[_saveData setObject:value forKey:@"test"];
+    NSString* projectPath = [NSString stringWithUTF8String:_info->unityProjPath];
+    NSString* exportPath = [NSString stringWithUTF8String:_info->exportFolderParh];
+    [_saveData setObject:projectPath forKey:SAVE_PROJECT_PATH_KEY];
+    [_saveData setObject:exportPath forKey:SAVE_EXPORT_PATH_KEY];
 }
 
 - (ExportInfo*)getData
@@ -69,9 +82,9 @@
 }
 
 //包配置 信息表格数据部分
-- (NSMutableArray*)reLoad
+- (NSMutableArray*)reLoadDetails
 {
-    NSData* arrayData = (NSData*)[_saveData objectForKey:@"detailArray"];
+    NSData* arrayData = (NSData*)[_saveData objectForKey:SAVE_DETAIL_ARRARY_KEY];
     NSArray* array = [NSKeyedUnarchiver unarchiveObjectWithData:arrayData];
     NSMutableArray* mutable = [NSMutableArray arrayWithArray:array];
     _detailArray = mutable;
@@ -86,9 +99,7 @@
     [_detailArray addObject:data];
 
     NSData* arrayData = [NSKeyedArchiver archivedDataWithRootObject:_detailArray];
-    [_saveData setObject:arrayData forKey:@"detailArray"];
-    [_saveData setInteger:[_detailArray count] forKey:@"test"];
-     
+    [_saveData setObject:arrayData forKey:SAVE_DETAIL_ARRARY_KEY];
     [_saveData synchronize];
 }
 
@@ -96,7 +107,7 @@
 {
     [_detailArray removeObjectAtIndex:index];
     NSData* arrayData = [NSKeyedArchiver archivedDataWithRootObject:_detailArray];
-    [_saveData setObject:arrayData forKey:@"detailArray"];
+    [_saveData setObject:arrayData forKey:SAVE_DETAIL_ARRARY_KEY];
     [_saveData synchronize];
 }
 

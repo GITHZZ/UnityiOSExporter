@@ -22,7 +22,7 @@
                            withData:nil
                                self:self];
     
-    NSMutableArray* saveArray = [[ExportInfoModel instance] reLoad];
+    NSMutableArray* saveArray = [[ExportInfoModel instance] reLoadDetails];
     _dataDict = [[NSMutableArray alloc] initWithArray:saveArray];
     
     //设置数据源

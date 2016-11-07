@@ -13,9 +13,25 @@
 
 @implementation ViewMain
 
+- (void)viewDidLoad
+{
+    [self startUp];
+    
+    [[ExportInfoModel instance] reloadPaths];
+    
+    NSString* projectPath = [NSString stringWithUTF8String:[ExportInfoModel instance].info->unityProjPath];
+    NSString* exportPath = [NSString stringWithUTF8String:[ExportInfoModel instance].info->exportFolderParh];
+    
+    _unityPathBox.stringValue = projectPath;
+    _exportPathBox.stringValue = exportPath;
+    
+    [[EventManager instance] send:EventViewMainLoaded withData:nil];
+}
+
+
 -(void)startUp
 {
-    _infoLabel.stringValue = @"";
+    //_infoLabel.stringValue = @"";
     
     [_unityPathBox removeAllItems];
     [_exportPathBox removeAllItems];
@@ -58,7 +74,7 @@
                     break;
             }
             
-            [[ExportInfoModel instance]saveData];
+            [[ExportInfoModel instance] saveData];
         }
     }
 }
@@ -75,12 +91,6 @@
     [self openFolderSelectDialog:EventExportPathSelectEnd
                  IsCanSelectFile:NO
           IsCanSelectDirectories:YES];
-}
-
-- (void)viewDidLoad
-{
-    [self startUp];
-    [[EventManager instance] send:EventViewMainLoaded withData:nil];
 }
 
 @end

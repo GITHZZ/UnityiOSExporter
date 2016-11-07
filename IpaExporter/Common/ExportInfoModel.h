@@ -13,7 +13,10 @@
 #import "DetailsInfoData.h"
 
 #define INFOS_MAX_CAPACITY 100
-#define DETAIL_COUNT_KEY @"detailCount"
+
+#define SAVE_DETAIL_ARRARY_KEY @"detailArray"
+#define SAVE_PROJECT_PATH_KEY @"projectPath"
+#define SAVE_EXPORT_PATH_KEY @"exportPath"
 
 @interface ExportInfoModel : NSObject
 {
@@ -26,8 +29,11 @@
 + (ExportInfoModel*)instance;
 - (void)addNewInfo:(ExportInfo*)newInfo;
 
+//路径配置
+- (void)reloadPaths;
+
 //包配置 信息表格数据部分
-- (NSMutableArray*)reLoad;
+- (NSMutableArray*)reLoadDetails;
 - (void)addDetail:(DetailsInfoData*)data;
 - (void)removeDetail:(NSUInteger)index;
 - (void)getDetail:(NSUInteger)index;

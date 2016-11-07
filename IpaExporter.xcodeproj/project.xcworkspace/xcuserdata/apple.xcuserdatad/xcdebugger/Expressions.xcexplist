@@ -33,6 +33,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "-[ExportInfoModel removeDetail:]:ExportInfoModel.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[_detailArray count]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[DetailsInfoView addInfo:]:DetailsInfoView.m">
          <PersistentStrings>
             <PersistentString

@@ -8,10 +8,6 @@
 
 #import "DetailsInfoSetting.h"
 
-@interface DetailsInfoSetting ()
-
-@end
-
 @implementation DetailsInfoSetting
 
 - (void)viewDidLoad
