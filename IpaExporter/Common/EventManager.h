@@ -11,13 +11,16 @@
 typedef NS_ENUM(int, EventType){
     EventViewMainLoaded  = 0,
     
-    //view 
+    //view
     EventViewSureClicked         = 101,
     EventUnityPathSelect         = 102,
     EventUnityPathSelectEnd      = 103,
     EventExportPathSelectEnd     = 104,
     EventDevelopProfileSelectEnd = 105,
     EventDetailsInfoSettingClose = 106,
+    EventDetailsInfoAdd          = 107,
+    EventDetailsInfoRemove       = 108,
+    EventDetailsInfoUpdate       = 109,
 };
 
 @interface EventManager : NSObject

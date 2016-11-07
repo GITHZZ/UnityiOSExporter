@@ -3,10 +3,34 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "-[ExportInfoModel removeDetail:]:ExportInfoModel.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[_detailArray count]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "luaM_realloc_:lmem.c">
          <PersistentStrings>
             <PersistentString
                value = "g-&gt;GCdebt">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ViewMain tableView:objectValueForTableColumn:row:]:ViewMain.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[_dataDict objectAtIndex:row]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[DetailsInfoView addInfo:]:DetailsInfoView.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[_dataDict count]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -33,18 +57,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[ExportInfoModel removeDetail:]:ExportInfoModel.m">
+         contextName = "-[ViewMain CellClick:]:ViewMain.m">
          <PersistentStrings>
             <PersistentString
-               value = "[_detailArray count]">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[DetailsInfoView addInfo:]:DetailsInfoView.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "[_dataDict count]">
+               value = "[cell state]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

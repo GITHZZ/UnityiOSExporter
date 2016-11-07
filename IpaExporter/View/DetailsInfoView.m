@@ -40,6 +40,8 @@
     [_dataDict addObject:info];
     [[ExportInfoModel instance] addDetail:info];
     [_infoTbls reloadData];
+    
+    [[EventManager instance] send:EventDetailsInfoUpdate withData:_infoTbls];
 }
 
 - (void)removeInfo
@@ -50,6 +52,8 @@
         [_dataDict removeObjectAtIndex:row];
         [[ExportInfoModel instance] removeDetail:row];
         [_infoTbls reloadData];
+        
+        [[EventManager instance] send:EventDetailsInfoUpdate withData:_infoTbls];
     }
 }
 

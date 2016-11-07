@@ -25,6 +25,15 @@
     _unityPathBox.stringValue = projectPath;
     _exportPathBox.stringValue = exportPath;
     
+    //从本地读取存储数据
+    NSMutableArray* saveArray = [[ExportInfoModel instance] reLoadDetails];
+    _dataDict = [[NSMutableArray alloc] initWithArray:saveArray];
+    
+    //设置数据源
+    _platformTbl.delegate = self;
+    _platformTbl.dataSource = self;
+    
+    [self registEvent];
     [[EventManager instance] send:EventViewMainLoaded withData:nil];
 }
 
@@ -35,6 +44,20 @@
     
     [_unityPathBox removeAllItems];
     [_exportPathBox removeAllItems];
+}
+
+- (void) registEvent
+{
+    [[EventManager instance] regist:EventDetailsInfoUpdate
+                               func:@selector(DetailsInfoDictUpdate:)
+                           withData:nil
+                               self:self];
+}
+
+- (void) unRegistEvent
+{
+    [[EventManager instance] unRegist:EventDetailsInfoUpdate
+                                 self:self];
 }
 
 - (IBAction)sureBtnClick:(id)sender
@@ -91,6 +114,56 @@
     [self openFolderSelectDialog:EventExportPathSelectEnd
                  IsCanSelectFile:NO
           IsCanSelectDirectories:YES];
+}
+
+- (void)DetailsInfoDictUpdate:(NSNotification*)notification
+{
+    NSMutableArray* dict = (NSMutableArray*)[notification object];
+    //_dataDict = dict;
+   // [_platformTbl reloadData];
+}
+
+//返回表格的行数
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView;
+{
+    return [_dataDict count];
+}
+
+//初始化新行内容
+- (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
+{
+    NSString *columnIdentifier=[tableColumn identifier];
+    if(columnIdentifier == nil)
+    {
+        NSLog(@"存在没有设置Identifier属性");
+        return nil;
+    }
+    
+    DetailsInfoData* info = [_dataDict objectAtIndex:row];
+    NSString* title = [info valueForKey:columnIdentifier];
+    NSButtonCell* cell = [tableColumn dataCellForRow:row];
+    cell.tag = row;
+    cell.title = title;
+    
+    return cell;
+}
+
+//修改行内容
+- (void)tableView:(NSTableView *)tableView setObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
+{
+//    NSString *columnIdentifier=[tableColumn identifier];
+//    DetailsInfoData* info = [_dataDict objectAtIndex:row];
+    NSButtonCell* cell = [tableColumn dataCellForRow:row];
+    
+//    NSString* newValue = (NSString*)object;
+//    BOOL state = [object boolValue];
+    
+    if([cell state] == YES)
+        [cell setState:NO];
+    else
+        [cell setState:YES];
+    
+    //[info setValue:newValue forKey:columnIdentifier];
 }
 
 @end

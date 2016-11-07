@@ -12,10 +12,13 @@
 
 @interface ViewMain : NSViewController<NSTableViewDataSource, NSTableViewDelegate>
 
-@property(nonatomic, retain) IBOutlet NSTableView* platformTbl;
-@property(nonatomic, retain) IBOutlet NSTextView* infoLabel;
-@property(nonatomic, retain) IBOutlet NSComboBox* unityPathBox;
-@property(nonatomic, retain) IBOutlet NSComboBox* exportPathBox;
+@property (nonatomic, readonly) NSMutableArray* dataDict;
+
+@property (nonatomic, retain) IBOutlet NSTextView* infoLabel;
+@property (nonatomic, weak) IBOutlet NSComboBox* unityPathBox;
+@property (nonatomic, weak) IBOutlet NSComboBox* exportPathBox;
+@property (weak) IBOutlet NSTableView *platformTbl;
+
 
 - (IBAction)sureBtnClick:(id)sender;
 - (IBAction)unityPathSelect:(id)sender;

@@ -13,6 +13,7 @@
 
 @interface DetailsInfoSetting : NSViewController
 
+@property (nonatomic, retain) IBOutlet NSTextField* platform;
 @property (nonatomic, retain) IBOutlet NSTextField* appName;
 @property (nonatomic, retain) IBOutlet NSTextField* appID;
 @property (nonatomic, retain) IBOutlet NSTextField* codeSignIdentity;
