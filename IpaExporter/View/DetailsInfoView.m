@@ -41,7 +41,7 @@
     [[ExportInfoModel instance] addDetail:info];
     [_infoTbls reloadData];
     
-    [[EventManager instance] send:EventDetailsInfoUpdate withData:_infoTbls];
+    [[EventManager instance] send:EventDetailsInfoUpdate withData:_dataDict];
 }
 
 - (void)removeInfo
@@ -53,7 +53,7 @@
         [[ExportInfoModel instance] removeDetail:row];
         [_infoTbls reloadData];
         
-        [[EventManager instance] send:EventDetailsInfoUpdate withData:_infoTbls];
+        [[EventManager instance] send:EventDetailsInfoUpdate withData:_dataDict];
     }
 }
 
@@ -91,6 +91,9 @@
     
     NSString* newValue = (NSString*)object;
     [info setValue:newValue forKey:columnIdentifier];
+    
+    [_dataDict replaceObjectAtIndex:row withObject:info];
+    [[ExportInfoModel instance] updateDetail:row withObject:info];
 }
 
 @end

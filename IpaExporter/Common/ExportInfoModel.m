@@ -111,9 +111,15 @@
     [_saveData synchronize];
 }
 
-- (void)getDetail:(NSUInteger)index
+- (void)updateDetail:(NSUInteger)index withObject:(id)object
 {
+    if (object == nil)
+        return;
     
+    [_detailArray replaceObjectAtIndex:index withObject:object];
+    NSData* arrayData = [NSKeyedArchiver archivedDataWithRootObject:_detailArray];
+    [_saveData setObject:arrayData forKey:SAVE_DETAIL_ARRARY_KEY];
+    [_saveData synchronize];
 }
 
 @end

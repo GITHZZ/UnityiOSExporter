@@ -36,7 +36,7 @@
 - (NSMutableArray*)reLoadDetails;
 - (void)addDetail:(DetailsInfoData*)data;
 - (void)removeDetail:(NSUInteger)index;
-- (void)getDetail:(NSUInteger)index;
+- (void)updateDetail:(NSUInteger)index withObject:(id)object;
 
 - (void)saveData;
 - (ExportInfo*)getData;

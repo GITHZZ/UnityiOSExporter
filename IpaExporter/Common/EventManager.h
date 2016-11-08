@@ -11,7 +11,6 @@
 typedef NS_ENUM(int, EventType){
     EventViewMainLoaded  = 0,
     
-    //view
     EventViewSureClicked         = 101,
     EventUnityPathSelect         = 102,
     EventUnityPathSelectEnd      = 103,

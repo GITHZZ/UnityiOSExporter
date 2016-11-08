@@ -37,8 +37,7 @@
     [[EventManager instance] send:EventViewMainLoaded withData:nil];
 }
 
-
--(void)startUp
+- (void)startUp
 {
     //_infoLabel.stringValue = @"";
     
@@ -119,8 +118,8 @@
 - (void)DetailsInfoDictUpdate:(NSNotification*)notification
 {
     NSMutableArray* dict = (NSMutableArray*)[notification object];
-    //_dataDict = dict;
-   // [_platformTbl reloadData];
+    _dataDict = dict;
+    [_platformTbl reloadData];
 }
 
 //返回表格的行数
@@ -163,7 +162,7 @@
     else
         [cell setState:YES];
     
-    //[info setValue:newValue forKey:columnIdentifier];
+//    [info setValue:newValue forKey:columnIdentifier];
 }
 
 @end
