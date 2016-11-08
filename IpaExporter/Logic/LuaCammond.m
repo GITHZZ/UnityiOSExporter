@@ -112,10 +112,12 @@
     
     [[DataResControl instance] start:view.info];
     [builderEdit start:[NSString stringWithUTF8String:view.info->unityProjPath] withPackInfo:packInfo];
+    
+    //call lua
     [self dofile:mainLuaPath];
     [self callLuaMain];
+
     [[DataResControl instance] end];
-    
     [self close];
 }
 

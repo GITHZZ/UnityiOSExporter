@@ -82,6 +82,13 @@
 }
 
 //包配置 信息表格数据部分
+- (void) saveDetail
+{
+    NSData* arrayData = [NSKeyedArchiver archivedDataWithRootObject:_detailArray];
+    [_saveData setObject:arrayData forKey:SAVE_DETAIL_ARRARY_KEY];
+    [_saveData synchronize];
+}
+
 - (NSMutableArray*)reLoadDetails
 {
     NSData* arrayData = (NSData*)[_saveData objectForKey:SAVE_DETAIL_ARRARY_KEY];
@@ -97,18 +104,13 @@
         return;
     
     [_detailArray addObject:data];
-
-    NSData* arrayData = [NSKeyedArchiver archivedDataWithRootObject:_detailArray];
-    [_saveData setObject:arrayData forKey:SAVE_DETAIL_ARRARY_KEY];
-    [_saveData synchronize];
+    [self saveDetail];
 }
 
 - (void)removeDetail:(NSUInteger)index
 {
     [_detailArray removeObjectAtIndex:index];
-    NSData* arrayData = [NSKeyedArchiver archivedDataWithRootObject:_detailArray];
-    [_saveData setObject:arrayData forKey:SAVE_DETAIL_ARRARY_KEY];
-    [_saveData synchronize];
+    [self saveDetail];
 }
 
 - (void)updateDetail:(NSUInteger)index withObject:(id)object
@@ -117,9 +119,7 @@
         return;
     
     [_detailArray replaceObjectAtIndex:index withObject:object];
-    NSData* arrayData = [NSKeyedArchiver archivedDataWithRootObject:_detailArray];
-    [_saveData setObject:arrayData forKey:SAVE_DETAIL_ARRARY_KEY];
-    [_saveData synchronize];
+    [self saveDetail];
 }
 
 @end
