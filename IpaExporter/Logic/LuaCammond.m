@@ -117,15 +117,18 @@
     [builderEdit start:[NSString stringWithUTF8String:view.info->unityProjPath]
           withPackInfo:infoData];
     
-    //[builderEdit start:[NSString stringWithUTF8String:view.info->unityProjPath] withPackInfo:packInfo];
+    //修改目标目录的XcodeApi下的文件
+    [builderEdit start:[NSString stringWithUTF8String:view.info->unityProjPath]
+          withPackInfo:infoData];
     
     //call lua
-//    [self open];
-//    NSString* mainLuaPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"LuaMain.lua"];
-//    [self dofile:mainLuaPath];
-//    [self callLuaMain];
-//    [self close];
+    [self open];
+    NSString* mainLuaPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"LuaMain.lua"];
+    [self dofile:mainLuaPath];
+    [self callLuaMain];
+    [self close];
     
+    //删除文件夹
     [[DataResControl instance] end];
 }
 

@@ -9,9 +9,9 @@
 #ifndef Defs_h
 #define Defs_h
 
-#define DATA_PATH @"/Data_t"
-#define BUILDER_CS_PATH @"/Assets/Editor/Data_t/Templete_t/Builder_t.cs"
-#define XCODEPROJECT_CS_PATH @"/Assets/Editor/Data_t/XcodeApi_t/XcodeProjectMod_t.cs"
+#define DATA_PATH @"/DataTemplete"
+#define BUILDER_CS_PATH @"/Assets/Editor/DataTemplete/Templete/Builder.cs"
+#define XCODEPROJECT_CS_PATH @"/Assets/Editor/DataTemplete/XcodeApi/XcodeProjectMod.cs"
 
 typedef struct IpaPackInfo
 {

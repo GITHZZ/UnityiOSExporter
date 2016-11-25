@@ -75,7 +75,7 @@ ExportIpaUtil.Start = function(exportInfoTbl)
 
     --导出xcode工程
     print("++++正在导出Xcode工程...")
-    os.execute(string.format(cmd_export_xcode, projPath, "Builder_t.BuildApp", exportFolder))
+    os.execute(string.format(cmd_export_xcode, projPath, "IpaExporter.Builder_t.BuildApp", exportFolder))
     print("++++导出Xcode工程完毕...")
 
     --访问Xcode工程

@@ -20,8 +20,10 @@
         NSString* bundleIdentifier = [NSString stringWithFormat:@"\"%@\"", info.bundleIdentifier];
         NSString* productName = [NSString stringWithFormat:@"\"%@\"", info.appName];
         
-        result = [_content stringByReplacingOccurrencesOfString:@"${bundleIdentifier}" withString:bundleIdentifier];
-        result = [result stringByReplacingOccurrencesOfString:@"${productName}" withString:productName];
+        result = [_content stringByReplacingOccurrencesOfString:@"${bundleIdentifier}"
+                                                     withString:bundleIdentifier];
+        result = [result stringByReplacingOccurrencesOfString:@"${productName}"
+                                                   withString:productName];
         
         [self replaceContent:result];
     }
