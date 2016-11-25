@@ -7,7 +7,7 @@
 //
 
 #import "DataResControl.h"
-#import "DataCSCodeEdit.h"
+#import "BaseDataCSCodeEdit.h"
 
 @implementation DataResControl
 
@@ -122,7 +122,6 @@
         NSLog(@"%@", src);
         NSLog(@"%@", dst);
     }
-  
 }
 
 - (void)removeResFromDstPath:(NSString*)dst

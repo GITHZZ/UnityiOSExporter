@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "Defs.h"
+#import "DetailsInfoData.h"
 
-@interface DataCSCodeEdit : NSObject
+@interface BaseDataCSCodeEdit : NSObject
 {
     NSString* _path;
     NSFileHandle* _fileHandle;
@@ -19,7 +20,7 @@
 
 @property (nonatomic, readonly) NSArray* lines;
 
-- (void)start:(NSString*)dstPath withPackInfo:(IpaPackInfo)info;
+- (void)start:(NSString*)dstPath withPackInfo:(DetailsInfoData*)info;
 - (BOOL)initWithPath:(NSString*)path;
 - (void)replaceContent:(NSString*) newContent;
 

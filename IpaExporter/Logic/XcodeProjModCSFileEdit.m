@@ -10,7 +10,7 @@
 
 @implementation XcodeProjModCSFileEdit
 
-- (void)start:(NSString*)dstPath withPackInfo:(IpaPackInfo)info
+- (void)start:(NSString*)dstPath withPackInfo:(DetailsInfoData*)info
 {
     NSString* builderCSPath = [dstPath stringByAppendingPathComponent:BUILDER_CS_PATH];
     BOOL success = [self initWithPath:builderCSPath];

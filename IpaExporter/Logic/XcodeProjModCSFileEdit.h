@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Defs.h"
-#import "DataCSCodeEdit.h"
+#import "BaseDataCSCodeEdit.h"
 
-@interface XcodeProjModCSFileEdit : DataCSCodeEdit
+@interface XcodeProjModCSFileEdit : BaseDataCSCodeEdit
 @end

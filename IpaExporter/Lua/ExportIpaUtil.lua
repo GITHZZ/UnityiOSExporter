@@ -26,7 +26,7 @@ local function printTip(content)
 end
 
 local function printLine()
-    print("------------------------------------------------------------------------------------")
+    print("------------------------------------------------------------------------------")
 end
 
 local function fileExist(path)
@@ -37,6 +37,10 @@ end
 
 local function GetProfileNameFormPath(path)
     
+end
+
+local function StartExportIpa()
+
 end
 
 --导出ipa包入口

@@ -15,7 +15,7 @@
 		1837801D1D766C84004E3BAD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1837801B1D766C84004E3BAD /* Main.storyboard */; };
 		183780281D766C84004E3BAD /* IpaExporterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 183780271D766C84004E3BAD /* IpaExporterTests.m */; };
 		183780331D766C85004E3BAD /* IpaExporterUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 183780321D766C85004E3BAD /* IpaExporterUITests.m */; };
-		1841FA771DACC7C10050FE12 /* DataCSCodeEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 1841FA761DACC7C10050FE12 /* DataCSCodeEdit.m */; };
+		1841FA771DACC7C10050FE12 /* BaseDataCSCodeEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 1841FA761DACC7C10050FE12 /* BaseDataCSCodeEdit.m */; };
 		184BEA501DC742FA00CCEC4D /* DetailsInfoSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 184BEA4F1DC742FA00CCEC4D /* DetailsInfoSetting.m */; };
 		186088FD1DAA4AE10055E4BB /* DataResControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 186088FC1DAA4AE10055E4BB /* DataResControl.m */; };
 		18750A721D9BBBC100FECCA6 /* LuaDictionary.c in Sources */ = {isa = PBXBuildFile; fileRef = 18750A221D9BBBC100FECCA6 /* LuaDictionary.c */; };
@@ -104,8 +104,8 @@
 		1837802E1D766C85004E3BAD /* IpaExporterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IpaExporterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		183780321D766C85004E3BAD /* IpaExporterUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IpaExporterUITests.m; sourceTree = "<group>"; };
 		183780341D766C85004E3BAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1841FA751DACC7C10050FE12 /* DataCSCodeEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataCSCodeEdit.h; sourceTree = "<group>"; };
-		1841FA761DACC7C10050FE12 /* DataCSCodeEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataCSCodeEdit.m; sourceTree = "<group>"; };
+		1841FA751DACC7C10050FE12 /* BaseDataCSCodeEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseDataCSCodeEdit.h; sourceTree = "<group>"; };
+		1841FA761DACC7C10050FE12 /* BaseDataCSCodeEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseDataCSCodeEdit.m; sourceTree = "<group>"; };
 		184BEA4E1DC742FA00CCEC4D /* DetailsInfoSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsInfoSetting.h; sourceTree = "<group>"; };
 		184BEA4F1DC742FA00CCEC4D /* DetailsInfoSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsInfoSetting.m; sourceTree = "<group>"; };
 		186088FB1DAA4AE10055E4BB /* DataResControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataResControl.h; sourceTree = "<group>"; };
@@ -395,8 +395,8 @@
 				18750AA31D9BBBD000FECCA6 /* LuaCammond.m */,
 				186088FB1DAA4AE10055E4BB /* DataResControl.h */,
 				186088FC1DAA4AE10055E4BB /* DataResControl.m */,
-				1841FA751DACC7C10050FE12 /* DataCSCodeEdit.h */,
-				1841FA761DACC7C10050FE12 /* DataCSCodeEdit.m */,
+				1841FA751DACC7C10050FE12 /* BaseDataCSCodeEdit.h */,
+				1841FA761DACC7C10050FE12 /* BaseDataCSCodeEdit.m */,
 				18322A8C1DAE193B0049660B /* BuilderCSFileEdit.h */,
 				18322A8D1DAE193B0049660B /* BuilderCSFileEdit.m */,
 				18769D911DAE34050023E255 /* XcodeProjModCSFileEdit.h */,
@@ -583,7 +583,7 @@
 				18750A951D9BBBC100FECCA6 /* lua.c in Sources */,
 				18750A791D9BBBC100FECCA6 /* lbaselib.c in Sources */,
 				18750A7D1D9BBBC100FECCA6 /* lctype.c in Sources */,
-				1841FA771DACC7C10050FE12 /* DataCSCodeEdit.m in Sources */,
+				1841FA771DACC7C10050FE12 /* BaseDataCSCodeEdit.m in Sources */,
 				18F1027B1DCC2AEB008312E5 /* EventManager.m in Sources */,
 				18750A8C1D9BBBC100FECCA6 /* lopcodes.c in Sources */,
 				18750A771D9BBBC100FECCA6 /* lapi.c in Sources */,

@@ -9,6 +9,7 @@
 #import "ExportInfoModel.h"
 #import "DataResControl.h"
 #import "BuilderCSFileEdit.h"
+#import "DetailsInfoData.h"
 
 #include <stdio.h>
 #include <assert.h>
@@ -111,7 +112,7 @@
     IpaPackInfo packInfo;
     
     [[DataResControl instance] start:view.info];
-    [builderEdit start:[NSString stringWithUTF8String:view.info->unityProjPath] withPackInfo:packInfo];
+    //[builderEdit start:[NSString stringWithUTF8String:view.info->unityProjPath] withPackInfo:packInfo];
     
     //call lua
     [self dofile:mainLuaPath];

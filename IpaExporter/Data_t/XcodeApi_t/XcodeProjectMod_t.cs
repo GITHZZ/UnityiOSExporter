@@ -34,7 +34,7 @@ public class XcodeProjectMod_t
 
 			string pbxProjStr = File.ReadAllText(projPath);
 			proj.ReadFromString(pbxProjStr);
-			string target = proj.TargetGuidByName("Unity-iPhone");
+			string target = proj.TargetGuidByName(PBXProject.GetUnityTargetName());
 
 			//add custom code
 			proj.SetBuildProperty(target, "ENABLE_BITCODE", "NO");

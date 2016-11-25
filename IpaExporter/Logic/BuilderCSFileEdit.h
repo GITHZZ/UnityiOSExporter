@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DataCSCodeEdit.h"
+#import "BaseDataCSCodeEdit.h"
 #import "Defs.h"
 
-@interface BuilderCSFileEdit : DataCSCodeEdit
+@interface BuilderCSFileEdit : BaseDataCSCodeEdit
 @end

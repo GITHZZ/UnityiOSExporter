@@ -6,11 +6,11 @@
 //  Copyright © 2016年 何遵祖. All rights reserved.
 //
 
-#import "DataCSCodeEdit.h"
+#import "BaseDataCSCodeEdit.h"
 
-@implementation DataCSCodeEdit
+@implementation BaseDataCSCodeEdit
 
-- (void)start:(NSString*)dstPath withPackInfo:(IpaPackInfo)info
+- (void)start:(NSString*)dstPath withPackInfo:(DetailsInfoData*)info
 {    
 }
 

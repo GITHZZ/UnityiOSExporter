@@ -305,7 +305,7 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Help" systemMenu="help" id="B9i-Qe-kbp">
                                     <items>
-                                        <menuItem title="test Help" keyEquivalent="?" id="YD9-ML-3pY">
+                                        <menuItem title="iOS打包工具 帮助" keyEquivalent="?" id="YD9-ML-3pY">
                                             <connections>
                                                 <action selector="showHelp:" target="Ady-hI-5gd" id="OOP-g3-pJS"/>
                                             </connections>
