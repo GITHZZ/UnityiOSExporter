@@ -105,21 +105,28 @@
 
 - (void)startExport
 {
-    [self open];
-    NSString* mainLuaPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"LuaMain.lua"];
     ExportInfoModel* view = [ExportInfoModel instance];
-    BuilderCSFileEdit* builderEdit = [[BuilderCSFileEdit alloc] init];
-    IpaPackInfo packInfo;
+    NSMutableArray* detailArray = view.detailArray;
     
+    //拷贝Data_t所有文件
     [[DataResControl instance] start:view.info];
+    
+    //测试(修改目标目录的builder_t.cs文件)
+    DetailsInfoData* infoData = [detailArray objectAtIndex:0];
+    BuilderCSFileEdit* builderEdit = [[BuilderCSFileEdit alloc] init];
+    [builderEdit start:[NSString stringWithUTF8String:view.info->unityProjPath]
+          withPackInfo:infoData];
+    
     //[builderEdit start:[NSString stringWithUTF8String:view.info->unityProjPath] withPackInfo:packInfo];
     
     //call lua
-    [self dofile:mainLuaPath];
-    [self callLuaMain];
-
+//    [self open];
+//    NSString* mainLuaPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"LuaMain.lua"];
+//    [self dofile:mainLuaPath];
+//    [self callLuaMain];
+//    [self close];
+    
     [[DataResControl instance] end];
-    [self close];
 }
 
 - (void)sureBtnClicked:(NSNotification*)notification

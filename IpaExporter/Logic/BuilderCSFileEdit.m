@@ -10,15 +10,19 @@
 
 @implementation BuilderCSFileEdit
 
-- (void)start:(NSString*)dstPath withPackInfo:(IpaPackInfo)info
+- (void)start:(NSString*)dstPath withPackInfo:(DetailsInfoData*)info
 {
     NSString* builderCSPath = [dstPath stringByAppendingPathComponent:BUILDER_CS_PATH];
     BOOL success = [self initWithPath:builderCSPath];
     if(success)
     {
         NSString* result;
-        result = [_content stringByReplacingOccurrencesOfString:@"${bundleIdentifier}" withString:@"\"com.4399sy.zzsj.online\""];
-        result = [result stringByReplacingOccurrencesOfString:@"${productName}" withString:@"\"测试项目\""];
+        NSString* bundleIdentifier = [NSString stringWithFormat:@"\"%@\"", info.bundleIdentifier];
+        NSString* productName = [NSString stringWithFormat:@"\"%@\"", info.appName];
+        
+        result = [_content stringByReplacingOccurrencesOfString:@"${bundleIdentifier}" withString:bundleIdentifier];
+        result = [result stringByReplacingOccurrencesOfString:@"${productName}" withString:productName];
+        
         [self replaceContent:result];
     }
 }

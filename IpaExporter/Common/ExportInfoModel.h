@@ -21,10 +21,10 @@
 @interface ExportInfoModel : NSObject
 {
     NSUserDefaults* _saveData;
-    NSMutableArray* _detailArray;
 }
 
 @property(nonatomic, readwrite) ExportInfo* info;
+@property(nonatomic, readonly) NSMutableArray* detailArray;
 
 + (ExportInfoModel*)instance;
 - (void)addNewInfo:(ExportInfo*)newInfo;
