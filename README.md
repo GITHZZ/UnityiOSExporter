@@ -22,7 +22,7 @@ iOS打包工具(IpaExporter)
 
 XcodeProjectUpdater原项目地址:https://github.com/kankikuchi/XcodeProjectUpdater
 
-我自己也fork一份(https://github.com/GITHZZ/XcodeProjectUpdater),后面如果有问题我在我那里改,包括一些说明教程我也打算弄份,毕竟他写的是全日文。
+我自己也fork一份(https://github.com/GITHZZ/XcodeProjectUpdater) ,后面如果有问题我在我那里改,包括一些说明教程我也打算弄份,毕竟他写的是全日文。
 
 ###遇到的坑(随笔):
 *坑爹的NSTableView 使用的时候一直显示不了内容 解决方法是:要把属性contentMode改成View Based设置成Cell Based 不是不能显示 还好从这里找到方案了:http://www.07net01.com/2015/10/937976.html
