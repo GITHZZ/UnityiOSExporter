@@ -18,6 +18,11 @@ iOS打包工具(IpaExporter)
 *这个版里面的lua打包工具逻辑其实是有问题的,当然用还是没问题,就是会导致打包时间会更长而已,由于个人问题目前还不能把完整最好的代码放出来,
 以后再说吧.这次我主要是为了增加可视化界面而已.
 
+*关于在上传XcodeApi有用到一个第三方写的一个插件,是日本人写的,个人感觉还是挺不错的,后面项目也打算用他那套,基本实现思路和XUPorter也差不多,不过配置部分用了.asset文件来搞.它就是再进一步封装了。
+
+XcodeProjectUpdater原项目地址:https://github.com/kankikuchi/XcodeProjectUpdater
+
+我自己也fork一份(https://github.com/GITHZZ/XcodeProjectUpdater),后面如果有问题我在我那里改,包括一些说明教程我也打算弄份,毕竟他写的是全日文。
 
 ###遇到的坑(随笔):
 *坑爹的NSTableView 使用的时候一直显示不了内容 解决方法是:要把属性contentMode改成View Based设置成Cell Based 不是不能显示 还好从这里找到方案了:http://www.07net01.com/2015/10/937976.html
