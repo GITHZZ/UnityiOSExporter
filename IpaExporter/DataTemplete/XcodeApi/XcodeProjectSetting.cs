@@ -7,7 +7,8 @@ namespace IpaExporter
 	/// <summary>
 	/// Xcodeのプロジェクトを書き出す際の設定値
 	/// </summary>
-	public class XcodeProjectSetting : ScriptableObject {
+	public class XcodeProjectSetting
+    {
 
 		//=================================================================================
 		//定数
@@ -59,8 +60,9 @@ namespace IpaExporter
 		public List<string> URLSchemeList;
 		public List<string> FrameworkList = new List<string>(){
 			/*"Social.framework",*/ //初期設定例
-		};
-		public string[] LinkerFlagArray = new string[]{
+        };
+
+        public string[] LinkerFlagArray = new string[]{
 			/*"-ObjC", "-all_load"*/ //初期設定例
 		};
 		public string[] FrameworkSearchPathArray = new string[]{
@@ -69,7 +71,6 @@ namespace IpaExporter
 		};
 
 		//コンパイラフラグ
-		[System.Serializable]
 		public struct CompilerFlagsSet{
 			public string Flags;
 			public List<string> TargetPathList;

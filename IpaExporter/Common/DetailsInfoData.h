@@ -13,6 +13,9 @@
 #define App_ID_Key @"bundleIdentifier"
 #define Code_Sign_Identity_Key @"codeSignIdentity"
 #define Provisioning_Profile_key @"provisioningProfile"
+#define Frameworks_Key @"frameworks"
+#define libs_Key @"libs"
+#define Libker_Flag @"libkerFlag"
 
 @interface DetailsInfoData : NSObject<NSCoding>
 

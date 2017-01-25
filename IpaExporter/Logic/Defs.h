@@ -10,8 +10,8 @@
 #define Defs_h
 
 #define DATA_PATH @"/DataTemplete"
-#define BUILDER_CS_PATH @"/Assets/Editor/DataTemplete/Templete/Builder.cs"
-#define XCODEPROJECT_CS_PATH @"/Assets/Editor/DataTemplete/XcodeApi/XcodeProjectMod.cs"
+#define BUILDER_CS_PATH @"/Assets/Editor/DataTemplete/Builder/Builder.cs"
+#define XCODEPROJECT_CS_PATH @"/Assets/Editor/DataTemplete/XcodeApi/XcodeProjectSetting.cs"
 
 typedef struct IpaPackInfo
 {
