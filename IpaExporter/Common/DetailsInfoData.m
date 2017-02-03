@@ -15,30 +15,19 @@
      codeSignIdentity:(NSString*)codeS
   provisioningProfile:(NSString*)profile
          platformName:(NSString*)platform
+           frameworks:(NSArray*)fw
 {
     if(self = [super init])
     {
-        [self setInfoWithAppName:appName
-                           appID:appID
-                codeSignIdentity:codeS
-             provisioningProfile:profile
-                    platformName:platform];
+        [self setValue:appName forKey:App_Name_Key];
+        [self setValue:appID forKey:App_ID_Key];
+        [self setValue:codeS forKey:Code_Sign_Identity_Key];
+        [self setValue:profile forKey:Provisioning_Profile_key];
+        [self setValue:platform forKey:Platform_Name];
+        [self setValue:fw forKey:Frameworks_Key];
     }
     
     return self;
-}
-
--(void)setInfoWithAppName:(NSString*)appName
-                    appID:(NSString*)appID
-         codeSignIdentity:(NSString*)codeS
-      provisioningProfile:(NSString*)profile
-             platformName:(NSString*)platform
-{
-    [self setValue:appName forKey:App_Name_Key];
-    [self setValue:appID forKey:App_ID_Key];
-    [self setValue:codeS forKey:Code_Sign_Identity_Key];
-    [self setValue:profile forKey:Provisioning_Profile_key];
-    [self setValue:platform forKey:Platform_Name];
 }
 
 - (void)encodeWithCoder:(NSCoder *)encoder
@@ -48,6 +37,7 @@
     [encoder encodeObject:_codeSignIdentity forKey:Code_Sign_Identity_Key];
     [encoder encodeObject:_provisioningProfile forKey:Provisioning_Profile_key];
     [encoder encodeObject:_platform forKey:Platform_Name];
+    [encoder encodeObject:_frameworks forKey:Frameworks_Key];
 }
 
 - (id)initWithCoder:(NSCoder *)decoder
@@ -57,12 +47,14 @@
     NSString* codeS = [decoder decodeObjectForKey:Code_Sign_Identity_Key];
     NSString* profile = [decoder decodeObjectForKey:Provisioning_Profile_key];
     NSString* platform = [decoder decodeObjectForKey:Platform_Name];
+    NSMutableArray* frameworks = [decoder decodeObjectForKey:Frameworks_Key];
     
     return [self initWithAppName:appName
                            appID:appID
                 codeSignIdentity:codeS
              provisioningProfile:profile
-                    platformName:platform];
+                    platformName:platform
+                      frameworks:frameworks];
     
 }
 

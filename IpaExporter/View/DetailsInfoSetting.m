@@ -28,12 +28,10 @@
     NSString* provisioning = _provisioningProfile.stringValue;
     NSString* platform = _platform.stringValue;
     
-    DetailsInfoData* info = [[DetailsInfoData alloc] init];
-    [info setInfoWithAppName:appName
-                       appID:appID
-            codeSignIdentity:codeSignIdentity
-         provisioningProfile:provisioning
-                platformName:platform];
+    DetailsInfoData* info = [[DetailsInfoData alloc] initWithAppName:appName
+                                                               appID:appID
+                                                    codeSignIdentity:codeSignIdentity provisioningProfile:provisioning platformName:platform
+                                                          frameworks:nil];
     
     [[EventManager instance] send:EventDetailsInfoSettingClose
                          withData:info];

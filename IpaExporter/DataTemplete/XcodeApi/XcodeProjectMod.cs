@@ -14,7 +14,8 @@ using System.IO;
 /// <summary>
 /// Xcodeのプロジェクトを書き出す際に諸々の設定を自動で行うクラス
 /// </summary>
-public class XcodeProjectUpdater : MonoBehaviour {
+public class XcodeProjectMod : MonoBehaviour
+{
 
 	//設定データのパス
 	private const string SETTING_DATA_PATH = "XcodeProjectSetting";

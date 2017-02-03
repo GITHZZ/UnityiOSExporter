@@ -16,11 +16,8 @@
     BOOL success = [self initWithPath:builderCSPath];
     if(success)
     {
-        NSString* result;
-        result = [_content stringByReplacingOccurrencesOfString:@"${bundleIdentifier}"
-                                                     withString:@"\"com.4399sy.zzsj.online\""];
-        result = [result stringByReplacingOccurrencesOfString:@"${productName}"
-                                                   withString:@"\"测试项目\""];
+        NSMutableString* result = [NSMutableString stringWithString:_content];
+        
         [self replaceContent:result];
     }
 }

@@ -19,16 +19,18 @@
 
 @interface DetailsInfoData : NSObject<NSCoding>
 
-@property(nonatomic, readonly) NSString* platform;
-@property(nonatomic, readonly) NSString* appName;
-@property(nonatomic, readonly) NSString* bundleIdentifier;
-@property(nonatomic, readonly) NSString* codeSignIdentity;
-@property(nonatomic, readonly) NSString* provisioningProfile;
+@property(readonly) NSString* platform;
+@property(readonly) NSString* appName;
+@property(readonly) NSString* bundleIdentifier;
+@property(readonly) NSString* codeSignIdentity;
+@property(readonly) NSString* provisioningProfile;
+@property(readonly) NSArray* frameworks;
 
--(void)setInfoWithAppName:(NSString*)appName
-                    appID:(NSString*)appID
-         codeSignIdentity:(NSString*)codeS
-      provisioningProfile:(NSString*)profile
-             platformName:(NSString*)platform;
+- (id)initWithAppName:(NSString*)appName
+                appID:(NSString*)appID
+     codeSignIdentity:(NSString*)codeS
+  provisioningProfile:(NSString*)profile
+         platformName:(NSString*)platform
+           frameworks:(NSArray*)fw;
 
 @end

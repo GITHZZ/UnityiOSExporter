@@ -19,7 +19,9 @@
     _path = path;
         
     NSError* error;
-    _content = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
+    _content = [NSMutableString stringWithContentsOfFile:path
+                                                encoding:NSUTF8StringEncoding
+                                                   error:&error];
     if(error != nil)
     {
         NSLog(@"%@", error);

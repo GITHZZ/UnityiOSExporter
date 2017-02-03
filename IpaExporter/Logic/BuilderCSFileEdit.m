@@ -16,14 +16,19 @@
     BOOL success = [self initWithPath:builderCSPath];
     if(success)
     {
-        NSString* result;
+        NSMutableString* result = [NSMutableString stringWithString:_content];
         NSString* bundleIdentifier = [NSString stringWithFormat:@"\"%@\"", info.bundleIdentifier];
         NSString* productName = [NSString stringWithFormat:@"\"%@\"", info.appName];
         
-        result = [_content stringByReplacingOccurrencesOfString:@"${bundleIdentifier}"
-                                                     withString:bundleIdentifier];
-        result = [result stringByReplacingOccurrencesOfString:@"${productName}"
-                                                   withString:productName];
+        [result replaceOccurrencesOfString:@"${bundleIdentifier}"
+                                withString:bundleIdentifier
+                                   options:NSLiteralSearch
+                                     range:NSMakeRange(0, [_content length])];
+        
+        [result replaceOccurrencesOfString:@"${productName}"
+                                withString:productName
+                                   options:NSLiteralSearch
+                                     range:NSMakeRange(0, [_content length])];
         
         [self replaceContent:result];
     }
