@@ -17,7 +17,7 @@
 
 @interface DetailsInfoView : NSViewController<NSTableViewDataSource, NSTableViewDelegate>
 
-@property (retain) DetailsInfoSetting* settingView;
+@property (strong) DetailsInfoSetting* settingView;
 @property (nonatomic, readonly) NSMutableArray* dataDict;
 @property (weak) IBOutlet NSTableView *infoTbls;
 

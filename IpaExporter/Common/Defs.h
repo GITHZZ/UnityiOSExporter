@@ -13,6 +13,15 @@
 #define BUILDER_CS_PATH @"/Assets/Editor/DataTemplete/Builder/Builder.cs"
 #define XCODEPROJECT_CS_PATH @"/Assets/Editor/DataTemplete/XcodeApi/XcodeProjectSetting.cs"
 
+#define Platform_Name @"platform"
+#define App_Name_Key @"appName"
+#define App_ID_Key @"bundleIdentifier"
+#define Code_Sign_Identity_Key @"codeSignIdentity"
+#define Provisioning_Profile_key @"provisioningProfile"
+#define Frameworks_Key @"frameworks"
+#define libs_Key @"libs"
+#define Libker_Flag @"libkerFlag"
+
 typedef struct IpaPackInfo
 {
     const char* bundleIdentifier;

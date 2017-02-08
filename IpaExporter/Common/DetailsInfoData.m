@@ -7,54 +7,79 @@
 //
 
 #import "DetailsInfoData.h"
+#import <objc/runtime.h>
+#import "Defs.h"
+
+#define Detail_Info_Dict_Coder_Key @"DetailInfoDict"
+
+typedef struct IvarData
+{
+    Ivar* ivar; //变量列表首地址
+    unsigned int count; //变量数量
+}IvarData;
+
+@interface DetailsInfoData()
+{
+    IvarData _varStruct;
+}
+@end
 
 @implementation DetailsInfoData
 
-- (id)initWithAppName:(NSString*)appName
-                appID:(NSString*)appID
-     codeSignIdentity:(NSString*)codeS
-  provisioningProfile:(NSString*)profile
-         platformName:(NSString*)platform
-           frameworks:(NSArray*)fw
+- (id)initWithInfoDict:(NSDictionary*) dic
 {
     if(self = [super init])
     {
-        [self setValue:appName forKey:App_Name_Key];
-        [self setValue:appID forKey:App_ID_Key];
-        [self setValue:codeS forKey:Code_Sign_Identity_Key];
-        [self setValue:profile forKey:Provisioning_Profile_key];
-        [self setValue:platform forKey:Platform_Name];
-        [self setValue:fw forKey:Frameworks_Key];
+        NSEnumerator *iter = [dic keyEnumerator];
+        for(NSObject *object in iter)
+        {
+            NSString* key = (NSString*)object;
+            id content = [dic objectForKey:key];
+            if(content != nil)
+            {
+                [self setValue:content forKey:key];
+            }
+        }
+        
+        _dict = dic;
+        
+        //获取所有变量
+        unsigned int count = 0;
+        _varStruct.ivar = class_copyIvarList([self class], &count);
+        _varStruct.count = count;
     }
     
     return self;
 }
 
+- (id)getValueForKey:(NSString*)key
+{
+    unsigned int count = _varStruct.count;
+    Ivar *ivars = _varStruct.ivar;
+    for(int i = 0; i < count; i++)
+    {
+        Ivar *ivar = ivars + i;
+        NSString *varName = [NSString stringWithUTF8String:ivar_getName(*ivar)];
+        NSString *keyName = [NSString stringWithFormat:@"_%@", key];
+        if([varName isEqualToString:keyName])
+        {
+            return [self valueForKey:key];
+        }
+    }
+    
+    NSLog(@"不存在Key%@的属性变量", key);
+    return @"";
+}
+
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
-    [encoder encodeObject:_appName forKey:App_Name_Key];
-    [encoder encodeObject:_bundleIdentifier forKey:App_ID_Key];
-    [encoder encodeObject:_codeSignIdentity forKey:Code_Sign_Identity_Key];
-    [encoder encodeObject:_provisioningProfile forKey:Provisioning_Profile_key];
-    [encoder encodeObject:_platform forKey:Platform_Name];
-    [encoder encodeObject:_frameworks forKey:Frameworks_Key];
+    [encoder encodeObject:_dict forKey:Detail_Info_Dict_Coder_Key];
 }
 
 - (id)initWithCoder:(NSCoder *)decoder
 {
-    NSString* appName = [decoder decodeObjectForKey:App_Name_Key];
-    NSString* appID = [decoder decodeObjectForKey:App_ID_Key];
-    NSString* codeS = [decoder decodeObjectForKey:Code_Sign_Identity_Key];
-    NSString* profile = [decoder decodeObjectForKey:Provisioning_Profile_key];
-    NSString* platform = [decoder decodeObjectForKey:Platform_Name];
-    NSMutableArray* frameworks = [decoder decodeObjectForKey:Frameworks_Key];
-    
-    return [self initWithAppName:appName
-                           appID:appID
-                codeSignIdentity:codeS
-             provisioningProfile:profile
-                    platformName:platform
-                      frameworks:frameworks];
+    NSDictionary* dict = [decoder decodeObjectForKey:Detail_Info_Dict_Coder_Key];
+    return [self initWithInfoDict:dict];
     
 }
 

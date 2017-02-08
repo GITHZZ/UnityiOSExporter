@@ -8,29 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-#define Platform_Name @"platform"
-#define App_Name_Key @"appName"
-#define App_ID_Key @"bundleIdentifier"
-#define Code_Sign_Identity_Key @"codeSignIdentity"
-#define Provisioning_Profile_key @"provisioningProfile"
-#define Frameworks_Key @"frameworks"
-#define libs_Key @"libs"
-#define Libker_Flag @"libkerFlag"
-
 @interface DetailsInfoData : NSObject<NSCoding>
 
-@property(readonly) NSString* platform;
-@property(readonly) NSString* appName;
-@property(readonly) NSString* bundleIdentifier;
-@property(readonly) NSString* codeSignIdentity;
-@property(readonly) NSString* provisioningProfile;
-@property(readonly) NSArray* frameworks;
+@property(readonly) NSDictionary *dict;
 
-- (id)initWithAppName:(NSString*)appName
-                appID:(NSString*)appID
-     codeSignIdentity:(NSString*)codeS
-  provisioningProfile:(NSString*)profile
-         platformName:(NSString*)platform
-           frameworks:(NSArray*)fw;
+- (id)initWithInfoDict:(NSDictionary*) dic;
+- (id)getValueForKey:(NSString*)key;
 
 @end

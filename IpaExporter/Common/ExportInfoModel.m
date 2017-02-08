@@ -8,6 +8,12 @@
 
 #import "ExportInfoModel.h"
 
+#define INFOS_MAX_CAPACITY 100
+
+#define SAVE_DETAIL_ARRARY_KEY @"detailArray"
+#define SAVE_PROJECT_PATH_KEY @"projectPath"
+#define SAVE_EXPORT_PATH_KEY @"exportPath"
+
 @implementation ExportInfoModel
 
 + (ExportInfoModel*)instance

@@ -8,6 +8,9 @@
 
 #import "BaseDataCSCodeEdit.h"
 
+@interface BaseDataCSCodeEdit()
+@end
+
 @implementation BaseDataCSCodeEdit
 
 - (void)start:(NSString*)dstPath withPackInfo:(DetailsInfoData*)info

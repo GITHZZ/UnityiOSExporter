@@ -7,6 +7,7 @@
 //
 
 #import "BuilderCSFileEdit.h"
+#import "Defs.h"
 
 @implementation BuilderCSFileEdit
 
@@ -17,8 +18,12 @@
     if(success)
     {
         NSMutableString* result = [NSMutableString stringWithString:_content];
-        NSString* bundleIdentifier = [NSString stringWithFormat:@"\"%@\"", info.bundleIdentifier];
-        NSString* productName = [NSString stringWithFormat:@"\"%@\"", info.appName];
+        
+        NSString *infoBundleIdentifier = [info.dict objectForKey:App_ID_Key];
+        NSString *infoAppName = [info.dict objectForKey:App_Name_Key];
+        
+        NSString* bundleIdentifier = [NSString stringWithFormat:@"\"%@\"", infoBundleIdentifier];
+        NSString* productName = [NSString stringWithFormat:@"\"%@\"", infoAppName];
         
         [result replaceOccurrencesOfString:@"${bundleIdentifier}"
                                 withString:bundleIdentifier
