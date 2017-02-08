@@ -18,7 +18,7 @@ typedef struct IvarData
     unsigned int count; //变量数量
 }IvarData;
 
-@interface DetailsInfoData()
+@interface DetailsInfoData()<NSCoding>
 {
     IvarData _varStruct;
 }
@@ -69,6 +69,11 @@ typedef struct IvarData
     
     NSLog(@"不存在Key%@的属性变量", key);
     return @"";
+}
+
+- (void)setValue:(id)value forUndefinedKey:(NSString *)key
+{
+    NSLog(@"%@没有定义@property", key);
 }
 
 - (void)encodeWithCoder:(NSCoder *)encoder

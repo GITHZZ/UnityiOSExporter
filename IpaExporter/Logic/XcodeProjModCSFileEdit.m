@@ -17,7 +17,6 @@
     if(success)
     {
         NSMutableString* result = [NSMutableString stringWithString:_content];
-        
         [self replaceContent:result];
     }
 }

@@ -18,12 +18,12 @@
     if(success)
     {
         NSMutableString* result = [NSMutableString stringWithString:_content];
+    
+        NSArray *frameworksArr = [info.dict objectForKey:Frameworks_Key];
+        NSString *frameworksStr = [frameworksArr componentsJoinedByString:@","];
         
-        NSString *infoBundleIdentifier = [info.dict objectForKey:App_ID_Key];
-        NSString *infoAppName = [info.dict objectForKey:App_Name_Key];
-        
-        NSString* bundleIdentifier = [NSString stringWithFormat:@"\"%@\"", infoBundleIdentifier];
-        NSString* productName = [NSString stringWithFormat:@"\"%@\"", infoAppName];
+        NSString* bundleIdentifier = [NSString stringWithFormat:@"\"%@\"", info.bundleIdentifier];
+        NSString* productName = [NSString stringWithFormat:@"\"%@\"", info.appName];
         
         [result replaceOccurrencesOfString:@"${bundleIdentifier}"
                                 withString:bundleIdentifier
@@ -35,6 +35,10 @@
                                    options:NSLiteralSearch
                                      range:NSMakeRange(0, [_content length])];
         
+        [result replaceOccurrencesOfString:@"${frameworkList}"
+                                withString:frameworksStr
+                                   options:NSLiteralSearch
+                                     range:NSMakeRange(0, [_content length])];
         [self replaceContent:result];
     }
 }

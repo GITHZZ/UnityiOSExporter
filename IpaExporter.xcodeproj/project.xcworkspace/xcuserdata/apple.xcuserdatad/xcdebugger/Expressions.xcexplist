@@ -19,6 +19,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "-[DetailsInfoData initWithInfoDict:]:DetailsInfoData.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "&amp;key">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[ViewMain tableView:objectValueForTableColumn:row:]:ViewMain.m">
          <PersistentStrings>
             <PersistentString
@@ -31,6 +39,14 @@
          <PersistentStrings>
             <PersistentString
                value = "[_dataDict count]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[DetailsInfoData initWithCoder:]:DetailsInfoData.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[self initWithInfoDict:dict]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

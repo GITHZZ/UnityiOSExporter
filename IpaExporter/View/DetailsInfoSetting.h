@@ -13,11 +13,12 @@
 
 @interface DetailsInfoSetting : NSViewController
 
-@property (nonatomic, strong) IBOutlet NSTextField* platform;
-@property (nonatomic, strong) IBOutlet NSTextField* appName;
-@property (nonatomic, strong) IBOutlet NSTextField* appID;
-@property (nonatomic, strong) IBOutlet NSTextField* codeSignIdentity;
-@property (nonatomic, strong) IBOutlet NSTextField* provisioningProfile;
+@property (nonatomic, weak) IBOutlet NSTextField* platform;
+@property (nonatomic, weak) IBOutlet NSTextField* appName;
+@property (nonatomic, weak) IBOutlet NSTextField* appID;
+@property (nonatomic, weak) IBOutlet NSTextField* codeSignIdentity;
+@property (nonatomic, weak) IBOutlet NSTextField* provisioningProfile;
+@property (nonatomic, weak) IBOutlet NSTextField* frameworks;
 
 @end
 

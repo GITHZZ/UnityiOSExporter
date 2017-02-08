@@ -8,9 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DetailsInfoData : NSObject<NSCoding>
+@interface DetailsInfoData : NSObject
 
 @property(readonly) NSDictionary *dict;
+
+@property(readonly) NSString* platform;
+@property(readonly) NSString* appName;
+@property(readonly) NSString* bundleIdentifier;
+@property(readonly) NSString* codeSignIdentity;
+@property(readonly) NSString* provisioningProfile;
+@property(readonly) NSString* frameworks;
 
 - (id)initWithInfoDict:(NSDictionary*) dic;
 - (id)getValueForKey:(NSString*)key;

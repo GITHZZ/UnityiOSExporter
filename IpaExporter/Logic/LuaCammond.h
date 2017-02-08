@@ -10,7 +10,8 @@
 
 #include "LuaDLL.h"
 
-@interface LuaCammond : NSObject{
+@interface LuaCammond : NSObject
+{
     lua_State *L;
 }
 
