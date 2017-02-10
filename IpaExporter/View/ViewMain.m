@@ -25,6 +25,8 @@
     _unityPathBox.stringValue = projectPath;
     _exportPathBox.stringValue = exportPath;
     
+    //[_unityPathBox addItemWithObjectValue:projectPath];
+    
     //从本地读取存储数据
     NSMutableArray* saveArray = [[ExportInfoModel instance] reLoadDetails];
     _dataDict = [[NSMutableArray alloc] initWithArray:saveArray];
@@ -41,8 +43,8 @@
 {
     //_infoLabel.stringValue = @"";
     
-    [_unityPathBox removeAllItems];
-    [_exportPathBox removeAllItems];
+    //[_unityPathBox removeAllItems];
+    //[_exportPathBox removeAllItems];
 }
 
 - (void) registEvent

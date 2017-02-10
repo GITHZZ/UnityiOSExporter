@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		182819791E4C15FD00CEC719 /* SettingClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 182819781E4C15FD00CEC719 /* SettingClipView.m */; };
+		182FF6F31E4D936700CC0C7C /* DetailsInfoData.m in Sources */ = {isa = PBXBuildFile; fileRef = 182FF6F01E4D936700CC0C7C /* DetailsInfoData.m */; };
+		182FF6F41E4D936700CC0C7C /* ExportInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182FF6F21E4D936700CC0C7C /* ExportInfoModel.m */; };
 		18322A8E1DAE193B0049660B /* BuilderCSFileEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 18322A8D1DAE193B0049660B /* BuilderCSFileEdit.m */; };
 		183780121D766C84004E3BAD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 183780111D766C84004E3BAD /* AppDelegate.m */; };
 		183780151D766C84004E3BAD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 183780141D766C84004E3BAD /* main.m */; };
@@ -66,8 +69,6 @@
 		18CA13961D78164C006595E5 /* ViewMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CA13951D78164C006595E5 /* ViewMain.m */; };
 		18DD5E6C1DAF1C150071B654 /* DetailsInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD5E6B1DAF1C150071B654 /* DetailsInfoView.m */; };
 		18E630ED1E4815FE00E04ACA /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E630EC1E4815FE00E04ACA /* Accounts.framework */; };
-		18F102771DCC2813008312E5 /* DetailsInfoData.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F102741DCC2813008312E5 /* DetailsInfoData.m */; };
-		18F102781DCC2813008312E5 /* ExportInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F102761DCC2813008312E5 /* ExportInfoModel.m */; };
 		18F1027B1DCC2AEB008312E5 /* EventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F1027A1DCC2AEB008312E5 /* EventManager.m */; };
 /* End PBXBuildFile section */
 
@@ -89,6 +90,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		182819771E4C15FD00CEC719 /* SettingClipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingClipView.h; sourceTree = "<group>"; };
+		182819781E4C15FD00CEC719 /* SettingClipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingClipView.m; sourceTree = "<group>"; };
+		1828197A1E4C5E2C00CEC719 /* EventTypeDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EventTypeDef.h; sourceTree = "<group>"; };
+		182FF6EF1E4D936700CC0C7C /* DetailsInfoData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsInfoData.h; sourceTree = "<group>"; };
+		182FF6F01E4D936700CC0C7C /* DetailsInfoData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsInfoData.m; sourceTree = "<group>"; };
+		182FF6F11E4D936700CC0C7C /* ExportInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportInfoModel.h; sourceTree = "<group>"; };
+		182FF6F21E4D936700CC0C7C /* ExportInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportInfoModel.m; sourceTree = "<group>"; };
 		18322A8C1DAE193B0049660B /* BuilderCSFileEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuilderCSFileEdit.h; sourceTree = "<group>"; };
 		18322A8D1DAE193B0049660B /* BuilderCSFileEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuilderCSFileEdit.m; sourceTree = "<group>"; };
 		1837800D1D766C84004E3BAD /* IpaExporter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IpaExporter.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -195,10 +203,6 @@
 		18DD5E6A1DAF1C150071B654 /* DetailsInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsInfoView.h; sourceTree = "<group>"; };
 		18DD5E6B1DAF1C150071B654 /* DetailsInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsInfoView.m; sourceTree = "<group>"; };
 		18E630EC1E4815FE00E04ACA /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
-		18F102731DCC2813008312E5 /* DetailsInfoData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsInfoData.h; sourceTree = "<group>"; };
-		18F102741DCC2813008312E5 /* DetailsInfoData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsInfoData.m; sourceTree = "<group>"; };
-		18F102751DCC2813008312E5 /* ExportInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportInfoModel.h; sourceTree = "<group>"; };
-		18F102761DCC2813008312E5 /* ExportInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportInfoModel.m; sourceTree = "<group>"; };
 		18F102791DCC2AEB008312E5 /* EventManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventManager.h; sourceTree = "<group>"; };
 		18F1027A1DCC2AEB008312E5 /* EventManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventManager.m; sourceTree = "<group>"; };
 		18FCCBCC1E49CD3900BDF9AC /* Defs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Defs.h; sourceTree = "<group>"; };
@@ -400,6 +404,10 @@
 				18322A8D1DAE193B0049660B /* BuilderCSFileEdit.m */,
 				18769D911DAE34050023E255 /* XcodeProjModCSFileEdit.h */,
 				18769D921DAE34050023E255 /* XcodeProjModCSFileEdit.m */,
+				182FF6EF1E4D936700CC0C7C /* DetailsInfoData.h */,
+				182FF6F01E4D936700CC0C7C /* DetailsInfoData.m */,
+				182FF6F11E4D936700CC0C7C /* ExportInfoModel.h */,
+				182FF6F21E4D936700CC0C7C /* ExportInfoModel.m */,
 				186088FB1DAA4AE10055E4BB /* DataResControl.h */,
 				186088FC1DAA4AE10055E4BB /* DataResControl.m */,
 				1841FA751DACC7C10050FE12 /* BaseDataCSCodeEdit.h */,
@@ -428,6 +436,8 @@
 				18DD5E6B1DAF1C150071B654 /* DetailsInfoView.m */,
 				184BEA4E1DC742FA00CCEC4D /* DetailsInfoSetting.h */,
 				184BEA4F1DC742FA00CCEC4D /* DetailsInfoSetting.m */,
+				182819771E4C15FD00CEC719 /* SettingClipView.h */,
+				182819781E4C15FD00CEC719 /* SettingClipView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -444,12 +454,9 @@
 			isa = PBXGroup;
 			children = (
 				18FCCBCC1E49CD3900BDF9AC /* Defs.h */,
+				1828197A1E4C5E2C00CEC719 /* EventTypeDef.h */,
 				18F102791DCC2AEB008312E5 /* EventManager.h */,
 				18F1027A1DCC2AEB008312E5 /* EventManager.m */,
-				18F102731DCC2813008312E5 /* DetailsInfoData.h */,
-				18F102741DCC2813008312E5 /* DetailsInfoData.m */,
-				18F102751DCC2813008312E5 /* ExportInfoModel.h */,
-				18F102761DCC2813008312E5 /* ExportInfoModel.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -602,6 +609,7 @@
 				18750A9A1D9BBBC100FECCA6 /* lzio.c in Sources */,
 				18750A881D9BBBC100FECCA6 /* lmathlib.c in Sources */,
 				18750A821D9BBBC100FECCA6 /* lfs.c in Sources */,
+				182819791E4C15FD00CEC719 /* SettingClipView.m in Sources */,
 				18750AA71D9BBBD000FECCA6 /* LuaCammond.m in Sources */,
 				18750A891D9BBBC100FECCA6 /* lmem.c in Sources */,
 				18750A831D9BBBC100FECCA6 /* lfunc.c in Sources */,
@@ -621,9 +629,9 @@
 				18750A7B1D9BBBC100FECCA6 /* lcode.c in Sources */,
 				18750A801D9BBBC100FECCA6 /* ldo.c in Sources */,
 				18750A7A1D9BBBC100FECCA6 /* lbitlib.c in Sources */,
-				18F102781DCC2813008312E5 /* ExportInfoModel.m in Sources */,
 				18750A731D9BBBC100FECCA6 /* LuaDLL.c in Sources */,
 				18750A721D9BBBC100FECCA6 /* LuaDictionary.c in Sources */,
+				182FF6F31E4D936700CC0C7C /* DetailsInfoData.m in Sources */,
 				186088FD1DAA4AE10055E4BB /* DataResControl.m in Sources */,
 				18750A7E1D9BBBC100FECCA6 /* ldblib.c in Sources */,
 				183780121D766C84004E3BAD /* AppDelegate.m in Sources */,
@@ -637,10 +645,10 @@
 				18CA13961D78164C006595E5 /* ViewMain.m in Sources */,
 				18750A7F1D9BBBC100FECCA6 /* ldebug.c in Sources */,
 				18750A8E1D9BBBC100FECCA6 /* lparser.c in Sources */,
-				18F102771DCC2813008312E5 /* DetailsInfoData.m in Sources */,
 				18750A7C1D9BBBC100FECCA6 /* lcorolib.c in Sources */,
 				18750A991D9BBBC100FECCA6 /* lvm.c in Sources */,
 				18DD5E6C1DAF1C150071B654 /* DetailsInfoView.m in Sources */,
+				182FF6F41E4D936700CC0C7C /* ExportInfoModel.m in Sources */,
 				18750A931D9BBBC100FECCA6 /* ltablib.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -797,6 +805,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 5GW4L26KUL;
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = NS_BLOCK_ASSERTIONS;
 				INFOPLIST_FILE = IpaExporter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (

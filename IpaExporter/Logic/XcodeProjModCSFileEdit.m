@@ -17,6 +17,15 @@
     if(success)
     {
         NSMutableString* result = [NSMutableString stringWithString:_content];
+        
+        NSArray *frameworksArr = [info.dict objectForKey:Frameworks_Key];
+        NSString *frameworksStr = [frameworksArr componentsJoinedByString:@","];
+        
+        [result replaceOccurrencesOfString:@"${frameworkList}"
+                                withString:frameworksStr
+                                   options:NSLiteralSearch
+                                     range:NSMakeRange(0, [_content length])];
+        
         [self replaceContent:result];
     }
 }

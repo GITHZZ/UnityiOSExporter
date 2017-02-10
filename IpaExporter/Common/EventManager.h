@@ -7,20 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
-typedef NS_ENUM(int, EventType){
-    EventViewMainLoaded  = 0,
-    
-    EventViewSureClicked         = 101,
-    EventUnityPathSelect         = 102,
-    EventUnityPathSelectEnd      = 103,
-    EventExportPathSelectEnd     = 104,
-    EventDevelopProfileSelectEnd = 105,
-    EventDetailsInfoSettingClose = 106,
-    EventDetailsInfoAdd          = 107,
-    EventDetailsInfoRemove       = 108,
-    EventDetailsInfoUpdate       = 109,
-};
+#import "EventTypeDef.h"
 
 @interface EventManager : NSObject
 

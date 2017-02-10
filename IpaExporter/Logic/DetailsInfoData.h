@@ -17,7 +17,7 @@
 @property(readonly) NSString* bundleIdentifier;
 @property(readonly) NSString* codeSignIdentity;
 @property(readonly) NSString* provisioningProfile;
-@property(readonly) NSString* frameworks;
+@property(readonly) NSArray* frameworks;
 
 - (id)initWithInfoDict:(NSDictionary*) dic;
 - (id)getValueForKey:(NSString*)key;

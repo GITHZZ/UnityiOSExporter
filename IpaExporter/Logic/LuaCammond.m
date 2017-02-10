@@ -129,7 +129,7 @@
     [self close];
     
     //删除文件夹
-    //[[DataResControl instance] end];
+    [[DataResControl instance] end];
 }
 
 - (void)sureBtnClicked:(NSNotification*)notification
