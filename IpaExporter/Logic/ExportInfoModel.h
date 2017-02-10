@@ -17,11 +17,14 @@
     NSUserDefaults* _saveData;
 }
 
-@property(nonatomic, readwrite) ExportInfo* info;
-@property(nonatomic, readonly) NSMutableArray* detailArray;
+@property(nonatomic, readwrite) ExportInfo *info;
+@property(nonatomic, readonly) NSMutableArray *unityProjPathArr;
+@property(nonatomic, readonly) NSMutableArray *exportPathArr;
+@property(nonatomic, readonly) NSMutableArray *detailArray;
 
 + (ExportInfoModel*)instance;
-- (void)addNewInfo:(ExportInfo*)newInfo;
+- (void)addNewUnityProjPath:(NSString*)path;
+- (void)addNewExportProjPath:(NSString*)path;
 
 //路径配置
 - (void)reloadPaths;

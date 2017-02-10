@@ -792,7 +792,7 @@
 					"$(PROJECT_DIR)/IpaExporter",
 					"$(PROJECT_DIR)/IpaExporter/LuaLib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.IpaExporter;
+				PRODUCT_BUNDLE_IDENTIFIER = com.IpaExporter.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -813,7 +813,7 @@
 					"$(PROJECT_DIR)/IpaExporter",
 					"$(PROJECT_DIR)/IpaExporter/LuaLib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.IpaExporter;
+				PRODUCT_BUNDLE_IDENTIFIER = com.IpaExporter.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

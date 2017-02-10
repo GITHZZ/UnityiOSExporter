@@ -48,6 +48,8 @@
         
         _saveData = [NSUserDefaults standardUserDefaults];
         _detailArray = [[NSMutableArray alloc] initWithCapacity:20];
+        _unityProjPathArr = [[NSMutableArray alloc] initWithCapacity:6];
+        _exportPathArr = [[NSMutableArray alloc] initWithCapacity:6];
     }
     
     return self;
@@ -56,19 +58,40 @@
 //主路径部分
 - (void)reloadPaths
 {
-    NSString* projPath = (NSString*)[_saveData objectForKey:SAVE_PROJECT_PATH_KEY];
-    NSString* exportPath = (NSString*)[_saveData objectForKey:SAVE_EXPORT_PATH_KEY];
+//    NSMutableArray* projPath = (NSMutableArray*)[_saveData objectForKey:SAVE_PROJECT_PATH_KEY];
+//    NSMutableArray* exportPath = (NSMutableArray*)[_saveData objectForKey:SAVE_EXPORT_PATH_KEY];
+//    
+//    _info->unityProjPath = [projPath UTF8String];
+//    _info->exportFolderParh = [exportPath UTF8String];
+
+    NSData* unityProjData = (NSData*)[_saveData objectForKey:SAVE_PROJECT_PATH_KEY];
+    NSArray* unityProjArray = [NSKeyedUnarchiver unarchiveObjectWithData:unityProjData];
+    NSMutableArray* unityProjMutable = [NSMutableArray arrayWithArray:unityProjArray];
+    _unityProjPathArr = unityProjMutable;
     
-    _info->unityProjPath = [projPath UTF8String];
-    _info->exportFolderParh = [exportPath UTF8String];
+    NSData* exportData = (NSData*)[_saveData objectForKey:SAVE_EXPORT_PATH_KEY];
+    NSArray* exportArray = [NSKeyedUnarchiver unarchiveObjectWithData:exportData];
+    NSMutableArray* exportMutable = [NSMutableArray arrayWithArray:exportArray];
+    _exportPathArr = exportMutable;
+    
+//    _unityProjPathArr = projPath;
+//    _exportPathArr = exportPath;
+    
 }
 
 - (void)saveData
 {
-    NSString* projectPath = [NSString stringWithUTF8String:_info->unityProjPath];
-    NSString* exportPath = [NSString stringWithUTF8String:_info->exportFolderParh];
-    [_saveData setObject:projectPath forKey:SAVE_PROJECT_PATH_KEY];
-    [_saveData setObject:exportPath forKey:SAVE_EXPORT_PATH_KEY];
+    //NSString* projectPath = [NSString stringWithUTF8String:_info->unityProjPath];
+    //NSString* exportPath = [NSString stringWithUTF8String:_info->exportFolderParh];
+//    [_saveData setObject:_unityProjPathArr forKey:SAVE_PROJECT_PATH_KEY];
+//    [_saveData setObject:_exportPathArr forKey:SAVE_EXPORT_PATH_KEY];
+    
+    NSData* unityArrData = [NSKeyedArchiver archivedDataWithRootObject:_unityProjPathArr];
+    [_saveData setObject:unityArrData forKey:SAVE_PROJECT_PATH_KEY];
+    NSData* exportArrData = [NSKeyedArchiver archivedDataWithRootObject:_exportPathArr];
+    [_saveData setObject:exportArrData forKey:SAVE_EXPORT_PATH_KEY];
+    
+    [_saveData synchronize];
 }
 
 - (ExportInfo*)getData
@@ -79,12 +102,26 @@
     return val;
 }
 
-- (void)addNewInfo:(ExportInfo*)newInfo
+- (void)addNewUnityProjPath:(NSString *)path
 {
+    NSAssert(path != nil, @"路径不能为空");
+    [_unityProjPathArr addObject:path];
+    
+    if([_unityProjPathArr count] > 5)
+    {
+        [_unityProjPathArr removeLastObject];
+    }
 }
 
-- (void)removeNewInfo
+- (void)addNewExportProjPath:(NSString *)path
 {
+    NSAssert(path != nil, @"路径不能为空");
+    [_exportPathArr addObject:path];
+    
+    if([_exportPathArr count] > 5)
+    {
+        [_exportPathArr removeLastObject];
+    }
 }
 
 //包配置 信息表格数据部分

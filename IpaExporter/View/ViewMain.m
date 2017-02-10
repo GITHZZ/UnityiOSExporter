@@ -19,13 +19,20 @@
     
     [[ExportInfoModel instance] reloadPaths];
     
-    NSString* projectPath = [NSString stringWithUTF8String:[ExportInfoModel instance].info->unityProjPath];
-    NSString* exportPath = [NSString stringWithUTF8String:[ExportInfoModel instance].info->exportFolderParh];
+    NSMutableArray* unityProjPathArr = [ExportInfoModel instance].unityProjPathArr;
+    NSMutableArray* exportPathArr = [ExportInfoModel instance].exportPathArr;
+   
+    if ([unityProjPathArr count] > 0 )
+    {
+        _unityPathBox.stringValue = (NSString*)[unityProjPathArr objectAtIndex:0];
+        [_unityPathBox addItemsWithObjectValues:unityProjPathArr];
+    }
     
-    _unityPathBox.stringValue = projectPath;
-    _exportPathBox.stringValue = exportPath;
-    
-    //[_unityPathBox addItemWithObjectValue:projectPath];
+    if ([exportPathArr count] > 0)
+    {
+        _exportPathBox.stringValue = (NSString*)[exportPathArr objectAtIndex:0];
+        [_exportPathBox addItemsWithObjectValues:exportPathArr];
+    }
     
     //从本地读取存储数据
     NSMutableArray* saveArray = [[ExportInfoModel instance] reLoadDetails];
@@ -87,11 +94,13 @@
                 case EventUnityPathSelectEnd:
                     tInfo->unityProjPath = [selectPath UTF8String];
                     [ExportInfoModel instance].info = tInfo;
+                    [[ExportInfoModel instance] addNewUnityProjPath:selectPath];
                     _unityPathBox.stringValue = selectPath;
                     break;
                 case EventExportPathSelectEnd:
                     tInfo->exportFolderParh = [selectPath UTF8String];
                     [ExportInfoModel instance].info = tInfo;
+                    [[ExportInfoModel instance] addNewExportProjPath:selectPath];
                     _exportPathBox.stringValue = selectPath;
                     break;
                 default:
