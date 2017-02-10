@@ -22,7 +22,7 @@
     NSMutableArray* unityProjPathArr = [ExportInfoModel instance].unityProjPathArr;
     NSMutableArray* exportPathArr = [ExportInfoModel instance].exportPathArr;
    
-    if ([unityProjPathArr count] > 0 )
+    if ([unityProjPathArr count] > 0)
     {
         _unityPathBox.stringValue = (NSString*)[unityProjPathArr objectAtIndex:0];
         [_unityPathBox addItemsWithObjectValues:unityProjPathArr];
