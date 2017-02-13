@@ -7,9 +7,7 @@
 //
 
 #import "BaseDataCSCodeEdit.h"
-
-@interface BaseDataCSCodeEdit()
-@end
+#import "BaseDataCSCodePrivate.h"
 
 @implementation BaseDataCSCodeEdit
 
@@ -35,6 +33,32 @@
     _lines = [_content componentsSeparatedByString:@"\n"];
     
     return YES;
+}
+
+/*
+ 通过key来取和替换变量 以def文件中的为准
+ */
+- (void)replaceVarFromData:(DetailsInfoData*)data withKeyArr:(NSArray*)keyArr
+{
+    NSMutableString* result = [NSMutableString stringWithString:_content];
+    for(int i = 0; i < [keyArr count]; i++)
+    {
+        NSString *key = [keyArr objectAtIndex:i];
+        NSString *keyStr = [data getValueForKey:key];
+        //需要特殊处理的
+        if([key isEqualToString:Frameworks_Key])
+        {
+            [keyStr stringByReplacingOccurrencesOfString:@"|"
+                                              withString:@","];
+        }
+        
+        [result replaceOccurrencesOfString:[NSString stringWithFormat:@"${%@}", key]
+                                  withString:keyStr
+                                     options:NSLiteralSearch
+                                       range:NSMakeRange(0, [result length])];
+
+    }
+    [self replaceContent:result];
 }
 
 - (void)replaceContent:(NSString*) newContent

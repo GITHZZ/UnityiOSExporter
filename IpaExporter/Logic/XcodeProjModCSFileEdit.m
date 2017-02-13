@@ -7,6 +7,7 @@
 //
 
 #import "XcodeProjModCSFileEdit.h"
+#import "BaseDataCSCodePrivate.h"
 
 @implementation XcodeProjModCSFileEdit
 
@@ -16,15 +17,8 @@
     BOOL success = [self initWithPath:builderCSPath];
     if(success)
     {
-        NSMutableString* result = [NSMutableString stringWithString:_content];
-        NSString *frameworksStr = [info.frameworks stringByReplacingOccurrencesOfString:@"|" withString:@","];
-        
-        [result replaceOccurrencesOfString:@"${frameworkList}"
-                                withString:frameworksStr
-                                   options:NSLiteralSearch
-                                     range:NSMakeRange(0, [result length])];
-        
-        [self replaceContent:result];
+        NSArray *keyArr = [NSArray arrayWithObjects:Frameworks_Key, nil];
+        [self replaceVarFromData:info withKeyArr:keyArr];
     }
 }
 

@@ -8,6 +8,7 @@
 
 #import "BuilderCSFileEdit.h"
 #import "Defs.h"
+#import "BaseDataCSCodePrivate.h"
 
 @implementation BuilderCSFileEdit
 
@@ -16,23 +17,9 @@
     NSString* builderCSPath = [dstPath stringByAppendingPathComponent:BUILDER_CS_PATH];
     BOOL success = [self initWithPath:builderCSPath];
     if(success)
-    {
-        NSMutableString* result = [NSMutableString stringWithString:_content];
-        
-        NSString *bundleIdentifier = [NSString stringWithFormat:@"\"%@\"", info.bundleIdentifier];
-        NSString *productName = [NSString stringWithFormat:@"\"%@\"", info.appName];
-        
-        [result replaceOccurrencesOfString:@"${bundleIdentifier}"
-                                withString:bundleIdentifier
-                                   options:NSLiteralSearch
-                                     range:NSMakeRange(0, [result length])];
-        
-        [result replaceOccurrencesOfString:@"${productName}"
-                                withString:productName
-                                   options:NSLiteralSearch
-                                     range:NSMakeRange(0, [result length])];
-        
-        [self replaceContent:result];
+    {        
+        NSArray *keyArr = [NSArray arrayWithObjects:App_ID_Key, App_Name_Key, nil];
+        [self replaceVarFromData:info withKeyArr:keyArr];
     }
 }
 

@@ -19,7 +19,7 @@
 @property (nonatomic, weak) IBOutlet NSTextField *codeSignIdentity;
 @property (nonatomic, weak) IBOutlet NSTextField *provisioningProfile;
 @property (nonatomic, weak) IBOutlet NSTextField *frameworks;
-@property (nonatomic, weak) IBOutlet NSTextField *cDirPath;
+@property (nonatomic, weak) IBOutlet NSComboBox *cDirPath;
 
 @end
 

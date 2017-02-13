@@ -14,7 +14,7 @@ namespace IpaExporter
 		static void BuildApp()
 		{
 	        PlayerSettings.bundleIdentifier = ${bundleIdentifier}; //"com.4399sy.zzsj.online"
-			PlayerSettings.productName = ${productName}; //"测试项目"
+			PlayerSettings.productName = ${appName}; //"测试项目"
 			PlayerSettings.strippingLevel = StrippingLevel.Disabled;
 
 			PlayerSettings.iOS.sdkVersion = iOSSdkVersion.DeviceSDK;

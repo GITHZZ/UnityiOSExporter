@@ -51,7 +51,7 @@ namespace IpaExporter
 		//=================================================================================
 
 		//Xcodeへコピーするディレクトリへのパス
-		public string CopyDirectoryPath = "Assets/CopyToXcode";
+public string CopyDirectoryPath = ${copyDirectoryPath};
 
 		//URL identifier
 		public string URLIdentifier = "";
@@ -60,7 +60,7 @@ namespace IpaExporter
 		public List<string> URLSchemeList;
 		public List<string> FrameworkList = new List<string>(){
 			/*"Social.framework",*/ //初期設定例
-            ${frameworkList}
+            ${frameworks}
         };
 
         public string[] LinkerFlagArray = new string[]{

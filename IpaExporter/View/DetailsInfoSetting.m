@@ -16,11 +16,6 @@
     [super viewDidLoad];
 }
 
-- (BOOL)checkContent
-{
-    return NO;
-}
-
 - (IBAction)sureBtnClickFuncion:(id)sender
 {
     NSString* appName = _appName.stringValue;
@@ -46,6 +41,38 @@
 - (IBAction)cancelBtnClickFunction:(id)sender
 {
     [self dismissViewController:self];
+}
+
+- (IBAction)cDirectorySelected:(id)sender
+{
+    [self openFolderSelectDialog:EventSelectCopyDirPath
+                 IsCanSelectFile:NO
+          IsCanSelectDirectories:YES];
+}
+
+- (void)openFolderSelectDialog:(EventType)et
+               IsCanSelectFile:(BOOL)chooseFile
+        IsCanSelectDirectories:(BOOL)chooseDirectories
+{
+    NSOpenPanel* openDlg = [NSOpenPanel openPanel];
+    [openDlg setCanChooseFiles:chooseFile];
+    [openDlg setCanChooseDirectories:chooseDirectories];
+    
+    if ([openDlg runModal] == NSModalResponseOK)
+    {
+        for(NSURL* url in [openDlg URLs])
+        {
+            NSString* selectPath = [url path];
+            switch (et)
+            {
+                case EventSelectCopyDirPath:
+                    _cDirPath.stringValue = selectPath;
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 }
 
 @end

@@ -21,6 +21,7 @@ typedef NS_ENUM(int, EventType){
     EventDetailsInfoAdd          = 107,
     EventDetailsInfoRemove       = 108,
     EventDetailsInfoUpdate       = 109,
+    EventSelectCopyDirPath       = 110,
 };
 
 

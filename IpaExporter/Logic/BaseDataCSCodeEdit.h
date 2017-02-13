@@ -11,17 +11,8 @@
 #import "DetailsInfoData.h"
 
 @interface BaseDataCSCodeEdit : NSObject
-{
-    NSString* _path;
-    NSFileHandle* _fileHandle;
-    
-    NSMutableString* _content;
-}
 
 @property (nonatomic, readonly) NSArray* lines;
-
 - (void)start:(NSString*)dstPath withPackInfo:(DetailsInfoData*)info;
-- (BOOL)initWithPath:(NSString*)path;
-- (void)replaceContent:(NSMutableString*) newContent;
 
 @end
