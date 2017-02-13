@@ -40,11 +40,8 @@
     if(self =[super init])
     {
         _info = (ExportInfo*)malloc(sizeof(ExportInfo)); 
-        _info->developProfilePath = "";
         _info->exportFolderParh = "";
-        _info->publishProfilePath = "";
         _info->unityProjPath = "";
-        _info->isRelease = NO;
         
         _saveData = [NSUserDefaults standardUserDefaults];
         _detailArray = [[NSMutableArray alloc] initWithCapacity:20];
@@ -113,6 +110,14 @@
     }
 }
 
+- (void)replaceUnityProjPath:(NSString*)path
+{
+    NSUInteger index = [_unityProjPathArr indexOfObject:path];
+    id fristObj = [_unityProjPathArr objectAtIndex:0];
+    [_unityProjPathArr replaceObjectAtIndex:0 withObject:path];
+    [_unityProjPathArr replaceObjectAtIndex:index withObject:fristObj];
+}
+
 - (void)addNewExportProjPath:(NSString *)path
 {
     NSAssert(path != nil, @"路径不能为空");
@@ -122,6 +127,14 @@
     {
         [_exportPathArr removeLastObject];
     }
+}
+
+- (void)replaceExportProjPath:(NSString*)path
+{
+    NSUInteger index = [_exportPathArr indexOfObject:path];
+    id fristObj = [_exportPathArr objectAtIndex:0];
+    [_exportPathArr replaceObjectAtIndex:0 withObject:path];
+    [_exportPathArr replaceObjectAtIndex:index withObject:fristObj];
 }
 
 //包配置 信息表格数据部分

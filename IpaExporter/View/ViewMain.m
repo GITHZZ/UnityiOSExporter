@@ -19,18 +19,23 @@
     
     [[ExportInfoModel instance] reloadPaths];
     
+    ExportInfo* info = [ExportInfoModel instance].info;
     NSMutableArray* unityProjPathArr = [ExportInfoModel instance].unityProjPathArr;
     NSMutableArray* exportPathArr = [ExportInfoModel instance].exportPathArr;
-   
+    _unityPathBox.delegate = self;
+    _exportPathBox.delegate = self;
+    
     if ([unityProjPathArr count] > 0)
     {
         _unityPathBox.stringValue = (NSString*)[unityProjPathArr objectAtIndex:0];
+        info->unityProjPath = [_unityPathBox.stringValue UTF8String];
         [_unityPathBox addItemsWithObjectValues:unityProjPathArr];
     }
     
     if ([exportPathArr count] > 0)
     {
         _exportPathBox.stringValue = (NSString*)[exportPathArr objectAtIndex:0];
+        info->exportFolderParh = [_exportPathBox.stringValue UTF8String];
         [_exportPathBox addItemsWithObjectValues:exportPathArr];
     }
     
@@ -54,7 +59,7 @@
     //[_exportPathBox removeAllItems];
 }
 
-- (void) registEvent
+- (void)registEvent
 {
     [[EventManager instance] regist:EventDetailsInfoUpdate
                                func:@selector(DetailsInfoDictUpdate:)
@@ -62,7 +67,7 @@
                                self:self];
 }
 
-- (void) unRegistEvent
+- (void)unRegistEvent
 {
     [[EventManager instance] unRegist:EventDetailsInfoUpdate
                                  self:self];
@@ -174,6 +179,37 @@
         [cell setState:YES];
     
 //    [info setValue:newValue forKey:columnIdentifier];
+}
+
+//修改comboBox内容
+- (void)comboBoxSelectionIsChanging:(NSNotification *)notification
+{
+    //bug:延迟到下一帧取数据
+    [self performSelector:@selector(readComboValue:) withObject:[notification object] afterDelay:0];
+}
+
+- (void)readComboValue:(id)object
+{
+    NSComboBox* box = (NSComboBox *)object;
+    NSString *changePath = [box stringValue];
+    ExportInfo* info = [ExportInfoModel instance].info;
+    
+    if([[box identifier] isEqualToString:@"unityPathBox"])
+    {
+        info->unityProjPath = [changePath UTF8String];
+        [[ExportInfoModel instance] replaceUnityProjPath:changePath];
+        [[ExportInfoModel instance] saveData];
+    }
+    else if([[box identifier] isEqualToString:@"exportPathBox"])
+    {
+        info->exportFolderParh = [changePath UTF8String];
+        [[ExportInfoModel instance] replaceExportProjPath:changePath];
+        [[ExportInfoModel instance] saveData];
+    }
+    else
+    {
+        NSLog(@"未知路径类型%@", changePath);
+    }
 }
 
 @end

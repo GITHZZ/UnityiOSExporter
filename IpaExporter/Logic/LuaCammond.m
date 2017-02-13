@@ -10,12 +10,19 @@
 #import "DataResControl.h"
 #import "BuilderCSFileEdit.h"
 #import "DetailsInfoData.h"
+#import "XcodeProjModCSFileEdit.h"
 
 #include <stdio.h>
 #include <assert.h>
 
 #include "LuaDictionary.h"
 #include "EventManager.h"
+
+@interface LuaCammond ()
+{
+    lua_State *L;
+}
+@end
 
 @implementation LuaCammond
 
@@ -98,8 +105,8 @@
                          3,
                          view.info->unityProjPath,
                          view.info->exportFolderParh,
-                         view.info->developProfilePath);
-    push_lua_boolean_args(L, 1, view.info->isRelease ? 1 : 0);
+                         "");
+    push_lua_boolean_args(L, 1, 0);
     start_call_lua_func(L, 4, 0, 0);
 }
 
@@ -118,7 +125,8 @@
           withPackInfo:infoData];
     
     //修改目标目录的XcodeApi下的文件
-    [builderEdit start:[NSString stringWithUTF8String:view.info->unityProjPath]
+    XcodeProjModCSFileEdit* xcodeProjEdit = [[XcodeProjModCSFileEdit alloc] init];
+    [xcodeProjEdit start:[NSString stringWithUTF8String:view.info->unityProjPath]
           withPackInfo:infoData];
     
     //call lua
@@ -129,7 +137,7 @@
     [self close];
     
     //删除文件夹
-    [[DataResControl instance] end];
+    //[[DataResControl instance] end];
 }
 
 - (void)sureBtnClicked:(NSNotification*)notification

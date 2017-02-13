@@ -17,7 +17,8 @@
 @property(readonly) NSString* bundleIdentifier;
 @property(readonly) NSString* codeSignIdentity;
 @property(readonly) NSString* provisioningProfile;
-@property(readonly) NSArray* frameworks;
+@property(readonly) NSString* frameworks;
+@property(readonly) NSString* cDirPath;//自定义资源路径
 
 - (id)initWithInfoDict:(NSDictionary*) dic;
 - (id)getValueForKey:(NSString*)key;

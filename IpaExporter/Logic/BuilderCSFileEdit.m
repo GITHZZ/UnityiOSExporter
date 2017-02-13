@@ -25,12 +25,12 @@
         [result replaceOccurrencesOfString:@"${bundleIdentifier}"
                                 withString:bundleIdentifier
                                    options:NSLiteralSearch
-                                     range:NSMakeRange(0, [_content length])];
+                                     range:NSMakeRange(0, [result length])];
         
         [result replaceOccurrencesOfString:@"${productName}"
                                 withString:productName
                                    options:NSLiteralSearch
-                                     range:NSMakeRange(0, [_content length])];
+                                     range:NSMakeRange(0, [result length])];
         
         [self replaceContent:result];
     }

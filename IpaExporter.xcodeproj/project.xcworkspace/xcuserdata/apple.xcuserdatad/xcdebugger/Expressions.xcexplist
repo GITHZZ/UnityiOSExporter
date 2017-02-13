@@ -3,18 +3,24 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "-[ExportInfoModel removeDetail:]:ExportInfoModel.m">
+         contextName = "push_lua_var:LuaDLL.c">
          <PersistentStrings>
             <PersistentString
-               value = "[_detailArray count]">
+               value = "count">
+            </PersistentString>
+            <PersistentString
+               value = "args">
+            </PersistentString>
+            <PersistentString
+               value = "strlen(t)">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "luaM_realloc_:lmem.c">
+         contextName = "singlestep:lgc.c">
          <PersistentStrings>
             <PersistentString
-               value = "g-&gt;GCdebt">
+               value = "g-&gt;gcstate">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -27,6 +33,17 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "-[BuilderCSFileEdit start:withPackInfo:]:BuilderCSFileEdit.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[_content length]">
+            </PersistentString>
+            <PersistentString
+               value = "[result length]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[ViewMain tableView:objectValueForTableColumn:row:]:ViewMain.m">
          <PersistentStrings>
             <PersistentString
@@ -35,10 +52,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[DetailsInfoView addInfo:]:DetailsInfoView.m">
+         contextName = "-[ViewMain comboBoxSelectionDidChange:]:ViewMain.m">
          <PersistentStrings>
             <PersistentString
-               value = "[_dataDict count]">
+               value = "comboBox.stringValue">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -47,20 +64,6 @@
          <PersistentStrings>
             <PersistentString
                value = "[self initWithInfoDict:dict]">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "push_lua_var:LuaDLL.c">
-         <PersistentStrings>
-            <PersistentString
-               value = "count">
-            </PersistentString>
-            <PersistentString
-               value = "args">
-            </PersistentString>
-            <PersistentString
-               value = "strlen(t)">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -81,10 +84,26 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "singlestep:lgc.c">
+         contextName = "luaM_realloc_:lmem.c">
          <PersistentStrings>
             <PersistentString
-               value = "g-&gt;gcstate">
+               value = "g-&gt;GCdebt">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[DetailsInfoView addInfo:]:DetailsInfoView.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[_dataDict count]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ExportInfoModel removeDetail:]:ExportInfoModel.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[_detailArray count]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

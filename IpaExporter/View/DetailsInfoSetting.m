@@ -29,14 +29,14 @@
     NSString* provisioning = _provisioningProfile.stringValue;
     NSString* platform = _platform.stringValue;
     NSString* frameworks = _frameworks.stringValue;
-    NSArray* frameworksArr = [frameworks componentsSeparatedByString:@"|"];
+    NSString* cDirPath = _cDirPath.stringValue;
     
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:appName, App_Name_Key,
                           appID, App_ID_Key, codeSignIdentity, Code_Sign_Identity_Key,
                           provisioning, Provisioning_Profile_key, platform, Platform_Name,
-                          frameworksArr, Frameworks_Key, nil];
+                          frameworks, Frameworks_Key, cDirPath, Copy_Dir_Path, nil];
+
     DetailsInfoData* info = [[DetailsInfoData alloc] initWithInfoDict:dict];
-    
     [[EventManager instance] send:EventDetailsInfoSettingClose
                          withData:info];
     

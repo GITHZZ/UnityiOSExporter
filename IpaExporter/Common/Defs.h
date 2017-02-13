@@ -21,6 +21,7 @@
 #define Frameworks_Key @"frameworks"
 #define libs_Key @"libs"
 #define Libker_Flag @"libkerFlag"
+#define Copy_Dir_Path @"copyDirectoryPath"
 
 typedef struct IpaPackInfo
 {
@@ -42,11 +43,8 @@ typedef struct DetailsInfo
 
 typedef struct ExportInfo
 {
-    BOOL isRelease;
     const char* unityProjPath;
     const char* exportFolderParh;
-    const char* developProfilePath;
-    const char* publishProfilePath;
 }ExportInfo;
 
 #endif /* Defs_h */

@@ -11,9 +11,6 @@
 #include "LuaDLL.h"
 
 @interface LuaCammond : NSObject
-{
-    lua_State *L;
-}
 
 + (LuaCammond*)instance;
 

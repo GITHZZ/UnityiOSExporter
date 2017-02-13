@@ -24,7 +24,9 @@
 
 + (ExportInfoModel*)instance;
 - (void)addNewUnityProjPath:(NSString*)path;
+- (void)replaceUnityProjPath:(NSString*)path;
 - (void)addNewExportProjPath:(NSString*)path;
+- (void)replaceExportProjPath:(NSString*)path;
 
 //路径配置
 - (void)reloadPaths;

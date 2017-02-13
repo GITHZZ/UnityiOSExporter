@@ -12,16 +12,7 @@
 
 #define Detail_Info_Dict_Coder_Key @"DetailInfoDict"
 
-typedef struct IvarData
-{
-    Ivar* ivar; //变量列表首地址
-    unsigned int count; //变量数量
-}IvarData;
-
 @interface DetailsInfoData()<NSCoding>
-{
-    IvarData _varStruct;
-}
 @end
 
 @implementation DetailsInfoData
@@ -42,11 +33,6 @@ typedef struct IvarData
         }
         
         _dict = dic;
-        
-        //获取所有变量
-        unsigned int count = 0;
-        _varStruct.ivar = class_copyIvarList([self class], &count);
-        _varStruct.count = count;
     }
     
     return self;
@@ -54,8 +40,9 @@ typedef struct IvarData
 
 - (id)getValueForKey:(NSString*)key
 {
-    unsigned int count = _varStruct.count;
-    Ivar *ivars = _varStruct.ivar;
+    //获取所有变量
+    unsigned int count = 0;
+    Ivar *ivars = class_copyIvarList([self class], &count);
     for(int i = 0; i < count; i++)
     {
         Ivar *ivar = ivars + i;
@@ -63,11 +50,13 @@ typedef struct IvarData
         NSString *keyName = [NSString stringWithFormat:@"_%@", key];
         if([varName isEqualToString:keyName])
         {
+            free(ivars);
             return [self valueForKey:key];
         }
     }
     
     NSLog(@"不存在Key%@的属性变量", key);
+    free(ivars);
     return @"";
 }
 
@@ -85,7 +74,6 @@ typedef struct IvarData
 {
     NSDictionary* dict = [decoder decodeObjectForKey:Detail_Info_Dict_Coder_Key];
     return [self initWithInfoDict:dict];
-    
 }
 
 @end
