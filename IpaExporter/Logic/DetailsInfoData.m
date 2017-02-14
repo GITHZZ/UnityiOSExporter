@@ -32,10 +32,18 @@
             }
         }
         
-        _dict = dic;
+        _dict = [NSMutableDictionary dictionaryWithDictionary:dic];
     }
-    
     return self;
+}
+
+- (void)setValueForKey:(NSString*)key withObj:(id)obj
+{
+    if(nil == obj)
+        return;
+    
+    [_dict setObject:obj forKey:key];
+    [self setValue:obj forKey:key];
 }
 
 - (id)getValueForKey:(NSString*)key

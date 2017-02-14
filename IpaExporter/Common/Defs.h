@@ -22,6 +22,7 @@
 #define libs_Key @"libs"
 #define Libker_Flag @"libkerFlag"
 #define Copy_Dir_Path @"copyDirectoryPath"
+#define Is_Selected @"isSelected"
 
 typedef struct IpaPackInfo
 {

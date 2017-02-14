@@ -779,11 +779,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="650" height="478"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" findBarPosition="aboveHorizontalRuler" id="v2R-kU-k9H">
-                                <rect key="frame" x="15" y="46" width="615" height="419"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                            <scrollView canDrawConcurrently="YES" misplaced="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" findBarPosition="aboveHorizontalRuler" id="v2R-kU-k9H">
+                                <rect key="frame" x="15" y="46" width="610" height="419"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <clipView key="contentView" autoresizesSubviews="NO" focusRingType="none" id="YC7-nJ-Y6r">
-                                    <rect key="frame" x="1" y="1" width="613" height="417"/>
+                                    <rect key="frame" x="1" y="1" width="608" height="417"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <view misplaced="YES" id="638-73-X4r">
@@ -943,11 +943,12 @@
                                         </view>
                                     </subviews>
                                 </clipView>
+                                <edgeInsets key="contentInsets" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                                 <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="nkp-r0-mx8">
-                                    <rect key="frame" x="1" y="402" width="613" height="16"/>
+                                    <rect key="frame" x="1" y="402" width="608" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="9YB-yJ-KwW">
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="9YB-yJ-KwW">
                                     <rect key="frame" x="598" y="1" width="16" height="417"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>

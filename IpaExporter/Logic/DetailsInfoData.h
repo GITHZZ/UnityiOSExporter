@@ -10,7 +10,7 @@
 
 @interface DetailsInfoData : NSObject
 
-@property(readonly) NSDictionary *dict;
+@property(readonly) NSMutableDictionary *dict;
 
 @property(readonly) NSString* platform;
 @property(readonly) NSString* appName;
@@ -19,8 +19,10 @@
 @property(readonly) NSString* provisioningProfile;
 @property(readonly) NSString* frameworks;
 @property(readonly) NSString* cDirPath;//自定义资源路径
+@property(readonly) NSString* isSelected;//是否已经选择
 
 - (id)initWithInfoDict:(NSDictionary*) dic;
+- (void)setValueForKey:(NSString*)key withObj:(id)obj;
 - (id)getValueForKey:(NSString*)key;
 
 @end

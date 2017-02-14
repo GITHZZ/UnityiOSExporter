@@ -10,6 +10,8 @@
 #import "EventManager.h"
 #import "LuaCammond.h"
 #import "DetailsInfoView.h"
+#import "DetailsInfoData.h"
+#import "ExportInfoModel.h"
 
 @implementation ViewMain
 
@@ -46,6 +48,20 @@
     //设置数据源
     _platformTbl.delegate = self;
     _platformTbl.dataSource = self;
+    
+    //初始化列对象
+    NSArray<NSTableColumn *> *tableColumns = _platformTbl.tableColumns;
+    for(int i = 0; i < [tableColumns count]; i++)
+    {
+        NSTableColumn *item = tableColumns[i];
+        NSButtonCell *cell = [item dataCellForRow:i];
+        DetailsInfoData *data = [_dataDict objectAtIndex:i];
+        NSString *isSelect = data.isSelected;
+        if(isSelect == nil)
+            isSelect = @"0";
+        
+        [cell setState:[isSelect integerValue]];
+    }
     
     [self registEvent];
     [[EventManager instance] send:EventViewMainLoaded withData:nil];
@@ -166,19 +182,15 @@
 //修改行内容
 - (void)tableView:(NSTableView *)tableView setObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
-//    NSString *columnIdentifier=[tableColumn identifier];
-//    DetailsInfoData* info = [_dataDict objectAtIndex:row];
     NSButtonCell* cell = [tableColumn dataCellForRow:row];
     
-//    NSString* newValue = (NSString*)object;
-//    BOOL state = [object boolValue];
+    DetailsInfoData *data = (DetailsInfoData*)[_dataDict objectAtIndex:row];
+    NSInteger newState = ![cell state];
+    NSString *newStateStr = [NSString stringWithFormat:@"%ld", newState];
+    [cell setState: newState];
+    [data setValueForKey:Is_Selected withObj:newStateStr];
     
-    if([cell state] == YES)
-        [cell setState:NO];
-    else
-        [cell setState:YES];
-    
-//    [info setValue:newValue forKey:columnIdentifier];
+    [[ExportInfoModel instance] updateDetail:row withObject:data];
 }
 
 //修改comboBox内容

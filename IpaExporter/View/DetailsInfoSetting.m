@@ -29,7 +29,7 @@
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:appName, App_Name_Key,
                           appID, App_ID_Key, codeSignIdentity, Code_Sign_Identity_Key,
                           provisioning, Provisioning_Profile_key, platform, Platform_Name,
-                          frameworks, Frameworks_Key, cDirPath, Copy_Dir_Path, nil];
+                          frameworks, Frameworks_Key, cDirPath, Copy_Dir_Path, @"0", Is_Selected ,nil];
 
     DetailsInfoData* info = [[DetailsInfoData alloc] initWithInfoDict:dict];
     [[EventManager instance] send:EventDetailsInfoSettingClose

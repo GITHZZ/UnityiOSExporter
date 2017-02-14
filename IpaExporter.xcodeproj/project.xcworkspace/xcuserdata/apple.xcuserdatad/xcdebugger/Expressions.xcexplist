@@ -33,6 +33,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "-[ViewMain tableView:objectValueForTableColumn:row:]:ViewMain.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[_dataDict objectAtIndex:row]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[BuilderCSFileEdit start:withPackInfo:]:BuilderCSFileEdit.m">
          <PersistentStrings>
             <PersistentString
@@ -40,14 +48,6 @@
             </PersistentString>
             <PersistentString
                value = "[result length]">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[ViewMain tableView:objectValueForTableColumn:row:]:ViewMain.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "[_dataDict objectAtIndex:row]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -68,18 +68,18 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[LuaCammond callLuaMain]:LuaCammond.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "view.info.unityProjPath">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "-[ViewMain CellClick:]:ViewMain.m">
          <PersistentStrings>
             <PersistentString
                value = "[cell state]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[LuaCammond callLuaMain]:LuaCammond.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "view.info.unityProjPath">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -104,6 +104,17 @@
          <PersistentStrings>
             <PersistentString
                value = "[_detailArray count]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ViewMain tableView:setObjectValue:forTableColumn:row:]:ViewMain.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[cell state]">
+            </PersistentString>
+            <PersistentString
+               value = "tableView.selectedRowIndexes">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

@@ -55,12 +55,6 @@
 //主路径部分
 - (void)reloadPaths
 {
-//    NSMutableArray* projPath = (NSMutableArray*)[_saveData objectForKey:SAVE_PROJECT_PATH_KEY];
-//    NSMutableArray* exportPath = (NSMutableArray*)[_saveData objectForKey:SAVE_EXPORT_PATH_KEY];
-//    
-//    _info->unityProjPath = [projPath UTF8String];
-//    _info->exportFolderParh = [exportPath UTF8String];
-
     NSData* unityProjData = (NSData*)[_saveData objectForKey:SAVE_PROJECT_PATH_KEY];
     NSArray* unityProjArray = [NSKeyedUnarchiver unarchiveObjectWithData:unityProjData];
     NSMutableArray* unityProjMutable = [NSMutableArray arrayWithArray:unityProjArray];
@@ -70,19 +64,10 @@
     NSArray* exportArray = [NSKeyedUnarchiver unarchiveObjectWithData:exportData];
     NSMutableArray* exportMutable = [NSMutableArray arrayWithArray:exportArray];
     _exportPathArr = exportMutable;
-    
-//    _unityProjPathArr = projPath;
-//    _exportPathArr = exportPath;
-    
 }
 
 - (void)saveData
 {
-    //NSString* projectPath = [NSString stringWithUTF8String:_info->unityProjPath];
-    //NSString* exportPath = [NSString stringWithUTF8String:_info->exportFolderParh];
-//    [_saveData setObject:_unityProjPathArr forKey:SAVE_PROJECT_PATH_KEY];
-//    [_saveData setObject:_exportPathArr forKey:SAVE_EXPORT_PATH_KEY];
-    
     NSData* unityArrData = [NSKeyedArchiver archivedDataWithRootObject:_unityProjPathArr];
     [_saveData setObject:unityArrData forKey:SAVE_PROJECT_PATH_KEY];
     NSData* exportArrData = [NSKeyedArchiver archivedDataWithRootObject:_exportPathArr];
