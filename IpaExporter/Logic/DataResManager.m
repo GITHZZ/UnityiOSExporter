@@ -6,14 +6,14 @@
 //  Copyright © 2016年 何遵祖. All rights reserved.
 //
 
-#import "DataResControl.h"
+#import "DataResManager.h"
 #import "BaseDataCSCodeEdit.h"
 
-@implementation DataResControl
+@implementation DataResManager
 
-+ (DataResControl*) instance
++ (DataResManager*) instance
 {
-    static DataResControl* s_instance = nil;
+    static DataResManager* s_instance = nil;
     if(s_instance == nil)
     {
         @synchronized (self)

@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import <Foundation/Foundation.h>
-#import "ExportInfoModel.h"
+#import "ExportInfoManager.h"
 
 @interface ViewMain : NSViewController<NSTableViewDataSource, NSTableViewDelegate, NSComboBoxDelegate>
 

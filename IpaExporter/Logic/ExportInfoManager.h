@@ -1,5 +1,5 @@
 //
-//  ExportInfoModel.h
+//  ExportInfoManager.h
 //  IpaExporter
 //
 //  Created by 何遵祖 on 2016/9/28.
@@ -12,7 +12,7 @@
 #import "Defs.h"
 #import "DetailsInfoData.h"
 
-@interface ExportInfoModel : NSObject
+@interface ExportInfoManager : NSObject
 {
     NSUserDefaults* _saveData;
 }
@@ -22,7 +22,7 @@
 @property(nonatomic, readonly) NSMutableArray *exportPathArr;
 @property(nonatomic, readonly) NSMutableArray *detailArray;
 
-+ (ExportInfoModel*)instance;
++ (ExportInfoManager*)instance;
 - (void)addNewUnityProjPath:(NSString*)path;
 - (void)replaceUnityProjPath:(NSString*)path;
 - (void)addNewExportProjPath:(NSString*)path;

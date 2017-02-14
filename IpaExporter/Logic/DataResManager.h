@@ -10,7 +10,7 @@
 #import <Foundation/Foundation.h>
 #import "Defs.h"
 
-@interface DataResControl : NSObject
+@interface DataResManager : NSObject
 {
     BOOL _isStarting;
     NSString* _srcPath;
@@ -19,7 +19,7 @@
     NSFileManager* _fileManager;
 }
 
-+ (DataResControl*) instance;
++ (DataResManager*) instance;
 - (void)start:(ExportInfo*) info;
 - (void)end;
 

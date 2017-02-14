@@ -1,12 +1,12 @@
 //
-//  ExportInfoModel.m
+//  ExportInfoManager.m
 //  IpaExporter
 //
 //  Created by 何遵祖 on 2016/9/28.
 //  Copyright © 2016年 何遵祖. All rights reserved.
 //
 
-#import "ExportInfoModel.h"
+#import "ExportInfoManager.h"
 
 #define INFOS_MAX_CAPACITY 100
 
@@ -14,11 +14,11 @@
 #define SAVE_PROJECT_PATH_KEY @"projectPath"
 #define SAVE_EXPORT_PATH_KEY @"exportPath"
 
-@implementation ExportInfoModel
+@implementation ExportInfoManager
 
-+ (ExportInfoModel*)instance
++ (ExportInfoManager*)instance
 {
-    static ExportInfoModel* s_instance = nil;
+    static ExportInfoManager* s_instance = nil;
     if(nil == s_instance)
     {
         @synchronized (self)

@@ -9,7 +9,7 @@
 #import "DetailsInfoView.h"
 #import "DetailsInfoData.h"
 
-#import "ExportInfoModel.h"
+#import "ExportInfoManager.h"
 
 @implementation DetailsInfoView
 
@@ -22,7 +22,7 @@
                            withData:nil
                                self:self];
     
-    NSMutableArray* saveArray = [[ExportInfoModel instance] reLoadDetails];
+    NSMutableArray* saveArray = [[ExportInfoManager instance] reLoadDetails];
     _dataDict = [[NSMutableArray alloc] initWithArray:saveArray];
     
     //设置数据源
@@ -38,7 +38,7 @@
 - (void)addInfo:(DetailsInfoData*)info
 {
     [_dataDict addObject:info];
-    [[ExportInfoModel instance] addDetail:info];
+    [[ExportInfoManager instance] addDetail:info];
     [_infoTbls reloadData];
     
     [[EventManager instance] send:EventDetailsInfoUpdate withData:_dataDict];
@@ -50,7 +50,7 @@
     if(row > -1)
     {
         [_dataDict removeObjectAtIndex:row];
-        [[ExportInfoModel instance] removeDetail:row];
+        [[ExportInfoManager instance] removeDetail:row];
         [_infoTbls reloadData];
         
         [[EventManager instance] send:EventDetailsInfoUpdate withData:_dataDict];
@@ -93,7 +93,7 @@
     [info setValue:newValue forKey:columnIdentifier];
     
     [_dataDict replaceObjectAtIndex:row withObject:info];
-    [[ExportInfoModel instance] updateDetail:row withObject:info];
+    [[ExportInfoManager instance] updateDetail:row withObject:info];
 }
 
 @end

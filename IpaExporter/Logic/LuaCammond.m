@@ -6,8 +6,8 @@
 //  Copyright © 2016年 何遵祖. All rights reserved.
 
 #import "LuaCammond.h"
-#import "ExportInfoModel.h"
-#import "DataResControl.h"
+#import "ExportInfoManager.h"
+#import "DataResManager.h"
 #import "BuilderCSFileEdit.h"
 #import "DetailsInfoData.h"
 #import "XcodeProjModCSFileEdit.h"
@@ -98,7 +98,7 @@
 
 - (void)callLuaMain
 {
-    ExportInfoModel* view = [ExportInfoModel instance];
+    ExportInfoManager* view = [ExportInfoManager instance];
     
     get_call_lua_func(L, "MainStart");
     push_lua_string_args(L,
@@ -112,11 +112,11 @@
 
 - (void)startExport
 {
-    ExportInfoModel* view = [ExportInfoModel instance];
+    ExportInfoManager* view = [ExportInfoManager instance];
     NSMutableArray* detailArray = view.detailArray;
     
     //拷贝Data_t所有文件
-    [[DataResControl instance] start:view.info];
+    [[DataResManager instance] start:view.info];
     
     //测试(修改目标目录的builder_t.cs文件)
     DetailsInfoData* infoData = [detailArray objectAtIndex:0];
@@ -137,7 +137,7 @@
     [self close];
     
     //删除文件夹
-    //[[DataResControl instance] end];
+    //[[DataResManager instance] end];
 }
 
 - (void)sureBtnClicked:(NSNotification*)notification

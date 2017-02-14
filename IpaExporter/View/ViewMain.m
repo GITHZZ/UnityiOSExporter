@@ -11,7 +11,7 @@
 #import "LuaCammond.h"
 #import "DetailsInfoView.h"
 #import "DetailsInfoData.h"
-#import "ExportInfoModel.h"
+#import "ExportInfoManager.h"
 
 @implementation ViewMain
 
@@ -19,11 +19,11 @@
 {
     [self startUp];
     
-    [[ExportInfoModel instance] reloadPaths];
+    [[ExportInfoManager instance] reloadPaths];
     
-    ExportInfo* info = [ExportInfoModel instance].info;
-    NSMutableArray* unityProjPathArr = [ExportInfoModel instance].unityProjPathArr;
-    NSMutableArray* exportPathArr = [ExportInfoModel instance].exportPathArr;
+    ExportInfo* info = [ExportInfoManager instance].info;
+    NSMutableArray* unityProjPathArr = [ExportInfoManager instance].unityProjPathArr;
+    NSMutableArray* exportPathArr = [ExportInfoManager instance].exportPathArr;
     _unityPathBox.delegate = self;
     _exportPathBox.delegate = self;
     
@@ -42,7 +42,7 @@
     }
     
     //从本地读取存储数据
-    NSMutableArray* saveArray = [[ExportInfoModel instance] reLoadDetails];
+    NSMutableArray* saveArray = [[ExportInfoManager instance] reLoadDetails];
     _dataDict = [[NSMutableArray alloc] initWithArray:saveArray];
     
     //设置数据源
@@ -102,7 +102,7 @@
     [openDlg setCanChooseFiles:chooseFile];
     [openDlg setCanChooseDirectories:chooseDirectories];
     
-    ExportInfo* tInfo = [ExportInfoModel instance].info;
+    ExportInfo* tInfo = [ExportInfoManager instance].info;
     
     if ([openDlg runModal] == NSModalResponseOK)
     {
@@ -114,21 +114,21 @@
             {
                 case EventUnityPathSelectEnd:
                     tInfo->unityProjPath = [selectPath UTF8String];
-                    [ExportInfoModel instance].info = tInfo;
-                    [[ExportInfoModel instance] addNewUnityProjPath:selectPath];
+                    [ExportInfoManager instance].info = tInfo;
+                    [[ExportInfoManager instance] addNewUnityProjPath:selectPath];
                     _unityPathBox.stringValue = selectPath;
                     break;
                 case EventExportPathSelectEnd:
                     tInfo->exportFolderParh = [selectPath UTF8String];
-                    [ExportInfoModel instance].info = tInfo;
-                    [[ExportInfoModel instance] addNewExportProjPath:selectPath];
+                    [ExportInfoManager instance].info = tInfo;
+                    [[ExportInfoManager instance] addNewExportProjPath:selectPath];
                     _exportPathBox.stringValue = selectPath;
                     break;
                 default:
                     break;
             }
             
-            [[ExportInfoModel instance] saveData];
+            [[ExportInfoManager instance] saveData];
         }
     }
 }
@@ -190,7 +190,7 @@
     [cell setState: newState];
     [data setValueForKey:Is_Selected withObj:newStateStr];
     
-    [[ExportInfoModel instance] updateDetail:row withObject:data];
+    [[ExportInfoManager instance] updateDetail:row withObject:data];
 }
 
 //修改comboBox内容
@@ -204,19 +204,19 @@
 {
     NSComboBox* box = (NSComboBox *)object;
     NSString *changePath = [box stringValue];
-    ExportInfo* info = [ExportInfoModel instance].info;
+    ExportInfo* info = [ExportInfoManager instance].info;
     
     if([[box identifier] isEqualToString:@"unityPathBox"])
     {
         info->unityProjPath = [changePath UTF8String];
-        [[ExportInfoModel instance] replaceUnityProjPath:changePath];
-        [[ExportInfoModel instance] saveData];
+        [[ExportInfoManager instance] replaceUnityProjPath:changePath];
+        [[ExportInfoManager instance] saveData];
     }
     else if([[box identifier] isEqualToString:@"exportPathBox"])
     {
         info->exportFolderParh = [changePath UTF8String];
-        [[ExportInfoModel instance] replaceExportProjPath:changePath];
-        [[ExportInfoModel instance] saveData];
+        [[ExportInfoManager instance] replaceExportProjPath:changePath];
+        [[ExportInfoManager instance] saveData];
     }
     else
     {
