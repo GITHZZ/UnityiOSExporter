@@ -9,6 +9,9 @@
 #ifndef Defs_h
 #define Defs_h
 
+#import <Foundation/Foundation.h>
+#import "EventManager.h"
+
 #define DATA_PATH @"/DataTemplete"
 #define BUILDER_CS_PATH @"/Assets/Editor/DataTemplete/Builder/Builder.cs"
 #define XCODEPROJECT_CS_PATH @"/Assets/Editor/DataTemplete/XcodeApi/XcodeProjectSetting.cs"
@@ -23,6 +26,24 @@
 #define Libker_Flag @"libkerFlag"
 #define Copy_Dir_Path @"copyDirectoryPath"
 #define Is_Selected @"isSelected"
+
+static void showLog(NSString* content, ...)
+{
+    va_list ap;
+    va_start(ap, content);
+    NSString* showStr =  [[NSString alloc] initWithFormat:content arguments:ap];
+    va_end(ap);
+    [[EventManager instance] send:EventAddNewInfoContent withData:showStr];
+}
+
+static void showError(NSString* content, ...)
+{
+    va_list ap;
+    va_start(ap, content);
+    NSString* showStr =  [[NSString alloc] initWithFormat:content arguments:ap];
+    va_end(ap);
+    [[EventManager instance] send:EventAddErrorContent withData:showStr];
+}
 
 typedef struct IpaPackInfo
 {

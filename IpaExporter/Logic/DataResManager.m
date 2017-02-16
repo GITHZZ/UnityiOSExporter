@@ -8,6 +8,7 @@
 
 #import "DataResManager.h"
 #import "BaseDataCSCodeEdit.h"
+#import "Defs.h"
 
 @implementation DataResManager
 
@@ -62,7 +63,7 @@
                                       error:&error];
         if(error != nil)
         {
-            NSLog(@"%@", error);
+            showError(@"*拷贝文件夹失败 原因:%@", error);
             NSLog(@"%@", [error userInfo]);
         }
     }
@@ -74,7 +75,7 @@
     [_fileManager copyItemAtPath:src toPath:dst error:&error];
     if(error != nil)
     {
-        NSLog(@"%@", error);
+        showError(@"*拷贝文件失败 原因:%@", error);
         NSLog(@"%@", [error userInfo]);
     }
 }
@@ -118,7 +119,7 @@
     }
     else
     {
-        NSLog(@"错误的参数类型");
+        showError(@"错误的参数类型");
         NSLog(@"%@", src);
         NSLog(@"%@", dst);
     }
@@ -134,7 +135,7 @@
     
     if(error != nil)
     {
-        NSLog(@"%@", error);
+        showError(@"*移除目标路径文件失败:%@ 错误原因:%@", dst, error);
         NSLog(@"%@", [error userInfo]);
     }
 }

@@ -63,6 +63,11 @@ public string CopyDirectoryPath = ${copyDirectoryPath};
             ${frameworks}
         };
 
+        public List<string> LibsList = new List<string>(){
+			//libsqlite3.0.tbd
+            ${libs}
+		};
+
         public string[] LinkerFlagArray = new string[]{
 			/*"-ObjC", "-all_load"*/ //初期設定例
         };

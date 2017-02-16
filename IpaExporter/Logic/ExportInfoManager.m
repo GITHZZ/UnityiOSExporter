@@ -123,7 +123,7 @@
 }
 
 //包配置 信息表格数据部分
-- (void) saveDetail
+- (void)saveDetail
 {
     NSData* arrayData = [NSKeyedArchiver archivedDataWithRootObject:_detailArray];
     [_saveData setObject:arrayData forKey:SAVE_DETAIL_ARRARY_KEY];

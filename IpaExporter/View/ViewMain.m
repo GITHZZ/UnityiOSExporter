@@ -78,7 +78,17 @@
 - (void)registEvent
 {
     [[EventManager instance] regist:EventDetailsInfoUpdate
-                               func:@selector(DetailsInfoDictUpdate:)
+                               func:@selector(detailsInfoDictUpdate:)
+                           withData:nil
+                               self:self];
+    
+    [[EventManager instance] regist:EventAddNewInfoContent
+                               func:@selector(addNewInfoContent:)
+                           withData:nil
+                               self:self];
+    
+    [[EventManager instance] regist:EventAddErrorContent
+                               func:@selector(addNewErrorContent:)
                            withData:nil
                                self:self];
 }
@@ -87,6 +97,10 @@
 {
     [[EventManager instance] unRegist:EventDetailsInfoUpdate
                                  self:self];
+    [[EventManager instance] unRegist:EventAddNewInfoContent
+                               self:self];
+    [[EventManager instance] unRegist:EventAddErrorContent
+                               self:self];
 }
 
 - (IBAction)sureBtnClick:(id)sender
@@ -147,7 +161,7 @@
           IsCanSelectDirectories:YES];
 }
 
-- (void)DetailsInfoDictUpdate:(NSNotification*)notification
+- (void)detailsInfoDictUpdate:(NSNotification*)notification
 {
     NSMutableArray* dict = (NSMutableArray*)[notification object];
     _dataDict = dict;
@@ -220,8 +234,27 @@
     }
     else
     {
-        NSLog(@"未知路径类型%@", changePath);
+        showLog(@"未知路径类型%@", changePath);
     }
 }
 
+- (void)addNewInfoContent:(NSNotification*)notification
+{
+    NSString *content = [notification object];
+    [self renderUpAttriString:content withColor:[NSColor blackColor]];
+}
+
+- (void)addNewErrorContent:(NSNotification*)notification
+{
+    NSString *content = [notification object];
+    [self renderUpAttriString:content withColor:[NSColor redColor]];
+}
+
+- (void)renderUpAttriString:(NSString*)string withColor:(NSColor*) color
+{
+    NSString *newStr = [string stringByAppendingString:@"\n"];
+    NSMutableAttributedString *addString = [[NSMutableAttributedString alloc] initWithString:newStr];
+    [addString addAttribute:NSForegroundColorAttributeName value:color range:NSMakeRange(0, [newStr length] - 1)];
+    [[_infoLabel textStorage] appendAttributedString:addString];
+}
 @end

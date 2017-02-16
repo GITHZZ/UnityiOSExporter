@@ -112,6 +112,9 @@
 
 - (void)startExport
 {
+    showLog(@"---------------------------");
+    showLog(@"*开始打包");
+    
     ExportInfoManager* view = [ExportInfoManager instance];
     NSMutableArray* detailArray = view.detailArray;
     
@@ -137,7 +140,10 @@
     [self close];
     
     //删除文件夹
-    //[[DataResManager instance] end];
+    [[DataResManager instance] end];
+    
+    showLog(@"*打包完毕");
+    showLog(@"---------------------------");
 }
 
 - (void)sureBtnClicked:(NSNotification*)notification

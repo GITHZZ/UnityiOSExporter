@@ -14,7 +14,7 @@
 
 @property (nonatomic, readonly) NSMutableArray* dataDict;
 
-@property (nonatomic, retain) IBOutlet NSTextView* infoLabel;
+@property (nonatomic, strong) IBOutlet NSTextView* infoLabel;
 @property (nonatomic, weak) IBOutlet NSComboBox* unityPathBox;
 @property (nonatomic, weak) IBOutlet NSComboBox* exportPathBox;
 @property (weak) IBOutlet NSTableView *platformTbl;

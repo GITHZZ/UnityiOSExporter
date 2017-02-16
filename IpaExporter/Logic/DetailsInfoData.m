@@ -63,7 +63,7 @@
         }
     }
     
-    NSLog(@"不存在Key%@的属性变量", key);
+    showLog(@"不存在Key%@的属性变量", key);
     free(ivars);
     return @"";
 }

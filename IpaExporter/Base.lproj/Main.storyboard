@@ -541,7 +541,7 @@
                     </view>
                     <connections>
                         <outlet property="exportPathBox" destination="Akw-bp-ehW" id="sv3-B3-rYQ"/>
-                        <outlet property="infoLabel" destination="m5b-px-hcQ" id="m8D-o6-diJ"/>
+                        <outlet property="infoLabel" destination="m5b-px-hcQ" id="HxH-Kg-hKZ"/>
                         <outlet property="platformTbl" destination="j6g-f3-dK9" id="ArY-sr-jcd"/>
                         <outlet property="unityPathBox" destination="1Nj-li-1LG" id="hkd-4f-rAv"/>
                     </connections>
