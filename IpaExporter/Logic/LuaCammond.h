@@ -24,4 +24,6 @@
 
 - (void)startExport;
 
+- (void)printTest:(const char*)content;
+
 @end

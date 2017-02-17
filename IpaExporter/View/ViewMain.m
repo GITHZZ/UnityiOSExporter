@@ -15,6 +15,42 @@
 
 @implementation ViewMain
 
+NSString* test_sum(int a,int b,int c)
+{
+    NSString *path  =  @"/Users/test_was_call_command_app/debug/test_was_call_command_app";
+    NSTask *task            = [[NSTask alloc] init];
+    task.launchPath = path;
+    NSMutableArray *arguments = [[NSMutableArray alloc] init];
+    [arguments addObject:@"-sum"];
+    NSString *var;
+    var =[ NSString stringWithFormat:@"%i",a ];
+    [arguments addObject:var];
+    var =[ NSString stringWithFormat:@"%i",b];
+    [arguments addObject:var];
+    var =[ NSString stringWithFormat:@"%i",c ];
+    [arguments addObject:var];
+    task.arguments  = arguments;
+    //启动前，增加输出设置＋＋＋
+    NSPipe *pipe;
+    pipe = [NSPipe pipe];
+    [task setStandardOutput: pipe];
+    NSFileHandle *file;
+    file = [pipe fileHandleForReading];
+    // ---
+    
+    [task launch];
+    [task waitUntilExit];
+    //执行结束后，得到执行的结果字符串++++++
+    NSData *data;
+    data = [file readDataToEndOfFile];
+    
+    NSString *result_str;
+    result_str = [[NSString alloc] initWithData: data
+                                       encoding: NSUTF8StringEncoding];
+    //---------------------------------
+    return result_str;
+}
+
 - (void)viewDidLoad
 {
     [self startUp];

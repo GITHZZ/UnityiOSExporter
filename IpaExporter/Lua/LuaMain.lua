@@ -1,6 +1,7 @@
 local ExportIpaUtil = dofile("/Users/apple/Documents/Xcode Project/IpaExporter/IpaExporter/Lua/ExportIpaUtil.lua")
 
 function MainStart(unityPath, exportFolder, profilePath, isRelease)
+    print(unityPath)
     if unityPath == "" or exportFolder == "" then -- or profilePath == ""
         print("路径参数不能为空~~.")
         print("unityPath:" .. unityPath)

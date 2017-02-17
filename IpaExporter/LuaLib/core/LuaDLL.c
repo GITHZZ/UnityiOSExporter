@@ -6,12 +6,22 @@
 //  Copyright © 2016年 何遵祖. All rights reserved.
 //
 
+#include <objc/runtime.h>
+#include <objc/message.h>
+
+
 #include <math.h>
 #include <stdlib.h>
 #include <string.h>
 #include "LuaDLL.h"
 #include "lfs.h"
 #include "LuaDefine.h"
+#include "CustomLog.h"
+
+void print_lua_log(const char *s)
+{
+    lua_show_log(s);
+}
 
 void check_version(lua_State* L)
 {

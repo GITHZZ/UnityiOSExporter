@@ -12,6 +12,8 @@
 #include "LuaException.h"
 #include <stdarg.h>
 
+void print_lua_log(const char *s);
+
 //检测内核版本是否一致
 void check_version(lua_State* L);
 //初始化Lua堆栈

@@ -18,6 +18,7 @@
 #include "LuaDictionary.h"
 #include "EventManager.h"
 
+
 @interface LuaCammond ()
 {
     lua_State *L;
@@ -92,7 +93,7 @@
     const char* errorStr = get_error_description(L, code);
     if(errorStr != NULL)
     {
-        NSLog(@"%s", errorStr);
+        showError(@"%s", errorStr);
     }
 }
 
@@ -112,7 +113,6 @@
 
 - (void)startExport
 {
-    showLog(@"---------------------------");
     showLog(@"*开始打包");
     
     ExportInfoManager* view = [ExportInfoManager instance];
@@ -143,12 +143,16 @@
     [[DataResManager instance] end];
     
     showLog(@"*打包完毕");
-    showLog(@"---------------------------");
 }
 
 - (void)sureBtnClicked:(NSNotification*)notification
 {
     [[LuaCammond instance] startExport];
+}
+
+- (void)printTest:(const char*)content
+{
+    NSLog(@"%s", content);
 }
 
 @end
