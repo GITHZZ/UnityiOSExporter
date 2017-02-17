@@ -134,7 +134,7 @@
     
     //call lua
     [self open];
-    NSString* mainLuaPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"LuaMain.lua"];
+    NSString* mainLuaPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"ExportIpaUtil.lua"];
     [self dofile:mainLuaPath];
     [self callLuaMain];
     [self close];

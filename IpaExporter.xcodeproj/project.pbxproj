@@ -62,7 +62,6 @@
 		18750A9B1D9BBBC100FECCA6 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 18750A711D9BBBC100FECCA6 /* Makefile */; };
 		18750AA71D9BBBD000FECCA6 /* LuaCammond.m in Sources */ = {isa = PBXBuildFile; fileRef = 18750AA31D9BBBD000FECCA6 /* LuaCammond.m */; };
 		18750AAB1D9BBCF200FECCA6 /* ExportIpaUtil.lua in Resources */ = {isa = PBXBuildFile; fileRef = 18750AA91D9BBCF200FECCA6 /* ExportIpaUtil.lua */; };
-		18750AAC1D9BBCF200FECCA6 /* LuaMain.lua in Resources */ = {isa = PBXBuildFile; fileRef = 18750AAA1D9BBCF200FECCA6 /* LuaMain.lua */; };
 		18769D931DAE34050023E255 /* XcodeProjModCSFileEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 18769D921DAE34050023E255 /* XcodeProjModCSFileEdit.m */; };
 		188DAD111E56F8E300554D6B /* CustomLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 188DAD101E56F8E300554D6B /* CustomLog.m */; };
 		189034501DE82FCF00AEDF46 /* DataTemplete in Resources */ = {isa = PBXBuildFile; fileRef = 1890344F1DE82FCF00AEDF46 /* DataTemplete */; };
@@ -192,7 +191,6 @@
 		18750AA21D9BBBD000FECCA6 /* LuaCammond.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaCammond.h; sourceTree = "<group>"; };
 		18750AA31D9BBBD000FECCA6 /* LuaCammond.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaCammond.m; sourceTree = "<group>"; };
 		18750AA91D9BBCF200FECCA6 /* ExportIpaUtil.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ExportIpaUtil.lua; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.lua; };
-		18750AAA1D9BBCF200FECCA6 /* LuaMain.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LuaMain.lua; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.lua; };
 		18769D911DAE34050023E255 /* XcodeProjModCSFileEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XcodeProjModCSFileEdit.h; sourceTree = "<group>"; };
 		18769D921DAE34050023E255 /* XcodeProjModCSFileEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XcodeProjModCSFileEdit.m; sourceTree = "<group>"; };
 		188DAD0F1E56F8E300554D6B /* CustomLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomLog.h; sourceTree = "<group>"; };
@@ -423,7 +421,6 @@
 			isa = PBXGroup;
 			children = (
 				18750AA91D9BBCF200FECCA6 /* ExportIpaUtil.lua */,
-				18750AAA1D9BBCF200FECCA6 /* LuaMain.lua */,
 			);
 			name = Lua;
 			path = IpaExporter/Lua;
@@ -454,11 +451,11 @@
 			isa = PBXGroup;
 			children = (
 				18FCCBCC1E49CD3900BDF9AC /* Defs.h */,
+				188DAD0F1E56F8E300554D6B /* CustomLog.h */,
+				188DAD101E56F8E300554D6B /* CustomLog.m */,
 				1828197A1E4C5E2C00CEC719 /* EventTypeDef.h */,
 				18F102791DCC2AEB008312E5 /* EventManager.h */,
 				18F1027A1DCC2AEB008312E5 /* EventManager.m */,
-				188DAD0F1E56F8E300554D6B /* CustomLog.h */,
-				188DAD101E56F8E300554D6B /* CustomLog.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -570,7 +567,6 @@
 			files = (
 				1837801A1D766C84004E3BAD /* Assets.xcassets in Resources */,
 				18750AAB1D9BBCF200FECCA6 /* ExportIpaUtil.lua in Resources */,
-				18750AAC1D9BBCF200FECCA6 /* LuaMain.lua in Resources */,
 				1837801D1D766C84004E3BAD /* Main.storyboard in Resources */,
 				189034501DE82FCF00AEDF46 /* DataTemplete in Resources */,
 			);

@@ -116,4 +116,25 @@ ExportIpaUtil.Start = function(exportInfoTbl)
     print(string.format("++++导出ipa结束,总共耗时:%s分%s秒", math.fmod(math.floor(pastTime/60), 60), math.fmod(pastTime, 60)))
 end
 
-return ExportIpaUtil
+--lua main
+function MainStart(unityPath, exportFolder, profilePath, isRelease)
+    print("123")
+    if unityPath == "" or exportFolder == "" then -- or profilePath == ""
+        print("路径参数不能为空~~.")
+        print("unityPath:" .. unityPath)
+        print("exportFolder:" .. exportFolder)
+        print("profilePath:" .. profilePath)
+        return
+    end
+    
+    local exportInfo = {
+        projectPath = unityPath,
+        exportPath = exportFolder,
+        profile = profilePath,
+        exportType = 0,
+        ipaName = "test",
+    }
+    
+    --ExportIpaUtil.Start(exportInfo)
+end
+
