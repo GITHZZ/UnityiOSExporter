@@ -26,3 +26,4 @@ XcodeProjectUpdater原项目地址:https://github.com/kankikuchi/XcodeProjectUpd
 
 ###遇到的坑(随笔):
 *坑爹的NSTableView 使用的时候一直显示不了内容 解决方法是:要把属性contentMode改成View Based设置成Cell Based 不是不能显示 还好从这里找到方案了:http://www.07net01.com/2015/10/937976.html
+ 

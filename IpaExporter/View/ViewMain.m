@@ -54,7 +54,8 @@
     
     //初始化列对象
     NSArray<NSTableColumn *> *tableColumns = _platformTbl.tableColumns;
-    for(int i = 0; i < [tableColumns count]; i++)
+    //以字典中的数量为准
+    for(int i = 0; i < [_dataDict count]; i++)
     {
         NSTableColumn *item = tableColumns[i];
         NSButtonCell *cell = [item dataCellForRow:i];
