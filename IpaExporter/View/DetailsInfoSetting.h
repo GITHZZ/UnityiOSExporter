@@ -20,6 +20,9 @@
 @property (nonatomic, weak) IBOutlet NSTextField *provisioningProfile;
 @property (nonatomic, weak) IBOutlet NSTextField *frameworks;
 @property (nonatomic, weak) IBOutlet NSComboBox *cDirPath;
+@property (weak) IBOutlet NSView *detailView;
+
+
 
 @end
 

@@ -25,6 +25,17 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "-[ViewMain renderUpAttriString:withColor:]:ViewMain.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "_infoLabel.textContainer">
+            </PersistentString>
+            <PersistentString
+               value = "_infoLabel.textContainer.size.height">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[DetailsInfoData initWithInfoDict:]:DetailsInfoData.m">
          <PersistentStrings>
             <PersistentString

@@ -12,7 +12,7 @@
 
 void lua_show_log(const char *s)
 {
-    showLog(@"*Lua:%s", s);
+    showLog(@"*Lua:%@", [NSString stringWithUTF8String:s]);
 }
 
 void lua_show_error(const char *s)

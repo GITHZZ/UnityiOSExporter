@@ -93,7 +93,7 @@
     const char* errorStr = get_error_description(L, code);
     if(errorStr != NULL)
     {
-        showError(@"%s", errorStr);
+        showError(@"LuaError:%s", errorStr);
     }
 }
 

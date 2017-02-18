@@ -10,7 +10,7 @@
 #import <Foundation/Foundation.h>
 #import "ExportInfoManager.h"
 
-@interface ViewMain : NSViewController<NSTableViewDataSource, NSTableViewDelegate, NSComboBoxDelegate>
+@interface ViewMain : NSViewController
 
 @property (nonatomic, readonly) NSMutableArray* dataDict;
 

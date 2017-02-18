@@ -66,13 +66,14 @@ ExportIpaUtil.Start = function(exportInfoTbl)
 
     --info log
     printLine()
-    print("\tiOS打包工具")
-    print("\tUnity开发工程路径:" .. projPath)
-    print("\tXcode项目导出路径:" .. exportFolder)
-    print("\t证书类型:" .. exportType)
-    print("\t导出包名字:" .. exportIpaName)
+    print("iOS打包工具")
+    print("Unity开发工程路径:" .. projPath)
+    print("Xcode项目导出路径:" .. exportFolder)
+    print("证书类型:" .. exportType)
+    print("导出包名字:" .. exportIpaName)
     printLine()
 
+--[[
     --导出xcode工程
     print("++++正在导出Xcode工程...")
     os.execute(string.format(cmd_export_xcode, projPath, "IpaExporter.Builder_t.BuildApp", exportFolder))
@@ -112,13 +113,13 @@ ExportIpaUtil.Start = function(exportInfoTbl)
     --计算生成时间
     local endTime = os.time()
     local pastTime = endTime - startTime
-     
+]]
+
     print(string.format("++++导出ipa结束,总共耗时:%s分%s秒", math.fmod(math.floor(pastTime/60), 60), math.fmod(pastTime, 60)))
 end
 
---lua main
+--lua export main
 function MainStart(unityPath, exportFolder, profilePath, isRelease)
-    print("123")
     if unityPath == "" or exportFolder == "" then -- or profilePath == ""
         print("路径参数不能为空~~.")
         print("unityPath:" .. unityPath)
@@ -135,6 +136,6 @@ function MainStart(unityPath, exportFolder, profilePath, isRelease)
         ipaName = "test",
     }
     
-    --ExportIpaUtil.Start(exportInfo)
+    ExportIpaUtil.Start(exportInfo)
 end
 
