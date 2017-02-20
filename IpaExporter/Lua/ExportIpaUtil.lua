@@ -57,7 +57,7 @@ ExportIpaUtil.Start = function(exportInfoTbl)
     local exportFolder = exportInfoTbl.exportPath
     local exportType = exportInfoTbl.exportType
     local ipaName = exportInfoTbl.ipaName
-    local profilePath = "ZZSJDevelopment" --exportInfoTbl.exportPath
+    local profilePath = exportInfoTbl.profile --exportInfoTbl.exportPath
 
     local exportIpaName = ipaName .. os.date("%y%m%d_%H%M%S")
     local profileName = GetProfileNameFormPath(profilePath)
@@ -129,7 +129,7 @@ function MainStart(unityPath, exportFolder, profileName, appName, isRelease)
     local exportInfo = {
         projectPath = unityPath,
         exportPath = exportFolder,
-        profile = profileName,
+        profile = profileName,--"ZZSJDevelopment"
         exportType = 0,
         ipaName = appName,
     }

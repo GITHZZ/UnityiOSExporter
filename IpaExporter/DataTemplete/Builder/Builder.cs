@@ -24,7 +24,7 @@ namespace IpaExporter
 			PlayerSettings.SetPropertyInt ("Architecture", (int)iOSTargetDevice.iPhoneAndiPad, BuildTarget.iOS);
 			PlayerSettings.SetPropertyInt ("ScriptingBackend", (int)ScriptingImplementation.IL2CPP, BuildTarget.iOS);
 
-			BuildPipeline.BuildPlayer (LEVELS, "iOSExport/ExportProj_", BuildTarget.iOS, BuildOptions.Il2CPP);
+            BuildPipeline.BuildPlayer (LEVELS, "${exportPath}/ExportProj_", BuildTarget.iOS, BuildOptions.Il2CPP);
 		}
 	}
 }

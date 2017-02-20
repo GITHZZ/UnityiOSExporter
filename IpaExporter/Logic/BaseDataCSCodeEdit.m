@@ -8,6 +8,7 @@
 
 #import "BaseDataCSCodeEdit.h"
 #import "BaseDataCSCodePrivate.h"
+#import "ExportInfoManager.h"
 #import "Common.h"
 
 @implementation BaseDataCSCodeEdit
@@ -46,20 +47,32 @@
     for(int i = 0; i < [keyArr count]; i++)
     {
         NSString *key = [keyArr objectAtIndex:i];
-        NSString *keyStr = [data getValueForKey:key];
-        //需要特殊处理的
-        if([key isEqualToString:Frameworks_Key])
-        {
-            [keyStr stringByReplacingOccurrencesOfString:@"|"
-                                              withString:@","];
-        }
+        NSString *keyStr;
         
+        if([key isEqualToString:Export_Path])
+        {
+            ExportInfo* info = [ExportInfoManager instance].info;
+            const char* path = info->exportFolderParh;
+            keyStr = [NSString stringWithUTF8String:path];
+        }
+        else
+        {
+            keyStr = [data getValueForKey:key];
+            //需要特殊处理的
+            if([key isEqualToString:Frameworks_Key])
+            {
+                [keyStr stringByReplacingOccurrencesOfString:@"|"
+                                                  withString:@","];
+            }
+            
+        }
         [result replaceOccurrencesOfString:[NSString stringWithFormat:@"${%@}", key]
                                   withString:keyStr
                                      options:NSLiteralSearch
                                        range:NSMakeRange(0, [result length])];
 
     }
+    
     [self replaceContent:result];
 }
 

@@ -16,6 +16,10 @@
 #define BUILDER_CS_PATH @"/Assets/Editor/DataTemplete/Builder/Builder.cs"
 #define XCODEPROJECT_CS_PATH @"/Assets/Editor/DataTemplete/XcodeApi/XcodeProjectSetting.cs"
 
+//view main key
+#define Export_Path @"exportPath"
+
+//detail view key
 #define Platform_Name @"platform"
 #define App_Name_Key @"appName"
 #define App_ID_Key @"bundleIdentifier"

@@ -17,8 +17,8 @@
     NSString* builderCSPath = [dstPath stringByAppendingPathComponent:BUILDER_CS_PATH];
     BOOL success = [self initWithPath:builderCSPath];
     if(success)
-    {        
-        NSArray *keyArr = [NSArray arrayWithObjects:App_ID_Key, App_Name_Key, nil];
+    {
+        NSArray *keyArr = [NSArray arrayWithObjects:Export_Path, App_ID_Key, App_Name_Key, nil];
         [self replaceVarFromData:info withKeyArr:keyArr];
     }
 }
