@@ -35,5 +35,5 @@ XcodeProjectUpdater原项目地址:https://github.com/kankikuchi/XcodeProjectUpd
 }  
 - (void)readComboValue:(id)object  
 {  
-	//这里取选择后内容  
+    //这里取选择后内容  
 }  
