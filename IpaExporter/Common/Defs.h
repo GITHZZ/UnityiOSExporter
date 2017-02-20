@@ -27,23 +27,6 @@
 #define Copy_Dir_Path @"copyDirectoryPath"
 #define Is_Selected @"isSelected"
 
-static void showLog(NSString* content, ...)
-{
-    va_list ap;
-    va_start(ap, content);
-    NSString* showStr =  [[NSString alloc] initWithFormat:content arguments:ap];
-    va_end(ap);
-    [[EventManager instance] send:EventAddNewInfoContent withData:showStr];
-}
-
-static void showError(NSString* content, ...)
-{
-    va_list ap;
-    va_start(ap, content);
-    NSString* showStr =  [[NSString alloc] initWithFormat:content arguments:ap];
-    va_end(ap);
-    [[EventManager instance] send:EventAddErrorContent withData:showStr];
-}
 
 typedef struct IpaPackInfo
 {

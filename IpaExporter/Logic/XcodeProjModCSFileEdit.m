@@ -8,6 +8,7 @@
 
 #import "XcodeProjModCSFileEdit.h"
 #import "BaseDataCSCodePrivate.h"
+#import "Common.h"
 
 @implementation XcodeProjModCSFileEdit
 

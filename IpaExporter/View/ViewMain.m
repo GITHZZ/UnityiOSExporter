@@ -234,7 +234,7 @@
     }
     else
     {
-        showLog(@"未知路径类型%@", changePath);
+        showLog("未知路径类型%@", changePath);
     }
 }
 
@@ -252,11 +252,12 @@
 
 - (void)renderUpAttriString:(NSString*)string withColor:(NSColor*) color
 {
-    NSString *newStr = [string stringByAppendingString:@"\n\n"];
+    NSString *newStr = [string stringByAppendingString:@"\n"];
     NSMutableAttributedString *addString = [[NSMutableAttributedString alloc] initWithString:newStr];
     [addString addAttribute:NSForegroundColorAttributeName value:color range:NSMakeRange(0, [newStr length] - 1)];
     [[_infoLabel textStorage] appendAttributedString:addString];
     
     [_infoLabel scrollRectToVisible:CGRectMake(0, _infoLabel.textContainer.size.height-15, _infoLabel.textContainer.size.width, 10)];
 }
+
 @end

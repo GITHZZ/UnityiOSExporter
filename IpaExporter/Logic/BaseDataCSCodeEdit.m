@@ -8,7 +8,7 @@
 
 #import "BaseDataCSCodeEdit.h"
 #import "BaseDataCSCodePrivate.h"
-#import "Defs.h"
+#import "Common.h"
 
 @implementation BaseDataCSCodeEdit
 
@@ -26,7 +26,7 @@
                                                    error:&error];
     if(error != nil)
     {
-        showError(@"读取路径文件失败:%@", path);
+        showError("读取路径文件失败:%@", path);
         NSLog(@"%@", error);
         NSLog(@"%@", [error userInfo]);
         return NO;
@@ -69,7 +69,7 @@
     [newContent writeToFile:_path atomically:YES encoding:NSUTF8StringEncoding error:&error];
     if(error != nil)
     {
-        showError(@"*替换内容失败:目标路径%@", _path);
+        showError("*替换内容失败:目标路径%@", _path);
         NSLog(@"%@", error);
         NSLog(@"%@", [error userInfo]);
     }

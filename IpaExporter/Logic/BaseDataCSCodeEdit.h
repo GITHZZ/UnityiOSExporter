@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Defs.h"
 #import "DetailsInfoData.h"
 
 @interface BaseDataCSCodeEdit : NSObject

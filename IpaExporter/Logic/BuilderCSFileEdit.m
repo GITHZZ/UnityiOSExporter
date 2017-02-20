@@ -7,8 +7,8 @@
 //
 
 #import "BuilderCSFileEdit.h"
-#import "Defs.h"
 #import "BaseDataCSCodePrivate.h"
+#import "Common.h"
 
 @implementation BuilderCSFileEdit
 

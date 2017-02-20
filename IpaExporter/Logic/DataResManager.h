@@ -8,7 +8,7 @@
 //  用于拷贝文件夹以及文件夹下所有文件
 
 #import <Foundation/Foundation.h>
-#import "Defs.h"
+#import "Common.h"
 
 @interface DataResManager : NSObject
 {

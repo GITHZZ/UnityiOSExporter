@@ -7,8 +7,9 @@
 //
 
 #import "DetailsInfoData.h"
+#import "Common.h"
+
 #import <objc/runtime.h>
-#import "Defs.h"
 
 #define Detail_Info_Dict_Coder_Key @"DetailInfoDict"
 

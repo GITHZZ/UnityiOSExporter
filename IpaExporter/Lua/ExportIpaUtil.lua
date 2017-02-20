@@ -73,53 +73,51 @@ ExportIpaUtil.Start = function(exportInfoTbl)
     print("导出包名字:" .. exportIpaName)
     printLine()
 
---[[
     --导出xcode工程
-    print("++++正在导出Xcode工程...")
+    print("正在导出Xcode工程...")
     os.execute(string.format(cmd_export_xcode, projPath, "IpaExporter.Builder_t.BuildApp", exportFolder))
-    print("++++导出Xcode工程完毕...")
+    print("导出Xcode工程完毕...")
 
     --访问Xcode工程
     printLine()
-    print("++++访问Xcode工程, 访问路径:" .. xcodePath)
+    print("访问Xcode工程, 访问路径:" .. xcodePath)
     local isSuccess, err = lfs.chdir(xcodePath)
     if not isSuccess and err then
-        print("++++访问Xcode工程失败, 错误信息:" .. err)
+        print("访问Xcode工程失败, 错误信息:" .. err)
         os.exit(1)
     end
 
     --清除Xcode工程
-    print("++++开始清除Xcode项目信息")
+    print("开始清除Xcode项目信息")
     os.execute(string.format(cmd_clean_xcode_proj, proj_scheme_name))
-    print("++++清除项目成功")
+    print("清除项目成功")
 
     --创建archive文件
-    print("++++开始创建archive文件")
+    print("开始创建archive文件")
     os.execute(string.format(cmd_export_archive, proj_scheme_name, proj_scheme_name, proj_scheme_name))
 
     --查找生成的archive文件
     if(fileExist(archivePath)) then
-        print("++++创建archive文件成功,路径path=" .. archivePath)
+        print("创建archive文件成功,路径path=" .. archivePath)
     else
-        print("++++创建archive文件失败")
+        print("创建archive文件失败")
         os.exit(1)
     end
 
     --开始生成ipa包
-    print("++++开始生成ipa包")
+    print("开始生成ipa包")
     os.execute(string.format(cmd_export_ipa, profilePath, archivePath, exportFolder, exportIpaName))
-    print("++++生成ipa结束,路径:" .. exportFolder)
+    print("生成ipa结束,路径:" .. exportFolder)
  
     --计算生成时间
     local endTime = os.time()
     local pastTime = endTime - startTime
-]]
 
-    print(string.format("++++导出ipa结束,总共耗时:%s分%s秒", math.fmod(math.floor(pastTime/60), 60), math.fmod(pastTime, 60)))
+    print(string.format("导出ipa结束,总共耗时:%s分%s秒", math.fmod(math.floor(pastTime/60), 60), math.fmod(pastTime, 60)))
 end
 
 --lua export main
-function MainStart(unityPath, exportFolder, profilePath, isRelease)
+function MainStart(unityPath, exportFolder, profileName, appName, isRelease)
     if unityPath == "" or exportFolder == "" then -- or profilePath == ""
         print("路径参数不能为空~~.")
         print("unityPath:" .. unityPath)
@@ -131,11 +129,11 @@ function MainStart(unityPath, exportFolder, profilePath, isRelease)
     local exportInfo = {
         projectPath = unityPath,
         exportPath = exportFolder,
-        profile = profilePath,
+        profile = profileName,
         exportType = 0,
-        ipaName = "test",
+        ipaName = appName,
     }
     
-    ExportIpaUtil.Start(exportInfo)
+   -- ExportIpaUtil.Start(exportInfo)
 end
 

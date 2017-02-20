@@ -12,12 +12,10 @@
 #import "DetailsInfoData.h"
 #import "XcodeProjModCSFileEdit.h"
 
+#import "Common.h"
+
 #include <stdio.h>
 #include <assert.h>
-
-#include "LuaDictionary.h"
-#include "EventManager.h"
-
 
 @interface LuaCammond ()
 {
@@ -93,27 +91,28 @@
     const char* errorStr = get_error_description(L, code);
     if(errorStr != NULL)
     {
-        showError(@"LuaError:%s", errorStr);
+        showError("LuaError:%s", errorStr);
     }
 }
 
-- (void)callLuaMain
+- (void)callLuaMain:(DetailsInfoData*)data
 {
     ExportInfoManager* view = [ExportInfoManager instance];
     
     get_call_lua_func(L, "MainStart");
     push_lua_string_args(L,
-                         3,
+                         4,
                          view.info->unityProjPath,
                          view.info->exportFolderParh,
-                         "");
+                         [data.provisioningProfile UTF8String],
+                         [data.appName UTF8String]);
     push_lua_boolean_args(L, 1, 0);
-    start_call_lua_func(L, 4, 0, 0);
+    start_call_lua_func(L, 5, 0, 0);
 }
 
 - (void)startExport
 {
-    showLog(@"*开始打包");
+    showLog("*开始打包");
     
     ExportInfoManager* view = [ExportInfoManager instance];
     NSMutableArray* detailArray = view.detailArray;
@@ -123,6 +122,7 @@
     
     //测试(修改目标目录的builder_t.cs文件)
     DetailsInfoData* infoData = [detailArray objectAtIndex:0];
+    
     BuilderCSFileEdit* builderEdit = [[BuilderCSFileEdit alloc] init];
     [builderEdit start:[NSString stringWithUTF8String:view.info->unityProjPath]
           withPackInfo:infoData];
@@ -136,23 +136,18 @@
     [self open];
     NSString* mainLuaPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"ExportIpaUtil.lua"];
     [self dofile:mainLuaPath];
-    [self callLuaMain];
+    [self callLuaMain:infoData];
     [self close];
     
     //删除文件夹
     [[DataResManager instance] end];
     
-    showLog(@"*打包完毕");
+    showLog("*打包完毕");
 }
 
 - (void)sureBtnClicked:(NSNotification*)notification
 {
     [[LuaCammond instance] startExport];
-}
-
-- (void)printTest:(const char*)content
-{
-    NSLog(@"%s", content);
 }
 
 @end

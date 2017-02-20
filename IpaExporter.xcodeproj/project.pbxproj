@@ -89,6 +89,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		182186401E5ACAD5003599CD /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		1828197A1E4C5E2C00CEC719 /* EventTypeDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EventTypeDef.h; sourceTree = "<group>"; };
 		182FF6EF1E4D936700CC0C7C /* DetailsInfoData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsInfoData.h; sourceTree = "<group>"; };
 		182FF6F01E4D936700CC0C7C /* DetailsInfoData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsInfoData.m; sourceTree = "<group>"; };
@@ -450,6 +451,7 @@
 		18F102721DCC2813008312E5 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				182186401E5ACAD5003599CD /* Common.h */,
 				18FCCBCC1E49CD3900BDF9AC /* Defs.h */,
 				188DAD0F1E56F8E300554D6B /* CustomLog.h */,
 				188DAD101E56F8E300554D6B /* CustomLog.m */,

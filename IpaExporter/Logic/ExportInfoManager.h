@@ -9,8 +9,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Defs.h"
 #import "DetailsInfoData.h"
+#import "Common.h"
 
 @interface ExportInfoManager : NSObject
 {
