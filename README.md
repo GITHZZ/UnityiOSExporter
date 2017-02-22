@@ -28,12 +28,18 @@ XcodeProjectUpdater原项目地址:https://github.com/kankikuchi/XcodeProjectUpd
 *坑爹的NSTableView 使用的时候一直显示不了内容 解决方法是:要把属性contentMode改成View Based设置成Cell Based 不是不能显示 还好从这里找到方案了:http://www.07net01.com/2015/10/937976.html
  
 *NSComboBoxDelegate中的这个协议回调 -(void)comboBoxSelectionIsChanging:(NSNotification *)notification 理论上返回的对象是修改后的对象,然而它返回的是选择前的 需要新增定时器等待到下一帧取 如下:
+
+```Objective-C
 - (void)comboBoxSelectionIsChanging:(NSNotification *)notification  
 {  
     //bug:延迟到下一帧取数据  
     [self performSelector:@selector(readComboValue:) withObject:[notification object] afterDelay:0];  
 }  
+```
+```Objective-C
 - (void)readComboValue:(id)object  
 {  
     //这里取选择后内容  
 }  
+```
+
