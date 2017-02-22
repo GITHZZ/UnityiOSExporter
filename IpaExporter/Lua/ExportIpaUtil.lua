@@ -17,8 +17,12 @@ local proj_scheme_name = "Unity-iPhone"
 local cmd_export_xcode = "/Applications/Unity/Unity.app/Contents/MacOS/Unity -buildTarget Ios -batchmode -quit -projectPath %s -executeMethod %s -logFile %s"
 local cmd_clean_xcode_proj = "xcodebuild clean -scheme %s"
 local cmd_export_archive = "xcodebuild -project %s.xcodeproj -scheme %s -destination generic/platform=ios archive -archivePath bin/%s.xcarchive"
----sdk iphoneos build PROVISIONING_PROFILE=%s
+--sdk iphoneos build PROVISIONING_PROFILE=%s
 local cmd_export_ipa = "xcodebuild -exportArchive -exportFormat ipa exportProvisioningProfile %s -archivePath %s -exportPath %s/%s.ipa"
+
+--setup pbxproj file
+--%s export project path
+local cmd_set_pbxproj = "sed -i '' 's/ProvisioningStyle = Automatic;ProvisioningStyle = Manual;/g'%s"
 
 --local function
 local function printTip(content)
@@ -33,10 +37,6 @@ local function fileExist(path)
     local file = io.open(path, "rb")
     if file then file:close() return true end
     return false
-end
-
-local function GetProfileNameFormPath(path)
-    
 end
 
 local function StartExportIpa()
@@ -57,10 +57,9 @@ ExportIpaUtil.Start = function(exportInfoTbl)
     local exportFolder = exportInfoTbl.exportPath
     local exportType = exportInfoTbl.exportType
     local ipaName = exportInfoTbl.ipaName
-    local profilePath = exportInfoTbl.profile --exportInfoTbl.exportPath
+    local profileName = exportInfoTbl.profile --exportInfoTbl.exportPath
 
     local exportIpaName = ipaName .. os.date("%y%m%d_%H%M%S")
-    local profileName = GetProfileNameFormPath(profilePath)
     local archivePath = string.format("bin/%s.xcarchive", proj_scheme_name)
     local xcodePath = exportFolder .. "/ExportProj_"
 
@@ -77,6 +76,9 @@ ExportIpaUtil.Start = function(exportInfoTbl)
     print("正在导出Xcode工程...")
     os.execute(string.format(cmd_export_xcode, projPath, "IpaExporter.Builder_t.BuildApp", exportFolder))
     print("导出Xcode工程完毕...")
+
+    --处理xcode工程中的pbxproj文件(兼容xcode8)
+    os.execute(string.format(cmd_set_pbxproj, xcodePath))
 
     --访问Xcode工程
     printLine()

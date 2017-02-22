@@ -31,26 +31,7 @@
 #define Copy_Dir_Path @"copyDirectoryPath"
 #define Is_Selected @"isSelected"
 
-
-typedef struct IpaPackInfo
-{
-    const char* bundleIdentifier;
-    const char* appName;//应用名字
-    const char* frameworks;//自带框架名字
-    const char* outputPath;//导出路径
-    const char* codesignidentity;//开发者账号名字
-}IpaPackInfo;
-
-//绑定到界面的数据(包界面)
-typedef struct DetailsInfo
-{
-    const char* appName;//应用名字
-    const char* appID;//id
-    const char* codeSignIdentity;
-    const char* provisioningProfile;
-}DetailsInfo;
-
-typedef struct ExportInfo
+typedef struct
 {
     const char* unityProjPath;
     const char* exportFolderParh;

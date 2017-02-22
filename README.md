@@ -24,6 +24,12 @@ XcodeProjectUpdater原项目地址:https://github.com/kankikuchi/XcodeProjectUpd
 
 我自己也fork一份(https://github.com/GITHZZ/XcodeProjectUpdater) ,后面如果有问题我在我那里改,包括一些说明教程我也打算弄份,毕竟他写的是全日文。
 
+*关于打包工具在Xcode8的问题
+如果有习惯用打包工具的会发现到Xcode8后多了个自动管理功能,这就导致了导出来的默认工程会勾上去,结果就导不出工程总会报错,所以
+解决思路也就是强制把pbxproj文件内容改了就好,我这里用了sed指令,具体看习惯用啥都可以。
+然后就是修改证书和team名字(PROVISIONING_PROFILE_SPECIFIER/DEVELOPMENT_TEAM),可视化设置具体在xcodebuild设置里面。主要就这三个点
+稍微和以前不太一样。
+
 ###遇到的坑(随笔):
 *Cocoa:坑爹的NSTableView 使用的时候一直显示不了内容 解决方法是:要把属性contentMode改成View Based设置成Cell Based 不是不能显示 还好从这里找到方案了:http://www.07net01.com/2015/10/937976.html
  

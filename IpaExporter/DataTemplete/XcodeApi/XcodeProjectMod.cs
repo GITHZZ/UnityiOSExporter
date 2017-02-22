@@ -95,6 +95,11 @@ public class XcodeProjectMod : MonoBehaviour
 		//BitCodeの設定
 		pbxProject.SetBuildProperty(targetGuid, XcodeProjectSetting.ENABLE_BITCODE_KEY, setting.EnableBitCode ? "YES" : "NO");
 
+		//如果用到脚本工具打包并且需要兼容xcode8 这块代码需要用上
+		//并且脚本代码需要将自动模式改成手动模式
+		//sed指令:sed -i '' 's/ProvisioningStyle = Automatic;ProvisioningStyle = Manual;/g'%s
+		//SetUpDevelopmentInfo (pbxProject, setting, targetGuid);
+		
 		//プロジェクトファイル書き出し
 		File.WriteAllText(pbxProjPath, pbxProject.WriteToString());
 
@@ -113,6 +118,25 @@ public class XcodeProjectMod : MonoBehaviour
 		//ステータスバーの設定
 		InfoPlistProcessor.SetStatusBar (buildPath, setting.EnableStatusBar);
 
+	}
+
+	private static void SetUpDevelopmentInfo(PBXProject pbxProject, XcodeProjectSetting setting, string targetGuid)
+	{
+		string debugConfig = pbxProject.BuildConfigByName (targetGuid, "Debug");
+		string releaseConfig = pbxProject.BuildConfigByName (targetGuid, "Release");
+
+		foreach (XcodeProjectSetting.DevelopmentInfo info in setting.developmentInfoList) {
+			if (info.tag == DevelopType.Debug) {
+				pbxProject.SetBuildPropertyForConfig (debugConfig, XcodeProjectSetting.PROVISIONING_PROFILE_SPECIFIER, info.provisioningProfileName);
+				pbxProject.SetBuildPropertyForConfig (debugConfig, XcodeProjectSetting.DEVELOPMENT_TEAM, info.developmentTeam);
+				pbxProject.SetBuildPropertyForConfig (debugConfig, "CODE_SIGN_IDENTITY[sdk=iphoneos*]", "iPhone Developer");
+			} else {
+				pbxProject.SetBuildPropertyForConfig (releaseConfig, XcodeProjectSetting.PROVISIONING_PROFILE_SPECIFIER, info.provisioningProfileName);
+				pbxProject.SetBuildPropertyForConfig (releaseConfig, XcodeProjectSetting.DEVELOPMENT_TEAM, info.developmentTeam);
+				pbxProject.SetBuildPropertyForConfig (releaseConfig, "CODE_SIGN_IDENTITY[sdk=iphoneos*]", "iPhone Distribution");
+			
+			}
+		}
 	}
 
 }
