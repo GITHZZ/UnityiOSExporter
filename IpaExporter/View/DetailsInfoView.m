@@ -11,6 +11,12 @@
 
 #import "ExportInfoManager.h"
 
+@interface DetailsInfoView()
+{
+    DetailsInfoData *_selectInfo;
+}
+@end
+
 @implementation DetailsInfoView
 
 - (void)viewDidLoad
@@ -18,21 +24,46 @@
     [super viewDidLoad];
     
     [[EventManager instance] regist:EventDetailsInfoSettingClose
-                               func:@selector(DetailsInfoViewClose:)
+                               func:@selector(detailsInfoViewClose:)
+                           withData:nil
+                               self:self];
+    [[EventManager instance] regist:EventDetailsInfoSettingEdit
+                               func:@selector(detailsInfoViewEdit:)
                            withData:nil
                                self:self];
     
     NSMutableArray* saveArray = [[ExportInfoManager instance] reLoadDetails];
     _dataDict = [[NSMutableArray alloc] initWithArray:saveArray];
     
+    if([_dataDict count] > 0)
+    {
+        _selectInfo = [_dataDict objectAtIndex:0];
+    }
+    
     //设置数据源
     _infoTbls.delegate = self;
     _infoTbls.dataSource = self;
 }
 
+- (IBAction)AddBtnClick:(id)sender
+{
+    //open detail info settings
+    NSStoryboard *sb = [NSStoryboard storyboardWithName:@"Main" bundle:nil];
+    DetailsInfoSetting *vc = [sb instantiateControllerWithIdentifier:@"detailsInfoSetting"];
+    [self presentViewControllerAsSheet:vc];
+}
+
 - (IBAction)removeBtnClick:(id)sender
 {
     [self removeInfo];
+}
+
+- (IBAction)editDetailInfo:(id)sender
+{
+    NSStoryboard *sb = [NSStoryboard storyboardWithName:@"Main" bundle:nil];
+    DetailsInfoSetting *vc = [sb instantiateControllerWithIdentifier:@"detailsInfoSetting"];
+    [vc setUpDataInfoOnShow:_selectInfo];
+    [self presentViewControllerAsSheet:vc];
 }
 
 - (void)addInfo:(DetailsInfoData*)info
@@ -42,6 +73,12 @@
     [_infoTbls reloadData];
     
     [[EventManager instance] send:EventDetailsInfoUpdate withData:_dataDict];
+}
+
+- (void)editInfo:(DetailsInfoData*)info
+{
+    [self removeInfo];
+    [self addInfo:info];
 }
 
 - (void)removeInfo
@@ -57,10 +94,16 @@
     }
 }
 
-- (void)DetailsInfoViewClose:(NSNotification*)notification
+- (void)detailsInfoViewClose:(NSNotification*)notification
 {
     DetailsInfoData* info = (DetailsInfoData*)[notification object];
     [self addInfo:info];
+}
+
+- (void)detailsInfoViewEdit:(NSNotification*)notification
+{
+    DetailsInfoData* info = (DetailsInfoData*)[notification object];
+    [self editInfo:info];
 }
 
 //返回表格的行数
@@ -96,4 +139,9 @@
     [[ExportInfoManager instance] updateDetail:row withObject:info];
 }
 
+- (BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(NSInteger)row
+{
+    _selectInfo = [_dataDict objectAtIndex:row];
+    return YES;
+}
 @end

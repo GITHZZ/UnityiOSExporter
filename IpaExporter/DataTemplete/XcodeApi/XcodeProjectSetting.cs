@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -92,16 +92,19 @@ public class XcodeProjectSetting : ScriptableObject {
 		}
 	}
 	public List<FrameworkSet> FrameworkList = new List<FrameworkSet>(){
-		/*"Social.framework",*/ //初期設定例
-	};
+        /*new FrameworkSet("Social.framework", true)*/ //初期設定例
+        ${frameworks}
+    };
 
 	public List<string> LibsList = new List<string>(){
 		//libsqlite3.0.tbd
+		${libs}
 	};
 		
 	public string[] LinkerFlagArray = new string[]{
 		/*"-ObjC", "-all_load"*/ //初期設定例
 	};
+	
 	public string[] FrameworkSearchPathArray = new string[]{
 		"$(inherited)",
 		"$(PROJECT_DIR)/Frameworks"

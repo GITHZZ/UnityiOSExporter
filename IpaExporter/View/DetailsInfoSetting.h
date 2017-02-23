@@ -21,8 +21,9 @@
 @property (nonatomic, weak) IBOutlet NSTextField *frameworks;
 @property (nonatomic, weak) IBOutlet NSComboBox *cDirPath;
 @property (weak) IBOutlet NSView *detailView;
+@property (weak) IBOutlet NSButton *sureBtn;
 
-
+- (void)setUpDataInfoOnShow:(DetailsInfoData*)info;
 
 @end
 

@@ -573,8 +573,7 @@
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="addInfo:" target="ysZ-Di-5bf" id="wbb-Vs-GjS"/>
-                                                <segue destination="D2q-A7-o8O" kind="sheet" id="92o-se-pAO"/>
+                                                <action selector="AddBtnClick:" target="ysZ-Di-5bf" id="C2n-dX-fwz"/>
                                             </connections>
                                         </button>
                                         <button id="lWw-IO-S93" userLabel="remove">
@@ -595,10 +594,13 @@
                                         <button verticalHuggingPriority="750" misplaced="YES" id="6eg-uh-xmn" userLabel="edit">
                                             <rect key="frame" x="83" y="5" width="23" height="23"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="NSAdvanced" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="Sb3-nP-tRh">
+                                            <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="NSAdvanced" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="Sb3-nP-tRh">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
+                                            <connections>
+                                                <action selector="editDetailInfo:" target="ysZ-Di-5bf" id="UcH-k9-5hr"/>
+                                            </connections>
                                         </button>
                                         <box horizontalHuggingPriority="750" misplaced="YES" boxType="separator" id="PIf-ac-qKv" userLabel="Vertical Line4">
                                             <rect key="frame" x="112" y="-2" width="5" height="35"/>
@@ -1019,6 +1021,7 @@
                         <outlet property="frameworks" destination="OuB-ZV-tfc" id="NmL-o5-AGN"/>
                         <outlet property="platform" destination="lTb-4f-hUj" id="6Vw-0J-a6X"/>
                         <outlet property="provisioningProfile" destination="oVR-gW-dIj" id="FuL-QP-yAH"/>
+                        <outlet property="sureBtn" destination="fuh-ZN-Na8" id="CCC-b1-Dhn"/>
                     </connections>
                 </viewController>
                 <customObject id="JqL-PK-44Q" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

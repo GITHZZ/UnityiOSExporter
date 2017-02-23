@@ -9,6 +9,13 @@
 #import "DetailsInfoSetting.h"
 #import "Defs.h"
 
+@interface DetailsInfoSetting ()
+{
+    BOOL _isSetDataOnShow;
+    DetailsInfoData *_info;
+}
+@end
+
 @implementation DetailsInfoSetting
 
 - (void)viewDidLoad
@@ -16,6 +23,36 @@
     [super viewDidLoad];
     
     [_detailView scrollRectToVisible:CGRectMake(0, _detailView.frame.size.height-15, _detailView.frame.size.width, 10)];
+    
+    if(_isSetDataOnShow)
+    {
+        [self setUpInfo];
+        _sureBtn.title = @"确定";
+    }
+    else
+    {
+        _sureBtn.title = @"添加";
+    }
+}
+
+- (void)setUpDataInfoOnShow:(DetailsInfoData*)info
+{
+    _info = info;
+    _isSetDataOnShow = YES;
+}
+
+- (void)setUpInfo
+{
+    if(nil == _info)
+        return;
+    
+    _appName.stringValue = [_info getValueForKey:App_Name_Key];
+    _appID.stringValue = [_info getValueForKey:App_ID_Key];
+    _codeSignIdentity.stringValue = [_info getValueForKey:Code_Sign_Identity_Key];
+    _provisioningProfile.stringValue = [_info getValueForKey:Provisioning_Profile_key];
+    _platform.stringValue = [_info getValueForKey:Platform_Name];
+    _frameworks.stringValue = [_info getValueForKey:Frameworks_Key];
+    _cDirPath.stringValue = [_info getValueForKey:Copy_Dir_Path];
 }
 
 - (IBAction)sureBtnClickFuncion:(id)sender
@@ -34,14 +71,23 @@
                           frameworks, Frameworks_Key, cDirPath, Copy_Dir_Path, @"0", Is_Selected ,nil];
 
     DetailsInfoData* info = [[DetailsInfoData alloc] initWithInfoDict:dict];
-    [[EventManager instance] send:EventDetailsInfoSettingClose
+    if(_isSetDataOnShow)
+    {
+        [[EventManager instance] send:EventDetailsInfoSettingEdit
+                             withData:info];
+    }
+    else{
+        [[EventManager instance] send:EventDetailsInfoSettingClose
                          withData:info];
+    }
     
+    _isSetDataOnShow = NO;
     [self dismissViewController:self];
 }
  
 - (IBAction)cancelBtnClickFunction:(id)sender
 {
+    _isSetDataOnShow = NO;
     [self dismissViewController:self];
 }
 
