@@ -20,6 +20,9 @@
 @property(readonly) NSString* frameworks;
 @property(readonly) NSString* cDirPath;//自定义资源路径
 @property(readonly) NSString* isSelected;//是否已经选择
+@property(readonly) NSString* cDirectoryPath;
+@property(readonly) NSString* libkerFlag;
+@property(readonly) NSString* libs;
 
 - (id)initWithInfoDict:(NSDictionary*) dic;
 - (void)setValueForKey:(NSString*)key withObj:(id)obj;

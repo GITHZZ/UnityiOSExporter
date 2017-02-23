@@ -638,7 +638,7 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="copyDirectoryPath" width="108" minWidth="10" maxWidth="3.4028234663852886e+38" id="Ixd-wo-7LQ">
+                                                <tableColumn identifier="cDirectoryPath" width="108" minWidth="10" maxWidth="3.4028234663852886e+38" id="Ixd-wo-7LQ">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="CopyDirectoryPath">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1013,10 +1013,7 @@
                         <outlet property="appID" destination="T15-wh-yoI" id="25s-pr-mxU"/>
                         <outlet property="appName" destination="AoK-Rv-euA" id="TxR-WX-Qab"/>
                         <outlet property="cDirPath" destination="d0q-LV-cgO" id="3fx-9b-826"/>
-                        <outlet property="cDirSelectBtb" destination="zBn-ts-6XV" id="QSC-zR-k0f"/>
-                        <outlet property="cDirSelectBtn" destination="zBn-ts-6XV" id="hOw-KE-ciQ"/>
                         <outlet property="codeSignIdentity" destination="M0E-X9-F1f" id="jzc-fR-vf0"/>
-                        <outlet property="detailScroll" destination="v2R-kU-k9H" id="kx6-UK-YZX"/>
                         <outlet property="detailView" destination="638-73-X4r" id="Ob9-G4-mCP"/>
                         <outlet property="frameworks" destination="OuB-ZV-tfc" id="NmL-o5-AGN"/>
                         <outlet property="platform" destination="lTb-4f-hUj" id="6Vw-0J-a6X"/>

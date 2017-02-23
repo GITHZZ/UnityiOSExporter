@@ -89,7 +89,7 @@
         [_dataDict removeObjectAtIndex:row];
         [[ExportInfoManager instance] removeDetail:row];
         [_infoTbls reloadData];
-        
+
         [[EventManager instance] send:EventDetailsInfoUpdate withData:_dataDict];
     }
 }
