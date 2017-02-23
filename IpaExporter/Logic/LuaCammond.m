@@ -95,10 +95,9 @@
     }
 }
 
-- (void)callLuaMain:(DetailsInfoData*)data
+- (BOOL)callLuaMain:(DetailsInfoData*)data
 {
     ExportInfoManager* view = [ExportInfoManager instance];
-    
     get_call_lua_func(L, "MainStart");
     push_lua_string_args(L,
                          4,
@@ -107,7 +106,13 @@
                          [data.provisioningProfile UTF8String],
                          [data.appName UTF8String]);
     push_lua_boolean_args(L, 1, 0);
-    start_call_lua_func(L, 5, 0, 0);
+    
+    int result = start_call_lua_main(L, 5);
+    if(result == LUA_DLL_ERROR){
+        showError("*调用脚本出错,导出失败");
+        return NO;
+    }
+    return YES;
 }
 
 - (void)startExport
@@ -117,11 +122,12 @@
     ExportInfoManager* view = [ExportInfoManager instance];
     NSMutableArray* detailArray = view.detailArray;
     
-    //拷贝Data_t所有文件
-    [[DataResManager instance] start:view.info];
-    
+    //--- for start
     //测试(修改目标目录的builder_t.cs文件)
     DetailsInfoData* infoData = [detailArray objectAtIndex:0];
+    
+    //拷贝Data_t所有文件
+    [[DataResManager instance] start:view.info];
     
     BuilderCSFileEdit* builderEdit = [[BuilderCSFileEdit alloc] init];
     [builderEdit start:[NSString stringWithUTF8String:view.info->unityProjPath]
@@ -142,7 +148,8 @@
     //删除文件夹
     [[DataResManager instance] end];
     
-    showLog("*打包完毕");
+    //----for end 
+    showLog("*打包结束");
 }
 
 - (void)sureBtnClicked:(NSNotification*)notification

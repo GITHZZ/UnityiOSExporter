@@ -42,4 +42,7 @@ void push_lua_string_args(lua_State *L, int count, const char* args1, ...);
 void push_lua_boolean_args(lua_State *L, int count, int args1, ...);
 int start_call_lua_func(lua_State *L, int nargs, int nresults, int errfunc);
 
+//调用lua主入口
+int start_call_lua_main(lua_State *L, int nargs);
+
 #endif /* LuaDLL_h */

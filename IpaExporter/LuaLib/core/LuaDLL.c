@@ -155,16 +155,6 @@ int do_lua_string(lua_State* L, const char* content)
     return LUA_DLL_OK;
 }
 
-int pop_lua_data(lua_State* L, int idx)
-{
-    int stackCount = lua_gettop(L);
-    if (abs(idx) > stackCount)
-        return LUA_DLL_MEMORY_ERROR;//序列号index错误 访问错误内存
-    
-    lua_pop(L, idx);
-    return LUA_DLL_OK;
-}
-
 void push_lua_string_args(lua_State *L, int count, const char* args1, ...)
 {
     //定义参数列表
@@ -209,13 +199,11 @@ void push_lua_boolean_args(lua_State *L, int count, int args1, ...)
 int start_call_lua_func(lua_State *L, int nargs, int nresults, int errfunc)
 {
     int s = lua_pcall(L, nargs, nresults, errfunc);
-    if(s != LUA_OK)
+    if(s != LUA_OK){
         return LUA_DLL_ERROR;
+    }
     
-    int ps = pop_lua_data(L, -1);
-    if (ps != LUA_DLL_OK)
-        return ps;
-    
+    lua_pop(L, 1);
     return LUA_DLL_OK;
 }
 
@@ -224,6 +212,25 @@ int get_call_lua_func(lua_State *L, const char *name)
     int s = lua_getglobal(L, name);
     if (s != LUA_OK)
         return LUA_DLL_ERROR;
+    
+    return LUA_DLL_OK;
+}
+
+
+//调用lua主入口
+int start_call_lua_main(lua_State *L, int nargs)
+{
+    int s = lua_pcall(L, nargs, 1, 0);
+    if(s != LUA_OK){
+        return LUA_DLL_ERROR;
+    }
+    
+    int luaResult = (int)lua_tonumber(L, -1);
+    lua_pop(L, 1);
+    
+    if(luaResult <= 0){
+        return LUA_DLL_ERROR;
+    }
     
     return LUA_DLL_OK;
 }

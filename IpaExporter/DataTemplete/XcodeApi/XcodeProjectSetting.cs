@@ -2,15 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public enum DevelopType {
-	Debug = 1,
-	Release = 2,
-};
-
 /// <summary>
 /// Xcodeのプロジェクトを書き出す際の設定値
 /// </summary>
 public class XcodeProjectSetting : ScriptableObject {
+
+    public enum DevelopType {
+        Debug = 1,
+        Release = 2,
+    };
 
 	//=================================================================================
 	//定数
@@ -55,7 +55,7 @@ public class XcodeProjectSetting : ScriptableObject {
 	//=================================================================================
 
 	//Xcodeへコピーするディレクトリへのパス
-	public string CopyDirectoryPath = "Assets/CopyToXcode";
+    public string CopyDirectoryPath = ${copyDirectoryPath};
 
 	//URL identifier
 	public string URLIdentifier = "";
@@ -64,7 +64,6 @@ public class XcodeProjectSetting : ScriptableObject {
 	public List<string> URLSchemeList;
 
 	//development info
-	[System.Serializable]
 	public struct DevelopmentInfo
 	{
 		public string provisioningProfileName;
@@ -82,7 +81,6 @@ public class XcodeProjectSetting : ScriptableObject {
 	};
 
 	//framework 
-	[System.Serializable]
 	public struct FrameworkSet{
 		public string content;
 		public bool weak;

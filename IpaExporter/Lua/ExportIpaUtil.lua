@@ -18,7 +18,7 @@ local cmd_export_xcode = "/Applications/Unity/Unity.app/Contents/MacOS/Unity -bu
 local cmd_clean_xcode_proj = "xcodebuild clean -scheme %s"
 local cmd_export_archive = "xcodebuild -project %s.xcodeproj -scheme %s -destination generic/platform=ios archive -archivePath bin/%s.xcarchive"
 --sdk iphoneos build PROVISIONING_PROFILE=%s
-local cmd_export_ipa = "xcodebuild -exportArchive -exportFormat ipa exportProvisioningProfile %s -archivePath %s -exportPath %s/%s.ipa"
+local cmd_export_ipa = "xcodebuild -exportArchive -exportFormat ipa -archivePath %s -exportPath %s/%s.ipa"
 
 --setup pbxproj file
 --%s export project path
@@ -50,12 +50,12 @@ end
 --ipaName:导出包名字
 --profilePath:开发或发布证书路径
 ExportIpaUtil.Start = function(exportInfoTbl)
-    local startTime = os.time()
+    local startTime = os.clock()
 
     --base
     local projPath = exportInfoTbl.projectPath
     local exportFolder = exportInfoTbl.exportPath
-    local exportType = exportInfoTbl.exportType
+    local exportType = exportInfoTbl.exportType --debug/release
     local ipaName = exportInfoTbl.ipaName
     local profileName = exportInfoTbl.profile --exportInfoTbl.exportPath
 
@@ -74,7 +74,7 @@ ExportIpaUtil.Start = function(exportInfoTbl)
 
     --导出xcode工程
     print("正在导出Xcode工程...")
-    os.execute(string.format(cmd_export_xcode, projPath, "IpaExporter.Builder_t.BuildApp", exportFolder))
+    os.execute(string.format(cmd_export_xcode, projPath, "IpaExporter.Builder.BuildApp", exportFolder))
     print("导出Xcode工程完毕...")
 
     --处理xcode工程中的pbxproj文件(兼容xcode8)
@@ -86,7 +86,7 @@ ExportIpaUtil.Start = function(exportInfoTbl)
     local isSuccess, err = lfs.chdir(xcodePath)
     if not isSuccess and err then
         print("访问Xcode工程失败, 错误信息:" .. err)
-        os.exit(1)
+        return 0
     end
 
     --清除Xcode工程
@@ -103,7 +103,7 @@ ExportIpaUtil.Start = function(exportInfoTbl)
         print("创建archive文件成功,路径path=" .. archivePath)
     else
         print("创建archive文件失败")
-        os.exit(1)
+        return 0
     end
 
     --开始生成ipa包
@@ -112,20 +112,21 @@ ExportIpaUtil.Start = function(exportInfoTbl)
     print("生成ipa结束,路径:" .. exportFolder)
  
     --计算生成时间
-    local endTime = os.time()
+    local endTime = os.clock()
     local pastTime = endTime - startTime
 
     print(string.format("导出ipa结束,总共耗时:%s分%s秒", math.fmod(math.floor(pastTime/60), 60), math.fmod(pastTime, 60)))
+
+    return 1;
 end
 
 --lua export main
 function MainStart(unityPath, exportFolder, profileName, appName, isRelease)
-    if unityPath == "" or exportFolder == "" then -- or profilePath == ""
+    if unityPath == "" or exportFolder == "" then
         print("路径参数不能为空~~.")
         print("unityPath:" .. unityPath)
         print("exportFolder:" .. exportFolder)
-        print("profilePath:" .. profilePath)
-        return
+        return 0
     end
     
     local exportInfo = {
@@ -136,6 +137,6 @@ function MainStart(unityPath, exportFolder, profileName, appName, isRelease)
         ipaName = appName,
     }
     
-   -- ExportIpaUtil.Start(exportInfo)
+   return ExportIpaUtil.Start(exportInfo)
 end
 

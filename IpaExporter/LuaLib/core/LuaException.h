@@ -16,12 +16,12 @@
 #include "lualib.h"
 
 //result code
-#define LUA_DLL_OK 0
-#define LUA_DLL_UNKNOW_FAIL 1 //发生未知错误
-#define LUA_DLL_UNEXPECTED 2 //异常
-#define LUA_DLL_MEMORY_OUT 3 //内存不足
-#define LUA_DLL_ERROR 4 //发生编译错误
-#define LUA_DLL_MEMORY_ERROR 5 //访问内存错误
+#define LUA_DLL_OK 10000
+#define LUA_DLL_UNKNOW_FAIL 10001 //发生未知错误
+#define LUA_DLL_UNEXPECTED 10002 //异常
+#define LUA_DLL_MEMORY_OUT 10003 //内存不足
+#define LUA_DLL_ERROR 10004 //发生编译错误
+#define LUA_DLL_MEMORY_ERROR 10005 //访问内存错误
 
 //try .. catch
 #define TRY do{jmp_buf buf; if(!setjmp(buf)){
