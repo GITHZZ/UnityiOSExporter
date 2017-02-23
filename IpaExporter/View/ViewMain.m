@@ -52,21 +52,6 @@
     _platformTbl.delegate = self;
     _platformTbl.dataSource = self;
     
-    //初始化列对象
-    NSArray<NSTableColumn *> *tableColumns = _platformTbl.tableColumns;
-    //以字典中的数量为准
-    for(int i = 0; i < [_dataDict count]; i++)
-    {
-        NSTableColumn *item = tableColumns[i];
-        NSButtonCell *cell = [item dataCellForRow:i];
-        DetailsInfoData *data = [_dataDict objectAtIndex:i];
-        NSString *isSelect = data.isSelected;
-        if(isSelect == nil)
-            isSelect = @"0";
-        
-        [cell setState:[isSelect integerValue]];
-    }
-    
     [self registEvent];
     [[EventManager instance] send:EventViewMainLoaded withData:nil];
 }
@@ -190,6 +175,12 @@
     cell.tag = row;
     cell.title = title;
     
+    NSString *isSelect = info.isSelected;
+    if(isSelect == nil)
+        isSelect = @"0";
+    
+    [cell setState:[isSelect integerValue]];
+    
     return cell;
 }
 
@@ -213,6 +204,7 @@
     //bug:延迟到下一帧取数据
     [self performSelector:@selector(readComboValue:) withObject:[notification object] afterDelay:0];
 }
+
 
 - (void)readComboValue:(id)object
 {
