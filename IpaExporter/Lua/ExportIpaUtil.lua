@@ -39,10 +39,6 @@ local function fileExist(path)
     return false
 end
 
-local function StartExportIpa()
-
-end
-
 --导出ipa包入口
 --projPath:需要导出Unity工程路径
 --exportFolder:需要导出包的工程目录路径
@@ -137,6 +133,7 @@ function MainStart(unityPath, exportFolder, profileName, appName, isRelease)
         ipaName = appName,
     }
     
-   return ExportIpaUtil.Start(exportInfo)
+    return 1
+   --return ExportIpaUtil.Start(exportInfo)
 end
 

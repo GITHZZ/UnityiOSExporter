@@ -58,14 +58,20 @@
         else
         {
             keyStr = [data getValueForKey:key];
+            
             //需要特殊处理的
             if([key isEqualToString:Frameworks_Key])
+            {
+                NSString *newStr = [self createCSClassStr:@"FrameworkSet" withArgsStr:keyStr];
+                keyStr = newStr;
+            }
+            else if([key isEqualToString:libs_Key])
             {
                 [keyStr stringByReplacingOccurrencesOfString:@"|"
                                                   withString:@","];
             }
-            
         }
+        
         [result replaceOccurrencesOfString:[NSString stringWithFormat:@"${%@}", key]
                                   withString:keyStr
                                      options:NSLiteralSearch
@@ -86,6 +92,25 @@
         NSLog(@"%@", error);
         NSLog(@"%@", [error userInfo]);
     }
+}
+
+//argsStr: 格式 args1,args2
+- (NSString*) createCSClassStr:(NSString*)className withArgsStr:(NSString*)argsStr
+{
+    NSArray<NSString*> *argsArr = [argsStr componentsSeparatedByString:@"|"];
+    NSString *newStr = [[NSString alloc] init];
+    
+    for (int i = 0; i < [argsArr count]; i++)
+    {
+        NSString *str = argsArr[i];
+        NSString *classStr = [NSString stringWithFormat:@"new %@(%@)", className, str];
+        if(i == [argsArr count] - 1)
+            newStr = [newStr stringByAppendingFormat:@"%@", classStr];
+        else
+            newStr = [newStr stringByAppendingFormat:@"%@,\n", classStr];
+    }
+
+    return newStr;
 }
 
 @end

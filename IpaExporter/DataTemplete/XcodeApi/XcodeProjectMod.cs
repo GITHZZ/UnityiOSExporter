@@ -16,24 +16,12 @@ using System.IO;
 /// </summary>
 public class XcodeProjectMod : MonoBehaviour
 {
-
-	//設定データのパス
-	private const string SETTING_DATA_PATH = "XcodeProjectSetting";
-
 	//ビルド後に呼ばれる
 	[PostProcessBuild]
-	private static void OnPostprocessBuild(BuildTarget buildTarget, string buildPath){
-
+	private static void OnPostprocessBuild(BuildTarget buildTarget, string buildPath)
+    {
 		//iOS以外にビルドしている場合は更新処理を行わないように
 		if (buildTarget != BuildTarget.iOS){
-			return;
-		}
-
-		//Xcodeの設定データを読み込む
-		XcodeProjectSetting setting = Resources.Load<XcodeProjectSetting>(SETTING_DATA_PATH);
-		if(setting == null){
-			Debug.Log ("Resources/" + SETTING_DATA_PATH + "不存在,请查看文件是否建立");
-			//Debug.Log ("Resources/" + SETTING_DATA_PATH + "がありません！");
 			return;
 		}
 

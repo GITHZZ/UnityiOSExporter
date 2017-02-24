@@ -30,6 +30,7 @@
 #define Libker_Flag @"libkerFlag"
 #define Copy_Dir_Path @"cDirectoryPath"
 #define Is_Selected @"isSelected"
+#define Development_Info @"developmentInfo"
 
 typedef struct
 {

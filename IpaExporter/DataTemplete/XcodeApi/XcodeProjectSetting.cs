@@ -5,8 +5,8 @@ using System.Collections.Generic;
 /// <summary>
 /// Xcodeのプロジェクトを書き出す際の設定値
 /// </summary>
-public class XcodeProjectSetting : ScriptableObject {
-
+public class XcodeProjectSetting  
+{
     public enum DevelopType {
         Debug = 1,
         Release = 2,
@@ -78,9 +78,11 @@ public class XcodeProjectSetting : ScriptableObject {
 		}
 	}
 	public List<DevelopmentInfo> developmentInfoList = new List<DevelopmentInfo>(){
+		/*new DevelopmentInfo()*/
+        ${developmentInfo}
 	};
 
-	//framework 
+	//framework
 	public struct FrameworkSet{
 		public string content;
 		public bool weak;
@@ -96,6 +98,7 @@ public class XcodeProjectSetting : ScriptableObject {
         ${frameworks}
     };
 
+    //libs
 	public List<string> LibsList = new List<string>(){
 		//libsqlite3.0.tbd
 		${libs}
@@ -103,6 +106,7 @@ public class XcodeProjectSetting : ScriptableObject {
 		
 	public string[] LinkerFlagArray = new string[]{
 		/*"-ObjC", "-all_load"*/ //初期設定例
+		${libkerFlag}
 	};
 	
 	public string[] FrameworkSearchPathArray = new string[]{
