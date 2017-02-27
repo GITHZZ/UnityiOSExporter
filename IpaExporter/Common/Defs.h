@@ -28,7 +28,7 @@
 #define Frameworks_Key @"frameworks"
 #define libs_Key @"libs"
 #define Libker_Flag @"libkerFlag"
-#define Copy_Dir_Path @"cDirectoryPath"
+#define Copy_Dir_Path @"copyDirectoryPath"
 #define Is_Selected @"isSelected"
 #define Development_Info @"developmentInfo"
 

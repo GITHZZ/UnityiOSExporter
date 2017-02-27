@@ -146,7 +146,7 @@
     [self close];
     
     //删除文件夹
-    [[DataResManager instance] end];
+    //[[DataResManager instance] end];
     
     //----for end 
     showLog("*打包结束");

@@ -63,18 +63,18 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[ViewMain viewDidLoad]:ViewMain.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "[tableColumns count]">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "-[ViewMain comboBoxSelectionDidChange:]:ViewMain.m">
          <PersistentStrings>
             <PersistentString
                value = "comboBox.stringValue">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ViewMain viewDidLoad]:ViewMain.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[tableColumns count]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -134,6 +134,14 @@
             </PersistentString>
             <PersistentString
                value = "tableView.selectedRowIndexes">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[DetailsInfoData getValueForKey:]:DetailsInfoData.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[self valueForKey:key]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

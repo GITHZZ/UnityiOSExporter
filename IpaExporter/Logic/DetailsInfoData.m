@@ -60,11 +60,15 @@
         if([varName isEqualToString:keyName])
         {
             free(ivars);
-            return [self valueForKey:key];
+            NSString *result = [self valueForKey:key];
+            if(!result)
+                result = @"";
+            
+            return result;
         }
     }
     
-    NSLog(@"不存在Key%@的属性变量", key);
+    NSLog(@"不存在Key:%@的属性变量", key);
     free(ivars);
     return @"";
 }

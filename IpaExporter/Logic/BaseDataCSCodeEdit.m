@@ -67,8 +67,8 @@
             }
             else if([key isEqualToString:libs_Key])
             {
-                [keyStr stringByReplacingOccurrencesOfString:@"|"
-                                                  withString:@","];
+                keyStr = [keyStr stringByReplacingOccurrencesOfString:@"|"
+                                                           withString:@","];
             }
         }
         
