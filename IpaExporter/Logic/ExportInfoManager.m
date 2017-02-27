@@ -91,16 +91,16 @@
     
     if([_unityProjPathArr count] > 5)
     {
-        [_unityProjPathArr removeLastObject];
+        [_unityProjPathArr removeObjectAtIndex:0];
     }
 }
 
 - (void)replaceUnityProjPath:(NSString*)path
 {
     NSUInteger index = [_unityProjPathArr indexOfObject:path];
-    id fristObj = [_unityProjPathArr objectAtIndex:0];
-    [_unityProjPathArr replaceObjectAtIndex:0 withObject:path];
-    [_unityProjPathArr replaceObjectAtIndex:index withObject:fristObj];
+    id lastObj = [_unityProjPathArr lastObject];
+    [_unityProjPathArr replaceObjectAtIndex:[_unityProjPathArr count] - 1 withObject:path];
+    [_unityProjPathArr replaceObjectAtIndex:index withObject:lastObj];
 }
 
 - (void)addNewExportProjPath:(NSString *)path

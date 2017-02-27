@@ -21,7 +21,12 @@
 - (void)viewDidLoad
 {
     [self startUp];
-    
+    [self registEvent];
+    [[EventManager instance] send:EventViewMainLoaded withData:nil];
+}
+
+- (void)startUp
+{
     [[ExportInfoManager instance] reloadPaths];
     
     ExportInfo* info = [ExportInfoManager instance].info;
@@ -32,14 +37,14 @@
     
     if ([unityProjPathArr count] > 0)
     {
-        _unityPathBox.stringValue = (NSString*)[unityProjPathArr objectAtIndex:0];
+        _unityPathBox.stringValue = (NSString*)[unityProjPathArr lastObject];
         info->unityProjPath = [_unityPathBox.stringValue UTF8String];
         [_unityPathBox addItemsWithObjectValues:unityProjPathArr];
     }
     
     if ([exportPathArr count] > 0)
     {
-        _exportPathBox.stringValue = (NSString*)[exportPathArr objectAtIndex:0];
+        _exportPathBox.stringValue = (NSString*)[exportPathArr lastObject];
         info->exportFolderParh = [_exportPathBox.stringValue UTF8String];
         [_exportPathBox addItemsWithObjectValues:exportPathArr];
     }
@@ -51,13 +56,6 @@
     //设置数据源
     _platformTbl.delegate = self;
     _platformTbl.dataSource = self;
-    
-    [self registEvent];
-    [[EventManager instance] send:EventViewMainLoaded withData:nil];
-}
-
-- (void)startUp
-{
 }
 
 - (void)registEvent
