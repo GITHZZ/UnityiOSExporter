@@ -63,7 +63,7 @@
             NSString *result = [self valueForKey:key];
             if(!result)
                 result = @"";
-            
+        
             return result;
         }
     }

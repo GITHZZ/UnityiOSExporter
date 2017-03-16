@@ -1,28 +1,53 @@
 local ExportIpaUtil = {
-	name = "ios打包脚本",
-	description = "ios打包工具主逻辑,用于导出ipa文件",
-	author = "hezunzu",	
+    name = "ios打包脚本",
+    description = "ios打包工具主逻辑,用于导出ipa文件",
+    author = "hezunzu", 
 }
 
---enum
-local ENUM_PROFILE_TYPE = {
-    develop = 1,
-    publish = 2,
-}
+local lfs = require("lfs")
+local PWD = lfs.currentdir()
 
---local var
+
+--#############################需要个人配置部分###################################
+--unity开发路径
+local unity_project_path = PWD
+--导出目录路径
+local export_folder_path = PWD .. "/build"
+--xcode项目名称
+local xcode_proj_name = "XcodeProjectUpdater"
+--导出包名称
+local app_name = "test"
+--需要调用C#的静态方法
+--[[
+    PS:如果需要传参数参考也有 但是在C#上取代码如下
+    string[] strs = System.Environment.GetCommandLineArgs(); 
+    if(s.Contains("-args")){
+        string arg = s.Split(':')[1];
+        //处理参数//
+    }
+]]
+--导出ipa的Xcode项目路径
+local export_project_path = export_folder_path .. "/" .. xcode_proj_name
+local export_func = string.format("Builder.BuildApp -args:%s", export_project_path) 
+
+local build_config = "Debug" --"Debug"
+--############################################################################
+
+--log文件
+local log_file_path = export_folder_path .. "/export.log"
+
 local proj_scheme_name = "Unity-iPhone"
 
 --Command
 local cmd_export_xcode = "/Applications/Unity/Unity.app/Contents/MacOS/Unity -buildTarget Ios -batchmode -quit -projectPath %s -executeMethod %s -logFile %s"
-local cmd_clean_xcode_proj = "xcodebuild clean -scheme %s"
-local cmd_export_archive = "xcodebuild -project %s.xcodeproj -scheme %s -destination generic/platform=ios archive -archivePath bin/%s.xcarchive"
+local cmd_clean_xcode_proj = "xcodebuild clean -scheme %s -configuration %s"
+local cmd_export_archive = "xcodebuild -project %s.xcodeproj -scheme %s -destination generic/platform=ios archive -archivePath bin/%s.xcarchive -configuration %s"
 --sdk iphoneos build PROVISIONING_PROFILE=%s
 local cmd_export_ipa = "xcodebuild -exportArchive -exportFormat ipa -archivePath %s -exportPath %s/%s.ipa"
 
 --setup pbxproj file
 --%s export project path
-local cmd_set_pbxproj = "sed -i '' 's/ProvisioningStyle = Automatic;ProvisioningStyle = Manual;/g'%s"
+local cmd_set_pbxproj = "sed -i '' 's/ProvisioningStyle = Automatic;/ProvisioningStyle = Manual;/g' \"%s\""
 
 --local function
 local function printTip(content)
@@ -45,41 +70,37 @@ end
 --exportType:导出包的类型
 --ipaName:导出包名字
 --profilePath:开发或发布证书路径
-ExportIpaUtil.Start = function(exportInfoTbl)
+ExportIpaUtil.Start = function()
     local startTime = os.clock()
 
-    --base
-    local projPath = exportInfoTbl.projectPath
-    local exportFolder = exportInfoTbl.exportPath
-    local exportType = exportInfoTbl.exportType --debug/release
-    local ipaName = exportInfoTbl.ipaName
-    local profileName = exportInfoTbl.profile --exportInfoTbl.exportPath
-
-    local exportIpaName = ipaName .. os.date("%y%m%d_%H%M%S")
+    local exportIpaName = app_name .. os.date("%y%m%d_%H%M%S")
     local archivePath = string.format("bin/%s.xcarchive", proj_scheme_name)
-    local xcodePath = exportFolder .. "/ExportProj_"
+    local pbxprojPath = export_project_path .. "/Unity-iPhone.xcodeproj/project.pbxproj"
 
     --info log
     printLine()
     print("iOS打包工具")
-    print("Unity开发工程路径:" .. projPath)
-    print("Xcode项目导出路径:" .. exportFolder)
-    print("证书类型:" .. exportType)
-    print("导出包名字:" .. exportIpaName)
+    print("Unity开发工程路径:" .. unity_project_path)
+    print("Xcode项目导出路径:" .. export_project_path)
+    print("证书类型:" .. build_config)
+    print("导出包名字:" .. app_name)
     printLine()
 
     --导出xcode工程
     print("正在导出Xcode工程...")
-    os.execute(string.format(cmd_export_xcode, projPath, "IpaExporter.Builder.BuildApp", exportFolder))
+    os.execute(string.format(cmd_export_xcode, unity_project_path, export_func, log_file_path))
     print("导出Xcode工程完毕...")
 
     --处理xcode工程中的pbxproj文件(兼容xcode8)
-    os.execute(string.format(cmd_set_pbxproj, xcodePath))
+    print("开始处理pbxproj文件:" .. pbxprojPath)
+    local cammond = string.format(cmd_set_pbxproj, pbxprojPath)
+    print(cammond)
+    os.execute(cammond)
 
     --访问Xcode工程
     printLine()
-    print("访问Xcode工程, 访问路径:" .. xcodePath)
-    local isSuccess, err = lfs.chdir(xcodePath)
+    print("访问Xcode工程, 访问路径:" .. export_project_path)
+    local isSuccess, err = lfs.chdir(export_project_path)
     if not isSuccess and err then
         print("访问Xcode工程失败, 错误信息:" .. err)
         return 0
@@ -87,12 +108,12 @@ ExportIpaUtil.Start = function(exportInfoTbl)
 
     --清除Xcode工程
     print("开始清除Xcode项目信息")
-    os.execute(string.format(cmd_clean_xcode_proj, proj_scheme_name))
+    os.execute(string.format(cmd_clean_xcode_proj, proj_scheme_name, build_config))
     print("清除项目成功")
 
     --创建archive文件
     print("开始创建archive文件")
-    os.execute(string.format(cmd_export_archive, proj_scheme_name, proj_scheme_name, proj_scheme_name))
+    os.execute(string.format(cmd_export_archive, proj_scheme_name, proj_scheme_name, proj_scheme_name, build_config))
 
     --查找生成的archive文件
     if(fileExist(archivePath)) then
@@ -104,8 +125,8 @@ ExportIpaUtil.Start = function(exportInfoTbl)
 
     --开始生成ipa包
     print("开始生成ipa包")
-    os.execute(string.format(cmd_export_ipa, profilePath, archivePath, exportFolder, exportIpaName))
-    print("生成ipa结束,路径:" .. exportFolder)
+    os.execute(string.format(cmd_export_ipa, archivePath, export_folder_path, exportIpaName))
+    print("生成ipa结束,路径:" .. export_folder_path .. "/" .. exportIpaName)
  
     --计算生成时间
     local endTime = os.clock()
@@ -116,24 +137,7 @@ ExportIpaUtil.Start = function(exportInfoTbl)
     return 1;
 end
 
---lua export main
-function MainStart(unityPath, exportFolder, profileName, appName, isRelease)
-    if unityPath == "" or exportFolder == "" then
-        print("路径参数不能为空~~.")
-        print("unityPath:" .. unityPath)
-        print("exportFolder:" .. exportFolder)
-        return 0
-    end
-    
-    local exportInfo = {
-        projectPath = unityPath,
-        exportPath = exportFolder,
-        profile = profileName,--"ZZSJDevelopment"
-        exportType = 0,
-        ipaName = appName,
-    }
-    
-    return 1
-   --return ExportIpaUtil.Start(exportInfo)
-end
+if ExportIpaUtil.Start() == 0 then
+    print("导出ipa失败")
+end 
 

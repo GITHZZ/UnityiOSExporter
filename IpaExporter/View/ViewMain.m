@@ -22,6 +22,7 @@
 {
     [self startUp];
     [self registEvent];
+    
     [[EventManager instance] send:EventViewMainLoaded withData:nil];
 }
 

@@ -17,7 +17,7 @@ public class XcodeProjectSetting
 	//=================================================================================
 
 	//パスを設定する際のプロジェクトのルート
-	public const string PROJECT_ROOT = "$(PROJECT_DIR)/";
+	//public const string PROJECT_ROOT = "$(PROJECT_DIR)/";
 
 	//Images.xcassetsが入っているディレクトリ名
 	public const string IMAGE_XCASSETS_DIRECTORY_NAME = "Unity-iPhone";

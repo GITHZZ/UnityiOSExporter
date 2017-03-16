@@ -8,7 +8,8 @@ namespace IpaExporter
 	public class Builder
 	{
 		static string[] LEVELS = new string[] {
-			"Assets/LuaFramework/Scenes/main.unity"
+			${packScene}
+            //"Assets/LuaFramework/Scenes/main.unity"
 		};
 
 		static void BuildApp()
