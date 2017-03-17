@@ -14,9 +14,9 @@ local unity_project_path = PWD
 --导出目录路径
 local export_folder_path = PWD .. "/build"
 --xcode项目名称
-local xcode_proj_name = "XcodeProjectUpdater"
+local xcode_proj_name = "_ExportProj"
 --导出包名称
-local app_name = "test"
+local app_name = "NoName"
 --需要调用C#的静态方法
 --[[
     PS:如果需要传参数参考也有 但是在C#上取代码如下
@@ -71,7 +71,7 @@ end
 --ipaName:导出包名字
 --profilePath:开发或发布证书路径
 ExportIpaUtil.Start = function()
-    local startTime = os.clock()
+    local startTime = os.time()
 
     local exportIpaName = app_name .. os.date("%y%m%d_%H%M%S")
     local archivePath = string.format("bin/%s.xcarchive", proj_scheme_name)
@@ -129,7 +129,7 @@ ExportIpaUtil.Start = function()
     print("生成ipa结束,路径:" .. export_folder_path .. "/" .. exportIpaName)
  
     --计算生成时间
-    local endTime = os.clock()
+    local endTime = os.time()
     local pastTime = endTime - startTime
 
     print(string.format("导出ipa结束,总共耗时:%s分%s秒", math.fmod(math.floor(pastTime/60), 60), math.fmod(pastTime, 60)))
@@ -137,7 +137,16 @@ ExportIpaUtil.Start = function()
     return 1;
 end
 
-if ExportIpaUtil.Start() == 0 then
-    print("导出ipa失败")
-end 
+function ExportMain(projPath, exportFolder, appName)
+    
+    --set up export info
+    unity_project_path = projPath
+    export_folder_path = exportFolder .. "/build"
+    app_name = appName
+    
+    --start export
+    if ExportIpaUtil.Start() == 0 then
+        print("导出ipa失败")
+    end
+end
 

@@ -98,7 +98,7 @@
 - (BOOL)callLuaMain:(DetailsInfoData*)data
 {
     ExportInfoManager* view = [ExportInfoManager instance];
-    get_call_lua_func(L, "MainStart");
+    get_call_lua_func(L, "ExportMain");
     push_lua_string_args(L,
                          4,
                          view.info->unityProjPath,
