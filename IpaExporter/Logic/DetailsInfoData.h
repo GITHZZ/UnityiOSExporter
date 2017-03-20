@@ -23,6 +23,10 @@
 @property(readonly) NSString* cDirectoryPath;
 @property(readonly) NSString* libkerFlag;
 @property(readonly) NSString* libs;
+@property(readonly) NSString* debugProfileName;
+@property(readonly) NSString* debugDevelopTeam;
+@property(readonly) NSString* releaseProfileName;
+@property(readonly) NSString* releaseDevelopTeam;
 
 - (id)initWithInfoDict:(NSDictionary*) dic;
 - (void)setValueForKey:(NSString*)key withObj:(id)obj;

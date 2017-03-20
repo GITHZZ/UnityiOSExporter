@@ -17,7 +17,7 @@ public class XcodeProjectSetting
 	//=================================================================================
 
 	//パスを設定する際のプロジェクトのルート
-	//public const string PROJECT_ROOT = "$(PROJECT_DIR)/";
+	public const string PROJECT_ROOT = "$(PROJECT_DIR)/";
 
 	//Images.xcassetsが入っているディレクトリ名
 	public const string IMAGE_XCASSETS_DIRECTORY_NAME = "Unity-iPhone";
@@ -55,7 +55,7 @@ public class XcodeProjectSetting
 	//=================================================================================
 
 	//Xcodeへコピーするディレクトリへのパス
-    public string CopyDirectoryPath = ${copyDirectoryPath};
+    public string CopyDirectoryPath = "";//${copyDirectoryPath}
 
 	//URL identifier
 	public string URLIdentifier = "";
@@ -79,7 +79,8 @@ public class XcodeProjectSetting
 	}
 	public List<DevelopmentInfo> developmentInfoList = new List<DevelopmentInfo>(){
 		/*new DevelopmentInfo()*/
-        ${developmentInfo}
+        ${developmentInfo1}
+        ${developmentInfo2}
 	};
 
 	//framework
@@ -95,18 +96,18 @@ public class XcodeProjectSetting
 	}
 	public List<FrameworkSet> FrameworkList = new List<FrameworkSet>(){
         /*new FrameworkSet("Social.framework", true)*/ //初期設定例
-        ${frameworks}
+        //${frameworks}
     };
 
     //libs
 	public List<string> LibsList = new List<string>(){
 		//libsqlite3.0.tbd
-		${libs}
+		//${libs}
 	};
 		
 	public string[] LinkerFlagArray = new string[]{
 		/*"-ObjC", "-all_load"*/ //初期設定例
-		${libkerFlag}
+		//${libkerFlag}
 	};
 	
 	public string[] FrameworkSearchPathArray = new string[]{

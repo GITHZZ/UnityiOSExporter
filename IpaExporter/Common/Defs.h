@@ -30,12 +30,16 @@
 #define Libker_Flag @"libkerFlag"
 #define Copy_Dir_Path @"cDirectoryPath"
 #define Is_Selected @"isSelected"
-#define Development_Info @"developmentInfo"
+#define Debug_Profile_Name @"debugProfileName"
+#define Debug_Develop_Team @"debugDevelopTeam"
+#define Release_Profile_Name @"releaseProfileName"
+#define Release_Develop_Team @"releaseDevelopTeam"
 
 typedef struct
 {
     const char* unityProjPath;
     const char* exportFolderParh;
+    int isRelease;
 }ExportInfo;
 
 #endif /* Defs_h */

@@ -18,6 +18,7 @@
 @property (nonatomic, weak) IBOutlet NSComboBox* unityPathBox;
 @property (nonatomic, weak) IBOutlet NSComboBox* exportPathBox;
 @property (weak) IBOutlet NSTableView *platformTbl;
+@property (weak) IBOutlet NSButton *isReleaseBox;
 
 - (IBAction)sureBtnClick:(id)sender;
 - (IBAction)unityPathSelect:(id)sender;

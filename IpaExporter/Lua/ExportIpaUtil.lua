@@ -7,7 +7,6 @@ local ExportIpaUtil = {
 local lfs = require("lfs")
 local PWD = lfs.currentdir()
 
-
 --#############################需要个人配置部分###################################
 --unity开发路径
 local unity_project_path = PWD
@@ -27,8 +26,7 @@ local app_name = "NoName"
     }
 ]]
 --导出ipa的Xcode项目路径
-local export_project_path = export_folder_path .. "/" .. xcode_proj_name
-local export_func = string.format("Builder.BuildApp -args:%s", export_project_path) 
+local export_project_path = "";
 
 local build_config = "Debug" --"Debug"
 --############################################################################
@@ -39,7 +37,7 @@ local log_file_path = export_folder_path .. "/export.log"
 local proj_scheme_name = "Unity-iPhone"
 
 --Command
-local cmd_export_xcode = "/Applications/Unity/Unity.app/Contents/MacOS/Unity -buildTarget Ios -batchmode -quit -projectPath %s -executeMethod %s -logFile %s"
+local cmd_export_xcode = "/Applications/Unity/Unity.app/Contents/MacOS/Unity -buildTarget Ios -batchmode -quit -projectPath %s -executeMethod %s"
 local cmd_clean_xcode_proj = "xcodebuild clean -scheme %s -configuration %s"
 local cmd_export_archive = "xcodebuild -project %s.xcodeproj -scheme %s -destination generic/platform=ios archive -archivePath bin/%s.xcarchive -configuration %s"
 --sdk iphoneos build PROVISIONING_PROFILE=%s
@@ -77,9 +75,11 @@ ExportIpaUtil.Start = function()
     local archivePath = string.format("bin/%s.xcarchive", proj_scheme_name)
     local pbxprojPath = export_project_path .. "/Unity-iPhone.xcodeproj/project.pbxproj"
 
+    local export_func = string.format("IpaExporter.Builder.BuildApp -args:%s", export_project_path)
+
     --info log
     printLine()
-    print("iOS打包工具")
+    print("iOS打包信息")
     print("Unity开发工程路径:" .. unity_project_path)
     print("Xcode项目导出路径:" .. export_project_path)
     print("证书类型:" .. build_config)
@@ -93,9 +93,7 @@ ExportIpaUtil.Start = function()
 
     --处理xcode工程中的pbxproj文件(兼容xcode8)
     print("开始处理pbxproj文件:" .. pbxprojPath)
-    local cammond = string.format(cmd_set_pbxproj, pbxprojPath)
-    print(cammond)
-    os.execute(cammond)
+    os.execute(string.format(cmd_set_pbxproj, pbxprojPath))
 
     --访问Xcode工程
     printLine()
@@ -137,13 +135,19 @@ ExportIpaUtil.Start = function()
     return 1;
 end
 
-function ExportMain(projPath, exportFolder, appName)
-    
+function ExportMain(projPath, exportFolder, appName, buildConfig)
     --set up export info
     unity_project_path = projPath
-    export_folder_path = exportFolder .. "/build"
+    export_folder_path = exportFolder
     app_name = appName
     
+    if buildConfig == 1 then
+        build_config = "Release"
+    else
+        build_config = "Debug"
+    end
+    
+    export_project_path = export_folder_path .. "/" .. xcode_proj_name
     --start export
     if ExportIpaUtil.Start() == 0 then
         print("导出ipa失败")

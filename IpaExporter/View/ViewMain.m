@@ -57,6 +57,8 @@
     //设置数据源
     _platformTbl.delegate = self;
     _platformTbl.dataSource = self;
+    
+    _isReleaseBox.state = 0;
 }
 
 - (void)registEvent
@@ -249,6 +251,12 @@
     [[_infoLabel textStorage] appendAttributedString:addString];
     
     [_infoLabel scrollRectToVisible:CGRectMake(0, _infoLabel.textContainer.size.height-15, _infoLabel.textContainer.size.width, 10)];
+}
+
+- (IBAction)isReleaseBtnSelect:(id)sender
+{
+    ExportInfo* info = [ExportInfoManager instance].info;
+    info->isRelease = (int)_isReleaseBox.state;
 }
 
 @end

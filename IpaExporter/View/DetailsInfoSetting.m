@@ -48,8 +48,10 @@
     
     _appName.stringValue = [_info getValueForKey:App_Name_Key];
     _appID.stringValue = [_info getValueForKey:App_ID_Key];
-    _codeSignIdentity.stringValue = [_info getValueForKey:Code_Sign_Identity_Key];
-    _provisioningProfile.stringValue = [_info getValueForKey:Provisioning_Profile_key];
+    _debugProfileName.stringValue = [_info getValueForKey:Debug_Profile_Name];
+    _debugDevelopTeam.stringValue = [_info getValueForKey:Debug_Develop_Team];
+    _releaseProfileName.stringValue = [_info getValueForKey:Release_Profile_Name];
+    _releaseDevelopTeam.stringValue = [_info getValueForKey:Release_Develop_Team];
     _platform.stringValue = [_info getValueForKey:Platform_Name];
     _frameworks.stringValue = [_info getValueForKey:Frameworks_Key];
     _cDirPath.stringValue = [_info getValueForKey:Copy_Dir_Path];
@@ -59,15 +61,17 @@
 {
     NSString* appName = _appName.stringValue;
     NSString* appID = _appID.stringValue;
-    NSString* codeSignIdentity = _codeSignIdentity.stringValue;
-    NSString* provisioning = _provisioningProfile.stringValue;
+    NSString* debugProfileName = _debugProfileName.stringValue;
+    NSString* debugDevelopTeam = _debugDevelopTeam.stringValue;
+    NSString* releaseProfileName = _releaseProfileName.stringValue;
+    NSString* releaseDevelopTeam = _releaseDevelopTeam.stringValue;
     NSString* platform = _platform.stringValue;
     NSString* frameworks = _frameworks.stringValue;
     NSString* cDirPath = _cDirPath.stringValue;
     
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:appName, App_Name_Key,
-                          appID, App_ID_Key, codeSignIdentity, Code_Sign_Identity_Key,
-                          provisioning, Provisioning_Profile_key, platform, Platform_Name,
+                          appID, App_ID_Key, debugProfileName, Debug_Profile_Name,
+                          debugDevelopTeam, Debug_Develop_Team, releaseProfileName, Release_Profile_Name, releaseDevelopTeam, Release_Develop_Team, platform, Platform_Name,
                           frameworks, Frameworks_Key, cDirPath, Copy_Dir_Path, @"0", Is_Selected ,nil];
 
     DetailsInfoData* info = [[DetailsInfoData alloc] initWithInfoDict:dict];

@@ -43,6 +43,7 @@
  */
 - (void)replaceVarFromData:(DetailsInfoData*)data withKeyArr:(NSArray*)keyArr
 {
+    NSString *replaceFormat = @"\"%@\"";
     NSMutableString* result = [NSMutableString stringWithString:_content];
     for(int i = 0; i < [keyArr count]; i++)
     {
@@ -70,10 +71,32 @@
                 keyStr = [keyStr stringByReplacingOccurrencesOfString:@"|"
                                                            withString:@","];
             }
+            else if([key isEqualToString:Debug_Profile_Name])
+            {
+                NSString *profileName = keyStr;
+                NSString *teamName = [data getValueForKey:Debug_Develop_Team];
+                i++;
+                
+                NSString *args = [NSString stringWithFormat:@"DevelopType.Debug, \"%@\",\"%@\"", teamName, profileName];
+                keyStr = [self createCSClassStr:@"DevelopmentInfo" withArgsStr:args];
+                key = @"developmentInfo1";
+                replaceFormat = @"%@";
+            }
+            else if([key isEqualToString:Release_Profile_Name])
+            {
+                NSString *profileName = keyStr;
+                NSString *teamName = [data getValueForKey:Release_Develop_Team];
+                i++;
+                
+                NSString *args = [NSString stringWithFormat:@"DevelopType.Release, \"%@\",\"%@\"", teamName, profileName];
+                keyStr = [self createCSClassStr:@"DevelopmentInfo" withArgsStr:args];
+                key = @"developmentInfo2";
+                replaceFormat = @"%@";
+            }
         }
         
         [result replaceOccurrencesOfString:[NSString stringWithFormat:@"${%@}", key]
-                                  withString:keyStr
+                                  withString:[NSString stringWithFormat:replaceFormat, keyStr]
                                      options:NSLiteralSearch
                                        range:NSMakeRange(0, [result length])];
 
@@ -103,7 +126,7 @@
     for (int i = 0; i < [argsArr count]; i++)
     {
         NSString *str = argsArr[i];
-        NSString *classStr = [NSString stringWithFormat:@"new %@(%@)", className, str];
+        NSString *classStr = [NSString stringWithFormat:@"new %@(%@),", className, str];
         if(i == [argsArr count] - 1)
             newStr = [newStr stringByAppendingFormat:@"%@", classStr];
         else

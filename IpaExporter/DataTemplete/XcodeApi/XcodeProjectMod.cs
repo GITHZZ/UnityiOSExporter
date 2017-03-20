@@ -25,6 +25,8 @@ public class XcodeProjectMod : MonoBehaviour
 			return;
 		}
 
+		XcodeProjectSetting setting = new XcodeProjectSetting ();
+
 		//Xcodeプロジェクトの読み込み
 		string pbxProjPath = PBXProject.GetPBXProjectPath(buildPath);
 		PBXProject pbxProject = new PBXProject();
@@ -86,7 +88,7 @@ public class XcodeProjectMod : MonoBehaviour
 		//如果用到脚本工具打包并且需要兼容xcode8 这块代码需要用上
 		//并且脚本代码需要将自动模式改成手动模式
 		//sed指令:sed -i '' 's/ProvisioningStyle = Automatic;ProvisioningStyle = Manual;/g'%s
-		//SetUpDevelopmentInfo (pbxProject, setting, targetGuid);
+		SetUpDevelopmentInfo (pbxProject, setting, targetGuid);
 		
 		//プロジェクトファイル書き出し
 		File.WriteAllText(pbxProjPath, pbxProject.WriteToString());
@@ -114,7 +116,7 @@ public class XcodeProjectMod : MonoBehaviour
 		string releaseConfig = pbxProject.BuildConfigByName (targetGuid, "Release");
 
 		foreach (XcodeProjectSetting.DevelopmentInfo info in setting.developmentInfoList) {
-			if (info.tag == DevelopType.Debug) {
+			if (info.tag == XcodeProjectSetting.DevelopType.Debug) {
 				pbxProject.SetBuildPropertyForConfig (debugConfig, XcodeProjectSetting.PROVISIONING_PROFILE_SPECIFIER, info.provisioningProfileName);
 				pbxProject.SetBuildPropertyForConfig (debugConfig, XcodeProjectSetting.DEVELOPMENT_TEAM, info.developmentTeam);
 				pbxProject.SetBuildPropertyForConfig (debugConfig, "CODE_SIGN_IDENTITY[sdk=iphoneos*]", "iPhone Developer");

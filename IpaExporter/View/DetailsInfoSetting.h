@@ -16,12 +16,14 @@
 @property (nonatomic, weak) IBOutlet NSTextField *platform;
 @property (nonatomic, weak) IBOutlet NSTextField *appName;
 @property (nonatomic, weak) IBOutlet NSTextField *appID;
-@property (nonatomic, weak) IBOutlet NSTextField *codeSignIdentity;
-@property (nonatomic, weak) IBOutlet NSTextField *provisioningProfile;
+@property (nonatomic, weak) IBOutlet NSTextField *debugProfileName;
+@property (nonatomic, weak) IBOutlet NSTextField *debugDevelopTeam;
+@property (nonatomic, weak) IBOutlet NSTextField *releaseProfileName;
+@property (nonatomic, weak) IBOutlet NSTextField *releaseDevelopTeam;
 @property (nonatomic, weak) IBOutlet NSTextField *frameworks;
 @property (nonatomic, weak) IBOutlet NSComboBox *cDirPath;
-@property (weak) IBOutlet NSView *detailView;
-@property (weak) IBOutlet NSButton *sureBtn;
+@property (nonatomic, weak) IBOutlet NSView *detailView;
+@property (nonatomic, weak) IBOutlet NSButton *sureBtn;
 
 - (void)setUpDataInfoOnShow:(DetailsInfoData*)info;
 

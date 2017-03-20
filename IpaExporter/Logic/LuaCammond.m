@@ -100,14 +100,13 @@
     ExportInfoManager* view = [ExportInfoManager instance];
     get_call_lua_func(L, "ExportMain");
     push_lua_string_args(L,
-                         4,
+                         3,
                          view.info->unityProjPath,
                          view.info->exportFolderParh,
-                         [data.provisioningProfile UTF8String],
                          [data.appName UTF8String]);
-    push_lua_boolean_args(L, 1, 0);
+    push_lua_boolean_args(L, 1, view.info->isRelease);
     
-    int result = start_call_lua_main(L, 5);
+    int result = start_call_lua_main(L, 4);
     if(result == LUA_DLL_ERROR){
         showError("*调用脚本出错,导出失败");
         return NO;
@@ -118,7 +117,6 @@
 - (void)startExport
 {
     showLog("*开始打包");
-    
     ExportInfoManager* view = [ExportInfoManager instance];
     NSMutableArray* detailArray = view.detailArray;
     
@@ -147,8 +145,8 @@
     
     //删除文件夹
     //[[DataResManager instance] end];
+    //----for end
     
-    //----for end 
     showLog("*打包结束");
 }
 
