@@ -16,20 +16,6 @@
 
 @implementation ExportInfoManager
 
-+ (ExportInfoManager*)instance
-{
-    static ExportInfoManager* s_instance = nil;
-    if(nil == s_instance)
-    {
-        @synchronized (self)
-        {
-            s_instance = [[self alloc] init];
-        }
-    }
-    
-    return s_instance;
-}
-
 - (void)dealloc
 {
     free(_info);

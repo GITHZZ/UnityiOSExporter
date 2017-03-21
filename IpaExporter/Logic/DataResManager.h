@@ -9,8 +9,9 @@
 
 #import <Foundation/Foundation.h>
 #import "Common.h"
+#import "Singletion.h"
 
-@interface DataResManager : NSObject
+@interface DataResManager : Singletion
 {
     BOOL _isStarting;
     NSString* _srcPath;
@@ -19,7 +20,6 @@
     NSFileManager* _fileManager;
 }
 
-+ (DataResManager*) instance;
 - (void)start:(ExportInfo*) info;
 - (void)end;
 

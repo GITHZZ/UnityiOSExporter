@@ -10,19 +10,6 @@
 
 @implementation EventManager
 
-+ (id)instance
-{
-    static EventManager* s_instance = nil;
-    if(nil == s_instance)
-    {
-        @synchronized (self)
-        {
-            if(nil == s_instance)
-                s_instance = [[self alloc] init];
-        }
-    }
-    return s_instance;
-}
 
 - (void)regist:(EventType)eventType
           func:(SEL)func

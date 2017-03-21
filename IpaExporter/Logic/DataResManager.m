@@ -11,19 +11,6 @@
 
 @implementation DataResManager
 
-+ (DataResManager*) instance
-{
-    static DataResManager* s_instance = nil;
-    if(s_instance == nil)
-    {
-        @synchronized (self)
-        {
-            s_instance = [[self alloc] init];
-        }
-    }
-    
-    return s_instance;
-}
 
 - (id)init
 {

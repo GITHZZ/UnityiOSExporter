@@ -25,24 +25,6 @@
 
 @implementation LuaCammond
 
-+ (LuaCammond*)instance
-{
-    static LuaCammond* s_inctance = nil;
-    if(nil == s_inctance)
-    {
-        @synchronized (self)
-        {
-            if(nil == s_inctance)
-            {
-                s_inctance = [[self alloc] init];
-            }
-        }
-    }
-    
-    return s_inctance;
-}
-
-
 - (void)startUp
 {
     [self initEvent];

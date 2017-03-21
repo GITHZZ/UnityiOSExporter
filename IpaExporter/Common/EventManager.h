@@ -8,10 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "EventTypeDef.h"
+#import "Singletion.h"
 
-@interface EventManager : NSObject
-
-+ (id)instance;
+@interface EventManager : Singletion
 
 - (void)regist:(EventType)eventType
           func:(SEL)func

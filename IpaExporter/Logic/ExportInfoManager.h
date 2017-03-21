@@ -11,8 +11,9 @@
 #import <Foundation/Foundation.h>
 #import "DetailsInfoData.h"
 #import "Common.h"
+#import "Singletion.h"
 
-@interface ExportInfoManager : NSObject
+@interface ExportInfoManager : Singletion
 {
     NSUserDefaults* _saveData;
 }
@@ -22,7 +23,6 @@
 @property(nonatomic, readonly) NSMutableArray *exportPathArr;
 @property(nonatomic, readonly) NSMutableArray *detailArray;
 
-+ (ExportInfoManager*)instance;
 - (void)addNewUnityProjPath:(NSString*)path;
 - (void)replaceUnityProjPath:(NSString*)path;
 - (void)addNewExportProjPath:(NSString*)path;

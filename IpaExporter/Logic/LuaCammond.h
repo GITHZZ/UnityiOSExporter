@@ -7,12 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Singletion.h"
 
 #include "LuaDLL.h"
 
-@interface LuaCammond : NSObject
+@interface LuaCammond : Singletion
 
-+ (LuaCammond*)instance;
+@property (nonatomic, strong) LuaCammond *instance;
 
 - (void)open;
 - (void)close;
