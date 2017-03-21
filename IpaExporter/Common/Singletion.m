@@ -13,18 +13,21 @@
 
 + (instancetype)instance
 {
-    @synchronized (self)
+    Class cls = [self class];
+    //动态去取属性方法
+    id instance = objc_getAssociatedObject(cls, @"instance");
+    if(!instance)
     {
-        Class cls = [self class];
-        //动态去取属性方法
-        id instance = objc_getAssociatedObject(cls, @"instance");
-        if(!instance)
+        @synchronized (self)
         {
-            instance = [[super allocWithZone:NULL] init];
-            objc_setAssociatedObject(cls, @"instance", instance, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+            if(!instance)
+            {
+                instance = [[super allocWithZone:NULL] init];
+                objc_setAssociatedObject(cls, @"instance", instance, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+            }
         }
-        return instance;
     }
+    return instance;
 }
 
 //不要试图使用allocWithZone来申请内存

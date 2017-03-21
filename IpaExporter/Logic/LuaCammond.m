@@ -99,16 +99,29 @@
 - (void)startExport
 {
     showLog("*开始打包");
-    ExportInfoManager* view = [ExportInfoManager instance];
-    NSMutableArray* detailArray = view.detailArray;
     
     //--- for start
-    //测试(修改目标目录的builder_t.cs文件)
+    ExportInfoManager* view = [ExportInfoManager instance];
+    NSMutableArray<DetailsInfoData*>* detailArray = view.detailArray;
     DetailsInfoData* infoData = [detailArray objectAtIndex:0];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [[LuaCammond instance] exportOnePlatform:infoData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            showLog("*打包结束");
+        });
+    });
+    //----for end
+}
+
+- (void)exportOnePlatform:(DetailsInfoData*)infoData
+{
+    ExportInfoManager* view = [ExportInfoManager instance];
     
     //拷贝Data_t所有文件
     [[DataResManager instance] start:view.info];
     
+    //测试(修改目标目录的builder_t.cs文件)
     BuilderCSFileEdit* builderEdit = [[BuilderCSFileEdit alloc] init];
     [builderEdit start:[NSString stringWithUTF8String:view.info->unityProjPath]
           withPackInfo:infoData];
@@ -116,20 +129,18 @@
     //修改目标目录的XcodeApi下的文件
     XcodeProjModCSFileEdit* xcodeProjEdit = [[XcodeProjModCSFileEdit alloc] init];
     [xcodeProjEdit start:[NSString stringWithUTF8String:view.info->unityProjPath]
-          withPackInfo:infoData];
+            withPackInfo:infoData];
     
     //call lua
-    [self open];
+    [[LuaCammond instance] open];
     NSString* mainLuaPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"ExportIpaUtil.lua"];
-    [self dofile:mainLuaPath];
-    [self callLuaMain:infoData];
-    [self close];
+    [[LuaCammond instance] dofile:mainLuaPath];
+    [[LuaCammond instance] callLuaMain:infoData];
+    [[LuaCammond instance] close];
     
     //删除文件夹
-    //[[DataResManager instance] end];
-    //----for end
-    
-    showLog("*打包结束");
+    [[DataResManager instance] end];
+
 }
 
 - (void)sureBtnClicked:(NSNotification*)notification

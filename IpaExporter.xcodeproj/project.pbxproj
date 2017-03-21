@@ -66,6 +66,7 @@
 		188DAD111E56F8E300554D6B /* CustomLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 188DAD101E56F8E300554D6B /* CustomLog.m */; };
 		189034501DE82FCF00AEDF46 /* DataTemplete in Resources */ = {isa = PBXBuildFile; fileRef = 1890344F1DE82FCF00AEDF46 /* DataTemplete */; };
 		18CA13961D78164C006595E5 /* ViewMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CA13951D78164C006595E5 /* ViewMain.m */; };
+		18DB76441E7FFE22003FDC52 /* Singletion.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DB76431E7FFE22003FDC52 /* Singletion.m */; };
 		18DD5E6C1DAF1C150071B654 /* DetailsInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD5E6B1DAF1C150071B654 /* DetailsInfoView.m */; };
 		18E630ED1E4815FE00E04ACA /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E630EC1E4815FE00E04ACA /* Accounts.framework */; };
 		18F1027B1DCC2AEB008312E5 /* EventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F1027A1DCC2AEB008312E5 /* EventManager.m */; };
@@ -199,6 +200,8 @@
 		1890344F1DE82FCF00AEDF46 /* DataTemplete */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DataTemplete; path = IpaExporter/DataTemplete; sourceTree = "<group>"; };
 		18CA13941D78164C006595E5 /* ViewMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewMain.h; sourceTree = "<group>"; };
 		18CA13951D78164C006595E5 /* ViewMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewMain.m; sourceTree = "<group>"; };
+		18DB76421E7FFE22003FDC52 /* Singletion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Singletion.h; sourceTree = "<group>"; };
+		18DB76431E7FFE22003FDC52 /* Singletion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Singletion.m; sourceTree = "<group>"; };
 		18DD5E6A1DAF1C150071B654 /* DetailsInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsInfoView.h; sourceTree = "<group>"; };
 		18DD5E6B1DAF1C150071B654 /* DetailsInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsInfoView.m; sourceTree = "<group>"; };
 		18E630EC1E4815FE00E04ACA /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
@@ -458,6 +461,8 @@
 				1828197A1E4C5E2C00CEC719 /* EventTypeDef.h */,
 				18F102791DCC2AEB008312E5 /* EventManager.h */,
 				18F1027A1DCC2AEB008312E5 /* EventManager.m */,
+				18DB76421E7FFE22003FDC52 /* Singletion.h */,
+				18DB76431E7FFE22003FDC52 /* Singletion.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -648,6 +653,7 @@
 				18750A7C1D9BBBC100FECCA6 /* lcorolib.c in Sources */,
 				18750A991D9BBBC100FECCA6 /* lvm.c in Sources */,
 				18DD5E6C1DAF1C150071B654 /* DetailsInfoView.m in Sources */,
+				18DB76441E7FFE22003FDC52 /* Singletion.m in Sources */,
 				182FF6F41E4D936700CC0C7C /* ExportInfoManager.m in Sources */,
 				18750A931D9BBBC100FECCA6 /* ltablib.c in Sources */,
 			);

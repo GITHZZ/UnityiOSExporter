@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Singletion : NSObject
+@interface Singletion : NSObject<NSCopying>
 
 + (instancetype)instance;
 

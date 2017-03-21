@@ -797,7 +797,7 @@
                                         </tableView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="horizontalScroller" verticalHuggingPriority="750" doubleValue="0.82954545454545459" horizontal="YES" id="7LL-Q5-F0W">
+                                <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="7LL-Q5-F0W">
                                     <rect key="frame" x="1" y="407" width="658" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -1100,7 +1100,6 @@
                         <outlet property="appID" destination="T15-wh-yoI" id="25s-pr-mxU"/>
                         <outlet property="appName" destination="AoK-Rv-euA" id="TxR-WX-Qab"/>
                         <outlet property="cDirPath" destination="d0q-LV-cgO" id="3fx-9b-826"/>
-                        <outlet property="codeSignIdentity" destination="M0E-X9-F1f" id="jzc-fR-vf0"/>
                         <outlet property="debugDevelopTeam" destination="eyf-sO-xMD" id="O12-CF-i2c"/>
                         <outlet property="debugProfileName" destination="M0E-X9-F1f" id="tiL-xV-UEy"/>
                         <outlet property="detailView" destination="638-73-X4r" id="Ob9-G4-mCP"/>
