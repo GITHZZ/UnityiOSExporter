@@ -12,11 +12,11 @@
 
 @interface ViewMain : NSViewController
 
-@property (nonatomic, readonly) NSMutableArray* dataDict;
+@property (readonly) NSMutableArray<DetailsInfoData*>* dataDict;
 
-@property (nonatomic, strong) IBOutlet NSTextView* infoLabel;
-@property (nonatomic, weak) IBOutlet NSComboBox* unityPathBox;
-@property (nonatomic, weak) IBOutlet NSComboBox* exportPathBox;
+@property (strong) IBOutlet NSTextView* infoLabel;
+@property (weak) IBOutlet NSComboBox* unityPathBox;
+@property (weak) IBOutlet NSComboBox* exportPathBox;
 @property (weak) IBOutlet NSTableView *platformTbl;
 @property (weak) IBOutlet NSButton *isReleaseBox;
 

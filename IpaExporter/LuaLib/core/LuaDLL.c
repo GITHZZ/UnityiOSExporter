@@ -41,13 +41,11 @@ char* combine_string(const char *s1, const char *s2)
 
 lua_State* open_lua(const char* logFilePath)
 {
-    /*
     //创建和重定向log输出
     char* path = combine_string(logFilePath, LOG_TXT_FILE);
     FILE* stream = freopen(path, "w", stdout); // 重定向
     if(stream == NULL)
         printf("重定向出错");
-    */
     
     lua_State* L = luaL_newstate();
 
@@ -228,7 +226,7 @@ int start_call_lua_main(lua_State *L, int nargs)
     int luaResult = (int)lua_tonumber(L, -1);
     lua_pop(L, 1);
     
-    if(luaResult <= 0){
+    if(luaResult > 1){ //有返回参数原因
         return LUA_DLL_ERROR;
     }
     

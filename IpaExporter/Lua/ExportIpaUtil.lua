@@ -16,15 +16,6 @@ local export_folder_path = PWD .. "/build"
 local xcode_proj_name = "_ExportProj"
 --导出包名称
 local app_name = "NoName"
---需要调用C#的静态方法
---[[
-    PS:如果需要传参数参考也有 但是在C#上取代码如下
-    string[] strs = System.Environment.GetCommandLineArgs(); 
-    if(s.Contains("-args")){
-        string arg = s.Split(':')[1];
-        //处理参数//
-    }
-]]
 --导出ipa的Xcode项目路径
 local export_project_path = "";
 
@@ -75,6 +66,15 @@ ExportIpaUtil.Start = function()
     local archivePath = string.format("bin/%s.xcarchive", proj_scheme_name)
     local pbxprojPath = export_project_path .. "/Unity-iPhone.xcodeproj/project.pbxproj"
 
+--需要调用C#的静态方法
+--[[
+    PS:如果需要传参数参考也有 但是在C#上取代码如下
+    string[] strs = System.Environment.GetCommandLineArgs();
+    if(s.Contains("-args")){
+        string arg = s.Split(':')[1];
+        //处理参数//
+    }
+]]
     local export_func = string.format("IpaExporter.Builder.BuildApp -args:%s", export_project_path)
 
     --info log

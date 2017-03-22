@@ -17,17 +17,10 @@
 
 @implementation AppDelegate
 
-void uncaughtExceptionHandler(NSException *exception) {
-    NSLog(@"CRASH: %@", exception);
-    NSLog(@"Stack Trace: %@", [exception callStackSymbols]);
-    // Internal error reporting
-}
-
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     //init
     [[LuaCammond instance] startUp];
-    NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification

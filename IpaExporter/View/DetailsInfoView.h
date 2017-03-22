@@ -17,7 +17,7 @@
 
 @interface DetailsInfoView : NSViewController<NSTableViewDataSource, NSTableViewDelegate>
 
-@property (nonatomic, readonly) NSMutableArray* dataDict;
+@property (readonly) NSMutableArray* dataDict;
 @property (weak) IBOutlet NSTableView *infoTbls;
 
 - (IBAction)removeBtnClick:(id)sender;

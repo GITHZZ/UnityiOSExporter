@@ -10,7 +10,7 @@
 #define LuaDefine_h
 
 
-#define LOG_TXT_FILE "/logFile.txt"
+#define LOG_TXT_FILE "/luaLogFile.txt"
 
 union LuaVal
 {

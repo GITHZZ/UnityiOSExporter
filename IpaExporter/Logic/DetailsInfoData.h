@@ -10,23 +10,23 @@
 
 @interface DetailsInfoData : NSObject
 
-@property(readonly) NSMutableDictionary *dict;
+@property(nonatomic, readonly) NSMutableDictionary *dict;
 
-@property(readonly) NSString* platform;
-@property(readonly) NSString* appName;
-@property(readonly) NSString* bundleIdentifier;
-@property(readonly) NSString* codeSignIdentity;
-@property(readonly) NSString* provisioningProfile;
-@property(readonly) NSString* frameworks;
-@property(readonly) NSString* cDirPath;//自定义资源路径
-@property(readonly) NSString* isSelected;//是否已经选择
-@property(readonly) NSString* cDirectoryPath;
-@property(readonly) NSString* libkerFlag;
-@property(readonly) NSString* libs;
-@property(readonly) NSString* debugProfileName;
-@property(readonly) NSString* debugDevelopTeam;
-@property(readonly) NSString* releaseProfileName;
-@property(readonly) NSString* releaseDevelopTeam;
+@property(nonatomic, readonly) NSString* platform;
+@property(nonatomic, readonly) NSString* appName;
+@property(nonatomic, readonly) NSString* bundleIdentifier;
+@property(nonatomic, readonly) NSString* codeSignIdentity;
+@property(nonatomic, readonly) NSString* provisioningProfile;
+@property(nonatomic, readonly) NSString* frameworks;
+@property(nonatomic, readonly) NSString* cDirPath;//自定义资源路径
+@property(nonatomic, readonly) NSString* isSelected;//是否已经选择
+@property(nonatomic, readonly) NSString* cDirectoryPath;
+@property(nonatomic, readonly) NSString* libkerFlag;
+@property(nonatomic, readonly) NSString* libs;
+@property(nonatomic, readonly) NSString* debugProfileName;
+@property(nonatomic, readonly) NSString* debugDevelopTeam;
+@property(nonatomic, readonly) NSString* releaseProfileName;
+@property(nonatomic, readonly) NSString* releaseDevelopTeam;
 
 - (id)initWithInfoDict:(NSDictionary*) dic;
 - (void)setValueForKey:(NSString*)key withObj:(id)obj;

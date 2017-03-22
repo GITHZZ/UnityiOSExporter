@@ -36,6 +36,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "__25-[LuaCammond startExport]_block_invoke_2:LuaCammond.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "infoData.isSelected">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[DetailsInfoData initWithInfoDict:]:DetailsInfoData.m">
          <PersistentStrings>
             <PersistentString
@@ -63,18 +71,18 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[ViewMain viewDidLoad]:ViewMain.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "[tableColumns count]">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "-[ViewMain comboBoxSelectionDidChange:]:ViewMain.m">
          <PersistentStrings>
             <PersistentString
                value = "comboBox.stringValue">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ViewMain viewDidLoad]:ViewMain.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[tableColumns count]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

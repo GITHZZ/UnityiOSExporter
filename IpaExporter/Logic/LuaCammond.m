@@ -20,6 +20,7 @@
 @interface LuaCammond ()
 {
     lua_State *L;
+    BOOL _isExporting;
 }
 @end
 
@@ -27,6 +28,7 @@
 
 - (void)startUp
 {
+    _isExporting = false;
     [self initEvent];
 }
 
@@ -44,13 +46,12 @@
     L = nil;
 }
 
-- (void)open
+- (void)open:(const char*)logPath
 {
     if(L != nil)
         return;
     
-    NSString* resourcePath = [[NSBundle mainBundle] resourcePath];
-    L = open_lua([resourcePath UTF8String]);
+    L = open_lua(logPath);
     int code = open_lua_libs(L);
     
     [self printErrorByCode:code];
@@ -98,24 +99,52 @@
 
 - (void)startExport
 {
+    //导出中不走逻辑
+    if(_isExporting)
+        return;
+    
+    _isExporting = true;
+    
     showLog("*开始打包");
-    
-    //--- for start
-    ExportInfoManager* view = [ExportInfoManager instance];
-    NSMutableArray<DetailsInfoData*>* detailArray = view.detailArray;
-    DetailsInfoData* infoData = [detailArray objectAtIndex:0];
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [[LuaCammond instance] exportOnePlatform:infoData];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            showLog("*打包结束");
-        });
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_group_t group = dispatch_group_create();
+
+    dispatch_group_async(group, queue, ^{
+        ExportInfoManager* view = [ExportInfoManager instance];
+        NSMutableArray<DetailsInfoData*>* detailArray = view.detailArray;
+        
+        showLog("*打包具体信息可在%s路径中查看", view.info->exportFolderParh);
+        dispatch_queue_t sq = dispatch_queue_create("exportInfo", DISPATCH_QUEUE_SERIAL);
+        for(int i = 0; i < [detailArray count]; i++)
+        {
+            dispatch_sync(sq, ^{
+                DetailsInfoData* infoData = [detailArray objectAtIndex:i];
+                if([infoData.isSelected isEqualToString:@"1"]){
+                    BOOL result = [[LuaCammond instance] exportOnePlatform:infoData];
+                    
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        if (result) {
+                            showLog("*%@ 打包成功", infoData.platform);
+                        }else{
+                            showError("*%@ 打包失败", infoData.platform);
+                        }
+                    });
+                }
+            });
+        }
     });
-    //----for end
+    
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        //全部打包完毕
+        showLog("*打包结束");
+        _isExporting = false;
+    });
+    
 }
 
-- (void)exportOnePlatform:(DetailsInfoData*)infoData
+- (BOOL)exportOnePlatform:(DetailsInfoData*)infoData
 {
+    BOOL result = NO;
     ExportInfoManager* view = [ExportInfoManager instance];
     
     //拷贝Data_t所有文件
@@ -132,15 +161,16 @@
             withPackInfo:infoData];
     
     //call lua
-    [[LuaCammond instance] open];
+    [[LuaCammond instance] open:view.info->exportFolderParh];
     NSString* mainLuaPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"ExportIpaUtil.lua"];
     [[LuaCammond instance] dofile:mainLuaPath];
-    [[LuaCammond instance] callLuaMain:infoData];
+    result = [[LuaCammond instance] callLuaMain:infoData];
     [[LuaCammond instance] close];
     
     //删除文件夹
     [[DataResManager instance] end];
-
+    
+    return result;
 }
 
 - (void)sureBtnClicked:(NSNotification*)notification

@@ -51,7 +51,7 @@
     }
     
     //从本地读取存储数据
-    NSMutableArray* saveArray = [[ExportInfoManager instance] reLoadDetails];
+    NSMutableArray<DetailsInfoData*>* saveArray = [[ExportInfoManager instance] reLoadDetails];
     _dataDict = [[NSMutableArray alloc] initWithArray:saveArray];
     
     //设置数据源

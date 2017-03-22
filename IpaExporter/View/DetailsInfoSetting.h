@@ -13,17 +13,17 @@
 
 @interface DetailsInfoSetting : NSViewController
 
-@property (nonatomic, weak) IBOutlet NSTextField *platform;
-@property (nonatomic, weak) IBOutlet NSTextField *appName;
-@property (nonatomic, weak) IBOutlet NSTextField *appID;
-@property (nonatomic, weak) IBOutlet NSTextField *debugProfileName;
-@property (nonatomic, weak) IBOutlet NSTextField *debugDevelopTeam;
-@property (nonatomic, weak) IBOutlet NSTextField *releaseProfileName;
-@property (nonatomic, weak) IBOutlet NSTextField *releaseDevelopTeam;
-@property (nonatomic, weak) IBOutlet NSTextField *frameworks;
-@property (nonatomic, weak) IBOutlet NSComboBox *cDirPath;
-@property (nonatomic, weak) IBOutlet NSView *detailView;
-@property (nonatomic, weak) IBOutlet NSButton *sureBtn;
+@property (weak) IBOutlet NSTextField *platform;
+@property (weak) IBOutlet NSTextField *appName;
+@property (weak) IBOutlet NSTextField *appID;
+@property (weak) IBOutlet NSTextField *debugProfileName;
+@property (weak) IBOutlet NSTextField *debugDevelopTeam;
+@property (weak) IBOutlet NSTextField *releaseProfileName;
+@property (weak) IBOutlet NSTextField *releaseDevelopTeam;
+@property (weak) IBOutlet NSTextField *frameworks;
+@property (weak) IBOutlet NSComboBox *cDirPath;
+@property (weak) IBOutlet NSView *detailView;
+@property (weak) IBOutlet NSButton *sureBtn;
 
 - (void)setUpDataInfoOnShow:(DetailsInfoData*)info;
 

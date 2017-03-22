@@ -15,7 +15,7 @@
 
 @property (nonatomic, strong) LuaCammond *instance;
 
-- (void)open;
+- (void)open:(const char*)logPath;
 - (void)close;
 
 - (void)startUp;
