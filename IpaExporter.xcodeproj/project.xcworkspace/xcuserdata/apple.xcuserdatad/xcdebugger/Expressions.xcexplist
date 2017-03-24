@@ -49,6 +49,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "-[DetailsInfoSetting tableView:setObjectValue:forTableColumn:row:]:DetailsInfoSetting.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[newValue pathExtension]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "push_lua_var:LuaDLL.c">
          <PersistentStrings>
             <PersistentString

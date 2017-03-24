@@ -37,7 +37,6 @@
 {
     _dstPath = [NSString stringWithFormat:@"%s/Assets/Editor", info->unityProjPath];
     [self copyResSrcPath:_srcPath toDst:_dstPath];
-    //[self replaceBuilderCS:_dstPath];
 }
 
 - (void)end
@@ -77,6 +76,15 @@
 
 - (void)copyResSrcPath:(NSString*)src toDst:(NSString*)dst
 {
+    //文件夹存在就删除
+    NSString *templeteDirPath = [NSString stringWithFormat:@"%@/%@", _srcPath, DATA_PATH];
+    BOOL isDir;
+    BOOL isDirExit = [_fileManager fileExistsAtPath:templeteDirPath isDirectory:&isDir];
+
+    if(isDirExit && isDir){
+        [self removeResFromDstPath:templeteDirPath];
+    }
+    
     //判断路径是否为文件夹
     NSString* pType = [src pathExtension];
     NSString* dstType = [dst pathExtension];

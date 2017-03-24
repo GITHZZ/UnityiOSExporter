@@ -62,7 +62,7 @@ end
 ExportIpaUtil.Start = function()
     local startTime = os.time()
 
-    local exportIpaName = app_name .. os.date("%y%m%d_%H%M%S")
+    local exportIpaName = app_name .. "_"  .. os.date("%y%m%d_%H%M%S")
     local archivePath = string.format("bin/%s.xcarchive", proj_scheme_name)
     local pbxprojPath = export_project_path .. "/Unity-iPhone.xcodeproj/project.pbxproj"
 

@@ -148,7 +148,6 @@
     [_frameworkNameArr addObject:@""];
     [_frameworkIsWeakArr addObject:@""];
     [_frameworkTbl reloadData];
-  
 }
 
 - (IBAction)frameworkRemove:(id)sender
@@ -213,14 +212,18 @@
 - (void)tableView:(NSTableView *)tableView setObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
     NSString *columnIdentifier=[tableColumn identifier];
-    NSString* newValue = (NSString*)object;
+    NSString *newValue = (NSString*)object;
     
     if([columnIdentifier isEqualToString:Framework_Names]){
-        [_frameworkNameArr replaceObjectAtIndex:row withObject:newValue];
+        if([[newValue pathExtension] isEqualToString:@"framework"]){
+            [_frameworkNameArr replaceObjectAtIndex:row withObject:newValue];
+        }
     }else if([columnIdentifier isEqualToString:Framework_IsWeaks]){
         [_frameworkIsWeakArr replaceObjectAtIndex:row withObject:newValue];
     }else if([columnIdentifier isEqualToString:Lib_Names]){
-        [_libNameArr replaceObjectAtIndex:row withObject:newValue];
+        if([[newValue pathExtension] isEqualToString:@"tbd"]){
+            [_libNameArr replaceObjectAtIndex:row withObject:newValue];
+        }
     }
 }
 
