@@ -9,8 +9,17 @@
 #import "DataResManager.h"
 #import "BaseDataCSCodeEdit.h"
 
-@implementation DataResManager
+@interface DataResManager()
+{
+    BOOL _isStarting;
+    NSString* _srcPath;
+    NSString* _dstPath;
+    
+    NSFileManager* _fileManager;
+}
+@end
 
+@implementation DataResManager
 
 - (id)init
 {

@@ -17,10 +17,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "singlestep:lgc.c">
+         contextName = "__25-[LuaCammond startExport]_block_invoke_2:LuaCammond.m">
          <PersistentStrings>
             <PersistentString
-               value = "g-&gt;gcstate">
+               value = "infoData.isSelected">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -36,10 +36,18 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "__25-[LuaCammond startExport]_block_invoke_2:LuaCammond.m">
+         contextName = "singlestep:lgc.c">
          <PersistentStrings>
             <PersistentString
-               value = "infoData.isSelected">
+               value = "g-&gt;gcstate">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[DetailsInfoSetting numberOfRowsInTableView:]:DetailsInfoSetting.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "tableView.identifier">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -71,14 +79,6 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[ViewMain comboBoxSelectionDidChange:]:ViewMain.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "comboBox.stringValue">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "-[ViewMain viewDidLoad]:ViewMain.m">
          <PersistentStrings>
             <PersistentString
@@ -87,10 +87,18 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[DetailsInfoData initWithCoder:]:DetailsInfoData.m">
+         contextName = "-[ViewMain comboBoxSelectionDidChange:]:ViewMain.m">
          <PersistentStrings>
             <PersistentString
-               value = "[self initWithInfoDict:dict]">
+               value = "comboBox.stringValue">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[LuaCammond callLuaMain]:LuaCammond.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "view.info.unityProjPath">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -103,10 +111,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[LuaCammond callLuaMain]:LuaCammond.m">
+         contextName = "-[DetailsInfoData initWithCoder:]:DetailsInfoData.m">
          <PersistentStrings>
             <PersistentString
-               value = "view.info.unityProjPath">
+               value = "[self initWithInfoDict:dict]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

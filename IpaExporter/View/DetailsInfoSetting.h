@@ -11,7 +11,7 @@
 #import "EventManager.h"
 #import "DetailsInfoData.h"
 
-@interface DetailsInfoSetting : NSViewController
+@interface DetailsInfoSetting : NSViewController<NSTableViewDataSource, NSTableViewDelegate>
 
 @property (weak) IBOutlet NSTextField *platform;
 @property (weak) IBOutlet NSTextField *appName;
@@ -24,6 +24,8 @@
 @property (weak) IBOutlet NSComboBox *cDirPath;
 @property (weak) IBOutlet NSView *detailView;
 @property (weak) IBOutlet NSButton *sureBtn;
+@property (weak) IBOutlet NSTableView *frameworkTbl;
+@property (weak) IBOutlet NSTableView *libsTbl;
 
 - (void)setUpDataInfoOnShow:(DetailsInfoData*)info;
 

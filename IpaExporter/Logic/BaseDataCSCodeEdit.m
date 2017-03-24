@@ -79,7 +79,7 @@
                 
                 NSString *args = [NSString stringWithFormat:@"DevelopType.Debug, \"%@\",\"%@\"", teamName, profileName];
                 keyStr = [self createCSClassStr:@"DevelopmentInfo" withArgsStr:args];
-                key = @"developmentInfo1";
+                key = @"developmentInfoDebug";
                 replaceFormat = @"%@";
             }
             else if([key isEqualToString:Release_Profile_Name])
@@ -90,7 +90,7 @@
                 
                 NSString *args = [NSString stringWithFormat:@"DevelopType.Release, \"%@\",\"%@\"", teamName, profileName];
                 keyStr = [self createCSClassStr:@"DevelopmentInfo" withArgsStr:args];
-                key = @"developmentInfo2";
+                key = @"developmentInfoRelease";
                 replaceFormat = @"%@";
             }
         }

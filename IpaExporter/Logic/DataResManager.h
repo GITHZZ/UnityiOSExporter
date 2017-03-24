@@ -12,13 +12,6 @@
 #import "Singletion.h"
 
 @interface DataResManager : Singletion
-{
-    BOOL _isStarting;
-    NSString* _srcPath;
-    NSString* _dstPath;
-    
-    NSFileManager* _fileManager;
-}
 
 - (void)start:(ExportInfo*) info;
 - (void)end;

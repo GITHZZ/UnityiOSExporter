@@ -104,6 +104,7 @@
         return;
     
     _isExporting = true;
+    [[EventManager instance] send:EventSetExportButtonState withData:s_false];
     
     showLog("*开始打包");
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -119,7 +120,7 @@
         {
             dispatch_sync(sq, ^{
                 DetailsInfoData* infoData = [detailArray objectAtIndex:i];
-                if([infoData.isSelected isEqualToString:@"1"]){
+                if([infoData.isSelected isEqualToString:s_true]){
                     BOOL result = [[LuaCammond instance] exportOnePlatform:infoData];
                     
                     dispatch_sync(dispatch_get_main_queue(), ^{
@@ -138,8 +139,8 @@
         //全部打包完毕
         showLog("*打包结束");
         _isExporting = false;
+        [[EventManager instance] send:EventSetExportButtonState withData:s_true];
     });
-    
 }
 
 - (BOOL)exportOnePlatform:(DetailsInfoData*)infoData

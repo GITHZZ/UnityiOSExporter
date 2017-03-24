@@ -25,6 +25,7 @@ typedef NS_ENUM(int, EventType){
     EventAddNewInfoContent       = 111,
     EventAddErrorContent         = 112,
     EventDetailsInfoSettingEdit  = 113,
+    EventSetExportButtonState    = 114,
 };
 
 

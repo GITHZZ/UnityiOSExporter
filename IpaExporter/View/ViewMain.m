@@ -77,6 +77,10 @@
                                func:@selector(addNewErrorContent:)
                            withData:nil
                                self:self];
+    [[EventManager instance] regist:EventSetExportButtonState
+                               func:@selector(setExportBtnState:)
+                           withData:nil
+                               self:self];
 }
 
 - (void)unRegistEvent
@@ -87,6 +91,8 @@
                                self:self];
     [[EventManager instance] unRegist:EventAddErrorContent
                                self:self];
+    [[EventManager instance] unRegist:EventSetExportButtonState
+                                 self:self];
 }
 
 - (IBAction)sureBtnClick:(id)sender
@@ -178,7 +184,7 @@
     
     NSString *isSelect = info.isSelected;
     if(isSelect == nil)
-        isSelect = @"0";
+        isSelect = s_false;
     
     [cell setState:[isSelect integerValue]];
     
@@ -241,6 +247,16 @@
 {
     NSString *content = [notification object];
     [self renderUpAttriString:content withColor:[NSColor redColor]];
+}
+
+- (void)setExportBtnState:(NSNotification*)notification
+{
+    NSString *isEnable = (NSString*)[notification object];
+    if ([isEnable isEqualToString: s_true]) {
+        _exportBtn.enabled = YES;
+    }else{
+        _exportBtn.enabled = NO;
+    }
 }
 
 - (void)renderUpAttriString:(NSString*)string withColor:(NSColor*) color

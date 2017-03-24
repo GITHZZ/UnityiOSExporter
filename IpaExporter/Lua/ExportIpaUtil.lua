@@ -151,6 +151,9 @@ function ExportMain(projPath, exportFolder, appName, buildConfig)
     --start export
     if ExportIpaUtil.Start() == 0 then
         print("导出ipa失败")
+        return 0
     end
+    
+    return 1
 end
 

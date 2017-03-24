@@ -79,8 +79,8 @@ public class XcodeProjectSetting
 	}
 	public List<DevelopmentInfo> developmentInfoList = new List<DevelopmentInfo>(){
 		/*new DevelopmentInfo()*/
-        ${developmentInfo1}
-        ${developmentInfo2}
+        ${developmentInfoDebug}
+        ${developmentInfoRelease}
 	};
 
 	//framework
