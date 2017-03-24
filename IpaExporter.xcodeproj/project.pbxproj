@@ -65,6 +65,7 @@
 		18769D931DAE34050023E255 /* XcodeProjModCSFileEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 18769D921DAE34050023E255 /* XcodeProjModCSFileEdit.m */; };
 		188DAD111E56F8E300554D6B /* CustomLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 188DAD101E56F8E300554D6B /* CustomLog.m */; };
 		189034501DE82FCF00AEDF46 /* DataTemplete in Resources */ = {isa = PBXBuildFile; fileRef = 1890344F1DE82FCF00AEDF46 /* DataTemplete */; };
+		189180BA1E84FA8500EC9927 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 189180B91E84FA8500EC9927 /* AddressBook.framework */; };
 		18CA13961D78164C006595E5 /* ViewMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CA13951D78164C006595E5 /* ViewMain.m */; };
 		18DB76441E7FFE22003FDC52 /* Singletion.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DB76431E7FFE22003FDC52 /* Singletion.m */; };
 		18DD5E6C1DAF1C150071B654 /* DetailsInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD5E6B1DAF1C150071B654 /* DetailsInfoView.m */; };
@@ -198,6 +199,7 @@
 		188DAD0F1E56F8E300554D6B /* CustomLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomLog.h; sourceTree = "<group>"; };
 		188DAD101E56F8E300554D6B /* CustomLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomLog.m; sourceTree = "<group>"; };
 		1890344F1DE82FCF00AEDF46 /* DataTemplete */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DataTemplete; path = IpaExporter/DataTemplete; sourceTree = "<group>"; };
+		189180B91E84FA8500EC9927 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		18CA13941D78164C006595E5 /* ViewMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewMain.h; sourceTree = "<group>"; };
 		18CA13951D78164C006595E5 /* ViewMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewMain.m; sourceTree = "<group>"; };
 		18DB76421E7FFE22003FDC52 /* Singletion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Singletion.h; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				189180BA1E84FA8500EC9927 /* AddressBook.framework in Frameworks */,
 				18E630ED1E4815FE00E04ACA /* Accounts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -446,6 +449,7 @@
 		18E630EB1E4815FD00E04ACA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				189180B91E84FA8500EC9927 /* AddressBook.framework */,
 				18E630EC1E4815FE00E04ACA /* Accounts.framework */,
 			);
 			name = Frameworks;

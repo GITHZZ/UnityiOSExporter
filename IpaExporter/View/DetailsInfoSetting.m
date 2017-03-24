@@ -20,7 +20,6 @@
     NSMutableArray *_frameworkNameArr;
     NSMutableArray *_frameworkIsWeakArr;
     NSMutableArray *_libNameArr;
-    NSMutableArray *_libIsWeakArr;
 }
 @end
 
@@ -44,8 +43,6 @@
         _frameworkNameArr = [NSMutableArray arrayWithCapacity:10];
         _frameworkIsWeakArr = [NSMutableArray arrayWithCapacity:10];
         _libNameArr = [NSMutableArray arrayWithCapacity:10];
-        _libIsWeakArr = [NSMutableArray arrayWithCapacity:10];
-
     }
     
     _frameworkTbl.delegate = self;
@@ -73,12 +70,10 @@
     _releaseProfileName.stringValue = [_info getValueForKey:Release_Profile_Name];
     _releaseDevelopTeam.stringValue = [_info getValueForKey:Release_Develop_Team];
     _platform.stringValue = [_info getValueForKey:Platform_Name];
-    _frameworks.stringValue = [_info getValueForKey:Frameworks_Key];
     _cDirPath.stringValue = [_info getValueForKey:Copy_Dir_Path];
     _frameworkNameArr = [_info getValueForKey:Framework_Names];
     _frameworkIsWeakArr = [_info getValueForKey:Framework_IsWeaks];
     _libNameArr = [_info getValueForKey:Lib_Names];
-    _libIsWeakArr = [_info getValueForKey:Lib_IsWeaks];
 }
 
 - (IBAction)sureBtnClickFuncion:(id)sender
@@ -92,7 +87,7 @@
     NSString* platform = _platform.stringValue;
     NSString* cDirPath = _cDirPath.stringValue;
     
-    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:appName, App_Name_Key, appID, App_ID_Key, debugProfileName, Debug_Profile_Name, debugDevelopTeam, Debug_Develop_Team, releaseProfileName, Release_Profile_Name, releaseDevelopTeam, Release_Develop_Team, platform, Platform_Name, cDirPath, Copy_Dir_Path, s_false, Is_Selected ,_frameworkNameArr, Framework_Names, _frameworkIsWeakArr, Framework_IsWeaks, _libNameArr, Lib_Names, _libIsWeakArr, Lib_IsWeaks, nil];
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:appName, App_Name_Key, appID, App_ID_Key, debugProfileName, Debug_Profile_Name, debugDevelopTeam, Debug_Develop_Team, releaseProfileName, Release_Profile_Name, releaseDevelopTeam, Release_Develop_Team, platform, Platform_Name, cDirPath, Copy_Dir_Path, s_false, Is_Selected ,_frameworkNameArr, Framework_Names, _frameworkIsWeakArr, Framework_IsWeaks, _libNameArr, Lib_Names, nil];
 
     DetailsInfoData* info = [[DetailsInfoData alloc] initWithInfoDict:dict];
     if(_isSetDataOnShow)
@@ -169,7 +164,6 @@
 - (IBAction)libAdd:(id)sender
 {
     [_libNameArr addObject:@""];
-    [_libIsWeakArr addObject:@""];
     [_libsTbl reloadData];
 }
 
@@ -178,7 +172,6 @@
     NSInteger row = [_libsTbl selectedRow];
     if(row > -1){
         [_libNameArr removeObjectAtIndex:row];
-        [_libIsWeakArr removeObjectAtIndex:row];
         [_libsTbl reloadData];
     }
 }
@@ -211,8 +204,6 @@
         return [_frameworkIsWeakArr objectAtIndex:row];
     }else if([columnIdentifier isEqualToString:Lib_Names]){
         return [_libNameArr objectAtIndex:row];
-    }else if([columnIdentifier isEqualToString:Lib_IsWeaks]){
-        return [_libIsWeakArr objectAtIndex:row];
     }
     
     return nil;
@@ -230,8 +221,6 @@
         [_frameworkIsWeakArr replaceObjectAtIndex:row withObject:newValue];
     }else if([columnIdentifier isEqualToString:Lib_Names]){
         [_libNameArr replaceObjectAtIndex:row withObject:newValue];
-    }else if([columnIdentifier isEqualToString:Lib_IsWeaks]){
-        [_libIsWeakArr replaceObjectAtIndex:row withObject:newValue];
     }
 }
 

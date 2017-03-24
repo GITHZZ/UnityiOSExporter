@@ -27,10 +27,9 @@
 @property(nonatomic, readonly) NSString *debugDevelopTeam;
 @property(nonatomic, readonly) NSString *releaseProfileName;
 @property(nonatomic, readonly) NSString *releaseDevelopTeam;
-@property(nonatomic, readonly) NSMutableArray *frameworkNames;
-@property(nonatomic, readonly) NSMutableArray *frameworkIsWeaks;
-@property(nonatomic, readonly) NSMutableArray *libNames;
-@property(nonatomic, readonly) NSMutableArray *libIsWeaks;
+@property(nonatomic, readonly) NSMutableArray<NSString*> *frameworkNames;
+@property(nonatomic, readonly) NSMutableArray<NSString*> *frameworkIsWeaks;
+@property(nonatomic, readonly) NSMutableArray<NSString*> *libNames;
 
 - (id)initWithInfoDict:(NSDictionary*) dic;
 - (void)setValueForKey:(NSString*)key withObj:(id)obj;

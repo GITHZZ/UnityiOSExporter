@@ -48,7 +48,7 @@
     for(int i = 0; i < [keyArr count]; i++)
     {
         NSString *key = [keyArr objectAtIndex:i];
-        NSString *keyStr;
+        NSString *keyStr = [NSString stringWithFormat:@""];
         
         if([key isEqualToString:Export_Path])
         {
@@ -61,12 +61,7 @@
             keyStr = [data getValueForKey:key];
             
             //需要特殊处理的
-            if([key isEqualToString:Frameworks_Key])
-            {
-                NSString *newStr = [self createCSClassStr:@"FrameworkSet" withArgsStr:keyStr];
-                keyStr = newStr;
-            }
-            else if([key isEqualToString:libs_Key])
+            if([key isEqualToString:libs_Key])
             {
                 keyStr = [keyStr stringByReplacingOccurrencesOfString:@"|"
                                                            withString:@","];
@@ -91,6 +86,39 @@
                 NSString *args = [NSString stringWithFormat:@"DevelopType.Release, \"%@\",\"%@\"", teamName, profileName];
                 keyStr = [self createCSClassStr:@"DevelopmentInfo" withArgsStr:args];
                 key = @"developmentInfoRelease";
+                replaceFormat = @"%@";
+            }
+            else if([key isEqualToString:Frameworks])
+            {
+                NSArray *names =  data.frameworkNames;
+                NSArray *isWeaks = data.frameworkIsWeaks;
+                NSMutableArray *classArr = [[NSMutableArray alloc] initWithCapacity:10];
+                
+                for (int i = 0; i < [names count]; i++)
+                {
+                    NSString *name = names[i];
+                    NSString *isWeak = isWeaks[i];
+                    
+                    NSString *args = [NSString stringWithFormat:@"\"%@\",%@", name, isWeak];
+                    NSString *classStr = [self createCSClassStr:@"FrameworkSet" withArgsStr:args];
+                    [classArr addObject:classStr];
+                }
+                
+                keyStr = [classArr componentsJoinedByString:@"\n"];
+                replaceFormat = @"%@";
+            }
+            else if([key isEqualToString:Libs])
+            {
+                NSArray *names = data.libNames;
+                NSMutableArray *classArr = [[NSMutableArray alloc] initWithCapacity:10];
+
+                for (int i = 0; i < [names count]; i++)
+                {
+                    NSString *name = names[i];
+                    [classArr addObject:name];
+                }
+                
+                keyStr = [classArr componentsJoinedByString:@",\n"];
                 replaceFormat = @"%@";
             }
         }

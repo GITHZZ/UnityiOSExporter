@@ -55,7 +55,7 @@ public class XcodeProjectSetting
 	//=================================================================================
 
 	//Xcodeへコピーするディレクトリへのパス
-    public string CopyDirectoryPath = "";//${copyDirectoryPath}
+    public string CopyDirectoryPath = ${cDirectoryPath}
 
 	//URL identifier
 	public string URLIdentifier = "";
@@ -96,13 +96,13 @@ public class XcodeProjectSetting
 	}
 	public List<FrameworkSet> FrameworkList = new List<FrameworkSet>(){
         /*new FrameworkSet("Social.framework", true)*/ //初期設定例
-        //${frameworks}
+        ${frameworks}
     };
 
     //libs
 	public List<string> LibsList = new List<string>(){
 		//libsqlite3.0.tbd
-		//${libs}
+		${libs}
 	};
 		
 	public string[] LinkerFlagArray = new string[]{
@@ -134,7 +134,7 @@ public class XcodeProjectSetting
 
 	//canOpenURLで判定可能にするスキーム
 	public List<string>ApplicationQueriesSchemes = new List<string>(){
-
+        
 	};
 
 	//BitCodeを有効にするか

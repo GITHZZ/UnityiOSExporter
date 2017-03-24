@@ -25,7 +25,6 @@
 #define App_ID_Key               @"bundleIdentifier"
 #define Code_Sign_Identity_Key   @"codeSignIdentity"
 #define Provisioning_Profile_key @"provisioningProfile"
-#define Frameworks_Key           @"frameworks"
 #define libs_Key                 @"libs"
 #define Libker_Flag              @"libkerFlag"
 #define Copy_Dir_Path            @"cDirectoryPath"
@@ -34,8 +33,10 @@
 #define Debug_Develop_Team       @"debugDevelopTeam"
 #define Release_Profile_Name     @"releaseProfileName"
 #define Release_Develop_Team     @"releaseDevelopTeam"
+#define Frameworks               @"frameworks"
 #define Framework_Names          @"frameworkNames"
 #define Framework_IsWeaks        @"frameworkIsWeaks"
+#define Libs                     @"libs"
 #define Lib_Names                @"libNames"
 #define Lib_IsWeaks              @"libIsWeaks"
 

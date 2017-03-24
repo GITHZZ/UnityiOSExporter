@@ -3,71 +3,6 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "push_lua_var:LuaDLL.c">
-         <PersistentStrings>
-            <PersistentString
-               value = "count">
-            </PersistentString>
-            <PersistentString
-               value = "args">
-            </PersistentString>
-            <PersistentString
-               value = "strlen(t)">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "__25-[LuaCammond startExport]_block_invoke_2:LuaCammond.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "infoData.isSelected">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[ViewMain renderUpAttriString:withColor:]:ViewMain.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "_infoLabel.textContainer">
-            </PersistentString>
-            <PersistentString
-               value = "_infoLabel.textContainer.size.height">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "singlestep:lgc.c">
-         <PersistentStrings>
-            <PersistentString
-               value = "g-&gt;gcstate">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[DetailsInfoSetting numberOfRowsInTableView:]:DetailsInfoSetting.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "tableView.identifier">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[DetailsInfoData initWithInfoDict:]:DetailsInfoData.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "&amp;key">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[ViewMain tableView:objectValueForTableColumn:row:]:ViewMain.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "[_dataDict objectAtIndex:row]">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "-[BuilderCSFileEdit start:withPackInfo:]:BuilderCSFileEdit.m">
          <PersistentStrings>
             <PersistentString
@@ -75,70 +10,6 @@
             </PersistentString>
             <PersistentString
                value = "[result length]">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[ViewMain viewDidLoad]:ViewMain.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "[tableColumns count]">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[ViewMain comboBoxSelectionDidChange:]:ViewMain.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "comboBox.stringValue">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[LuaCammond callLuaMain]:LuaCammond.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "view.info.unityProjPath">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[ViewMain CellClick:]:ViewMain.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "[cell state]">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[DetailsInfoData initWithCoder:]:DetailsInfoData.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "[self initWithInfoDict:dict]">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "luaM_realloc_:lmem.c">
-         <PersistentStrings>
-            <PersistentString
-               value = "g-&gt;GCdebt">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[DetailsInfoView addInfo:]:DetailsInfoView.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "[_dataDict count]">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[ExportInfoModel removeDetail:]:ExportInfoModel.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "[_detailArray count]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -154,6 +25,44 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "-[DetailsInfoData getValueForKey:]:DetailsInfoData.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[self valueForKey:key]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[DetailsInfoData initWithCoder:]:DetailsInfoData.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[self initWithInfoDict:dict]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[LuaCammond callLuaMain]:LuaCammond.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "view.info.unityProjPath">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "push_lua_var:LuaDLL.c">
+         <PersistentStrings>
+            <PersistentString
+               value = "count">
+            </PersistentString>
+            <PersistentString
+               value = "args">
+            </PersistentString>
+            <PersistentString
+               value = "strlen(t)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[NSObject(Singletion) exchangeAllocMethod]:NSObject+Singletion.m">
          <PersistentStrings>
             <PersistentString
@@ -162,10 +71,109 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[DetailsInfoData getValueForKey:]:DetailsInfoData.m">
+         contextName = "-[ExportInfoModel removeDetail:]:ExportInfoModel.m">
          <PersistentStrings>
             <PersistentString
-               value = "[self valueForKey:key]">
+               value = "[_detailArray count]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ViewMain tableView:objectValueForTableColumn:row:]:ViewMain.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[_dataDict objectAtIndex:row]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ViewMain CellClick:]:ViewMain.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[cell state]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__25-[LuaCammond startExport]_block_invoke_2:LuaCammond.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "infoData.isSelected">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[DetailsInfoSetting numberOfRowsInTableView:]:DetailsInfoSetting.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "tableView.identifier">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ViewMain comboBoxSelectionDidChange:]:ViewMain.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "comboBox.stringValue">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[DetailsInfoData initWithInfoDict:]:DetailsInfoData.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "&amp;key">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "singlestep:lgc.c">
+         <PersistentStrings>
+            <PersistentString
+               value = "g-&gt;gcstate">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ViewMain viewDidLoad]:ViewMain.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[tableColumns count]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ViewMain renderUpAttriString:withColor:]:ViewMain.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "_infoLabel.textContainer">
+            </PersistentString>
+            <PersistentString
+               value = "_infoLabel.textContainer.size.height">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[BaseDataCSCodeEdit replaceVarFromData:withKeyArr:]:BaseDataCSCodeEdit.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "keyStr">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[DetailsInfoView addInfo:]:DetailsInfoView.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[_dataDict count]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "luaM_realloc_:lmem.c">
+         <PersistentStrings>
+            <PersistentString
+               value = "g-&gt;GCdebt">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
