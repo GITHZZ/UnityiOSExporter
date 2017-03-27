@@ -61,12 +61,7 @@
             keyStr = [data getValueForKey:key];
             
             //需要特殊处理的
-            if([key isEqualToString:libs_Key])
-            {
-                keyStr = [keyStr stringByReplacingOccurrencesOfString:@"|"
-                                                           withString:@","];
-            }
-            else if([key isEqualToString:Debug_Profile_Name])
+            if([key isEqualToString:Debug_Profile_Name])
             {
                 NSString *profileName = keyStr;
                 NSString *teamName = [data getValueForKey:Debug_Develop_Team];
@@ -119,7 +114,7 @@
                 }
                 
                 keyStr = [classArr componentsJoinedByString:@",\n"];
-                replaceFormat = @"%@";
+                replaceFormat = @"\"%@\"";
             }
             else if([key isEqualToString:Linker_Flag])
             {
@@ -133,7 +128,7 @@
                 }
                 
                 keyStr = [classArr componentsJoinedByString:@",\n"];
-                replaceFormat = @"%@";
+                replaceFormat = @"\"%@\"";
             }
         }
         

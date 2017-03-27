@@ -77,13 +77,7 @@
 - (void)copyResSrcPath:(NSString*)src toDst:(NSString*)dst
 {
     //文件夹存在就删除
-    NSString *templeteDirPath = [NSString stringWithFormat:@"%@/%@", _srcPath, DATA_PATH];
-    BOOL isDir;
-    BOOL isDirExit = [_fileManager fileExistsAtPath:templeteDirPath isDirectory:&isDir];
-
-    if(isDirExit && isDir){
-        [self removeResFromDstPath:templeteDirPath];
-    }
+    [self removeResFromDstPath:_dstPath];
     
     //判断路径是否为文件夹
     NSString* pType = [src pathExtension];
@@ -134,7 +128,12 @@
     NSError* error = nil;
     NSString* metaPath = [NSString stringWithFormat:@"%@.meta", root];
     
-    [_fileManager removeItemAtPath:root error:&error];
+    BOOL isDir;
+    BOOL isDirExit = [_fileManager fileExistsAtPath:dst isDirectory:&isDir];
+    
+    if(isDirExit && isDir){
+        [_fileManager removeItemAtPath:root error:&error];
+    }
     
     if([_fileManager fileExistsAtPath:metaPath]){
         [_fileManager removeItemAtPath:metaPath error:&error];

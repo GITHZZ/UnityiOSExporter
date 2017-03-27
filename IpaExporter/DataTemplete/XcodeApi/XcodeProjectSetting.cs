@@ -55,7 +55,7 @@ public class XcodeProjectSetting
 	//=================================================================================
 
 	//Xcodeへコピーするディレクトリへのパス
-    public string CopyDirectoryPath = ${cDirectoryPath}
+    public string CopyDirectoryPath = ${cDirectoryPath};
 
 	//URL identifier
 	public string URLIdentifier = "";

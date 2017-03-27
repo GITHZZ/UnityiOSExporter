@@ -226,7 +226,7 @@ int start_call_lua_main(lua_State *L, int nargs)
     int luaResult = (int)lua_tonumber(L, -1);
     lua_pop(L, 1);
     
-    if(luaResult > 1){ //有返回参数原因
+    if(luaResult == 0){ //返回0导出失败
         return LUA_DLL_ERROR;
     }
     
