@@ -9,17 +9,19 @@
 #import "DetailsInfoSetting.h"
 #import "Defs.h"
 
-#define FrameworkKey @"frameworkTbl"
-#define LibKey       @"libsTbl"
+#define FrameworkKey  @"frameworkTbl"
+#define LibKey        @"libsTbl"
+#define LinkerFlagKey @"linkerFlagTbl"
 
 @interface DetailsInfoSetting ()
 {
     BOOL _isSetDataOnShow;
     DetailsInfoData *_info;
     
-    NSMutableArray *_frameworkNameArr;
-    NSMutableArray *_frameworkIsWeakArr;
-    NSMutableArray *_libNameArr;
+    NSMutableArray<NSString*> *_frameworkNameArr;
+    NSMutableArray<NSString*> *_frameworkIsWeakArr;
+    NSMutableArray<NSString*> *_libNameArr;
+    NSMutableArray<NSString*> *_linkerFlagArr;
 }
 @end
 
@@ -39,17 +41,27 @@
     else
     {
         _sureBtn.title = @"添加";
-        
+    }
+    
+    if(_frameworkNameArr == nil){
         _frameworkNameArr = [NSMutableArray arrayWithCapacity:10];
+    }
+    if(_frameworkIsWeakArr == nil){
         _frameworkIsWeakArr = [NSMutableArray arrayWithCapacity:10];
+    }
+    if(_libNameArr == nil){
         _libNameArr = [NSMutableArray arrayWithCapacity:10];
+    }
+    if(_linkerFlagArr == nil){
+        _linkerFlagArr = [NSMutableArray arrayWithCapacity:10];
     }
     
     _frameworkTbl.delegate = self;
     _frameworkTbl.dataSource = self;
-    
     _libsTbl.delegate = self;
     _libsTbl.dataSource = self;
+    _linkerFlagTbl.delegate = self;
+    _linkerFlagTbl.dataSource = self;
 }
 
 - (void)setUpDataInfoOnShow:(DetailsInfoData*)info
@@ -74,6 +86,7 @@
     _frameworkNameArr = [_info getValueForKey:Framework_Names];
     _frameworkIsWeakArr = [_info getValueForKey:Framework_IsWeaks];
     _libNameArr = [_info getValueForKey:Lib_Names];
+    _linkerFlagArr = [_info getValueForKey:Linker_Flag];
 }
 
 - (IBAction)sureBtnClickFuncion:(id)sender
@@ -87,7 +100,7 @@
     NSString* platform = _platform.stringValue;
     NSString* cDirPath = _cDirPath.stringValue;
     
-    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:appName, App_Name_Key, appID, App_ID_Key, debugProfileName, Debug_Profile_Name, debugDevelopTeam, Debug_Develop_Team, releaseProfileName, Release_Profile_Name, releaseDevelopTeam, Release_Develop_Team, platform, Platform_Name, cDirPath, Copy_Dir_Path, s_false, Is_Selected ,_frameworkNameArr, Framework_Names, _frameworkIsWeakArr, Framework_IsWeaks, _libNameArr, Lib_Names, nil];
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:appName, App_Name_Key, appID, App_ID_Key, debugProfileName, Debug_Profile_Name, debugDevelopTeam, Debug_Develop_Team, releaseProfileName, Release_Profile_Name, releaseDevelopTeam, Release_Develop_Team, platform, Platform_Name, cDirPath, Copy_Dir_Path, s_false, Is_Selected ,_frameworkNameArr, Framework_Names, _frameworkIsWeakArr, Framework_IsWeaks, _libNameArr, Lib_Names, _linkerFlagArr, Linker_Flag, nil];
 
     DetailsInfoData* info = [[DetailsInfoData alloc] initWithInfoDict:dict];
     if(_isSetDataOnShow)
@@ -143,38 +156,53 @@
     }
 }
 
-- (IBAction)frameworkAdd:(id)sender
+- (IBAction)tblItemAdd:(id)sender
 {
-    [_frameworkNameArr addObject:@""];
-    [_frameworkIsWeakArr addObject:@""];
-    [_frameworkTbl reloadData];
+    NSButton *btn = (NSButton*)sender;
+    if([btn.identifier isEqualToString:FrameworkKey]){
+        [_frameworkNameArr addObject:@""];
+        [_frameworkIsWeakArr addObject:@""];
+        [_frameworkTbl reloadData];
+    }else if([btn.identifier isEqualToString:LibKey]){
+        [_libNameArr addObject:@""];
+        [_libsTbl reloadData];
+    }else if([btn.identifier isEqualToString:LinkerFlagKey]){
+        [_linkerFlagArr addObject:@"-ObjC"];
+        [_linkerFlagTbl reloadData];
+    }
 }
 
-- (IBAction)frameworkRemove:(id)sender
+- (IBAction)tblItemRemove:(id)sender
 {
-    NSInteger row = [_frameworkTbl selectedRow];
-    if(row > -1){
+    NSButton *btn = (NSButton*)sender;
+    
+    if([btn.identifier isEqualToString:FrameworkKey]){
+        NSInteger row = [_frameworkTbl selectedRow];
+        if(row <= -1){
+            return;
+        }
+        
         [_frameworkNameArr removeObjectAtIndex:row];
         [_frameworkIsWeakArr removeObjectAtIndex:row];
         [_frameworkTbl reloadData];
-    }
-}
-
-- (IBAction)libAdd:(id)sender
-{
-    [_libNameArr addObject:@""];
-    [_libsTbl reloadData];
-}
-
-- (IBAction)libRemove:(id)sender
-{
-    NSInteger row = [_libsTbl selectedRow];
-    if(row > -1){
+    }else if([btn.identifier isEqualToString:LibKey]){
+        NSInteger row = [_libsTbl selectedRow];
+        if(row <= -1){
+            return;
+        }
+        
         [_libNameArr removeObjectAtIndex:row];
         [_libsTbl reloadData];
+    }else if([btn.identifier isEqualToString:LinkerFlagKey]){
+        NSInteger row = [_linkerFlagTbl selectedRow];
+        if(row <= -1){
+            return;
+        }
+        
+        [_linkerFlagArr removeObjectAtIndex:row];
+        [_linkerFlagTbl reloadData];
     }
 }
-
 
 //返回表格的行数
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView;
@@ -183,6 +211,8 @@
         return [_frameworkNameArr count];
     }else if([tableView.identifier isEqualToString:LibKey]){
         return [_libNameArr count];
+    }else if([tableView.identifier isEqualToString:LinkerFlagKey]){
+        return [_linkerFlagArr count];
     }else{
         return 0;
     }
@@ -203,8 +233,9 @@
         return [_frameworkIsWeakArr objectAtIndex:row];
     }else if([columnIdentifier isEqualToString:Lib_Names]){
         return [_libNameArr objectAtIndex:row];
+    }else if([columnIdentifier isEqualToString:Linker_Flag]){
+        return [_linkerFlagArr objectAtIndex:row];
     }
-    
     return nil;
 }
 
@@ -224,6 +255,8 @@
         if([[newValue pathExtension] isEqualToString:@"tbd"]){
             [_libNameArr replaceObjectAtIndex:row withObject:newValue];
         }
+    }else if([columnIdentifier isEqualToString:Linker_Flag]){
+        [_linkerFlagArr replaceObjectAtIndex:row withObject:newValue];
     }
 }
 

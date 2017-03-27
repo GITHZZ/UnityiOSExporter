@@ -20,12 +20,12 @@
 @property (weak) IBOutlet NSTextField *debugDevelopTeam;
 @property (weak) IBOutlet NSTextField *releaseProfileName;
 @property (weak) IBOutlet NSTextField *releaseDevelopTeam;
-@property (weak) IBOutlet NSTextField *frameworks;
 @property (weak) IBOutlet NSComboBox *cDirPath;
 @property (weak) IBOutlet NSView *detailView;
 @property (weak) IBOutlet NSButton *sureBtn;
 @property (weak) IBOutlet NSTableView *frameworkTbl;
 @property (weak) IBOutlet NSTableView *libsTbl;
+@property (weak) IBOutlet NSTableView *linkerFlagTbl;
 
 - (void)setUpDataInfoOnShow:(DetailsInfoData*)info;
 

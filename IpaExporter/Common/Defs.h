@@ -26,7 +26,7 @@
 #define Code_Sign_Identity_Key   @"codeSignIdentity"
 #define Provisioning_Profile_key @"provisioningProfile"
 #define libs_Key                 @"libs"
-#define Libker_Flag              @"libkerFlag"
+#define Linker_Flag              @"linkerFlag"
 #define Copy_Dir_Path            @"cDirectoryPath"
 #define Is_Selected              @"isSelected"
 #define Debug_Profile_Name       @"debugProfileName"

@@ -133,8 +133,12 @@
     NSString* root = [dst stringByAppendingString:DATA_PATH];
     NSError* error = nil;
     NSString* metaPath = [NSString stringWithFormat:@"%@.meta", root];
+    
     [_fileManager removeItemAtPath:root error:&error];
-    [_fileManager removeItemAtPath:metaPath error:&error];
+    
+    if([_fileManager fileExistsAtPath:metaPath]){
+        [_fileManager removeItemAtPath:metaPath error:&error];
+    }
     
     if(error != nil)
     {

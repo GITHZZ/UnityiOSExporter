@@ -107,7 +107,7 @@ public class XcodeProjectSetting
 		
 	public string[] LinkerFlagArray = new string[]{
 		/*"-ObjC", "-all_load"*/ //初期設定例
-		//${libkerFlag}
+		${linkerFlag}
 	};
 	
 	public string[] FrameworkSearchPathArray = new string[]{

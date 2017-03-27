@@ -121,6 +121,20 @@
                 keyStr = [classArr componentsJoinedByString:@",\n"];
                 replaceFormat = @"%@";
             }
+            else if([key isEqualToString:Linker_Flag])
+            {
+                NSArray *names = data.linkerFlag;
+                NSMutableArray *classArr = [[NSMutableArray alloc] initWithCapacity:10];
+                
+                for (int i = 0; i < [names count]; i++)
+                {
+                    NSString *name = names[i];
+                    [classArr addObject:name];
+                }
+                
+                keyStr = [classArr componentsJoinedByString:@",\n"];
+                replaceFormat = @"%@";
+            }
         }
         
         [result replaceOccurrencesOfString:[NSString stringWithFormat:@"${%@}", key]

@@ -41,6 +41,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "-[DetailsInfoSetting tableView:setObjectValue:forTableColumn:row:]:DetailsInfoSetting.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[newValue pathExtension]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[LuaCammond callLuaMain]:LuaCammond.m">
          <PersistentStrings>
             <PersistentString
@@ -49,12 +57,7 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[DetailsInfoSetting tableView:setObjectValue:forTableColumn:row:]:DetailsInfoSetting.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "[newValue pathExtension]">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "-[DetailsInfoSetting tblItemRemove:]:DetailsInfoSetting.m">
       </ContextState>
       <ContextState
          contextName = "push_lua_var:LuaDLL.c">
@@ -115,6 +118,12 @@
          <PersistentStrings>
             <PersistentString
                value = "tableView.identifier">
+            </PersistentString>
+            <PersistentString
+               value = "[_linkerFlagArr count]">
+            </PersistentString>
+            <PersistentString
+               value = "_linkerFlagArr">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

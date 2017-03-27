@@ -30,6 +30,7 @@
 @property(nonatomic, readonly) NSMutableArray<NSString*> *frameworkNames;
 @property(nonatomic, readonly) NSMutableArray<NSString*> *frameworkIsWeaks;
 @property(nonatomic, readonly) NSMutableArray<NSString*> *libNames;
+@property(nonatomic, readonly) NSMutableArray<NSString*> *linkerFlag;
 
 - (id)initWithInfoDict:(NSDictionary*) dic;
 - (void)setValueForKey:(NSString*)key withObj:(id)obj;
