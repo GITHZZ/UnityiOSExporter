@@ -13,8 +13,8 @@
 #import "EventManager.h"
 
 #define DATA_PATH @"/DataTemplete"
-#define BUILDER_CS_PATH @"/Assets/Editor/DataTemplete/Builder/Builder.cs"
-#define XCODEPROJECT_CS_PATH @"/Assets/Editor/DataTemplete/XcodeApi/XcodeProjectSetting.cs"
+#define BUILDER_CS_PATH @"/Assets/Editor/DataTemplete/Builder/_Builder.cs"
+#define XCODEPROJECT_CS_PATH @"/Assets/Editor/DataTemplete/XcodeApi/_XcodeProjectSetting.cs"
 
 //view main key
 #define Export_Path @"exportPath"

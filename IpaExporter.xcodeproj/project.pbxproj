@@ -792,6 +792,7 @@
 					"$(PROJECT_DIR)/IpaExporter",
 					"$(PROJECT_DIR)/IpaExporter/LuaLib",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.IpaExporter.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -813,6 +814,7 @@
 					"$(PROJECT_DIR)/IpaExporter",
 					"$(PROJECT_DIR)/IpaExporter/LuaLib",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.IpaExporter.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
