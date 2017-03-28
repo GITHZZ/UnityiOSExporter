@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		182DC37D1E8A5AE400912D20 /* Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = 182DC37C1E8A5AE400912D20 /* Alert.m */; };
 		182FF6F31E4D936700CC0C7C /* DetailsInfoData.m in Sources */ = {isa = PBXBuildFile; fileRef = 182FF6F01E4D936700CC0C7C /* DetailsInfoData.m */; };
 		182FF6F41E4D936700CC0C7C /* ExportInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 182FF6F21E4D936700CC0C7C /* ExportInfoManager.m */; };
 		18322A8E1DAE193B0049660B /* BuilderCSFileEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 18322A8D1DAE193B0049660B /* BuilderCSFileEdit.m */; };
@@ -65,11 +66,9 @@
 		18769D931DAE34050023E255 /* XcodeProjModCSFileEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 18769D921DAE34050023E255 /* XcodeProjModCSFileEdit.m */; };
 		188DAD111E56F8E300554D6B /* CustomLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 188DAD101E56F8E300554D6B /* CustomLog.m */; };
 		189034501DE82FCF00AEDF46 /* DataTemplete in Resources */ = {isa = PBXBuildFile; fileRef = 1890344F1DE82FCF00AEDF46 /* DataTemplete */; };
-		189180BA1E84FA8500EC9927 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 189180B91E84FA8500EC9927 /* AddressBook.framework */; };
 		18CA13961D78164C006595E5 /* ViewMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CA13951D78164C006595E5 /* ViewMain.m */; };
 		18DB76441E7FFE22003FDC52 /* Singletion.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DB76431E7FFE22003FDC52 /* Singletion.m */; };
 		18DD5E6C1DAF1C150071B654 /* DetailsInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD5E6B1DAF1C150071B654 /* DetailsInfoView.m */; };
-		18E630ED1E4815FE00E04ACA /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E630EC1E4815FE00E04ACA /* Accounts.framework */; };
 		18F1027B1DCC2AEB008312E5 /* EventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F1027A1DCC2AEB008312E5 /* EventManager.m */; };
 /* End PBXBuildFile section */
 
@@ -93,6 +92,8 @@
 /* Begin PBXFileReference section */
 		182186401E5ACAD5003599CD /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		1828197A1E4C5E2C00CEC719 /* EventTypeDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EventTypeDef.h; sourceTree = "<group>"; };
+		182DC37B1E8A5AE400912D20 /* Alert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Alert.h; sourceTree = "<group>"; };
+		182DC37C1E8A5AE400912D20 /* Alert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Alert.m; sourceTree = "<group>"; };
 		182FF6EF1E4D936700CC0C7C /* DetailsInfoData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsInfoData.h; sourceTree = "<group>"; };
 		182FF6F01E4D936700CC0C7C /* DetailsInfoData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsInfoData.m; sourceTree = "<group>"; };
 		182FF6F11E4D936700CC0C7C /* ExportInfoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportInfoManager.h; sourceTree = "<group>"; };
@@ -199,14 +200,12 @@
 		188DAD0F1E56F8E300554D6B /* CustomLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomLog.h; sourceTree = "<group>"; };
 		188DAD101E56F8E300554D6B /* CustomLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomLog.m; sourceTree = "<group>"; };
 		1890344F1DE82FCF00AEDF46 /* DataTemplete */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DataTemplete; path = IpaExporter/DataTemplete; sourceTree = "<group>"; };
-		189180B91E84FA8500EC9927 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		18CA13941D78164C006595E5 /* ViewMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewMain.h; sourceTree = "<group>"; };
 		18CA13951D78164C006595E5 /* ViewMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewMain.m; sourceTree = "<group>"; };
 		18DB76421E7FFE22003FDC52 /* Singletion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Singletion.h; sourceTree = "<group>"; };
 		18DB76431E7FFE22003FDC52 /* Singletion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Singletion.m; sourceTree = "<group>"; };
 		18DD5E6A1DAF1C150071B654 /* DetailsInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsInfoView.h; sourceTree = "<group>"; };
 		18DD5E6B1DAF1C150071B654 /* DetailsInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsInfoView.m; sourceTree = "<group>"; };
-		18E630EC1E4815FE00E04ACA /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		18F102791DCC2AEB008312E5 /* EventManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventManager.h; sourceTree = "<group>"; };
 		18F1027A1DCC2AEB008312E5 /* EventManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventManager.m; sourceTree = "<group>"; };
 		18F472071E51A481007620FF /* BaseDataCSCodePrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseDataCSCodePrivate.h; sourceTree = "<group>"; };
@@ -218,8 +217,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				189180BA1E84FA8500EC9927 /* AddressBook.framework in Frameworks */,
-				18E630ED1E4815FE00E04ACA /* Accounts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,7 +245,6 @@
 				183780261D766C84004E3BAD /* IpaExporterTests */,
 				183780311D766C85004E3BAD /* IpaExporterUITests */,
 				1837800E1D766C84004E3BAD /* Products */,
-				18E630EB1E4815FD00E04ACA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -446,15 +442,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		18E630EB1E4815FD00E04ACA /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				189180B91E84FA8500EC9927 /* AddressBook.framework */,
-				18E630EC1E4815FE00E04ACA /* Accounts.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		18F102721DCC2813008312E5 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -467,6 +454,8 @@
 				18F1027A1DCC2AEB008312E5 /* EventManager.m */,
 				18DB76421E7FFE22003FDC52 /* Singletion.h */,
 				18DB76431E7FFE22003FDC52 /* Singletion.m */,
+				182DC37B1E8A5AE400912D20 /* Alert.h */,
+				182DC37C1E8A5AE400912D20 /* Alert.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -619,6 +608,7 @@
 				18750A881D9BBBC100FECCA6 /* lmathlib.c in Sources */,
 				18750A821D9BBBC100FECCA6 /* lfs.c in Sources */,
 				18750AA71D9BBBD000FECCA6 /* LuaCammond.m in Sources */,
+				182DC37D1E8A5AE400912D20 /* Alert.m in Sources */,
 				18750A891D9BBBC100FECCA6 /* lmem.c in Sources */,
 				18750A831D9BBBC100FECCA6 /* lfunc.c in Sources */,
 				18769D931DAE34050023E255 /* XcodeProjModCSFileEdit.m in Sources */,

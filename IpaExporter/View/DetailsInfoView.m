@@ -129,7 +129,7 @@
 //修改行内容
 - (void)tableView:(NSTableView *)tableView setObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
-    NSString *columnIdentifier=[tableColumn identifier];
+    NSString *columnIdentifier = [tableColumn identifier];
     DetailsInfoData* info = [_dataDict objectAtIndex:row];
     
     NSString* newValue = (NSString*)object;

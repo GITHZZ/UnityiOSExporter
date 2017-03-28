@@ -8,6 +8,7 @@
 
 #import "DetailsInfoSetting.h"
 #import "Defs.h"
+#import "Alert.h"
 
 #define FrameworkKey  @"frameworkTbl"
 #define LibKey        @"libsTbl"
@@ -121,7 +122,7 @@
 - (IBAction)cancelBtnClickFunction:(id)sender
 {
     _isSetDataOnShow = NO;
-    [self dismissViewController:self];
+    [self cancelSetting];
 }
 
 - (IBAction)cDirectorySelected:(id)sender
@@ -258,6 +259,19 @@
     }else if([columnIdentifier isEqualToString:Linker_Flag]){
         [_linkerFlagArr replaceObjectAtIndex:row withObject:newValue];
     }
+}
+
+- (IBAction)closeView:(id)sender
+{
+    [self cancelSetting];
+}
+
+- (void)cancelSetting
+{
+    [[Alert instance] alertModalFirstBtnTitle:@"确定" SecondBtnTitle:@"取消" MessageText:@"温馨提示" InformativeText:@"你确定要取消操作？本次填写的信息将不会保存。" callBackFrist:^{
+        [self dismissViewController:self];
+    } callBackSecond:^{
+    }];
 }
 
 @end
