@@ -59,7 +59,6 @@
         else
         {
             keyStr = [data getValueForKey:key];
-            
             //需要特殊处理的
             if([key isEqualToString:Debug_Profile_Name])
             {
@@ -105,29 +104,13 @@
             else if([key isEqualToString:Libs])
             {
                 NSArray *names = data.libNames;
-                NSMutableArray *classArr = [[NSMutableArray alloc] initWithCapacity:10];
-
-                for (int i = 0; i < [names count]; i++)
-                {
-                    NSString *name = names[i];
-                    [classArr addObject:name];
-                }
-                
-                keyStr = [classArr componentsJoinedByString:@",\n"];
+                keyStr = [self getReplaceStrFromArray:names];
                 replaceFormat = @"\"%@\"";
             }
             else if([key isEqualToString:Linker_Flag])
             {
                 NSArray *names = data.linkerFlag;
-                NSMutableArray *classArr = [[NSMutableArray alloc] initWithCapacity:10];
-                
-                for (int i = 0; i < [names count]; i++)
-                {
-                    NSString *name = names[i];
-                    [classArr addObject:name];
-                }
-                
-                keyStr = [classArr componentsJoinedByString:@",\n"];
+                keyStr = [self getReplaceStrFromArray:names];
                 replaceFormat = @"\"%@\"";
             }
         }
@@ -152,6 +135,20 @@
         NSLog(@"%@", error);
         NSLog(@"%@", [error userInfo]);
     }
+}
+
+//多个选项转成字符串
+- (NSString*)getReplaceStrFromArray:(NSArray<NSString*> *) array
+{
+    NSMutableArray *classArr = [[NSMutableArray alloc] initWithCapacity:10];
+    for (int i = 0; i < [array count]; i++)
+    {
+        NSString *name = array[i];
+        [classArr addObject:name];
+    }
+    
+    NSString *keyStr = [classArr componentsJoinedByString:@",\n"];
+    return keyStr;
 }
 
 //argsStr: 格式 args1,args2

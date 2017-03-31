@@ -261,7 +261,7 @@
 		1837800F1D766C84004E3BAD /* IpaExporter */ = {
 			isa = PBXGroup;
 			children = (
-				18750A1F1D9BBBC100FECCA6 /* LuaLib */,
+				18750A1F1D9BBBC100FECCA6 /* LuaC */,
 				18F102721DCC2813008312E5 /* Common */,
 				18750A9C1D9BBBD000FECCA6 /* Logic */,
 				18CA13931D78163C006595E5 /* View */,
@@ -301,12 +301,13 @@
 			path = IpaExporterUITests;
 			sourceTree = "<group>";
 		};
-		18750A1F1D9BBBC100FECCA6 /* LuaLib */ = {
+		18750A1F1D9BBBC100FECCA6 /* LuaC */ = {
 			isa = PBXGroup;
 			children = (
 				18750A201D9BBBC100FECCA6 /* core */,
 				18750A311D9BBBC100FECCA6 /* src */,
 			);
+			name = LuaC;
 			path = LuaLib;
 			sourceTree = "<group>";
 		};
@@ -786,6 +787,7 @@
 				DEVELOPMENT_TEAM = 5GW4L26KUL;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				INFOPLIST_FILE = IpaExporter/Info.plist;
+				LD_GENERATE_MAP_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -808,6 +810,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = NS_BLOCK_ASSERTIONS;
 				INFOPLIST_FILE = IpaExporter/Info.plist;
+				LD_GENERATE_MAP_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

@@ -32,7 +32,7 @@
                            withData:nil
                                self:self];
     
-    NSMutableArray* saveArray = [[ExportInfoManager instance] reLoadDetails];
+    NSMutableArray* saveArray = [[ExportInfoManager instance] reLoadDetails:SAVE_DETAIL_ARRARY_KEY];
     _dataDict = [[NSMutableArray alloc] initWithArray:saveArray];
     
     if([_dataDict count] > 0)
@@ -69,7 +69,7 @@
 - (void)addInfo:(DetailsInfoData*)info
 {
     [_dataDict addObject:info];
-    [[ExportInfoManager instance] addDetail:info];
+    [[ExportInfoManager instance] addDetail:info withKey:SAVE_DETAIL_ARRARY_KEY];
     [_infoTbls reloadData];
     
     [[EventManager instance] send:EventDetailsInfoUpdate withData:_dataDict];
@@ -87,7 +87,7 @@
     if(row > -1)
     {
         [_dataDict removeObjectAtIndex:row];
-        [[ExportInfoManager instance] removeDetail:row];
+        [[ExportInfoManager instance] removeDetail:row withKey:SAVE_DETAIL_ARRARY_KEY];
         [_infoTbls reloadData];
 
         [[EventManager instance] send:EventDetailsInfoUpdate withData:_dataDict];
@@ -136,7 +136,7 @@
     [info setValue:newValue forKey:columnIdentifier];
     
     [_dataDict replaceObjectAtIndex:row withObject:info];
-    [[ExportInfoManager instance] updateDetail:row withObject:info];
+    [[ExportInfoManager instance] updateDetail:row withObject:info withKey:SAVE_DETAIL_ARRARY_KEY];
 }
 
 - (BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(NSInteger)row

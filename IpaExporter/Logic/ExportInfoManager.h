@@ -13,15 +13,23 @@
 #import "Common.h"
 #import "Singletion.h"
 
+#define SAVE_DETAIL_ARRARY_KEY @"detailArray"
+#define SAVE_PROJECT_PATH_KEY  @"projectPath"
+#define SAVE_EXPORT_PATH_KEY   @"exportPath"
+#define SAVE_SCENE_ARRAY_KEY   @"scenePath"
+
+NS_ASSUME_NONNULL_BEGIN
 @interface ExportInfoManager : Singletion
 {
     NSUserDefaults* _saveData;
+    NSMutableDictionary<NSString*, NSMutableArray*> *_savedict;
 }
 
 @property(nonatomic, readwrite) ExportInfo *info;
 @property(nonatomic, readonly) NSMutableArray *unityProjPathArr;
 @property(nonatomic, readonly) NSMutableArray *exportPathArr;
 @property(nonatomic, readonly) NSMutableArray *detailArray;
+@property(nonatomic, readonly) NSMutableArray *sceneArray;
 
 - (void)addNewUnityProjPath:(NSString*)path;
 - (void)replaceUnityProjPath:(NSString*)path;
@@ -32,12 +40,12 @@
 - (void)reloadPaths;
 
 //包配置 信息表格数据部分
-- (NSMutableArray*)reLoadDetails;
-- (void)addDetail:(DetailsInfoData*)data;
-- (void)removeDetail:(NSUInteger)index;
-- (void)updateDetail:(NSUInteger)index withObject:(id)object;
-
+- (NSMutableArray*)reLoadDetails:(NSString*)saveKey;
+- (void)addDetail:(id)data withKey:(NSString*)saveKey;
+- (void)removeDetail:(NSUInteger)index withKey:(NSString*)saveKey;
+- (void)updateDetail:(NSUInteger)index withObject:(id)object withKey:(NSString*)saveKey;
 - (void)saveData;
 - (ExportInfo*)getData;
+NS_ASSUME_NONNULL_END
 
 @end

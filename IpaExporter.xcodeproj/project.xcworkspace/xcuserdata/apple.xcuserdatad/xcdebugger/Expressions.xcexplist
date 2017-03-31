@@ -49,15 +49,15 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "-[DetailsInfoSetting tblItemRemove:]:DetailsInfoSetting.m">
+      </ContextState>
+      <ContextState
          contextName = "-[LuaCammond callLuaMain]:LuaCammond.m">
          <PersistentStrings>
             <PersistentString
                value = "view.info.unityProjPath">
             </PersistentString>
          </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[DetailsInfoSetting tblItemRemove:]:DetailsInfoSetting.m">
       </ContextState>
       <ContextState
          contextName = "push_lua_var:LuaDLL.c">
@@ -114,6 +114,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "-[ViewMain removeScenePath:]:ViewMain.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "_sceneArray">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[DetailsInfoSetting numberOfRowsInTableView:]:DetailsInfoSetting.m">
          <PersistentStrings>
             <PersistentString
@@ -156,6 +164,14 @@
          <PersistentStrings>
             <PersistentString
                value = "[tableColumns count]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ViewMain numberOfRowsInTableView:]:ViewMain.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "tableView.identifier">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

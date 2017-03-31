@@ -147,6 +147,9 @@ function ExportMain(projPath, exportFolder, appName, buildConfig)
         build_config = "Debug"
     end
     
+    --关闭unity
+    os.execute("pkill Unity")
+    
     export_project_path = export_folder_path .. "/" .. xcode_proj_name
     --start export
     if ExportIpaUtil.Start() == 0 then

@@ -18,6 +18,7 @@
 @property (weak) IBOutlet NSComboBox* unityPathBox;
 @property (weak) IBOutlet NSComboBox* exportPathBox;
 @property (weak) IBOutlet NSTableView *platformTbl;
+@property (weak) IBOutlet NSTableView *packSceneTbl;
 @property (weak) IBOutlet NSButton *isReleaseBox;
 @property (weak) IBOutlet NSButton *exportBtn;
 

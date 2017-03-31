@@ -13,7 +13,13 @@
 #import "DetailsInfoData.h"
 #import "ExportInfoManager.h"
 
+#define PlatformTblKey @"platformTbl"
+#define PackSceneKey   @"packScene"
+
 @interface ViewMain()<NSTableViewDataSource, NSTableViewDelegate, NSComboBoxDelegate>
+{
+    NSMutableArray<NSString*> *_sceneArray;
+}
 @end
 
 @implementation ViewMain
@@ -51,12 +57,18 @@
     }
     
     //从本地读取存储数据
-    NSMutableArray<DetailsInfoData*>* saveArray = [[ExportInfoManager instance] reLoadDetails];
+    NSMutableArray<DetailsInfoData*> *saveArray = [[ExportInfoManager instance] reLoadDetails:SAVE_DETAIL_ARRARY_KEY];
     _dataDict = [[NSMutableArray alloc] initWithArray:saveArray];
+    
+    NSMutableArray<NSString*> *saveSceneArr = [[ExportInfoManager instance] reLoadDetails:SAVE_SCENE_ARRAY_KEY];
+    _sceneArray = [[NSMutableArray alloc] initWithArray:saveSceneArr];
     
     //设置数据源
     _platformTbl.delegate = self;
     _platformTbl.dataSource = self;
+    
+    _packSceneTbl.delegate = self;
+    _packSceneTbl.dataSource = self;
     
     _isReleaseBox.state = 0;
 }
@@ -130,6 +142,15 @@
                     [[ExportInfoManager instance] addNewExportProjPath:selectPath];
                     _exportPathBox.stringValue = selectPath;
                     break;
+                case EventScenePathSelectEnd:
+                    if(![[selectPath pathExtension] isEqualToString:@"unity"]){
+                        showError("**[加入新打包场景失败]：选择场景文件必须为unity后缀文件");
+                        return;
+                    }
+                    
+                    [_sceneArray addObject:selectPath];
+                    [[ExportInfoManager instance] addDetail:selectPath withKey:SAVE_SCENE_ARRAY_KEY];
+                    [_packSceneTbl reloadData];
                 default:
                     break;
             }
@@ -153,6 +174,23 @@
           IsCanSelectDirectories:YES];
 }
 
+- (IBAction)scenePathSelect:(id)sender
+{
+    [self openFolderSelectDialog:EventScenePathSelectEnd
+                 IsCanSelectFile:YES
+          IsCanSelectDirectories:NO];
+}
+
+- (IBAction)removeScenePath:(id)sender
+{
+    NSInteger row = [_packSceneTbl selectedRow];
+    if([_sceneArray count] > 0){
+        [_sceneArray removeObjectAtIndex:row];
+    }
+    [[ExportInfoManager instance] removeDetail:row withKey:SAVE_SCENE_ARRAY_KEY];
+    [_packSceneTbl reloadData];
+}
+
 - (void)detailsInfoDictUpdate:(NSNotification*)notification
 {
     NSMutableArray* dict = (NSMutableArray*)[notification object];
@@ -163,7 +201,14 @@
 //返回表格的行数
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView;
 {
-    return [_dataDict count];
+    if([tableView.identifier isEqualToString:PlatformTblKey]){
+        return [_dataDict count];
+    }
+    else if([tableView.identifier isEqualToString:PackSceneKey]){
+        return [_sceneArray count];
+    }
+    
+    return 0;
 }
 
 //初始化新行内容
@@ -176,19 +221,28 @@
         return nil;
     }
     
-    DetailsInfoData* info = [_dataDict objectAtIndex:row];
-    NSString* title = [info valueForKey:columnIdentifier];
-    NSButtonCell* cell = [tableColumn dataCellForRow:row];
-    cell.tag = row;
-    cell.title = title;
+    id itemCell;
+    if([tableView.identifier isEqualToString:PlatformTblKey]){
+        DetailsInfoData *info = [_dataDict objectAtIndex:row];
+        NSString* title = [info valueForKey:columnIdentifier];
+        NSButtonCell* cell = [tableColumn dataCellForRow:row];
+        cell.tag = row;
+        cell.title = title;
     
-    NSString *isSelect = info.isSelected;
-    if(isSelect == nil)
-        isSelect = s_false;
+        NSString *isSelect = info.isSelected;
+        if(isSelect == nil)
+            isSelect = s_false;
     
-    [cell setState:[isSelect integerValue]];
+        [cell setState:[isSelect integerValue]];
+        itemCell = cell;
+    }else if([tableView.identifier isEqualToString:PackSceneKey]){
+        if([_sceneArray count] > 0){
+            NSString *item = [_sceneArray objectAtIndex:row];
+            itemCell = [item lastPathComponent];
+        }
+    }
     
-    return cell;
+    return itemCell;
 }
 
 //修改行内容
@@ -196,13 +250,17 @@
 {
     NSButtonCell* cell = [tableColumn dataCellForRow:row];
     
-    DetailsInfoData *data = (DetailsInfoData*)[_dataDict objectAtIndex:row];
-    NSInteger newState = ![cell state];
-    NSString *newStateStr = [NSString stringWithFormat:@"%ld", newState];
-    [cell setState: newState];
-    [data setValueForKey:Is_Selected withObj:newStateStr];
+    if([tableView.identifier isEqualToString:PlatformTblKey]){
+        DetailsInfoData *data = (DetailsInfoData*)[_dataDict objectAtIndex:row];
+        NSInteger newState = ![cell state];
+        NSString *newStateStr = [NSString stringWithFormat:@"%ld", newState];
+        [cell setState: newState];
+        [data setValueForKey:Is_Selected withObj:newStateStr];
     
-    [[ExportInfoManager instance] updateDetail:row withObject:data];
+        [[ExportInfoManager instance] updateDetail:row withObject:data withKey:SAVE_DETAIL_ARRARY_KEY];
+    }else if([tableView.identifier isEqualToString:PackSceneKey]){
+        
+    }
 }
 
 //修改comboBox内容
@@ -273,6 +331,11 @@
 {
     ExportInfo* info = [ExportInfoManager instance].info;
     info->isRelease = (int)_isReleaseBox.state;
+}
+
+- (IBAction)ShowHelp:(id)sender
+{
+    
 }
 
 @end

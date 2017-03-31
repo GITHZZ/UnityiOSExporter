@@ -10,10 +10,6 @@
 
 #define INFOS_MAX_CAPACITY 100
 
-#define SAVE_DETAIL_ARRARY_KEY @"detailArray"
-#define SAVE_PROJECT_PATH_KEY @"projectPath"
-#define SAVE_EXPORT_PATH_KEY @"exportPath"
-
 @implementation ExportInfoManager
 
 - (void)dealloc
@@ -33,6 +29,9 @@
         _detailArray = [[NSMutableArray alloc] initWithCapacity:20];
         _unityProjPathArr = [[NSMutableArray alloc] initWithCapacity:6];
         _exportPathArr = [[NSMutableArray alloc] initWithCapacity:6];
+        _sceneArray = [[NSMutableArray alloc] initWithCapacity:5];
+        
+        _savedict = [NSMutableDictionary dictionaryWithObjectsAndKeys:_detailArray, SAVE_DETAIL_ARRARY_KEY, _sceneArray, SAVE_SCENE_ARRAY_KEY, nil];
     }
     
     return self;
@@ -109,44 +108,51 @@
 }
 
 //包配置 信息表格数据部分
-- (void)saveDetail
+- (void)saveDetail:(NSString* _Nonnull)saveKey
 {
-    NSData* arrayData = [NSKeyedArchiver archivedDataWithRootObject:_detailArray];
-    [_saveData setObject:arrayData forKey:SAVE_DETAIL_ARRARY_KEY];
+    NSMutableArray *array = [_savedict objectForKey:saveKey];
+    if(!array){
+        return;
+    }
+    
+    NSData* arrayData = [NSKeyedArchiver archivedDataWithRootObject:array];
+    [_saveData setObject:arrayData forKey:saveKey];
     [_saveData synchronize];
 }
 
-- (NSMutableArray*)reLoadDetails
+- (NSMutableArray*)reLoadDetails:(NSString*)saveKey
 {
-    NSData* arrayData = (NSData*)[_saveData objectForKey:SAVE_DETAIL_ARRARY_KEY];
+    NSData* arrayData = (NSData*)[_saveData objectForKey:saveKey];
     NSArray* array = [NSKeyedUnarchiver unarchiveObjectWithData:arrayData];
-    NSMutableArray* mutable = [NSMutableArray arrayWithArray:array];
-    _detailArray = mutable;
+    NSMutableArray *mutable = [NSMutableArray arrayWithArray:array];
+    [_savedict setObject:mutable forKey:saveKey];
     return mutable;
 }
 
-- (void)addDetail:(DetailsInfoData*)data
+- (void)addDetail:(id)data withKey:(NSString*)saveKey
 {
-    if (data == nil)
-        return;
-    
-    [_detailArray addObject:data];
-    [self saveDetail];
+    NSMutableArray *array = [_savedict objectForKey:saveKey];
+    [array addObject:data];
+    [_savedict setObject:array forKey:saveKey];
+    [self saveDetail:saveKey];
 }
 
-- (void)removeDetail:(NSUInteger)index
+- (void)removeDetail:(NSUInteger)index withKey:(NSString*)saveKey
 {
-    [_detailArray removeObjectAtIndex:index];
-    [self saveDetail];
+    NSMutableArray *array = [_savedict objectForKey:saveKey];
+    if([array count] > 0){
+        [array removeObjectAtIndex:index];
+        //[_savedict setObject:array forKey:saveKey];
+        [self saveDetail:saveKey];
+    }
 }
 
-- (void)updateDetail:(NSUInteger)index withObject:(id)object
+- (void)updateDetail:(NSUInteger)index withObject:(id)object withKey:(NSString*)saveKey
 {
-    if (object == nil)
-        return;
-    
-    [_detailArray replaceObjectAtIndex:index withObject:object];
-    [self saveDetail];
+    NSMutableArray *array = [_savedict objectForKey:saveKey];
+    [array replaceObjectAtIndex:index withObject:object];
+    [_savedict setObject:array forKey:saveKey];
+    [self saveDetail:saveKey];
 }
 
 @end
