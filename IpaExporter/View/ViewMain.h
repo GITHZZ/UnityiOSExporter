@@ -21,6 +21,7 @@
 @property (weak) IBOutlet NSTableView *packSceneTbl;
 @property (weak) IBOutlet NSButton *isReleaseBox;
 @property (weak) IBOutlet NSButton *exportBtn;
+@property (weak) IBOutlet NSTextField *useTimeLabel;
 
 - (IBAction)sureBtnClick:(id)sender;
 - (IBAction)unityPathSelect:(id)sender;

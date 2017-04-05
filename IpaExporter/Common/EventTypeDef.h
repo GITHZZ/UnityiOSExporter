@@ -27,6 +27,8 @@ typedef NS_ENUM(int, EventType){
     EventDetailsInfoSettingEdit  = 113,
     EventSetExportButtonState    = 114,
     EventScenePathSelectEnd      = 115,
+    EventStartRecordTime         = 116,
+    EventStopRecordTime          = 117,
 };
 
 

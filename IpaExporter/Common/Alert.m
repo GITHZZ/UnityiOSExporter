@@ -21,17 +21,18 @@
     [alert setInformativeText:informativetext];
     
     [alert setAlertStyle:NSWarningAlertStyle];
-    
-    NSUInteger action = [alert runModal];
-    //响应window的按钮事件
-    if(action == NSAlertFirstButtonReturn)
-    {
-        func1();
-    }
-    else if(action == NSAlertSecondButtonReturn )
-    {
-        func2();
-    }
+
+    [alert beginSheetModalForWindow:[NSApplication sharedApplication].keyWindow completionHandler:^(NSInteger result) {
+        //响应window的按钮事件
+        if(result == NSAlertFirstButtonReturn)
+        {
+            func1();
+        }
+        else if(result == NSAlertSecondButtonReturn )
+        {
+            func2();
+        }
+    }];
 }
 
 @end

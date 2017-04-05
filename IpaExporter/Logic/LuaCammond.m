@@ -105,8 +105,13 @@
     
     _isExporting = true;
     [[EventManager instance] send:EventSetExportButtonState withData:s_false];
+    [[EventManager instance] send:EventStartRecordTime withData:nil];
     
     showLog("*开始打包");
+    ExportInfoManager* view = [ExportInfoManager instance];
+    [[LuaCammond instance] open:view.info->exportFolderParh];
+    showLog("*打包具体信息可在%s路径中查看", view.info->exportFolderParh);
+    
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_group_t group = dispatch_group_create();
 
@@ -114,7 +119,6 @@
         ExportInfoManager* view = [ExportInfoManager instance];
         NSMutableArray<DetailsInfoData*>* detailArray = view.detailArray;
         
-        showLog("*打包具体信息可在%s路径中查看", view.info->exportFolderParh);
         dispatch_queue_t sq = dispatch_queue_create("exportInfo", DISPATCH_QUEUE_SERIAL);
         for(int i = 0; i < [detailArray count]; i++)
         {
@@ -137,9 +141,11 @@
     
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
         //全部打包完毕
-        showLog("*打包结束");
         _isExporting = false;
         [[EventManager instance] send:EventSetExportButtonState withData:s_true];
+        [[EventManager instance] send:EventStopRecordTime withData:nil];
+        [[LuaCammond instance] close];
+        showLog("*打包结束\n");
     });
 }
 
@@ -162,11 +168,9 @@
             withPackInfo:infoData];
     
     //call lua
-    [[LuaCammond instance] open:view.info->exportFolderParh];
     NSString* mainLuaPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"ExportIpaUtil.lua"];
     [[LuaCammond instance] dofile:mainLuaPath];
     result = [[LuaCammond instance] callLuaMain:infoData];
-    [[LuaCammond instance] close];
     
     //删除文件夹
     [[DataResManager instance] end];

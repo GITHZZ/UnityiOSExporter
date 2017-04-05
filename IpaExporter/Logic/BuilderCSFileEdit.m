@@ -18,7 +18,7 @@
     BOOL success = [self initWithPath:builderCSPath];
     if(success)
     {
-        NSArray *keyArr = [NSArray arrayWithObjects:Export_Path, App_ID_Key, App_Name_Key, nil];
+        NSArray *keyArr = [NSArray arrayWithObjects:Export_Path, App_ID_Key, App_Name_Key, Pack_Scene, nil];
         [self replaceVarFromData:info withKeyArr:keyArr];
     }
 }

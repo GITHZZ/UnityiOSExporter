@@ -56,6 +56,11 @@
             const char* path = info->exportFolderParh;
             keyStr = [NSString stringWithUTF8String:path];
         }
+        else if([key isEqualToString:Pack_Scene])
+        {
+            NSMutableArray *scenes = [ExportInfoManager instance].sceneArray;
+            keyStr = [self getReplaceStrFromArray:scenes];
+        }
         else
         {
             keyStr = [data getValueForKey:key];

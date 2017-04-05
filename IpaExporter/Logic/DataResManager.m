@@ -57,7 +57,7 @@
                                       error:&error];
         if(error != nil)
         {
-            showError("*拷贝文件夹失败 原因:%@", error);
+            NSLog(@"*拷贝文件夹失败 原因:%@", error);
             NSLog(@"%@", [error userInfo]);
         }
     }
@@ -116,7 +116,7 @@
     }
     else
     {
-        showError("错误的参数类型");
+        NSLog(@"*[DataResManager]:错误的参数类型");
         NSLog(@"%@", src);
         NSLog(@"%@", dst);
     }
@@ -126,7 +126,7 @@
 {
     NSString* root = [dst stringByAppendingString:DATA_PATH];
     NSError* error = nil;
-    NSString* metaPath = [NSString stringWithFormat:@"%@.meta", root];
+//    NSString* metaPath = [NSString stringWithFormat:@"%@.meta", root];
     
     BOOL isDir;
     BOOL isDirExit = [_fileManager fileExistsAtPath:dst isDirectory:&isDir];
@@ -135,14 +135,14 @@
         [_fileManager removeItemAtPath:root error:&error];
     }
     
-    if([_fileManager fileExistsAtPath:metaPath]){
-        [_fileManager removeItemAtPath:metaPath error:&error];
-    }
+//    if([_fileManager fileExistsAtPath:metaPath]){
+//        [_fileManager removeItemAtPath:metaPath error:&error];
+//    }
     
     if(error != nil)
     {
-        showError("*移除目标路径文件失败:%@ 错误原因:%@", dst, error);
-        NSLog(@"%@", [error userInfo]);
+        NSLog(@"*[DataResManager]:移除目标路径文件失败:%@ 错误原因:%@", dst, error);
+        NSLog(@"*[DataResManager]:%@", [error userInfo]);
     }
 }
 

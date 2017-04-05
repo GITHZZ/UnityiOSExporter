@@ -28,8 +28,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, readwrite) ExportInfo *info;
 @property(nonatomic, readonly) NSMutableArray *unityProjPathArr;
 @property(nonatomic, readonly) NSMutableArray *exportPathArr;
-@property(nonatomic, readonly) NSMutableArray *detailArray;
-@property(nonatomic, readonly) NSMutableArray *sceneArray;
+@property(nonatomic, readonly, getter=getDetailArray) NSMutableArray *detailArray;
+@property(nonatomic, readonly, getter=getSceneArray) NSMutableArray *sceneArray;
 
 - (void)addNewUnityProjPath:(NSString*)path;
 - (void)replaceUnityProjPath:(NSString*)path;

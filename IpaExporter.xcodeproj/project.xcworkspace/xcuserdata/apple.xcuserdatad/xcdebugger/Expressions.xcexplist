@@ -160,10 +160,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[ViewMain viewDidLoad]:ViewMain.m">
+         contextName = "-[DataResManager removeResFromDstPath:]:DataResManager.m">
          <PersistentStrings>
             <PersistentString
-               value = "[tableColumns count]">
+               value = "metaPath">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -172,6 +172,14 @@
          <PersistentStrings>
             <PersistentString
                value = "tableView.identifier">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ViewMain viewDidLoad]:ViewMain.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[tableColumns count]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

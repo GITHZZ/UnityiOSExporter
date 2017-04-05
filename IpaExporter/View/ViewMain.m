@@ -19,6 +19,8 @@
 @interface ViewMain()<NSTableViewDataSource, NSTableViewDelegate, NSComboBoxDelegate>
 {
     NSMutableArray<NSString*> *_sceneArray;
+    NSTimer *_showTimer;
+    NSTimeInterval _packTime;
 }
 @end
 
@@ -71,6 +73,7 @@
     _packSceneTbl.dataSource = self;
     
     _isReleaseBox.state = 0;
+    _useTimeLabel.stringValue = @"";
 }
 
 - (void)registEvent
@@ -93,6 +96,14 @@
                                func:@selector(setExportBtnState:)
                            withData:nil
                                self:self];
+    [[EventManager instance] regist:EventStartRecordTime
+                               func:@selector(startShowPackTime:)
+                           withData:nil
+                               self:self];
+    [[EventManager instance] regist:EventStopRecordTime
+                               func:@selector(stopShowPackTime:)
+                           withData:nil
+                               self:self];
 }
 
 - (void)unRegistEvent
@@ -105,6 +116,10 @@
                                self:self];
     [[EventManager instance] unRegist:EventSetExportButtonState
                                  self:self];
+    [[EventManager instance] unRegist:EventStartRecordTime
+                               self:self];
+    [[EventManager instance] unRegist:EventStopRecordTime
+                               self:self];
 }
 
 - (IBAction)sureBtnClick:(id)sender
@@ -320,11 +335,55 @@
 - (void)renderUpAttriString:(NSString*)string withColor:(NSColor*) color
 {
     NSString *newStr = [string stringByAppendingString:@"\n"];
+    NSMutableParagraphStyle * paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setLineSpacing:5];
+    
     NSMutableAttributedString *addString = [[NSMutableAttributedString alloc] initWithString:newStr];
+    [addString addAttribute:NSFontAttributeName value:[NSFont boldSystemFontOfSize:12] range:NSMakeRange(0, [newStr length] - 1)];
     [addString addAttribute:NSForegroundColorAttributeName value:color range:NSMakeRange(0, [newStr length] - 1)];
+    [addString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0,[newStr length] - 1)];
+    
     [[_infoLabel textStorage] appendAttributedString:addString];
     
     [_infoLabel scrollRectToVisible:CGRectMake(0, _infoLabel.textContainer.size.height-15, _infoLabel.textContainer.size.width, 10)];
+}
+
+- (void)startShowPackTime:(NSNotification*)notification
+{
+    _useTimeLabel.hidden = false;
+    _packTime = 0.0f;
+    
+    _showTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 repeats:YES block:^(NSTimer * _Nonnull timer) {
+        _packTime += timer.timeInterval;
+        int min=(int)_packTime / 60;
+        int sec=(int)_packTime % 60;
+        
+        NSString *minStr;
+        NSString *secStr;
+        if(min < 10){
+            minStr = [NSString stringWithFormat:@"0%d", min];
+        }else{
+            minStr = [NSString stringWithFormat:@"%d", min];
+        }
+        
+        if(sec < 10){
+            secStr = [NSString stringWithFormat:@"0%d", sec];
+        }else{
+            secStr = [NSString stringWithFormat:@"%d", sec];
+        }
+        
+        _useTimeLabel.stringValue = [NSString stringWithFormat:@"本次打包用时 %@:%@", minStr, secStr];
+    }];
+}
+
+- (void)stopShowPackTime:(NSNotification*)notification
+{
+    showLog("*总共打包用时%@", _useTimeLabel.stringValue);
+    _useTimeLabel.stringValue = @"";
+    if([_showTimer isValid]){
+        [_showTimer invalidate];
+        _showTimer = nil;
+    }
 }
 
 - (IBAction)isReleaseBtnSelect:(id)sender

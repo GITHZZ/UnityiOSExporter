@@ -88,7 +88,7 @@ ExportIpaUtil.Start = function()
 
     --导出xcode工程
     print("正在导出Xcode工程...")
-    os.execute(string.format(cmd_export_xcode, unity_project_path, export_func, log_file_path))
+    os.execute(string.format(cmd_export_xcode, unity_project_path, export_func))
     print("导出Xcode工程完毕...")
 
     --处理xcode工程中的pbxproj文件(兼容xcode8)

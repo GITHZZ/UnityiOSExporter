@@ -26,12 +26,13 @@
         _info->unityProjPath = "";
         
         _saveData = [NSUserDefaults standardUserDefaults];
-        _detailArray = [[NSMutableArray alloc] initWithCapacity:20];
+        
         _unityProjPathArr = [[NSMutableArray alloc] initWithCapacity:6];
         _exportPathArr = [[NSMutableArray alloc] initWithCapacity:6];
-        _sceneArray = [[NSMutableArray alloc] initWithCapacity:5];
-        
-        _savedict = [NSMutableDictionary dictionaryWithObjectsAndKeys:_detailArray, SAVE_DETAIL_ARRARY_KEY, _sceneArray, SAVE_SCENE_ARRAY_KEY, nil];
+
+        NSMutableArray *detailArray = [[NSMutableArray alloc] initWithCapacity:20];
+        NSMutableArray *sceneArray = [[NSMutableArray alloc] initWithCapacity:5];        
+        _savedict = [NSMutableDictionary dictionaryWithObjectsAndKeys:detailArray, SAVE_DETAIL_ARRARY_KEY, sceneArray, SAVE_SCENE_ARRAY_KEY, nil];
     }
     
     return self;
@@ -155,4 +156,13 @@
     [self saveDetail:saveKey];
 }
 
+- (NSMutableArray*)getDetailArray
+{
+    return [_savedict objectForKey:SAVE_DETAIL_ARRARY_KEY];
+}
+
+- (NSMutableArray*)getSceneArray
+{
+    return [_savedict objectForKey:SAVE_SCENE_ARRAY_KEY];
+}
 @end
