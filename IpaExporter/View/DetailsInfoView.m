@@ -23,15 +23,6 @@
 {
     [super viewDidLoad];
     
-    [[EventManager instance] regist:EventDetailsInfoSettingClose
-                               func:@selector(detailsInfoViewClose:)
-                           withData:nil
-                               self:self];
-    [[EventManager instance] regist:EventDetailsInfoSettingEdit
-                               func:@selector(detailsInfoViewEdit:)
-                           withData:nil
-                               self:self];
-    
     NSMutableArray* saveArray = [[ExportInfoManager instance] reLoadDetails:SAVE_DETAIL_ARRARY_KEY];
     _dataDict = [[NSMutableArray alloc] initWithArray:saveArray];
     
@@ -45,11 +36,37 @@
     _infoTbls.dataSource = self;
 }
 
+- (void)viewDidAppear
+{
+    [[EventManager instance] regist:EventDetailsInfoSettingClose
+                               func:@selector(detailsInfoViewClose:)
+                           withData:nil
+                               self:self];
+    [[EventManager instance] regist:EventDetailsInfoSettingEdit
+                               func:@selector(detailsInfoViewEdit:)
+                           withData:nil
+                               self:self];
+}
+
+- (void)viewDidDisappear
+{
+    [[EventManager instance] unRegist:EventDetailsInfoSettingClose
+                                 self:self];
+    [[EventManager instance] unRegist:EventDetailsInfoSettingEdit
+                                 self:self];
+}
+
 - (IBAction)AddBtnClick:(id)sender
 {
     //open detail info settings
     NSStoryboard *sb = [NSStoryboard storyboardWithName:@"Main" bundle:nil];
     DetailsInfoSetting *vc = [sb instantiateControllerWithIdentifier:@"detailsInfoSetting"];
+    
+    if([_dataDict count] > 0){
+        DetailsInfoData *info = [_dataDict objectAtIndex:0];
+        [vc setUpDataInfoOnShow:info isEditMode:NO];
+    }
+    
     [self presentViewControllerAsSheet:vc];
 }
 
@@ -62,7 +79,7 @@
 {
     NSStoryboard *sb = [NSStoryboard storyboardWithName:@"Main" bundle:nil];
     DetailsInfoSetting *vc = [sb instantiateControllerWithIdentifier:@"detailsInfoSetting"];
-    [vc setUpDataInfoOnShow:_selectInfo];
+    [vc setUpDataInfoOnShow:_selectInfo isEditMode:YES];
     [self presentViewControllerAsSheet:vc];
 }
 

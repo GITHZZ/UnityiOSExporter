@@ -10,6 +10,26 @@
 
 @implementation Alert
 
+- (void)alertTip:(NSString *)firstname MessageText:(NSString *)messagetext InformativeText:(NSString *)informativetext callBackFrist:(void(^)())func1
+{
+    
+    NSAlert *alert = [[NSAlert alloc] init];
+    
+    [alert addButtonWithTitle:firstname];
+    [alert setMessageText:messagetext];
+    [alert setInformativeText:informativetext];
+    
+    [alert setAlertStyle:NSWarningAlertStyle];
+    
+    [alert beginSheetModalForWindow:[NSApplication sharedApplication].keyWindow completionHandler:^(NSInteger result) {
+        //响应window的按钮事件
+        if(result == NSAlertFirstButtonReturn)
+        {
+            func1();
+        }
+    }];
+}
+
 - (void)alertModalFirstBtnTitle:(NSString *)firstname SecondBtnTitle:(NSString *)secondname MessageText:(NSString *)messagetext InformativeText:(NSString *)informativetext callBackFrist:(void(^)())func1 callBackSecond:(void(^)())func2
 {
     

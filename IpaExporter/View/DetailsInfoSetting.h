@@ -27,7 +27,7 @@
 @property (weak) IBOutlet NSTableView *libsTbl;
 @property (weak) IBOutlet NSTableView *linkerFlagTbl;
 
-- (void)setUpDataInfoOnShow:(DetailsInfoData*)info;
+- (void)setUpDataInfoOnShow:(DetailsInfoData*)info isEditMode:(BOOL)isEdit;
 
 @end
 

@@ -109,7 +109,8 @@ public class XcodeProjectSetting
 		/*"-ObjC", "-all_load"*/ //初期設定例
 		${linkerFlag}
 	};
-	
+
+    //目前很少要改这个 就固定这样
 	public string[] FrameworkSearchPathArray = new string[]{
 		"$(inherited)",
 		"$(PROJECT_DIR)/Frameworks"

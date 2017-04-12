@@ -17,6 +17,7 @@
 @interface DetailsInfoSetting ()
 {
     BOOL _isSetDataOnShow;
+    BOOL _isEditMode;
     DetailsInfoData *_info;
     
     NSMutableArray<NSString*> *_frameworkNameArr;
@@ -63,11 +64,13 @@
     _libsTbl.dataSource = self;
     _linkerFlagTbl.delegate = self;
     _linkerFlagTbl.dataSource = self;
+    
 }
 
-- (void)setUpDataInfoOnShow:(DetailsInfoData*)info
+- (void)setUpDataInfoOnShow:(DetailsInfoData*)info isEditMode:(BOOL)isEdit
 {
     _info = info;
+    _isEditMode = isEdit;
     _isSetDataOnShow = YES;
 }
 
@@ -76,13 +79,16 @@
     if(nil == _info)
         return;
     
-    _appName.stringValue = [_info getValueForKey:App_Name_Key];
+    if(_isEditMode){
+        _platform.stringValue = [_info getValueForKey:Platform_Name];
+        _appName.stringValue = [_info getValueForKey:App_Name_Key];
+    }
+    
     _appID.stringValue = [_info getValueForKey:App_ID_Key];
     _debugProfileName.stringValue = [_info getValueForKey:Debug_Profile_Name];
     _debugDevelopTeam.stringValue = [_info getValueForKey:Debug_Develop_Team];
     _releaseProfileName.stringValue = [_info getValueForKey:Release_Profile_Name];
     _releaseDevelopTeam.stringValue = [_info getValueForKey:Release_Develop_Team];
-    _platform.stringValue = [_info getValueForKey:Platform_Name];
     _cDirPath.stringValue = [_info getValueForKey:Copy_Dir_Path];
     _frameworkNameArr = [_info getValueForKey:Framework_Names];
     _frameworkIsWeakArr = [_info getValueForKey:Framework_IsWeaks];
@@ -90,8 +96,37 @@
     _linkerFlagArr = [_info getValueForKey:Linker_Flag];
 }
 
+
+- (int)checkOneInputIsNull:(NSTextField*)field
+{
+    if([field.stringValue isEqualToString:@""]){
+        [field setBackgroundColor:[[NSColor redColor] colorWithAlphaComponent:0.5]];
+        return 0;
+    }
+    
+    return 1;
+}
+
+- (BOOL)checkAndShowTipIfInputNull
+{
+    int code = ([self checkOneInputIsNull:_platform]&
+                [self checkOneInputIsNull:_appName]&
+                [self checkOneInputIsNull:_appID]&
+                [self checkOneInputIsNull:_debugProfileName]&
+                [self checkOneInputIsNull:_debugDevelopTeam]&
+                [self checkOneInputIsNull:_releaseProfileName]&
+                [self checkOneInputIsNull:_releaseDevelopTeam]);
+    
+    return code == 1 ? NO : YES;
+}
+    
 - (IBAction)sureBtnClickFuncion:(id)sender
 {
+    if([self checkAndShowTipIfInputNull]){
+        [[Alert instance] alertTip:@"确定" MessageText:@"错误提示" InformativeText:@"请将必填选项信息填写完整" callBackFrist:^{}];
+        return;
+    }
+    
     NSString* appName = _appName.stringValue;
     NSString* appID = _appID.stringValue;
     NSString* debugProfileName = _debugProfileName.stringValue;
@@ -273,5 +308,5 @@
     } callBackSecond:^{
     }];
 }
-
+  
 @end

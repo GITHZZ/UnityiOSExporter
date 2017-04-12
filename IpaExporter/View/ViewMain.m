@@ -29,9 +29,17 @@
 - (void)viewDidLoad
 {
     [self startUp];
-    [self registEvent];
-    
     [[EventManager instance] send:EventViewMainLoaded withData:nil];
+}
+
+- (void)viewDidAppear
+{
+    [self registEvent];
+}
+
+- (void)viewDidDisappear
+{
+    [self unRegistEvent];
 }
 
 - (void)startUp
