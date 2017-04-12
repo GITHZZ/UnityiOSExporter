@@ -102,6 +102,8 @@
     if([field.stringValue isEqualToString:@""]){
         [field setBackgroundColor:[[NSColor redColor] colorWithAlphaComponent:0.5]];
         return 0;
+    }else{
+        [field setBackgroundColor:[NSColor clearColor]];
     }
     
     return 1;
