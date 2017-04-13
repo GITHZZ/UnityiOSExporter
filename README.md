@@ -30,7 +30,8 @@ XcodeProjectUpdater原项目地址:https://github.com/kankikuchi/XcodeProjectUpd
 然后就是修改证书和team名字(PROVISIONING_PROFILE_SPECIFIER/DEVELOPMENT_TEAM),可视化设置具体在xcodebuild设置里面。主要就这三个点
 稍微和以前不太一样。
 
-###遇到的坑(随笔):
+###遇到的坑(随笔):  
+
 *Cocoa:坑爹的NSTableView 使用的时候一直显示不了内容 解决方法是:要把属性contentMode改成View Based设置成Cell Based 不是不能显示 还好从这里找到方案了:http://www.07net01.com/2015/10/937976.html
  
 *Cocoa:NSComboBoxDelegate中的这个协议回调 -(void)comboBoxSelectionIsChanging:(NSNotification *)notification 理论上返回的对象是修改后的对象,然而它返回的是选择前的 需要新增定时器等待到下一帧取 如下:
@@ -47,5 +48,7 @@ XcodeProjectUpdater原项目地址:https://github.com/kankikuchi/XcodeProjectUpd
 {  
     //这里取选择后内容  
 }  
-```
+```  
+
+*2017年4月13日 基本功能差不多了，也在项目上初步使用了下，还有点问题(主要是多次打包会报错)和对拷贝路径还是看怎么进一步支持下
 

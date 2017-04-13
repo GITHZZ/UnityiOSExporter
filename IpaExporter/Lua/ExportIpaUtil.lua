@@ -32,7 +32,7 @@ local cmd_export_xcode = "/Applications/Unity/Unity.app/Contents/MacOS/Unity -bu
 local cmd_clean_xcode_proj = "xcodebuild clean -scheme %s -configuration %s"
 local cmd_export_archive = "xcodebuild -project %s.xcodeproj -scheme %s -destination generic/platform=ios archive -archivePath bin/%s.xcarchive -configuration %s"
 --sdk iphoneos build PROVISIONING_PROFILE=%s
-local cmd_export_ipa = "xcodebuild -exportArchive -exportFormat ipa -archivePath %s -exportPath %s/%s.ipa"
+local cmd_export_ipa = "xcodebuild -exportArchive -archivePath %s -exportPath %s/%s.ipa -exportOptionsPlist %s"
 
 --setup pbxproj file
 --%s export project path
@@ -65,7 +65,7 @@ ExportIpaUtil.Start = function()
     local exportIpaName = app_name .. "_"  .. os.date("%y%m%d_%H%M%S")
     local archivePath = string.format("bin/%s.xcarchive", proj_scheme_name)
     local pbxprojPath = export_project_path .. "/Unity-iPhone.xcodeproj/project.pbxproj"
-
+    local exportPlistPath = unity_project_path .. "/Assets/Editor/DataTemplete/IPA.plist"
 --需要调用C#的静态方法
 --[[
     PS:如果需要传参数参考也有 但是在C#上取代码如下
@@ -123,7 +123,7 @@ ExportIpaUtil.Start = function()
 
     --开始生成ipa包
     print("开始生成ipa包")
-    os.execute(string.format(cmd_export_ipa, archivePath, export_folder_path, exportIpaName))
+    os.execute(string.format(cmd_export_ipa, archivePath, export_folder_path, exportIpaName, exportPlistPath))
     print("生成ipa结束,路径:" .. export_folder_path .. "/" .. exportIpaName)
  
     --计算生成时间

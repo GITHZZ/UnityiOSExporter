@@ -141,8 +141,8 @@
     
     if(error != nil)
     {
-        NSLog(@"*[DataResManager]:移除目标路径文件失败:%@ 错误原因:%@", dst, error);
-        NSLog(@"*[DataResManager]:%@", [error userInfo]);
+        NSLog(@"*[DataResManager 144]:移除目标路径文件失败:%@ 错误原因:%@", dst, error);
+        NSLog(@"*[DataResManager 145]:%@", [error userInfo]);
     }
 }
 
