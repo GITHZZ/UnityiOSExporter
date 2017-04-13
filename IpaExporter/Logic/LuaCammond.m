@@ -81,15 +81,17 @@
 - (BOOL)callLuaMain:(DetailsInfoData*)data
 {
     ExportInfoManager* view = [ExportInfoManager instance];
+    NSString *plistPath = [NSString stringWithFormat:@"%s%@", view.info->unityProjPath, IPA_PLIST_PATH];
     get_call_lua_func(L, "ExportMain");
     push_lua_string_args(L,
-                         3,
+                         4,
                          view.info->unityProjPath,
                          view.info->exportFolderParh,
-                         [data.appName UTF8String]);
+                         [data.appName UTF8String],
+                         [plistPath UTF8String]);
     push_lua_boolean_args(L, 1, view.info->isRelease);
     
-    int result = start_call_lua_main(L, 4);
+    int result = start_call_lua_main(L, 5);
     if(result == LUA_DLL_ERROR){
         showError("*调用脚本出错,导出失败");
         return NO;

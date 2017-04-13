@@ -22,6 +22,8 @@ local export_project_path = "";
 local build_config = "Debug" --"Debug"
 --############################################################################
 
+local ipa_plist_path = ""
+
 --log文件
 local log_file_path = export_folder_path .. "/export.log"
 
@@ -65,7 +67,8 @@ ExportIpaUtil.Start = function()
     local exportIpaName = app_name .. "_"  .. os.date("%y%m%d_%H%M%S")
     local archivePath = string.format("bin/%s.xcarchive", proj_scheme_name)
     local pbxprojPath = export_project_path .. "/Unity-iPhone.xcodeproj/project.pbxproj"
-    local exportPlistPath = unity_project_path .. "/Assets/Editor/DataTemplete/IPA.plist"
+    local exportPlistPath = ipa_plist_path
+
 --需要调用C#的静态方法
 --[[
     PS:如果需要传参数参考也有 但是在C#上取代码如下
@@ -135,12 +138,14 @@ ExportIpaUtil.Start = function()
     return 1;
 end
 
-function ExportMain(projPath, exportFolder, appName, buildConfig)
+function ExportMain(projPath, exportFolder, appName, plistPath, buildConfig)
     --set up export info
     unity_project_path = projPath
     export_folder_path = exportFolder
     app_name = appName
+    ipa_plist_path = plistPath
     
+    print(ipa_plist_path)
     if buildConfig == 1 then
         build_config = "Release"
     else

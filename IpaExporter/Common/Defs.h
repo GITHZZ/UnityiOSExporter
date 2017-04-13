@@ -13,6 +13,7 @@
 #import "EventManager.h"
 
 #define DATA_PATH @"/DataTemplete"
+#define IPA_PLIST_PATH @"/Assets/Editor/DataTemplete/IPA.plist"
 #define BUILDER_CS_PATH @"/Assets/Editor/DataTemplete/Builder/_Builder.cs"
 #define XCODEPROJECT_CS_PATH @"/Assets/Editor/DataTemplete/XcodeApi/_XcodeProjectSetting.cs"
 
