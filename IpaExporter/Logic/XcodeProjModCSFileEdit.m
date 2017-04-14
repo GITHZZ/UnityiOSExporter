@@ -18,7 +18,7 @@
     BOOL success = [self initWithPath:builderCSPath];
     if(success)
     {
-        NSArray *keyArr = [NSArray arrayWithObjects:Copy_Dir_Path, Libs, Linker_Flag,  Debug_Profile_Name, Debug_Develop_Team, Release_Profile_Name, Release_Develop_Team, Frameworks, nil];
+        NSArray *keyArr = [NSArray arrayWithObjects:Copy_Dir_Path, Libs, Linker_Flag,  Debug_Profile_Name, Debug_Develop_Team, Release_Profile_Name, Release_Develop_Team, Frameworks, Export_Config_Path, nil];
         [self replaceVarFromData:info withKeyArr:keyArr];
     }
 }

@@ -18,6 +18,10 @@ public static class InfoPlistProcessor {
 		return Path.Combine(buildPath, XcodeProjectSetting.INFO_PLIST_NAME);
 	}
 
+	private static string GetIpaPlistPath(){
+		return XcodeProjectSetting.IPA_PLIST_PATH
+	}
+
 	//info.plistを取得
 	private static PlistDocument GetInfoPlist(string buildPath){
 		string plistPath = GetInfoPlistPath(buildPath);

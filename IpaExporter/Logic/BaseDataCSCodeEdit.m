@@ -43,30 +43,32 @@
  */
 - (void)replaceVarFromData:(DetailsInfoData*)data withKeyArr:(NSArray*)keyArr
 {
+    ExportInfo* info = [ExportInfoManager instance].info;
     NSString *replaceFormat = @"\"%@\"";
     NSMutableString* result = [NSMutableString stringWithString:_content];
+    
     for(int i = 0; i < [keyArr count]; i++)
     {
         NSString *key = [keyArr objectAtIndex:i];
         NSString *keyStr = [NSString stringWithFormat:@"//木有任何数据"];
         
-        if([key isEqualToString:Export_Path])
-        {
-            ExportInfo* info = [ExportInfoManager instance].info;
+        if([key isEqualToString:Export_Path]){
             const char* path = info->exportFolderParh;
             keyStr = [NSString stringWithUTF8String:path];
-        }
-        else if([key isEqualToString:Pack_Scene])
-        {
+            
+        }else if([key isEqualToString:Export_Config_Path]){
+            NSString *plistPath = [NSString stringWithFormat:@"\"%s%@\"", info->unityProjPath, IPA_PLIST_PATH];
+            keyStr = plistPath;
+        
+        }else if([key isEqualToString:Pack_Scene]){
             NSMutableArray *scenes = [ExportInfoManager instance].sceneArray;
             keyStr = [self getReplaceStrFromArray:scenes];
-        }
-        else
-        {
+            
+        }else{
             keyStr = [data getValueForKey:key];
             //需要特殊处理的
-            if([key isEqualToString:Debug_Profile_Name])
-            {
+            if([key isEqualToString:Debug_Profile_Name]){
+                
                 NSString *profileName = keyStr;
                 NSString *teamName = [data getValueForKey:Debug_Develop_Team];
                 i++;
@@ -75,9 +77,8 @@
                 keyStr = [self createCSClassStr:@"DevelopmentInfo" withArgsStr:args];
                 key = @"developmentInfoDebug";
                 replaceFormat = @"%@";
-            }
-            else if([key isEqualToString:Release_Profile_Name])
-            {
+            }else if([key isEqualToString:Release_Profile_Name]){
+                
                 NSString *profileName = keyStr;
                 NSString *teamName = [data getValueForKey:Release_Develop_Team];
                 i++;
@@ -86,9 +87,8 @@
                 keyStr = [self createCSClassStr:@"DevelopmentInfo" withArgsStr:args];
                 key = @"developmentInfoRelease";
                 replaceFormat = @"%@";
-            }
-            else if([key isEqualToString:Frameworks])
-            {
+            }else if([key isEqualToString:Frameworks]){
+                
                 NSArray *names =  data.frameworkNames;
                 NSArray *isWeaks = data.frameworkIsWeaks;
                 NSMutableArray *classArr = [[NSMutableArray alloc] initWithCapacity:10];
@@ -106,14 +106,13 @@
                 keyStr = [classArr componentsJoinedByString:@"\n"];
                 replaceFormat = @"%@";
             }
-            else if([key isEqualToString:Libs])
-            {
+            else if([key isEqualToString:Libs]){
+                
                 NSArray *names = data.libNames;
                 keyStr = [self getReplaceStrFromArray:names];
                 replaceFormat = @"\"%@\"";
-            }
-            else if([key isEqualToString:Linker_Flag])
-            {
+            }else if([key isEqualToString:Linker_Flag]){
+                
                 NSArray *names = data.linkerFlag;
                 keyStr = [self getReplaceStrFromArray:names];
                 replaceFormat = @"\"%@\"";

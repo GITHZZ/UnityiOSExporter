@@ -40,6 +40,7 @@
 #define Lib_Names                @"libNames"
 #define Lib_IsWeaks              @"libIsWeaks"
 #define Pack_Scene               @"packScene"
+#define Export_Config_Path           @"ipaPlistPath"
 
 #define s_true  @"1"
 #define s_false @"0"

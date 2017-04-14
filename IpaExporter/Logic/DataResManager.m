@@ -126,18 +126,18 @@
 {
     NSString* root = [dst stringByAppendingString:DATA_PATH];
     NSError* error = nil;
-//    NSString* metaPath = [NSString stringWithFormat:@"%@.meta", root];
+    NSString* metaPath = [NSString stringWithFormat:@"%@.meta", root];
     
     BOOL isDir;
-    BOOL isDirExit = [_fileManager fileExistsAtPath:dst isDirectory:&isDir];
+    BOOL isDirExit = [_fileManager fileExistsAtPath:root isDirectory:&isDir];
     
     if(isDirExit && isDir){
         [_fileManager removeItemAtPath:root error:&error];
     }
     
-//    if([_fileManager fileExistsAtPath:metaPath]){
-//        [_fileManager removeItemAtPath:metaPath error:&error];
-//    }
+    if([_fileManager fileExistsAtPath:metaPath]){
+        [_fileManager removeItemAtPath:metaPath error:&error];
+    }
     
     if(error != nil)
     {

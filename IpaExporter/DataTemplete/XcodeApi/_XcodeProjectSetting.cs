@@ -30,9 +30,11 @@ public class XcodeProjectSetting
 	public const string DEVELOPMENT_TEAM           = "DEVELOPMENT_TEAM";
 	public const string PROVISIONING_PROFILE_SPECIFIER = "PROVISIONING_PROFILE_SPECIFIER";
 
+    //ipa.plist路径
+    public const string IPA_PLIST_PATH = ${ipaPlistPath}
 	//情報を設定するplistのファイル名
 	public const string INFO_PLIST_NAME = "Info.plist";
-
+	
 	//info.plistの各key
 	public const string URL_TYPES_KEY      = "CFBundleURLTypes";
 	public const string URL_TYPE_ROLE_KEY  = "CFBundleTypeRole";

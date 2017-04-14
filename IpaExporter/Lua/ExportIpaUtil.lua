@@ -34,7 +34,7 @@ local cmd_export_xcode = "/Applications/Unity/Unity.app/Contents/MacOS/Unity -bu
 local cmd_clean_xcode_proj = "xcodebuild clean -scheme %s -configuration %s"
 local cmd_export_archive = "xcodebuild -project %s.xcodeproj -scheme %s -destination generic/platform=ios archive -archivePath bin/%s.xcarchive -configuration %s"
 --sdk iphoneos build PROVISIONING_PROFILE=%s
-local cmd_export_ipa = "xcodebuild -exportArchive -archivePath %s -exportPath %s/%s.ipa -exportOptionsPlist %s"
+local cmd_export_ipa = "xcodebuild -exportArchive -archivePath %s -exportPath %s/%s -exportOptionsPlist %s"
 
 --setup pbxproj file
 --%s export project path
