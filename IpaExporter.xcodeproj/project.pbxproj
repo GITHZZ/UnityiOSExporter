@@ -70,6 +70,8 @@
 		18DB76441E7FFE22003FDC52 /* Singletion.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DB76431E7FFE22003FDC52 /* Singletion.m */; };
 		18DD5E6C1DAF1C150071B654 /* DetailsInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD5E6B1DAF1C150071B654 /* DetailsInfoView.m */; };
 		18F1027B1DCC2AEB008312E5 /* EventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F1027A1DCC2AEB008312E5 /* EventManager.m */; };
+		5964C63F229CE169004BDD23 /* Xcodeproj in Resources */ = {isa = PBXBuildFile; fileRef = 5964C63E229CE169004BDD23 /* Xcodeproj */; };
+		5964C642229CE262004BDD23 /* RubyCammond.m in Sources */ = {isa = PBXBuildFile; fileRef = 5964C641229CE262004BDD23 /* RubyCammond.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -194,7 +196,7 @@
 		18750A711D9BBBC100FECCA6 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
 		18750AA21D9BBBD000FECCA6 /* LuaCammond.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaCammond.h; sourceTree = "<group>"; };
 		18750AA31D9BBBD000FECCA6 /* LuaCammond.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaCammond.m; sourceTree = "<group>"; };
-		18750AA91D9BBCF200FECCA6 /* ExportIpaUtil.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ExportIpaUtil.lua; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.lua; };
+		18750AA91D9BBCF200FECCA6 /* ExportIpaUtil.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ExportIpaUtil.lua; sourceTree = "<group>"; };
 		18769D911DAE34050023E255 /* XcodeProjModCSFileEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XcodeProjModCSFileEdit.h; sourceTree = "<group>"; };
 		18769D921DAE34050023E255 /* XcodeProjModCSFileEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XcodeProjModCSFileEdit.m; sourceTree = "<group>"; };
 		188DAD0F1E56F8E300554D6B /* CustomLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomLog.h; sourceTree = "<group>"; };
@@ -210,6 +212,9 @@
 		18F1027A1DCC2AEB008312E5 /* EventManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventManager.m; sourceTree = "<group>"; };
 		18F472071E51A481007620FF /* BaseDataCSCodePrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseDataCSCodePrivate.h; sourceTree = "<group>"; };
 		18FCCBCC1E49CD3900BDF9AC /* Defs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Defs.h; sourceTree = "<group>"; };
+		5964C63E229CE169004BDD23 /* Xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Xcodeproj; path = IpaExporter/Xcodeproj; sourceTree = "<group>"; };
+		5964C640229CE262004BDD23 /* RubyCammond.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RubyCammond.h; sourceTree = "<group>"; };
+		5964C641229CE262004BDD23 /* RubyCammond.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RubyCammond.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,6 +245,7 @@
 		183780041D766C84004E3BAD = {
 			isa = PBXGroup;
 			children = (
+				5964C63E229CE169004BDD23 /* Xcodeproj */,
 				1890344F1DE82FCF00AEDF46 /* DataTemplete */,
 				1837800F1D766C84004E3BAD /* IpaExporter */,
 				183780261D766C84004E3BAD /* IpaExporterTests */,
@@ -404,6 +410,8 @@
 				18750AA81D9BBCF200FECCA6 /* Lua */,
 				18750AA21D9BBBD000FECCA6 /* LuaCammond.h */,
 				18750AA31D9BBBD000FECCA6 /* LuaCammond.m */,
+				5964C640229CE262004BDD23 /* RubyCammond.h */,
+				5964C641229CE262004BDD23 /* RubyCammond.m */,
 				18322A8C1DAE193B0049660B /* BuilderCSFileEdit.h */,
 				18322A8D1DAE193B0049660B /* BuilderCSFileEdit.m */,
 				18769D911DAE34050023E255 /* XcodeProjModCSFileEdit.h */,
@@ -528,7 +536,7 @@
 				TargetAttributes = {
 					1837800C1D766C84004E3BAD = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 5GW4L26KUL;
+						DevelopmentTeam = V98ZP94KS5;
 						ProvisioningStyle = Automatic;
 					};
 					183780221D766C84004E3BAD = {
@@ -546,6 +554,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -568,6 +577,7 @@
 			files = (
 				1837801A1D766C84004E3BAD /* Assets.xcassets in Resources */,
 				18750AAB1D9BBCF200FECCA6 /* ExportIpaUtil.lua in Resources */,
+				5964C63F229CE169004BDD23 /* Xcodeproj in Resources */,
 				1837801D1D766C84004E3BAD /* Main.storyboard in Resources */,
 				189034501DE82FCF00AEDF46 /* DataTemplete in Resources */,
 			);
@@ -617,6 +627,7 @@
 				18750A921D9BBBC100FECCA6 /* ltable.c in Sources */,
 				18750A8D1D9BBBC100FECCA6 /* loslib.c in Sources */,
 				18750A861D9BBBC100FECCA6 /* liolib.c in Sources */,
+				5964C642229CE262004BDD23 /* RubyCammond.m in Sources */,
 				18750A8A1D9BBBC100FECCA6 /* loadlib.c in Sources */,
 				18750A9B1D9BBBC100FECCA6 /* Makefile in Sources */,
 				18750A751D9BBBC100FECCA6 /* LuaNodeList.c in Sources */,
@@ -784,7 +795,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 5GW4L26KUL;
+				DEVELOPMENT_TEAM = V98ZP94KS5;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				INFOPLIST_FILE = IpaExporter/Info.plist;
 				LD_GENERATE_MAP_FILE = YES;
@@ -806,7 +817,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 5GW4L26KUL;
+				DEVELOPMENT_TEAM = V98ZP94KS5;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = NS_BLOCK_ASSERTIONS;
 				INFOPLIST_FILE = IpaExporter/Info.plist;

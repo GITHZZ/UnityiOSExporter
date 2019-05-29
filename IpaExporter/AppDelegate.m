@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "EventManager.h"
 #import "LuaCammond.h"
+#import "RubyCammond.h"
 #import "ViewMain.h"
 
 @interface AppDelegate ()
@@ -20,7 +21,8 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     //init
-    [[LuaCammond instance] startUp];
+//    [[LuaCammond instance] startUp];
+    [[RubyCammond instance] startUp];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification

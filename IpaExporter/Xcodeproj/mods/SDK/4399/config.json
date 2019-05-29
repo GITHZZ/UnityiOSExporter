@@ -1,0 +1,20 @@
+{
+	"frameworks":[
+		"StoreKit"
+	],
+	"Libs":[
+		"libz"
+	],
+	"linker_flags":[
+		"$(OTHER_LDFLAGS)",
+		"-weak_framework",
+		"CoreMotion",
+		"-weak-lSystem",
+		"-ObjC"
+	],
+	"develop_signing_identity":[
+	],
+	"release_signing_identity":[
+	],
+	"enable_bit_code":"NO"
+}

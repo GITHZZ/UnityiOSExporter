@@ -1,0 +1,589 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"end",
+				"end_with"
+			],
+			[
+				"targe",
+				"target"
+			],
+			[
+				"File",
+				"File\tFile.read(\"..\")"
+			],
+			[
+				"fin",
+				"find_subpath"
+			],
+			[
+				"target",
+				"targets"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "XcodeProjectUpdater.rb",
+			"settings":
+			{
+				"buffer_size": 3117,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Main.rb",
+			"settings":
+			{
+				"buffer_size": 377,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/a4399/Documents/Projects/XcodeExportTest/XcodeProj/Unity-iPhone.xcodeproj/project.pbxproj",
+			"settings":
+			{
+				"buffer_size": 105426,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "lib/xcodeproj/constants.rb",
+			"settings":
+			{
+				"buffer_size": 16222,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "Searching 254 files for \"FRAMEWORK_SEARCH_PATHS\"\n\n/Users/a4399/Desktop/packer/lib/xcodeproj/project/object/build_configuration.rb:\n  155            BUILD_VARIANTS\n  156            EXCLUDED_SOURCE_FILE_NAMES\n  157:           FRAMEWORK_SEARCH_PATHS\n  158            GCC_PREPROCESSOR_DEFINITIONS\n  159            GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS\n\n1 match in 1 file\n\n\nSearching 254 files for \"buildSettings\"\n\n/Users/a4399/Desktop/packer/lib/xcodeproj/project/object/build_configuration.rb:\n   41          def to_hash_as(method = :to_hash)\n   42            super.tap do |hash|\n   43:             normalize_array_settings(hash['buildSettings'])\n   44            end\n   45          end\n\n1 match in 1 file\n\n\nSearching 254 files for \"ConfigurationList\"\n\n/Users/a4399/Desktop/packer/lib/xcodeproj/constants.rb:\n   52          PBXBuildRule\n   53          XCBuildConfiguration\n   54:         XCConfigurationList\n   55          PBXContainerItemProxy\n   56          PBXFileReference\n\n/Users/a4399/Desktop/packer/lib/xcodeproj/project.rb:\n  184        root_object.product_ref_group = root_object.main_group.new_group('Products')\n  185  \n  186:       config_list = new(XCConfigurationList)\n  187        root_object.build_configuration_list = config_list\n  188        config_list.default_configuration_name = 'Release'\n  ...\n  601      end\n  602  \n  603:     # @return [ObjectList<XCConfigurationList>] The build configuration list of\n  604      #         the project.\n  605      #\n\n/Users/a4399/Desktop/packer/lib/xcodeproj/project/object/build_configuration.rb:\n    3      module Object\n    4        # Encapsulates the information a specific build configuration referenced\n    5:       # by a {XCConfigurationList} which in turn might be referenced by a\n    6        # {PBXProject} or a {PBXNativeTarget}.\n    7        #\n\n/Users/a4399/Desktop/packer/lib/xcodeproj/project/object/configuration_list.rb:\n    5        # related build configurations of a {PBXProject} or a {PBXNativeTarget}.\n    6        #\n    7:       class XCConfigurationList < AbstractObject\n    8          # @!group Attributes\n    9  \n\n/Users/a4399/Desktop/packer/lib/xcodeproj/project/object/native_target.rb:\n   19          attribute :comments, String\n   20  \n   21:         # @return [XCConfigurationList] the list of the build configurations of\n   22          #         the target. This list commonly include two configurations\n   23          #         `Debug` and `Release`.\n   24          #\n   25:         has_one :build_configuration_list, XCConfigurationList\n   26  \n   27          # @return [ObjectList<PBXTargetDependency>] the targets necessary to\n\n/Users/a4399/Desktop/packer/lib/xcodeproj/project/object/root_object.rb:\n   25                    'LastUpgradeCheck' => Constants::LAST_UPGRADE_CHECK\n   26  \n   27:         # @return [XCConfigurationList] the configuration list of the project.\n   28          #\n   29:         has_one :build_configuration_list, XCConfigurationList\n   30  \n   31          # @return [String] the compatibility version of the project.\n\n/Users/a4399/Desktop/packer/lib/xcodeproj/project/project_helper.rb:\n   97  \n   98          # Configuration List\n   99:         cl = project.new(XCConfigurationList)\n  100          cl.default_configuration_is_visible = '0'\n  101          cl.default_configuration_name = 'Release'\n  ...\n  202        #         the primary language of the target, can be `:objc` or `:swift`.\n  203        #\n  204:       # @return [XCConfigurationList] the generated configuration list.\n  205        #\n  206        def self.configuration_list(project, platform = nil, deployment_target = nil, target_product_type = nil, language = nil)\n  207:         cl = project.new(XCConfigurationList)\n  208          cl.default_configuration_is_visible = '0'\n  209          cl.default_configuration_name = 'Release'\n\n12 matches across 7 files\n",
+			"settings":
+			{
+				"buffer_size": 3856,
+				"line_ending": "Unix",
+				"name": "Find Results",
+				"scratch": true
+			}
+		},
+		{
+			"file": "lib/xcodeproj/project.rb",
+			"settings":
+			{
+				"buffer_size": 28478,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/a4399/Desktop/packer",
+		"/Users/a4399/Desktop/packer/lib",
+		"/Users/a4399/Desktop/packer/lib/xcodeproj",
+		"/Users/a4399/Desktop/packer/lib/xcodeproj/command",
+		"/Users/a4399/Desktop/packer/lib/xcodeproj/config",
+		"/Users/a4399/Desktop/packer/mods"
+	],
+	"file_history":
+	[
+		"/Users/a4399/Desktop/packer/Main.rb",
+		"/Users/a4399/Desktop/packer/lib/xcodeproj/project/object/helpers/groupable_helper.rb",
+		"/Users/a4399/Desktop/packer/lib/xcodeproj/project/object_list.rb",
+		"/Users/a4399/Desktop/packer/lib/xcodeproj/project/object/group.rb",
+		"/Users/a4399/Desktop/packer/lib/xcodeproj/project.rb",
+		"/Users/a4399/Desktop/packer/lib/xcodeproj/project/object/build_configuration.rb",
+		"/Users/a4399/Documents/Projects/XcodeExportTest/XcodeProj/Unity-iPhone.xcodeproj/project.pbxproj",
+		"/Users/a4399/Desktop/packer/lib/xcodeproj/command/show.rb",
+		"/Users/a4399/Desktop/packer/XcodeProjectUpdater.rb",
+		"/Users/a4399/Downloads/“dev”的 iPhone.log",
+		"/Users/a4399/Desktop/packer/config/ExportConfig.json",
+		"/Users/a4399/Desktop/packer/config/exportConfig.json",
+		"/Users/a4399/Desktop/packer/lib/xcodeproj.rb"
+	],
+	"find":
+	{
+		"height": 39.0
+	},
+	"find_in_files":
+	{
+		"height": 101.0,
+		"where_history":
+		[
+			"/Users/a4399/Desktop/packer"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"group_sub_path",
+			"index",
+			"then",
+			"t hen",
+			"addBuildPhaseFilesFormResource",
+			"start",
+			"FRAMEWORK_SEARCH_PATHS",
+			"addBuildPhaseFilesFormResource",
+			"FRAMEWORK_SEARCH_PATHS",
+			"FRAM",
+			"root_object.targets",
+			"root_object",
+			"Build Configurations=>",
+			"Build Configurations =>",
+			"pri",
+			"FRAMEWORK_SEARCH_PATHS",
+			"build_configurations",
+			"build_configuration_list",
+			"ConfigurationList",
+			"1D6058950D05DD3E006BFB54",
+			"1D6058940D05DD3E006BFB54",
+			"XCConfigurationList",
+			"56E860841D67581C00A1AB2B",
+			"56E860811D6757FF00A1AB2B",
+			"56E860821D6757FF00A1AB2B",
+			"buildSettings",
+			".config",
+			"config",
+			"normalize_array_settings",
+			"ARRAY_SETTINGS",
+			"FRAMEWORK_SEARCH_PATHS",
+			"CLANG_ANALYZER_NONNULL",
+			"resolve_build_setting",
+			"build_settings",
+			"FRAMEWORK_SEARCH_PATHS",
+			"resources_build_phase",
+			"unity_class_group",
+			"unityClassGroup",
+			"FRAMEWORK_SEARCH_PATHS",
+			"CLANG_CXX_LIBRARY",
+			"GCC_ENABLE_CPP_EXCEPTIONS",
+			"ENABLE_BITCODE",
+			"build_settings",
+			"COPY_PHASE_STRIP",
+			"build_settings",
+			"build_settings[",
+			"build_settings",
+			"build_settings\nbuild_settings",
+			"build_settings",
+			"resolve_build_setting",
+			"build_settings",
+			"XCBuildConfiguration",
+			"other",
+			"C01FCF4E08A954540054247B",
+			"29B97313FDCFA39411CA2CEA",
+			"build_configuration_list",
+			"FRAMEWORK_SEARCH_PATHS"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"unity_class_group"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "XcodeProjectUpdater.rb",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3117,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3106,
+								3106
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "Main.rb",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 377,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/Users/a4399/Documents/Projects/XcodeExportTest/XcodeProj/Unity-iPhone.xcodeproj/project.pbxproj",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 105426,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								87192,
+								87214
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 32332.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "lib/xcodeproj/constants.rb",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 16222,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								12194,
+								12216
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 4713.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3856,
+						"regions":
+						{
+							"match":
+							{
+								"flags": 112,
+								"regions":
+								[
+									[
+										224,
+										246
+									],
+									[
+										639,
+										652
+									],
+									[
+										899,
+										916
+									],
+									[
+										1172,
+										1189
+									],
+									[
+										1383,
+										1400
+									],
+									[
+										1698,
+										1715
+									],
+									[
+										2026,
+										2043
+									],
+									[
+										2260,
+										2277
+									],
+									[
+										2519,
+										2536
+									],
+									[
+										2816,
+										2833
+									],
+									[
+										2943,
+										2960
+									],
+									[
+										3193,
+										3210
+									],
+									[
+										3460,
+										3477
+									],
+									[
+										3696,
+										3713
+									]
+								],
+								"scope": ""
+							}
+						},
+						"selection":
+						[
+							[
+								1175,
+								1175
+							]
+						],
+						"settings":
+						{
+							"detect_indentation": false,
+							"line_numbers": false,
+							"output_tag": 3,
+							"result_base_dir": "",
+							"result_file_regex": "^([^ \t].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 414.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "lib/xcodeproj/project.rb",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 28478,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								12412,
+								12433
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 5425.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 120.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "packer.sublime-project",
+	"replace":
+	{
+		"height": 48.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"main",
+				"Main.rb"
+			],
+			[
+				"object_li",
+				"lib/xcodeproj/project/object_list.rb"
+			],
+			[
+				"pro",
+				"lib/xcodeproj/project.rb"
+			],
+			[
+				"project",
+				"lib/xcodeproj/project.rb"
+			],
+			[
+				"build_configuration.rb",
+				"lib/xcodeproj/project/object/build_configuration.rb"
+			],
+			[
+				"group",
+				"lib/xcodeproj/project/object/group.rb"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 229.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

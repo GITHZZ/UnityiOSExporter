@@ -34,10 +34,10 @@
 
 - (void)initEvent
 {
-    [[EventManager instance] regist:EventViewSureClicked
-                               func:@selector(sureBtnClicked:)
-                           withData:nil
-                               self:self];
+//    [[EventManager instance] regist:EventViewSureClicked
+//                               func:@selector(sureBtnClicked:)
+//                           withData:nil
+//                               self:self];
 }
 
 - (void)close
