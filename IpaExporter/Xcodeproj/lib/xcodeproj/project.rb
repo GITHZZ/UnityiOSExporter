@@ -1,3 +1,4 @@
+require 'atomos'
 require 'fileutils'
 require 'securerandom'
 
@@ -45,6 +46,10 @@ module Xcodeproj
     #
     attr_reader :path
 
+    # @return [Pathname] the directory of the project
+    #
+    attr_reader :project_dir
+
     # @param  [Pathname, String] path @see path
     #         The path provided will be expanded to an absolute path.
     # @param  [Bool] skip_initialization
@@ -63,6 +68,7 @@ module Xcodeproj
     #
     def initialize(path, skip_initialization = false, object_version = Constants::DEFAULT_OBJECT_VERSION)
       @path = Pathname.new(path).expand_path
+      @project_dir = @path.dirname
       @objects_by_uuid = {}
       @generated_uuids = []
       @available_uuids = []
@@ -74,6 +80,10 @@ module Xcodeproj
       unless skip_initialization
         initialize_from_scratch
         @object_version = object_version.to_s
+        unless Constants::COMPATIBILITY_VERSION_BY_OBJECT_VERSION.key?(object_version)
+          raise ArgumentError, "[Xcodeproj] Unable to find compatibility version string for object version `#{object_version}`."
+        end
+        root_object.compatibility_version = Constants::COMPATIBILITY_VERSION_BY_OBJECT_VERSION[object_version]
       end
     end
 
@@ -350,7 +360,9 @@ module Xcodeproj
       @dirty = false if save_path == path
       FileUtils.mkdir_p(save_path)
       file = File.join(save_path, 'project.pbxproj')
-      File.open(file, 'w') { |f| Nanaimo::Writer::PBXProjWriter.new(to_ascii_plist, :pretty => true, :output => f, :strict => false).write }
+      Atomos.atomic_write(file) do |f|
+        Nanaimo::Writer::PBXProjWriter.new(to_ascii_plist, :pretty => true, :output => f, :strict => false).write
+      end
     end
 
     # Marks the project as dirty, that is, modified from what is on disk.
@@ -380,7 +392,24 @@ module Xcodeproj
     # @return [void]
     #
     def predictabilize_uuids
-      UUIDGenerator.new(self).generate!
+      UUIDGenerator.new([self]).generate!
+    end
+
+    # Replaces all the UUIDs in the list of provided projects with deterministic MD5 checksums.
+    #
+    # @param  [Array<Project>] projects
+    #
+    # @note The current sorting of the project is taken into account when
+    #       generating the new UUIDs.
+    #
+    # @note This method should only be used for entirely machine-generated
+    #       projects, as true UUIDs are useful for tracking changes in the
+    #       project.
+    #
+    # @return [void]
+    #
+    def self.predictabilize_uuids(projects)
+      UUIDGenerator.new(projects).generate!
     end
 
     public
@@ -673,6 +702,10 @@ module Xcodeproj
     # @param  [String] deployment_target
     #         the deployment target for the platform.
     #
+    # @param  [PBXGroup] product_group
+    #         the product group, where to add to a file reference of the
+    #         created target.
+    #
     # @param  [Symbol] language
     #         the primary language of the target, can be `:objc` or `:swift`.
     #
@@ -718,10 +751,16 @@ module Xcodeproj
     # @param  [Array<AbstractTarget>] target_dependencies
     #         targets, which should be added as dependencies.
     #
+    # @param  [Symbol] platform
+    #         the platform of the aggregate target. Can be `:ios` or `:osx`.
+    #
+    # @param  [String] deployment_target
+    #         the deployment target for the platform.
+    #
     # @return [PBXNativeTarget] the target.
     #
-    def new_aggregate_target(name, target_dependencies = [])
-      ProjectHelper.new_aggregate_target(self, name).tap do |aggregate_target|
+    def new_aggregate_target(name, target_dependencies = [], platform = nil, deployment_target = nil)
+      ProjectHelper.new_aggregate_target(self, name, platform, deployment_target).tap do |aggregate_target|
         target_dependencies.each do |dep|
           aggregate_target.add_dependency(dep)
         end
@@ -793,7 +832,7 @@ module Xcodeproj
     # folder) and optionally hides them.
     #
     # @param  [Bool] visible
-    #         Wether the schemes should be visible or hidden.
+    #         Whether the schemes should be visible or hidden.
     #
     # @return [void]
     #
@@ -808,8 +847,11 @@ module Xcodeproj
 
       targets.each do |target|
         scheme = XCScheme.new
-        scheme.add_build_target(target)
-        scheme.add_test_target(target) if target.test_target_type?
+
+        test_target = target if target.respond_to?(:test_target_type?) && target.test_target_type?
+        launch_target = target.respond_to?(:launchable_target_type?) && target.launchable_target_type?
+        scheme.configure_with_targets(target, test_target, :launch_target => launch_target)
+
         yield scheme, target if block_given?
         scheme.save_as(path, target.name, false)
         xcschememanagement['SchemeUserState']["#{target.name}.xcscheme"] = {}

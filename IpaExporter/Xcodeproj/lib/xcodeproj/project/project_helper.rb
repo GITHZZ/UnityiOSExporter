@@ -55,12 +55,13 @@ module Xcodeproj
         target.product_reference = product
 
         # Build phases
-        target.build_phases << project.new(PBXSourcesBuildPhase)
-        target.build_phases << project.new(PBXFrameworksBuildPhase)
+        build_phases_for_target_type(type).each { |phase| target.build_phases << project.new(phase) }
 
         # Frameworks
-        framework_name = (platform == :osx) ? 'Cocoa' : 'Foundation'
-        target.add_system_framework(framework_name)
+        unless type == :static_library
+          framework_name = (platform == :osx) ? 'Cocoa' : 'Foundation'
+          target.add_system_framework(framework_name)
+        end
 
         target
       end
@@ -114,9 +115,7 @@ module Xcodeproj
         target.product_reference = product
 
         # Build phases
-        target.build_phases << project.new(PBXSourcesBuildPhase)
-        target.build_phases << project.new(PBXFrameworksBuildPhase)
-        target.build_phases << project.new(PBXResourcesBuildPhase)
+        build_phases_for_target_type(:bundle).each { |phase| target.build_phases << project.new(phase) }
 
         target
       end
@@ -131,13 +130,19 @@ module Xcodeproj
       # @param  [String] name
       #         the name of the aggregate target.
       #
+      # @param  [Symbol] platform
+      #         the platform of the aggregate target. Can be `:ios` or `:osx`.
+      #
+      # @param  [String] deployment_target
+      #         the deployment target for the platform.
+      #
       # @return [PBXAggregateTarget] the target.
       #
-      def self.new_aggregate_target(project, name)
+      def self.new_aggregate_target(project, name, platform, deployment_target)
         target = project.new(PBXAggregateTarget)
         project.targets << target
         target.name = name
-        target.build_configuration_list = configuration_list(project)
+        target.build_configuration_list = configuration_list(project, platform, deployment_target)
         target
       end
 
@@ -270,10 +275,16 @@ module Xcodeproj
 
         if deployment_target
           case platform
-          when :ios then settings['IPHONEOS_DEPLOYMENT_TARGET'] = deployment_target
-          when :osx then settings['MACOSX_DEPLOYMENT_TARGET'] = deployment_target
-          when :tvos then settings['TVOS_DEPLOYMENT_TARGET'] = deployment_target
-          when :watchos then settings['WATCHOS_DEPLOYMENT_TARGET'] = deployment_target
+          when :ios
+            settings['IPHONEOS_DEPLOYMENT_TARGET'] = deployment_target
+            settings['CLANG_ENABLE_OBJC_WEAK'] = 'NO' if deployment_target < '5'
+          when :osx
+            settings['MACOSX_DEPLOYMENT_TARGET'] = deployment_target
+            settings['CLANG_ENABLE_OBJC_WEAK'] = 'NO' if deployment_target < '10.7'
+          when :tvos
+            settings['TVOS_DEPLOYMENT_TARGET'] = deployment_target
+          when :watchos
+            settings['WATCHOS_DEPLOYMENT_TARGET'] = deployment_target
           end
         end
 
@@ -285,7 +296,7 @@ module Xcodeproj
       # @param  [Object] object
       #         the object to copy.
       #
-      # @return [Object] The deeply copy of the obejct object.
+      # @return [Object] The deep copy of the object.
       #
       def self.deep_dup(object)
         case object
@@ -300,6 +311,27 @@ module Xcodeproj
         else
           object.dup
         end
+      end
+
+      # Returns the build phases, in order, that appear by default
+      # on a target of the given type.
+      #
+      # @param  [Symbol] type
+      #         the name of the target type.
+      #
+      # @return [Array<String>] The list of build phase class names for the target type.
+      #
+      def self.build_phases_for_target_type(type)
+        case type
+        when :static_library, :dynamic_library
+          %w(Headers Sources Frameworks)
+        when :framework
+          %w(Headers Sources Frameworks Resources)
+        when :command_line_tool
+          %w(Sources Frameworks)
+        else
+          %w(Sources Frameworks Resources)
+        end.map { |phase| "PBX#{phase}BuildPhase" }
       end
 
       #-----------------------------------------------------------------------#

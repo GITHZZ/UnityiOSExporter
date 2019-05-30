@@ -98,11 +98,41 @@ module Xcodeproj
           #
           def real_path(object)
             source_tree = source_tree_real_path(object)
-            path = object.path || ''
+            path = object.path || ''.freeze
             if source_tree
               source_tree + path
             else
               Pathname(path)
+            end
+          end
+
+          # @param  [PBXGroup, PBXFileReference] object
+          #         The object to analyze.
+          #
+          # @return [Pathname] The path of the object without resolving the
+          #         source tree.
+          #
+          def full_path(object)
+            folder =  case object.source_tree
+                      when '<group>'
+                        object_parent = parent(object)
+                        if object_parent.isa == 'PBXProject'.freeze
+                          nil
+                        else
+                          full_path(object_parent)
+                        end
+                      when 'SOURCE_ROOT'
+                        nil
+                      when '<absolute>'
+                        Pathname.new('/'.freeze)
+                      else
+                        Pathname.new("${#{object.source_tree}}")
+                      end
+            folder ||= Pathname.new('')
+            if object.path
+              folder + object.path
+            else
+              folder
             end
           end
 
@@ -115,13 +145,14 @@ module Xcodeproj
           def source_tree_real_path(object)
             case object.source_tree
             when '<group>'
-              if parent(object).isa == 'PBXProject'
-                object.project.path.dirname
+              object_parent = parent(object)
+              if object_parent.isa == 'PBXProject'.freeze
+                object.project.project_dir
               else
-                real_path(parent(object))
+                real_path(object_parent)
               end
             when 'SOURCE_ROOT'
-              object.project.path.dirname
+              object.project.project_dir
             when '<absolute>'
               nil
             else

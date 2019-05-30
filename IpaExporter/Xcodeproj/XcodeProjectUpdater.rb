@@ -142,10 +142,10 @@ class XcodeProjectUpdater
 		linker_flags = setting_hash["linker_flags"]
 
 		#新增系统framework
-		@target.add_system_framework(frameworks)
+		@target.add_system_frameworks(frameworks)
 
 		#新增lib(tbd)
-		@target.add_system_library(libs)
+		@target.add_system_library_tbd(libs)
 
 		#设置linker_flags
 		set_build_setting(@target, "OTHER_LDFLAGS", linker_flags)

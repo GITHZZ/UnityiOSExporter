@@ -250,12 +250,26 @@ module Xcodeproj
         #
         attribute :input_paths, Array, []
 
+        # @return [Array<String>] an array of input file list paths of the script.
+        #
+        # @example
+        #   "$(SRCROOT)/newInputFile.xcfilelist"
+        #
+        attribute :input_file_list_paths, Array, []
+
         # @return [Array<String>] an array of output paths of the script.
         #
         # @example
         #   "$(DERIVED_FILE_DIR)/myfile"
         #
         attribute :output_paths, Array, []
+
+        # @return [Array<String>] an array of output file list paths of the script.
+        #
+        # @example
+        #   "$(SRCROOT)/newOutputFile.xcfilelist"
+        #
+        attribute :output_file_list_paths, Array, []
 
         # @return [String] the path to the script interpreter.
         #
@@ -265,16 +279,14 @@ module Xcodeproj
 
         # @return [String] the actual script to perform.
         #
-        # @note   Defaults to the empty string.
+        # @note   Defaults to a comment string.
         #
-        attribute :shell_script, String, ''
+        attribute :shell_script, String, "# Type a script or drag a script file from your workspace to insert its path.\n"
 
         # @return [String] whether or not the ENV variables should be shown in
         #         the build log.
         #
-        # @note   Defaults to true (`1`).
-        #
-        attribute :show_env_vars_in_log, String, '1'
+        attribute :show_env_vars_in_log, String
       end
 
       #-----------------------------------------------------------------------#

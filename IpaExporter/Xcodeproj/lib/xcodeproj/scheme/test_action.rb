@@ -36,6 +36,22 @@ module Xcodeproj
       end
 
       # @return [Bool]
+      #         Whether this Test Action should disable detection of UI API misuse
+      #         from background threads
+      #
+      def disable_main_thread_checker?
+        string_to_bool(@xml_element.attributes['disableMainThreadChecker'])
+      end
+
+      # @param [Bool] flag
+      #        Set whether this Test Action should disable detection of UI API misuse
+      #        from background threads
+      #
+      def disable_main_thread_checker=(flag)
+        @xml_element.attributes['disableMainThreadChecker'] = bool_to_string(flag)
+      end
+
+      # @return [Bool]
       #         Whether Clang Code Coverage is enabled ('Gather coverage data' turned ON)
       #
       def code_coverage_enabled?
@@ -127,10 +143,13 @@ module Xcodeproj
         #        or an existing XML 'TestableReference' node element to reference,
         #        or nil to create an new, empty TestableReference
         #
-        def initialize(target_or_node = nil)
+        # @param [Xcodeproj::Project] the root project to reference from
+        #                             (when nil the project of the target is used)
+        #
+        def initialize(target_or_node = nil, root_project = nil)
           create_xml_element_with_fallback(target_or_node, 'TestableReference') do
             self.skipped = false
-            add_buildable_reference BuildableReference.new(target_or_node) unless target_or_node.nil?
+            add_buildable_reference BuildableReference.new(target_or_node, root_project) unless target_or_node.nil?
           end
         end
 
@@ -146,6 +165,41 @@ module Xcodeproj
         #
         def skipped=(flag)
           @xml_element.attributes['skipped'] = bool_to_string(flag)
+        end
+
+        # @return [Bool]
+        #         Whether or not this TestableReference (test bundle) should be run in parallel or not
+        #
+        def parallelizable?
+          string_to_bool(@xml_element.attributes['parallelizable'])
+        end
+
+        # @param [Bool] flag
+        #         Set whether or not this TestableReference (test bundle) should be run in parallel or not
+        #
+        def parallelizable=(flag)
+          @xml_element.attributes['parallelizable'] = bool_to_string(flag)
+        end
+
+        # @return [String]
+        #         The execution order for this TestableReference (test bundle)
+        #
+        def test_execution_ordering
+          @xml_element.attributes['testExecutionOrdering']
+        end
+
+        # @param [String] order
+        #         Set the execution order for this TestableReference (test bundle)
+        #
+        def test_execution_ordering=(order)
+          @xml_element.attributes['testExecutionOrdering'] = order
+        end
+
+        # @return [Bool]
+        #         Whether or not this TestableReference (test bundle) should be run in randomized order.
+        #
+        def randomized?
+          test_execution_ordering == 'random'
         end
 
         # @return [Array<BuildableReference>]
@@ -165,21 +219,21 @@ module Xcodeproj
           @xml_element.add_element(ref.xml_element)
         end
 
-        # @return [Array<SkippedTest>]
+        # @return [Array<Test>]
         #         The list of SkippedTest this action will skip.
         #
         def skipped_tests
           return [] if @xml_element.elements['SkippedTests'].nil?
           @xml_element.elements['SkippedTests'].get_elements('Test').map do |node|
-            TestableReference::SkippedTest.new(node)
+            Test.new(node)
           end
         end
 
-        # @param [Array<SkippedTest>] tests
+        # @param [Array<Test>] tests
         #         Set the list of SkippedTest this action will skip.
         #
         def skipped_tests=(tests)
-          @xml_element.delete_element('SkippedTests') unless @xml_element.elements['SkippedTests'].nil?
+          @xml_element.delete_element('SkippedTests')
           if tests.nil?
             return
           end
@@ -189,7 +243,7 @@ module Xcodeproj
           end
         end
 
-        # @param [SkippedTest] skipped_test
+        # @param [Test] skipped_test
         #         The SkippedTest to add to the list of tests this action will skip
         #
         def add_skipped_test(skipped_test)
@@ -197,7 +251,51 @@ module Xcodeproj
           entries.add_element(skipped_test.xml_element)
         end
 
-        class SkippedTest < XMLElementWrapper
+        # @return [Bool]
+        #         Whether or not this TestableReference (test bundle) should use a whitelist or not
+        #
+        def use_test_selection_whitelist?
+          string_to_bool(@xml_element.attributes['useTestSelectionWhitelist'])
+        end
+
+        # @param [Bool] flag
+        #        Set whether or not this TestableReference (test bundle) should use a whitelist or not
+        #
+        def use_test_selection_whitelist=(flag)
+          @xml_element.attributes['useTestSelectionWhitelist'] = bool_to_string(flag)
+        end
+
+        # @return [Array<Test>]
+        #         The list of SelectedTest this action will run.
+        #
+        def selected_tests
+          return [] if @xml_element.elements['SelectedTests'].nil?
+          @xml_element.elements['SelectedTests'].get_elements('Test').map do |node|
+            Test.new(node)
+          end
+        end
+
+        # @param [Array<Test>] tests
+        #         Set the list of SelectedTest this action will run.
+        #
+        def selected_tests=(tests)
+          @xml_element.delete_element('SelectedTests')
+          return if tests.nil?
+          entries = @xml_element.add_element('SelectedTests')
+          tests.each do |selected|
+            entries.add_element(selected.xml_element)
+          end
+        end
+
+        # @param [Test] selected_test
+        #         The SelectedTest to add to the list of tests this action will run.
+        #
+        def add_selected_test(selected_test)
+          entries = @xml_element.elements['SelectedTests'] || @xml_element.add_element('SelectedTests')
+          entries.add_element(selected_test.xml_element)
+        end
+
+        class Test < XMLElementWrapper
           # @param [REXML::Element] node
           #        The 'Test' XML node that this object will wrap.
           #        If nil, will create a default XML node to use.
@@ -222,6 +320,11 @@ module Xcodeproj
             @xml_element.attributes['Identifier'] = value
           end
         end
+
+        # Aliased to`Test` for compatibility
+        # @todo Remove in Xcodeproj 2
+        #
+        SkippedTest = Test
 
         # @todo handle 'AdditionalOptions' tag
       end

@@ -1,21 +1,13 @@
+require 'xcodeproj/workspace/reference'
+
 module Xcodeproj
   class Workspace
     # Describes a file reference of a Workspace.
     #
-    class FileReference
+    class FileReference < Reference
       # @return [String] the path to the project
       #
       attr_reader :path
-
-      # @return [String] the type of reference to the project
-      #
-      # This can be of the following values:
-      # - absolute
-      # - group
-      # - container
-      # - developer (unsupported)
-      #
-      attr_reader :type
 
       # @param [#to_s] path @see path
       # @param [#to_s] type @see type
@@ -47,6 +39,9 @@ module Xcodeproj
       #
       def self.from_node(xml_node)
         type, path = xml_node.attribute('location').value.split(':', 2)
+        if type == 'group'
+          path = prepend_parent_path(xml_node, path)
+        end
         new(path, type)
       end
 
@@ -69,9 +64,7 @@ module Xcodeproj
       def absolute_path(workspace_dir_path)
         workspace_dir_path = workspace_dir_path.to_s
         case type
-        when 'group'
-          File.expand_path(File.join(workspace_dir_path, path))
-        when 'container'
+        when 'group', 'container', 'self'
           File.expand_path(File.join(workspace_dir_path, path))
         when 'absolute'
           File.expand_path(path)

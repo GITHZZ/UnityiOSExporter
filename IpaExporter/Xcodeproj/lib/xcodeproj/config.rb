@@ -10,7 +10,8 @@ module Xcodeproj
 
     KEY_VALUE_PATTERN = /
       (
-        [^=]+       # Any char, but not an assignment operator (non-greedy)
+        [^=\[]+     # Any char, but not an assignment operator
+                    # or subscript (non-greedy)
         (?:         # One or multiple conditional subscripts
           \[
           [^\]]*    # The subscript key
@@ -21,11 +22,18 @@ module Xcodeproj
           \]
         )*
       )
-      \s+           # Whitespaces after the key (needed because subscripts
+      \s*           # Whitespaces after the key (needed because subscripts
                     # always end with ']')
       =             # The assignment operator
       (.*)          # The value
     /x
+    private_constant :KEY_VALUE_PATTERN
+
+    INHERITED = %w($(inherited) ${inherited}).freeze
+    private_constant :INHERITED
+
+    INHERITED_REGEXP = Regexp.union(INHERITED)
+    private_constant :INHERITED_REGEXP
 
     # @return [Hash{String => String}] The attributes of the settings file
     #         excluding frameworks, weak_framework and libraries.
@@ -131,8 +139,7 @@ module Xcodeproj
 
       result = attributes.dup
       result['OTHER_LDFLAGS'] = list.join(' ') unless list.empty?
-      inherited = %w($(inherited) ${inherited}).freeze
-      result.reject! { |_, v| inherited.any? { |i| i == v.to_s.strip } }
+      result.reject! { |_, v| INHERITED.any? { |i| i == v.to_s.strip } }
 
       result = @includes.map do |incl|
         path = File.expand_path(incl, @filepath.dirname)
@@ -268,10 +275,12 @@ module Xcodeproj
       string.split("\n").each do |line|
         uncommented_line = strip_comment(line)
         if include = extract_include(uncommented_line)
-          @includes.push include
+          @includes.push normalized_xcconfig_path(include)
         else
           key, value = extract_key_value(uncommented_line)
-          hash[key] = value if key
+          next unless key
+          value.gsub!(INHERITED_REGEXP) { |m| hash.fetch(key, m) }
+          hash[key] = value
         end
       end
       hash

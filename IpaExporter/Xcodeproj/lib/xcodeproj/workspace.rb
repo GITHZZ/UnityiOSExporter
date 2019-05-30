@@ -64,7 +64,7 @@ module Xcodeproj
     #
     def self.new_from_xcworkspace(path)
       from_s(File.read(File.join(path, 'contents.xcworkspacedata')),
-             File.expand_path(File.dirname(path)))
+             File.expand_path(path))
     rescue Errno::ENOENT
       new(nil)
     end
@@ -97,15 +97,17 @@ module Xcodeproj
     #
     def <<(path_or_reference)
       return unless @document && @document.respond_to?(:root)
-      case
-      when path_or_reference.is_a?(String)
+
+      case path_or_reference
+      when String
         project_file_reference = Xcodeproj::Workspace::FileReference.new(path_or_reference)
-      when path_or_reference.is_a?(Xcodeproj::Workspace::FileReference)
+      when Xcodeproj::Workspace::FileReference
         project_file_reference = path_or_reference
         projpath = nil
       else
-        raise ArgumentError, 'Input to the << operator must be a file path or FileReference'
+        raise ArgumentError, "Input to the << operator must be a file path or FileReference, got #{path_or_reference.inspect}"
       end
+
       @document.root.add_element(project_file_reference.to_node)
       load_schemes_from_project File.expand_path(projpath || project_file_reference.path)
     end
@@ -183,7 +185,7 @@ module Xcodeproj
 
     #-------------------------------------------------------------------------#
 
-    # Load all schemes from all projects in workspace
+    # Load all schemes from all projects in workspace or in the workspace container itself
     #
     # @param [String] workspace_dir_path
     #         path of workspaces dir
@@ -191,9 +193,22 @@ module Xcodeproj
     # @return [void]
     #
     def load_schemes(workspace_dir_path)
+      # Normalizes path to directory of workspace needed for file_reference.absolute_path
+      workspaces_dir = workspace_dir_path
+      if File.extname(workspace_dir_path) == '.xcworkspace'
+        workspaces_dir = File.expand_path('..', workspaces_dir)
+      end
+
       file_references.each do |file_reference|
-        project_full_path = file_reference.absolute_path(workspace_dir_path)
+        project_full_path = file_reference.absolute_path(workspaces_dir)
         load_schemes_from_project(project_full_path)
+      end
+
+      # Load schemes that are in the workspace container.
+      workspace_abs_path = File.absolute_path(workspace_dir_path)
+      Dir[File.join(workspace_dir_path, 'xcshareddata', 'xcschemes', '*.xcscheme')].each do |scheme|
+        scheme_name = File.basename(scheme, '.xcscheme')
+        @schemes[scheme_name] = workspace_abs_path
       end
     end
 

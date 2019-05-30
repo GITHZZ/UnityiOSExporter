@@ -64,9 +64,11 @@
                 //ruby入口文件路径
                 //sdk资源文件路径
                 //导出ipa和xcode工程路径
+                //平台名称
                 NSArray *args = [NSArray arrayWithObjects:rubyMainPath,
                                  data.cDirectoryPath,
                                  [NSString stringWithUTF8String:view.info->exportFolderParh],
+                                 data.platform,
                                  nil];
                 
                 NSString *shellLog = [self invokingShellScriptAtPath:shellPath withArgs:args];
@@ -93,9 +95,7 @@
     //设置参数
     NSString *shellArgsStr = [[NSString alloc] init];
     for(int i = 0; i < [args count]; i++)
-    {
         shellArgsStr = [shellArgsStr stringByAppendingFormat:@"%@\t", args[i]];
-    }
     
     NSTask *shellTask = [[NSTask alloc] init];
     [shellTask setLaunchPath:@"/bin/sh"];

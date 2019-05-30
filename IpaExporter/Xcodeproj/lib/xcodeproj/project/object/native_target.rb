@@ -181,6 +181,7 @@ module Xcodeproj
           else
             build_configuration = project.new(XCBuildConfiguration)
             build_configuration.name = name
+            product_type = self.product_type if respond_to?(:product_type)
             build_configuration.build_settings = ProjectHelper.common_build_settings(type, platform_name, deployment_target, product_type)
             build_configuration_list.build_configurations << build_configuration
             build_configuration
@@ -238,7 +239,7 @@ module Xcodeproj
               container_proxy.container_portal = project.root_object.uuid
             else
               subproject_reference = project.reference_for_path(target.project.path)
-              raise ArgumentError, 'add_dependency got target that belongs to a project is not this project and is not a subproject of this project' unless subproject_reference
+              raise ArgumentError, 'add_dependency received target that belongs to a project that is not this project and is not a subproject of this project' unless subproject_reference
               container_proxy.container_portal = subproject_reference.uuid
             end
             container_proxy.proxy_type = Constants::PROXY_TYPES[:native_target]
@@ -268,7 +269,7 @@ module Xcodeproj
               uuid = subproject_reference.uuid if subproject_reference
               dep.target_proxy.remote_global_id_string == target.uuid && dep.target_proxy.container_portal == uuid
             else
-              dep.target == target
+              dep.target.uuid == target.uuid
             end
           end
         end
@@ -349,55 +350,50 @@ module Xcodeproj
             unless ref = group.find_file_by_path(path)
               ref = group.new_file(path, :developer_dir)
             end
-
             frameworks_build_phase.add_file_reference(ref, true)
             ref
           end
         end
         alias_method :add_system_frameworks, :add_system_framework
 
-        # Adds a file reference for one or more system libraries to the project
+        # Adds a file reference for one or more system dylib libraries to the project
         # if needed and adds them to the Frameworks build phases.
         #
         # @param  [Array<String>, String] name
         #         The name or the list of the names of the libraries.
         #
         # @return [void]
-        # 
-        # @change by hzz on 2018/01/01
+        #
         def add_system_library(names)
-          Array(names).each do |name|
-            case platform_name
-            when :ios
-              group = project.frameworks_group['iOS'] || project.frameworks_group.new_group('iOS')
-              path_sdk_name = 'iPhoneOS'
-              path_sdk_version = sdk_version || Constants::LAST_KNOWN_IOS_SDK
-            when :osx
-              group = project.frameworks_group['OS X'] || project.frameworks_group.new_group('OS X')
-              path_sdk_name = 'MacOSX'
-              path_sdk_version = sdk_version || Constants::LAST_KNOWN_OSX_SDK
-            when :tvos
-              group = project.frameworks_group['tvOS'] || project.frameworks_group.new_group('tvOS')
-              path_sdk_name = 'AppleTVOS'
-              path_sdk_version = sdk_version || Constants::LAST_KNOWN_TVOS_SDK
-            when :watchos
-              group = project.frameworks_group['watchOS'] || project.frameworks_group.new_group('watchOS')
-              path_sdk_name = 'WatchOS'
-              path_sdk_version = sdk_version || Constants::LAST_KNOWN_WATCHOS_SDK
-            else
-              raise 'Unknown platform for target'
-            end
+          add_system_library_extension(names, 'dylib')
+        end
+        alias_method :add_system_libraries, :add_system_library
 
-            path = "usr/lib/#{name}.tbd"
+        def add_system_library_extension(names, extension)
+          Array(names).each do |name|
+            path = "usr/lib/#{name}.#{extension}"
             files = project.frameworks_group.files
-            unless reference = group.find_file_by_path(path)
-              reference = group.new_file(path, :sdk_root)
+            unless reference = files.find { |ref| ref.path == path }
+              reference = project.frameworks_group.new_file(path, :sdk_root)
             end
             frameworks_build_phase.add_file_reference(reference, true)
             reference
           end
         end
-        alias_method :add_system_libraries, :add_system_library
+        private :add_system_library_extension
+
+        # Adds a file reference for one or more system tbd libraries to the project
+        # if needed and adds them to the Frameworks build phases.
+        #
+        # @param  [Array<String>, String] name
+        #         The name or the list of the names of the libraries.
+        #
+        # @return [void]
+        #
+        def add_system_library_tbd(names)
+          add_system_library_extension(names, 'tbd')
+        end
+        alias_method :add_system_libraries_tbd, :add_system_library_tbd
 
         public
 
@@ -476,6 +472,17 @@ module Xcodeproj
         def extension_target_type?
           case symbol_type
           when :app_extension, :watch_extension, :watch2_extension, :tv_extension, :messages_extension
+            true
+          else
+            false
+          end
+        end
+
+        # @return [Boolean] Whether the target is launchable.
+        #
+        def launchable_target_type?
+          case symbol_type
+          when :application, :command_line_tool
             true
           else
             false

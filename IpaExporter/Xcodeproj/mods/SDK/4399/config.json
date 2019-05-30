@@ -1,6 +1,6 @@
 {
 	"frameworks":[
-		"StoreKit"
+		"AddressBook"
 	],
 	"Libs":[
 		"libz"

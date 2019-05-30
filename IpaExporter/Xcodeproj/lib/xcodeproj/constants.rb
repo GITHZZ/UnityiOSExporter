@@ -4,17 +4,19 @@ module Xcodeproj
   module Constants
     # @return [String] The last known iOS SDK (stable).
     #
-    LAST_KNOWN_IOS_SDK = '11.1'
+    LAST_KNOWN_IOS_SDK = '12.2'
 
     # @return [String] The last known OS X SDK (stable).
     #
-    LAST_KNOWN_OSX_SDK = '10.12'
+    LAST_KNOWN_OSX_SDK = '10.14'
 
     # @return [String] The last known tvOS SDK (stable).
-    LAST_KNOWN_TVOS_SDK = '10.2'
+    #
+    LAST_KNOWN_TVOS_SDK = '12.2'
 
     # @return [String] The last known watchOS SDK (stable).
-    LAST_KNOWN_WATCHOS_SDK = '3.2'
+    #
+    LAST_KNOWN_WATCHOS_SDK = '5.2'
 
     # @return [String] The last known archive version to Xcodeproj.
     #
@@ -22,22 +24,23 @@ module Xcodeproj
 
     # @return [String] The last known Swift version (stable).
     #
-    LAST_KNOWN_SWIFT_VERSION = '3.0'
+    LAST_KNOWN_SWIFT_VERSION = '5.0'
 
     # @return [String] The default object version for Xcodeproj.
+    #
     DEFAULT_OBJECT_VERSION = 46
 
     # @return [String] The last known object version to Xcodeproj.
     #
-    LAST_KNOWN_OBJECT_VERSION = 48
+    LAST_KNOWN_OBJECT_VERSION = 51
 
     # @return [String] The last known object version to Xcodeproj.
     #
-    LAST_UPGRADE_CHECK = '0700'
+    LAST_UPGRADE_CHECK = '1020'
 
     # @return [String] The last known object version to Xcodeproj.
     #
-    LAST_SWIFT_UPGRADE_CHECK = '0830'
+    LAST_SWIFT_UPGRADE_CHECK = '1020'
 
     # @return [String] The version of `.xcscheme` files supported by Xcodeproj
     #
@@ -99,6 +102,7 @@ module Xcodeproj
       'm'            => 'sourcecode.c.objc',
       'markdown'     => 'text',
       'mdimporter'   => 'wrapper.cfbundle',
+      'modulemap'    => 'sourcecode.module',
       'mov'          => 'video.quicktime',
       'mp3'          => 'audio.mp3',
       'octest'       => 'wrapper.cfbundle',
@@ -117,6 +121,17 @@ module Xcodeproj
       'xctest'       => 'wrapper.cfbundle',
       'xib'          => 'file.xib',
       'zip'          => 'archive.zip',
+    }.freeze
+
+    # @return [Hash] The compatibility version string for different object versions.
+    #
+    COMPATIBILITY_VERSION_BY_OBJECT_VERSION = {
+      51 => 'Xcode 10.0',
+      50 => 'Xcode 9.3',
+      48 => 'Xcode 8.0',
+      47 => 'Xcode 6.3',
+      46 => 'Xcode 3.2',
+      45 => 'Xcode 3.1',
     }.freeze
 
     # @return [Hash] The uniform type identifier of various product types.
@@ -219,14 +234,13 @@ module Xcodeproj
         # ProjectHelper#common_build_settings
       }.freeze,
       [:debug, :application, :swift] => {
-        'SWIFT_OPTIMIZATION_LEVEL'          => '-Onone',
+        # Empty?
       }.freeze,
       [:debug, :swift] => {
-        'SWIFT_OPTIMIZATION_LEVEL'            => '-Onone',
-        'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'DEBUG',
+        # Swift optimization settings are provided by the project settings
       }.freeze,
       [:release, :swift] => {
-        'SWIFT_OPTIMIZATION_LEVEL'          => '-Owholemodule',
+        # Swift optimization settings are provided by the project settings
       }.freeze,
       [:debug, :static_library, :swift] => {
       }.freeze,
@@ -266,6 +280,7 @@ module Xcodeproj
       }.freeze,
       [:osx, :static_library] => {
         'EXECUTABLE_PREFIX'                 => 'lib',
+        'SKIP_INSTALL'                      => 'YES',
       }.freeze,
       [:ios, :static_library] => {
         'OTHER_LDFLAGS'                     => '-ObjC',
@@ -286,6 +301,7 @@ module Xcodeproj
         'DYLIB_COMPATIBILITY_VERSION'       => '1',
         'DYLIB_CURRENT_VERSION'             => '1',
         'EXECUTABLE_PREFIX'                 => 'lib',
+        'SKIP_INSTALL'                      => 'YES',
       }.freeze,
       [:application] => {
         'ASSETCATALOG_COMPILER_APPICON_NAME' => 'AppIcon',
@@ -336,11 +352,13 @@ module Xcodeproj
         'CLANG_CXX_LIBRARY'                       => 'libc++',
         'CLANG_ENABLE_MODULES'                    => 'YES',
         'CLANG_ENABLE_OBJC_ARC'                   => 'YES',
+        'CLANG_ENABLE_OBJC_WEAK'                  => 'YES',
         'CLANG_WARN__DUPLICATE_METHOD_MATCH'      => 'YES',
         'CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING'  => 'YES',
         'CLANG_WARN_BOOL_CONVERSION'              => 'YES',
         'CLANG_WARN_COMMA'                        => 'YES',
         'CLANG_WARN_CONSTANT_CONVERSION'          => 'YES',
+        'CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS' => 'YES',
         'CLANG_WARN_DIRECT_OBJC_ISA_USAGE'        => 'YES_ERROR',
         'CLANG_WARN_DOCUMENTATION_COMMENTS'       => 'YES',
         'CLANG_WARN_EMPTY_BODY'                   => 'YES',
@@ -348,6 +366,7 @@ module Xcodeproj
         'CLANG_WARN_INFINITE_RECURSION'           => 'YES',
         'CLANG_WARN_INT_CONVERSION'               => 'YES',
         'CLANG_WARN_NON_LITERAL_NULL_CONVERSION'  => 'YES',
+        'CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF'    => 'YES',
         'CLANG_WARN_OBJC_LITERAL_CONVERSION'      => 'YES',
         'CLANG_WARN_OBJC_ROOT_CLASS'              => 'YES_ERROR',
         'CLANG_WARN_RANGE_LOOP_ANALYSIS'          => 'YES',
@@ -365,21 +384,27 @@ module Xcodeproj
         'GCC_WARN_UNINITIALIZED_AUTOS'            => 'YES_AGGRESSIVE',
         'GCC_WARN_UNUSED_FUNCTION'                => 'YES',
         'GCC_WARN_UNUSED_VARIABLE'                => 'YES',
+        'MTL_FAST_MATH'                           => 'YES',
         'PRODUCT_NAME'                            => '$(TARGET_NAME)',
+        'SWIFT_VERSION'                           => '5.0',
       },
       :release => {
         'DEBUG_INFORMATION_FORMAT'           => 'dwarf-with-dsym',
         'ENABLE_NS_ASSERTIONS'               => 'NO',
         'MTL_ENABLE_DEBUG_INFO'              => 'NO',
+        'SWIFT_COMPILATION_MODE'             => 'wholemodule',
+        'SWIFT_OPTIMIZATION_LEVEL'           => '-O',
       }.freeze,
       :debug => {
-        'DEBUG_INFORMATION_FORMAT'           => 'dwarf',
-        'ENABLE_TESTABILITY'                 => 'YES',
-        'GCC_DYNAMIC_NO_PIC'                 => 'NO',
-        'GCC_OPTIMIZATION_LEVEL'             => '0',
-        'GCC_PREPROCESSOR_DEFINITIONS'       => ['DEBUG=1', '$(inherited)'],
-        'MTL_ENABLE_DEBUG_INFO'              => 'YES',
-        'ONLY_ACTIVE_ARCH'                   => 'YES',
+        'DEBUG_INFORMATION_FORMAT'            => 'dwarf',
+        'ENABLE_TESTABILITY'                  => 'YES',
+        'GCC_DYNAMIC_NO_PIC'                  => 'NO',
+        'GCC_OPTIMIZATION_LEVEL'              => '0',
+        'GCC_PREPROCESSOR_DEFINITIONS'        => ['DEBUG=1', '$(inherited)'],
+        'MTL_ENABLE_DEBUG_INFO'               => 'INCLUDE_SOURCE',
+        'ONLY_ACTIVE_ARCH'                    => 'YES',
+        'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'DEBUG',
+        'SWIFT_OPTIMIZATION_LEVEL'            => '-Onone',
       }.freeze,
     }.freeze
 
@@ -408,7 +433,7 @@ module Xcodeproj
 
     # @return [Array] The extensions which are associated with header files.
     #
-    HEADER_FILES_EXTENSIONS = %w(.h .hh .hpp .ipp .tpp .hxx .def .inl).freeze
+    HEADER_FILES_EXTENSIONS = %w(.h .hh .hpp .ipp .tpp .hxx .def .inl .inc).freeze
 
     # @return [Array] The keywords Xcode use to identify a build setting can
     #                 inherit values from a previous precedence level
