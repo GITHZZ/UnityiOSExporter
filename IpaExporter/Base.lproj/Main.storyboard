@@ -641,7 +641,7 @@
                 <viewController storyboardIdentifier="detailsInfoSetting" id="D2q-A7-o8O" customClass="DetailsInfoSetting" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="dFU-ZC-bnZ">
                         <rect key="frame" x="0.0" y="0.0" width="650" height="478"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView canDrawConcurrently="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" findBarPosition="aboveHorizontalRuler" id="v2R-kU-k9H">
                                 <rect key="frame" x="15" y="46" width="610" height="419"/>
@@ -1100,7 +1100,7 @@
                     <connections>
                         <outlet property="appID" destination="T15-wh-yoI" id="25s-pr-mxU"/>
                         <outlet property="appName" destination="AoK-Rv-euA" id="TxR-WX-Qab"/>
-                        <outlet property="cDirPath" destination="d0q-LV-cgO" id="3fx-9b-826"/>
+                        <outlet property="customSDKPath" destination="d0q-LV-cgO" id="lLT-je-o5j"/>
                         <outlet property="debugDevelopTeam" destination="eyf-sO-xMD" id="O12-CF-i2c"/>
                         <outlet property="debugProfileName" destination="M0E-X9-F1f" id="tiL-xV-UEy"/>
                         <outlet property="detailView" destination="638-73-X4r" id="Ob9-G4-mCP"/>

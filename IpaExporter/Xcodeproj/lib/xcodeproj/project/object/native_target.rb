@@ -346,7 +346,8 @@ module Xcodeproj
               raise 'Unknown platform for target'
             end
 
-            path = "Platforms/#{path_sdk_name}.platform/Developer/SDKs/#{path_sdk_name}#{path_sdk_version}.sdk/System/Library/Frameworks/#{name}.framework"
+            # changebyhzz delete .framework
+            path = "Platforms/#{path_sdk_name}.platform/Developer/SDKs/#{path_sdk_name}#{path_sdk_version}.sdk/System/Library/Frameworks/#{name}" 
             unless ref = group.find_file_by_path(path)
               ref = group.new_file(path, :developer_dir)
             end
@@ -371,7 +372,8 @@ module Xcodeproj
 
         def add_system_library_extension(names, extension)
           Array(names).each do |name|
-            path = "usr/lib/#{name}.#{extension}"
+            # changebyhzz delete .#{extension}
+            path = "usr/lib/#{name}"
             files = project.frameworks_group.files
             unless reference = files.find { |ref| ref.path == path }
               reference = project.frameworks_group.new_file(path, :sdk_root)

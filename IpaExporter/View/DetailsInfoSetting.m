@@ -89,7 +89,7 @@
     _debugDevelopTeam.stringValue = [_info getValueForKey:Debug_Develop_Team];
     _releaseProfileName.stringValue = [_info getValueForKey:Release_Profile_Name];
     _releaseDevelopTeam.stringValue = [_info getValueForKey:Release_Develop_Team];
-    _cDirPath.stringValue = [_info getValueForKey:Copy_Dir_Path];
+    _customSDKPath.stringValue = [_info getValueForKey:Copy_Dir_Path];
     _frameworkNameArr = [_info getValueForKey:Framework_Names];
     _frameworkIsWeakArr = [_info getValueForKey:Framework_IsWeaks];
     _libNameArr = [_info getValueForKey:Lib_Names];
@@ -136,9 +136,9 @@
     NSString* releaseProfileName = _releaseProfileName.stringValue;
     NSString* releaseDevelopTeam = _releaseDevelopTeam.stringValue;
     NSString* platform = _platform.stringValue;
-    NSString* cDirPath = _cDirPath.stringValue;
+    NSString* customSdkPath = _customSDKPath.stringValue;
     
-    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:appName, App_Name_Key, appID, App_ID_Key, debugProfileName, Debug_Profile_Name, debugDevelopTeam, Debug_Develop_Team, releaseProfileName, Release_Profile_Name, releaseDevelopTeam, Release_Develop_Team, platform, Platform_Name, cDirPath, Copy_Dir_Path, s_false, Is_Selected ,_frameworkNameArr, Framework_Names, _frameworkIsWeakArr, Framework_IsWeaks, _libNameArr, Lib_Names, _linkerFlagArr, Linker_Flag, nil];
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:appName, App_Name_Key, appID, App_ID_Key, debugProfileName, Debug_Profile_Name, debugDevelopTeam, Debug_Develop_Team, releaseProfileName, Release_Profile_Name, releaseDevelopTeam, Release_Develop_Team, platform, Platform_Name, customSdkPath, Copy_Dir_Path, s_false, Is_Selected ,_frameworkNameArr, Framework_Names, _frameworkIsWeakArr, Framework_IsWeaks, _libNameArr, Lib_Names, _linkerFlagArr, Linker_Flag, nil];
 
     DetailsInfoData* info = [[DetailsInfoData alloc] initWithInfoDict:dict];
     if(_isSetDataOnShow)
@@ -185,7 +185,7 @@
             switch (et)
             {
                 case EventSelectCopyDirPath:
-                    _cDirPath.stringValue = selectPath;
+                    _customSDKPath.stringValue = selectPath;
                     break;
                 default:
                     break;
@@ -286,11 +286,17 @@
     if([columnIdentifier isEqualToString:Framework_Names]){
         if([[newValue pathExtension] isEqualToString:@"framework"]){
             [_frameworkNameArr replaceObjectAtIndex:row withObject:newValue];
+        }else{
+            newValue = [newValue stringByAppendingString:@".framework"];
+            [_frameworkNameArr replaceObjectAtIndex:row withObject:newValue];
         }
     }else if([columnIdentifier isEqualToString:Framework_IsWeaks]){
         [_frameworkIsWeakArr replaceObjectAtIndex:row withObject:newValue];
     }else if([columnIdentifier isEqualToString:Lib_Names]){
         if([[newValue pathExtension] isEqualToString:@"tbd"]){
+            [_libNameArr replaceObjectAtIndex:row withObject:newValue];
+        }else{
+            newValue = [newValue stringByAppendingString:@".tbd"];
             [_libNameArr replaceObjectAtIndex:row withObject:newValue];
         }
     }else if([columnIdentifier isEqualToString:Linker_Flag]){

@@ -6,10 +6,10 @@
          contextName = "__30-[RubyCammond sureBtnClicked:]_block_invoke_2:RubyCammond.m">
          <PersistentStrings>
             <PersistentString
-               value = "data.cDirectoryPath">
+               value = "detailArray">
             </PersistentString>
             <PersistentString
-               value = "detailArray">
+               value = "data.customSDKPath">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

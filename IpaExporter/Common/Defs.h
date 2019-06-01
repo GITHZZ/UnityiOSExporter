@@ -27,7 +27,7 @@
 #define Code_Sign_Identity_Key   @"codeSignIdentity"
 #define Provisioning_Profile_key @"provisioningProfile"
 #define Linker_Flag              @"linkerFlag"
-#define Copy_Dir_Path            @"cDirectoryPath"
+#define Copy_Dir_Path            @"customSDKPath"
 #define Is_Selected              @"isSelected"
 #define Debug_Profile_Name       @"debugProfileName"
 #define Debug_Develop_Team       @"debugDevelopTeam"

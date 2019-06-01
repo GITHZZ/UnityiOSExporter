@@ -61,12 +61,22 @@
                 ExportInfoManager* view = [ExportInfoManager instance];
                 DetailsInfoData *data = [detailArray objectAtIndex:i];
                 
+                //配置json文件
+                NSMutableDictionary *jsonData = [NSMutableDictionary dictionary];
+                jsonData[@"frameworks"] = data.frameworkNames;
+                jsonData[@"Libs"] = data.libNames;
+                jsonData[@"linker_flags"] = data.linkerFlag;
+                jsonData[@"enable_bit_code"] = @"NO";
+                jsonData[@"develop_signing_identity"] = [NSMutableArray array];
+                jsonData[@"release_signing_identity"] = [NSMutableArray array];
+                [self writeConfigToJsonFile:data.customSDKPath withData:jsonData];
+                
                 //ruby入口文件路径
                 //sdk资源文件路径
                 //导出ipa和xcode工程路径
                 //平台名称
                 NSArray *args = [NSArray arrayWithObjects:rubyMainPath,
-                                 data.cDirectoryPath,
+                                 data.customSDKPath,
                                  [NSString stringWithUTF8String:view.info->exportFolderParh],
                                  data.platform,
                                  nil];
@@ -90,12 +100,43 @@
     });
 }
 
+- (BOOL)writeConfigToJsonFile:(NSString*)customSDKPath withData:(NSMutableDictionary*)jsonData
+{
+    BOOL isVaild = [NSJSONSerialization isValidJSONObject:jsonData];
+    if(!isVaild){
+        //showError("json格式有错，请检查");
+        //return error code
+        return NO;
+    }
+    
+    NSString *configPath = [customSDKPath stringByAppendingString:@"/config.json"];
+    if(![[NSFileManager defaultManager] fileExistsAtPath:configPath]){
+        [[NSFileManager defaultManager] createFileAtPath:configPath contents:nil attributes:nil];
+    }
+    
+    NSOutputStream *outStream = [[NSOutputStream alloc] initToFileAtPath:configPath append:NO];
+    [outStream open];
+    
+    NSError *error;
+    NSInteger length = [NSJSONSerialization writeJSONObject:jsonData toStream:outStream options:NSJSONWritingPrettyPrinted error:&error];
+    
+    if(error != nil){
+        [outStream close];
+        //return error code
+        return NO;
+    }
+    
+    [outStream close];
+    
+    return YES;
+}
+
 - (id)invokingShellScriptAtPath:(NSString*)shellScriptPath withArgs:(NSArray*)args
 {
     //设置参数
     NSString *shellArgsStr = [[NSString alloc] init];
     for(int i = 0; i < [args count]; i++)
-        shellArgsStr = [shellArgsStr stringByAppendingFormat:@"%@\t", args[i]];
+    shellArgsStr = [shellArgsStr stringByAppendingFormat:@"%@\t", args[i]];
     
     NSTask *shellTask = [[NSTask alloc] init];
     [shellTask setLaunchPath:@"/bin/sh"];
@@ -117,3 +158,4 @@
 }
 
 @end
+
