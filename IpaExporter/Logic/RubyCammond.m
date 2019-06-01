@@ -118,7 +118,10 @@
     [outStream open];
     
     NSError *error;
-    NSInteger length = [NSJSONSerialization writeJSONObject:jsonData toStream:outStream options:NSJSONWritingPrettyPrinted error:&error];
+    [NSJSONSerialization writeJSONObject:jsonData
+                                toStream:outStream
+                                 options:NSJSONWritingPrettyPrinted
+                                   error:&error];
     
     if(error != nil){
         [outStream close];
