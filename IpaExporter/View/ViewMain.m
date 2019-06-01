@@ -8,7 +8,6 @@
 
 #import "ViewMain.h"
 #import "EventManager.h"
-#import "LuaCammond.h"
 #import "DetailsInfoView.h"
 #import "DetailsInfoData.h"
 #import "ExportInfoManager.h"
