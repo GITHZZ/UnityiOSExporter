@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readonly) NSString* rootPath;
 @property (nonatomic, readonly) NSString* fileName;
+@property (nonatomic, readonly) NSString* bundleIdentifier;
 @property (nonatomic, readonly) NSString* appIDName;
 @property (nonatomic, readonly) NSString* teamID;
 @property (nonatomic, readonly) NSString* creationDate;

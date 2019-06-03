@@ -53,6 +53,12 @@
     _appIDName = plist[@"AppIDName"];
     _teamID = plist[@"ApplicationIdentifierPrefix"][0];
     _creationDate = plist[@"CreationDate"];
+    
+    NSString *applicationIdentifier = plist[@"Entitlements"][@"application-identifier"];
+    NSRange range = [applicationIdentifier rangeOfString:_teamID];
+    _bundleIdentifier = [applicationIdentifier substringFromIndex:range.location + range.length + 1];
+    
+    NSLog(@"%@", _bundleIdentifier);
 }
 
 @end

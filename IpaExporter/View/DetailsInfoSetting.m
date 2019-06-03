@@ -96,6 +96,7 @@
     _libNameArr = [_info getValueForKey:Lib_Names];
     _linkerFlagArr = [_info getValueForKey:Linker_Flag];
     
+    _appID.enabled = NO;
     _debugProfileName.enabled = NO;
     _debugDevelopTeam.enabled = NO;
     _releaseProfileName.enabled = NO;
