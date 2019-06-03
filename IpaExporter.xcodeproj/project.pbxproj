@@ -29,6 +29,7 @@
 		18F1027B1DCC2AEB008312E5 /* EventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F1027A1DCC2AEB008312E5 /* EventManager.m */; };
 		5964C63F229CE169004BDD23 /* Xcodeproj in Resources */ = {isa = PBXBuildFile; fileRef = 5964C63E229CE169004BDD23 /* Xcodeproj */; };
 		5964C642229CE262004BDD23 /* RubyCammond.m in Sources */ = {isa = PBXBuildFile; fileRef = 5964C641229CE262004BDD23 /* RubyCammond.m */; };
+		5979D9DC22A54C3700C040D2 /* MobileprovisionParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5979D9DB22A54C3700C040D2 /* MobileprovisionParser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +97,8 @@
 		5964C63E229CE169004BDD23 /* Xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Xcodeproj; path = IpaExporter/Xcodeproj; sourceTree = "<group>"; };
 		5964C640229CE262004BDD23 /* RubyCammond.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RubyCammond.h; sourceTree = "<group>"; };
 		5964C641229CE262004BDD23 /* RubyCammond.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RubyCammond.m; sourceTree = "<group>"; };
+		5979D9DA22A54C3700C040D2 /* MobileprovisionParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MobileprovisionParser.h; sourceTree = "<group>"; };
+		5979D9DB22A54C3700C040D2 /* MobileprovisionParser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MobileprovisionParser.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +195,8 @@
 			children = (
 				5964C640229CE262004BDD23 /* RubyCammond.h */,
 				5964C641229CE262004BDD23 /* RubyCammond.m */,
+				5979D9DA22A54C3700C040D2 /* MobileprovisionParser.h */,
+				5979D9DB22A54C3700C040D2 /* MobileprovisionParser.m */,
 				18322A8C1DAE193B0049660B /* BuilderCSFileEdit.h */,
 				18322A8D1DAE193B0049660B /* BuilderCSFileEdit.m */,
 				18769D911DAE34050023E255 /* XcodeProjModCSFileEdit.h */,
@@ -374,6 +379,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5979D9DC22A54C3700C040D2 /* MobileprovisionParser.m in Sources */,
 				1841FA771DACC7C10050FE12 /* BaseDataCSCodeEdit.m in Sources */,
 				18F1027B1DCC2AEB008312E5 /* EventManager.m in Sources */,
 				182DC37D1E8A5AE400912D20 /* Alert.m in Sources */,

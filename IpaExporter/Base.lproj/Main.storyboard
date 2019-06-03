@@ -537,6 +537,7 @@
                                 </view>
                                 <color key="borderColor" white="0.5" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                 <color key="fillColor" white="0.82508370535714282" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="titleFont" metaFont="smallSystem"/>
                             </box>
                             <scrollView wantsLayer="YES" canDrawConcurrently="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="sHF-OX-1zI">
                                 <rect key="frame" x="12" y="43" width="660" height="423"/>
@@ -729,7 +730,7 @@
                                                 <textField verticalHuggingPriority="750" id="M0E-X9-F1f">
                                                     <rect key="frame" x="257" y="579" width="272" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="配置文件名字，可以从xcode中查看(必填)" drawsBackground="YES" id="wW8-S9-ymx">
+                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" placeholderString="右侧选择文件" drawsBackground="YES" id="wW8-S9-ymx">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -745,9 +746,9 @@
                                                     </textFieldCell>
                                                 </textField>
                                                 <textField verticalHuggingPriority="750" id="eyf-sO-xMD">
-                                                    <rect key="frame" x="257" y="549" width="294" height="22"/>
+                                                    <rect key="frame" x="257" y="549" width="272" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="可以从Xcode中查看(格式:UW4TD8842L)(必填)" drawsBackground="YES" id="Eub-rE-9OY">
+                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="Eub-rE-9OY">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -765,7 +766,7 @@
                                                 <textField verticalHuggingPriority="750" id="9xh-OZ-hz8">
                                                     <rect key="frame" x="257" y="519" width="272" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="配置文件名字，可以从xcode中查看(必填)" drawsBackground="YES" id="Bmg-V7-kll">
+                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="右侧选择文件" drawsBackground="YES" id="Bmg-V7-kll">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -781,9 +782,9 @@
                                                     </textFieldCell>
                                                 </textField>
                                                 <textField verticalHuggingPriority="750" id="uYV-sL-zjz">
-                                                    <rect key="frame" x="257" y="489" width="294" height="22"/>
+                                                    <rect key="frame" x="257" y="489" width="272" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="可以从Xcode中查看(格式:UW4TD8842L)(必填)" drawsBackground="YES" id="bDL-Wa-UED">
+                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="bDL-Wa-UED">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -819,6 +820,20 @@
                                                     </buttonCell>
                                                     <connections>
                                                         <action selector="cDirectorySelected:" target="D2q-A7-o8O" id="LuQ-om-FDN"/>
+                                                    </connections>
+                                                </button>
+                                                <button identifier="debug" id="7zC-XN-Ajd">
+                                                    <rect key="frame" x="537" y="579" width="46" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <shadow key="shadow">
+                                                        <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </shadow>
+                                                    <buttonCell key="cell" type="square" title="浏览" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" userInterfaceLayoutDirection="rightToLeft" inset="2" id="r9q-pp-TUa">
+                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" size="15" name="HanziPenSC-W5"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="mobileprovisionSelect:" target="D2q-A7-o8O" id="Gex-nK-pDt"/>
                                                     </connections>
                                                 </button>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Ax5-V7-iSY">
@@ -1059,6 +1074,20 @@
                                                         <action selector="tblItemRemove:" target="D2q-A7-o8O" id="MP4-3v-WWu"/>
                                                     </connections>
                                                 </button>
+                                                <button identifier="release" id="tMX-wB-fmK">
+                                                    <rect key="frame" x="537" y="489" width="46" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <shadow key="shadow">
+                                                        <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </shadow>
+                                                    <buttonCell key="cell" type="square" title="浏览" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" userInterfaceLayoutDirection="rightToLeft" inset="2" id="fnQ-Ot-PGo">
+                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" size="15" name="HanziPenSC-W5"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="mobileprovisionSelect:" target="D2q-A7-o8O" id="eLW-wI-UuG"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </view>
                                     </subviews>
@@ -1068,7 +1097,7 @@
                                     <rect key="frame" x="1" y="403" width="593" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="9YB-yJ-KwW">
+                                <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="9YB-yJ-KwW">
                                     <rect key="frame" x="594" y="1" width="15" height="402"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>

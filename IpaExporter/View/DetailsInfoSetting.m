@@ -9,6 +9,7 @@
 #import "DetailsInfoSetting.h"
 #import "Defs.h"
 #import "Alert.h"
+#import "MobileprovisionParser.h"
 
 #define FrameworkKey  @"frameworkTbl"
 #define LibKey        @"libsTbl"
@@ -94,6 +95,13 @@
     _frameworkIsWeakArr = [_info getValueForKey:Framework_IsWeaks];
     _libNameArr = [_info getValueForKey:Lib_Names];
     _linkerFlagArr = [_info getValueForKey:Linker_Flag];
+    
+    _debugProfileName.enabled = NO;
+    _debugDevelopTeam.enabled = NO;
+    _releaseProfileName.enabled = NO;
+    _releaseDevelopTeam.enabled = NO;
+    
+    
 }
 
 
@@ -189,6 +197,34 @@
                     break;
                 default:
                     break;
+            }
+        }
+    }
+}
+
+- (IBAction)mobileprovisionSelect:(id)sender
+{
+    NSButton* button = (NSButton*)sender;
+    NSOpenPanel* openDlg = [NSOpenPanel openPanel];
+    [openDlg setCanChooseFiles:YES];
+    [openDlg setCanChooseDirectories:NO];
+    [openDlg setAllowedFileTypes:[NSArray arrayWithObjects:@"mobileprovision", nil]];
+    
+    if ([openDlg runModal] == NSModalResponseOK)
+    {
+        for(NSURL* url in [openDlg URLs])
+        {
+            NSString* selectPath = [url path];
+            MobileprovisionParser* parser = [[MobileprovisionParser alloc] initWithProfilePath:selectPath];
+            [parser createPlistFile];
+            [parser parsePlistFile];
+            
+            if([button.identifier isEqualToString:@"debug"]){
+                _debugProfileName.stringValue = parser.fileName;
+                _debugDevelopTeam.stringValue = parser.teamID;
+            }else if([button.identifier isEqualToString:@"release"]){
+                _releaseProfileName.stringValue = parser.fileName;
+                _releaseDevelopTeam.stringValue = parser.teamID;
             }
         }
     }

@@ -21,5 +21,13 @@
             </PersistentString>
          </PersistentStrings>
       </ContextState>
+      <ContextState
+         contextName = "-[DetailsInfoSetting mobileprovisionSelect:]:DetailsInfoSetting.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "button.identifier">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
    </ContextStates>
 </VariablesViewState>
