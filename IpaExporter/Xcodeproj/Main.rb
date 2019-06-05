@@ -13,6 +13,10 @@ require_relative "XcodeProjectUpdater"
 
 $xcode_proj_root_path = ARGV.at(1)
 $platform_name = ARGV.at(2)
+$config_path = ARGV.at(3)
+
+puts "--------------------------"
+puts $config_path
 
 $project_folder_path = "#{$xcode_proj_root_path}/XGPushTest"
 $templete_project_path = "#{$project_folder_path}/Unity-iPhone.xcodeproj"

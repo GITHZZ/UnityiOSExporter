@@ -70,12 +70,12 @@
     
     NSLog(@"不存在Key:%@的属性变量", key);
     free(ivars);
-    return @"";
+    return nil;
 }
 
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key
 {
-    NSLog(@"%@没有定义@property", key);
+    NSLog(@"%@没有定义@property, 请在.h文件查看是否有定义到该变量", key);
 }
 
 - (void)encodeWithCoder:(NSCoder *)encoder

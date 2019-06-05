@@ -3,13 +3,18 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "__30-[RubyCammond sureBtnClicked:]_block_invoke_2:RubyCammond.m">
+         contextName = "-[DetailsInfoSetting mobileprovisionSelect:]:DetailsInfoSetting.m">
          <PersistentStrings>
             <PersistentString
-               value = "detailArray">
+               value = "button.identifier">
             </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[RubyCammond writeConfigToJsonFile:withData:]:RubyCammond.m">
+         <PersistentStrings>
             <PersistentString
-               value = "data.customSDKPath">
+               value = "resourcePath">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -22,10 +27,27 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[DetailsInfoSetting mobileprovisionSelect:]:DetailsInfoSetting.m">
+         contextName = "-[DetailsInfoSetting viewDidLoad]:DetailsInfoSetting.m">
          <PersistentStrings>
             <PersistentString
-               value = "button.identifier">
+               value = "_frameworkNameArr">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[DetailsInfoSetting setUpInfo]:DetailsInfoSetting.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[MobileprovisionParser createPlistFile]:MobileprovisionParser.m">
+      </ContextState>
+      <ContextState
+         contextName = "__30-[RubyCammond sureBtnClicked:]_block_invoke_2:RubyCammond.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "detailArray">
+            </PersistentString>
+            <PersistentString
+               value = "data.customSDKPath">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

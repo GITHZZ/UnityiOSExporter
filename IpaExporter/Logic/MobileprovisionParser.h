@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) NSString* appIDName;
 @property (nonatomic, readonly) NSString* teamID;
 @property (nonatomic, readonly) NSString* creationDate;
+
 @end
 
 NS_ASSUME_NONNULL_END

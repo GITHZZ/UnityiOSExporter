@@ -64,21 +64,24 @@
                 //配置json文件
                 NSMutableDictionary *jsonData = [NSMutableDictionary dictionary];
                 jsonData[@"frameworks"] = data.frameworkNames;
+                jsonData[@"embedFrameworks"] = data.embedFramework;
                 jsonData[@"Libs"] = data.libNames;
                 jsonData[@"linker_flags"] = data.linkerFlag;
                 jsonData[@"enable_bit_code"] = @"NO";
                 jsonData[@"develop_signing_identity"] = [NSMutableArray array];
                 jsonData[@"release_signing_identity"] = [NSMutableArray array];
-                [self writeConfigToJsonFile:data.customSDKPath withData:jsonData];
+                NSString *configPath = [self writeConfigToJsonFile:data.platform withData:jsonData];
                 
                 //ruby入口文件路径
                 //sdk资源文件路径
                 //导出ipa和xcode工程路径
                 //平台名称
+                //configPath 配置路径
                 NSArray *args = [NSArray arrayWithObjects:rubyMainPath,
                                  data.customSDKPath,
                                  [NSString stringWithUTF8String:view.info->exportFolderParh],
                                  data.platform,
+                                 configPath,
                                  nil];
                 
                 NSString *shellLog = [self invokingShellScriptAtPath:shellPath withArgs:args];
@@ -100,16 +103,20 @@
     });
 }
 
-- (BOOL)writeConfigToJsonFile:(NSString*)customSDKPath withData:(NSMutableDictionary*)jsonData
+- (NSString*)writeConfigToJsonFile:(NSString*)platformName withData:(NSMutableDictionary*)jsonData
 {
     BOOL isVaild = [NSJSONSerialization isValidJSONObject:jsonData];
     if(!isVaild){
         //showError("json格式有错，请检查");
         //return error code
-        return NO;
+        return @"";
     }
     
-    NSString *configPath = [customSDKPath stringByAppendingString:@"/config.json"];
+    
+    NSString *resourcePath = [[[NSBundle mainBundle]resourcePath]stringByAppendingFormat:@"/%@/", platformName];
+    [[NSFileManager defaultManager]createDirectoryAtPath:resourcePath withIntermediateDirectories:YES         attributes:nil error:nil];
+
+    NSString *configPath = [resourcePath stringByAppendingString:@"config.json"];
     if(![[NSFileManager defaultManager] fileExistsAtPath:configPath]){
         [[NSFileManager defaultManager] createFileAtPath:configPath contents:nil attributes:nil];
     }
@@ -126,12 +133,12 @@
     if(error != nil){
         [outStream close];
         //return error code
-        return NO;
+        return @"";
     }
     
     [outStream close];
     
-    return YES;
+    return configPath;
 }
 
 - (id)invokingShellScriptAtPath:(NSString*)shellScriptPath withArgs:(NSArray*)args

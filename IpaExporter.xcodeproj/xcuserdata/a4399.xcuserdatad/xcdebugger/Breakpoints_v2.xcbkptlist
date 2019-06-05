@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "IpaExporter/Logic/DetailsInfoData.m"
-            timestampString = "581054388.04302"
+            filePath = "IpaExporter/View/DetailsInfoSetting.m"
+            timestampString = "581409822.306215"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
-            landmarkName = "-setValue:forUndefinedKey:"
+            startingLineNumber = "236"
+            endingLineNumber = "236"
+            landmarkName = "-tblItemAdd:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

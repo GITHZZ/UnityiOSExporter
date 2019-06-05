@@ -36,7 +36,7 @@
 {
     NSTask *shellTask = [[NSTask alloc] init];
     [shellTask setLaunchPath:@"/bin/sh"];
-    NSString *shellStr = [NSString stringWithFormat:@"security cms -D -i %@%@.mobileprovision > %@/%@.plist", _rootPath, _fileName,     [[NSBundle mainBundle] resourcePath], _fileName];
+    NSString *shellStr = [NSString stringWithFormat:@"security cms -D -i %@%@.mobileprovision > %@/%@.plist", _rootPath, _fileName, [[NSBundle mainBundle] resourcePath], _fileName];
     
     [shellTask setArguments:[NSArray arrayWithObjects:@"-c", shellStr, nil]];
     NSPipe *pipe = [[NSPipe alloc] init];
@@ -57,8 +57,6 @@
     NSString *applicationIdentifier = plist[@"Entitlements"][@"application-identifier"];
     NSRange range = [applicationIdentifier rangeOfString:_teamID];
     _bundleIdentifier = [applicationIdentifier substringFromIndex:range.location + range.length + 1];
-    
-    NSLog(@"%@", _bundleIdentifier);
 }
 
 @end

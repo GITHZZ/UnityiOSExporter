@@ -30,6 +30,7 @@
 @property(nonatomic, readonly) NSMutableArray<NSString*> *frameworkIsWeaks;
 @property(nonatomic, readonly) NSMutableArray<NSString*> *libNames;
 @property(nonatomic, readonly) NSMutableArray<NSString*> *linkerFlag;
+@property(nonatomic, readonly) NSMutableArray<NSString*> *embedFramework;
 
 - (id)initWithInfoDict:(NSDictionary*) dic;
 - (void)setValueForKey:(NSString*)key withObj:(id)obj;

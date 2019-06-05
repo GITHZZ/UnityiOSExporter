@@ -6,8 +6,7 @@
     "$(OTHER_LDFLAGS)",
     "-weak_framework",
     "CoreMotion",
-    "-weak-lSystem",
-    "-ObjC"
+    "-weak-lSystem"
   ],
   "Libs" : [
     "libz.tbd"

@@ -26,6 +26,7 @@
 @property (weak) IBOutlet NSTableView *frameworkTbl;
 @property (weak) IBOutlet NSTableView *libsTbl;
 @property (weak) IBOutlet NSTableView *linkerFlagTbl;
+@property (weak) IBOutlet NSTableView *embedTbl;
 
 - (void)setUpDataInfoOnShow:(DetailsInfoData*)info isEditMode:(BOOL)isEdit;
 

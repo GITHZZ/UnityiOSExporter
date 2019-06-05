@@ -29,6 +29,9 @@ class XcodeProjectUpdater
 			"\"$(SRCROOT)/Libraries\"",
 		]
 		@library_search_paths_array.insert(@library_search_paths_array.size - 1, PROJECT_RESOURCE_PATH)
+
+		config = File.read($config_path)
+		@setting_hash = JSON.parse(config)
 	end
 
 	def start()
@@ -44,10 +47,13 @@ class XcodeProjectUpdater
 		end 
 
 		#新增引用
-		add_build_phase_files(@target, @unity_class_group, PROJECT_RESOURCE_PATH)
+		add_build_phase_files(@target, @unity_class_group, PROJECT_RESOURCE_PATH, @target.new_copy_files_build_phase("Embed Frameworks"))
 	
 		#新增相关查找路径
 		set_search_path()
+
+		#配置json文件
+		set_build_settings_form_config()
 	end 
 
 	def remove_build_phase_files_recursively(target, group)
@@ -66,7 +72,7 @@ class XcodeProjectUpdater
 		end 
 	end 
 
-	def add_build_phase_files(target, group, path)
+	def add_build_phase_files(target, group, path, embedFrameworks)
 		Dir.foreach(path) do |dir|
 			newPath = "#{path}/#{dir}"
 
@@ -87,17 +93,20 @@ class XcodeProjectUpdater
 					@group_sub_path = "#{@group_sub_path}/#{dir}"
 					new_group = new_group(File.join(@group_sub_path), newPath)
 					
-					add_build_phase_files(target, new_group, newPath)
+					add_build_phase_files(target, new_group, newPath, embedFrameworks)
 
 					@group_sub_path = parent_path				
-				elsif newPath.to_s.end_with?(".json")
-					set_build_settings_form_config(newPath)
 				else
 					file_ref = group.new_reference(newPath)
 					if newPath.to_s.end_with?(".m", ".mm", ".cpp") 
 						target.source_build_phase.add_file_reference(file_ref)
 					elsif newPath.to_s.end_with?(".framework", ".a") 
 						target.frameworks_build_phases.add_file_reference(file_ref)
+						
+						if is_embedFrameworks(newPath)
+							embedFrameworks.add_file_reference(file_ref)
+						end
+
 					elsif newPath.to_s.end_with?(".bundle", ".jpg", ".png") 
 						target.resources_build_phase.add_file_reference(file_ref)
 					end
@@ -133,13 +142,11 @@ class XcodeProjectUpdater
 	end
 
 	#解析配置文件(新增系统相关库)
-	def set_build_settings_form_config(config_path)
-		config = File.read(config_path)
-		setting_hash = JSON.parse(config)
+	def set_build_settings_form_config()
 
-		frameworks = setting_hash["frameworks"]
-		libs = setting_hash["Libs"]
-		linker_flags = setting_hash["linker_flags"]
+		frameworks = @setting_hash["frameworks"]
+		libs = @setting_hash["Libs"]
+		linker_flags = @setting_hash["linker_flags"]
 
 		#新增系统framework
 		@target.add_system_frameworks(frameworks)
@@ -151,17 +158,17 @@ class XcodeProjectUpdater
 		set_build_setting(@target, "OTHER_LDFLAGS", linker_flags)
 
 		#设置证书信息
-		develop_signing_identity = setting_hash["develop_signing_identity"]
+		develop_signing_identity = @setting_hash["develop_signing_identity"]
 		set_build_setting(@target, "PROVISIONING_PROFILE_SPECIFIER", develop_signing_identity[0], "Debug")
 		set_build_setting(@target, "DEVELOPMENT_TEAM", develop_signing_identity[1], "Debug")
 		set_build_setting(@target, "CODE_SIGN_IDENTITY[sdk=iphoneos*]", "iPhone Developer", "Debug")
 
-		release_signing_identity = setting_hash["release_signing_identity"]
+		release_signing_identity = @setting_hash["release_signing_identity"]
 		set_build_setting(@target, "PROVISIONING_PROFILE_SPECIFIER", release_signing_identity[0], "Release")
 		set_build_setting(@target, "DEVELOPMENT_TEAM", release_signing_identity[1], "Release")
 		set_build_setting(@target, "CODE_SIGN_IDENTITY[sdk=iphoneos*]", "iPhone Distribution", "Release")
 
-		enable_bitCode = setting_hash["enable_bit_code"]
+		enable_bitCode = @setting_hash["enable_bit_code"]
 		set_build_setting(@target, "ENABLE_BITCODE", enable_bitCode)
 	end
 
@@ -190,4 +197,14 @@ class XcodeProjectUpdater
 			end
 		end 
 	end 
+
+	def is_embedFrameworks(newPath)
+		embedArray = @setting_hash["embedFrameworks"]
+		for item in embedArray
+			if newPath.include?item
+				return true
+			end
+		end
+		return false
+	end
 end

@@ -12,6 +12,7 @@
 #import "MobileprovisionParser.h"
 
 #define FrameworkKey  @"frameworkTbl"
+#define EmbedFrameworksKey @"embedTbl"
 #define LibKey        @"libsTbl"
 #define LinkerFlagKey @"linkerFlagTbl"
 
@@ -23,6 +24,7 @@
     
     NSMutableArray<NSString*> *_frameworkNameArr;
     NSMutableArray<NSString*> *_frameworkIsWeakArr;
+    NSMutableArray<NSString*> *_embedFrameworksArr;
     NSMutableArray<NSString*> *_libNameArr;
     NSMutableArray<NSString*> *_linkerFlagArr;
 }
@@ -43,20 +45,13 @@
     }
     else
     {
-        _sureBtn.title = @"添加";
-    }
-    
-    if(_frameworkNameArr == nil){
         _frameworkNameArr = [NSMutableArray arrayWithCapacity:10];
-    }
-    if(_frameworkIsWeakArr == nil){
         _frameworkIsWeakArr = [NSMutableArray arrayWithCapacity:10];
-    }
-    if(_libNameArr == nil){
+        _embedFrameworksArr = [NSMutableArray arrayWithCapacity:10];
         _libNameArr = [NSMutableArray arrayWithCapacity:10];
-    }
-    if(_linkerFlagArr == nil){
         _linkerFlagArr = [NSMutableArray arrayWithCapacity:10];
+        
+        _sureBtn.title = @"添加";
     }
     
     _frameworkTbl.delegate = self;
@@ -65,6 +60,8 @@
     _libsTbl.dataSource = self;
     _linkerFlagTbl.delegate = self;
     _linkerFlagTbl.dataSource = self;
+    _embedTbl.delegate = self;
+    _embedTbl.dataSource = self;
     
 }
 
@@ -95,14 +92,13 @@
     _frameworkIsWeakArr = [_info getValueForKey:Framework_IsWeaks];
     _libNameArr = [_info getValueForKey:Lib_Names];
     _linkerFlagArr = [_info getValueForKey:Linker_Flag];
+    _embedFrameworksArr = [_info getValueForKey:Embed_Framework];
     
     _appID.enabled = NO;
     _debugProfileName.enabled = NO;
     _debugDevelopTeam.enabled = NO;
     _releaseProfileName.enabled = NO;
     _releaseDevelopTeam.enabled = NO;
-    
-    
 }
 
 
@@ -147,7 +143,7 @@
     NSString* platform = _platform.stringValue;
     NSString* customSdkPath = _customSDKPath.stringValue;
     
-    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:appName, App_Name_Key, appID, App_ID_Key, debugProfileName, Debug_Profile_Name, debugDevelopTeam, Debug_Develop_Team, releaseProfileName, Release_Profile_Name, releaseDevelopTeam, Release_Develop_Team, platform, Platform_Name, customSdkPath, Copy_Dir_Path, s_false, Is_Selected ,_frameworkNameArr, Framework_Names, _frameworkIsWeakArr, Framework_IsWeaks, _libNameArr, Lib_Names, _linkerFlagArr, Linker_Flag, nil];
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:appName, App_Name_Key, appID, App_ID_Key, debugProfileName, Debug_Profile_Name, debugDevelopTeam, Debug_Develop_Team, releaseProfileName, Release_Profile_Name, releaseDevelopTeam, Release_Develop_Team, platform, Platform_Name, customSdkPath, Copy_Dir_Path, s_false, Is_Selected ,_frameworkNameArr, Framework_Names, _frameworkIsWeakArr, Framework_IsWeaks, _libNameArr, Lib_Names, _linkerFlagArr, Linker_Flag, _embedFrameworksArr, Embed_Framework, nil];
 
     DetailsInfoData* info = [[DetailsInfoData alloc] initWithInfoDict:dict];
     if(_isSetDataOnShow)
@@ -244,6 +240,9 @@
     }else if([btn.identifier isEqualToString:LinkerFlagKey]){
         [_linkerFlagArr addObject:@"-ObjC"];
         [_linkerFlagTbl reloadData];
+    }else if([btn.identifier isEqualToString:EmbedFrameworksKey]){
+        [_embedFrameworksArr addObject:@""];
+        [_embedTbl reloadData];
     }
 }
 
@@ -276,6 +275,14 @@
         
         [_linkerFlagArr removeObjectAtIndex:row];
         [_linkerFlagTbl reloadData];
+    }else if([btn.identifier isEqualToString:EmbedFrameworksKey]){
+        NSInteger row = [_embedTbl selectedRow];
+        if(row <= -1){
+            return;
+        }
+        
+        [_embedFrameworksArr removeObjectAtIndex:row];
+        [_embedTbl reloadData];
     }
 }
 
@@ -288,6 +295,8 @@
         return [_libNameArr count];
     }else if([tableView.identifier isEqualToString:LinkerFlagKey]){
         return [_linkerFlagArr count];
+    }else if([tableView.identifier isEqualToString:EmbedFrameworksKey]){
+        return [_embedFrameworksArr count];
     }else{
         return 0;
     }
@@ -310,6 +319,8 @@
         return [_libNameArr objectAtIndex:row];
     }else if([columnIdentifier isEqualToString:Linker_Flag]){
         return [_linkerFlagArr objectAtIndex:row];
+    }else if([columnIdentifier isEqualToString:Embed_Framework]){
+        return [_embedFrameworksArr objectAtIndex:row];
     }
     return nil;
 }
@@ -338,6 +349,13 @@
         }
     }else if([columnIdentifier isEqualToString:Linker_Flag]){
         [_linkerFlagArr replaceObjectAtIndex:row withObject:newValue];
+    }else if([columnIdentifier isEqualToString:Embed_Framework]){
+        if([[newValue pathExtension] isEqualToString:@"framework"]){
+            [_embedFrameworksArr replaceObjectAtIndex:row withObject:newValue];
+        }else{
+            newValue = [newValue stringByAppendingString:@".framework"];
+            [_embedFrameworksArr replaceObjectAtIndex:row withObject:newValue];
+        }
     }
 }
 
