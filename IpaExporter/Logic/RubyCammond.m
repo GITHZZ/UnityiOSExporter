@@ -9,6 +9,8 @@
 #import "RubyCammond.h"
 #import "Common.h"
 #import "ExportInfoManager.h"
+#import "DataResManager.h"
+#import "BuilderCSFileEdit.h"
 
 @interface RubyCammond()
 {
@@ -46,7 +48,11 @@
     NSString *rubyMainPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/Xcodeproj/Main.rb"];
     
     showLog("*开始执行打包脚本\n");
-    //showLog("*打包具体信息可在%s路径中查看", view.info->exportFolderParh);
+    ExportInfoManager* view = [ExportInfoManager instance];
+    [[DataResManager instance] start:view.info];
+  
+    BuilderCSFileEdit* builderEdit = [[BuilderCSFileEdit alloc] init];
+    [builderEdit startWithDstPath:[NSString stringWithUTF8String:view.info->unityProjPath]];
     
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_group_t group = dispatch_group_create();
@@ -98,6 +104,8 @@
         _isExporting = false;
         [[EventManager instance] send:EventSetExportButtonState withData:s_true];
         [[EventManager instance] send:EventStopRecordTime withData:nil];
+        //[[DataResManager instance] end];
+        
         showLog("*打包结束");
         showLog("--------------------------------");
     });

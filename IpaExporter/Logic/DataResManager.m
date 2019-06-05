@@ -7,7 +7,6 @@
 //
 
 #import "DataResManager.h"
-#import "BaseDataCSCodeEdit.h"
 
 @interface DataResManager()
 {

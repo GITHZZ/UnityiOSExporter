@@ -7,7 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BaseDataCSCodeEdit.h"
 
-@interface BuilderCSFileEdit : BaseDataCSCodeEdit
+@interface BuilderCSFileEdit : NSObject
+
+- (void)startWithDstPath:(NSString*)dstPath;
+
+@property (nonatomic, readonly) NSArray* lines;
+
 @end
