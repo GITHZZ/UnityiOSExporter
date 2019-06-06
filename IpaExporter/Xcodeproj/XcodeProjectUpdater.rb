@@ -147,7 +147,8 @@ class XcodeProjectUpdater
 		frameworks = @setting_hash["frameworks"]
 		libs = @setting_hash["Libs"]
 		linker_flags = @setting_hash["linker_flags"]
-
+		bundle_identifier = @setting_hash["product_bundle_identifier"]
+		
 		#新增系统framework
 		@target.add_system_frameworks(frameworks)
 
@@ -162,11 +163,13 @@ class XcodeProjectUpdater
 		set_build_setting(@target, "PROVISIONING_PROFILE_SPECIFIER", develop_signing_identity[0], "Debug")
 		set_build_setting(@target, "DEVELOPMENT_TEAM", develop_signing_identity[1], "Debug")
 		set_build_setting(@target, "CODE_SIGN_IDENTITY[sdk=iphoneos*]", "iPhone Developer", "Debug")
+        set_build_setting(@target, "PRODUCT_BUNDLE_IDENTIFIER", bundle_identifier, "Debug")
 
 		release_signing_identity = @setting_hash["release_signing_identity"]
 		set_build_setting(@target, "PROVISIONING_PROFILE_SPECIFIER", release_signing_identity[0], "Release")
 		set_build_setting(@target, "DEVELOPMENT_TEAM", release_signing_identity[1], "Release")
 		set_build_setting(@target, "CODE_SIGN_IDENTITY[sdk=iphoneos*]", "iPhone Distribution", "Release")
+        set_build_setting(@target, "PRODUCT_BUNDLE_IDENTIFIER", bundle_identifier, "Release")
 
 		enable_bitCode = @setting_hash["enable_bit_code"]
 		set_build_setting(@target, "ENABLE_BITCODE", enable_bitCode)

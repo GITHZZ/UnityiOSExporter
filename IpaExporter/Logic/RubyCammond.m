@@ -12,6 +12,17 @@
 #import "DataResManager.h"
 #import "BuilderCSFileEdit.h"
 
+char* combine_string(const char *s1, const char *s2)
+{
+    char* result = malloc(strlen(s1) + strlen(s2) + 1);
+    if(result == NULL) exit(1);
+    
+    strcpy(result, s1);
+    strcat(result, s2);
+    
+    return result;
+}
+
 @interface RubyCammond()
 {
     BOOL _isExporting;
@@ -41,12 +52,9 @@
         return;
     
     _isExporting = true;
+    
     [[EventManager instance] send:EventSetExportButtonState withData:s_false];
     [[EventManager instance] send:EventStartRecordTime withData:nil];
-
-    NSString *xcodeShellPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/Xcodeproj/ExportXcode.sh"];
-    NSString *shellPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/Xcodeproj/Main.sh"];
-    NSString *rubyMainPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/Xcodeproj/Main.rb"];
     
     showLog("*开始执行打包脚本\n");
     ExportInfoManager* view = [ExportInfoManager instance];
@@ -54,14 +62,6 @@
   
     BuilderCSFileEdit* builderEdit = [[BuilderCSFileEdit alloc] init];
     [builderEdit startWithDstPath:[NSString stringWithUTF8String:view.info->unityProjPath]];
-    
-    //生成xcode工程
-    //$1 unity工程路径
-    NSArray *args = [NSArray arrayWithObjects:
-                     [NSString stringWithUTF8String:view.info->unityProjPath],
-                     nil];
-    NSString *shellLog = [self invokingShellScriptAtPath:xcodeShellPath withArgs:args];
-    showLog([shellLog UTF8String]);
     
     //修改xcode工程
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -72,41 +72,14 @@
         NSMutableArray<DetailsInfoData*>* detailArray = view.detailArray;
         
         dispatch_queue_t sq = dispatch_queue_create("exportInfo", DISPATCH_QUEUE_SERIAL);
+      
+        [self exportXcodeProjInThread:sq];
+        
         for(int i = 0; i < [detailArray count]; i++){
             dispatch_sync(sq, ^{
-                ExportInfoManager* view = [ExportInfoManager instance];
                 DetailsInfoData *data = [detailArray objectAtIndex:i];
+                [self exportPlatformIpa:data];
                 
-                //配置json文件
-                NSMutableDictionary *jsonData = [NSMutableDictionary dictionary];
-                jsonData[@"frameworks"] = data.frameworkNames;
-                jsonData[@"embedFrameworks"] = data.embedFramework;
-                jsonData[@"Libs"] = data.libNames;
-                jsonData[@"linker_flags"] = data.linkerFlag;
-                jsonData[@"enable_bit_code"] = @"NO";
-                jsonData[@"develop_signing_identity"] = [NSMutableArray array];
-                jsonData[@"release_signing_identity"] = [NSMutableArray array];
-                NSString *configPath = [self writeConfigToJsonFile:data.platform withData:jsonData];
-                
-                //$1 ruby入口文件路径
-                //$2 sdk资源文件路径
-                //$3 导出ipa和xcode工程路径
-                //$4 平台名称
-                //$5 configPath 配置路径
-                //$6 unity工程路径
-                NSArray *args = [NSArray arrayWithObjects:rubyMainPath,
-                                 data.customSDKPath,
-                                 [NSString stringWithUTF8String:view.info->exportFolderParh],
-                                 data.platform,
-                                 configPath,
-                                 [NSString stringWithUTF8String:view.info->unityProjPath],
-                                 nil];
-                
-                NSString *shellLog = [self invokingShellScriptAtPath:shellPath withArgs:args];
-                
-                dispatch_sync(dispatch_get_main_queue(), ^{
-                    showLog([shellLog UTF8String]);
-                });
             });
         }
     });
@@ -116,7 +89,7 @@
         _isExporting = false;
         [[EventManager instance] send:EventSetExportButtonState withData:s_true];
         [[EventManager instance] send:EventStopRecordTime withData:nil];
-        //[[DataResManager instance] end];
+        [[DataResManager instance] end];
         
         showLog("*打包结束");
         showLog("--------------------------------");
@@ -187,5 +160,68 @@
     return strReturnFormShell;
 }
 
+- (void)exportXcodeProjInThread:(dispatch_queue_t)sq
+{
+    NSString *xcodeShellPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/Xcodeproj/ExportXcode.sh"];
+    ExportInfoManager* view = [ExportInfoManager instance];
+    
+    
+    dispatch_sync(sq, ^{
+        //生成xcode工程
+        //$1 unity工程路径
+        //showLog("开始生成xcode工程");
+        NSArray *args = [NSArray arrayWithObjects:
+                         [NSString stringWithUTF8String:view.info->unityProjPath],
+                         nil];
+        NSString *shellLog = [self invokingShellScriptAtPath:xcodeShellPath withArgs:args];
+        
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            showLog([shellLog UTF8String]);
+        });
+    });
+}
+
+- (void)exportPlatformIpa:(DetailsInfoData*)data
+{
+    NSString *shellPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/Xcodeproj/Main.sh"];
+    NSString *rubyMainPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/Xcodeproj/Main.rb"];
+    
+    ExportInfoManager* view = [ExportInfoManager instance];
+    
+     if(data.isSelected){
+        //配置json文件
+        NSMutableDictionary *jsonData = [NSMutableDictionary dictionary];
+        jsonData[@"frameworks"] = data.frameworkNames;
+        jsonData[@"embedFrameworks"] = data.embedFramework;
+        jsonData[@"Libs"] = data.libNames;
+        jsonData[@"linker_flags"] = data.linkerFlag;
+        jsonData[@"enable_bit_code"] = @"NO";
+        jsonData[@"develop_signing_identity"] = [NSMutableArray arrayWithObjects:data.debugProfileName, data.debugDevelopTeam, nil];
+        jsonData[@"release_signing_identity"] = [NSMutableArray arrayWithObjects:data.releaseProfileName, data.releaseDevelopTeam, nil];
+        jsonData[@"product_bundle_identifier"] = data.bundleIdentifier;
+        
+        NSString *configPath = [self writeConfigToJsonFile:data.platform withData:jsonData];
+        
+        //$1 ruby入口文件路径
+        //$2 sdk资源文件路径
+        //$3 导出ipa和xcode工程路径
+        //$4 平台名称
+        //$5 configPath 配置路径
+        //$6 unity工程路径
+        NSArray *args = [NSArray arrayWithObjects:rubyMainPath,
+                         data.customSDKPath,
+                         [NSString stringWithUTF8String:view.info->exportFolderParh],
+                         data.platform,
+                         configPath,
+                         [NSString stringWithUTF8String:view.info->unityProjPath],
+                         nil];
+        
+        NSString *shellLog = [self invokingShellScriptAtPath:shellPath withArgs:args];
+        
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            showLog([shellLog UTF8String]);
+        });
+    }
+}
 @end
 

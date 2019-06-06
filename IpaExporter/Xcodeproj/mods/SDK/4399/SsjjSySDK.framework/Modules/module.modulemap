@@ -1,6 +1,0 @@
-framework module SsjjSySDK {
-  umbrella header "SsjjSySDK.h"
-
-  export *
-  module * { export * }
-}
