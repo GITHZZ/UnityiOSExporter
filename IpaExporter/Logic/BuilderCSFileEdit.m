@@ -70,7 +70,7 @@
         if([key isEqualToString:Export_Path]){
             
             const char* path = info->exportFolderParh;
-            keyStr = [NSString stringWithUTF8String:path];
+            keyStr = [[NSString stringWithUTF8String:path] stringByAppendingString:@"/xcodeProj"];
         }else if([key isEqualToString:Pack_Scene]){
         
             NSMutableArray *scenes = [ExportInfoManager instance].sceneArray;

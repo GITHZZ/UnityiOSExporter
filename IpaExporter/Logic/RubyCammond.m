@@ -43,7 +43,8 @@
     _isExporting = true;
     [[EventManager instance] send:EventSetExportButtonState withData:s_false];
     [[EventManager instance] send:EventStartRecordTime withData:nil];
-    
+
+    NSString *xcodeShellPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/Xcodeproj/ExportXcode.sh"];
     NSString *shellPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/Xcodeproj/Main.sh"];
     NSString *rubyMainPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/Xcodeproj/Main.rb"];
     
@@ -54,6 +55,15 @@
     BuilderCSFileEdit* builderEdit = [[BuilderCSFileEdit alloc] init];
     [builderEdit startWithDstPath:[NSString stringWithUTF8String:view.info->unityProjPath]];
     
+    //生成xcode工程
+    //$1 unity工程路径
+    NSArray *args = [NSArray arrayWithObjects:
+                     [NSString stringWithUTF8String:view.info->unityProjPath],
+                     nil];
+    NSString *shellLog = [self invokingShellScriptAtPath:xcodeShellPath withArgs:args];
+    showLog([shellLog UTF8String]);
+    
+    //修改xcode工程
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_group_t group = dispatch_group_create();
     
@@ -78,16 +88,18 @@
                 jsonData[@"release_signing_identity"] = [NSMutableArray array];
                 NSString *configPath = [self writeConfigToJsonFile:data.platform withData:jsonData];
                 
-                //ruby入口文件路径
-                //sdk资源文件路径
-                //导出ipa和xcode工程路径
-                //平台名称
-                //configPath 配置路径
+                //$1 ruby入口文件路径
+                //$2 sdk资源文件路径
+                //$3 导出ipa和xcode工程路径
+                //$4 平台名称
+                //$5 configPath 配置路径
+                //$6 unity工程路径
                 NSArray *args = [NSArray arrayWithObjects:rubyMainPath,
                                  data.customSDKPath,
                                  [NSString stringWithUTF8String:view.info->exportFolderParh],
                                  data.platform,
                                  configPath,
+                                 [NSString stringWithUTF8String:view.info->unityProjPath],
                                  nil];
                 
                 NSString *shellLog = [self invokingShellScriptAtPath:shellPath withArgs:args];

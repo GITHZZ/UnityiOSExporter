@@ -15,11 +15,9 @@ $xcode_proj_root_path = ARGV.at(1)
 $platform_name = ARGV.at(2)
 $config_path = ARGV.at(3)
 
-$project_folder_path = "#{$xcode_proj_root_path}/XGPushTest"
+$project_folder_path = "#{$xcode_proj_root_path}/xcodeProj"
 $templete_project_path = "#{$project_folder_path}/Unity-iPhone.xcodeproj"
 $project_path = "#{$project_folder_path}/Unity-iPhone-#{$platform_name}.xcodeproj"
-
-puts "开始修改xcode工程"
 
 if !(File::exist?($project_path))
 	FileUtils.cp_r $templete_project_path, $project_path
