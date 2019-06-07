@@ -42,7 +42,6 @@
     NSPipe *pipe = [[NSPipe alloc] init];
     [shellTask setStandardOutput:pipe];
     [shellTask launch];
-
 }
 
 - (void)parsePlistFile

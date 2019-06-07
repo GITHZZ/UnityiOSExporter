@@ -80,9 +80,9 @@ class XcodeProjectUpdater
 			if dir != '.' and dir != '..' and dir != ".DS_Store" 
 				file_type = File::ftype(newPath)
 
-				if dir == "Classes"
+				if dir == "Copy"
 					replace_unity_app_controller_file(newPath)
-				elsif newPath.to_s.end_with?("Unity-iPhone")
+                elsif newPath.to_s.end_with?("Unity-iPhone")
 				 	copy_unity_iphone_folder(newPath)
 				elsif file_type == "directory" and !newPath.include?"." 
 					@framework_search_paths_array.insert(@framework_search_paths_array.size - 1, newPath)
@@ -126,7 +126,13 @@ class XcodeProjectUpdater
 	def replace_unity_app_controller_file(mod_path)
 		h_file_path = "#{mod_path}/UnityAppController.h"
 		m_file_path = "#{mod_path}/UnityAppController.mm"
-
+        
+        #copy ExportOptions
+        FileUtils.cp "#{mod_path}/ExportOptions.plist", "#{$project_folder_path}"
+        
+        #copy Info
+        FileUtils.cp "#{mod_path}/Info.plist", "#{$project_folder_path}"
+        
 		if File::exist?(h_file_path)
 			FileUtils.cp "#{mod_path}/UnityAppController.h", "#{$project_folder_path}/Classes"
 		end 

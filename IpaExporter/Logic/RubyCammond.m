@@ -195,21 +195,29 @@
         //$4 平台名称
         //$5 configPath 配置路径
         //$6 unity工程路径
+        //$7 xcode工程名称 目前固定xcodeProj
+        //$8 开发者teamid（debug）
+        //$9 开发者签名文件名字（debug）
+        //$10 开发者teamid（release）
+        //$11 开发者签名文件名字（release）
         NSArray *args = [NSArray arrayWithObjects:rubyMainPath,
                          data.customSDKPath,
                          [NSString stringWithUTF8String:view.info->exportFolderParh],
                          data.platform,
                          configPath,
                          [NSString stringWithUTF8String:view.info->unityProjPath],
+                         XCODE_PROJ_NAME,
+                         data.debugDevelopTeam,
+                         data.debugProfileName,
+                         data.releaseDevelopTeam,
+                         data.releaseProfileName,
                          nil];
         
         NSString *shellLog = [self invokingShellScriptAtPath:shellPath withArgs:args];
         
-        NSString *projectPath = [NSString stringWithFormat:@"%@/xcodeProj/Unity-iPhone-%@.xcodeproj", data.customSDKPath, data.platform];
-        NSString *scehemePath = [NSString stringWithFormat:@"%@/xcshareddata/xcschemes/Unity-iPhone.xcscheme", projectPath];
-         
         dispatch_sync(dispatch_get_main_queue(), ^{
             showLog([shellLog UTF8String]);
+            showLog([[NSString stringWithFormat:@"%@平台,打包完毕", data.platform] UTF8String]);
         });
     }
 }

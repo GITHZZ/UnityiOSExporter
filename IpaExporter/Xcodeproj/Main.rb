@@ -11,11 +11,12 @@ require "xcodeproj"
 require "fileutils"
 require_relative "XcodeProjectUpdater"
 
+$xcode_proj_name = ARGV.at(5)
 $xcode_proj_root_path = ARGV.at(1)
 $platform_name = ARGV.at(2)
 $config_path = ARGV.at(3)
 
-$project_folder_path = "#{$xcode_proj_root_path}/xcodeProj"
+$project_folder_path = "#{$xcode_proj_root_path}/#{$xcode_proj_name}"
 $templete_project_path = "#{$project_folder_path}/Unity-iPhone.xcodeproj"
 $project_path = "#{$project_folder_path}/Unity-iPhone-#{$platform_name}.xcodeproj"
 $log_file_path = "#{$project_folder_path}/log.txt"
