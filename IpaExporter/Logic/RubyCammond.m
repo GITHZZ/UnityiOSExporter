@@ -12,17 +12,6 @@
 #import "DataResManager.h"
 #import "BuilderCSFileEdit.h"
 
-char* combine_string(const char *s1, const char *s2)
-{
-    char* result = malloc(strlen(s1) + strlen(s2) + 1);
-    if(result == NULL) exit(1);
-    
-    strcpy(result, s1);
-    strcat(result, s2);
-    
-    return result;
-}
-
 @interface RubyCammond()
 {
     BOOL _isExporting;
@@ -78,8 +67,7 @@ char* combine_string(const char *s1, const char *s2)
         for(int i = 0; i < [detailArray count]; i++){
             dispatch_sync(sq, ^{
                 DetailsInfoData *data = [detailArray objectAtIndex:i];
-                [self exportPlatformIpa:data];
-                
+                [self editXcodeProject:data];
             });
         }
     });
@@ -165,7 +153,6 @@ char* combine_string(const char *s1, const char *s2)
     NSString *xcodeShellPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/Xcodeproj/ExportXcode.sh"];
     ExportInfoManager* view = [ExportInfoManager instance];
     
-    
     dispatch_sync(sq, ^{
         //生成xcode工程
         //$1 unity工程路径
@@ -181,7 +168,7 @@ char* combine_string(const char *s1, const char *s2)
     });
 }
 
-- (void)exportPlatformIpa:(DetailsInfoData*)data
+- (void)editXcodeProject:(DetailsInfoData*)data
 {
     NSString *shellPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/Xcodeproj/Main.sh"];
     NSString *rubyMainPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/Xcodeproj/Main.rb"];
@@ -218,10 +205,12 @@ char* combine_string(const char *s1, const char *s2)
         
         NSString *shellLog = [self invokingShellScriptAtPath:shellPath withArgs:args];
         
+        NSString *projectPath = [NSString stringWithFormat:@"%@/xcodeProj/Unity-iPhone-%@.xcodeproj", data.customSDKPath, data.platform];
+        NSString *scehemePath = [NSString stringWithFormat:@"%@/xcshareddata/xcschemes/Unity-iPhone.xcscheme", projectPath];
+         
         dispatch_sync(dispatch_get_main_queue(), ^{
             showLog([shellLog UTF8String]);
         });
     }
 }
 @end
-
