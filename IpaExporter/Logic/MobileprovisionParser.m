@@ -36,12 +36,15 @@
 {
     NSTask *shellTask = [[NSTask alloc] init];
     [shellTask setLaunchPath:@"/bin/sh"];
+    
+
     NSString *shellStr = [NSString stringWithFormat:@"security cms -D -i %@%@.mobileprovision > %@/%@.plist", _rootPath, _fileName, [[NSBundle mainBundle] resourcePath], _fileName];
     
     [shellTask setArguments:[NSArray arrayWithObjects:@"-c", shellStr, nil]];
     NSPipe *pipe = [[NSPipe alloc] init];
     [shellTask setStandardOutput:pipe];
     [shellTask launch];
+    [shellTask waitUntilExit];
 }
 
 - (void)parsePlistFile

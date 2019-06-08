@@ -63,6 +63,12 @@
     _embedTbl.delegate = self;
     _embedTbl.dataSource = self;
     
+    _appID.enabled = NO;
+    _debugProfileName.enabled = NO;
+    _debugDevelopTeam.enabled = NO;
+    _releaseProfileName.enabled = NO;
+    _releaseDevelopTeam.enabled = NO;
+    
 }
 
 - (void)setUpDataInfoOnShow:(DetailsInfoData*)info isEditMode:(BOOL)isEdit
@@ -94,11 +100,6 @@
     _linkerFlagArr = [_info getValueForKey:Linker_Flag];
     _embedFrameworksArr = [_info getValueForKey:Embed_Framework];
     
-    _appID.enabled = NO;
-    _debugProfileName.enabled = NO;
-    _debugDevelopTeam.enabled = NO;
-    _releaseProfileName.enabled = NO;
-    _releaseDevelopTeam.enabled = NO;
 }
 
 
@@ -217,6 +218,7 @@
             [parser parsePlistFile];
             
             if([button.identifier isEqualToString:@"debug"]){
+                _appID.stringValue = parser.bundleIdentifier;
                 _debugProfileName.stringValue = parser.fileName;
                 _debugDevelopTeam.stringValue = parser.teamID;
             }else if([button.identifier isEqualToString:@"release"]){
