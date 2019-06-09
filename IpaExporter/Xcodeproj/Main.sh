@@ -27,6 +27,9 @@ echo "*开始打包 平台:"${platform_name}
 #参数从$2开始
 ruby -w $1 $2 $3 $4 $5 $6 $7
 
+
+sed -i '' 's/ProvisioningStyle = Automatic;/ProvisioningStyle = Manual;/g' ${xcode_proj_path}"/Unity-iPhone-"${platform_name}".xcodeproj/project.pbxproj"
+
 #处理scheme内容
 project_scheme_path=${xcode_proj_root_path}"/"${xcode_proj_name}"/Unity-iPhone-"${platform_name}".xcodeproj/xcshareddata/xcschemes/Unity-iPhone.xcscheme"
 #echo ${project_scheme_path}

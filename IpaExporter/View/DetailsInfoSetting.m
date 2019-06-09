@@ -130,7 +130,8 @@
                 [self checkOneInputIsNull:_debugProfileName]&
                 [self checkOneInputIsNull:_debugDevelopTeam]&
                 [self checkOneInputIsNull:_releaseProfileName]&
-                [self checkOneInputIsNull:_releaseDevelopTeam]);
+                [self checkOneInputIsNull:_releaseDevelopTeam]&
+                [self checkOneInputIsNull:_customSDKPath]);
     
     return code == 1 ? NO : YES;
 }

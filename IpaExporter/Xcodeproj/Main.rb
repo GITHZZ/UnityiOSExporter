@@ -21,12 +21,12 @@ $templete_project_path = "#{$project_folder_path}/Unity-iPhone.xcodeproj"
 $project_path = "#{$project_folder_path}/Unity-iPhone-#{$platform_name}.xcodeproj"
 $log_file_path = "#{$project_folder_path}/log.txt"
 
-if !(File::exist?($log_file_path))
-	File.new($log_file_path, 'w')
-end
-
-$stdout.reopen($log_file_path, "w")
-$stderr.reopen($log_file_path, "w")
+#if !(File::exist?($log_file_path))
+#    File.new($log_file_path, 'w')
+#end
+#
+#$stdout.reopen($log_file_path, "w")
+#$stderr.reopen($log_file_path, "w")
 
 
 if !(File::exist?($project_path))
