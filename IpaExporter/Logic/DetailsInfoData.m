@@ -62,7 +62,7 @@
             free(ivars);
             NSString *result = [self valueForKey:key];
             if(!result)
-                result = @"";
+                result = nil;
         
             return result;
         }

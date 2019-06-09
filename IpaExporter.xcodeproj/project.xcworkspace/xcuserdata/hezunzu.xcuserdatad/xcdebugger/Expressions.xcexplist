@@ -3,6 +3,14 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "-[DetailsInfoData getValueForKey:]:DetailsInfoData.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "ivar_getName(*ivar)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[DetailsInfoSetting mobileprovisionSelect:]:DetailsInfoSetting.m">
          <PersistentStrings>
             <PersistentString

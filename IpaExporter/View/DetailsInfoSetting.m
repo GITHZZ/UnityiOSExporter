@@ -44,15 +44,22 @@
         _sureBtn.title = @"确定";
     }
     else
-    {
-        _frameworkNameArr = [NSMutableArray arrayWithCapacity:10];
-        _frameworkIsWeakArr = [NSMutableArray arrayWithCapacity:10];
-        _embedFrameworksArr = [NSMutableArray arrayWithCapacity:10];
-        _libNameArr = [NSMutableArray arrayWithCapacity:10];
-        _linkerFlagArr = [NSMutableArray arrayWithCapacity:10];
-        
         _sureBtn.title = @"添加";
-    }
+    
+    if(!_frameworkNameArr)
+        _frameworkNameArr = [NSMutableArray arrayWithCapacity:10];
+
+    if(!_frameworkIsWeakArr)
+        _frameworkIsWeakArr = [NSMutableArray arrayWithCapacity:10];
+    
+    if(!_embedFrameworksArr)
+        _embedFrameworksArr = [NSMutableArray arrayWithCapacity:10];
+    
+    if(!_libNameArr)
+        _libNameArr = [NSMutableArray arrayWithCapacity:10];
+    
+    if(!_linkerFlagArr)
+        _linkerFlagArr = [NSMutableArray arrayWithCapacity:10];
     
     _frameworkTbl.delegate = self;
     _frameworkTbl.dataSource = self;
