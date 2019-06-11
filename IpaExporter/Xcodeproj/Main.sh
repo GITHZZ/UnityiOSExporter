@@ -41,6 +41,7 @@ sed -i '' 's/container:Unity-iPhone.xcodeproj/container:Unity-iPhone-'${platform
 #进入xcode工程目录
 cd ${xcode_proj_path}
 
+echo "清除xcode工程信息"
 xcodebuild \
     clean \
     -scheme "Unity-iPhone" \
@@ -56,9 +57,7 @@ xcodebuild \
     -archivePath bin/Unity-iPhone-${platform_name}.xcarchive \
     PROVISIONING_PROFILE_SPECIFIER=${debug_provisioning_profile} \
     DEVELOPMENT_TEAM=${debug_team_id} \
-    -allowProvisioningUpdates \
-    SYMROOT="$PWD" \
-    > ${unity_proj_path}"/log.txt"
+    -allowProvisioningUpdates
 
 # 将app打包成ipa
 xcodebuild \

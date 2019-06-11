@@ -82,7 +82,7 @@
 {
     _info = info;
     _isEditMode = isEdit;
-    _isSetDataOnShow = YES;
+    _isSetDataOnShow = YES; 
 }
 
 - (void)setUpInfo
