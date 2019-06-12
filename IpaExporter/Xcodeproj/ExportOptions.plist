@@ -8,8 +8,8 @@
 	<string>app-store</string>
 	<key>provisioningProfiles</key>
 	<dict>
-		<key>com.tg.jx</key>
-		<string>tgjxdis</string>
+		<key>:bundleIdentifier:</key>
+		<string>:profileName:</string>
 	</dict>
 	<key>signingCertificate</key>
 	<string>iPhone Distribution</string>
@@ -18,7 +18,7 @@
 	<key>stripSwiftSymbols</key>
 	<true/>
 	<key>teamID</key>
-	<string>9T6RLG5PC2</string>
+	<string>:developTeam:</string>
 	<key>uploadSymbols</key>
 	<true/>
 </dict>

@@ -20,7 +20,7 @@ static NSDictionary * s_cheatCodesToUnicode = nil;
                                  @"😆": @[@":laughing:", @":D"],
                                  @"😊": @":blush:",
                                  @"😃": @[@":smiley:", @":)", @":-)"],
-                                 @"☺": @":relaxed:",
+                                 @"☺️": @":relaxed:",
                                  @"😏": @":smirk:",
                                  @"😞": @[@":disappointed:", @":("],
                                  @"😍": @":heart_eyes:",

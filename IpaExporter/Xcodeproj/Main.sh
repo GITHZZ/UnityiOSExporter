@@ -9,6 +9,8 @@
 #$9 开发者签名文件名字（debug）
 #$10 开发者teamid（release）
 #$11 开发者签名文件名字（release）
+#$12 沙盒文件路径
+#$13 bundleIdentifier
 
 echo "Main.sh脚本执行log"
 #echo "sdk资源文件路径:"${$2}
@@ -19,14 +21,26 @@ xcode_proj_name=$7
 xcode_proj_root_path=$3
 xcode_proj_path=${xcode_proj_root_path}"/"${xcode_proj_name}
 platform_name=$4
-debug_team_id=$8
 debug_provisioning_profile=$9
+debug_team_id=$8
+release_provisioning_profile=${11}
+release_team_id=${10}
 unity_proj_path=$6
+main_bundle_res_path=${12}
+custom_sdk_path=$2
+bundleIdentifier=${13}
 
 #修改xcode工程
+#替换optionsplist信息
+res_path=${main_bundle_res_path}"/Xcodeproj/ExportOptions.plist"
+dst_path=${custom_sdk_path}"/Copy/ExportOptions.plist"
+cp -f ${res_path} ${dst_path}
+sed -i '' 's/:bundleIdentifier:/'${bundleIdentifier}'/g' ${dst_path}
+sed -i '' 's/:profileName:/'${release_provisioning_profile}'/g' ${dst_path}
+sed -i '' 's/:developTeam:/'${release_team_id}'/g' ${dst_path}
+
 #参数从$2开始
 ruby -w $1 $2 $3 $4 $5 $6 $7
-
 
 sed -i '' 's/ProvisioningStyle = Automatic;/ProvisioningStyle = Manual;/g' ${xcode_proj_path}"/Unity-iPhone-"${platform_name}".xcodeproj/project.pbxproj"
 
@@ -45,7 +59,7 @@ echo "清除xcode工程信息"
 xcodebuild \
     clean \
     -scheme "Unity-iPhone" \
-    -configuration "Debug" \
+    -configuration "Release" \
     -project "Unity-iPhone-"${platform_name}".xcodeproj" \
     > ${unity_proj_path}"/xcodebuild_clean_log_"${platform_name}".txt"
 
@@ -55,10 +69,10 @@ xcodebuild \
     -project "Unity-iPhone-"${platform_name}".xcodeproj" \
     -scheme "Unity-iPhone" \
     -sdk iphoneos \
-    -configuration "Debug" \
+    -configuration "Release" \
     -archivePath bin/Unity-iPhone-${platform_name}.xcarchive \
-    PROVISIONING_PROFILE_SPECIFIER=${debug_provisioning_profile} \
-    DEVELOPMENT_TEAM=${debug_team_id} \
+    PROVISIONING_PROFILE_SPECIFIER=${release_provisioning_profile} \
+    DEVELOPMENT_TEAM=${release_team_id} \
     -allowProvisioningUpdates \
     > ${unity_proj_path}"/xcodebuild_archive_log_"${platform_name}".txt"
 

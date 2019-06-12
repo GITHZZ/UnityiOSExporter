@@ -205,7 +205,10 @@
         //$9 开发者签名文件名字（debug）
         //$10 开发者teamid（release）
         //$11 开发者签名文件名字（release）
-        NSArray *args = [NSArray arrayWithObjects:rubyMainPath,
+        //$12 沙盒文件路径
+        //$13 bundleIdentifier
+        NSArray *args = [NSArray arrayWithObjects:
+                         rubyMainPath,//$1
                          data.customSDKPath,
                          [NSString stringWithUTF8String:view.info->exportFolderParh],
                          data.platform,
@@ -216,8 +219,12 @@
                          data.debugProfileName,
                          data.releaseDevelopTeam,
                          data.releaseProfileName,
+                         [[NSBundle mainBundle]resourcePath],
+                         data.bundleIdentifier,
                          nil];
-        
+         
+        NSLog(@"%@", [[NSBundle mainBundle]resourcePath]);
+         
         NSString *shellLog = [self invokingShellScriptAtPath:shellPath withArgs:args];
         
         dispatch_sync(dispatch_get_main_queue(), ^{
