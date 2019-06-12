@@ -53,6 +53,7 @@ typedef struct
     const char* unityProjPath;
     const char* exportFolderParh;
     int isRelease;
+    int isExportXcode;
 }ExportInfo;
 
 #endif /* Defs_h */

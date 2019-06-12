@@ -22,6 +22,7 @@
 @property (weak) IBOutlet NSButton *isReleaseBox;
 @property (weak) IBOutlet NSButton *exportBtn;
 @property (weak) IBOutlet NSTextField *useTimeLabel;
+@property (weak) IBOutlet NSButton *isExportXcode;
 
 - (IBAction)sureBtnClick:(id)sender;
 - (IBAction)unityPathSelect:(id)sender;

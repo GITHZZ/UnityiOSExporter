@@ -416,8 +416,13 @@
 
 - (IBAction)isReleaseBtnSelect:(id)sender
 {
+    NSButton *btn = (NSButton*)sender;
     ExportInfo* info = [ExportInfoManager instance].info;
-    info->isRelease = (int)_isReleaseBox.state;
+    if([btn.identifier isEqualToString:@"isReleaseBox"]){
+        info->isRelease = (int)_isReleaseBox.state;
+    }else if([btn.identifier isEqualToString:@"isExportXcode"]){
+        info->isExportXcode = (int)_isExportXcode.state;
+    }
 }
 
 - (IBAction)ShowHelp:(id)sender

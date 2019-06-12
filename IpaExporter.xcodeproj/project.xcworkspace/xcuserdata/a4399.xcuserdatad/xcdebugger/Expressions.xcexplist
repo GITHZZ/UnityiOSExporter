@@ -38,9 +38,6 @@
          contextName = "-[DetailsInfoSetting setUpInfo]:DetailsInfoSetting.m">
       </ContextState>
       <ContextState
-         contextName = "-[MobileprovisionParser createPlistFile]:MobileprovisionParser.m">
-      </ContextState>
-      <ContextState
          contextName = "__30-[RubyCammond sureBtnClicked:]_block_invoke_2:RubyCammond.m">
          <PersistentStrings>
             <PersistentString
@@ -48,6 +45,20 @@
             </PersistentString>
             <PersistentString
                value = "data.customSDKPath">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[MobileprovisionParser createPlistFile]:MobileprovisionParser.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[ViewMain isReleaseBtnSelect:]:ViewMain.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "_isReleaseBox.state">
+            </PersistentString>
+            <PersistentString
+               value = "_isExportXcode.state">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

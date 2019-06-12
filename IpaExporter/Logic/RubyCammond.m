@@ -47,13 +47,18 @@
     [[EventManager instance] send:EventStartRecordTime withData:nil];
     
     showLog("开始执行Unity打包脚本");
-    showLog("开始生成xcode工程");
     ExportInfoManager* view = [ExportInfoManager instance];
-    [[DataResManager instance] start:view.info];
-    showLog([[NSString stringWithFormat:@"[配置信息]Unity工程路径:%s", view.info->unityProjPath] UTF8String]);
+    
+    if(view.info->isExportXcode){
+        showLog("开始生成xcode工程");
+        [[DataResManager instance] start:view.info];
+        showLog([[NSString stringWithFormat:@"[配置信息]Unity工程路径:%s", view.info->unityProjPath] UTF8String]);
 
-    BuilderCSFileEdit* builderEdit = [[BuilderCSFileEdit alloc] init];
-    [builderEdit startWithDstPath:[NSString stringWithUTF8String:view.info->unityProjPath]];
+        BuilderCSFileEdit* builderEdit = [[BuilderCSFileEdit alloc] init];
+        [builderEdit startWithDstPath:[NSString stringWithUTF8String:view.info->unityProjPath]];
+    }else{
+        showLog("xcode工程生成已跳过,直接进行平台打包");
+    }
     
     //修改xcode工程
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -64,8 +69,9 @@
         NSMutableArray<DetailsInfoData*>* detailArray = view.detailArray;
         
         dispatch_queue_t sq = dispatch_queue_create("exportInfo", DISPATCH_QUEUE_SERIAL);
-      
-        [self exportXcodeProjInThread:sq];
+        
+        if(view.info->isExportXcode)
+            [self exportXcodeProjInThread:sq];
         
         for(int i = 0; i < [detailArray count]; i++){
             dispatch_sync(sq, ^{
