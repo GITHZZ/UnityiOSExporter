@@ -10,6 +10,7 @@
 #$10 开发者teamid（release）
 #$11 开发者签名文件名字（release）
 
+echo "Main.sh脚本执行log"
 #echo "sdk资源文件路径:"${$2}
 #echo "导出路径(xcode工程和ipa):"${$3}
 #echo "配置文件路径:"${$5}
@@ -23,7 +24,6 @@ debug_provisioning_profile=$9
 unity_proj_path=$6
 
 #修改xcode工程
-echo "*开始打包 平台:"${platform_name}
 #参数从$2开始
 ruby -w $1 $2 $3 $4 $5 $6 $7
 
@@ -46,8 +46,10 @@ xcodebuild \
     clean \
     -scheme "Unity-iPhone" \
     -configuration "Debug" \
-    -project "Unity-iPhone-"${platform_name}".xcodeproj"
+    -project "Unity-iPhone-"${platform_name}".xcodeproj" \
+    > ${unity_proj_path}"/xcodebuild_clean_log_"${platform_name}".txt"
 
+echo "生成arvhive工程"
 xcodebuild \
     archive \
     -project "Unity-iPhone-"${platform_name}".xcodeproj" \
@@ -57,8 +59,10 @@ xcodebuild \
     -archivePath bin/Unity-iPhone-${platform_name}.xcarchive \
     PROVISIONING_PROFILE_SPECIFIER=${debug_provisioning_profile} \
     DEVELOPMENT_TEAM=${debug_team_id} \
-    -allowProvisioningUpdates
+    -allowProvisioningUpdates \
+    > ${unity_proj_path}"/xcodebuild_archive_log_"${platform_name}".txt"
 
+echo "生成ipa包"
 # 将app打包成ipa
 xcodebuild \
     -exportArchive \

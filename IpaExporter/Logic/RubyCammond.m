@@ -11,6 +11,7 @@
 #import "ExportInfoManager.h"
 #import "DataResManager.h"
 #import "BuilderCSFileEdit.h"
+#import "NSString+Emoji.h"
 
 @interface RubyCammond()
 {
@@ -45,10 +46,12 @@
     [[EventManager instance] send:EventSetExportButtonState withData:s_false];
     [[EventManager instance] send:EventStartRecordTime withData:nil];
     
-    showLog("*开始执行打包脚本\n");
+    showLog("开始执行Unity打包脚本");
+    showLog("开始生成xcode工程");
     ExportInfoManager* view = [ExportInfoManager instance];
     [[DataResManager instance] start:view.info];
-  
+    showLog([[NSString stringWithFormat:@"[配置信息]Unity工程路径:%s", view.info->unityProjPath] UTF8String]);
+
     BuilderCSFileEdit* builderEdit = [[BuilderCSFileEdit alloc] init];
     [builderEdit startWithDstPath:[NSString stringWithUTF8String:view.info->unityProjPath]];
     
@@ -79,8 +82,7 @@
         [[EventManager instance] send:EventStopRecordTime withData:nil];
         [[DataResManager instance] end];
         
-        showLog("*打包结束");
-        showLog("--------------------------------");
+        showSuccess("打包结束");
     });
 }
 
@@ -165,6 +167,8 @@
         
         dispatch_sync(dispatch_get_main_queue(), ^{
             showLog([shellLog UTF8String]);
+            showSuccess("导出xcode成功");
+            showLog("开始进行平台打包");
         });
     });
 }
@@ -217,8 +221,14 @@
         NSString *shellLog = [self invokingShellScriptAtPath:shellPath withArgs:args];
         
         dispatch_sync(dispatch_get_main_queue(), ^{
-            showLog([shellLog UTF8String]);
-            showLog([[NSString stringWithFormat:@"%@平台,打包完毕", data.platform] UTF8String]);
+            showLog([[NSString stringWithFormat:@"开始打包 平台:%@", data.platform] UTF8String]);
+            NSString* logStr = [shellLog stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            showLog([logStr UTF8String]);
+            
+            if([shellLog containsString:@"** EXPORT SUCCEEDED **"])
+                showSuccess([[NSString stringWithFormat:@"%@平台,打包成功", data.platform] UTF8String]);
+            else
+                showError([[NSString stringWithFormat:@"%@平台,打包失败,日志已经保存在%s路径中", data.platform, view.info->unityProjPath] UTF8String]);
         });
     }
 }

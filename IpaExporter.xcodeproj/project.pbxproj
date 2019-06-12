@@ -25,6 +25,7 @@
 		18DB76441E7FFE22003FDC52 /* Singletion.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DB76431E7FFE22003FDC52 /* Singletion.m */; };
 		18DD5E6C1DAF1C150071B654 /* DetailsInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD5E6B1DAF1C150071B654 /* DetailsInfoView.m */; };
 		18F1027B1DCC2AEB008312E5 /* EventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F1027A1DCC2AEB008312E5 /* EventManager.m */; };
+		593FAEF622B097E700A21F33 /* NSString+Emoji.m in Sources */ = {isa = PBXBuildFile; fileRef = 593FAEF422B097E700A21F33 /* NSString+Emoji.m */; };
 		5964C63F229CE169004BDD23 /* Xcodeproj in Resources */ = {isa = PBXBuildFile; fileRef = 5964C63E229CE169004BDD23 /* Xcodeproj */; };
 		5964C642229CE262004BDD23 /* RubyCammond.m in Sources */ = {isa = PBXBuildFile; fileRef = 5964C641229CE262004BDD23 /* RubyCammond.m */; };
 		5979D9DC22A54C3700C040D2 /* MobileprovisionParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5979D9DB22A54C3700C040D2 /* MobileprovisionParser.m */; };
@@ -87,6 +88,8 @@
 		18F102791DCC2AEB008312E5 /* EventManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventManager.h; sourceTree = "<group>"; };
 		18F1027A1DCC2AEB008312E5 /* EventManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventManager.m; sourceTree = "<group>"; };
 		18FCCBCC1E49CD3900BDF9AC /* Defs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Defs.h; sourceTree = "<group>"; };
+		593FAEF422B097E700A21F33 /* NSString+Emoji.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Emoji.m"; sourceTree = "<group>"; };
+		593FAEF522B097E700A21F33 /* NSString+Emoji.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Emoji.h"; sourceTree = "<group>"; };
 		5964C63E229CE169004BDD23 /* Xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Xcodeproj; path = IpaExporter/Xcodeproj; sourceTree = "<group>"; };
 		5964C640229CE262004BDD23 /* RubyCammond.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RubyCammond.h; sourceTree = "<group>"; };
 		5964C641229CE262004BDD23 /* RubyCammond.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RubyCammond.m; sourceTree = "<group>"; };
@@ -218,6 +221,8 @@
 		18F102721DCC2813008312E5 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				593FAEF522B097E700A21F33 /* NSString+Emoji.h */,
+				593FAEF422B097E700A21F33 /* NSString+Emoji.m */,
 				182186401E5ACAD5003599CD /* Common.h */,
 				18FCCBCC1E49CD3900BDF9AC /* Defs.h */,
 				188DAD0F1E56F8E300554D6B /* CustomLog.h */,
@@ -369,6 +374,7 @@
 			files = (
 				5979D9DC22A54C3700C040D2 /* MobileprovisionParser.m in Sources */,
 				18F1027B1DCC2AEB008312E5 /* EventManager.m in Sources */,
+				593FAEF622B097E700A21F33 /* NSString+Emoji.m in Sources */,
 				182DC37D1E8A5AE400912D20 /* Alert.m in Sources */,
 				5964C642229CE262004BDD23 /* RubyCammond.m in Sources */,
 				184BEA501DC742FA00CCEC4D /* DetailsInfoSetting.m in Sources */,

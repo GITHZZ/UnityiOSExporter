@@ -30,6 +30,16 @@ void showError(const char* content, ...)
     [[EventManager instance] send:EventAddErrorContent withData:showStr];
 }
 
+void showSuccess(const char* content, ...)
+{
+    va_list ap;
+    va_start(ap, content);
+    NSString* contentStr = [NSString stringWithUTF8String:content];
+    NSString* showStr = [[NSString alloc] initWithFormat:contentStr arguments:ap];
+    va_end(ap);
+    [[EventManager instance] send:EventAddNewSuccessContent withData:showStr];
+}
+
 void lua_show_log(const char *s)
 {
     showLog("*Lua:%@", [NSString stringWithUTF8String:s]);

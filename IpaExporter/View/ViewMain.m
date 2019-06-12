@@ -11,6 +11,7 @@
 #import "DetailsInfoView.h"
 #import "DetailsInfoData.h"
 #import "ExportInfoManager.h"
+#import "NSString+Emoji.h"
 
 #define PlatformTblKey @"platformTbl"
 #define PackSceneKey   @"packScene"
@@ -95,18 +96,26 @@
                            withData:nil
                                self:self];
     
+    [[EventManager instance] regist:EventAddNewSuccessContent
+                               func:@selector(addNewSuccessContent:)
+                           withData:nil
+                               self:self];
+    
     [[EventManager instance] regist:EventAddErrorContent
                                func:@selector(addNewErrorContent:)
                            withData:nil
                                self:self];
+    
     [[EventManager instance] regist:EventSetExportButtonState
                                func:@selector(setExportBtnState:)
                            withData:nil
                                self:self];
+    
     [[EventManager instance] regist:EventStartRecordTime
                                func:@selector(startShowPackTime:)
                            withData:nil
                                self:self];
+    
     [[EventManager instance] regist:EventStopRecordTime
                                func:@selector(stopShowPackTime:)
                            withData:nil
@@ -320,13 +329,25 @@
 - (void)addNewInfoContent:(NSNotification*)notification
 {
     NSString *content = [notification object];
-    [self renderUpAttriString:content withColor:[NSColor blackColor]];
+    NSString *infoString = [NSString stringWithFormat:@":arrow_forward:%@", content];
+    infoString = [infoString stringByReplacingEmojiCheatCodesWithUnicode];
+    [self renderUpAttriString:infoString withColor:[NSColor blackColor]];
+}
+
+- (void)addNewSuccessContent:(NSNotification*)notification
+{
+    NSString *content = [notification object];
+    NSString *infoString = [NSString stringWithFormat:@":heavy_check_mark:%@", content];
+    infoString = [infoString stringByReplacingEmojiCheatCodesWithUnicode];
+    [self renderUpAttriString:infoString withColor:[NSColor greenColor]];
 }
 
 - (void)addNewErrorContent:(NSNotification*)notification
 {
     NSString *content = [notification object];
-    [self renderUpAttriString:content withColor:[NSColor redColor]];
+    NSString *infoString = [NSString stringWithFormat:@":heavy_multiplication_x:%@", content];
+    infoString = [infoString stringByReplacingEmojiCheatCodesWithUnicode];
+    [self renderUpAttriString:infoString withColor:[NSColor redColor]];
 }
 
 - (void)setExportBtnState:(NSNotification*)notification
@@ -385,7 +406,7 @@
 
 - (void)stopShowPackTime:(NSNotification*)notification
 {
-    showLog("*总共打包用时%@", _useTimeLabel.stringValue);
+    showLog("总共打包用时%@", _useTimeLabel.stringValue);
     _useTimeLabel.stringValue = @"";
     if([_showTimer isValid]){
         [_showTimer invalidate];

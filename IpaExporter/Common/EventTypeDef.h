@@ -29,6 +29,7 @@ typedef NS_ENUM(int, EventType){
     EventScenePathSelectEnd      = 115,
     EventStartRecordTime         = 116,
     EventStopRecordTime          = 117,
+    EventAddNewSuccessContent    = 118,
 };
 
 

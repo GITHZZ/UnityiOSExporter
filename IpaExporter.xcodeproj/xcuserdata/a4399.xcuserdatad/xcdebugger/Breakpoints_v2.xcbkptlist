@@ -10,13 +10,45 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IpaExporter/View/DetailsInfoSetting.m"
-            timestampString = "581425107.669189"
+            timestampString = "582014891.583187"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "236"
             endingLineNumber = "236"
-            landmarkName = "-tblItemAdd:"
+            landmarkName = "-mobileprovisionSelect:"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[DetailsInfoSetting mobileprovisionSelect:]"
+                  moduleName = "IpaExporter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/a4399/Documents/UnityiOSExporter/IpaExporter/View/DetailsInfoSetting.m"
+                  timestampString = "582014891.88508"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "236"
+                  endingLineNumber = "236"
+                  offsetFromSymbolStart = "1613">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[DetailsInfoSetting mobileprovisionSelect:]"
+                  moduleName = "IpaExporter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/a4399/Documents/UnityiOSExporter/IpaExporter/View/DetailsInfoSetting.m"
+                  timestampString = "582014891.888635"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "236"
+                  endingLineNumber = "236"
+                  offsetFromSymbolStart = "1647">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -19,15 +19,14 @@ $config_path = ARGV.at(3)
 $project_folder_path = "#{$xcode_proj_root_path}/#{$xcode_proj_name}"
 $templete_project_path = "#{$project_folder_path}/Unity-iPhone.xcodeproj"
 $project_path = "#{$project_folder_path}/Unity-iPhone-#{$platform_name}.xcodeproj"
-$log_file_path = "#{$project_folder_path}/log.txt"
+$log_file_path = "#{$xcode_proj_root_path}/xcodeproj_log_#{$platform_name}.txt"
 
-#if !(File::exist?($log_file_path))
-#    File.new($log_file_path, 'w')
-#end
-#
-#$stdout.reopen($log_file_path, "w")
-#$stderr.reopen($log_file_path, "w")
+if !(File::exist?($log_file_path))
+    File.new($log_file_path, 'w')
+end
 
+$stdout.reopen($log_file_path, "w")
+$stderr.reopen($log_file_path, "w")
 
 if !(File::exist?($project_path))
 	FileUtils.cp_r $templete_project_path, $project_path

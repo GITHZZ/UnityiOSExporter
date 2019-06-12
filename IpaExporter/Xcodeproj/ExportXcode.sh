@@ -9,9 +9,7 @@ unity_project_path=$1
 
 #--------------生成母包工程
 pkill Unity
-echo "*访问unity工程 目录path="${unity_project_path}
 cd ${unity_project_path}
 
 #生成xcode工程
 /Applications/Unity/Unity.app/Contents/MacOS/Unity -buildTarget Ios -bacthmode -quit -projectPath ${unity_project_path} -executeMethod IpaExporter.Builder.BuildApp
-echo "*导出xcode成功"

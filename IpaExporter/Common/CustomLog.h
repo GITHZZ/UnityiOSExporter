@@ -8,6 +8,7 @@
 
 void showLog(const char* content, ...);
 void showError(const char* content, ...);
+void showSuccess(const char* content, ...);
 
 //Lua log输出到屏幕上
 void lua_show_log(const char* s);
