@@ -11,6 +11,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "-[RubyCammond sureBtnClicked:]:RubyCammond.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "view.info-&gt;isExportXcode">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[RubyCammond writeConfigToJsonFile:withData:]:RubyCammond.m">
          <PersistentStrings>
             <PersistentString

@@ -49,7 +49,7 @@
     showLog("开始执行Unity打包脚本");
     ExportInfoManager* view = [ExportInfoManager instance];
     
-    if(view.info->isExportXcode){
+    if(view.info->isExportXcode == 1){
         showLog("开始生成xcode工程");
         [[DataResManager instance] start:view.info];
         showLog([[NSString stringWithFormat:@"[配置信息]Unity工程路径:%s", view.info->unityProjPath] UTF8String]);
@@ -70,7 +70,7 @@
         
         dispatch_queue_t sq = dispatch_queue_create("exportInfo", DISPATCH_QUEUE_SERIAL);
         
-        if(view.info->isExportXcode)
+        if(view.info->isExportXcode == 1)
             [self exportXcodeProjInThread:sq];
         
         for(int i = 0; i < [detailArray count]; i++){
@@ -213,6 +213,7 @@
         //$11 开发者签名文件名字（release）
         //$12 沙盒文件路径
         //$13 bundleIdentifier
+        //$14 是否release包
         NSArray *args = [NSArray arrayWithObjects:
                          rubyMainPath,//$1
                          data.customSDKPath,
@@ -227,6 +228,7 @@
                          data.releaseProfileName,
                          [[NSBundle mainBundle]resourcePath],
                          data.bundleIdentifier,
+                         [NSString stringWithFormat:@"%d",view.info->isRelease],
                          nil];
          
         NSLog(@"%@", [[NSBundle mainBundle]resourcePath]);

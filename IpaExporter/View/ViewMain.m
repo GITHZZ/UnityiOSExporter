@@ -81,6 +81,11 @@
     _packSceneTbl.dataSource = self;
     
     _isReleaseBox.state = 0;
+    _isExportXcode.state = 1;
+    
+    info->isRelease = (int)_isReleaseBox.state;
+    info->isExportXcode = (int)_isExportXcode.state;
+    
     _useTimeLabel.stringValue = @"";
 }
 

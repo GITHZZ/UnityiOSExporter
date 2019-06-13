@@ -137,7 +137,7 @@
                                     <items>
                                         <menuItem title="iOS打包工具 帮助" keyEquivalent="?" id="YD9-ML-3pY">
                                             <connections>
-                                                <action selector="showHelp:" target="Ady-hI-5gd" id="OOP-g3-pJS"/>
+                                                <action selector="showHelp:" target="Ady-hI-5gd" id="pRF-Ry-VoM"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -298,7 +298,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <scrollView borderType="line" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="keT-xP-aRZ">
-                                <rect key="frame" x="488" y="71" width="165" height="89"/>
+                                <rect key="frame" x="488" y="66" width="165" height="89"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" id="2jR-8K-RcE">
                                     <rect key="frame" x="1" y="1" width="163" height="87"/>
@@ -342,14 +342,14 @@
                                 </tableHeaderView>
                             </scrollView>
                             <scrollView borderType="line" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="k4Y-f2-uNz">
-                                <rect key="frame" x="488" y="163" width="165" height="202"/>
+                                <rect key="frame" x="488" y="158" width="165" height="207"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" id="YA5-p9-wAu">
-                                    <rect key="frame" x="1" y="1" width="163" height="200"/>
+                                    <rect key="frame" x="1" y="1" width="163" height="205"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView identifier="platformTbl" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" headerView="z4F-DB-VpN" id="j6g-f3-dK9">
-                                            <rect key="frame" x="0.0" y="0.0" width="163" height="177"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="163" height="182"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -399,7 +399,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" id="5dI-Iy-fBO">
-                                <rect key="frame" x="549" y="31" width="110" height="32"/>
+                                <rect key="frame" x="549" y="10" width="110" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="开始导包" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" inset="2" id="Wuq-9v-R3r">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -419,7 +419,7 @@
                                 </textFieldCell>
                             </textField>
                             <button identifier="linkerFlagTbl" verticalHuggingPriority="750" id="mOb-cN-2zx" userLabel="linkerFlagAdd">
-                                <rect key="frame" x="603" y="70" width="25" height="25"/>
+                                <rect key="frame" x="603" y="66" width="25" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="qFY-tB-dFn">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -430,7 +430,7 @@
                                 </connections>
                             </button>
                             <button identifier="linkerFlagTbl" verticalHuggingPriority="750" id="Ilv-5f-bld" userLabel="linkerFlagRemove">
-                                <rect key="frame" x="628" y="70" width="25" height="25"/>
+                                <rect key="frame" x="628" y="66" width="25" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2xv-X5-BdE">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -441,9 +441,9 @@
                                 </connections>
                             </button>
                             <button identifier="isReleaseBox" id="xvG-e2-1WT">
-                                <rect key="frame" x="486" y="40" width="62" height="18"/>
+                                <rect key="frame" x="486" y="18" width="62" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="正式包" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="6A8-Ds-JtB">
+                                <buttonCell key="cell" type="check" title="正式包" bezelStyle="regularSquare" imagePosition="left" inset="2" id="6A8-Ds-JtB">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" size="13" name=".PingFangTC-Regular"/>
                                 </buttonCell>
@@ -451,8 +451,17 @@
                                     <action selector="isReleaseBtnSelect:" target="UBb-r6-fzf" id="qtC-VN-31N"/>
                                 </connections>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="cOk-Ct-W3V">
+                                <rect key="frame" x="26" y="21" width="428" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" alignment="right" id="EEX-oN-AR4">
+                                    <font key="font" size="13" name=".PingFangTC-Regular"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                             <button identifier="isExportXcode" id="dQ7-Ok-DsU">
-                                <rect key="frame" x="486" y="18" width="115" height="18"/>
+                                <rect key="frame" x="486" y="40" width="115" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="导出Xcode工程" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="JYT-Wb-LMu">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -462,15 +471,6 @@
                                     <action selector="isReleaseBtnSelect:" target="UBb-r6-fzf" id="IhH-G6-g7c"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="cOk-Ct-W3V">
-                                <rect key="frame" x="26" y="19" width="431" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" id="EEX-oN-AR4">
-                                    <font key="font" size="13" name=".PingFangTC-Regular"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                         </subviews>
                     </view>
                     <connections>
@@ -819,20 +819,6 @@
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </comboBoxCell>
                                                 </comboBox>
-                                                <button id="zBn-ts-6XV">
-                                                    <rect key="frame" x="537" y="814" width="35" height="28"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                    <shadow key="shadow">
-                                                        <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </shadow>
-                                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSFolder" imagePosition="overlaps" alignment="center" userInterfaceLayoutDirection="rightToLeft" imageScaling="proportionallyUpOrDown" inset="2" id="rRo-F3-WDa">
-                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                        <font key="font" metaFont="system"/>
-                                                    </buttonCell>
-                                                    <connections>
-                                                        <action selector="cDirectorySelected:" target="D2q-A7-o8O" id="LuQ-om-FDN"/>
-                                                    </connections>
-                                                </button>
                                                 <button identifier="debug" id="7zC-XN-Ajd">
                                                     <rect key="frame" x="537" y="752" width="46" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -1172,6 +1158,20 @@
                                                     </buttonCell>
                                                     <connections>
                                                         <action selector="tblItemRemove:" target="D2q-A7-o8O" id="MP4-3v-WWu"/>
+                                                    </connections>
+                                                </button>
+                                                <button id="zBn-ts-6XV">
+                                                    <rect key="frame" x="537" y="814" width="35" height="28"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <shadow key="shadow">
+                                                        <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </shadow>
+                                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSFolder" imagePosition="overlaps" alignment="center" userInterfaceLayoutDirection="rightToLeft" imageScaling="proportionallyUpOrDown" inset="2" id="rRo-F3-WDa">
+                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="cDirectorySelected:" target="D2q-A7-o8O" id="LuQ-om-FDN"/>
                                                     </connections>
                                                 </button>
                                             </subviews>

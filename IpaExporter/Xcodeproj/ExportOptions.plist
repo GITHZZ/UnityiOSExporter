@@ -5,14 +5,14 @@
 	<key>destination</key>
 	<string>export</string>
 	<key>method</key>
-	<string>app-store</string>
+	<string>:method:</string>
 	<key>provisioningProfiles</key>
 	<dict>
 		<key>:bundleIdentifier:</key>
 		<string>:profileName:</string>
 	</dict>
 	<key>signingCertificate</key>
-	<string>iPhone Distribution</string>
+	<string>:certificate:</string>
 	<key>signingStyle</key>
 	<string>manual</string>
 	<key>stripSwiftSymbols</key>

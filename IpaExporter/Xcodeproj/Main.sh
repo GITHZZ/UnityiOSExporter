@@ -11,6 +11,7 @@
 #$11 开发者签名文件名字（release）
 #$12 沙盒文件路径
 #$13 bundleIdentifier
+#$14 是否release包
 
 echo "Main.sh脚本执行log"
 #echo "sdk资源文件路径:"${$2}
@@ -29,15 +30,33 @@ unity_proj_path=$6
 main_bundle_res_path=${12}
 custom_sdk_path=$2
 bundleIdentifier=${13}
+is_release=${14}
+
+#设置打包参数
+provisioning_profile=${debug_provisioning_profile}
+team_id=${debug_team_id}
+configuration="Debug"
+method="development"
+signingCertificate='iPhone Developer'
+
+if [ ${is_release} == "1" ]; then
+    provisioning_profile=${release_provisioning_profile}
+    team_id=${release_team_id}
+    configuration="Release"
+    method="app-store"
+    signingCertificate='iPhone Distribution'
+fi
 
 #修改xcode工程
-#替换optionsplist信息
+#替换optionsplist信息   
 res_path=${main_bundle_res_path}"/Xcodeproj/ExportOptions.plist"
 dst_path=${custom_sdk_path}"/Copy/ExportOptions.plist"
 cp -f ${res_path} ${dst_path}
 sed -i '' 's/:bundleIdentifier:/'${bundleIdentifier}'/g' ${dst_path}
-sed -i '' 's/:profileName:/'${release_provisioning_profile}'/g' ${dst_path}
-sed -i '' 's/:developTeam:/'${release_team_id}'/g' ${dst_path}
+sed -i '' 's/:profileName:/'${provisioning_profile}'/g' ${dst_path}
+sed -i '' 's/:developTeam:/'${team_id}'/g' ${dst_path}
+sed -i '' 's/:method:/'${method}'/g' ${dst_path}
+sed -i '' "s/:certificate:/${signingCertificate}/g" ${dst_path}
 
 #参数从$2开始
 ruby -w $1 $2 $3 $4 $5 $6 $7
@@ -59,7 +78,7 @@ echo "清除xcode工程信息"
 xcodebuild \
     clean \
     -scheme "Unity-iPhone" \
-    -configuration "Release" \
+    -configuration ${configuration} \
     -project "Unity-iPhone-"${platform_name}".xcodeproj" \
     > ${unity_proj_path}"/xcodebuild_clean_log_"${platform_name}".txt"
 
@@ -69,10 +88,10 @@ xcodebuild \
     -project "Unity-iPhone-"${platform_name}".xcodeproj" \
     -scheme "Unity-iPhone" \
     -sdk iphoneos \
-    -configuration "Release" \
+    -configuration ${configuration} \
     -archivePath bin/Unity-iPhone-${platform_name}.xcarchive \
-    PROVISIONING_PROFILE_SPECIFIER=${release_provisioning_profile} \
-    DEVELOPMENT_TEAM=${release_team_id} \
+    PROVISIONING_PROFILE_SPECIFIER=${provisioning_profile} \
+    DEVELOPMENT_TEAM=${team_id} \
     -allowProvisioningUpdates \
     > ${unity_proj_path}"/xcodebuild_archive_log_"${platform_name}".txt"
 
