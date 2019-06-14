@@ -47,18 +47,6 @@
     [[EventManager instance] send:EventStartRecordTime withData:nil];
     
     showLog("开始执行Unity打包脚本");
-    ExportInfoManager* view = [ExportInfoManager instance];
-    
-    if(view.info->isExportXcode == 1){
-        showLog("开始生成xcode工程");
-        [[DataResManager instance] start:view.info];
-        showLog([[NSString stringWithFormat:@"[配置信息]Unity工程路径:%s", view.info->unityProjPath] UTF8String]);
-
-        BuilderCSFileEdit* builderEdit = [[BuilderCSFileEdit alloc] init];
-        [builderEdit startWithDstPath:[NSString stringWithUTF8String:view.info->unityProjPath]];
-    }else{
-        showLog("xcode工程生成已跳过,直接进行平台打包");
-    }
     
     //修改xcode工程
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -72,6 +60,8 @@
         
         if(view.info->isExportXcode == 1)
             [self exportXcodeProjInThread:sq];
+        else
+            showLog("xcode工程生成已跳过,直接进行平台打包");
         
         for(int i = 0; i < [detailArray count]; i++){
             dispatch_sync(sq, ^{
@@ -162,17 +152,29 @@
     NSString *xcodeShellPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/Xcodeproj/ExportXcode.sh"];
     ExportInfoManager* view = [ExportInfoManager instance];
     
+    [[DataResManager instance] start:view.info];
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        showLog("开始生成xcode工程");
+        showLog([[NSString stringWithFormat:@"[配置信息]Unity工程路径:%s", view.info->unityProjPath] UTF8String]);
+    });
+  
+    
+    BuilderCSFileEdit* builderEdit = [[BuilderCSFileEdit alloc] init];
+    [builderEdit startWithDstPath:[NSString stringWithUTF8String:view.info->unityProjPath]];
+    
     dispatch_sync(sq, ^{
         //生成xcode工程
         //$1 unity工程路径
         //showLog("开始生成xcode工程");
         NSArray *args = [NSArray arrayWithObjects:
                          [NSString stringWithUTF8String:view.info->unityProjPath],
+                         [NSString stringWithUTF8String:view.info->exportFolderParh],
                          nil];
         NSString *shellLog = [self invokingShellScriptAtPath:xcodeShellPath withArgs:args];
         
         dispatch_sync(dispatch_get_main_queue(), ^{
-            showLog([shellLog UTF8String]);
+            NSString* logStr = [shellLog stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            showLog([logStr UTF8String]);
             showSuccess("导出xcode成功");
             showLog("开始进行平台打包");
         });
