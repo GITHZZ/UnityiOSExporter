@@ -21,28 +21,13 @@
     NSMutableArray<NSString*> *_sceneArray;
     NSTimer *_showTimer;
     NSTimeInterval _packTime;
+    BOOL _isVisable;
 }
 @end
 
 @implementation ViewMain
 
 - (void)viewDidLoad
-{
-    [self startUp];
-    [[EventManager instance] send:EventViewMainLoaded withData:nil];
-}
-
-- (void)viewDidAppear
-{
-    [self registEvent];
-}
-
-- (void)viewDidDisappear
-{
-    [self unRegistEvent];
-}
-
-- (void)startUp
 {
     [[ExportInfoManager instance] reloadPaths];
     
@@ -66,19 +51,9 @@
         [_exportPathBox addItemsWithObjectValues:exportPathArr];
     }
     
-    //从本地读取存储数据
-    NSMutableArray<DetailsInfoData*> *saveArray = [[ExportInfoManager instance] reLoadDetails:SAVE_DETAIL_ARRARY_KEY];
-    _dataDict = [[NSMutableArray alloc] initWithArray:saveArray];
-    
-    NSMutableArray<NSString*> *saveSceneArr = [[ExportInfoManager instance] reLoadDetails:SAVE_SCENE_ARRAY_KEY];
-    _sceneArray = [[NSMutableArray alloc] initWithArray:saveSceneArr];
-    
     //设置数据源
     _platformTbl.delegate = self;
-    _platformTbl.dataSource = self;
-    
     _packSceneTbl.delegate = self;
-    _packSceneTbl.dataSource = self;
     
     _isReleaseBox.state = 0;
     _isExportXcode.state = 1;
@@ -87,6 +62,31 @@
     info->isExportXcode = (int)_isExportXcode.state;
     
     _useTimeLabel.stringValue = @"";
+    
+    [[EventManager instance] send:EventViewMainLoaded withData:nil];
+}
+
+- (void)viewDidAppear
+{
+    _isVisable = YES;
+    
+    //从本地读取存储数据
+    NSMutableArray<DetailsInfoData*> *saveArray = [[ExportInfoManager instance] reLoadDetails:SAVE_DETAIL_ARRARY_KEY];
+    _dataDict = [[NSMutableArray alloc] initWithArray:saveArray];
+    
+    NSMutableArray<NSString*> *saveSceneArr = [[ExportInfoManager instance] reLoadDetails:SAVE_SCENE_ARRAY_KEY];
+    _sceneArray = [[NSMutableArray alloc] initWithArray:saveSceneArr];
+
+    _platformTbl.dataSource = self;
+    _packSceneTbl.dataSource = self;
+    
+    [self registEvent];
+}
+
+- (void)viewDidDisappear
+{
+    _isVisable = NO;
+    [self unRegistEvent];
 }
 
 - (void)registEvent
@@ -105,7 +105,6 @@
                                func:@selector(addNewSuccessContent:)
                            withData:nil
                                self:self];
-    
     
     [[EventManager instance] regist:EventAddNewWarningContent
                                func:@selector(addNewWarningContent:)
