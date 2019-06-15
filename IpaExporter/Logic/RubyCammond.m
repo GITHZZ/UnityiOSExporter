@@ -24,11 +24,7 @@
 - (void)startUp
 {
     _isExporting = false;
-    [self initEvent];
-}
 
-- (void)initEvent
-{
     [[EventManager instance] regist:EventViewSureClicked
                                func:@selector(sureBtnClicked:)
                            withData:nil
@@ -47,8 +43,6 @@
     [[EventManager instance] send:EventStartRecordTime withData:nil];
     
     showLog("开始执行Unity打包脚本");
-    
-    //修改xcode工程
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_group_t group = dispatch_group_create();
     
@@ -72,11 +66,9 @@
     });
     
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
-        //全部打包完毕
         _isExporting = false;
         [[EventManager instance] send:EventSetExportButtonState withData:s_true];
         [[EventManager instance] send:EventStopRecordTime withData:nil];
-        [[DataResManager instance] end];
         
         showSuccess("打包结束");
     });
@@ -153,11 +145,8 @@
     ExportInfoManager* view = [ExportInfoManager instance];
     
     [[DataResManager instance] start:view.info];
-    dispatch_sync(dispatch_get_main_queue(), ^{
-        showLog("开始生成xcode工程");
-        showLog([[NSString stringWithFormat:@"[配置信息]Unity工程路径:%s", view.info->unityProjPath] UTF8String]);
-    });
-  
+    showLog("开始生成xcode工程");
+    showLog([[NSString stringWithFormat:@"[配置信息]Unity工程路径:%s", view.info->unityProjPath] UTF8String]);
     
     BuilderCSFileEdit* builderEdit = [[BuilderCSFileEdit alloc] init];
     [builderEdit startWithDstPath:[NSString stringWithUTF8String:view.info->unityProjPath]];
@@ -165,7 +154,7 @@
     dispatch_sync(sq, ^{
         //生成xcode工程
         //$1 unity工程路径
-        //showLog("开始生成xcode工程");
+        //$2 导出路径
         NSArray *args = [NSArray arrayWithObjects:
                          [NSString stringWithUTF8String:view.info->unityProjPath],
                          [NSString stringWithUTF8String:view.info->exportFolderParh],
@@ -173,6 +162,7 @@
         NSString *shellLog = [self invokingShellScriptAtPath:xcodeShellPath withArgs:args];
         
         dispatch_sync(dispatch_get_main_queue(), ^{
+            [[DataResManager instance] end];
             NSString* logStr = [shellLog stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
             showLog([logStr UTF8String]);
             showSuccess("导出xcode成功");
@@ -249,4 +239,5 @@
         });
     }
 }
+
 @end

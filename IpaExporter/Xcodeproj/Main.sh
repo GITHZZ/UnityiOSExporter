@@ -19,8 +19,9 @@ echo "Main.sh脚本执行log"
 #echo "配置文件路径:"${$5}
 
 xcode_proj_name=$7
-xcode_proj_root_path=$3
-xcode_proj_path=${xcode_proj_root_path}"/"${xcode_proj_name}
+export_path=$3 #export path
+xcode_proj_path=${export_path}"/"${xcode_proj_name}
+export_log_path=${xcode_proj_path}/Logs
 platform_name=$4
 debug_provisioning_profile=$9
 debug_team_id=$8
@@ -47,6 +48,9 @@ if [ ${is_release} == "1" ]; then
     signingCertificate='iPhone Distribution'
 fi
 
+#创建log目录
+mkdir ${export_log_path}
+
 #修改xcode工程
 #替换optionsplist信息   
 res_path=${main_bundle_res_path}"/Xcodeproj/ExportOptions.plist"
@@ -64,7 +68,7 @@ ruby -w $1 $2 $3 $4 $5 $6 $7
 sed -i '' 's/ProvisioningStyle = Automatic;/ProvisioningStyle = Manual;/g' ${xcode_proj_path}"/Unity-iPhone-"${platform_name}".xcodeproj/project.pbxproj"
 
 #处理scheme内容
-project_scheme_path=${xcode_proj_root_path}"/"${xcode_proj_name}"/Unity-iPhone-"${platform_name}".xcodeproj/xcshareddata/xcschemes/Unity-iPhone.xcscheme"
+project_scheme_path=${export_path}"/"${xcode_proj_name}"/Unity-iPhone-"${platform_name}".xcodeproj/xcshareddata/xcschemes/Unity-iPhone.xcscheme"
 #echo ${project_scheme_path}
 
 #修改scheme配置
@@ -80,7 +84,7 @@ xcodebuild \
     -scheme "Unity-iPhone" \
     -configuration ${configuration} \
     -project "Unity-iPhone-"${platform_name}".xcodeproj" \
-    > ${unity_proj_path}"/xcodebuild_clean_log_"${platform_name}".txt"
+    > ${export_log_path}"/xcodebuild_clean_log_"${platform_name}".txt"
 
 echo "生成arvhive工程"
 xcodebuild \
@@ -93,12 +97,16 @@ xcodebuild \
     PROVISIONING_PROFILE_SPECIFIER=${provisioning_profile} \
     DEVELOPMENT_TEAM=${team_id} \
     -allowProvisioningUpdates \
-    > ${unity_proj_path}"/xcodebuild_archive_log_"${platform_name}".txt"
+    > ${export_log_path}"/xcodebuild_archive_log_"${platform_name}".txt"
 
 echo "生成ipa包"
+ipa_folder_path=${xcode_proj_path}"/Unity-iPhone-"${platform_name}
+rm -r ${ipa_folder_path}
+mkdir ${ipa_folder_path}
+
 # 将app打包成ipa
 xcodebuild \
     -exportArchive \
     -archivePath bin/Unity-iPhone-${platform_name}.xcarchive \
     -exportOptionsPlist ${xcode_proj_path}/ExportOptions.plist \
-    -exportPath "$PWD"
+    -exportPath ${ipa_folder_path}

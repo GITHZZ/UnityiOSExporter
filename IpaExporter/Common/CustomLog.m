@@ -17,7 +17,10 @@ void showLog(const char* content, ...)
     NSString* contentStr = [NSString stringWithUTF8String:content];
     NSString* showStr =  [[NSString alloc] initWithFormat:contentStr arguments:ap];
     va_end(ap);
-    [[EventManager instance] send:EventAddNewInfoContent withData:showStr];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[EventManager instance] send:EventAddNewInfoContent withData:showStr];
+    });
 }
 
 void showError(const char* content, ...)
@@ -27,7 +30,10 @@ void showError(const char* content, ...)
     NSString* contentStr = [NSString stringWithUTF8String:content];
     NSString* showStr =  [[NSString alloc] initWithFormat:contentStr arguments:ap];
     va_end(ap);
-    [[EventManager instance] send:EventAddErrorContent withData:showStr];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[EventManager instance] send:EventAddErrorContent withData:showStr];
+    });
 }
 
 void showSuccess(const char* content, ...)
@@ -37,15 +43,8 @@ void showSuccess(const char* content, ...)
     NSString* contentStr = [NSString stringWithUTF8String:content];
     NSString* showStr = [[NSString alloc] initWithFormat:contentStr arguments:ap];
     va_end(ap);
-    [[EventManager instance] send:EventAddNewSuccessContent withData:showStr];
-}
-
-void lua_show_log(const char *s)
-{
-    showLog("*Lua:%@", [NSString stringWithUTF8String:s]);
-}
-
-void lua_show_error(const char *s)
-{
-    showError("*Lua:%s", s);
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[EventManager instance] send:EventAddNewSuccessContent withData:showStr];
+    });
 }

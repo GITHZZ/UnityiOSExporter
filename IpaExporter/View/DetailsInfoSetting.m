@@ -155,7 +155,7 @@
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:appName, App_Name_Key, appID, App_ID_Key, debugProfileName, Debug_Profile_Name, debugDevelopTeam, Debug_Develop_Team, releaseProfileName, Release_Profile_Name, releaseDevelopTeam, Release_Develop_Team, platform, Platform_Name, customSdkPath, Copy_Dir_Path, s_false, Is_Selected ,_frameworkNameArr, Framework_Names, _frameworkIsWeakArr, Framework_IsWeaks, _libNameArr, Lib_Names, _linkerFlagArr, Linker_Flag, _embedFrameworksArr, Embed_Framework, nil];
 
     DetailsInfoData* info = [[DetailsInfoData alloc] initWithInfoDict:dict];
-    if(_isSetDataOnShow)
+    if(_isEditMode)
     {
         [[EventManager instance] send:EventDetailsInfoSettingEdit
                              withData:info];
