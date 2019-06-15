@@ -54,7 +54,9 @@
     //设置数据源
     _platformTbl.delegate = self;
     _packSceneTbl.delegate = self;
-    
+    _platformTbl.dataSource = self;
+    _packSceneTbl.dataSource = self;
+
     _isReleaseBox.state = 0;
     _isExportXcode.state = 1;
     
@@ -77,8 +79,8 @@
     NSMutableArray<NSString*> *saveSceneArr = [[ExportInfoManager instance] reLoadDetails:SAVE_SCENE_ARRAY_KEY];
     _sceneArray = [[NSMutableArray alloc] initWithArray:saveSceneArr];
 
-    _platformTbl.dataSource = self;
-    _packSceneTbl.dataSource = self;
+    [_platformTbl reloadData];
+    [_packSceneTbl reloadData];
     
     [self registEvent];
 }
