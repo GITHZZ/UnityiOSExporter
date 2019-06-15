@@ -55,7 +55,7 @@
         if(view.info->isExportXcode == 1)
             [self exportXcodeProjInThread:sq];
         else
-            showLog("xcode工程生成已跳过,直接进行平台打包");
+            showWarning("xcode工程生成已跳过,直接进行平台打包");
         
         for(int i = 0; i < [detailArray count]; i++){
             dispatch_sync(sq, ^{
@@ -161,13 +161,12 @@
                          nil];
         NSString *shellLog = [self invokingShellScriptAtPath:xcodeShellPath withArgs:args];
         
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            [[DataResManager instance] end];
-            NSString* logStr = [shellLog stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-            showLog([logStr UTF8String]);
-            showSuccess("导出xcode成功");
-            showLog("开始进行平台打包");
-        });
+
+        [[DataResManager instance] end];
+        NSString* logStr = [shellLog stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        showLog([logStr UTF8String]);
+        showSuccess("导出xcode成功");
+        showLog("开始进行平台打包");
     });
 }
 
@@ -178,7 +177,7 @@
     
     ExportInfoManager* view = [ExportInfoManager instance];
     
-     if(data.isSelected){
+     if([data.isSelected isEqualToString:@"1"]){
         //配置json文件
         NSMutableDictionary *jsonData = [NSMutableDictionary dictionary];
         jsonData[@"frameworks"] = data.frameworkNames;
@@ -223,20 +222,15 @@
                          [NSString stringWithFormat:@"%d",view.info->isRelease],
                          nil];
          
-        NSLog(@"%@", [[NSBundle mainBundle]resourcePath]);
-         
+        showLog([[NSString stringWithFormat:@"开始打包 平台:%@", data.platform] UTF8String]);
         NSString *shellLog = [self invokingShellScriptAtPath:shellPath withArgs:args];
-        
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            showLog([[NSString stringWithFormat:@"开始打包 平台:%@", data.platform] UTF8String]);
-            NSString* logStr = [shellLog stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-            showLog([logStr UTF8String]);
+        NSString* logStr = [shellLog stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        showLog([logStr UTF8String]);
             
-            if([shellLog containsString:@"** EXPORT SUCCEEDED **"])
-                showSuccess([[NSString stringWithFormat:@"%@平台,打包成功", data.platform] UTF8String]);
-            else
-                showError([[NSString stringWithFormat:@"%@平台,打包失败,日志已经保存在%s路径中", data.platform, view.info->unityProjPath] UTF8String]);
-        });
+        if([shellLog containsString:@"** EXPORT SUCCEEDED **"])
+            showSuccess([[NSString stringWithFormat:@"%@平台,打包成功", data.platform] UTF8String]);
+        else
+            showError([[NSString stringWithFormat:@"%@平台,打包失败,日志已经保存在%s路径中", data.platform, view.info->unityProjPath] UTF8String]);
     }
 }
 

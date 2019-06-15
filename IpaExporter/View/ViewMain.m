@@ -106,6 +106,12 @@
                            withData:nil
                                self:self];
     
+    
+    [[EventManager instance] regist:EventAddNewWarningContent
+                               func:@selector(addNewWarningContent:)
+                           withData:nil
+                               self:self];
+    
     [[EventManager instance] regist:EventAddErrorContent
                                func:@selector(addNewErrorContent:)
                            withData:nil
@@ -134,6 +140,10 @@
     [[EventManager instance] unRegist:EventAddNewInfoContent
                                self:self];
     [[EventManager instance] unRegist:EventAddErrorContent
+                               self:self];
+    [[EventManager instance] unRegist:EventAddNewSuccessContent
+                               self:self];
+    [[EventManager instance] unRegist:EventAddNewWarningContent
                                self:self];
     [[EventManager instance] unRegist:EventSetExportButtonState
                                  self:self];
@@ -353,6 +363,14 @@
     NSString *infoString = [NSString stringWithFormat:@":heavy_multiplication_x:%@", content];
     infoString = [infoString stringByReplacingEmojiCheatCodesWithUnicode];
     [self renderUpAttriString:infoString withColor:[NSColor redColor]];
+}
+
+- (void)addNewWarningContent:(NSNotification*)notification
+{
+    NSString *content = [notification object];
+    NSString *infoString = [NSString stringWithFormat:@":eight_spoked_asterisk:%@", content];
+    infoString = [infoString stringByReplacingEmojiCheatCodesWithUnicode];
+    [self renderUpAttriString:infoString withColor:[NSColor systemYellowColor]];
 }
 
 - (void)setExportBtnState:(NSNotification*)notification

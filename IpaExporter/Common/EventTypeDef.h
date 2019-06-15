@@ -30,6 +30,7 @@ typedef NS_ENUM(int, EventType){
     EventStartRecordTime         = 116,
     EventStopRecordTime          = 117,
     EventAddNewSuccessContent    = 118,
+    EventAddNewWarningContent    = 119,
 };
 
 

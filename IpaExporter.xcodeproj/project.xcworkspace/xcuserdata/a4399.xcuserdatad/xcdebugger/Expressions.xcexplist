@@ -11,10 +11,13 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[RubyCammond sureBtnClicked:]:RubyCammond.m">
+         contextName = "-[ViewMain isReleaseBtnSelect:]:ViewMain.m">
          <PersistentStrings>
             <PersistentString
-               value = "view.info-&gt;isExportXcode">
+               value = "_isReleaseBox.state">
+            </PersistentString>
+            <PersistentString
+               value = "_isExportXcode.state">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -27,18 +30,29 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[RubyCammond invokingShellScriptAtPath:withArgs:]:RubyCammond.m">
+         contextName = "showLog:CustomLog.m">
          <PersistentStrings>
             <PersistentString
-               value = "args[i]">
+               value = "dispatch_queue_get_label(dispatch_get_main_queue()))">
+            </PersistentString>
+            <PersistentString
+               value = "dispatch_queue_get_label(DISPATCH_CURRENT_QUEUE_LABEL)">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[DetailsInfoSetting viewDidLoad]:DetailsInfoSetting.m">
+         contextName = "-[RubyCammond sureBtnClicked:]:RubyCammond.m">
          <PersistentStrings>
             <PersistentString
-               value = "_frameworkNameArr">
+               value = "view.info-&gt;isExportXcode">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[RubyCammond invokingShellScriptAtPath:withArgs:]:RubyCammond.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "args[i]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -57,18 +71,15 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[MobileprovisionParser createPlistFile]:MobileprovisionParser.m">
-      </ContextState>
-      <ContextState
-         contextName = "-[ViewMain isReleaseBtnSelect:]:ViewMain.m">
+         contextName = "-[DetailsInfoSetting viewDidLoad]:DetailsInfoSetting.m">
          <PersistentStrings>
             <PersistentString
-               value = "_isReleaseBox.state">
-            </PersistentString>
-            <PersistentString
-               value = "_isExportXcode.state">
+               value = "_frameworkNameArr">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[MobileprovisionParser createPlistFile]:MobileprovisionParser.m">
       </ContextState>
    </ContextStates>
 </VariablesViewState>
