@@ -16,3 +16,5 @@ cd ${unity_project_path}
 /Applications/Unity/Unity.app/Contents/MacOS/Unity -buildTarget Ios -bacthmode -quit -projectPath ${unity_project_path} -executeMethod IpaExporter.Builder.BuildApp -logFile ${export_path}/xcodeproj_create_log.txt
 
 echo "[配置信息]Unity日志路径:"${export_path}
+
+grep "Completed 'Build.Player.iOSSupport'" ${export_path}/xcodeproj_create_log.txt

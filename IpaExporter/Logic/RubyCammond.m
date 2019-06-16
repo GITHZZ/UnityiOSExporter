@@ -130,6 +130,7 @@
     [shellTask setStandardOutput:pipe];
     [shellTask setStandardError:pipe];
     [shellTask launch];
+    [shellTask waitUntilExit];
     
     NSFileHandle *file = [pipe fileHandleForReading];
     NSData *data = [file readDataToEndOfFile];
@@ -165,7 +166,12 @@
         [[DataResManager instance] end];
         NSString* logStr = [shellLog stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         showLog([logStr UTF8String]);
-        showSuccess("导出xcode成功");
+        
+        if([logStr containsString:@"Completed 'Build.Player.iOSSupport'"]){
+            showSuccess("导出xcode成功");
+        }else{
+            showError("导出xcode失败，具体请查看log文件");
+        }
         showLog("开始进行平台打包");
     });
 }

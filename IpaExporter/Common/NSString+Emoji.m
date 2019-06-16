@@ -41,7 +41,7 @@ static NSDictionary * s_cheatCodesToUnicode = nil;
                                  @"😟": @":worried:",
                                  @"😦": @":frowning:",
                                  @"😧": @":anguished:",
-                                 @"😮": @[@":open_mouth:", @":o"],
+                                 //@"😮": @[@":open_mouth:", @":o"],
                                  @"😬": @":grimacing:",
                                  @"😕": @":confused:",
                                  @"😯": @":hushed:",

@@ -16,15 +16,12 @@
     Class cls = [self class];
     //动态去取属性方法
     id instance = objc_getAssociatedObject(cls, @"instance");
-    if(!instance)
+    @synchronized (self)
     {
-        @synchronized (self)
+        if(!instance)
         {
-            if(!instance)
-            {
-                instance = [[super allocWithZone:NULL] init];
-                objc_setAssociatedObject(cls, @"instance", instance, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-            }
+            instance = [[super allocWithZone:NULL] init];
+            objc_setAssociatedObject(cls, @"instance", instance, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         }
     }
     return instance;
