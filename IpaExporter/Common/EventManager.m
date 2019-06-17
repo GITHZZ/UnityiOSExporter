@@ -11,15 +11,12 @@
 @implementation EventManager
 
 
-- (void)regist:(EventType)eventType
-          func:(SEL)func
-      withData:(id)obj
-          self:(id)s
+- (void)regist:(EventType)eventType func:(SEL)func self:(id)s
 {
     [[NSNotificationCenter defaultCenter] addObserver:s
                                              selector:func
                                                  name:[NSString stringWithFormat:@"%d", eventType]
-                                               object:obj];
+                                               object:nil];
 }
 
 - (void)unRegist:(EventType)eventType self:(id)s

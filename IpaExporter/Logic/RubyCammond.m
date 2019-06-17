@@ -15,7 +15,7 @@
 
 @interface RubyCammond()
 {
-    BOOL _isExporting;
+    __block BOOL _isExporting;
 }
 @end
 
@@ -27,7 +27,6 @@
 
     [[EventManager instance] regist:EventViewSureClicked
                                func:@selector(sureBtnClicked:)
-                           withData:nil
                                self:self];
 }
 
@@ -36,6 +35,8 @@
     //导出中不走逻辑
     if(_isExporting)
         return;
+    
+    [[EventManager instance] send:EventCleanInfoContent withData:nil];
     
     _isExporting = true;
     
@@ -52,16 +53,22 @@
         
         dispatch_queue_t sq = dispatch_queue_create("exportInfo", DISPATCH_QUEUE_SERIAL);
         
+        BOOL result = YES;
         if(view.info->isExportXcode == 1)
-            [self exportXcodeProjInThread:sq];
+            result = [self exportXcodeProjInThread:sq];
         else
             showWarning("xcode工程生成已跳过,直接进行平台打包");
         
-        for(int i = 0; i < [detailArray count]; i++){
-            dispatch_sync(sq, ^{
-                DetailsInfoData *data = [detailArray objectAtIndex:i];
-                [self editXcodeProject:data];
-            });
+        if(result){
+            showLog("开始进行平台打包");
+            for(int i = 0; i < [detailArray count]; i++){
+                dispatch_sync(sq, ^{
+                    DetailsInfoData *data = [detailArray objectAtIndex:i];
+                    [self editXcodeProject:data];
+                });
+            }
+        }else{
+            showError("由于生成xcode报错,打包ipa中断");
         }
     });
     
@@ -86,7 +93,7 @@
     
     NSString *resourcePath = [[[NSBundle mainBundle]resourcePath]stringByAppendingFormat:@"/%@/", platformName];
     [[NSFileManager defaultManager]createDirectoryAtPath:resourcePath withIntermediateDirectories:YES         attributes:nil error:nil];
-
+    
     NSString *configPath = [resourcePath stringByAppendingString:@"config.json"];
     if(![[NSFileManager defaultManager] fileExistsAtPath:configPath]){
         [[NSFileManager defaultManager] createFileAtPath:configPath contents:nil attributes:nil];
@@ -140,8 +147,9 @@
     return strReturnFormShell;
 }
 
-- (void)exportXcodeProjInThread:(dispatch_queue_t)sq
+- (BOOL)exportXcodeProjInThread:(dispatch_queue_t)sq
 {
+    __block BOOL result = YES;
     NSString *xcodeShellPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/Xcodeproj/ExportXcode.sh"];
     ExportInfoManager* view = [ExportInfoManager instance];
     
@@ -162,18 +170,22 @@
                          nil];
         NSString *shellLog = [self invokingShellScriptAtPath:xcodeShellPath withArgs:args];
         
-
+        
         [[DataResManager instance] end];
         NSString* logStr = [shellLog stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         showLog([logStr UTF8String]);
         
-        if([logStr containsString:@"Completed 'Build.Player.iOSSupport'"]){
+        if([logStr containsString:@"Completed 'Build.Player.iOSSupport'"] ||
+           ![logStr containsString:@"CompilerOutput:-stderr"]){
             showSuccess("导出xcode成功");
         }else{
+            result = NO;
             showError("导出xcode失败，具体请查看log文件");
         }
-        showLog("开始进行平台打包");
+      
     });
+    
+    return result;
 }
 
 - (void)editXcodeProject:(DetailsInfoData*)data

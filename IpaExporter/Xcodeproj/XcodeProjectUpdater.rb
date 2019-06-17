@@ -10,7 +10,9 @@ class XcodeProjectUpdater
 
 		@unity_class_group = new_group(File.join(@group_root_path), PROJECT_RESOURCE_PATH)
 
-		@framework_search_paths_array = Array.new()
+        @framework_search_paths_array = [
+           "$(inherited)",
+        ]
 		@framework_search_paths_array.insert(@framework_search_paths_array.size - 1, PROJECT_RESOURCE_PATH)
 
 		@header_search_paths_array = [
@@ -155,14 +157,18 @@ class XcodeProjectUpdater
 		linker_flags = @setting_hash["linker_flags"]
 		bundle_identifier = @setting_hash["product_bundle_identifier"]
 		
-		#新增系统framework
+    	#新增系统framework
 		@target.add_system_frameworks(frameworks)
 
 		#新增lib(tbd)
 		@target.add_system_library_tbd(libs)
 
 		#设置linker_flags
-		set_build_setting(@target, "OTHER_LDFLAGS", linker_flags)
+        linker_flags.insert(linker_flags.size - 1, "$(inherited)")
+        linker_flags.insert(linker_flags.size - 1, "-weak_framework")
+        linker_flags.insert(linker_flags.size - 1, "CoreMotion")
+        linker_flags.insert(linker_flags.size - 1, "-weak-lSystem")
+        set_build_setting(@target, "OTHER_LDFLAGS", linker_flags)
 
 		#设置证书信息
 		develop_signing_identity = @setting_hash["develop_signing_identity"]

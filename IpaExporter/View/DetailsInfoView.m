@@ -10,6 +10,7 @@
 #import "DetailsInfoData.h"
 
 #import "ExportInfoManager.h"
+#import "Alert.h"
 
 @interface DetailsInfoView()
 {
@@ -40,11 +41,9 @@
 {
     [[EventManager instance] regist:EventDetailsInfoSettingClose
                                func:@selector(detailsInfoViewClose:)
-                           withData:nil
                                self:self];
     [[EventManager instance] regist:EventDetailsInfoSettingEdit
                                func:@selector(detailsInfoViewEdit:)
-                           withData:nil
                                self:self];
 }
 
@@ -72,7 +71,12 @@
 
 - (IBAction)removeBtnClick:(id)sender
 {
-    [self removeInfo];
+    [[Alert instance] alertModalFirstBtnTitle:@"确定" SecondBtnTitle:@"取消" MessageText:@"温馨提示" InformativeText:@"你确定要删除该平台信息?此操作不可还原。" callBackFrist:^{
+        [self removeInfo];
+    } callBackSecond:^{
+    }];
+    
+    
 }
 
 - (IBAction)editDetailInfo:(id)sender

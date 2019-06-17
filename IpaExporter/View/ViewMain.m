@@ -51,6 +51,7 @@
         [_exportPathBox addItemsWithObjectValues:exportPathArr];
     }
     
+    _progressTip.displayedWhenStopped = NO;
     //设置数据源
     _platformTbl.delegate = self;
     _packSceneTbl.delegate = self;
@@ -95,43 +96,32 @@
 {
     [[EventManager instance] regist:EventDetailsInfoUpdate
                                func:@selector(detailsInfoDictUpdate:)
-                           withData:nil
                                self:self];
-    
     [[EventManager instance] regist:EventAddNewInfoContent
                                func:@selector(addNewInfoContent:)
-                           withData:nil
                                self:self];
-    
     [[EventManager instance] regist:EventAddNewSuccessContent
                                func:@selector(addNewSuccessContent:)
-                           withData:nil
                                self:self];
-    
     [[EventManager instance] regist:EventAddNewWarningContent
                                func:@selector(addNewWarningContent:)
-                           withData:nil
                                self:self];
-    
     [[EventManager instance] regist:EventAddErrorContent
                                func:@selector(addNewErrorContent:)
-                           withData:nil
                                self:self];
-    
     [[EventManager instance] regist:EventSetExportButtonState
                                func:@selector(setExportBtnState:)
-                           withData:nil
                                self:self];
-    
     [[EventManager instance] regist:EventStartRecordTime
                                func:@selector(startShowPackTime:)
-                           withData:nil
                                self:self];
-    
     [[EventManager instance] regist:EventStopRecordTime
                                func:@selector(stopShowPackTime:)
-                           withData:nil
                                self:self];
+    [[EventManager instance] regist:EventCleanInfoContent
+                               func:@selector(cleanInfoContent:)
+                               self:self];
+    
 }
 
 - (void)unRegistEvent
@@ -151,6 +141,8 @@
     [[EventManager instance] unRegist:EventStartRecordTime
                                self:self];
     [[EventManager instance] unRegist:EventStopRecordTime
+                               self:self];
+    [[EventManager instance] unRegist:EventCleanInfoContent
                                self:self];
 }
 
@@ -347,7 +339,7 @@
     NSString *content = [notification object];
     NSString *infoString = [NSString stringWithFormat:@":arrow_forward:%@", content];
     infoString = [infoString stringByReplacingEmojiCheatCodesWithUnicode];
-    [self renderUpAttriString:infoString withColor:[NSColor blackColor]];
+    [self renderUpAttriString:infoString withColor:[NSColor blackColor] isBold:NO];
 }
 
 - (void)addNewSuccessContent:(NSNotification*)notification
@@ -355,7 +347,7 @@
     NSString *content = [notification object];
     NSString *infoString = [NSString stringWithFormat:@":heavy_check_mark:%@", content];
     infoString = [infoString stringByReplacingEmojiCheatCodesWithUnicode];
-    [self renderUpAttriString:infoString withColor:[NSColor greenColor]];
+    [self renderUpAttriString:infoString withColor:[NSColor greenColor] isBold:YES];
 }
 
 - (void)addNewErrorContent:(NSNotification*)notification
@@ -363,7 +355,7 @@
     NSString *content = [notification object];
     NSString *infoString = [NSString stringWithFormat:@":heavy_multiplication_x:%@", content];
     infoString = [infoString stringByReplacingEmojiCheatCodesWithUnicode];
-    [self renderUpAttriString:infoString withColor:[NSColor redColor]];
+    [self renderUpAttriString:infoString withColor:[NSColor redColor] isBold:YES];
 }
 
 - (void)addNewWarningContent:(NSNotification*)notification
@@ -371,7 +363,7 @@
     NSString *content = [notification object];
     NSString *infoString = [NSString stringWithFormat:@":eight_spoked_asterisk:%@", content];
     infoString = [infoString stringByReplacingEmojiCheatCodesWithUnicode];
-    [self renderUpAttriString:infoString withColor:[NSColor systemYellowColor]];
+    [self renderUpAttriString:infoString withColor:[NSColor systemYellowColor] isBold:YES];
 }
 
 - (void)setExportBtnState:(NSNotification*)notification
@@ -384,25 +376,30 @@
     }
 }
 
-- (void)renderUpAttriString:(NSString*)string withColor:(NSColor*) color
+- (void)renderUpAttriString:(NSString*)string withColor:(NSColor*) color isBold:(BOOL) isBold
 {
     NSString *newStr = [string stringByAppendingString:@"\n"];
     NSMutableParagraphStyle * paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     [paragraphStyle setLineSpacing:5];
     
     NSMutableAttributedString *addString = [[NSMutableAttributedString alloc] initWithString:newStr];
-    [addString addAttribute:NSFontAttributeName value:[NSFont boldSystemFontOfSize:12] range:NSMakeRange(0, [newStr length] - 1)];
     [addString addAttribute:NSForegroundColorAttributeName value:color range:NSMakeRange(0, [newStr length] - 1)];
     [addString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0,[newStr length] - 1)];
-    
+    [addString addAttribute:NSFontAttributeName value:[NSFont systemFontOfSize:12] range:NSMakeRange(0, [newStr length] - 1)];
+
     [[_infoLabel textStorage] appendAttributedString:addString];
     
     [_infoLabel scrollRectToVisible:CGRectMake(0, _infoLabel.textContainer.size.height-15, _infoLabel.textContainer.size.width, 10)];
 }
 
+- (void)cleanInfoContent:(NSNotification*)notification
+{
+    [[_infoLabel textStorage] deleteCharactersInRange:NSMakeRange(0, [_infoLabel textStorage].length)];
+}
+
 - (void)startShowPackTime:(NSNotification*)notification
 {
-    _useTimeLabel.hidden = false;
+    [_progressTip startAnimation:nil];
     _packTime = 0.0f;
     
     _showTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 repeats:YES block:^(NSTimer * _Nonnull timer) {
@@ -432,6 +429,8 @@
 {
     showLog("总共打包用时%@", _useTimeLabel.stringValue);
     _useTimeLabel.stringValue = @"";
+    [_progressTip stopAnimation:nil];
+
     if([_showTimer isValid]){
         [_showTimer invalidate];
         _showTimer = nil;

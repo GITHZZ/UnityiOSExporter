@@ -18,3 +18,4 @@ cd ${unity_project_path}
 echo "[配置信息]Unity日志路径:"${export_path}
 
 grep "Completed 'Build.Player.iOSSupport'" ${export_path}/xcodeproj_create_log.txt
+grep "CompilerOutput:-stderr" ${export_path}/xcodeproj_create_log.txt

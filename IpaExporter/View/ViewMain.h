@@ -23,6 +23,7 @@
 @property (weak) IBOutlet NSButton *exportBtn;
 @property (weak) IBOutlet NSTextField *useTimeLabel;
 @property (weak) IBOutlet NSButton *isExportXcode;
+@property (weak) IBOutlet NSProgressIndicator *progressTip;
 
 
 - (IBAction)sureBtnClick:(id)sender;

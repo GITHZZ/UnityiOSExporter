@@ -12,11 +12,7 @@
 
 @interface EventManager : Singletion
 
-- (void)regist:(EventType)eventType
-          func:(SEL)func
-      withData:(id)obj
-          self:(id)s;
-
+- (void)regist:(EventType)eventType func:(SEL)func self:(id)s;
 - (void)unRegist:(EventType)eventType self:(id)s;
 - (void)send:(EventType)eventType withData:(id)obj;
 
