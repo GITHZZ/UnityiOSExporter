@@ -23,7 +23,11 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
-                                        <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW"/>
+                                        <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW">
+                                            <connections>
+                                                <segue destination="oOT-AO-0i5" kind="show" id="QF1-18-WUN"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
                                         <menuItem title="Hide IpaExporter" keyEquivalent="h" id="Olw-nP-bQN">
                                             <connections>
@@ -60,7 +64,7 @@
                                                 <action selector="undo:" target="Ady-hI-5gd" id="kSe-bM-e6Y"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Redo" keyEquivalent="Z" id="ZMg-OJ-Fza">
+                                        <menuItem title="Redo" state="on" keyEquivalent="Z" id="ZMg-OJ-Fza">
                                             <connections>
                                                 <action selector="redo:" target="Ady-hI-5gd" id="nVb-QD-Ofy"/>
                                             </connections>
@@ -161,7 +165,7 @@
                     <window key="window" title="iOS打包工具" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="196" y="240" width="683" height="510"/>
+                        <rect key="contentRect" x="560" y="270" width="683" height="510"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                         <connections>
                             <outlet property="delegate" destination="B8D-0N-5wS" id="tbr-eC-X7y"/>
@@ -200,6 +204,78 @@
                 <customObject id="fJp-j1-naa" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="780" y="941"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="vpg-bA-DBt">
+            <objects>
+                <windowController id="oOT-AO-0i5" sceneMemberID="viewController">
+                    <window key="window" title="自定义设置" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="Dc9-4E-txv">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="611" y="382" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                        <connections>
+                            <outlet property="delegate" destination="oOT-AO-0i5" id="fx8-vy-Gp2"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="EJe-3a-Fm2" kind="relationship" relationship="window.shadowedContentViewController" id="Fhv-EA-fQq"/>
+                    </connections>
+                </windowController>
+                <customObject id="eUo-Tz-aL4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="735" y="-77"/>
+        </scene>
+        <!--自定义设置-->
+        <scene sceneID="ZeG-kl-Eiw">
+            <objects>
+                <viewController title="自定义设置" id="EJe-3a-Fm2" customClass="PreferenceView" sceneMemberID="viewController">
+                    <view key="view" id="shW-mq-ewZ">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="2zB-C7-GyH">
+                                <rect key="frame" x="26" y="233" width="147" height="17"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Unity自定义代码文件夹:" id="Z1K-Dg-21D">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" id="3Hc-ea-yUy">
+                                <rect key="frame" x="171" y="223" width="67" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="打开" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ybn-0h-k5F">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="OpenCustomCodeFolder:" target="EJe-3a-Fm2" id="c2f-jj-jnc"/>
+                                </connections>
+                            </button>
+                            <box horizontalHuggingPriority="750" boxType="separator" id="pBo-6j-6Af">
+                                <rect key="frame" x="11" y="12" width="5" height="246"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </box>
+                            <box horizontalHuggingPriority="750" boxType="separator" id="r8M-l3-1Sm">
+                                <rect key="frame" x="465" y="12" width="5" height="246"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </box>
+                            <box verticalHuggingPriority="750" boxType="separator" id="mAy-Mb-R1f">
+                                <rect key="frame" x="13" y="10" width="455" height="5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </box>
+                            <box verticalHuggingPriority="750" boxType="separator" id="4N0-cH-feF">
+                                <rect key="frame" x="13" y="255" width="455" height="5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </box>
+                        </subviews>
+                    </view>
+                </viewController>
+                <customObject id="r2Y-nS-hwe" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1359" y="-77"/>
         </scene>
         <!--项目配置-->
         <scene sceneID="yi6-IH-9Ec">

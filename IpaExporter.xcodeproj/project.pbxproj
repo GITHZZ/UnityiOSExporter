@@ -29,6 +29,7 @@
 		5964C63F229CE169004BDD23 /* Xcodeproj in Resources */ = {isa = PBXBuildFile; fileRef = 5964C63E229CE169004BDD23 /* Xcodeproj */; };
 		5964C642229CE262004BDD23 /* RubyCammond.m in Sources */ = {isa = PBXBuildFile; fileRef = 5964C641229CE262004BDD23 /* RubyCammond.m */; };
 		5979D9DC22A54C3700C040D2 /* MobileprovisionParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5979D9DB22A54C3700C040D2 /* MobileprovisionParser.m */; };
+		59CF0C4222B79D08001A1F91 /* PreferenceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 59CF0C4122B79D08001A1F91 /* PreferenceView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +96,8 @@
 		5964C641229CE262004BDD23 /* RubyCammond.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RubyCammond.m; sourceTree = "<group>"; };
 		5979D9DA22A54C3700C040D2 /* MobileprovisionParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MobileprovisionParser.h; sourceTree = "<group>"; };
 		5979D9DB22A54C3700C040D2 /* MobileprovisionParser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MobileprovisionParser.m; sourceTree = "<group>"; };
+		59CF0C4022B79D08001A1F91 /* PreferenceView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PreferenceView.h; sourceTree = "<group>"; };
+		59CF0C4122B79D08001A1F91 /* PreferenceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PreferenceView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,6 +217,8 @@
 				18DD5E6B1DAF1C150071B654 /* DetailsInfoView.m */,
 				184BEA4E1DC742FA00CCEC4D /* DetailsInfoSetting.h */,
 				184BEA4F1DC742FA00CCEC4D /* DetailsInfoSetting.m */,
+				59CF0C4022B79D08001A1F91 /* PreferenceView.h */,
+				59CF0C4122B79D08001A1F91 /* PreferenceView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -376,6 +381,7 @@
 				18F1027B1DCC2AEB008312E5 /* EventManager.m in Sources */,
 				593FAEF622B097E700A21F33 /* NSString+Emoji.m in Sources */,
 				182DC37D1E8A5AE400912D20 /* Alert.m in Sources */,
+				59CF0C4222B79D08001A1F91 /* PreferenceView.m in Sources */,
 				5964C642229CE262004BDD23 /* RubyCammond.m in Sources */,
 				184BEA501DC742FA00CCEC4D /* DetailsInfoSetting.m in Sources */,
 				183780151D766C84004E3BAD /* main.m in Sources */,
@@ -532,7 +538,7 @@
 					"$(PROJECT_DIR)/IpaExporter",
 					"$(PROJECT_DIR)/IpaExporter/LuaLib",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.IpaExporter.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -557,7 +563,7 @@
 					"$(PROJECT_DIR)/IpaExporter",
 					"$(PROJECT_DIR)/IpaExporter/LuaLib",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.IpaExporter.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

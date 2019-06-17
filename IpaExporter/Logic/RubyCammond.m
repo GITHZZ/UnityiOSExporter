@@ -164,10 +164,13 @@
         //生成xcode工程
         //$1 unity工程路径
         //$2 导出路径
+        //$3 沙盒路径
         NSArray *args = [NSArray arrayWithObjects:
                          [NSString stringWithUTF8String:view.info->unityProjPath],
                          [NSString stringWithUTF8String:view.info->exportFolderParh],
+                         [[NSBundle mainBundle]resourcePath],
                          nil];
+        
         NSString *shellLog = [self invokingShellScriptAtPath:xcodeShellPath withArgs:args];
         
         
