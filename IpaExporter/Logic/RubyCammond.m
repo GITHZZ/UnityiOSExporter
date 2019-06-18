@@ -26,7 +26,7 @@
 {
     _isExporting = false;
     
-    [[NSFileManager defaultManager]createDirectoryAtPath:CACHE_FOLDER_PATH withIntermediateDirectories:YES         attributes:nil error:nil];
+    [[NSFileManager defaultManager]createDirectoryAtPath:CACHE_FOLDER_PATH withIntermediateDirectories:YES attributes:nil error:nil];
     
     [[EventManager instance] regist:EventViewSureClicked
                                func:@selector(sureBtnClicked:)
@@ -95,7 +95,7 @@
     
     
     NSString *resourcePath = [CACHE_FOLDER_PATH stringByAppendingFormat:@"/%@/", platformName];
-    [[NSFileManager defaultManager]createDirectoryAtPath:resourcePath withIntermediateDirectories:YES         attributes:nil error:nil];
+    [[NSFileManager defaultManager]createDirectoryAtPath:resourcePath withIntermediateDirectories:YES attributes:nil error:nil];
     
     NSString *configPath = [resourcePath stringByAppendingString:@"config.json"];
     if(![[NSFileManager defaultManager] fileExistsAtPath:configPath]){
@@ -182,8 +182,8 @@
         showLog([logStr UTF8String]);
         
         if([logStr containsString:@"Completed 'Build.Player.iOSSupport'"] ||
-           ![logStr containsString:@"threw exception."] ||
-           ![logStr containsString:@"CompilerOutput:-stderr"]){
+           (![logStr containsString:@"threw exception."] &&
+           ![logStr containsString:@"CompilerOutput:-stderr"])){
             showSuccess("导出xcode成功");
         }else{
             result = NO;
