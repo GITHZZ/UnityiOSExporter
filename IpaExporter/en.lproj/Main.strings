@@ -1,0 +1,282 @@
+
+/* Class = "NSTextFieldCell"; placeholderString = "example.framework"; ObjectID = "02X-BP-Ni4"; */
+"02X-BP-Ni4.placeholderString" = "example.framework";
+
+/* Class = "NSMenuItem"; title = "扩展"; ObjectID = "11a-jN-iuY"; */
+"11a-jN-iuY.title" = "扩展";
+
+/* Class = "NSButtonCell"; title = "平台1"; ObjectID = "1Dn-rB-e7c"; */
+"1Dn-rB-e7c.title" = "平台1";
+
+/* Class = "NSMenuItem"; title = "iOS打包工具"; ObjectID = "1Xt-HY-uBw"; */
+"1Xt-HY-uBw.title" = "iOS打包工具";
+
+/* Class = "NSTableColumn"; headerCell.title = "Name"; ObjectID = "2MF-eE-7cs"; */
+"2MF-eE-7cs.headerCell.title" = "Name";
+
+/* Class = "NSMenuItem"; title = "用例测试"; ObjectID = "3o6-5w-Uo6"; */
+"3o6-5w-Uo6.title" = "用例测试";
+
+/* Class = "NSBox"; title = "Box"; ObjectID = "4OO-Qk-WbV"; */
+"4OO-Qk-WbV.title" = "Box";
+
+/* Class = "NSTextFieldCell"; title = "请输入配置信息:"; ObjectID = "4Sz-dX-foV"; */
+"4Sz-dX-foV.title" = "请输入配置信息:";
+
+/* Class = "NSMenuItem"; title = "Quit IpaExporter"; ObjectID = "4sb-4s-VLi"; */
+"4sb-4s-VLi.title" = "Quit IpaExporter";
+
+/* Class = "NSMenuItem"; title = "Edit"; ObjectID = "5QF-Oa-p0T"; */
+"5QF-Oa-p0T.title" = "Edit";
+
+/* Class = "NSMenuItem"; title = "About IpaExporter"; ObjectID = "5kV-Vb-QxS"; */
+"5kV-Vb-QxS.title" = "About IpaExporter";
+
+/* Class = "NSTextFieldCell"; placeholderString = "example.tbd"; ObjectID = "5uc-G1-RRQ"; */
+"5uc-G1-RRQ.placeholderString" = "example.tbd";
+
+/* Class = "NSButtonCell"; title = "正式包"; ObjectID = "6A8-Ds-JtB"; */
+"6A8-Ds-JtB.title" = "正式包";
+
+/* Class = "NSTableColumn"; headerCell.title = "isWeak"; ObjectID = "6KC-mL-iIs"; */
+"6KC-mL-iIs.headerCell.title" = "isWeak";
+
+/* Class = "NSTextFieldCell"; placeholderString = "com.productName(必填)"; ObjectID = "8at-6w-qZX"; */
+"8at-6w-qZX.placeholderString" = "com.productName(必填)";
+
+/* Class = "NSButtonCell"; title = "取消"; ObjectID = "8pJ-u6-We3"; */
+"8pJ-u6-We3.title" = "取消";
+
+/* Class = "NSMenuItem"; title = "打开代码编辑文件"; ObjectID = "9FO-Mk-xqG"; */
+"9FO-Mk-xqG.title" = "打开代码编辑文件";
+
+/* Class = "NSMenuItem"; title = "Paste"; ObjectID = "9Kv-0d-FxG"; */
+"9Kv-0d-FxG.title" = "Paste";
+
+/* Class = "NSMenu"; title = "Main Menu"; ObjectID = "AYu-sK-qS6"; */
+"AYu-sK-qS6.title" = "Main Menu";
+
+/* Class = "NSTextFieldCell"; title = "Frameworks(System)"; ObjectID = "AbO-TO-weo"; */
+"AbO-TO-weo.title" = "Frameworks(System)";
+
+/* Class = "NSMenu"; title = "Help"; ObjectID = "B9i-Qe-kbp"; */
+"B9i-Qe-kbp.title" = "Help";
+
+/* Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "BOF-NM-1cW"; */
+"BOF-NM-1cW.title" = "Preferences…";
+
+/* Class = "NSTextFieldCell"; placeholderString = "右侧选择文件"; ObjectID = "Bmg-V7-kll"; */
+"Bmg-V7-kll.placeholderString" = "右侧选择文件";
+
+/* Class = "NSTableColumn"; headerCell.title = "Name"; ObjectID = "Cnc-OB-Zlu"; */
+"Cnc-OB-Zlu.headerCell.title" = "Name";
+
+/* Class = "NSTextFieldCell"; title = "AppID/Bundle Identifier"; ObjectID = "DZO-sT-OXh"; */
+"DZO-sT-OXh.title" = "AppID/Bundle Identifier";
+
+/* Class = "NSWindow"; title = "自定义设置"; ObjectID = "Dc9-4E-txv"; */
+"Dc9-4E-txv.title" = "自定义设置";
+
+/* Class = "NSTextFieldCell"; title = "LinkerFlag"; ObjectID = "DdG-So-YAC"; */
+"DdG-So-YAC.title" = "LinkerFlag";
+
+/* Class = "NSMenuItem"; title = "Cut"; ObjectID = "EDV-qT-Pf2"; */
+"EDV-qT-Pf2.title" = "Cut";
+
+/* Class = "NSViewController"; title = "自定义设置"; ObjectID = "EJe-3a-Fm2"; */
+"EJe-3a-Fm2.title" = "自定义设置";
+
+/* Class = "NSButtonCell"; title = "清除缓存"; ObjectID = "EWv-tM-hpo"; */
+"EWv-tM-hpo.title" = "清除缓存";
+
+/* Class = "NSTextFieldCell"; title = "Embed Frameworks"; ObjectID = "GPa-nn-CGj"; */
+"GPa-nn-CGj.title" = "Embed Frameworks";
+
+/* Class = "NSWindow"; title = "iOS打包工具"; ObjectID = "IQv-IB-iLA"; */
+"IQv-IB-iLA.title" = "iOS打包工具";
+
+/* Class = "NSButtonCell"; title = "导出Xcode工程"; ObjectID = "JYT-Wb-LMu"; */
+"JYT-Wb-LMu.title" = "导出Xcode工程";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "JYs-8B-dZs"; */
+"JYs-8B-dZs.title" = "Text Cell";
+
+/* Class = "NSTextFieldCell"; title = "Provisioning Profile Name(Debug)"; ObjectID = "K2E-eO-fMw"; */
+"K2E-eO-fMw.title" = "Provisioning Profile Name(Debug)";
+
+/* Class = "NSTextFieldCell"; title = "Copy Directory Path"; ObjectID = "KJb-E2-DoF"; */
+"KJb-E2-DoF.title" = "Copy Directory Path";
+
+/* Class = "NSTableColumn"; headerCell.title = "AppName"; ObjectID = "KOm-Yr-Aqe"; */
+"KOm-Yr-Aqe.headerCell.title" = "AppName";
+
+/* Class = "NSMenuItem"; title = "Show All"; ObjectID = "Kd2-mp-pUS"; */
+"Kd2-mp-pUS.title" = "Show All";
+
+/* Class = "NSMenuItem"; title = "说明"; ObjectID = "L3B-4Q-eDH"; */
+"L3B-4Q-eDH.title" = "说明";
+
+/* Class = "NSMenu"; title = "Edit"; ObjectID = "LD6-l9-cTE"; */
+"LD6-l9-cTE.title" = "Edit";
+
+/* Class = "NSTextFieldCell"; placeholderString = "true/false"; ObjectID = "LuU-Js-O1T"; */
+"LuU-Js-O1T.placeholderString" = "true/false";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "LuU-Js-O1T"; */
+"LuU-Js-O1T.title" = "Text Cell";
+
+/* Class = "NSTableColumn"; headerCell.title = "Name"; ObjectID = "NPX-pq-Pi0"; */
+"NPX-pq-Pi0.headerCell.title" = "Name";
+
+/* Class = "NSMenuItem"; title = "Hide IpaExporter"; ObjectID = "Olw-nP-bQN"; */
+"Olw-nP-bQN.title" = "Hide IpaExporter";
+
+/* Class = "NSTextFieldCell"; title = "Libs(System)"; ObjectID = "Om9-Al-2rg"; */
+"Om9-Al-2rg.title" = "Libs(System)";
+
+/* Class = "NSMenuItem"; title = "Copy"; ObjectID = "P3Q-U8-2vm"; */
+"P3Q-U8-2vm.title" = "Copy";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "P3U-EB-url"; */
+"P3U-EB-url.title" = "Text Cell";
+
+/* Class = "NSMenuItem"; title = "Undo"; ObjectID = "Pep-XT-np6"; */
+"Pep-XT-np6.title" = "Undo";
+
+/* Class = "NSTextFieldCell"; title = "Development Team(Release)"; ObjectID = "Pik-lK-LtQ"; */
+"Pik-lK-LtQ.title" = "Development Team(Release)";
+
+/* Class = "NSViewController"; title = "项目配置"; ObjectID = "UBb-r6-fzf"; */
+"UBb-r6-fzf.title" = "项目配置";
+
+/* Class = "NSTextFieldCell"; placeholderString = "example.tbd"; ObjectID = "VYS-Mg-MdT"; */
+"VYS-Mg-MdT.placeholderString" = "example.tbd";
+
+/* Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "Vdr-fp-XzO"; */
+"Vdr-fp-XzO.title" = "Hide Others";
+
+/* Class = "NSButtonCell"; title = "添加"; ObjectID = "WDI-Be-oVq"; */
+"WDI-Be-oVq.title" = "添加";
+
+/* Class = "NSButtonCell"; title = "开始导包"; ObjectID = "Wuq-9v-R3r"; */
+"Wuq-9v-R3r.title" = "开始导包";
+
+/* Class = "NSMenuItem"; title = "iOS打包工具 帮助"; ObjectID = "YD9-ML-3pY"; */
+"YD9-ML-3pY.title" = "iOS打包工具 帮助";
+
+/* Class = "NSTextFieldCell"; title = "平台名字"; ObjectID = "YSp-VN-jpn"; */
+"YSp-VN-jpn.title" = "平台名字";
+
+/* Class = "NSButtonCell"; title = "打开"; ObjectID = "Ybn-0h-k5F"; */
+"Ybn-0h-k5F.title" = "打开";
+
+/* Class = "NSTextFieldCell"; title = "Unity自定义代码文件夹:"; ObjectID = "Z1K-Dg-21D"; */
+"Z1K-Dg-21D.title" = "Unity自定义代码文件夹:";
+
+/* Class = "NSMenuItem"; title = "Redo"; ObjectID = "ZMg-OJ-Fza"; */
+"ZMg-OJ-Fza.title" = "Redo";
+
+/* Class = "NSTextFieldCell"; placeholderString = "只是用于显示(必填)"; ObjectID = "ZpE-kY-Uub"; */
+"ZpE-kY-Uub.placeholderString" = "只是用于显示(必填)";
+
+/* Class = "NSMenuItem"; title = "Window"; ObjectID = "aUF-d1-5bR"; */
+"aUF-d1-5bR.title" = "Window";
+
+/* Class = "NSMenuItem"; title = "Back"; ObjectID = "bgW-mo-WUe"; */
+"bgW-mo-WUe.title" = "Back";
+
+/* Class = "NSComboBoxCell"; placeholderString = "自定义Xcode相关第三方资源路径"; ObjectID = "cBw-iG-9ec"; */
+"cBw-iG-9ec.placeholderString" = "自定义Xcode相关第三方资源路径";
+
+/* Class = "NSTableColumn"; headerCell.title = "平台名字"; ObjectID = "dAT-I4-BW2"; */
+"dAT-I4-BW2.headerCell.title" = "平台名字";
+
+/* Class = "NSTextFieldCell"; placeholderString = "example.framework"; ObjectID = "dzq-On-thU"; */
+"dzq-On-thU.placeholderString" = "example.framework";
+
+/* Class = "NSMenuItem"; title = "打开参数配置文件"; ObjectID = "e0C-sB-n8V"; */
+"e0C-sB-n8V.title" = "打开参数配置文件";
+
+/* Class = "NSTextFieldCell"; title = "Unity工程路径:"; ObjectID = "eS4-Vg-wQm"; */
+"eS4-Vg-wQm.title" = "Unity工程路径:";
+
+/* Class = "NSMenuItem"; title = "Delete"; ObjectID = "ebI-1u-H2m"; */
+"ebI-1u-H2m.title" = "Delete";
+
+/* Class = "NSMenuItem"; title = "Zoom"; ObjectID = "fNp-d3-LnF"; */
+"fNp-d3-LnF.title" = "Zoom";
+
+/* Class = "NSButtonCell"; title = "浏览"; ObjectID = "fnQ-Ot-PGo"; */
+"fnQ-Ot-PGo.title" = "浏览";
+
+/* Class = "NSMenuItem"; title = "Minimize"; ObjectID = "i7f-rE-yxR"; */
+"i7f-rE-yxR.title" = "Minimize";
+
+/* Class = "NSTableColumn"; headerCell.title = "Name"; ObjectID = "jAA-m1-Urd"; */
+"jAA-m1-Urd.headerCell.title" = "Name";
+
+/* Class = "NSMenuItem"; title = "Select All"; ObjectID = "ms0-cP-zmh"; */
+"ms0-cP-zmh.title" = "Select All";
+
+/* Class = "NSTextFieldCell"; title = "Provisioning Profile Name(Release)"; ObjectID = "mvp-uC-Vmb"; */
+"mvp-uC-Vmb.title" = "Provisioning Profile Name(Release)";
+
+/* Class = "NSTextFieldCell"; title = "(0.0M)"; ObjectID = "oQG-Hw-Kcn"; */
+"oQG-Hw-Kcn.title" = "(0.0M)";
+
+/* Class = "NSMenu"; title = "Window"; ObjectID = "p9Q-wp-t9Z"; */
+"p9Q-wp-t9Z.title" = "Window";
+
+/* Class = "NSTableColumn"; headerCell.title = "需要打包平台"; ObjectID = "qhX-B2-hbJ"; */
+"qhX-B2-hbJ.headerCell.title" = "需要打包平台";
+
+/* Class = "NSButtonCell"; title = "浏览"; ObjectID = "r9q-pp-TUa"; */
+"r9q-pp-TUa.title" = "浏览";
+
+/* Class = "NSTableColumn"; headerCell.title = "需要打包Unity场景"; ObjectID = "rRc-Qt-ZzZ"; */
+"rRc-Qt-ZzZ.headerCell.title" = "需要打包Unity场景";
+
+/* Class = "NSTableColumn"; headerCell.title = "Bundle Identifier"; ObjectID = "rZw-Ij-Mv2"; */
+"rZw-Ij-Mv2.headerCell.title" = "Bundle Identifier";
+
+/* Class = "NSTextFieldCell"; placeholderString = "包名字"; ObjectID = "raI-fM-Kj6"; */
+"raI-fM-Kj6.placeholderString" = "包名字";
+
+/* Class = "NSTextFieldCell"; title = "AppName"; ObjectID = "raI-fM-Kj6"; */
+"raI-fM-Kj6.title" = "AppName";
+
+/* Class = "NSMenuItem"; title = "Paste and Match Style"; ObjectID = "sLW-7g-18s"; */
+"sLW-7g-18s.title" = "Paste and Match Style";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "sjT-fR-d5m"; */
+"sjT-fR-d5m.title" = "Text Cell";
+
+/* Class = "NSMenu"; title = "iOS打包工具"; ObjectID = "uQy-DD-JDr"; */
+"uQy-DD-JDr.title" = "iOS打包工具";
+
+/* Class = "NSTextFieldCell"; title = "导出路径:"; ObjectID = "w0O-nt-xo8"; */
+"w0O-nt-xo8.title" = "导出路径:";
+
+/* Class = "NSTextFieldCell"; placeholderString = "右侧选择文件"; ObjectID = "wW8-S9-ymx"; */
+"wW8-S9-ymx.placeholderString" = "右侧选择文件";
+
+/* Class = "NSMenuItem"; title = "Help"; ObjectID = "wpr-3q-Mcd"; */
+"wpr-3q-Mcd.title" = "Help";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "x1h-fc-yBh"; */
+"x1h-fc-yBh.title" = "Text Cell";
+
+/* Class = "NSTextFieldCell"; title = "Development Team(Debug)"; ObjectID = "xED-Gr-nTJ"; */
+"xED-Gr-nTJ.title" = "Development Team(Debug)";
+
+/* Class = "NSMenu"; title = "扩展"; ObjectID = "yDk-O8-Mh2"; */
+"yDk-O8-Mh2.title" = "扩展";
+
+/* Class = "NSTextFieldCell"; placeholderString = "包名字(必填)"; ObjectID = "yjV-Hv-5Os"; */
+"yjV-Hv-5Os.placeholderString" = "包名字(必填)";
+
+/* Class = "NSViewController"; title = "包配置"; ObjectID = "ysZ-Di-5bf"; */
+"ysZ-Di-5bf.title" = "包配置";
+
+/* Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "zds-HX-vTH"; */
+"zds-HX-vTH.title" = "Bring All to Front";

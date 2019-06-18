@@ -50,6 +50,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0EE0A4C522B9437600DBB300 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = English; path = English.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0EE0A4C722B943D200DBB300 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0EE0A4C922B943E200DBB300 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		0EE0A4CA22B943F800DBB300 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		182186401E5ACAD5003599CD /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		1828197A1E4C5E2C00CEC719 /* EventTypeDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EventTypeDef.h; sourceTree = "<group>"; };
 		182DC37B1E8A5AE400912D20 /* Alert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Alert.h; sourceTree = "<group>"; };
@@ -65,7 +69,6 @@
 		183780111D766C84004E3BAD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		183780141D766C84004E3BAD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		183780191D766C84004E3BAD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		1837801C1D766C84004E3BAD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1837801E1D766C84004E3BAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		183780231D766C84004E3BAD /* IpaExporterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IpaExporterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		183780271D766C84004E3BAD /* IpaExporterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IpaExporterTests.m; sourceTree = "<group>"; };
@@ -331,6 +334,7 @@
 				English,
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 183780041D766C84004E3BAD;
 			productRefGroup = 1837800E1D766C84004E3BAD /* Products */;
@@ -432,7 +436,10 @@
 		1837801B1D766C84004E3BAD /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				1837801C1D766C84004E3BAD /* Base */,
+				0EE0A4C522B9437600DBB300 /* English */,
+				0EE0A4C722B943D200DBB300 /* Base */,
+				0EE0A4C922B943E200DBB300 /* en */,
+				0EE0A4CA22B943F800DBB300 /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

@@ -12,6 +12,10 @@
 
 - (void)viewDidAppear
 {
+}
+
+- (void)viewDidDisappear
+{
     
 }
 
@@ -29,8 +33,15 @@
 
 @implementation ExtensionsMenu
 
-- (IBAction)test:(id)sender
+- (IBAction)openCustomCodeFile:(id)sender
 {
-    NSLog(@"123");
+    NSString *filePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/DataTemplete/Builder/_CustomBuilder.cs"];
+    [[NSWorkspace sharedWorkspace] openFile:filePath];
+}
+
+- (IBAction)openCustomConfig:(id)sender
+{
+    NSString *filePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/DataTemplete/Builder/_CustomConfig.json"];
+    [[NSWorkspace sharedWorkspace] openFile:filePath];
 }
 @end
