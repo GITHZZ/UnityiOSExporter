@@ -13,6 +13,7 @@
 #import "EventManager.h"
 
 #define XCODE_PROJ_NAME @"xcodeProj"
+#define CACHE_FOLDER_PATH [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/Packer"]
 
 #define DATA_PATH @"/DataTemplete"
 #define IPA_PLIST_PATH @"/Assets/Editor/DataTemplete/IPA.plist"

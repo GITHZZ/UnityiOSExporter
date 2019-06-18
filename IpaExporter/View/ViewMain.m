@@ -66,6 +66,10 @@
     
     _useTimeLabel.stringValue = @"";
     
+    [[EventManager instance] regist:EventStopRecordTime
+                               func:@selector(stopShowPackTime:)
+                               self:self];
+    
     [[EventManager instance] send:EventViewMainLoaded withData:nil];
 }
 
@@ -115,9 +119,6 @@
     [[EventManager instance] regist:EventStartRecordTime
                                func:@selector(startShowPackTime:)
                                self:self];
-    [[EventManager instance] regist:EventStopRecordTime
-                               func:@selector(stopShowPackTime:)
-                               self:self];
     [[EventManager instance] regist:EventCleanInfoContent
                                func:@selector(cleanInfoContent:)
                                self:self];
@@ -139,8 +140,6 @@
     [[EventManager instance] unRegist:EventSetExportButtonState
                                  self:self];
     [[EventManager instance] unRegist:EventStartRecordTime
-                               self:self];
-    [[EventManager instance] unRegist:EventStopRecordTime
                                self:self];
     [[EventManager instance] unRegist:EventCleanInfoContent
                                self:self];

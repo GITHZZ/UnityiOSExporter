@@ -63,6 +63,7 @@ sed -i '' 's/:method:/'${method}'/g' ${dst_path}
 sed -i '' "s/:certificate:/${signingCertificate}/g" ${dst_path}
 
 #参数从$2开始
+#减去2就是 rb中取参数的index 例如ARGV.at(3) 就是取$5参数
 ruby -w $1 $2 $3 $4 $5 $6 $7
 
 sed -i '' 's/ProvisioningStyle = Automatic;/ProvisioningStyle = Manual;/g' ${xcode_proj_path}"/Unity-iPhone-"${platform_name}".xcodeproj/project.pbxproj"

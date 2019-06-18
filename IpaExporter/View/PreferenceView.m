@@ -10,10 +10,27 @@
 
 @implementation PreferenceView
 
--(IBAction)OpenCustomCodeFolder:(id)sender
+- (void)viewDidAppear
+{
+    
+}
+
+- (IBAction)openCustomCodeFolder:(id)sender
 {
     NSString *resPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/DataTemplete/Builder"];
     [[NSWorkspace sharedWorkspace] selectFile:nil inFileViewerRootedAtPath:resPath];
 }
 
+- (IBAction)cleanAllCache:(id)sender
+{
+    
+}
+@end
+
+@implementation ExtensionsMenu
+
+- (IBAction)test:(id)sender
+{
+    NSLog(@"123");
+}
 @end

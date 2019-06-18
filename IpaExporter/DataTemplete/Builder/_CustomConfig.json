@@ -1,3 +1,6 @@
 {
-  "test" : 1
+    "isTest":false,
+    "isFull":false,
+    "isVest":false,
+    "language":false
 }

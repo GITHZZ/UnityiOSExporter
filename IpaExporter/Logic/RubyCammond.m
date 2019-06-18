@@ -12,6 +12,7 @@
 #import "DataResManager.h"
 #import "BuilderCSFileEdit.h"
 #import "NSString+Emoji.h"
+#import "Defs.h"
 
 @interface RubyCammond()
 {
@@ -24,7 +25,9 @@
 - (void)startUp
 {
     _isExporting = false;
-
+    
+    [[NSFileManager defaultManager]createDirectoryAtPath:CACHE_FOLDER_PATH withIntermediateDirectories:YES         attributes:nil error:nil];
+    
     [[EventManager instance] regist:EventViewSureClicked
                                func:@selector(sureBtnClicked:)
                                self:self];
@@ -91,7 +94,7 @@
     }
     
     
-    NSString *resourcePath = [[[NSBundle mainBundle]resourcePath]stringByAppendingFormat:@"/%@/", platformName];
+    NSString *resourcePath = [CACHE_FOLDER_PATH stringByAppendingFormat:@"/%@/", platformName];
     [[NSFileManager defaultManager]createDirectoryAtPath:resourcePath withIntermediateDirectories:YES         attributes:nil error:nil];
     
     NSString *configPath = [resourcePath stringByAppendingString:@"config.json"];
@@ -179,6 +182,7 @@
         showLog([logStr UTF8String]);
         
         if([logStr containsString:@"Completed 'Build.Player.iOSSupport'"] ||
+           ![logStr containsString:@"threw exception."] ||
            ![logStr containsString:@"CompilerOutput:-stderr"]){
             showSuccess("导出xcode成功");
         }else{

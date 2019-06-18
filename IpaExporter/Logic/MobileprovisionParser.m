@@ -7,6 +7,7 @@
 //
 
 #import "MobileprovisionParser.h"
+#import "Defs.h"
 
 @interface MobileprovisionParser()
 {
@@ -37,8 +38,7 @@
     NSTask *shellTask = [[NSTask alloc] init];
     [shellTask setLaunchPath:@"/bin/sh"];
     
-
-    NSString *shellStr = [NSString stringWithFormat:@"security cms -D -i %@%@.mobileprovision > %@/%@.plist", _rootPath, _fileName, [[NSBundle mainBundle] resourcePath], _fileName];
+    NSString *shellStr = [NSString stringWithFormat:@"security cms -D -i %@%@.mobileprovision > %@/%@.plist", _rootPath, _fileName, CACHE_FOLDER_PATH, _fileName];
     
     [shellTask setArguments:[NSArray arrayWithObjects:@"-c", shellStr, nil]];
     NSPipe *pipe = [[NSPipe alloc] init];
@@ -49,7 +49,7 @@
 
 - (void)parsePlistFile
 {
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:_fileName ofType:@"plist"];
+    NSString *filePath = [NSString stringWithFormat:@"%@/%@.%@",CACHE_FOLDER_PATH, _fileName, @"plist"];
     NSDictionary *plist = [[NSDictionary alloc] initWithContentsOfFile:filePath];
     
     _appIDName = plist[@"AppIDName"];

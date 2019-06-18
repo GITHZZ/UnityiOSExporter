@@ -55,6 +55,29 @@
                                     </items>
                                 </menu>
                             </menuItem>
+                            <menuItem title="扩展" id="11a-jN-iuY" customClass="ExtensionsMenu">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="扩展" id="yDk-O8-Mh2">
+                                    <items>
+                                        <menuItem title="打开代码编辑文件" id="9FO-Mk-xqG">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem title="打开参数配置文件" id="e0C-sB-n8V">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem title="用例测试" id="3o6-5w-Uo6" userLabel="Back">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="wyB-pv-AJb"/>
+                                        <menuItem title="说明" id="L3B-4Q-eDH">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="arrangeInFront:" target="Ady-hI-5gd" id="8PL-8u-K4h"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
                             <menuItem title="Edit" id="5QF-Oa-p0T">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Edit" id="LD6-l9-cTE">
@@ -251,7 +274,18 @@
                                     <font key="font" usesAppearanceFont="YES"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="OpenCustomCodeFolder:" target="EJe-3a-Fm2" id="c2f-jj-jnc"/>
+                                    <action selector="openCustomCodeFolder:" target="EJe-3a-Fm2" id="vqs-sg-BGI"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" id="8Ma-32-u85">
+                                <rect key="frame" x="22" y="13" width="94" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="清除缓存" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="EWv-tM-hpo">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="cleanAllCache:" target="EJe-3a-Fm2" id="Og7-E9-os2"/>
                                 </connections>
                             </button>
                             <box horizontalHuggingPriority="750" boxType="separator" id="pBo-6j-6Af">
@@ -270,12 +304,24 @@
                                 <rect key="frame" x="13" y="255" width="455" height="5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="2LI-ku-MwM">
+                                <rect key="frame" x="115" y="23" width="147" height="17"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="(0.0M)" id="oQG-Hw-Kcn">
+                                    <font key="font" size="15" name=".PingFangSC-Regular"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
+                    <connections>
+                        <outlet property="cacheSize" destination="2LI-ku-MwM" id="xcz-Fx-LW5"/>
+                    </connections>
                 </viewController>
                 <customObject id="r2Y-nS-hwe" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1359" y="-77"/>
+            <point key="canvasLocation" x="735" y="337"/>
         </scene>
         <!--项目配置-->
         <scene sceneID="yi6-IH-9Ec">
