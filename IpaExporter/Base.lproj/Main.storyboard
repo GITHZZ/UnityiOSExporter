@@ -59,29 +59,25 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="扩展" id="yDk-O8-Mh2">
                                     <items>
-                                        <menuItem title="打开代码编辑文件" id="9FO-Mk-xqG">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        <menuItem title="打开代码编辑文件" keyEquivalent="o" id="9FO-Mk-xqG">
                                             <connections>
                                                 <action selector="openCustomCodeFile:" target="11a-jN-iuY" id="O0e-IH-mMP"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="打开参数配置文件" id="e0C-sB-n8V">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        <menuItem title="打开参数配置文件" keyEquivalent="O" id="e0C-sB-n8V">
+                                            <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
                                             <connections>
                                                 <action selector="openCustomConfig:" target="11a-jN-iuY" id="3DP-lq-TW0"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="用例测试" id="3o6-5w-Uo6" userLabel="Back">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                        </menuItem>
-                                        <menuItem title="备份" id="WPk-V3-lnS">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        <menuItem title="用例测试" keyEquivalent="t" id="3o6-5w-Uo6" userLabel="Back"/>
+                                        <menuItem title="备份" keyEquivalent="s" id="WPk-V3-lnS">
                                             <connections>
                                                 <action selector="backup:" target="11a-jN-iuY" id="9YJ-hl-7t7"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="恢复" id="K08-ZR-eoy">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        <menuItem title="恢复" keyEquivalent="S" id="K08-ZR-eoy">
+                                            <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
                                             <connections>
                                                 <action selector="restore:" target="11a-jN-iuY" id="Og1-Tt-aKI"/>
                                             </connections>
@@ -341,7 +337,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="0Gi-Yc-Mht">
-                                <rect key="frame" x="157" y="204" width="201" height="17"/>
+                                <rect key="frame" x="157" y="204" width="302" height="17"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" sendsActionOnEndEditing="YES" placeholderString="选择存储路径" drawsBackground="YES" id="k8M-Fh-60E">
                                     <font key="font" usesAppearanceFont="YES"/>
@@ -350,7 +346,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" id="KlO-aA-AuX">
-                                <rect key="frame" x="360" y="195" width="67" height="32"/>
+                                <rect key="frame" x="22" y="168" width="67" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="浏览" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="HPx-U9-FS0">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

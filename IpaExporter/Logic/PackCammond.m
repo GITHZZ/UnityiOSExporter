@@ -82,6 +82,7 @@
         [[EventManager instance] send:EventSetExportButtonState withData:s_true];
         [[EventManager instance] send:EventStopRecordTime withData:nil];
         
+        [NSApp activateIgnoringOtherApps:YES];
         showSuccess("打包结束");
     });
 }
@@ -171,9 +172,11 @@
         if([logStr containsString:@"Completed 'Build.Player.iOSSupport'"] ||
            (![logStr containsString:@"error CS"])){
             showSuccess("导出xcode成功");
+            [NSApp activateIgnoringOtherApps:YES];
         }else{
             result = NO;
             showError("导出xcode失败，具体请查看log文件");
+            [NSApp activateIgnoringOtherApps:YES];
             [[NSWorkspace sharedWorkspace] openFile:[NSString stringWithFormat:@"%s/xcodeproj_create_log.txt", view.info->exportFolderParh]];
         }
       
@@ -239,10 +242,13 @@
         NSString* logStr = [shellLog stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         showLog([logStr UTF8String]);
             
-        if([shellLog containsString:@"** EXPORT SUCCEEDED **"])
+        if([shellLog containsString:@"** EXPORT SUCCEEDED **"]){
+            [NSApp activateIgnoringOtherApps:YES];
             showSuccess([[NSString stringWithFormat:@"%@平台,打包成功", data.platform] UTF8String]);
-        else
+        }else{
+            [NSApp activateIgnoringOtherApps:YES];
             showError([[NSString stringWithFormat:@"%@平台,打包失败,日志已经保存在%s路径中", data.platform, view.info->unityProjPath] UTF8String]);
+        }
     }
 }
 
@@ -253,9 +259,17 @@
     if(backUpPath == nil || [backUpPath isEqualToString:@""])
         backUpPath = [NSString stringWithFormat:@"%s", exportManager.info->unityProjPath];
     
-    NSString* srcPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:DATA_PATH];
+    NSString *srcPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/DataTemplete/Builder/Users"];
     NSString *shellStr = [NSString stringWithFormat:@"cp -r %@ %@", srcPath, backUpPath];
-    [self createTerminalTask:shellStr];
+    NSString *strReturnFormShell = [self createTerminalTask:shellStr];
+    
+    if([strReturnFormShell isEqualToString:@""]){
+        showSuccess("备份成功");
+    }else{
+        NSString* logStr = [strReturnFormShell stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        showLog([logStr UTF8String]);
+        showError("备份失败");
+    }
 }
 
 //需要重构下
@@ -266,10 +280,20 @@
     if(backUpPath == nil || [backUpPath isEqualToString:@""])
         backUpPath = [NSString stringWithFormat:@"%s", exportManager.info->unityProjPath];
     
-    backUpPath = [backUpPath stringByAppendingString:DATA_PATH];
-    NSString* srcPath = [[NSBundle mainBundle] resourcePath];
+    backUpPath = [backUpPath stringByAppendingString:@"/Users"];
+    NSString* srcPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/DataTemplete/Builder"];
     NSString *shellStr = [NSString stringWithFormat:@"cp -r %@ %@", backUpPath, srcPath];
-    [self createTerminalTask:shellStr];
+    NSString *strReturnFormShell = [self createTerminalTask:shellStr];
+    
+    if([strReturnFormShell isEqualToString:@""]){
+        showSuccess("恢复成功");
+    }else{
+        NSString* logStr = [strReturnFormShell
+                            stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        showLog([logStr UTF8String]);
+        showError("恢复失败");
+    }
+
 }
 
 - (NSString*)createTerminalTask:(NSString*)order

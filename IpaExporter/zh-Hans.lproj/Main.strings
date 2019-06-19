@@ -195,7 +195,7 @@
 "dzq-On-thU.placeholderString" = "example.framework";
 
 /* Class = "NSMenuItem"; title = "打开参数配置文件"; ObjectID = "e0C-sB-n8V"; */
-"e0C-sB-n8V.title" = "设置代码配置参数";
+"e0C-sB-n8V.title" = "设置代码参数";
 
 /* Class = "NSTextFieldCell"; title = "Unity工程路径:"; ObjectID = "eS4-Vg-wQm"; */
 "eS4-Vg-wQm.title" = "Unity工程路径:";
