@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E211BC622BAB29C00334CC0 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 0E211BC522BAB29C00334CC0 /* README.md */; };
 		182DC37D1E8A5AE400912D20 /* Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = 182DC37C1E8A5AE400912D20 /* Alert.m */; };
 		182FF6F31E4D936700CC0C7C /* DetailsInfoData.m in Sources */ = {isa = PBXBuildFile; fileRef = 182FF6F01E4D936700CC0C7C /* DetailsInfoData.m */; };
 		182FF6F41E4D936700CC0C7C /* ExportInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 182FF6F21E4D936700CC0C7C /* ExportInfoManager.m */; };
@@ -50,6 +51,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0E211BC522BAB29C00334CC0 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		0EE0A4C522B9437600DBB300 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = English; path = English.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0EE0A4C722B943D200DBB300 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0EE0A4C922B943E200DBB300 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
@@ -63,7 +65,7 @@
 		182FF6F21E4D936700CC0C7C /* ExportInfoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportInfoManager.m; sourceTree = "<group>"; };
 		18322A8C1DAE193B0049660B /* BuilderCSFileEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuilderCSFileEdit.h; sourceTree = "<group>"; };
 		18322A8D1DAE193B0049660B /* BuilderCSFileEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuilderCSFileEdit.m; sourceTree = "<group>"; };
-		1837800D1D766C84004E3BAD /* IpaExporter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IpaExporter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1837800D1D766C84004E3BAD /* iOS打包工具.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS打包工具.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		183780101D766C84004E3BAD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		183780111D766C84004E3BAD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		183780141D766C84004E3BAD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 		183780041D766C84004E3BAD = {
 			isa = PBXGroup;
 			children = (
+				0E211BC522BAB29C00334CC0 /* README.md */,
 				5964C63E229CE169004BDD23 /* Xcodeproj */,
 				1890344F1DE82FCF00AEDF46 /* DataTemplete */,
 				1837800F1D766C84004E3BAD /* IpaExporter */,
@@ -143,7 +146,7 @@
 		1837800E1D766C84004E3BAD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1837800D1D766C84004E3BAD /* IpaExporter.app */,
+				1837800D1D766C84004E3BAD /* iOS打包工具.app */,
 				183780231D766C84004E3BAD /* IpaExporterTests.xctest */,
 				1837802E1D766C85004E3BAD /* IpaExporterUITests.xctest */,
 			);
@@ -263,7 +266,7 @@
 			);
 			name = IpaExporter;
 			productName = IpaExporter;
-			productReference = 1837800D1D766C84004E3BAD /* IpaExporter.app */;
+			productReference = 1837800D1D766C84004E3BAD /* iOS打包工具.app */;
 			productType = "com.apple.product-type.application";
 		};
 		183780221D766C84004E3BAD /* IpaExporterTests */ = {
@@ -355,6 +358,7 @@
 			files = (
 				1837801A1D766C84004E3BAD /* Assets.xcassets in Resources */,
 				5964C63F229CE169004BDD23 /* Xcodeproj in Resources */,
+				0E211BC622BAB29C00334CC0 /* README.md in Resources */,
 				1837801D1D766C84004E3BAD /* Main.storyboard in Resources */,
 				189034501DE82FCF00AEDF46 /* DataTemplete in Resources */,
 			);
@@ -547,7 +551,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.IpaExporter.test;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "iOS打包工具";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
@@ -572,7 +576,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.IpaExporter.test;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "iOS打包工具";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;

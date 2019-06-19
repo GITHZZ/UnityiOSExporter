@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1837800C1D766C84004E3BAD"
-               BuildableName = "IpaExporter.app"
+               BuildableName = "iOS&#x6253;&#x5305;&#x5de5;&#x5177;.app"
                BlueprintName = "IpaExporter"
                ReferencedContainer = "container:IpaExporter.xcodeproj">
             </BuildableReference>
@@ -53,7 +53,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1837800C1D766C84004E3BAD"
-            BuildableName = "IpaExporter.app"
+            BuildableName = "iOS&#x6253;&#x5305;&#x5de5;&#x5177;.app"
             BlueprintName = "IpaExporter"
             ReferencedContainer = "container:IpaExporter.xcodeproj">
          </BuildableReference>
@@ -76,7 +76,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1837800C1D766C84004E3BAD"
-            BuildableName = "IpaExporter.app"
+            BuildableName = "iOS&#x6253;&#x5305;&#x5de5;&#x5177;.app"
             BlueprintName = "IpaExporter"
             ReferencedContainer = "container:IpaExporter.xcodeproj">
          </BuildableReference>
@@ -95,7 +95,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1837800C1D766C84004E3BAD"
-            BuildableName = "IpaExporter.app"
+            BuildableName = "iOS&#x6253;&#x5305;&#x5de5;&#x5177;.app"
             BlueprintName = "IpaExporter"
             ReferencedContainer = "container:IpaExporter.xcodeproj">
          </BuildableReference>

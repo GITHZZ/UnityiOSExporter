@@ -77,4 +77,10 @@
     [[PackCammond instance] restoreCustomCode];
 }
 
+- (IBAction)ShowHelp:(id)sender
+{
+    NSString *filePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/README.md"];
+    [[NSWorkspace sharedWorkspace] openFile:filePath];
+}
+
 @end

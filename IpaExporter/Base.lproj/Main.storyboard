@@ -86,7 +86,7 @@
                                         <menuItem title="说明" id="L3B-4Q-eDH">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="arrangeInFront:" target="Ady-hI-5gd" id="8PL-8u-K4h"/>
+                                                <action selector="ShowHelp:" target="11a-jN-iuY" id="hcs-HI-CXQ"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -178,7 +178,7 @@
                                     <items>
                                         <menuItem title="iOS打包工具 帮助" keyEquivalent="?" id="YD9-ML-3pY">
                                             <connections>
-                                                <action selector="showHelp:" target="Ady-hI-5gd" id="pRF-Ry-VoM"/>
+                                                <action selector="ShowHelp:" target="11a-jN-iuY" id="IAV-65-C61"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -291,17 +291,6 @@
                                     <action selector="openCustomCodeFolder:" target="EJe-3a-Fm2" id="vqs-sg-BGI"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" id="8Ma-32-u85">
-                                <rect key="frame" x="22" y="13" width="94" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="清除缓存" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="EWv-tM-hpo">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" usesAppearanceFont="YES"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="cleanAllCache:" target="EJe-3a-Fm2" id="Og7-E9-os2"/>
-                                </connections>
-                            </button>
                             <box horizontalHuggingPriority="750" boxType="separator" id="pBo-6j-6Af">
                                 <rect key="frame" x="11" y="12" width="5" height="246"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -354,6 +343,17 @@
                                 </buttonCell>
                                 <connections>
                                     <action selector="savePathSelect:" target="EJe-3a-Fm2" id="BXk-7c-KX2"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" id="8Ma-32-u85">
+                                <rect key="frame" x="22" y="13" width="94" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="清除缓存" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="EWv-tM-hpo">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="cleanAllCache:" target="EJe-3a-Fm2" id="Og7-E9-os2"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -420,7 +420,7 @@
                                 <rect key="frame" x="28" y="20" width="443" height="350"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="AbN-fo-fnQ">
-                                    <rect key="frame" x="0.0" y="0.0" width="428" height="350"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="443" height="350"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView editable="NO" importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="m5b-px-hcQ">
@@ -428,7 +428,7 @@
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="428" height="350"/>
+                                            <size key="minSize" width="443" height="350"/>
                                             <size key="maxSize" width="463" height="10000000"/>
                                             <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         </textView>
@@ -439,7 +439,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="41c-u0-Tqn">
-                                    <rect key="frame" x="428" y="0.0" width="15" height="350"/>
+                                    <rect key="frame" x="427" y="0.0" width="16" height="350"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -830,7 +830,7 @@
                                 <rect key="frame" x="15" y="46" width="610" height="419"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <clipView key="contentView" autoresizesSubviews="NO" focusRingType="none" copiesOnScroll="NO" id="YC7-nJ-Y6r">
-                                    <rect key="frame" x="1" y="1" width="593" height="417"/>
+                                    <rect key="frame" x="1" y="1" width="608" height="417"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <view id="638-73-X4r">
@@ -1355,7 +1355,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="9YB-yJ-KwW">
-                                    <rect key="frame" x="594" y="1" width="15" height="417"/>
+                                    <rect key="frame" x="593" y="1" width="16" height="417"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>

@@ -24,13 +24,13 @@
 "4Sz-dX-foV.title" = "请输入配置信息:";
 
 /* Class = "NSMenuItem"; title = "Quit IpaExporter"; ObjectID = "4sb-4s-VLi"; */
-"4sb-4s-VLi.title" = "Quit IpaExporter";
+"4sb-4s-VLi.title" = "退出打包工具";
 
 /* Class = "NSMenuItem"; title = "Edit"; ObjectID = "5QF-Oa-p0T"; */
 "5QF-Oa-p0T.title" = "Edit";
 
 /* Class = "NSMenuItem"; title = "About IpaExporter"; ObjectID = "5kV-Vb-QxS"; */
-"5kV-Vb-QxS.title" = "About IpaExporter";
+"5kV-Vb-QxS.title" = "关于ipa打包工具";
 
 /* Class = "NSTextFieldCell"; placeholderString = "example.tbd"; ObjectID = "5uc-G1-RRQ"; */
 "5uc-G1-RRQ.placeholderString" = "example.tbd";
@@ -63,7 +63,7 @@
 "B9i-Qe-kbp.title" = "帮助";
 
 /* Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "BOF-NM-1cW"; */
-"BOF-NM-1cW.title" = "Preferences…";
+"BOF-NM-1cW.title" = "偏好设置…";
 
 /* Class = "NSTextFieldCell"; placeholderString = "右侧选择文件"; ObjectID = "Bmg-V7-kll"; */
 "Bmg-V7-kll.placeholderString" = "右侧选择文件";
@@ -111,7 +111,7 @@
 "KOm-Yr-Aqe.headerCell.title" = "AppName";
 
 /* Class = "NSMenuItem"; title = "Show All"; ObjectID = "Kd2-mp-pUS"; */
-"Kd2-mp-pUS.title" = "Show All";
+"Kd2-mp-pUS.title" = "全部显示";
 
 /* Class = "NSMenuItem"; title = "说明"; ObjectID = "L3B-4Q-eDH"; */
 "L3B-4Q-eDH.title" = "说明";
@@ -129,7 +129,7 @@
 "NPX-pq-Pi0.headerCell.title" = "Name";
 
 /* Class = "NSMenuItem"; title = "Hide IpaExporter"; ObjectID = "Olw-nP-bQN"; */
-"Olw-nP-bQN.title" = "Hide IpaExporter";
+"Olw-nP-bQN.title" = "隐藏打包工具";
 
 /* Class = "NSTextFieldCell"; title = "Libs(System)"; ObjectID = "Om9-Al-2rg"; */
 "Om9-Al-2rg.title" = "Libs(System)";
@@ -153,7 +153,7 @@
 "VYS-Mg-MdT.placeholderString" = "example.tbd";
 
 /* Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "Vdr-fp-XzO"; */
-"Vdr-fp-XzO.title" = "Hide Others";
+"Vdr-fp-XzO.title" = "隐藏其它";
 
 /* Class = "NSButtonCell"; title = "添加"; ObjectID = "WDI-Be-oVq"; */
 "WDI-Be-oVq.title" = "添加";

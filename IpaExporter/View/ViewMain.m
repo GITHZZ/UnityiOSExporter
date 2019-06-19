@@ -447,9 +447,4 @@
     }
 }
 
-- (IBAction)ShowHelp:(id)sender
-{
-    
-}
-
 @end
