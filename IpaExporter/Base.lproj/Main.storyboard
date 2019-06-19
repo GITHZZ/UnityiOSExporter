@@ -74,6 +74,18 @@
                                         <menuItem title="用例测试" id="3o6-5w-Uo6" userLabel="Back">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
+                                        <menuItem title="备份" id="WPk-V3-lnS">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="backup:" target="11a-jN-iuY" id="9YJ-hl-7t7"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="恢复" id="K08-ZR-eoy">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="restore:" target="11a-jN-iuY" id="Og1-Tt-aKI"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="wyB-pv-AJb"/>
                                         <menuItem title="说明" id="L3B-4Q-eDH">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -264,7 +276,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="2zB-C7-GyH">
-                                <rect key="frame" x="26" y="233" width="147" height="17"/>
+                                <rect key="frame" x="26" y="231" width="147" height="17"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Unity自定义代码文件夹:" id="Z1K-Dg-21D">
                                     <font key="font" usesAppearanceFont="YES"/>
@@ -319,10 +331,40 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="tdC-bx-Ekj">
+                                <rect key="frame" x="26" y="204" width="147" height="17"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="将自定义代码备份到:" id="kSi-UE-Z3n">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="0Gi-Yc-Mht">
+                                <rect key="frame" x="157" y="204" width="201" height="17"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" sendsActionOnEndEditing="YES" placeholderString="选择存储路径" drawsBackground="YES" id="k8M-Fh-60E">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" id="KlO-aA-AuX">
+                                <rect key="frame" x="360" y="195" width="67" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="浏览" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="HPx-U9-FS0">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="savePathSelect:" target="EJe-3a-Fm2" id="BXk-7c-KX2"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="cacheSize" destination="2LI-ku-MwM" id="xcz-Fx-LW5"/>
+                        <outlet property="savePath" destination="0Gi-Yc-Mht" id="Sod-D5-8WU"/>
                     </connections>
                 </viewController>
                 <customObject id="r2Y-nS-hwe" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -382,7 +424,7 @@
                                 <rect key="frame" x="28" y="20" width="443" height="350"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="AbN-fo-fnQ">
-                                    <rect key="frame" x="0.0" y="0.0" width="443" height="350"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="428" height="350"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView editable="NO" importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="m5b-px-hcQ">
@@ -390,7 +432,7 @@
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="443" height="350"/>
+                                            <size key="minSize" width="428" height="350"/>
                                             <size key="maxSize" width="463" height="10000000"/>
                                             <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         </textView>
@@ -401,7 +443,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="41c-u0-Tqn">
-                                    <rect key="frame" x="427" y="0.0" width="16" height="350"/>
+                                    <rect key="frame" x="428" y="0.0" width="15" height="350"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -792,7 +834,7 @@
                                 <rect key="frame" x="15" y="46" width="610" height="419"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <clipView key="contentView" autoresizesSubviews="NO" focusRingType="none" copiesOnScroll="NO" id="YC7-nJ-Y6r">
-                                    <rect key="frame" x="1" y="1" width="608" height="417"/>
+                                    <rect key="frame" x="1" y="1" width="593" height="417"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <view id="638-73-X4r">
@@ -1317,7 +1359,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="9YB-yJ-KwW">
-                                    <rect key="frame" x="593" y="1" width="16" height="417"/>
+                                    <rect key="frame" x="594" y="1" width="15" height="417"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>

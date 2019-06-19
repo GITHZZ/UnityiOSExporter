@@ -14,7 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PreferenceView : NSViewController
 
 @property (weak) IBOutlet NSTextField *cacheSize;
-
+@property (weak) IBOutlet NSTextField *savePath;
+    
 @end
 
 @interface ExtensionsMenu : NSMenuItem

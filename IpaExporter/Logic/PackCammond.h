@@ -11,9 +11,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RubyCammond : Singletion
+@interface PackCammond : Singletion
 
 - (void)startUp;
+- (void)backUpCustomCode;
+- (void)restoreCustomCode;
 
 @end
 

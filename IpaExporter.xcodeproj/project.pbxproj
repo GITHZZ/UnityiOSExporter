@@ -27,7 +27,7 @@
 		18F1027B1DCC2AEB008312E5 /* EventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F1027A1DCC2AEB008312E5 /* EventManager.m */; };
 		593FAEF622B097E700A21F33 /* NSString+Emoji.m in Sources */ = {isa = PBXBuildFile; fileRef = 593FAEF422B097E700A21F33 /* NSString+Emoji.m */; };
 		5964C63F229CE169004BDD23 /* Xcodeproj in Resources */ = {isa = PBXBuildFile; fileRef = 5964C63E229CE169004BDD23 /* Xcodeproj */; };
-		5964C642229CE262004BDD23 /* RubyCammond.m in Sources */ = {isa = PBXBuildFile; fileRef = 5964C641229CE262004BDD23 /* RubyCammond.m */; };
+		5964C642229CE262004BDD23 /* PackCammond.m in Sources */ = {isa = PBXBuildFile; fileRef = 5964C641229CE262004BDD23 /* PackCammond.m */; };
 		5979D9DC22A54C3700C040D2 /* MobileprovisionParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5979D9DB22A54C3700C040D2 /* MobileprovisionParser.m */; };
 		59CF0C4222B79D08001A1F91 /* PreferenceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 59CF0C4122B79D08001A1F91 /* PreferenceView.m */; };
 /* End PBXBuildFile section */
@@ -53,7 +53,6 @@
 		0EE0A4C522B9437600DBB300 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = English; path = English.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0EE0A4C722B943D200DBB300 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0EE0A4C922B943E200DBB300 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
-		0EE0A4CA22B943F800DBB300 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		182186401E5ACAD5003599CD /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		1828197A1E4C5E2C00CEC719 /* EventTypeDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EventTypeDef.h; sourceTree = "<group>"; };
 		182DC37B1E8A5AE400912D20 /* Alert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Alert.h; sourceTree = "<group>"; };
@@ -95,10 +94,11 @@
 		593FAEF422B097E700A21F33 /* NSString+Emoji.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Emoji.m"; sourceTree = "<group>"; };
 		593FAEF522B097E700A21F33 /* NSString+Emoji.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Emoji.h"; sourceTree = "<group>"; };
 		5964C63E229CE169004BDD23 /* Xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Xcodeproj; path = IpaExporter/Xcodeproj; sourceTree = "<group>"; };
-		5964C640229CE262004BDD23 /* RubyCammond.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RubyCammond.h; sourceTree = "<group>"; };
-		5964C641229CE262004BDD23 /* RubyCammond.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RubyCammond.m; sourceTree = "<group>"; };
+		5964C640229CE262004BDD23 /* PackCammond.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PackCammond.h; sourceTree = "<group>"; };
+		5964C641229CE262004BDD23 /* PackCammond.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PackCammond.m; sourceTree = "<group>"; };
 		5979D9DA22A54C3700C040D2 /* MobileprovisionParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MobileprovisionParser.h; sourceTree = "<group>"; };
 		5979D9DB22A54C3700C040D2 /* MobileprovisionParser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MobileprovisionParser.m; sourceTree = "<group>"; };
+		59A6F5B522BA07E2007A3C25 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		59CF0C4022B79D08001A1F91 /* PreferenceView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PreferenceView.h; sourceTree = "<group>"; };
 		59CF0C4122B79D08001A1F91 /* PreferenceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PreferenceView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -195,8 +195,8 @@
 		18750A9C1D9BBBD000FECCA6 /* Logic */ = {
 			isa = PBXGroup;
 			children = (
-				5964C640229CE262004BDD23 /* RubyCammond.h */,
-				5964C641229CE262004BDD23 /* RubyCammond.m */,
+				5964C640229CE262004BDD23 /* PackCammond.h */,
+				5964C641229CE262004BDD23 /* PackCammond.m */,
 				5979D9DA22A54C3700C040D2 /* MobileprovisionParser.h */,
 				5979D9DB22A54C3700C040D2 /* MobileprovisionParser.m */,
 				182FF6EF1E4D936700CC0C7C /* DetailsInfoData.h */,
@@ -386,7 +386,7 @@
 				593FAEF622B097E700A21F33 /* NSString+Emoji.m in Sources */,
 				182DC37D1E8A5AE400912D20 /* Alert.m in Sources */,
 				59CF0C4222B79D08001A1F91 /* PreferenceView.m in Sources */,
-				5964C642229CE262004BDD23 /* RubyCammond.m in Sources */,
+				5964C642229CE262004BDD23 /* PackCammond.m in Sources */,
 				184BEA501DC742FA00CCEC4D /* DetailsInfoSetting.m in Sources */,
 				183780151D766C84004E3BAD /* main.m in Sources */,
 				182FF6F31E4D936700CC0C7C /* DetailsInfoData.m in Sources */,
@@ -439,7 +439,7 @@
 				0EE0A4C522B9437600DBB300 /* English */,
 				0EE0A4C722B943D200DBB300 /* Base */,
 				0EE0A4C922B943E200DBB300 /* en */,
-				0EE0A4CA22B943F800DBB300 /* zh-Hans */,
+				59A6F5B522BA07E2007A3C25 /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

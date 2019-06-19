@@ -26,14 +26,14 @@
     {
         _isStarting = NO;
         _fileManager = [NSFileManager defaultManager];
-        _srcPath = [[[NSBundle mainBundle] resourcePath]stringByAppendingString:DATA_PATH];
     }
     
     return self;
 }
 
-- (void)start:(ExportInfo*)info
+- (void)start:(ExportInfo*)info withFolderPath:(NSString*)path
 {
+    _srcPath = [[[NSBundle mainBundle] resourcePath]stringByAppendingString:path];
     _dstPath = [NSString stringWithFormat:@"%s/Assets/Editor", info->unityProjPath];
     [self copyResSrcPath:_srcPath toDst:_dstPath];
 }

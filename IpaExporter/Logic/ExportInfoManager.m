@@ -8,8 +8,6 @@
 
 #import "ExportInfoManager.h"
 
-#define INFOS_MAX_CAPACITY 100
-
 @implementation ExportInfoManager
 
 - (void)dealloc
@@ -29,7 +27,8 @@
         
         _unityProjPathArr = [[NSMutableArray alloc] initWithCapacity:6];
         _exportPathArr = [[NSMutableArray alloc] initWithCapacity:6];
-
+        _codeBackupPath = @"";
+        
         NSMutableArray *detailArray = [[NSMutableArray alloc] initWithCapacity:20];
         NSMutableArray *sceneArray = [[NSMutableArray alloc] initWithCapacity:5];        
         _savedict = [NSMutableDictionary dictionaryWithObjectsAndKeys:detailArray, SAVE_DETAIL_ARRARY_KEY, sceneArray, SAVE_SCENE_ARRAY_KEY, nil];
@@ -50,6 +49,9 @@
     NSArray* exportArray = [NSKeyedUnarchiver unarchiveObjectWithData:exportData];
     NSMutableArray* exportMutable = [NSMutableArray arrayWithArray:exportArray];
     _exportPathArr = exportMutable;
+    
+    NSData* codeSaveData = (NSData*)[_saveData objectForKey:SAVE_CODE_SAVE_PATH_KEY];
+    _codeBackupPath = [NSKeyedUnarchiver unarchiveObjectWithData:codeSaveData];
 }
 
 - (void)saveData
@@ -58,7 +60,9 @@
     [_saveData setObject:unityArrData forKey:SAVE_PROJECT_PATH_KEY];
     NSData* exportArrData = [NSKeyedArchiver archivedDataWithRootObject:_exportPathArr];
     [_saveData setObject:exportArrData forKey:SAVE_EXPORT_PATH_KEY];
-    
+    NSData* codeSaveData = [NSKeyedArchiver archivedDataWithRootObject:_codeBackupPath];
+    [_saveData setObject:codeSaveData forKey:SAVE_CODE_SAVE_PATH_KEY];
+
     [_saveData synchronize];
 }
 
@@ -154,6 +158,11 @@
     [array replaceObjectAtIndex:index withObject:object];
     [_savedict setObject:array forKey:saveKey];
     [self saveDetail:saveKey];
+}
+
+- (void)setCodeSavePath:(NSString*)path
+{
+    _codeBackupPath = path;
 }
 
 - (NSMutableArray*)getDetailArray

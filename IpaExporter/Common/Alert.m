@@ -19,7 +19,7 @@
     [alert setMessageText:messagetext];
     [alert setInformativeText:informativetext];
     
-    [alert setAlertStyle:NSWarningAlertStyle];
+    [alert setAlertStyle:NSAlertStyleWarning];
     
     [alert beginSheetModalForWindow:[NSApplication sharedApplication].keyWindow completionHandler:^(NSInteger result) {
         //响应window的按钮事件
@@ -40,7 +40,7 @@
     [alert setMessageText:messagetext];
     [alert setInformativeText:informativetext];
     
-    [alert setAlertStyle:NSWarningAlertStyle];
+    [alert setAlertStyle:NSAlertStyleWarning];
 
     [alert beginSheetModalForWindow:[NSApplication sharedApplication].keyWindow completionHandler:^(NSInteger result) {
         //响应window的按钮事件

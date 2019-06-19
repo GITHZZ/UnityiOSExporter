@@ -10,6 +10,7 @@ export_path=$2
 bundle_res_path=$3
 
 #--------------生成母包工程
+#
 pkill Unity
 cd ${unity_project_path}
 args_config=$(cat ${bundle_res_path}'/DataTemplete/Builder/_CustomConfig.json'| sed s/[[:space:]]//g | tr -d '\n')
@@ -20,5 +21,4 @@ args_config=$(cat ${bundle_res_path}'/DataTemplete/Builder/_CustomConfig.json'| 
 echo "[配置信息]Unity日志路径:"${export_path}
 
 grep "Completed 'Build.Player.iOSSupport'" ${export_path}/xcodeproj_create_log.txt
-grep "CompilerOutput:-stderr" ${export_path}/xcodeproj_create_log.txt
-grep "threw exception" ${export_path}/xcodeproj_create_log.txt
+grep "error CS" ${export_path}/xcodeproj_create_log.txt

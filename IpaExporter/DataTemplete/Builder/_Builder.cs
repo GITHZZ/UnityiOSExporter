@@ -17,7 +17,7 @@ namespace IpaExporter
 
 			//获取shell脚本参数
 			string args = "";
-			string[] strs =  System.Environment.GetCommandLineArgs(); 
+			string[] strs = System.Environment.GetCommandLineArgs(); 
 			foreach(var s in strs)
 			{
 				if(s.Contains("-args"))
@@ -26,7 +26,6 @@ namespace IpaExporter
 					args = s.Split('_')[1];
 				}
 			}
-
             //必须参数
 			PlayerSettings.iOS.sdkVersion = iOSSdkVersion.DeviceSDK;
 

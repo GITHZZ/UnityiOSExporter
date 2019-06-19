@@ -13,10 +13,11 @@
 #import "Common.h"
 #import "Singletion.h"
 
-#define SAVE_DETAIL_ARRARY_KEY @"detailArray"
-#define SAVE_PROJECT_PATH_KEY  @"projectPath"
-#define SAVE_EXPORT_PATH_KEY   @"exportPath"
-#define SAVE_SCENE_ARRAY_KEY   @"scenePath"
+#define SAVE_DETAIL_ARRARY_KEY  @"detailArray"
+#define SAVE_PROJECT_PATH_KEY   @"projectPath"
+#define SAVE_CODE_SAVE_PATH_KEY @"codeSavePath"
+#define SAVE_EXPORT_PATH_KEY    @"exportPath"
+#define SAVE_SCENE_ARRAY_KEY    @"scenePath"
 
 NS_ASSUME_NONNULL_BEGIN
 @interface ExportInfoManager : Singletion
@@ -28,6 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, readwrite) ExportInfo *info;
 @property(nonatomic, readonly) NSMutableArray *unityProjPathArr;
 @property(nonatomic, readonly) NSMutableArray *exportPathArr;
+@property(nonatomic, readonly) NSString *codeBackupPath;
 @property(nonatomic, readonly, getter=getDetailArray) NSMutableArray *detailArray;
 @property(nonatomic, readonly, getter=getSceneArray) NSMutableArray *sceneArray;
 
@@ -44,8 +46,12 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)addDetail:(id)data withKey:(NSString*)saveKey;
 - (void)removeDetail:(NSUInteger)index withKey:(NSString*)saveKey;
 - (void)updateDetail:(NSUInteger)index withObject:(id)object withKey:(NSString*)saveKey;
+- (void)setCodeSavePath:(NSString*)path;
 - (void)saveData;
 - (ExportInfo*)getData;
+
+//设置备份存储路径
+
 NS_ASSUME_NONNULL_END
 
 @end

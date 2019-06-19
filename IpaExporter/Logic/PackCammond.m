@@ -6,7 +6,7 @@
 //  Copyright © 2019 何遵祖. All rights reserved.
 //
 
-#import "RubyCammond.h"
+#import "PackCammond.h"
 #import "Common.h"
 #import "ExportInfoManager.h"
 #import "DataResManager.h"
@@ -14,13 +14,15 @@
 #import "NSString+Emoji.h"
 #import "Defs.h"
 
-@interface RubyCammond()
+#import <Cocoa/Cocoa.h>
+
+@interface PackCammond()
 {
     __block BOOL _isExporting;
 }
 @end
 
-@implementation RubyCammond
+@implementation PackCammond
 
 - (void)startUp
 {
@@ -129,23 +131,8 @@
     for(int i = 0; i < [args count]; i++)
     shellArgsStr = [shellArgsStr stringByAppendingFormat:@"%@\t", args[i]];
     
-    NSTask *shellTask = [[NSTask alloc] init];
-    [shellTask setLaunchPath:@"/bin/sh"];
     NSString *shellStr = [NSString stringWithFormat:@"sh %@ %@", shellScriptPath, shellArgsStr];
-    
-    //-c 表示将后面的内容当成shellcode来执行、
-    [shellTask setArguments:[NSArray arrayWithObjects:@"-c", shellStr, nil]];
-    
-    NSPipe *pipe = [[NSPipe alloc] init];
-    [shellTask setStandardOutput:pipe];
-    [shellTask setStandardError:pipe];
-    [shellTask launch];
-    [shellTask waitUntilExit];
-    
-    NSFileHandle *file = [pipe fileHandleForReading];
-    NSData *data = [file readDataToEndOfFile];
-    NSString *strReturnFormShell = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"The return content from shell script is: %@",strReturnFormShell);
+    NSString *strReturnFormShell = [self createTerminalTask:shellStr];
     
     return strReturnFormShell;
 }
@@ -156,7 +143,7 @@
     NSString *xcodeShellPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/Xcodeproj/ExportXcode.sh"];
     ExportInfoManager* view = [ExportInfoManager instance];
     
-    [[DataResManager instance] start:view.info];
+    [[DataResManager instance] start:view.info withFolderPath:DATA_PATH];
     showLog("开始生成xcode工程");
     showLog([[NSString stringWithFormat:@"[配置信息]Unity工程路径:%s", view.info->unityProjPath] UTF8String]);
     
@@ -182,12 +169,12 @@
         showLog([logStr UTF8String]);
         
         if([logStr containsString:@"Completed 'Build.Player.iOSSupport'"] ||
-           (![logStr containsString:@"threw exception."] &&
-           ![logStr containsString:@"CompilerOutput:-stderr"])){
+           (![logStr containsString:@"error CS"])){
             showSuccess("导出xcode成功");
         }else{
             result = NO;
             showError("导出xcode失败，具体请查看log文件");
+            [[NSWorkspace sharedWorkspace] openFile:[NSString stringWithFormat:@"%s/xcodeproj_create_log.txt", view.info->exportFolderParh]];
         }
       
     });
@@ -257,6 +244,54 @@
         else
             showError([[NSString stringWithFormat:@"%@平台,打包失败,日志已经保存在%s路径中", data.platform, view.info->unityProjPath] UTF8String]);
     }
+}
+
+- (void)backUpCustomCode
+{
+    ExportInfoManager *exportManager = [ExportInfoManager instance];
+    NSString *backUpPath = exportManager.codeBackupPath;
+    if(backUpPath == nil || [backUpPath isEqualToString:@""])
+        backUpPath = [NSString stringWithFormat:@"%s", exportManager.info->unityProjPath];
+    
+    NSString* srcPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:DATA_PATH];
+    NSString *shellStr = [NSString stringWithFormat:@"cp -r %@ %@", srcPath, backUpPath];
+    [self createTerminalTask:shellStr];
+}
+
+//需要重构下
+- (void)restoreCustomCode
+{
+    ExportInfoManager *exportManager = [ExportInfoManager instance];
+    NSString *backUpPath = exportManager.codeBackupPath;
+    if(backUpPath == nil || [backUpPath isEqualToString:@""])
+        backUpPath = [NSString stringWithFormat:@"%s", exportManager.info->unityProjPath];
+    
+    backUpPath = [backUpPath stringByAppendingString:DATA_PATH];
+    NSString* srcPath = [[NSBundle mainBundle] resourcePath];
+    NSString *shellStr = [NSString stringWithFormat:@"cp -r %@ %@", backUpPath, srcPath];
+    [self createTerminalTask:shellStr];
+}
+
+- (NSString*)createTerminalTask:(NSString*)order
+{
+    NSTask *shellTask = [[NSTask alloc] init];
+    [shellTask setLaunchPath:@"/bin/sh"];
+    
+    //-c 表示将后面的内容当成shellcode来执行、
+    [shellTask setArguments:[NSArray arrayWithObjects:@"-c", order, nil]];
+    
+    NSPipe *pipe = [[NSPipe alloc] init];
+    [shellTask setStandardOutput:pipe];
+    [shellTask setStandardError:pipe];
+    [shellTask launch];
+    [shellTask waitUntilExit];
+    
+    NSFileHandle *file = [pipe fileHandleForReading];
+    NSData *data = [file readDataToEndOfFile];
+    NSString *strReturnFormShell = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSLog(@"The return content from shell script is: %@",strReturnFormShell);
+    
+    return strReturnFormShell;
 }
 
 @end
