@@ -422,6 +422,8 @@
                     </view>
                     <connections>
                         <outlet property="cacheSize" destination="2LI-ku-MwM" id="xcz-Fx-LW5"/>
+                        <outlet property="codeApp" destination="asr-SN-JKy" id="Aqu-jR-0dK"/>
+                        <outlet property="jsonApp" destination="IH2-Co-0ew" id="jLE-ou-vZh"/>
                         <outlet property="savePath" destination="0Gi-Yc-Mht" id="Sod-D5-8WU"/>
                     </connections>
                 </viewController>
