@@ -75,8 +75,6 @@
         [self removeInfo];
     } callBackSecond:^{
     }];
-    
-    
 }
 
 - (IBAction)editDetailInfo:(id)sender
@@ -163,7 +161,12 @@
 - (BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(NSInteger)row
 {
     _selectInfo = [_dataDict objectAtIndex:row];
-    return YES;
+    return YES;//禁用
+}
+
+- (BOOL)tableView:(NSTableView *)aTableView shouldEditTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
+{
+    return NO;
 }
 
 @end

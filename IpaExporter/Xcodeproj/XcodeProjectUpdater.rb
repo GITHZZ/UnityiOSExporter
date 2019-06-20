@@ -83,7 +83,7 @@ class XcodeProjectUpdater
 				file_type = File::ftype(newPath)
 
 				if dir == "Copy"
-					replace_unity_app_controller_file(newPath)
+					replace_need_copy_files(newPath)
                 elsif newPath.to_s.end_with?("Unity-iPhone")
 				 	copy_unity_iphone_folder(newPath)
 				elsif file_type == "directory" and !newPath.include?"." 
@@ -124,23 +124,29 @@ class XcodeProjectUpdater
 		set_build_setting(@target, "LIBRARY_SEARCH_PATHS", @library_search_paths_array)
 	end 
 
-	#覆盖UnityAppController中的文件UI
-	def replace_unity_app_controller_file(mod_path)
+	#覆盖Copy文件夹中的文件UI
+	def replace_need_copy_files(mod_path)
 		h_file_path = "#{mod_path}/UnityAppController.h"
 		m_file_path = "#{mod_path}/UnityAppController.mm"
+        info_file_path = "#{mod_path}/Info.plist"
+        export_plist_path = "#{mod_path}/ExportOptions.plist"
         
         #copy ExportOptions
-        FileUtils.cp "#{mod_path}/ExportOptions.plist", "#{$project_folder_path}"
+        if File::exist?(export_plist_path)
+            FileUtils.cp export_plist_path, "#{$project_folder_path}"
+        end
         
         #copy Info
-        FileUtils.cp "#{mod_path}/Info.plist", "#{$project_folder_path}"
+        if File::exist?(info_file_path)
+            FileUtils.cp info_file_path, "#{$project_folder_path}"
+        end
         
 		if File::exist?(h_file_path)
-			FileUtils.cp "#{mod_path}/UnityAppController.h", "#{$project_folder_path}/Classes"
-		end 
+			FileUtils.cp h_file_path, "#{$project_folder_path}/Classes"
+		end
 
 		if File::exist?(m_file_path)
-			FileUtils.cp "#{mod_path}/UnityAppController.mm", "#{$project_folder_path}/Classes"
+			FileUtils.cp m_file_path, "#{$project_folder_path}/Classes"
 		end
 	end 
 

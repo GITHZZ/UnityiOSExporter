@@ -7,7 +7,7 @@
 //
 
 #import "MobileprovisionParser.h"
-#import "Defs.h"
+#import "Common.h"
 
 @interface MobileprovisionParser()
 {
@@ -38,7 +38,7 @@
     NSTask *shellTask = [[NSTask alloc] init];
     [shellTask setLaunchPath:@"/bin/sh"];
     
-    NSString *shellStr = [NSString stringWithFormat:@"security cms -D -i %@%@.mobileprovision > %@/%@.plist", _rootPath, _fileName, CACHE_FOLDER_PATH, _fileName];
+    NSString *shellStr = [NSString stringWithFormat:@"security cms -D -i %@%@.mobileprovision > %@/%@.plist", _rootPath, _fileName, PACK_FOLDER_PATH, _fileName];
     
     [shellTask setArguments:[NSArray arrayWithObjects:@"-c", shellStr, nil]];
     NSPipe *pipe = [[NSPipe alloc] init];
@@ -49,7 +49,12 @@
 
 - (void)parsePlistFile
 {
-    NSString *filePath = [NSString stringWithFormat:@"%@/%@.%@",CACHE_FOLDER_PATH, _fileName, @"plist"];
+    NSString *filePath = [NSString stringWithFormat:@"%@/%@.%@",PACK_FOLDER_PATH, _fileName, @"plist"];
+    if(![[NSFileManager defaultManager] fileExistsAtPath:filePath]){
+        showError([[NSString stringWithFormat:@"%@文件不存在", filePath] UTF8String]);
+        return;
+    }
+        
     NSDictionary *plist = [[NSDictionary alloc] initWithContentsOfFile:filePath];
     
     _appIDName = plist[@"AppIDName"];

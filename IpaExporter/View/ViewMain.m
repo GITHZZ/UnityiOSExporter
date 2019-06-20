@@ -262,7 +262,7 @@
     id itemCell;
     if([tableView.identifier isEqualToString:PlatformTblKey]){
         DetailsInfoData *info = [_dataDict objectAtIndex:row];
-        NSString* title = [info valueForKey:columnIdentifier];
+        NSString* title = [NSString stringWithFormat:@"%@(%@)", info.appName, info.platform];
         NSButtonCell* cell = [tableColumn dataCellForRow:row];
         cell.tag = row;
         cell.title = title;

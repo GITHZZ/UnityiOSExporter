@@ -12,5 +12,6 @@
 #import "Defs.h"
 #import "CustomLog.h"
 #import "EventManager.h"
+#import "NSString+Emoji.h"
 
 #endif /* Common_h */

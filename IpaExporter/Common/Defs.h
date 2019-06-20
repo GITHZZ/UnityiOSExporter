@@ -13,12 +13,9 @@
 #import "EventManager.h"
 
 #define XCODE_PROJ_NAME @"xcodeProj"
-#define CACHE_FOLDER_PATH [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/Packer"]
-
-#define DATA_PATH @"/DataTemplete"
-#define IPA_PLIST_PATH @"/Assets/Editor/DataTemplete/IPA.plist"
-#define BUILDER_CS_PATH @"/Assets/Editor/DataTemplete/Builder/_Builder.cs"
-#define XCODEPROJECT_CS_PATH @"/Assets/Editor/DataTemplete/XcodeApi/_XcodeProjectSetting.cs"
+#define PACK_FOLDER_PATH [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/Packer"]
+#define DATA_PATH @"/TempCode"
+#define BUILDER_CS_PATH @"/Assets/Editor/TempCode/Builder/_Builder.cs"
 
 //view main key
 #define Export_Path @"exportPath"

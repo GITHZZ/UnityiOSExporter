@@ -11,8 +11,6 @@
 #import "ExportInfoManager.h"
 #import "DataResManager.h"
 #import "BuilderCSFileEdit.h"
-#import "NSString+Emoji.h"
-#import "Defs.h"
 
 #import <Cocoa/Cocoa.h>
 
@@ -28,7 +26,7 @@
 {
     _isExporting = false;
     
-    [[NSFileManager defaultManager]createDirectoryAtPath:CACHE_FOLDER_PATH withIntermediateDirectories:YES attributes:nil error:nil];
+    [[NSFileManager defaultManager]createDirectoryAtPath:PACK_FOLDER_PATH withIntermediateDirectories:YES attributes:nil error:nil];
     
     [[EventManager instance] regist:EventViewSureClicked
                                func:@selector(sureBtnClicked:)
@@ -97,7 +95,7 @@
     }
     
     
-    NSString *resourcePath = [CACHE_FOLDER_PATH stringByAppendingFormat:@"/%@/", platformName];
+    NSString *resourcePath = [PACK_FOLDER_PATH stringByAppendingFormat:@"/%@/", platformName];
     [[NSFileManager defaultManager]createDirectoryAtPath:resourcePath withIntermediateDirectories:YES attributes:nil error:nil];
     
     NSString *configPath = [resourcePath stringByAppendingString:@"config.json"];
@@ -259,7 +257,7 @@
     if(backUpPath == nil || [backUpPath isEqualToString:@""])
         backUpPath = [NSString stringWithFormat:@"%s", exportManager.info->unityProjPath];
     
-    NSString *srcPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/DataTemplete/Builder/Users"];
+    NSString *srcPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/TempCode/Builder/Users"];
     NSString *shellStr = [NSString stringWithFormat:@"cp -r %@ %@", srcPath, backUpPath];
     NSString *strReturnFormShell = [self createTerminalTask:shellStr];
     
@@ -281,7 +279,7 @@
         backUpPath = [NSString stringWithFormat:@"%s", exportManager.info->unityProjPath];
     
     backUpPath = [backUpPath stringByAppendingString:@"/Users"];
-    NSString* srcPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/DataTemplete/Builder"];
+    NSString* srcPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/TempCode/Builder"];
     NSString *shellStr = [NSString stringWithFormat:@"cp -r %@ %@", backUpPath, srcPath];
     NSString *strReturnFormShell = [self createTerminalTask:shellStr];
     

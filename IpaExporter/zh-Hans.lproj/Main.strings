@@ -15,7 +15,7 @@
 "2MF-eE-7cs.headerCell.title" = "Name";
 
 /* Class = "NSMenuItem"; title = "用例测试"; ObjectID = "3o6-5w-Uo6"; */
-"3o6-5w-Uo6.title" = "用例测试";
+"3o6-5w-Uo6.title" = "测试";
 
 /* Class = "NSBox"; title = "Box"; ObjectID = "4OO-Qk-WbV"; */
 "4OO-Qk-WbV.title" = "Box";
@@ -280,3 +280,6 @@
 
 /* Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "zds-HX-vTH"; */
 "zds-HX-vTH.title" = "前置全部窗口";
+
+/* Class = "NSMenuItem"; title = "Close window"; ObjectID = "HWL-Ao-3Pq"; */
+"HWL-Ao-3Pq.title" = "关闭窗口";

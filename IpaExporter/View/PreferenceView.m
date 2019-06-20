@@ -26,7 +26,7 @@
 
 - (IBAction)openCustomCodeFolder:(id)sender
 {
-    NSString *resPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/DataTemplete/Builder/Users"];
+    NSString *resPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/TempCode/Builder/Users"];
     [[NSWorkspace sharedWorkspace] selectFile:nil inFileViewerRootedAtPath:resPath];
 }
 
@@ -57,13 +57,13 @@
 
 - (IBAction)openCustomCodeFile:(id)sender
 {
-    NSString *filePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/DataTemplete/Builder/Users/_CustomBuilder.cs"];
+    NSString *filePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/TempCode/Builder/Users/_CustomBuilder.cs"];
     [[NSWorkspace sharedWorkspace] openFile:filePath];
 }
 
 - (IBAction)openCustomConfig:(id)sender
 {
-    NSString *filePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/DataTemplete/Builder/Users/_CustomConfig.json"];
+    NSString *filePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/TempCode/Builder/Users/_CustomConfig.json"];
     [[NSWorkspace sharedWorkspace] openFile:filePath];
 }
 

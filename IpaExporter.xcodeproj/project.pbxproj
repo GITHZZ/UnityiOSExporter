@@ -21,7 +21,7 @@
 		184BEA501DC742FA00CCEC4D /* DetailsInfoSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 184BEA4F1DC742FA00CCEC4D /* DetailsInfoSetting.m */; };
 		186088FD1DAA4AE10055E4BB /* DataResManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 186088FC1DAA4AE10055E4BB /* DataResManager.m */; };
 		188DAD111E56F8E300554D6B /* CustomLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 188DAD101E56F8E300554D6B /* CustomLog.m */; };
-		189034501DE82FCF00AEDF46 /* DataTemplete in Resources */ = {isa = PBXBuildFile; fileRef = 1890344F1DE82FCF00AEDF46 /* DataTemplete */; };
+		189034501DE82FCF00AEDF46 /* TempCode in Resources */ = {isa = PBXBuildFile; fileRef = 1890344F1DE82FCF00AEDF46 /* TempCode */; };
 		18CA13961D78164C006595E5 /* ViewMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CA13951D78164C006595E5 /* ViewMain.m */; };
 		18DB76441E7FFE22003FDC52 /* Singletion.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DB76431E7FFE22003FDC52 /* Singletion.m */; };
 		18DD5E6C1DAF1C150071B654 /* DetailsInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD5E6B1DAF1C150071B654 /* DetailsInfoView.m */; };
@@ -52,7 +52,6 @@
 
 /* Begin PBXFileReference section */
 		0E211BC522BAB29C00334CC0 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		0EE0A4C522B9437600DBB300 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = English; path = English.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0EE0A4C722B943D200DBB300 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0EE0A4C922B943E200DBB300 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		182186401E5ACAD5003599CD /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
@@ -83,7 +82,7 @@
 		186088FC1DAA4AE10055E4BB /* DataResManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataResManager.m; sourceTree = "<group>"; };
 		188DAD0F1E56F8E300554D6B /* CustomLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomLog.h; sourceTree = "<group>"; };
 		188DAD101E56F8E300554D6B /* CustomLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomLog.m; sourceTree = "<group>"; };
-		1890344F1DE82FCF00AEDF46 /* DataTemplete */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DataTemplete; path = IpaExporter/DataTemplete; sourceTree = "<group>"; };
+		1890344F1DE82FCF00AEDF46 /* TempCode */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TempCode; path = IpaExporter/TempCode; sourceTree = "<group>"; };
 		18CA13941D78164C006595E5 /* ViewMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewMain.h; sourceTree = "<group>"; };
 		18CA13951D78164C006595E5 /* ViewMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewMain.m; sourceTree = "<group>"; };
 		18DB76421E7FFE22003FDC52 /* Singletion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Singletion.h; sourceTree = "<group>"; };
@@ -135,7 +134,7 @@
 			children = (
 				0E211BC522BAB29C00334CC0 /* README.md */,
 				5964C63E229CE169004BDD23 /* Xcodeproj */,
-				1890344F1DE82FCF00AEDF46 /* DataTemplete */,
+				1890344F1DE82FCF00AEDF46 /* TempCode */,
 				1837800F1D766C84004E3BAD /* IpaExporter */,
 				183780261D766C84004E3BAD /* IpaExporterTests */,
 				183780311D766C85004E3BAD /* IpaExporterUITests */,
@@ -360,7 +359,7 @@
 				5964C63F229CE169004BDD23 /* Xcodeproj in Resources */,
 				0E211BC622BAB29C00334CC0 /* README.md in Resources */,
 				1837801D1D766C84004E3BAD /* Main.storyboard in Resources */,
-				189034501DE82FCF00AEDF46 /* DataTemplete in Resources */,
+				189034501DE82FCF00AEDF46 /* TempCode in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,7 +439,6 @@
 		1837801B1D766C84004E3BAD /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				0EE0A4C522B9437600DBB300 /* English */,
 				0EE0A4C722B943D200DBB300 /* Base */,
 				0EE0A4C922B943E200DBB300 /* en */,
 				59A6F5B522BA07E2007A3C25 /* zh-Hans */,
@@ -549,7 +547,7 @@
 					"$(PROJECT_DIR)/IpaExporter",
 					"$(PROJECT_DIR)/IpaExporter/LuaLib",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_BUNDLE_IDENTIFIER = com.IpaExporter.test;
 				PRODUCT_NAME = "iOS打包工具";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -574,7 +572,7 @@
 					"$(PROJECT_DIR)/IpaExporter",
 					"$(PROJECT_DIR)/IpaExporter/LuaLib",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_BUNDLE_IDENTIFIER = com.IpaExporter.test;
 				PRODUCT_NAME = "iOS打包工具";
 				PROVISIONING_PROFILE_SPECIFIER = "";

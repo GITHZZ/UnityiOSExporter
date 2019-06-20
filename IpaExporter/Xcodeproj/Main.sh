@@ -52,7 +52,12 @@ fi
 mkdir ${export_log_path}
 
 #修改xcode工程
-#替换optionsplist信息   
+#替换optionsplist信息
+copy_folder_path=${custom_sdk_path}"/Copy"
+if [ ! -d ${copy_foler_path}]; then
+    mkdir ${copy_foler_path}
+fi
+
 res_path=${main_bundle_res_path}"/Xcodeproj/ExportOptions.plist"
 dst_path=${custom_sdk_path}"/Copy/ExportOptions.plist"
 cp -f ${res_path} ${dst_path}
@@ -63,7 +68,7 @@ sed -i '' 's/:method:/'${method}'/g' ${dst_path}
 sed -i '' "s/:certificate:/${signingCertificate}/g" ${dst_path}
 
 #参数从$2开始
-#减去2就是 rb中取参数的index 例如ARGV.at(3) 就是取$5参数
+#减去2就是 rb中取参数的index 例如ARGV.at(2) 就是取$4参数
 ruby -w $1 $2 $3 $4 $5 $6 $7
 
 sed -i '' 's/ProvisioningStyle = Automatic;/ProvisioningStyle = Manual;/g' ${xcode_proj_path}"/Unity-iPhone-"${platform_name}".xcodeproj/project.pbxproj"
@@ -102,7 +107,11 @@ xcodebuild \
 
 echo "生成ipa包"
 ipa_folder_path=${xcode_proj_path}"/Unity-iPhone-"${platform_name}
-rm -r ${ipa_folder_path}
+
+if [-d ${ipa_folder_path}]; then
+    rm -r ${ipa_folder_path}
+fi
+
 mkdir ${ipa_folder_path}
 
 # 将app打包成ipa
