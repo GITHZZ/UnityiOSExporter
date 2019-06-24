@@ -3,21 +3,13 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "-[DetailsInfoSetting mobileprovisionSelect:]:DetailsInfoSetting.m">
+         contextName = "-[ViewMain isReleaseBtnSelect:]:ViewMain.m">
          <PersistentStrings>
             <PersistentString
-               value = "button.identifier">
+               value = "_isReleaseBox.state">
             </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[MobileprovisionParser createPlistFile]:MobileprovisionParser.m">
-      </ContextState>
-      <ContextState
-         contextName = "-[RubyCammond writeConfigToJsonFile:withData:]:RubyCammond.m">
-         <PersistentStrings>
             <PersistentString
-               value = "resourcePath">
+               value = "_isExportXcode.state">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -26,6 +18,14 @@
          <PersistentStrings>
             <PersistentString
                value = "[ExportInfoManager instance].codeSavePath">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[RubyCammond sureBtnClicked:]:RubyCammond.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "view.info-&gt;isExportXcode">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -41,23 +41,23 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[RubyCammond sureBtnClicked:]:RubyCammond.m">
+         contextName = "-[MobileprovisionParser createPlistFile]:MobileprovisionParser.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[DetailsInfoSetting mobileprovisionSelect:]:DetailsInfoSetting.m">
          <PersistentStrings>
             <PersistentString
-               value = "view.info-&gt;isExportXcode">
+               value = "button.identifier">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[RubyCammond invokingShellScriptAtPath:withArgs:]:RubyCammond.m">
+         contextName = "-[DetailsInfoSetting viewDidLoad]:DetailsInfoSetting.m">
          <PersistentStrings>
             <PersistentString
-               value = "args[i]">
+               value = "_frameworkNameArr">
             </PersistentString>
          </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[DetailsInfoSetting setUpInfo]:DetailsInfoSetting.m">
       </ContextState>
       <ContextState
          contextName = "__30-[RubyCammond sureBtnClicked:]_block_invoke_2:RubyCammond.m">
@@ -71,23 +71,31 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[DetailsInfoSetting viewDidLoad]:DetailsInfoSetting.m">
+         contextName = "-[RubyCammond invokingShellScriptAtPath:withArgs:]:RubyCammond.m">
          <PersistentStrings>
             <PersistentString
-               value = "_frameworkNameArr">
+               value = "args[i]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[ViewMain isReleaseBtnSelect:]:ViewMain.m">
+         contextName = "-[DataResManager appendingFolder:]:DataResManager.m">
          <PersistentStrings>
             <PersistentString
-               value = "_isReleaseBox.state">
-            </PersistentString>
-            <PersistentString
-               value = "_isExportXcode.state">
+               value = "_root.length">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[RubyCammond writeConfigToJsonFile:withData:]:RubyCammond.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "resourcePath">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[DetailsInfoSetting setUpInfo]:DetailsInfoSetting.m">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

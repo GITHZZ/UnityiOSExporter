@@ -10,10 +10,7 @@
 
 @interface DataResManager()
 {
-    BOOL _isStarting;
-    NSString* _srcPath;
-    NSString* _dstPath;
-    
+    NSString *_unityProjPath;
     NSFileManager* _fileManager;
 }
 @end
@@ -24,59 +21,34 @@
 {
     if (self = [super init])
     {
-        _isStarting = NO;
         _fileManager = [NSFileManager defaultManager];
     }
     
     return self;
 }
 
-- (void)start:(ExportInfo*)info withFolderPath:(NSString*)path
+- (void)start:(ExportInfo*)info
 {
-    _srcPath = [[[NSBundle mainBundle] resourcePath]stringByAppendingString:path];
-    _dstPath = [NSString stringWithFormat:@"%s/Assets/Editor", info->unityProjPath];
-    [self copyResSrcPath:_srcPath toDst:_dstPath];
+    _unityProjPath = [NSString stringWithUTF8String:info->unityProjPath];
+    _rootPath = [_unityProjPath stringByAppendingString:@"/Assets/Editor/ipaExporter"];
+    [self copyFolder:_rootPath];
+}
+
+- (void)appendingFolder:(NSString*)path
+{
+    NSString *folderName = [path substringFromIndex:[[NSBundle mainBundle] resourcePath].length];
+    [self copyResSrcPath:path toDst:_rootPath folderName:folderName];
 }
 
 - (void)end
 {
-    [self removeResFromDstPath:_dstPath];
+    [self removeResFromDstPath:_rootPath];
 }
 
-- (void)copyFolder:(NSString*) path
-{
-    BOOL isDir = NO;
-    BOOL existed = [_fileManager fileExistsAtPath:path isDirectory:&isDir];
-    if(!(isDir && existed))
-    {
-        NSError* error;
-        [_fileManager createDirectoryAtPath:path
-                withIntermediateDirectories:YES
-                                 attributes:nil
-                                      error:&error];
-        if(error != nil)
-        {
-            NSLog(@"*拷贝文件夹失败 原因:%@", error);
-            NSLog(@"%@", [error userInfo]);
-        }
-    }
-}
-
-- (void)copyFile:(NSString*)src toDst:(NSString*)dst
-{
-    NSError* error = nil;
-    [_fileManager copyItemAtPath:src toPath:dst error:&error];
-    if(error != nil)
-    {
-        showError("*拷贝文件失败 原因:%@", error);
-        NSLog(@"%@", [error userInfo]);
-    }
-}
-
-- (void)copyResSrcPath:(NSString*)src toDst:(NSString*)dst
+- (void)copyResSrcPath:(NSString*)src toDst:(NSString*)dst folderName:(NSString*)name
 {
     //文件夹存在就删除
-    [self removeResFromDstPath:_dstPath];
+    //[self removeResFromDstPath:dst];
     
     //判断路径是否为文件夹
     NSString* pType = [src pathExtension];
@@ -86,7 +58,7 @@
         NSDirectoryEnumerator* direnum;
         direnum = [_fileManager enumeratorAtPath:src];
         
-        NSString* root = [dst stringByAppendingString:DATA_PATH];
+        NSString* root = [dst stringByAppendingString:name];
         [self copyFolder:root];
 
         NSString* path;
@@ -123,7 +95,7 @@
 
 - (void)removeResFromDstPath:(NSString*)dst
 {
-    NSString* root = [dst stringByAppendingString:DATA_PATH];
+    NSString* root = dst;
     NSError* error = nil;
     NSString* metaPath = [NSString stringWithFormat:@"%@.meta", root];
     
@@ -142,6 +114,36 @@
     {
         NSLog(@"*[DataResManager 144]:移除目标路径文件失败:%@ 错误原因:%@", dst, error);
         NSLog(@"*[DataResManager 145]:%@", [error userInfo]);
+    }
+}
+
+- (void)copyFolder:(NSString*) path
+{
+    BOOL isDir = NO;
+    BOOL existed = [_fileManager fileExistsAtPath:path isDirectory:&isDir];
+    if(!(isDir && existed))
+    {
+        NSError* error;
+        [_fileManager createDirectoryAtPath:path
+                withIntermediateDirectories:YES
+                                 attributes:nil
+                                      error:&error];
+        if(error != nil)
+        {
+            NSLog(@"*拷贝文件夹失败 原因:%@", error);
+            NSLog(@"%@", [error userInfo]);
+        }
+    }
+}
+
+- (void)copyFile:(NSString*)src toDst:(NSString*)dst
+{
+    NSError* error = nil;
+    [_fileManager copyItemAtPath:src toPath:dst error:&error];
+    if(error != nil)
+    {
+        showError("*拷贝文件失败 原因:%@", error);
+        NSLog(@"%@", [error userInfo]);
     }
 }
 

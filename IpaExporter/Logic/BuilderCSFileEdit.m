@@ -21,9 +21,9 @@
 
 @implementation BuilderCSFileEdit
 
-- (void)startWithDstPath:(NSString*)dstPath
+- (void)startWithDstPath:(NSString*)rootPath
 {
-    NSString* builderCSPath = [dstPath stringByAppendingPathComponent:BUILDER_CS_PATH];
+    NSString* builderCSPath = [rootPath stringByAppendingPathComponent:@"/TempCode/Builder/_Builder.cs"];
     BOOL success = [self initWithPath:builderCSPath];
     if(success)
     {

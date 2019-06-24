@@ -13,7 +13,10 @@
 
 @interface DataResManager : Singletion
 
-- (void)start:(ExportInfo*)info withFolderPath:(NSString*)path;
+- (void)start:(ExportInfo*)info;
+- (void)appendingFolder:(NSString*)path;
 - (void)end;
+
+@property (readonly) NSString *rootPath;
 
 @end

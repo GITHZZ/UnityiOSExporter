@@ -69,7 +69,11 @@
                                                 <action selector="openCustomConfig:" target="11a-jN-iuY" id="3DP-lq-TW0"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="用例测试" keyEquivalent="t" id="3o6-5w-Uo6" userLabel="Back"/>
+                                        <menuItem title="用例测试" keyEquivalent="t" id="3o6-5w-Uo6" userLabel="Back">
+                                            <connections>
+                                                <action selector="CodeTest:" target="11a-jN-iuY" id="uBB-XB-3Yg"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem title="备份" keyEquivalent="s" id="WPk-V3-lnS">
                                             <connections>
                                                 <action selector="backup:" target="11a-jN-iuY" id="9YJ-hl-7t7"/>

@@ -15,7 +15,7 @@
 #define XCODE_PROJ_NAME @"xcodeProj"
 #define PACK_FOLDER_PATH [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/Packer"]
 #define DATA_PATH @"/TempCode"
-#define BUILDER_CS_PATH @"/Assets/Editor/TempCode/Builder/_Builder.cs"
+#define CODETEST_PATH @"/CodeTest/Test"
 
 //view main key
 #define Export_Path @"exportPath"

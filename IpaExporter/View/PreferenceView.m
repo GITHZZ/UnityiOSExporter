@@ -9,6 +9,7 @@
 #import "PreferenceView.h"
 #import "ExportInfoManager.h"
 #import "PackCammond.h"
+#import "CodeTester.h"
 
 @implementation PreferenceView
 
@@ -65,6 +66,11 @@
 {
     NSString *filePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/TempCode/Builder/Users/_CustomConfig.json"];
     [[NSWorkspace sharedWorkspace] openFile:filePath];
+}
+
+- (IBAction)CodeTest:(id)sender
+{
+    [[CodeTester instance] run];
 }
 
 - (IBAction)backup:(id)sender

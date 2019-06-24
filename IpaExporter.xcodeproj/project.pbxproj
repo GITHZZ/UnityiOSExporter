@@ -30,6 +30,8 @@
 		5964C63F229CE169004BDD23 /* Xcodeproj in Resources */ = {isa = PBXBuildFile; fileRef = 5964C63E229CE169004BDD23 /* Xcodeproj */; };
 		5964C642229CE262004BDD23 /* PackCammond.m in Sources */ = {isa = PBXBuildFile; fileRef = 5964C641229CE262004BDD23 /* PackCammond.m */; };
 		5979D9DC22A54C3700C040D2 /* MobileprovisionParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5979D9DB22A54C3700C040D2 /* MobileprovisionParser.m */; };
+		59B1BE3A22C068CF0087F869 /* CodeTest in Resources */ = {isa = PBXBuildFile; fileRef = 59B1BE3922C068CF0087F869 /* CodeTest */; };
+		59B1BE3D22C06D030087F869 /* CodeTester.m in Sources */ = {isa = PBXBuildFile; fileRef = 59B1BE3C22C06D030087F869 /* CodeTester.m */; };
 		59CF0C4222B79D08001A1F91 /* PreferenceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 59CF0C4122B79D08001A1F91 /* PreferenceView.m */; };
 /* End PBXBuildFile section */
 
@@ -100,6 +102,9 @@
 		5979D9DA22A54C3700C040D2 /* MobileprovisionParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MobileprovisionParser.h; sourceTree = "<group>"; };
 		5979D9DB22A54C3700C040D2 /* MobileprovisionParser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MobileprovisionParser.m; sourceTree = "<group>"; };
 		59A6F5B522BA07E2007A3C25 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		59B1BE3922C068CF0087F869 /* CodeTest */ = {isa = PBXFileReference; lastKnownFileType = folder; name = CodeTest; path = IpaExporter/CodeTest; sourceTree = "<group>"; };
+		59B1BE3B22C06D030087F869 /* CodeTester.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CodeTester.h; sourceTree = "<group>"; };
+		59B1BE3C22C06D030087F869 /* CodeTester.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CodeTester.m; sourceTree = "<group>"; };
 		59CF0C4022B79D08001A1F91 /* PreferenceView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PreferenceView.h; sourceTree = "<group>"; };
 		59CF0C4122B79D08001A1F91 /* PreferenceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PreferenceView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -133,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				0E211BC522BAB29C00334CC0 /* README.md */,
+				59B1BE3922C068CF0087F869 /* CodeTest */,
 				5964C63E229CE169004BDD23 /* Xcodeproj */,
 				1890344F1DE82FCF00AEDF46 /* TempCode */,
 				1837800F1D766C84004E3BAD /* IpaExporter */,
@@ -197,6 +203,8 @@
 		18750A9C1D9BBBD000FECCA6 /* Logic */ = {
 			isa = PBXGroup;
 			children = (
+				59B1BE3B22C06D030087F869 /* CodeTester.h */,
+				59B1BE3C22C06D030087F869 /* CodeTester.m */,
 				5964C640229CE262004BDD23 /* PackCammond.h */,
 				5964C641229CE262004BDD23 /* PackCammond.m */,
 				5979D9DA22A54C3700C040D2 /* MobileprovisionParser.h */,
@@ -360,6 +368,7 @@
 				0E211BC622BAB29C00334CC0 /* README.md in Resources */,
 				1837801D1D766C84004E3BAD /* Main.storyboard in Resources */,
 				189034501DE82FCF00AEDF46 /* TempCode in Resources */,
+				59B1BE3A22C068CF0087F869 /* CodeTest in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,6 +394,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5979D9DC22A54C3700C040D2 /* MobileprovisionParser.m in Sources */,
+				59B1BE3D22C06D030087F869 /* CodeTester.m in Sources */,
 				18F1027B1DCC2AEB008312E5 /* EventManager.m in Sources */,
 				593FAEF622B097E700A21F33 /* NSString+Emoji.m in Sources */,
 				182DC37D1E8A5AE400912D20 /* Alert.m in Sources */,

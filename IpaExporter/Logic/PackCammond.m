@@ -142,27 +142,31 @@
     NSString *xcodeShellPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/Xcodeproj/ExportXcode.sh"];
     ExportInfoManager* view = [ExportInfoManager instance];
     
-    [[DataResManager instance] start:view.info withFolderPath:DATA_PATH];
+    [[DataResManager instance] start:view.info];
+    NSString *srcPath = [[[NSBundle mainBundle] resourcePath]stringByAppendingString:@"/TempCode"];
+    [[DataResManager instance] appendingFolder:srcPath];
+    
     showLog("开始生成xcode工程");
     showLog([[NSString stringWithFormat:@"[配置信息]Unity工程路径:%s", view.info->unityProjPath] UTF8String]);
     
     BuilderCSFileEdit* builderEdit = [[BuilderCSFileEdit alloc] init];
-    [builderEdit startWithDstPath:[NSString stringWithUTF8String:view.info->unityProjPath]];
+    [builderEdit startWithDstPath: [DataResManager instance].rootPath];
     
     dispatch_sync(sq, ^{
         //生成xcode工程
         //$1 unity工程路径
         //$2 导出路径
         //$3 沙盒路径
+        //$4 代码根目录
         NSArray *args = [NSArray arrayWithObjects:
                          [NSString stringWithUTF8String:view.info->unityProjPath],
                          [NSString stringWithUTF8String:view.info->exportFolderParh],
                          [[NSBundle mainBundle]resourcePath],
+                         [DataResManager instance].rootPath,
                          nil];
         
         NSString *shellLog = [self invokingShellScriptAtPath:xcodeShellPath withArgs:args];
-        
-        
+    
         [[DataResManager instance] end];
         NSString* logStr = [shellLog stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         showLog([logStr UTF8String]);
