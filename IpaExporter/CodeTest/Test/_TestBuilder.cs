@@ -26,7 +26,7 @@ namespace IpaExporter
 
             //测试传近进来参数是否正确
             Assert.AreEqual(true, args.StartsWith("{") && args.EndsWith("}"));
-     
+            
             //必须参数
 			PlayerSettings.iOS.sdkVersion = iOSSdkVersion.DeviceSDK;
 

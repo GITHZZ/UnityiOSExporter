@@ -10,6 +10,8 @@
 #import "ExportInfoManager.h"
 #import "DataResManager.h"
 
+#import <Cocoa/Cocoa.h>
+
 @implementation CodeTester
 
 - (void)run
@@ -35,11 +37,12 @@
     
     dispatch_group_t group = dispatch_group_create();
     dispatch_group_async(group, dispatch_get_main_queue(), ^{
-        //[self createTerminalTask:shellStr];
+        [self createTerminalTask:shellStr];
     });
     
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
-        //[[DataResManager instance] end];
+        [[NSWorkspace sharedWorkspace] openFile:[NSString stringWithFormat:@"%s/code_test_log.xml", view.info->unityProjPath]];
+        [[DataResManager instance] end];
     });
 }
 
