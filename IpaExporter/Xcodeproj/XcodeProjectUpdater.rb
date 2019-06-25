@@ -3,33 +3,21 @@ require "fileutils"
 
 class XcodeProjectUpdater
 	def initialize()
-		@target = $project.targets.first
+        @base_target = $base_project.targets.first
+        @target = $project.targets.first
 
-		@group_root_path = 'SDK'
+        @group_root_path = 'SDK'
 		@group_sub_path = @group_root_path
 
 		@unity_class_group = new_group(File.join(@group_root_path), PROJECT_RESOURCE_PATH)
 
-        @framework_search_paths_array = [
-           "$(inherited)",
-        ]
+        @framework_search_paths_array = get_build_setting(@base_target, "FRAMEWORK_SEARCH_PATHS")
 		@framework_search_paths_array.insert(@framework_search_paths_array.size - 1, PROJECT_RESOURCE_PATH)
-
-		@header_search_paths_array = [
-			"$(inherited)",
-			"\"$(SRCROOT)/Classes\"",
-			"\"$(SRCROOT)\"",
-			"$(SRCROOT)/Classes/Native",
-			"$(SRCROOT)/Libraries/bdwgc/include",
-			"$(SRCROOT)/Libraries/libil2cpp/include",
-		]
+        
+        @header_search_paths_array = get_build_setting(@base_target, "HEADER_SEARCH_PATHS")
 		@header_search_paths_array.insert(@header_search_paths_array.size - 1, PROJECT_RESOURCE_PATH)
-
-		@library_search_paths_array = [
-			"$(inherited)",
-			"\"$(SRCROOT)\"",
-			"\"$(SRCROOT)/Libraries\"",
-		]
+      
+		@library_search_paths_array = get_build_setting(@base_target, "LIBRARY_SEARCH_PATHS")
 		@library_search_paths_array.insert(@library_search_paths_array.size - 1, PROJECT_RESOURCE_PATH)
 
 		config = File.read($config_path)
@@ -77,8 +65,8 @@ class XcodeProjectUpdater
 	def add_build_phase_files(target, group, path, embedFrameworks)
 		Dir.foreach(path) do |dir|
 			newPath = "#{path}/#{dir}"
-            puts newPath
-			#Classes为特殊文件夹-过滤
+        
+            #Classes为特殊文件夹-过滤
 			if dir != '.' and dir != '..' and dir != ".DS_Store" 
 				file_type = File::ftype(newPath)
 
@@ -86,10 +74,10 @@ class XcodeProjectUpdater
                     replace_need_copy_files(newPath)
                 elsif newPath.to_s.end_with?("Unity-iPhone")
                     copy_unity_iphone_folder(newPath)
-				elsif file_type == "directory" and !newPath.to_s.end_with?(".bundle") 
+				elsif file_type == "directory" and !newPath.to_s.end_with?(".bundle")
                     @framework_search_paths_array.insert(@framework_search_paths_array.size - 1, newPath)
-					@header_search_paths_array.insert(@header_search_paths_array.size - 1, newPath)
-					@library_search_paths_array.insert(@library_search_paths_array.size - 1, newPath)
+                    @header_search_paths_array.insert(@header_search_paths_array.size - 1, newPath)
+                    @library_search_paths_array.insert(@library_search_paths_array.size - 1, newPath)
 
 					parent_path = @group_sub_path
 					@group_sub_path = "#{@group_sub_path}/#{dir}"

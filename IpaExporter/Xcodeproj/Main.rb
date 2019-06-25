@@ -19,6 +19,7 @@ $config_path = ARGV.at(3)
 $project_folder_path = "#{$xcode_proj_root_path}/#{$xcode_proj_name}"
 $templete_project_path = "#{$project_folder_path}/Unity-iPhone.xcodeproj"
 $project_path = "#{$project_folder_path}/Unity-iPhone-#{$platform_name}.xcodeproj"
+$base_proj_path = "#{$project_folder_path}/Unity-iPhone.xcodeproj"
 $log_file_path = "#{$xcode_proj_root_path}/xcodeproj_log_#{$platform_name}.txt"
 
 if !(File::exist?($log_file_path))
@@ -33,6 +34,7 @@ if !(File::exist?($project_path))
 end
 
 $project = Xcodeproj::Project.open($project_path)
+$base_project = Xcodeproj::Project.open($base_proj_path)
 
 export_main = XcodeProjectUpdater.new()
 export_main.start()
