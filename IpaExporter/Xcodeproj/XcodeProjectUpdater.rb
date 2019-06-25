@@ -11,12 +11,18 @@ class XcodeProjectUpdater
 
 		@unity_class_group = new_group(File.join(@group_root_path), PROJECT_RESOURCE_PATH)
 
-        @framework_search_paths_array = get_build_setting(@base_target, "FRAMEWORK_SEARCH_PATHS")
-		@framework_search_paths_array.insert(@framework_search_paths_array.size - 1, PROJECT_RESOURCE_PATH)
+        #怎么这里获取的是个字符串？
+        @framework_search_paths_array = [
+            "$(inherited)",
+        ]
+		@framework_search_paths_array.insert(@framework_search_paths_array.size, PROJECT_RESOURCE_PATH)
+        puts @framework_search_paths_array
         
+        @header_search_paths_array = Array.new
         @header_search_paths_array = get_build_setting(@base_target, "HEADER_SEARCH_PATHS")
 		@header_search_paths_array.insert(@header_search_paths_array.size - 1, PROJECT_RESOURCE_PATH)
-      
+        
+        @library_search_paths_array = Array.new
 		@library_search_paths_array = get_build_setting(@base_target, "LIBRARY_SEARCH_PATHS")
 		@library_search_paths_array.insert(@library_search_paths_array.size - 1, PROJECT_RESOURCE_PATH)
 
@@ -74,7 +80,7 @@ class XcodeProjectUpdater
                     replace_need_copy_files(newPath)
                 elsif newPath.to_s.end_with?("Unity-iPhone")
                     copy_unity_iphone_folder(newPath)
-				elsif file_type == "directory" and !newPath.to_s.end_with?(".bundle")
+				elsif file_type == "directory" and !newPath.to_s.end_with?(".bundle", ".framework")
                     @framework_search_paths_array.insert(@framework_search_paths_array.size - 1, newPath)
                     @header_search_paths_array.insert(@header_search_paths_array.size - 1, newPath)
                     @library_search_paths_array.insert(@library_search_paths_array.size - 1, newPath)

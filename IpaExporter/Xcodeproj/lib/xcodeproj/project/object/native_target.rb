@@ -347,7 +347,8 @@ module Xcodeproj
             end
 
             # changebyhzz delete .framework
-            path = "Platforms/#{path_sdk_name}.platform/Developer/SDKs/#{path_sdk_name}#{path_sdk_version}.sdk/System/Library/Frameworks/#{name}" 
+            # delete #{path_sdk_version} 
+            path = "Platforms/#{path_sdk_name}.platform/Developer/SDKs/#{path_sdk_name}.sdk/System/Library/Frameworks/#{name}"
             unless ref = group.find_file_by_path(path)
               ref = group.new_file(path, :developer_dir)
             end

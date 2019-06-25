@@ -142,7 +142,7 @@
     [_fileManager copyItemAtPath:src toPath:dst error:&error];
     if(error != nil)
     {
-        showError("*拷贝文件失败 原因:%@", error);
+        showError("拷贝文件失败 原因:%@", error);
         NSLog(@"%@", [error userInfo]);
     }
 }
