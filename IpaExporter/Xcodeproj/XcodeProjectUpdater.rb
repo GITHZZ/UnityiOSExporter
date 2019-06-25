@@ -77,17 +77,17 @@ class XcodeProjectUpdater
 	def add_build_phase_files(target, group, path, embedFrameworks)
 		Dir.foreach(path) do |dir|
 			newPath = "#{path}/#{dir}"
-
+            puts newPath
 			#Classes为特殊文件夹-过滤
 			if dir != '.' and dir != '..' and dir != ".DS_Store" 
 				file_type = File::ftype(newPath)
 
 				if dir == "Copy"
-					replace_need_copy_files(newPath)
+                    replace_need_copy_files(newPath)
                 elsif newPath.to_s.end_with?("Unity-iPhone")
-				 	copy_unity_iphone_folder(newPath)
-				elsif file_type == "directory" and !newPath.include?"." 
-					@framework_search_paths_array.insert(@framework_search_paths_array.size - 1, newPath)
+                    copy_unity_iphone_folder(newPath)
+				elsif file_type == "directory" and !newPath.to_s.end_with?(".bundle") 
+                    @framework_search_paths_array.insert(@framework_search_paths_array.size - 1, newPath)
 					@header_search_paths_array.insert(@header_search_paths_array.size - 1, newPath)
 					@library_search_paths_array.insert(@library_search_paths_array.size - 1, newPath)
 
