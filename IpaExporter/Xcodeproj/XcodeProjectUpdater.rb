@@ -16,8 +16,7 @@ class XcodeProjectUpdater
             "$(inherited)",
         ]
 		@framework_search_paths_array.insert(@framework_search_paths_array.size, PROJECT_RESOURCE_PATH)
-        puts @framework_search_paths_array
-        
+
         @header_search_paths_array = Array.new
         @header_search_paths_array = get_build_setting(@base_target, "HEADER_SEARCH_PATHS")
 		@header_search_paths_array.insert(@header_search_paths_array.size - 1, PROJECT_RESOURCE_PATH)
@@ -28,6 +27,7 @@ class XcodeProjectUpdater
 
 		config = File.read($config_path)
 		@setting_hash = JSON.parse(config)
+        
 	end
 
 	def start()
@@ -76,11 +76,14 @@ class XcodeProjectUpdater
 			if dir != '.' and dir != '..' and dir != ".DS_Store" 
 				file_type = File::ftype(newPath)
 
-				if dir == "Copy"
-                    replace_need_copy_files(newPath)
+				if newPath.to_s.end_with?("Info.plist")
+                    info_file_path = "#{newPath}/Info.plist"
+                    if File::exist?(info_file_path)
+                        FileUtils.cp info_file_path, "#{$project_folder_path}"
+                    end
                 elsif newPath.to_s.end_with?("Unity-iPhone")
                     copy_unity_iphone_folder(newPath)
-				elsif file_type == "directory" and !newPath.to_s.end_with?(".bundle", ".framework")
+                elsif file_type == "directory" and !newPath.to_s.end_with?(".bundle", ".framework") #add group
                     @framework_search_paths_array.insert(@framework_search_paths_array.size - 1, newPath)
                     @header_search_paths_array.insert(@header_search_paths_array.size - 1, newPath)
                     @library_search_paths_array.insert(@library_search_paths_array.size - 1, newPath)
@@ -92,8 +95,9 @@ class XcodeProjectUpdater
 					add_build_phase_files(target, new_group, newPath, embedFrameworks)
 
 					@group_sub_path = parent_path				
-				else
+                else #add folder
 					file_ref = group.new_reference(newPath)
+                    del_classes_file_if_exist(file_ref.path) #删除Classes文件夹中文件(主要是UnityAppController文件)
 					if newPath.to_s.end_with?(".m", ".mm", ".cpp") 
 						target.source_build_phase.add_file_reference(file_ref)
 					elsif newPath.to_s.end_with?(".framework", ".a") 
@@ -102,7 +106,6 @@ class XcodeProjectUpdater
 						if is_embedFrameworks(newPath)
 							embedFrameworks.add_file_reference(file_ref)
 						end
-
 					elsif newPath.to_s.end_with?(".bundle", ".jpg", ".png") 
 						target.resources_build_phase.add_file_reference(file_ref)
 					end
@@ -116,33 +119,7 @@ class XcodeProjectUpdater
 		set_build_setting(@target, "FRAMEWORK_SEARCH_PATHS", @framework_search_paths_array)
 		set_build_setting(@target, "HEADER_SEARCH_PATHS", @header_search_paths_array)
 		set_build_setting(@target, "LIBRARY_SEARCH_PATHS", @library_search_paths_array)
-	end 
-
-	#覆盖Copy文件夹中的文件UI
-	def replace_need_copy_files(mod_path)
-		h_file_path = "#{mod_path}/UnityAppController.h"
-		m_file_path = "#{mod_path}/UnityAppController.mm"
-        info_file_path = "#{mod_path}/Info.plist"
-        export_plist_path = "#{mod_path}/ExportOptions.plist"
-        
-        #copy ExportOptions
-        if File::exist?(export_plist_path)
-            FileUtils.cp export_plist_path, "#{$project_folder_path}"
-        end
-        
-        #copy Info
-        if File::exist?(info_file_path)
-            FileUtils.cp info_file_path, "#{$project_folder_path}"
-        end
-        
-		if File::exist?(h_file_path)
-			FileUtils.cp h_file_path, "#{$project_folder_path}/Classes"
-		end
-
-		if File::exist?(m_file_path)
-			FileUtils.cp m_file_path, "#{$project_folder_path}/Classes"
-		end
-	end 
+	end
 
 	#用于替换图标和LaunchImage图
 	def copy_unity_iphone_folder(path)
@@ -213,6 +190,14 @@ class XcodeProjectUpdater
 		end 
 	end 
 
+    def del_classes_file_if_exist(fileName)
+        class_group = $project.main_group.find_subpath("Classes")
+        file_ref = class_group.find_file_by_path(fileName)
+        if file_ref != nil
+            file_ref.remove_from_project
+        end
+    end
+    
 	def is_embedFrameworks(newPath)
 		embedArray = @setting_hash["embedFrameworks"]
 		for item in embedArray
@@ -222,4 +207,5 @@ class XcodeProjectUpdater
 		end
 		return false
 	end
+    
 end

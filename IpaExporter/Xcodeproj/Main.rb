@@ -29,9 +29,11 @@ end
 $stdout.reopen($log_file_path, "w")
 $stderr.reopen($log_file_path, "w")
 
-if !(File::exist?($project_path))
-	FileUtils.cp_r $templete_project_path, $project_path
+#存在就先删除
+if File::exist?($project_path)
+    FileUtils.rm_r $project_path
 end
+FileUtils.cp_r $templete_project_path, $project_path
 
 $project = Xcodeproj::Project.open($project_path)
 $base_project = Xcodeproj::Project.open($base_proj_path)

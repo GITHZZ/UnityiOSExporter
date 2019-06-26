@@ -222,6 +222,7 @@
         //$12 沙盒文件路径
         //$13 bundleIdentifier
         //$14 是否release包
+        //$15 缓存文件位置
         NSArray *args = [NSArray arrayWithObjects:
                          rubyMainPath,//$1
                          data.customSDKPath,
@@ -237,6 +238,7 @@
                          [[NSBundle mainBundle]resourcePath],
                          data.bundleIdentifier,
                          [NSString stringWithFormat:@"%d",view.info->isRelease],
+                         PACK_FOLDER_PATH,
                          nil];
          
         showLog([[NSString stringWithFormat:@"开始打包 平台:%@", data.platform] UTF8String]);

@@ -12,6 +12,7 @@
 #$12 沙盒文件路径
 #$13 bundleIdentifier
 #$14 是否release包
+#$15 缓存文件位置
 
 echo "Main.sh脚本执行log"
 #echo "sdk资源文件路径:"${$2}
@@ -32,6 +33,7 @@ main_bundle_res_path=${12}
 custom_sdk_path=$2
 bundleIdentifier=${13}
 is_release=${14}
+pack_folder_path=${15}
 
 #设置打包参数
 provisioning_profile=${debug_provisioning_profile}
@@ -59,7 +61,7 @@ if [ ! -d ${copy_foler_path}]; then
 fi
 
 res_path=${main_bundle_res_path}"/Xcodeproj/ExportOptions.plist"
-dst_path=${custom_sdk_path}"/Copy/ExportOptions.plist"
+dst_path=${pack_folder_path}"/"${platform_name}"/ExportOptions.plist"
 cp -f ${res_path} ${dst_path}
 sed -i '' 's/:bundleIdentifier:/'${bundleIdentifier}'/g' ${dst_path}
 sed -i '' 's/:profileName:/'${provisioning_profile}'/g' ${dst_path}
@@ -118,5 +120,5 @@ mkdir ${ipa_folder_path}
 xcodebuild \
     -exportArchive \
     -archivePath bin/Unity-iPhone-${platform_name}.xcarchive \
-    -exportOptionsPlist ${xcode_proj_path}/ExportOptions.plist \
+    -exportOptionsPlist ${dst_path} \
     -exportPath ${ipa_folder_path}
