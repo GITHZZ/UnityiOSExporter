@@ -35,8 +35,9 @@
     [[DataResManager instance] appendingFolder:codeTestPath];
     [[DataResManager instance] appendingFolder:litJsonPath];
     
+    dispatch_queue_t queue = dispatch_queue_create(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_group_t group = dispatch_group_create();
-    dispatch_group_async(group, dispatch_get_main_queue(), ^{
+    dispatch_group_async(group, queue, ^{
         [self createTerminalTask:shellStr];
     });
     

@@ -72,16 +72,17 @@ class XcodeProjectUpdater
 		Dir.foreach(path) do |dir|
 			newPath = "#{path}/#{dir}"
         
-            #Classes为特殊文件夹-过滤
+            #Classes为特殊文件夹
+            #Info.plist也会特殊处理
 			if dir != '.' and dir != '..' and dir != ".DS_Store" 
 				file_type = File::ftype(newPath)
 
 				if newPath.to_s.end_with?("Info.plist")
-                    info_file_path = "#{newPath}/Info.plist"
-                    if File::exist?(info_file_path)
-                        FileUtils.cp info_file_path, "#{$project_folder_path}"
-                    end
-                elsif newPath.to_s.end_with?("Unity-iPhone")
+                    $project.main_group.find_file_by_path("Info.plist").remove_from_project
+                    set_build_setting(@target, "INFOPLIST_FILE", newPath)
+                end
+                
+                if newPath.to_s.end_with?("Unity-iPhone")
                     copy_unity_iphone_folder(newPath)
                 elsif file_type == "directory" and !newPath.to_s.end_with?(".bundle", ".framework") #add group
                     @framework_search_paths_array.insert(@framework_search_paths_array.size - 1, newPath)
