@@ -13,7 +13,7 @@
 
 #define Detail_Info_Dict_Coder_Key @"DetailInfoDict"
 
-@interface DetailsInfoData()<NSCoding>
+@interface DetailsInfoData()<NSSecureCoding>
 @end
 
 @implementation DetailsInfoData
@@ -83,10 +83,16 @@
     [encoder encodeObject:_dict forKey:Detail_Info_Dict_Coder_Key];
 }
 
-- (id)initWithCoder:(NSCoder *)decoder
+- (instancetype)initWithCoder:(NSCoder *)decoder
 {
-    NSDictionary* dict = [decoder decodeObjectForKey:Detail_Info_Dict_Coder_Key];
+    NSMutableDictionary *dict = [decoder decodeObjectForKey:Detail_Info_Dict_Coder_Key];
+//    NSDictionary* dict = [decoder decodeObjectForKey:Detail_Info_Dict_Coder_Key];
     return [self initWithInfoDict:dict];
+}
+
++ (BOOL)supportsSecureCoding
+{
+    return YES;
 }
 
 @end

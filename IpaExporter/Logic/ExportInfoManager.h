@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ExportInfoManager : Singletion
 {
     NSUserDefaults* _saveData;
-    NSMutableDictionary<NSString*, NSMutableArray*> *_savedict;
+    NSMutableDictionary<NSString*, id> *_savedict;
 }
 
 @property(nonatomic, readwrite) ExportInfo *info;

@@ -19,6 +19,15 @@
     NSString *codeSavePath = [ExportInfoManager instance].codeBackupPath;
     if(codeSavePath != nil)
         _savePath.stringValue = codeSavePath;
+    
+    [[_codeApp menu] setDelegate:self];
+    [[_jsonApp menu] setDelegate:self];
+    
+    [_codeApp removeAllItems];
+    [_jsonApp removeAllItems];
+    
+    [_codeApp addItemWithTitle:@"1"];
+    [_codeApp addItemWithTitle:@"2"];
 }
 
 - (void)viewDidDisappear
@@ -34,7 +43,6 @@
 
 - (IBAction)cleanAllCache:(id)sender
 {
-    
 }
     
 - (IBAction)savePathSelect:(id)sender
@@ -52,7 +60,12 @@
         [[ExportInfoManager instance] saveData];
     }
 }
-    
+
+- (void)menuDidClose:(NSMenu *)menu
+{
+    NSLog(@"%@",_codeApp.selectedItem.title);
+}
+
 @end
 
 @implementation ExtensionsMenu

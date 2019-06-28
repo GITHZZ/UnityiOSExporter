@@ -82,6 +82,9 @@
         
         [NSApp activateIgnoringOtherApps:YES];
         showSuccess("打包结束");
+        
+        ExportInfoManager* view = [ExportInfoManager instance];
+        [[NSWorkspace sharedWorkspace] selectFile:nil inFileViewerRootedAtPath:[NSString stringWithUTF8String:view.info->exportFolderParh]];
     });
 }
 
@@ -114,7 +117,6 @@
     
     if(error != nil){
         [outStream close];
-        //return error code
         return @"";
     }
     

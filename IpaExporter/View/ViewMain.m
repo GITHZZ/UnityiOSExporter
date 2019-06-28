@@ -11,7 +11,7 @@
 #import "DetailsInfoView.h"
 #import "DetailsInfoData.h"
 #import "ExportInfoManager.h"
-#import "NSString+Emoji.h"
+#import "Common.h"
 
 #define PlatformTblKey @"platformTbl"
 #define PackSceneKey   @"packScene"

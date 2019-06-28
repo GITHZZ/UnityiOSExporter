@@ -31,7 +31,7 @@
         
         NSMutableArray *detailArray = [[NSMutableArray alloc] initWithCapacity:20];
         NSMutableArray *sceneArray = [[NSMutableArray alloc] initWithCapacity:5];        
-        _savedict = [NSMutableDictionary dictionaryWithObjectsAndKeys:detailArray, SAVE_DETAIL_ARRARY_KEY, sceneArray, SAVE_SCENE_ARRAY_KEY, nil];
+        _savedict = [NSMutableDictionary dictionaryWithObjectsAndKeys:detailArray, SAVE_DETAIL_ARRARY_KEY, sceneArray, SAVE_SCENE_ARRAY_KEY, @"", SAVE_CODE_SAVE_PATH_KEY, nil];
     }
     
     return self;
@@ -40,27 +40,27 @@
 //主路径部分
 - (void)reloadPaths
 {
-    NSData* unityProjData = (NSData*)[_saveData objectForKey:SAVE_PROJECT_PATH_KEY];
-    NSArray* unityProjArray = [NSKeyedUnarchiver unarchiveObjectWithData:unityProjData];
-    NSMutableArray* unityProjMutable = [NSMutableArray arrayWithArray:unityProjArray];
+    NSData *unityProjData = (NSData*)[_saveData objectForKey:SAVE_PROJECT_PATH_KEY];
+    NSArray *unityProjArray = [NSKeyedUnarchiver unarchivedObjectOfClass:[NSArray class] fromData:unityProjData error:nil];
+    NSMutableArray *unityProjMutable = [NSMutableArray arrayWithArray:unityProjArray];
     _unityProjPathArr = unityProjMutable;
     
-    NSData* exportData = (NSData*)[_saveData objectForKey:SAVE_EXPORT_PATH_KEY];
-    NSArray* exportArray = [NSKeyedUnarchiver unarchiveObjectWithData:exportData];
+    NSData *exportData = (NSData*)[_saveData objectForKey:SAVE_EXPORT_PATH_KEY];
+    NSArray *exportArray = [NSKeyedUnarchiver unarchivedObjectOfClass:[NSArray class] fromData:exportData error:nil];
     NSMutableArray* exportMutable = [NSMutableArray arrayWithArray:exportArray];
     _exportPathArr = exportMutable;
     
     NSData* codeSaveData = (NSData*)[_saveData objectForKey:SAVE_CODE_SAVE_PATH_KEY];
-    _codeBackupPath = [NSKeyedUnarchiver unarchiveObjectWithData:codeSaveData];
+    _codeBackupPath = [NSKeyedUnarchiver unarchivedObjectOfClass:[NSString class] fromData:codeSaveData error:nil];
 }
 
 - (void)saveData
 {
-    NSData* unityArrData = [NSKeyedArchiver archivedDataWithRootObject:_unityProjPathArr];
+    NSData *unityArrData = [NSKeyedArchiver archivedDataWithRootObject:_unityProjPathArr requiringSecureCoding:NO error:nil];
     [_saveData setObject:unityArrData forKey:SAVE_PROJECT_PATH_KEY];
-    NSData* exportArrData = [NSKeyedArchiver archivedDataWithRootObject:_exportPathArr];
+    NSData *exportArrData = [NSKeyedArchiver archivedDataWithRootObject:_exportPathArr requiringSecureCoding:NO error:nil];
     [_saveData setObject:exportArrData forKey:SAVE_EXPORT_PATH_KEY];
-    NSData* codeSaveData = [NSKeyedArchiver archivedDataWithRootObject:_codeBackupPath];
+    NSData *codeSaveData = [NSKeyedArchiver archivedDataWithRootObject:_codeBackupPath requiringSecureCoding:NO error:nil];
     [_saveData setObject:codeSaveData forKey:SAVE_CODE_SAVE_PATH_KEY];
 
     [_saveData synchronize];
@@ -120,7 +120,7 @@
         return;
     }
     
-    NSData* arrayData = [NSKeyedArchiver archivedDataWithRootObject:array];
+    NSData* arrayData = [NSKeyedArchiver archivedDataWithRootObject:array requiringSecureCoding:YES error:nil];
     [_saveData setObject:arrayData forKey:saveKey];
     [_saveData synchronize];
 }
@@ -128,7 +128,12 @@
 - (NSMutableArray*)reLoadDetails:(NSString*)saveKey
 {
     NSData* arrayData = (NSData*)[_saveData objectForKey:saveKey];
-    NSArray* array = [NSKeyedUnarchiver unarchiveObjectWithData:arrayData];
+    NSSet *set = [NSSet setWithArray:@[[NSMutableArray class],[DetailsInfoData class], [NSMutableDictionary class]]];
+    NSError *error = nil;
+    NSArray *array = [NSKeyedUnarchiver unarchivedObjectOfClasses:set fromData:arrayData error:&error];
+    if(error != nil)
+        NSLog(@"%@", error);
+    
     NSMutableArray *mutable = [NSMutableArray arrayWithArray:array];
     [_savedict setObject:mutable forKey:saveKey];
     return mutable;
@@ -147,7 +152,6 @@
     NSMutableArray *array = [_savedict objectForKey:saveKey];
     if([array count] > 0){
         [array removeObjectAtIndex:index];
-        //[_savedict setObject:array forKey:saveKey];
         [self saveDetail:saveKey];
     }
 }
@@ -162,7 +166,7 @@
 
 - (void)setCodeSavePath:(NSString*)path
 {
-    _codeBackupPath = path;
+    //_codeBackupPath = path;
 }
 
 - (NSMutableArray*)getDetailArray
@@ -173,6 +177,11 @@
 - (NSMutableArray*)getSceneArray
 {
     return [_savedict objectForKey:SAVE_SCENE_ARRAY_KEY];
+}
+
+- (NSString*)getCodeSavePath
+{
+    return [_savedict objectForKey:SAVE_CODE_SAVE_PATH_KEY];
 }
 
 @end
