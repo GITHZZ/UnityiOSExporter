@@ -54,4 +54,24 @@ typedef struct
     int isExportXcode;
 }ExportInfo;
 
+typedef NS_ENUM(EventType, CustomEventType){
+    
+    EventViewMainLoaded          = 200,
+    EventViewSureClicked         = 201,
+    EventUnityPathSelect         = 202,
+    EventUnityPathSelectEnd      = 203,
+    EventExportPathSelectEnd     = 204,
+    EventDevelopProfileSelectEnd = 205,
+    EventDetailsInfoSettingClose = 206,
+    EventDetailsInfoAdd          = 207,
+    EventDetailsInfoRemove       = 208,
+    EventDetailsInfoUpdate       = 209,
+    EventSelectCopyDirPath       = 210,
+    EventDetailsInfoSettingEdit  = 213,
+    EventSetExportButtonState    = 214,
+    EventScenePathSelectEnd      = 215,
+    EventStartRecordTime         = 216,
+    EventStopRecordTime          = 217,
+};
+
 #endif /* Defs_h */

@@ -9,7 +9,8 @@
 #ifndef EventType_h
 #define EventType_h
 
-typedef NS_ENUM(int, EventType){
+typedef int EventType;
+typedef NS_ENUM(EventType, EventTypeCommon){
     
     //通用模块
     EventAddNewInfoContent       = 111,
@@ -17,25 +18,6 @@ typedef NS_ENUM(int, EventType){
     EventAddNewSuccessContent    = 118,
     EventAddNewWarningContent    = 119,
     EventCleanInfoContent        = 120,
-    
-    //应用层面模块，想办法拆出去
-    EventViewMainLoaded          = 200,
-    EventViewSureClicked         = 201,
-    EventUnityPathSelect         = 202,
-    EventUnityPathSelectEnd      = 203,
-    EventExportPathSelectEnd     = 204,
-    EventDevelopProfileSelectEnd = 205,
-    EventDetailsInfoSettingClose = 206,
-    EventDetailsInfoAdd          = 207,
-    EventDetailsInfoRemove       = 208,
-    EventDetailsInfoUpdate       = 209,
-    EventSelectCopyDirPath       = 210,
-    EventDetailsInfoSettingEdit  = 213,
-    EventSetExportButtonState    = 214,
-    EventScenePathSelectEnd      = 215,
-    EventStartRecordTime         = 216,
-    EventStopRecordTime          = 217,
 };
-
 
 #endif /* EventType_h */
