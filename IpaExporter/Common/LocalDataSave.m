@@ -13,6 +13,7 @@
 {
     NSUserDefaults* _saveData;
     NSMutableDictionary<NSString*, id> *_savedict;
+    BOOL _keyIsSet;
 }
 @end
 
@@ -22,6 +23,7 @@
 {
     if(self=[super init])
     {
+        _keyIsSet = NO;
         _saveData = [NSUserDefaults standardUserDefaults];
     }
     return self;
@@ -34,6 +36,7 @@
  */
 - (void)setAllSaveKey:(NSDictionary*)saveTpDict
 {
+    _keyIsSet = YES;
     _savedict = [NSMutableDictionary dictionary];
     NSArray *keyArr = [saveTpDict allKeys];
     for(int i = 0; i < keyArr.count; i++)
@@ -50,19 +53,24 @@
         if(item == nil){
             Class cls = saveTpDict[key][0];
             item = class_createInstance(cls, 0);
-        }
+        } 
         _savedict[key] = item;
     }
 }
 
-//如果传nil值 代表全部存储
 - (void)saveAll
 {
     [self saveDataForKey:nil];
 }
 
+//如果传nil值 代表全部存储
 - (void)saveDataForKey:(nullable NSString*)key
 {
+    if(![_savedict objectForKey:key]){
+        NSLog(@"不存在该存储key:%@", key);
+        return;
+    }
+    
     NSArray *keyArr = [_savedict allKeys];
     for(int i = 0; i < keyArr.count; i++)
     {
@@ -82,7 +90,23 @@
 
 - (void)setDataForKey:(NSString*)key withData:(nullable id)data
 {
+    if(![_savedict objectForKey:key]){
+        NSLog(@"不存在该存储key:%@", key);
+        return;
+    }
+    
     [_savedict setObject:data forKey:key];
+}
+
+- (void)setAndSaveData:(nullable id)data withKey:(NSString*)key
+{
+    if(![_savedict objectForKey:key]){
+        NSLog(@"不存在该存储key:%@", key);
+        return;
+    }
+    
+    [_savedict setObject:data forKey:key];
+    [self saveDataForKey:key];
 }
 
 @end

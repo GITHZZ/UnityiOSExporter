@@ -10,28 +10,31 @@
 #define EventType_h
 
 typedef NS_ENUM(int, EventType){
-    EventViewMainLoaded  = 0,
     
-    EventViewSureClicked         = 101,
-    EventUnityPathSelect         = 102,
-    EventUnityPathSelectEnd      = 103,
-    EventExportPathSelectEnd     = 104,
-    EventDevelopProfileSelectEnd = 105,
-    EventDetailsInfoSettingClose = 106,
-    EventDetailsInfoAdd          = 107,
-    EventDetailsInfoRemove       = 108,
-    EventDetailsInfoUpdate       = 109,
-    EventSelectCopyDirPath       = 110,
+    //通用模块
     EventAddNewInfoContent       = 111,
     EventAddErrorContent         = 112,
-    EventDetailsInfoSettingEdit  = 113,
-    EventSetExportButtonState    = 114,
-    EventScenePathSelectEnd      = 115,
-    EventStartRecordTime         = 116,
-    EventStopRecordTime          = 117,
     EventAddNewSuccessContent    = 118,
     EventAddNewWarningContent    = 119,
     EventCleanInfoContent        = 120,
+    
+    //应用层面模块，想办法拆出去
+    EventViewMainLoaded          = 200,
+    EventViewSureClicked         = 201,
+    EventUnityPathSelect         = 202,
+    EventUnityPathSelectEnd      = 203,
+    EventExportPathSelectEnd     = 204,
+    EventDevelopProfileSelectEnd = 205,
+    EventDetailsInfoSettingClose = 206,
+    EventDetailsInfoAdd          = 207,
+    EventDetailsInfoRemove       = 208,
+    EventDetailsInfoUpdate       = 209,
+    EventSelectCopyDirPath       = 210,
+    EventDetailsInfoSettingEdit  = 213,
+    EventSetExportButtonState    = 214,
+    EventScenePathSelectEnd      = 215,
+    EventStartRecordTime         = 216,
+    EventStopRecordTime          = 217,
 };
 
 

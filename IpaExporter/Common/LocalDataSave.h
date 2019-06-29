@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Singletion.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)saveAll;
 - (void)saveDataForKey:(nullable NSString*)key;
 - (id)dataForKey:(NSString*)key;
+- (void)setAndSaveData:(nullable id)data withKey:(NSString*)key;
 - (void)setDataForKey:(NSString*)key withData:(nullable id)data;
 
 @end
