@@ -7,7 +7,7 @@
 //
 
 #import "MobileprovisionParser.h"
-#import "Common.h"
+#import "Defs.h"
 
 @interface MobileprovisionParser()
 {

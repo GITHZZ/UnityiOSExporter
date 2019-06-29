@@ -8,8 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 #import <Foundation/Foundation.h>
-#import "EventManager.h"
 #import "DetailsInfoData.h"
+#import "Common.h"
 
 @interface DetailsInfoSetting : NSViewController<NSTableViewDataSource, NSTableViewDelegate>
 

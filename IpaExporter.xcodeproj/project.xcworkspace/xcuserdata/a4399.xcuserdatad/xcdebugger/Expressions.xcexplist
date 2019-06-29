@@ -41,7 +41,12 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[MobileprovisionParser createPlistFile]:MobileprovisionParser.m">
+         contextName = "-[DetailsInfoSetting viewDidLoad]:DetailsInfoSetting.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "_frameworkNameArr">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "-[DetailsInfoSetting mobileprovisionSelect:]:DetailsInfoSetting.m">
@@ -52,12 +57,7 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[DetailsInfoSetting viewDidLoad]:DetailsInfoSetting.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "_frameworkNameArr">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "-[MobileprovisionParser createPlistFile]:MobileprovisionParser.m">
       </ContextState>
       <ContextState
          contextName = "__30-[RubyCammond sureBtnClicked:]_block_invoke_2:RubyCammond.m">
@@ -67,6 +67,17 @@
             </PersistentString>
             <PersistentString
                value = "data.customSDKPath">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ExportInfoManager reloadPaths]:ExportInfoManager.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[obj class]">
+            </PersistentString>
+            <PersistentString
+               value = "item">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -93,6 +104,9 @@
                value = "resourcePath">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[DetailsInfoData initWithCoder:]:DetailsInfoData.m">
       </ContextState>
       <ContextState
          contextName = "-[DetailsInfoSetting setUpInfo]:DetailsInfoSetting.m">

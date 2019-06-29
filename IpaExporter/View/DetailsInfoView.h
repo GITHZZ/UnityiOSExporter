@@ -11,8 +11,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import <Foundation/Foundation.h>
-
-#import "EventManager.h"
+#import "Common.h"
 #import "DetailsInfoSetting.h"
 
 @interface DetailsInfoView : NSViewController<NSTableViewDataSource, NSTableViewDelegate>

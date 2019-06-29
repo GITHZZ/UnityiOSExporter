@@ -10,7 +10,6 @@
 #import "ExportInfoManager.h"
 #import "PackCammond.h"
 #import "CodeTester.h"
-#import "Alert.h"
 
 @implementation PreferenceView
 
@@ -57,7 +56,7 @@
         NSString* selectPath = [[openDlg URL] path];
         _savePath.stringValue = selectPath;
         [[ExportInfoManager instance] setCodeSavePath:selectPath];
-        [[ExportInfoManager instance] saveData];
+        [[ExportInfoManager instance] saveDataForKey:SAVE_CODE_SAVE_PATH_KEY];
     }
 }
 

@@ -11,7 +11,7 @@
 #import <Foundation/Foundation.h>
 #import "DetailsInfoData.h"
 #import "Common.h"
-#import "Singletion.h"
+#import "Defs.h"
 
 #define SAVE_DETAIL_ARRARY_KEY  @"detailArray"
 #define SAVE_PROJECT_PATH_KEY   @"projectPath"
@@ -22,8 +22,8 @@
 NS_ASSUME_NONNULL_BEGIN
 @interface ExportInfoManager : Singletion
 {
-    NSUserDefaults* _saveData;
-    NSMutableDictionary<NSString*, id> *_savedict;
+    LocalDataSave *_userData;
+    NSDictionary *_saveTpDict;
 }
 
 @property(nonatomic, readwrite) ExportInfo *info;
@@ -32,6 +32,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, readonly) NSString *codeBackupPath;
 @property(nonatomic, readonly, getter=getDetailArray) NSMutableArray *detailArray;
 @property(nonatomic, readonly, getter=getSceneArray) NSMutableArray *sceneArray;
+
+- (void)saveAll;
+- (void)saveDataForKey:(nullable NSString*)key;
 
 - (void)addNewUnityProjPath:(NSString*)path;
 - (void)replaceUnityProjPath:(NSString*)path;
@@ -47,8 +50,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)removeDetail:(NSUInteger)index withKey:(NSString*)saveKey;
 - (void)updateDetail:(NSUInteger)index withObject:(id)object withKey:(NSString*)saveKey;
 - (void)setCodeSavePath:(NSString*)path;
-- (void)saveData;
-- (ExportInfo*)getData;
 
 //设置备份存储路径
 

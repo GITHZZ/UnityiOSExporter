@@ -26,10 +26,11 @@
 		18DB76441E7FFE22003FDC52 /* Singletion.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DB76431E7FFE22003FDC52 /* Singletion.m */; };
 		18DD5E6C1DAF1C150071B654 /* DetailsInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD5E6B1DAF1C150071B654 /* DetailsInfoView.m */; };
 		18F1027B1DCC2AEB008312E5 /* EventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F1027A1DCC2AEB008312E5 /* EventManager.m */; };
+		5937E44E22C73B8B004FD5AA /* MobileprovisionParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5937E44C22C73B8B004FD5AA /* MobileprovisionParser.m */; };
+		5937E45122C741F5004FD5AA /* LocalDataSave.m in Sources */ = {isa = PBXBuildFile; fileRef = 5937E45022C741F5004FD5AA /* LocalDataSave.m */; };
 		593FAEF622B097E700A21F33 /* NSString+Emoji.m in Sources */ = {isa = PBXBuildFile; fileRef = 593FAEF422B097E700A21F33 /* NSString+Emoji.m */; };
 		5964C63F229CE169004BDD23 /* Xcodeproj in Resources */ = {isa = PBXBuildFile; fileRef = 5964C63E229CE169004BDD23 /* Xcodeproj */; };
 		5964C642229CE262004BDD23 /* PackCammond.m in Sources */ = {isa = PBXBuildFile; fileRef = 5964C641229CE262004BDD23 /* PackCammond.m */; };
-		5979D9DC22A54C3700C040D2 /* MobileprovisionParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5979D9DB22A54C3700C040D2 /* MobileprovisionParser.m */; };
 		59AD5DFE22C35E0B0008C9CB /* ResourceTemp in Resources */ = {isa = PBXBuildFile; fileRef = 59AD5DFD22C35E0A0008C9CB /* ResourceTemp */; };
 		59B1BE3A22C068CF0087F869 /* CodeTest in Resources */ = {isa = PBXBuildFile; fileRef = 59B1BE3922C068CF0087F869 /* CodeTest */; };
 		59B1BE3D22C06D030087F869 /* CodeTester.m in Sources */ = {isa = PBXBuildFile; fileRef = 59B1BE3C22C06D030087F869 /* CodeTester.m */; };
@@ -95,13 +96,15 @@
 		18F102791DCC2AEB008312E5 /* EventManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventManager.h; sourceTree = "<group>"; };
 		18F1027A1DCC2AEB008312E5 /* EventManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventManager.m; sourceTree = "<group>"; };
 		18FCCBCC1E49CD3900BDF9AC /* Defs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Defs.h; sourceTree = "<group>"; };
+		5937E44C22C73B8B004FD5AA /* MobileprovisionParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobileprovisionParser.m; sourceTree = "<group>"; };
+		5937E44D22C73B8B004FD5AA /* MobileprovisionParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobileprovisionParser.h; sourceTree = "<group>"; };
+		5937E44F22C741F5004FD5AA /* LocalDataSave.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalDataSave.h; sourceTree = "<group>"; };
+		5937E45022C741F5004FD5AA /* LocalDataSave.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalDataSave.m; sourceTree = "<group>"; };
 		593FAEF422B097E700A21F33 /* NSString+Emoji.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Emoji.m"; sourceTree = "<group>"; };
 		593FAEF522B097E700A21F33 /* NSString+Emoji.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Emoji.h"; sourceTree = "<group>"; };
 		5964C63E229CE169004BDD23 /* Xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Xcodeproj; path = IpaExporter/Xcodeproj; sourceTree = "<group>"; };
 		5964C640229CE262004BDD23 /* PackCammond.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PackCammond.h; sourceTree = "<group>"; };
 		5964C641229CE262004BDD23 /* PackCammond.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PackCammond.m; sourceTree = "<group>"; };
-		5979D9DA22A54C3700C040D2 /* MobileprovisionParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MobileprovisionParser.h; sourceTree = "<group>"; };
-		5979D9DB22A54C3700C040D2 /* MobileprovisionParser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MobileprovisionParser.m; sourceTree = "<group>"; };
 		59A6F5B522BA07E2007A3C25 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		59AD5DFD22C35E0A0008C9CB /* ResourceTemp */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ResourceTemp; path = IpaExporter/ResourceTemp; sourceTree = "<group>"; };
 		59B1BE3922C068CF0087F869 /* CodeTest */ = {isa = PBXFileReference; lastKnownFileType = folder; name = CodeTest; path = IpaExporter/CodeTest; sourceTree = "<group>"; };
@@ -206,12 +209,11 @@
 		18750A9C1D9BBBD000FECCA6 /* Logic */ = {
 			isa = PBXGroup;
 			children = (
+				18FCCBCC1E49CD3900BDF9AC /* Defs.h */,
 				59B1BE3B22C06D030087F869 /* CodeTester.h */,
 				59B1BE3C22C06D030087F869 /* CodeTester.m */,
 				5964C640229CE262004BDD23 /* PackCammond.h */,
 				5964C641229CE262004BDD23 /* PackCammond.m */,
-				5979D9DA22A54C3700C040D2 /* MobileprovisionParser.h */,
-				5979D9DB22A54C3700C040D2 /* MobileprovisionParser.m */,
 				182FF6EF1E4D936700CC0C7C /* DetailsInfoData.h */,
 				182FF6F01E4D936700CC0C7C /* DetailsInfoData.m */,
 				182FF6F11E4D936700CC0C7C /* ExportInfoManager.h */,
@@ -242,10 +244,11 @@
 		18F102721DCC2813008312E5 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				182186401E5ACAD5003599CD /* Common.h */,
+				5937E44D22C73B8B004FD5AA /* MobileprovisionParser.h */,
+				5937E44C22C73B8B004FD5AA /* MobileprovisionParser.m */,
 				593FAEF522B097E700A21F33 /* NSString+Emoji.h */,
 				593FAEF422B097E700A21F33 /* NSString+Emoji.m */,
-				182186401E5ACAD5003599CD /* Common.h */,
-				18FCCBCC1E49CD3900BDF9AC /* Defs.h */,
 				188DAD0F1E56F8E300554D6B /* CustomLog.h */,
 				188DAD101E56F8E300554D6B /* CustomLog.m */,
 				1828197A1E4C5E2C00CEC719 /* EventTypeDef.h */,
@@ -255,6 +258,8 @@
 				18DB76431E7FFE22003FDC52 /* Singletion.m */,
 				182DC37B1E8A5AE400912D20 /* Alert.h */,
 				182DC37C1E8A5AE400912D20 /* Alert.m */,
+				5937E44F22C741F5004FD5AA /* LocalDataSave.h */,
+				5937E45022C741F5004FD5AA /* LocalDataSave.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -397,7 +402,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5979D9DC22A54C3700C040D2 /* MobileprovisionParser.m in Sources */,
 				59B1BE3D22C06D030087F869 /* CodeTester.m in Sources */,
 				18F1027B1DCC2AEB008312E5 /* EventManager.m in Sources */,
 				593FAEF622B097E700A21F33 /* NSString+Emoji.m in Sources */,
@@ -412,8 +416,10 @@
 				183780121D766C84004E3BAD /* AppDelegate.m in Sources */,
 				18322A8E1DAE193B0049660B /* BuilderCSFileEdit.m in Sources */,
 				18CA13961D78164C006595E5 /* ViewMain.m in Sources */,
+				5937E44E22C73B8B004FD5AA /* MobileprovisionParser.m in Sources */,
 				18DD5E6C1DAF1C150071B654 /* DetailsInfoView.m in Sources */,
 				18DB76441E7FFE22003FDC52 /* Singletion.m in Sources */,
+				5937E45122C741F5004FD5AA /* LocalDataSave.m in Sources */,
 				182FF6F41E4D936700CC0C7C /* ExportInfoManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

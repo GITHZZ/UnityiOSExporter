@@ -7,7 +7,6 @@
 //
 
 #import "ViewMain.h"
-#import "EventManager.h"
 #import "DetailsInfoView.h"
 #import "DetailsInfoData.h"
 #import "ExportInfoManager.h"
@@ -193,7 +192,7 @@
                     break;
             }
             
-            [[ExportInfoManager instance] saveData];
+            [[ExportInfoManager instance] saveAll];
         }
     }
 }
@@ -319,13 +318,13 @@
     {
         info->unityProjPath = [changePath UTF8String];
         [[ExportInfoManager instance] replaceUnityProjPath:changePath];
-        [[ExportInfoManager instance] saveData];
+        [[ExportInfoManager instance] saveDataForKey:SAVE_PROJECT_PATH_KEY];
     }
     else if([[box identifier] isEqualToString:@"exportPathBox"])
     {
         info->exportFolderParh = [changePath UTF8String];
         [[ExportInfoManager instance] replaceExportProjPath:changePath];
-        [[ExportInfoManager instance] saveData];
+        [[ExportInfoManager instance] saveDataForKey:SAVE_EXPORT_PATH_KEY];
     }
     else
     {

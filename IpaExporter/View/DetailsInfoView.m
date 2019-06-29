@@ -10,7 +10,6 @@
 #import "DetailsInfoData.h"
 
 #import "ExportInfoManager.h"
-#import "Alert.h"
 
 @interface DetailsInfoView()
 {

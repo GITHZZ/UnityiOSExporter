@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
+#import "Common.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

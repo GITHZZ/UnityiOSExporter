@@ -9,7 +9,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Common.h"
-#import "Singletion.h"
+#import "Defs.h"
 
 @interface DataResManager : Singletion
 

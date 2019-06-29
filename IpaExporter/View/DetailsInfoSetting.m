@@ -7,9 +7,8 @@
 //
 
 #import "DetailsInfoSetting.h"
+#import "Common.h"
 #import "Defs.h"
-#import "Alert.h"
-#import "MobileprovisionParser.h"
 
 #define FrameworkKey  @"frameworkTbl"
 #define EmbedFrameworksKey @"embedTbl"
@@ -34,6 +33,7 @@
 
 - (void)viewDidLoad
 {
+    
     [super viewDidLoad];
     
     [_detailView scrollRectToVisible:CGRectMake(0, _detailView.frame.size.height-15, _detailView.frame.size.width, 10)];

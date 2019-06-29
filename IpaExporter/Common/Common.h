@@ -9,9 +9,11 @@
 #ifndef Common_h
 #define Common_h
 
-#import "Defs.h"
 #import "CustomLog.h"
 #import "EventManager.h"
 #import "NSString+Emoji.h"
+#import "MobileprovisionParser.h"
+#import "Alert.h"
+#import "LocalDataSave.h"
 
 #endif /* Common_h */

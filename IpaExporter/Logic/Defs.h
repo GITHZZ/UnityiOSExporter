@@ -10,7 +10,7 @@
 #define Defs_h
 
 #import <Foundation/Foundation.h>
-#import "EventManager.h"
+#import "Common.h"
 
 #define XCODE_PROJ_NAME @"xcodeProj"
 #define PACK_FOLDER_PATH [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/Packer"]
