@@ -11,62 +11,6 @@
 #import "PackCammond.h"
 #import "CodeTester.h"
 
-@implementation PreferenceView
-
-- (void)viewDidAppear
-{
-    NSString *codeSavePath = [ExportInfoManager instance].codeBackupPath;
-    if(codeSavePath != nil)
-        _savePath.stringValue = codeSavePath;
-    
-    [[_codeApp menu] setDelegate:self];
-    [[_jsonApp menu] setDelegate:self];
-    
-    [_codeApp removeAllItems];
-    [_jsonApp removeAllItems];
-    
-    [_codeApp addItemWithTitle:@"1"];
-    [_codeApp addItemWithTitle:@"2"];
-}
-
-- (void)viewDidDisappear
-{
-    
-}
-
-- (IBAction)openCustomCodeFolder:(id)sender
-{
-    NSString *resPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/TempCode/Builder/Users"];
-    [[NSWorkspace sharedWorkspace] selectFile:nil inFileViewerRootedAtPath:resPath];
-}
-
-- (IBAction)cleanAllCache:(id)sender
-{
-}
-    
-- (IBAction)savePathSelect:(id)sender
-{
-    NSOpenPanel* openDlg = [NSOpenPanel openPanel];
-    [openDlg setCanChooseFiles:NO];
-    [openDlg setCanChooseDirectories:YES];
-    [openDlg setAllowsMultipleSelection:NO];
-    
-    if([openDlg runModal] == NSModalResponseOK)
-    {
-        NSString* selectPath = [[openDlg URL] path];
-        _savePath.stringValue = selectPath;
-        [[ExportInfoManager instance] setCodeSavePath:selectPath];
-        [[ExportInfoManager instance] saveDataForKey:SAVE_CODE_SAVE_PATH_KEY];
-    }
-}
-
-- (void)menuDidClose:(NSMenu *)menu
-{
-    NSLog(@"%@",_codeApp.selectedItem.title);
-}
-
-@end
-
 @implementation ExtensionsMenu
 
 - (IBAction)openCustomCodeFile:(id)sender
@@ -108,6 +52,65 @@
 {
     NSString *filePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/README.md"];
     [[NSWorkspace sharedWorkspace] openFile:filePath];
+}
+
+@end
+
+@implementation PreferenceView
+
+static int _viewOpeningCount = 0;
+
+- (void)viewDidAppear
+{
+    _viewOpeningCount++;
+    NSString *codeSavePath = [ExportInfoManager instance].codeBackupPath;
+    if(codeSavePath != nil)
+        _savePath.stringValue = codeSavePath;
+    
+    [[_codeApp menu] setDelegate:self];
+    [[_jsonApp menu] setDelegate:self];
+    
+    [_codeApp removeAllItems];
+    [_jsonApp removeAllItems];
+    
+    [_codeApp addItemWithTitle:@"1"];
+    [_codeApp addItemWithTitle:@"2"];
+}
+
+- (void)viewDidDisappear
+{
+    _viewOpeningCount--;
+}
+
+- (IBAction)openCustomCodeFolder:(id)sender
+{
+    NSString *resPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/TempCode/Builder/Users"];
+    [[NSWorkspace sharedWorkspace] selectFile:nil inFileViewerRootedAtPath:resPath];
+}
+
+- (IBAction)cleanAllCache:(id)sender
+{
+}
+    
+- (IBAction)savePathSelect:(id)sender
+{
+    NSOpenPanel* openDlg = [NSOpenPanel openPanel];
+    [openDlg setCanChooseFiles:NO];
+    [openDlg setCanChooseDirectories:YES];
+    [openDlg setAllowsMultipleSelection:NO];
+    
+    if([openDlg runModal] == NSModalResponseOK)
+    {
+        NSString* selectPath = [[openDlg URL] path];
+        _savePath.stringValue = selectPath;
+        [[ExportInfoManager instance] setCodeSavePath:selectPath];
+        [[ExportInfoManager instance] saveDataForKey:SAVE_CODE_SAVE_PATH_KEY];
+    }
+}
+
+- (void)menuDidClose:(NSMenu *)menu
+{
+    NSLog(@"%@",_codeApp.selectedItem.title);
 }
 
 @end

@@ -10,14 +10,14 @@
 #define EventType_h
 
 typedef int EventType;
-typedef NS_ENUM(EventType, EventTypeCommon){
-    
+typedef NS_ENUM(EventType, EventTypeCommon)
+{
     //通用模块
-    EventAddNewInfoContent       = 111,
-    EventAddErrorContent         = 112,
-    EventAddNewSuccessContent    = 118,
-    EventAddNewWarningContent    = 119,
-    EventCleanInfoContent        = 120,
+    EventAddNewInfoContent = 10000,
+    EventAddErrorContent,
+    EventAddNewSuccessContent,
+    EventAddNewWarningContent,
+    EventCleanInfoContent,                                     
 };
 
 #endif /* EventType_h */

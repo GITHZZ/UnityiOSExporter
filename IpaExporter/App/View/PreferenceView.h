@@ -12,16 +12,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@interface ExtensionsMenu : NSMenuItem
+@end
+
 @interface PreferenceView : NSViewController<NSMenuDelegate>
 
 @property (weak) IBOutlet NSTextField *cacheSize;
 @property (weak) IBOutlet NSTextField *savePath;
 @property (weak) IBOutlet NSPopUpButtonCell *codeApp;
 @property (weak) IBOutlet NSPopUpButtonCell *jsonApp;
-
-@end
-
-@interface ExtensionsMenu : NSMenuItem
 
 @end
 

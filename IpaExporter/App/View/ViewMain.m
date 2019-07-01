@@ -11,6 +11,7 @@
 #import "DetailsInfoData.h"
 #import "ExportInfoManager.h"
 #import "Common.h"
+#import "PreferenceView.h"
 
 #define PlatformTblKey @"platformTbl"
 #define PackSceneKey   @"packScene"
@@ -445,5 +446,5 @@
         info->isExportXcode = (int)_isExportXcode.state;
     }
 }
-
+                            
 @end

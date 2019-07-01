@@ -167,9 +167,8 @@
 		1837800F1D766C84004E3BAD /* IpaExporter */ = {
 			isa = PBXGroup;
 			children = (
+				5937E45222C9AD73004FD5AA /* App */,
 				18F102721DCC2813008312E5 /* Common */,
-				18750A9C1D9BBBD000FECCA6 /* Logic */,
-				18CA13931D78163C006595E5 /* View */,
 				183780101D766C84004E3BAD /* AppDelegate.h */,
 				183780111D766C84004E3BAD /* AppDelegate.m */,
 				183780191D766C84004E3BAD /* Assets.xcassets */,
@@ -262,6 +261,15 @@
 				5937E45022C741F5004FD5AA /* LocalDataSave.m */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		5937E45222C9AD73004FD5AA /* App */ = {
+			isa = PBXGroup;
+			children = (
+				18750A9C1D9BBBD000FECCA6 /* Logic */,
+				18CA13931D78163C006595E5 /* View */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

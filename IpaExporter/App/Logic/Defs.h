@@ -54,8 +54,8 @@ typedef struct
     int isExportXcode;
 }ExportInfo;
 
-typedef NS_ENUM(EventType, CustomEventType){
-    
+typedef NS_ENUM(EventType, CustomEventType)
+{
     EventViewMainLoaded          = 200,
     EventViewSureClicked         = 201,
     EventUnityPathSelect         = 202,
