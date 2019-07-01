@@ -13,11 +13,11 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LocalDataSave : NSObject
 
 - (void)setAllSaveKey:(NSDictionary*)saveTpDict;
-- (void)saveAll;
-- (void)saveDataForKey:(nullable NSString*)key;
+- (BOOL)saveAll;
+- (BOOL)saveDataForKey:(nullable NSString*)key;
 - (id)dataForKey:(NSString*)key;
-- (void)setAndSaveData:(nullable id)data withKey:(NSString*)key;
-- (void)setDataForKey:(NSString*)key withData:(nullable id)data;
+- (BOOL)setAndSaveData:(nullable id)data withKey:(NSString*)key;
+- (BOOL)setDataForKey:(nonnull NSString*)key withData:(nullable id)data;
 
 @end
 

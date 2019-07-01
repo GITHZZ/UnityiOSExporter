@@ -82,6 +82,17 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "-[PreferenceView menuDidClose:]:PreferenceView.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "menu">
+            </PersistentString>
+            <PersistentString
+               value = "menu.identifier">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[RubyCammond invokingShellScriptAtPath:withArgs:]:RubyCammond.m">
          <PersistentStrings>
             <PersistentString
@@ -107,6 +118,12 @@
       </ContextState>
       <ContextState
          contextName = "-[DetailsInfoData initWithCoder:]:DetailsInfoData.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[LocalDataSave setAllSaveKey:]:LocalDataSave.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[PreferenceView initFileOpenApp]:PreferenceView.m">
       </ContextState>
       <ContextState
          contextName = "-[DetailsInfoSetting setUpInfo]:DetailsInfoSetting.m">

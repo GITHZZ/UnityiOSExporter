@@ -9,13 +9,18 @@
 #import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
 #import "Common.h"
+#import "LocalDataSave.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ExtensionsMenu : NSMenuItem
+
 @end
 
 @interface PreferenceView : NSViewController<NSMenuDelegate>
+{
+    NSMutableDictionary<NSString*, NSPopUpButtonCell*> *_itemCellDict;
+}
 
 @property (weak) IBOutlet NSTextField *cacheSize;
 @property (weak) IBOutlet NSTextField *savePath;

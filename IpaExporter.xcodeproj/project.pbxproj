@@ -28,6 +28,7 @@
 		18F1027B1DCC2AEB008312E5 /* EventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F1027A1DCC2AEB008312E5 /* EventManager.m */; };
 		5937E44E22C73B8B004FD5AA /* MobileprovisionParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5937E44C22C73B8B004FD5AA /* MobileprovisionParser.m */; };
 		5937E45122C741F5004FD5AA /* LocalDataSave.m in Sources */ = {isa = PBXBuildFile; fileRef = 5937E45022C741F5004FD5AA /* LocalDataSave.m */; };
+		5937E45522CA0634004FD5AA /* PreferenceData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5937E45422CA0634004FD5AA /* PreferenceData.m */; };
 		593FAEF622B097E700A21F33 /* NSString+Emoji.m in Sources */ = {isa = PBXBuildFile; fileRef = 593FAEF422B097E700A21F33 /* NSString+Emoji.m */; };
 		5964C63F229CE169004BDD23 /* Xcodeproj in Resources */ = {isa = PBXBuildFile; fileRef = 5964C63E229CE169004BDD23 /* Xcodeproj */; };
 		5964C642229CE262004BDD23 /* PackCammond.m in Sources */ = {isa = PBXBuildFile; fileRef = 5964C641229CE262004BDD23 /* PackCammond.m */; };
@@ -100,6 +101,8 @@
 		5937E44D22C73B8B004FD5AA /* MobileprovisionParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobileprovisionParser.h; sourceTree = "<group>"; };
 		5937E44F22C741F5004FD5AA /* LocalDataSave.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalDataSave.h; sourceTree = "<group>"; };
 		5937E45022C741F5004FD5AA /* LocalDataSave.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalDataSave.m; sourceTree = "<group>"; };
+		5937E45322CA0634004FD5AA /* PreferenceData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PreferenceData.h; sourceTree = "<group>"; };
+		5937E45422CA0634004FD5AA /* PreferenceData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PreferenceData.m; sourceTree = "<group>"; };
 		593FAEF422B097E700A21F33 /* NSString+Emoji.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Emoji.m"; sourceTree = "<group>"; };
 		593FAEF522B097E700A21F33 /* NSString+Emoji.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Emoji.h"; sourceTree = "<group>"; };
 		5964C63E229CE169004BDD23 /* Xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Xcodeproj; path = IpaExporter/Xcodeproj; sourceTree = "<group>"; };
@@ -169,8 +172,6 @@
 			children = (
 				5937E45222C9AD73004FD5AA /* App */,
 				18F102721DCC2813008312E5 /* Common */,
-				183780101D766C84004E3BAD /* AppDelegate.h */,
-				183780111D766C84004E3BAD /* AppDelegate.m */,
 				183780191D766C84004E3BAD /* Assets.xcassets */,
 				1837801B1D766C84004E3BAD /* Main.storyboard */,
 				1837801E1D766C84004E3BAD /* Info.plist */,
@@ -221,6 +222,8 @@
 				186088FC1DAA4AE10055E4BB /* DataResManager.m */,
 				18322A8C1DAE193B0049660B /* BuilderCSFileEdit.h */,
 				18322A8D1DAE193B0049660B /* BuilderCSFileEdit.m */,
+				5937E45322CA0634004FD5AA /* PreferenceData.h */,
+				5937E45422CA0634004FD5AA /* PreferenceData.m */,
 			);
 			path = Logic;
 			sourceTree = "<group>";
@@ -266,6 +269,8 @@
 		5937E45222C9AD73004FD5AA /* App */ = {
 			isa = PBXGroup;
 			children = (
+				183780101D766C84004E3BAD /* AppDelegate.h */,
+				183780111D766C84004E3BAD /* AppDelegate.m */,
 				18750A9C1D9BBBD000FECCA6 /* Logic */,
 				18CA13931D78163C006595E5 /* View */,
 			);
@@ -410,6 +415,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5937E45522CA0634004FD5AA /* PreferenceData.m in Sources */,
 				59B1BE3D22C06D030087F869 /* CodeTester.m in Sources */,
 				18F1027B1DCC2AEB008312E5 /* EventManager.m in Sources */,
 				593FAEF622B097E700A21F33 /* NSString+Emoji.m in Sources */,

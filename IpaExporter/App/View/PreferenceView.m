@@ -10,19 +10,22 @@
 #import "ExportInfoManager.h"
 #import "PackCammond.h"
 #import "CodeTester.h"
+#import "PreferenceData.h"
 
 @implementation ExtensionsMenu
 
 - (IBAction)openCustomCodeFile:(id)sender
 {
+    NSMutableArray *codeAppArray = [PreferenceData instance].codeAppArray;
     NSString *filePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/TempCode/Builder/Users/_CustomBuilder.cs"];
-    [[NSWorkspace sharedWorkspace] openFile:filePath];
+    [[NSWorkspace sharedWorkspace] openFile:filePath withApplication:[codeAppArray firstObject]];
 }
 
 - (IBAction)openCustomConfig:(id)sender
 {
+    NSMutableArray *jsonAppArray = [PreferenceData instance].jsonAppArray;
     NSString *filePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/TempCode/Builder/Users/_CustomConfig.json"];
-    [[NSWorkspace sharedWorkspace] openFile:filePath];
+    [[NSWorkspace sharedWorkspace] openFile:filePath withApplication:[jsonAppArray firstObject]];
 }
 
 - (IBAction)CodeTest:(id)sender
@@ -62,19 +65,19 @@ static int _viewOpeningCount = 0;
 
 - (void)viewDidAppear
 {
+    _itemCellDict = [NSMutableDictionary dictionary];
     _viewOpeningCount++;
+
     NSString *codeSavePath = [ExportInfoManager instance].codeBackupPath;
     if(codeSavePath != nil)
         _savePath.stringValue = codeSavePath;
     
+    [[_codeApp menu] setIdentifier:OPEN_CODE_APP_SAVE_KEY];
     [[_codeApp menu] setDelegate:self];
+    [[_jsonApp menu] setIdentifier:OPEN_JSON_APP_SAVE_KEY];
     [[_jsonApp menu] setDelegate:self];
     
-    [_codeApp removeAllItems];
-    [_jsonApp removeAllItems];
-    
-    [_codeApp addItemWithTitle:@"1"];
-    [_codeApp addItemWithTitle:@"2"];
+    [self initFileOpenApp];
 }
 
 - (void)viewDidDisappear
@@ -108,9 +111,64 @@ static int _viewOpeningCount = 0;
     }
 }
 
+- (void)initFileOpenApp
+{
+    NSMutableArray *codeAppArray = [PreferenceData instance].codeAppArray;
+    NSMutableArray *jsonAppArray = [PreferenceData instance].jsonAppArray;
+    
+    [_codeApp removeAllItems];
+    [_jsonApp removeAllItems];
+
+    [_codeApp addItemsWithTitles:codeAppArray];
+    [_jsonApp addItemsWithTitles:jsonAppArray];
+    
+    _itemCellDict[OPEN_CODE_APP_SAVE_KEY] = _codeApp;
+    _itemCellDict[OPEN_JSON_APP_SAVE_KEY] = _jsonApp;
+}
+
+//-(void)menuNeedsUpdate:(NSMenu *)menu
+//{
+//    NSArray* fakeSeparators = [[menu itemArray] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"title == '---'"]];
+//    for (NSMenuItem* fakeSep in fakeSeparators) {
+//        [menu insertItem:[NSMenuItem separatorItem] atIndex:[menu indexOfItem:fakeSep]];
+//        [menu removeItem:fakeSep];
+//    }
+//}
+		
 - (void)menuDidClose:(NSMenu *)menu
 {
-    NSLog(@"%@",_codeApp.selectedItem.title);
+    if(menu.highlightedItem == nil)
+        return;
+    
+    NSPopUpButtonCell* cell = _itemCellDict[menu.identifier];
+    if([menu.highlightedItem.title containsString:@"其它"]){
+        NSOpenPanel* openDlg = [NSOpenPanel openPanel];
+        [openDlg setCanChooseFiles:YES];
+        [openDlg setCanChooseDirectories:NO];
+        [openDlg setAllowedFileTypes:[NSArray arrayWithObjects:@"app", nil]];
+    
+        if ([openDlg runModal] == NSModalResponseOK){
+            NSString *selectPath = [[openDlg URL] path];
+            NSString *appName = [selectPath lastPathComponent];
+            
+            
+            NSMutableArray *newArr = [[PreferenceData instance] addAndSaveItem:appName
+                                                                  withSaveKey:menu.identifier];
+            [cell addItemsWithTitles:newArr];
+            [cell synchronizeTitleAndSelectedItem];
+        }else{
+            NSMutableArray *newArr = [[PreferenceData instance] addAndSaveItem:[[cell itemTitles] firstObject]
+                                                                   withSaveKey:menu.identifier];
+            [cell addItemsWithTitles:newArr];
+            [cell synchronizeTitleAndSelectedItem];
+        }
+    
+    }else{
+        NSMutableArray *newArr = [[PreferenceData instance] addAndSaveItem:menu.highlightedItem.title
+                                                               withSaveKey:menu.identifier];
+        [cell addItemsWithTitles:newArr];
+        [cell synchronizeTitleAndSelectedItem];
+    }
 }
 
 @end

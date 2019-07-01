@@ -9,6 +9,9 @@
 #import "LocalDataSave.h"
 #import <objc/runtime.h>
 
+#define CHECK_KEY_IS_AVAILABEL(key) \
+    if(![_savedict objectForKey:key]){NSLog(@"不存在该存储key:%@", key); return NO;}
+
 @interface LocalDataSave()
 {
     NSUserDefaults* _saveData;
@@ -46,29 +49,29 @@
         NSData *data = (NSData*)[_saveData objectForKey:key];
         NSError *error;
         id item = [NSKeyedUnarchiver unarchivedObjectOfClasses:set fromData:data error:&error];
-        
+     
         if(error != nil)
             NSLog(@"%@", error);
         
         if(item == nil){
             Class cls = saveTpDict[key][0];
-            item = class_createInstance(cls, 0);
-        } 
+            item = [[cls alloc] init];
+        }
         _savedict[key] = item;
     }
 }
 
-- (void)saveAll
+- (BOOL)saveAll
 {
-    [self saveDataForKey:nil];
+    return [self saveDataForKey:nil];
 }
 
 //如果传nil值 代表全部存储
-- (void)saveDataForKey:(nullable NSString*)key
+- (BOOL)saveDataForKey:(nullable NSString*)key
 {
-    if(![_savedict objectForKey:key]){
+    if(key != nil && ![_savedict objectForKey:key]){
         NSLog(@"不存在该存储key:%@", key);
-        return;
+        return NO;
     }
     
     NSArray *keyArr = [_savedict allKeys];
@@ -76,37 +79,55 @@
     {
         NSString *saveKey = keyArr[i];
         if(key == nil || saveKey == key){
-            NSData *data = [NSKeyedArchiver archivedDataWithRootObject:_savedict[key] requiringSecureCoding:YES error:nil];
+            NSError *error;
+            NSData *data = [NSKeyedArchiver archivedDataWithRootObject:_savedict[saveKey] requiringSecureCoding:YES error:&error];
+            
+            if(error != nil){
+                NSLog(@"存储出错:%@", error);
+                return NO;
+            }
+            
             [_saveData setObject:data forKey:saveKey];
         }
     }
     [_saveData synchronize];
+    return YES;
 }
 
-- (id)dataForKey:(NSString*)key
+- (id)dataForKey:(nonnull NSString*)key
 {
     return [_savedict objectForKey:key];
 }
 
-- (void)setDataForKey:(NSString*)key withData:(nullable id)data
+- (BOOL)setDataForKey:(nonnull NSString*)key withData:(nullable id)data
 {
-    if(![_savedict objectForKey:key]){
-        NSLog(@"不存在该存储key:%@", key);
-        return;
-    }
-    
+    CHECK_KEY_IS_AVAILABEL(key)
     [_savedict setObject:data forKey:key];
+    return YES;
 }
 
-- (void)setAndSaveData:(nullable id)data withKey:(NSString*)key
+- (BOOL)setAndSaveData:(nullable id)data withKey:(nonnull NSString*)key
 {
-    if(![_savedict objectForKey:key]){
-        NSLog(@"不存在该存储key:%@", key);
-        return;
-    }
-    
+    CHECK_KEY_IS_AVAILABEL(key)
     [_savedict setObject:data forKey:key];
-    [self saveDataForKey:key];
+    return [self saveDataForKey:key];
+}
+
+- (void)removeAll
+{
+    NSArray *keyArr = [_savedict allKeys];
+    for(int i = 0; i < keyArr.count; i++)
+    {
+        NSString *saveKey = keyArr[i];
+        [self removeObjectForKey:saveKey];
+    }
+}
+
+- (BOOL)removeObjectForKey:(nonnull NSString*)key
+{
+    CHECK_KEY_IS_AVAILABEL(key)
+    [_saveData removeObjectForKey:key];
+    return YES;
 }
 
 @end

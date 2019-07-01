@@ -86,7 +86,6 @@
 - (instancetype)initWithCoder:(NSCoder *)decoder
 {
     NSMutableDictionary *dict = [decoder decodeObjectForKey:Detail_Info_Dict_Coder_Key];
-//    NSDictionary* dict = [decoder decodeObjectForKey:Detail_Info_Dict_Coder_Key];
     return [self initWithInfoDict:dict];
 }
 
