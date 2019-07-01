@@ -13,7 +13,8 @@
 #import "Common.h"
 
 #define XCODE_PROJ_NAME @"xcodeProj"
-#define PACK_FOLDER_PATH [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/Packer"]
+#define LIB_PATH [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/Libs"]
+#define PACK_FOLDER_PATH [LIB_PATH stringByAppendingString:@"/Packer"]
 #define DATA_PATH @"/TempCode"
 #define CODETEST_PATH @"/CodeTest/Test"
 

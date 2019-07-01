@@ -36,7 +36,7 @@
 
 - (void)appendingFolder:(NSString*)path
 {
-    NSString *folderName = [path substringFromIndex:[[NSBundle mainBundle] resourcePath].length];
+    NSString *folderName = [path substringFromIndex:LIB_PATH.length];
     [self copyResSrcPath:path toDst:_rootPath folderName:folderName];
 }
 

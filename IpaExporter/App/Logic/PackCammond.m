@@ -141,11 +141,11 @@
 - (BOOL)exportXcodeProjInThread:(dispatch_queue_t)sq
 {
     __block BOOL result = YES;
-    NSString *xcodeShellPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/Xcodeproj/ExportXcode.sh"];
+    NSString *xcodeShellPath = [LIB_PATH stringByAppendingString:@"/Xcodeproj/ExportXcode.sh"];
     ExportInfoManager* view = [ExportInfoManager instance];
     
     [[DataResManager instance] start:view.info];
-    NSString *srcPath = [[[NSBundle mainBundle] resourcePath]stringByAppendingString:@"/TempCode"];
+    NSString *srcPath = [LIB_PATH stringByAppendingString:@"/TempCode"];
     [[DataResManager instance] appendingFolder:srcPath];
     
     showLog("开始生成xcode工程");
@@ -163,7 +163,7 @@
         NSArray *args = [NSArray arrayWithObjects:
                          [NSString stringWithUTF8String:view.info->unityProjPath],
                          [NSString stringWithUTF8String:view.info->exportFolderParh],
-                         [[NSBundle mainBundle]resourcePath],
+                         LIB_PATH,
                          [DataResManager instance].rootPath,
                          nil];
         
@@ -191,8 +191,8 @@
 
 - (void)editXcodeProject:(DetailsInfoData*)data
 {
-    NSString *shellPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/Xcodeproj/Main.sh"];
-    NSString *rubyMainPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/Xcodeproj/Main.rb"];
+    NSString *shellPath = [LIB_PATH stringByAppendingString:@"/Xcodeproj/Main.sh"];
+    NSString *rubyMainPath = [LIB_PATH stringByAppendingString:@"/Xcodeproj/Main.rb"];
     
     ExportInfoManager* view = [ExportInfoManager instance];
     
@@ -237,7 +237,7 @@
                          data.debugProfileName,
                          data.releaseDevelopTeam,
                          data.releaseProfileName,
-                         [[NSBundle mainBundle]resourcePath],
+                         LIB_PATH,
                          data.bundleIdentifier,
                          [NSString stringWithFormat:@"%d",view.info->isRelease],
                          PACK_FOLDER_PATH,
@@ -265,7 +265,7 @@
     if(backUpPath == nil || [backUpPath isEqualToString:@""])
         backUpPath = [NSString stringWithFormat:@"%s", exportManager.info->unityProjPath];
     
-    NSString *srcPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/TempCode/Builder/Users"];
+    NSString *srcPath = [LIB_PATH stringByAppendingString:@"/TempCode/Builder/Users"];
     NSString *shellStr = [NSString stringWithFormat:@"cp -r %@ %@", srcPath, backUpPath];
     NSString *strReturnFormShell = [self createTerminalTask:shellStr];
     
@@ -287,7 +287,7 @@
         backUpPath = [NSString stringWithFormat:@"%s", exportManager.info->unityProjPath];
     
     backUpPath = [backUpPath stringByAppendingString:@"/Users"];
-    NSString* srcPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/TempCode/Builder"];
+    NSString* srcPath = [LIB_PATH stringByAppendingString:@"/TempCode/Builder"];
     NSString *shellStr = [NSString stringWithFormat:@"cp -r %@ %@", backUpPath, srcPath];
     NSString *strReturnFormShell = [self createTerminalTask:shellStr];
     

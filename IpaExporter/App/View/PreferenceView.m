@@ -17,14 +17,14 @@
 - (IBAction)openCustomCodeFile:(id)sender
 {
     NSMutableArray *codeAppArray = [PreferenceData instance].codeAppArray;
-    NSString *filePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/TempCode/Builder/Users/_CustomBuilder.cs"];
+    NSString *filePath = [LIB_PATH stringByAppendingString:@"/TempCode/Builder/Users/_CustomBuilder.cs"];
     [[NSWorkspace sharedWorkspace] openFile:filePath withApplication:[codeAppArray firstObject]];
 }
 
 - (IBAction)openCustomConfig:(id)sender
 {
     NSMutableArray *jsonAppArray = [PreferenceData instance].jsonAppArray;
-    NSString *filePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/TempCode/Builder/Users/_CustomConfig.json"];
+    NSString *filePath = [LIB_PATH stringByAppendingString:@"/TempCode/Builder/Users/_CustomConfig.json"];
     [[NSWorkspace sharedWorkspace] openFile:filePath withApplication:[jsonAppArray firstObject]];
 }
 
@@ -87,7 +87,7 @@ static int _viewOpeningCount = 0;
 
 - (IBAction)openCustomCodeFolder:(id)sender
 {
-    NSString *resPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/TempCode/Builder/Users"];
+    NSString *resPath = [LIB_PATH stringByAppendingString:@"/TempCode/Builder/Users"];
     [[NSWorkspace sharedWorkspace] selectFile:nil inFileViewerRootedAtPath:resPath];
 }
 

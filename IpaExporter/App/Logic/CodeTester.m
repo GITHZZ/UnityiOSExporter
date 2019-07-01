@@ -17,7 +17,7 @@
 - (void)run
 {
     ExportInfoManager* view = [ExportInfoManager instance];
-    NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
+    NSString *resourcePath = LIB_PATH;
     NSString *args = [NSString stringWithFormat:@"%s\t%s\t%@",
                       view.info->unityProjPath,
                       view.info->exportFolderParh,
@@ -28,9 +28,9 @@
     
     [[DataResManager instance] start:view.info];
     
-    NSString *customCodePath = [[[NSBundle mainBundle] resourcePath]stringByAppendingString:@"/TempCode/Builder/Users"];
-    NSString *codeTestPath = [[[NSBundle mainBundle] resourcePath]stringByAppendingString:@"/CodeTest/Test"];
-    NSString *litJsonPath = [[[NSBundle mainBundle] resourcePath]stringByAppendingString:@"/TempCode/Builder/LitJson"];
+    NSString *customCodePath = [LIB_PATH stringByAppendingString:@"/TempCode/Builder/Users"];
+    NSString *codeTestPath = [LIB_PATH stringByAppendingString:@"/CodeTest/Test"];
+    NSString *litJsonPath = [LIB_PATH stringByAppendingString:@"/TempCode/Builder/LitJson"];
     [[DataResManager instance] appendingFolder:customCodePath];
     [[DataResManager instance] appendingFolder:codeTestPath];
     [[DataResManager instance] appendingFolder:litJsonPath];

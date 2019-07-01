@@ -21,7 +21,6 @@
 		184BEA501DC742FA00CCEC4D /* DetailsInfoSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 184BEA4F1DC742FA00CCEC4D /* DetailsInfoSetting.m */; };
 		186088FD1DAA4AE10055E4BB /* DataResManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 186088FC1DAA4AE10055E4BB /* DataResManager.m */; };
 		188DAD111E56F8E300554D6B /* CustomLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 188DAD101E56F8E300554D6B /* CustomLog.m */; };
-		189034501DE82FCF00AEDF46 /* TempCode in Resources */ = {isa = PBXBuildFile; fileRef = 1890344F1DE82FCF00AEDF46 /* TempCode */; };
 		18CA13961D78164C006595E5 /* ViewMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CA13951D78164C006595E5 /* ViewMain.m */; };
 		18DB76441E7FFE22003FDC52 /* Singletion.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DB76431E7FFE22003FDC52 /* Singletion.m */; };
 		18DD5E6C1DAF1C150071B654 /* DetailsInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD5E6B1DAF1C150071B654 /* DetailsInfoView.m */; };
@@ -30,10 +29,8 @@
 		5937E45122C741F5004FD5AA /* LocalDataSave.m in Sources */ = {isa = PBXBuildFile; fileRef = 5937E45022C741F5004FD5AA /* LocalDataSave.m */; };
 		5937E45522CA0634004FD5AA /* PreferenceData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5937E45422CA0634004FD5AA /* PreferenceData.m */; };
 		593FAEF622B097E700A21F33 /* NSString+Emoji.m in Sources */ = {isa = PBXBuildFile; fileRef = 593FAEF422B097E700A21F33 /* NSString+Emoji.m */; };
-		5964C63F229CE169004BDD23 /* Xcodeproj in Resources */ = {isa = PBXBuildFile; fileRef = 5964C63E229CE169004BDD23 /* Xcodeproj */; };
 		5964C642229CE262004BDD23 /* PackCammond.m in Sources */ = {isa = PBXBuildFile; fileRef = 5964C641229CE262004BDD23 /* PackCammond.m */; };
-		59AD5DFE22C35E0B0008C9CB /* ResourceTemp in Resources */ = {isa = PBXBuildFile; fileRef = 59AD5DFD22C35E0A0008C9CB /* ResourceTemp */; };
-		59B1BE3A22C068CF0087F869 /* CodeTest in Resources */ = {isa = PBXBuildFile; fileRef = 59B1BE3922C068CF0087F869 /* CodeTest */; };
+		5980B56A22CA45EF0015B6CA /* Libs in Resources */ = {isa = PBXBuildFile; fileRef = 5980B56922CA45EF0015B6CA /* Libs */; };
 		59B1BE3D22C06D030087F869 /* CodeTester.m in Sources */ = {isa = PBXBuildFile; fileRef = 59B1BE3C22C06D030087F869 /* CodeTester.m */; };
 		59CF0C4222B79D08001A1F91 /* PreferenceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 59CF0C4122B79D08001A1F91 /* PreferenceView.m */; };
 /* End PBXBuildFile section */
@@ -87,7 +84,6 @@
 		186088FC1DAA4AE10055E4BB /* DataResManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataResManager.m; sourceTree = "<group>"; };
 		188DAD0F1E56F8E300554D6B /* CustomLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomLog.h; sourceTree = "<group>"; };
 		188DAD101E56F8E300554D6B /* CustomLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomLog.m; sourceTree = "<group>"; };
-		1890344F1DE82FCF00AEDF46 /* TempCode */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TempCode; path = IpaExporter/TempCode; sourceTree = "<group>"; };
 		18CA13941D78164C006595E5 /* ViewMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewMain.h; sourceTree = "<group>"; };
 		18CA13951D78164C006595E5 /* ViewMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewMain.m; sourceTree = "<group>"; };
 		18DB76421E7FFE22003FDC52 /* Singletion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Singletion.h; sourceTree = "<group>"; };
@@ -105,12 +101,10 @@
 		5937E45422CA0634004FD5AA /* PreferenceData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PreferenceData.m; sourceTree = "<group>"; };
 		593FAEF422B097E700A21F33 /* NSString+Emoji.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Emoji.m"; sourceTree = "<group>"; };
 		593FAEF522B097E700A21F33 /* NSString+Emoji.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Emoji.h"; sourceTree = "<group>"; };
-		5964C63E229CE169004BDD23 /* Xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Xcodeproj; path = IpaExporter/Xcodeproj; sourceTree = "<group>"; };
 		5964C640229CE262004BDD23 /* PackCammond.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PackCammond.h; sourceTree = "<group>"; };
 		5964C641229CE262004BDD23 /* PackCammond.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PackCammond.m; sourceTree = "<group>"; };
+		5980B56922CA45EF0015B6CA /* Libs */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Libs; path = IpaExporter/Libs; sourceTree = "<group>"; };
 		59A6F5B522BA07E2007A3C25 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
-		59AD5DFD22C35E0A0008C9CB /* ResourceTemp */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ResourceTemp; path = IpaExporter/ResourceTemp; sourceTree = "<group>"; };
-		59B1BE3922C068CF0087F869 /* CodeTest */ = {isa = PBXFileReference; lastKnownFileType = folder; name = CodeTest; path = IpaExporter/CodeTest; sourceTree = "<group>"; };
 		59B1BE3B22C06D030087F869 /* CodeTester.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CodeTester.h; sourceTree = "<group>"; };
 		59B1BE3C22C06D030087F869 /* CodeTester.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CodeTester.m; sourceTree = "<group>"; };
 		59CF0C4022B79D08001A1F91 /* PreferenceView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PreferenceView.h; sourceTree = "<group>"; };
@@ -146,10 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				0E211BC522BAB29C00334CC0 /* README.md */,
-				59AD5DFD22C35E0A0008C9CB /* ResourceTemp */,
-				59B1BE3922C068CF0087F869 /* CodeTest */,
-				5964C63E229CE169004BDD23 /* Xcodeproj */,
-				1890344F1DE82FCF00AEDF46 /* TempCode */,
+				5980B56922CA45EF0015B6CA /* Libs */,
 				1837800F1D766C84004E3BAD /* IpaExporter */,
 				183780261D766C84004E3BAD /* IpaExporterTests */,
 				183780311D766C85004E3BAD /* IpaExporterUITests */,
@@ -385,12 +376,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1837801A1D766C84004E3BAD /* Assets.xcassets in Resources */,
-				5964C63F229CE169004BDD23 /* Xcodeproj in Resources */,
 				0E211BC622BAB29C00334CC0 /* README.md in Resources */,
-				59AD5DFE22C35E0B0008C9CB /* ResourceTemp in Resources */,
 				1837801D1D766C84004E3BAD /* Main.storyboard in Resources */,
-				189034501DE82FCF00AEDF46 /* TempCode in Resources */,
-				59B1BE3A22C068CF0087F869 /* CodeTest in Resources */,
+				5980B56A22CA45EF0015B6CA /* Libs in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
