@@ -33,7 +33,9 @@
                        SAVE_PROJECT_PATH_KEY:@[[NSArray class]],
                        SAVE_EXPORT_PATH_KEY:@[[NSArray class]],
                        SAVE_CODE_SAVE_PATH_KEY:@[[NSString class]],
-                       SAVE_SCENE_ARRAY_KEY:@[[NSArray class]]
+                       SAVE_SCENE_ARRAY_KEY:@[[NSArray class]],
+                       SAVE_IS_RELEASE_KEY:@[[NSString class]],
+                       SAVE_IS_EXPORT_XCODE:@[[NSString class]]
                        };
         
         _userData = [[LocalDataSave alloc] init];
@@ -53,11 +55,23 @@
     [_userData saveDataForKey:key];
 }
 
+- (void)saveDataForKey:(NSString*)key withData:(id) data
+{
+    [_userData setAndSaveData:data withKey:key];
+}
+
+
 - (void)reloadPaths
 {
     _unityProjPathArr = [_userData dataForKey:SAVE_PROJECT_PATH_KEY];
     _exportPathArr = [_userData dataForKey:SAVE_EXPORT_PATH_KEY];
     _codeBackupPath = [_userData dataForKey:SAVE_CODE_SAVE_PATH_KEY];
+
+    NSString *isReleaseStr = [_userData dataForKey:SAVE_IS_RELEASE_KEY];
+    _info->isRelease = [isReleaseStr isEqualToString:@""]? [isReleaseStr intValue] : 0;
+
+    NSString *isExportStr = [_userData dataForKey:SAVE_IS_EXPORT_XCODE];
+    _info->isExportXcode = [isExportStr isEqualToString:@""] ? [isExportStr intValue] : 1;
 }
 
 - (void)addNewUnityProjPath:(NSString *)path

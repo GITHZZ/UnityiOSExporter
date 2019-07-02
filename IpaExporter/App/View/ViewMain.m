@@ -52,17 +52,15 @@
     }
     
     _progressTip.displayedWhenStopped = NO;
+    
     //设置数据源
     _platformTbl.delegate = self;
     _packSceneTbl.delegate = self;
     _platformTbl.dataSource = self;
     _packSceneTbl.dataSource = self;
 
-    _isReleaseBox.state = 0;
-    _isExportXcode.state = 1;
-    
-    info->isRelease = (int)_isReleaseBox.state;
-    info->isExportXcode = (int)_isExportXcode.state;
+    _isReleaseBox.state = info->isRelease;
+    _isExportXcode.state = info->isExportXcode;
     
     _useTimeLabel.stringValue = @"";
     
@@ -442,9 +440,15 @@
     ExportInfo* info = [ExportInfoManager instance].info;
     if([btn.identifier isEqualToString:@"isReleaseBox"]){
         info->isRelease = (int)_isReleaseBox.state;
+        [[ExportInfoManager instance] saveDataForKey:SAVE_IS_RELEASE_KEY
+                                            withData:[NSString stringWithFormat:@"%d",info->isRelease]];
     }else if([btn.identifier isEqualToString:@"isExportXcode"]){
         info->isExportXcode = (int)_isExportXcode.state;
+        [[ExportInfoManager instance] saveDataForKey:SAVE_IS_EXPORT_XCODE
+                                            withData:[NSString stringWithFormat:@"%d",info->isExportXcode]];
     }
+    
+    [[ExportInfoManager instance] saveAll];
 }
                             
 @end

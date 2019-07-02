@@ -18,6 +18,8 @@
 #define SAVE_CODE_SAVE_PATH_KEY @"codeSavePath"
 #define SAVE_EXPORT_PATH_KEY    @"exportPath"
 #define SAVE_SCENE_ARRAY_KEY    @"scenePath"
+#define SAVE_IS_RELEASE_KEY     @"isRelease"
+#define SAVE_IS_EXPORT_XCODE    @"isExportKey"
 
 NS_ASSUME_NONNULL_BEGIN
 @interface ExportInfoManager : Singletion
@@ -35,6 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)saveAll;
 - (void)saveDataForKey:(nullable NSString*)key;
+- (void)saveDataForKey:(NSString*)key withData:(id) data;
 
 - (void)addNewUnityProjPath:(NSString*)path;
 - (void)replaceUnityProjPath:(NSString*)path;
