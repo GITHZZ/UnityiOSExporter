@@ -32,11 +32,6 @@
     return self;
 }
 
-/**
- 设置所有需要存储的key还有对应类型,如果该key已经有存储内容,同时也会解析出来
-
- @param saveTpDict 类型字典（格式:dict=@{NSString:NSArray<Class> *}）
- */
 - (void)setAllSaveKey:(NSDictionary*)saveTpDict
 {
     _keyIsSet = YES;

@@ -16,8 +16,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PreferenceData : Singletion
 
-- (NSMutableArray*)addAndSaveItem:(NSString*)item withSaveKey:(NSString*)key;
+- (NSMutableArray*)addAndSave:(NSString*)data withKey:(NSString*)key;
 
+@property(nonatomic, readonly, getter=getCodeFilePath) NSString *codeFilePath;
+@property(nonatomic, readonly, getter=getJsonFilePath) NSString *jsonFilePath;
 @property(nonatomic, readonly) NSMutableArray *codeAppArray;
 @property(nonatomic, readonly) NSMutableArray *jsonAppArray;
 

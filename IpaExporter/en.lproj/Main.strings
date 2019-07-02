@@ -72,7 +72,7 @@
 "Cnc-OB-Zlu.headerCell.title" = "Name";
 
 /* Class = "NSTextFieldCell"; title = "AppID/Bundle Identifier"; ObjectID = "DZO-sT-OXh"; */
-"DZO-sT-OXh.title" = "AppID/Bundle Identifier";
+"DZO-sT-OXh.title" = "Bundle Identifier";
 
 /* Class = "NSWindow"; title = "自定义设置"; ObjectID = "Dc9-4E-txv"; */
 "Dc9-4E-txv.title" = "自定义设置";

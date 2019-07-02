@@ -17,14 +17,14 @@
 - (IBAction)openCustomCodeFile:(id)sender
 {
     NSMutableArray *codeAppArray = [PreferenceData instance].codeAppArray;
-    NSString *filePath = [LIB_PATH stringByAppendingString:@"/TempCode/Builder/Users/_CustomBuilder.cs"];
+    NSString *filePath = [PreferenceData instance].codeFilePath;
     [[NSWorkspace sharedWorkspace] openFile:filePath withApplication:[codeAppArray firstObject]];
 }
 
 - (IBAction)openCustomConfig:(id)sender
 {
     NSMutableArray *jsonAppArray = [PreferenceData instance].jsonAppArray;
-    NSString *filePath = [LIB_PATH stringByAppendingString:@"/TempCode/Builder/Users/_CustomConfig.json"];
+    NSString *filePath = [PreferenceData instance].jsonFilePath;
     [[NSWorkspace sharedWorkspace] openFile:filePath withApplication:[jsonAppArray firstObject]];
 }
 
@@ -93,6 +93,10 @@ static int _viewOpeningCount = 0;
 
 - (IBAction)cleanAllCache:(id)sender
 {
+    [[Alert instance]alertModalFirstBtnTitle:@"确定" SecondBtnTitle:@"取消" MessageText:@"数据清除" InformativeText:@"点击确认清除所有数据（所有平台信息）" callBackFrist:^{
+        
+    } callBackSecond:^{
+    }];
 }
     
 - (IBAction)savePathSelect:(id)sender
@@ -126,15 +130,6 @@ static int _viewOpeningCount = 0;
     _itemCellDict[OPEN_JSON_APP_SAVE_KEY] = _jsonApp;
 }
 
-//-(void)menuNeedsUpdate:(NSMenu *)menu
-//{
-//    NSArray* fakeSeparators = [[menu itemArray] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"title == '---'"]];
-//    for (NSMenuItem* fakeSep in fakeSeparators) {
-//        [menu insertItem:[NSMenuItem separatorItem] atIndex:[menu indexOfItem:fakeSep]];
-//        [menu removeItem:fakeSep];
-//    }
-//}
-		
 - (void)menuDidClose:(NSMenu *)menu
 {
     if(menu.highlightedItem == nil)
@@ -151,21 +146,21 @@ static int _viewOpeningCount = 0;
             NSString *selectPath = [[openDlg URL] path];
             NSString *appName = [selectPath lastPathComponent];
             
-            
-            NSMutableArray *newArr = [[PreferenceData instance] addAndSaveItem:appName
-                                                                  withSaveKey:menu.identifier];
+            NSMutableArray *newArr = [[PreferenceData instance] addAndSave:appName
+                                                                   withKey:menu.identifier];
             [cell addItemsWithTitles:newArr];
             [cell synchronizeTitleAndSelectedItem];
         }else{
-            NSMutableArray *newArr = [[PreferenceData instance] addAndSaveItem:[[cell itemTitles] firstObject]
-                                                                   withSaveKey:menu.identifier];
+            NSMutableArray *newArr = [[PreferenceData instance] addAndSave:[[cell itemTitles] firstObject]
+                                                                   withKey:menu.identifier];
             [cell addItemsWithTitles:newArr];
             [cell synchronizeTitleAndSelectedItem];
         }
     
     }else{
-        NSMutableArray *newArr = [[PreferenceData instance] addAndSaveItem:menu.highlightedItem.title
-                                                               withSaveKey:menu.identifier];
+        NSMutableArray *newArr = [[PreferenceData instance]
+                                  addAndSave:menu.highlightedItem.title
+                                  withKey:menu.identifier];
         [cell addItemsWithTitles:newArr];
         [cell synchronizeTitleAndSelectedItem];
     }

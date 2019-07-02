@@ -22,7 +22,6 @@ NS_ASSUME_NONNULL_BEGIN
     NSMutableDictionary<NSString*, NSPopUpButtonCell*> *_itemCellDict;
 }
 
-@property (weak) IBOutlet NSTextField *cacheSize;
 @property (weak) IBOutlet NSTextField *savePath;
 @property (weak) IBOutlet NSPopUpButtonCell *codeApp;
 @property (weak) IBOutlet NSPopUpButtonCell *jsonApp;

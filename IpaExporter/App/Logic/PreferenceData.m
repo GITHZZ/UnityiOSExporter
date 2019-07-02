@@ -7,6 +7,7 @@
 //
 
 #import "PreferenceData.h"
+#import "Defs.h"
 
 @interface PreferenceData()
 {
@@ -45,17 +46,29 @@
     return self;
 }
 
-- (NSMutableArray*)addAndSaveItem:(NSString*)item withSaveKey:(NSString*)key
+- (NSMutableArray*)addAndSave:(NSString*)data withKey:(NSString*)key;
 {
     NSMutableArray *array = [_saveData dataForKey:key];
-    if([array containsObject:item]){
-        [array removeObject:item];
+    if([array containsObject:data]){
+        [array removeObject:data];
     }
-    [array insertObject:item atIndex:0];
+    [array insertObject:data atIndex:0];
     [_saveData setDataForKey:key withData:array];
     [_saveData saveAll];
 
     return array;
+}
+
+- (NSString*)getCodeFilePath
+{
+     NSString *filePath = [LIB_PATH stringByAppendingString:@"/TempCode/Builder/Users/_CustomBuilder.cs"];
+    return filePath;
+}
+
+- (NSString*)getJsonFilePath
+{
+    NSString *filePath = [LIB_PATH stringByAppendingString:@"/TempCode/Builder/Users/_CustomConfig.json"];
+    return filePath;
 }
 
 @end
