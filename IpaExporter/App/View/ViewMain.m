@@ -329,6 +329,7 @@
     {
         showLog("未知路径类型%@", changePath);
     }
+    
 }
 
 - (void)addNewInfoContent:(NSNotification*)notification

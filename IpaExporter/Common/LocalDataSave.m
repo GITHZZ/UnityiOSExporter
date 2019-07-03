@@ -91,7 +91,7 @@
 
 - (id)dataForKey:(nonnull NSString*)key
 {
-    return [_savedict objectForKey:key];
+    return [[_savedict objectForKey:key] mutableCopy];
 }
 
 - (BOOL)setDataForKey:(nonnull NSString*)key withData:(nullable id)data

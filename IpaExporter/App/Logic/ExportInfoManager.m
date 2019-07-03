@@ -68,10 +68,10 @@
     _codeBackupPath = [_userData dataForKey:SAVE_CODE_SAVE_PATH_KEY];
 
     NSString *isReleaseStr = [_userData dataForKey:SAVE_IS_RELEASE_KEY];
-    _info->isRelease = [isReleaseStr isEqualToString:@""]? [isReleaseStr intValue] : 0;
+    _info->isRelease = [isReleaseStr isEqualToString:@""]?0:[isReleaseStr intValue];
 
     NSString *isExportStr = [_userData dataForKey:SAVE_IS_EXPORT_XCODE];
-    _info->isExportXcode = [isExportStr isEqualToString:@""] ? [isExportStr intValue] : 1;
+    _info->isExportXcode = [isExportStr isEqualToString:@""]?1:[isExportStr intValue];
 }
 
 - (void)addNewUnityProjPath:(NSString *)path
@@ -83,6 +83,7 @@
     {
         [_unityProjPathArr removeObjectAtIndex:0];
     }
+    [_userData setDataForKey:SAVE_PROJECT_PATH_KEY withData:_unityProjPathArr];
 }
 
 - (void)replaceUnityProjPath:(NSString*)path
@@ -91,6 +92,7 @@
     id lastObj = [_unityProjPathArr lastObject];
     [_unityProjPathArr replaceObjectAtIndex:[_unityProjPathArr count] - 1 withObject:path];
     [_unityProjPathArr replaceObjectAtIndex:index withObject:lastObj];
+    [_userData setDataForKey:SAVE_PROJECT_PATH_KEY withData:_unityProjPathArr];
 }
 
 - (void)addNewExportProjPath:(NSString *)path
@@ -102,14 +104,16 @@
     {
         [_exportPathArr removeLastObject];
     }
+    [_userData setDataForKey:SAVE_EXPORT_PATH_KEY withData:_exportPathArr];
 }
 
 - (void)replaceExportProjPath:(NSString*)path
 {
     NSUInteger index = [_exportPathArr indexOfObject:path];
     id fristObj = [_exportPathArr objectAtIndex:0];
-    [_exportPathArr replaceObjectAtIndex:0 withObject:path];
+    [_exportPathArr replaceObjectAtIndex:[_exportPathArr count] - 1 withObject:path];
     [_exportPathArr replaceObjectAtIndex:index withObject:fristObj];
+    [_userData setDataForKey:SAVE_EXPORT_PATH_KEY withData:_exportPathArr];
 }
 
 //包配置 信息表格数据部分
