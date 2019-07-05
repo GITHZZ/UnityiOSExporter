@@ -12,6 +12,7 @@
 #import "DetailsInfoData.h"
 #import "Common.h"
 #import "Defs.h"
+#import "NSObject+Singletion.h"
 
 #define SAVE_DETAIL_ARRARY_KEY  @"detailArray"
 #define SAVE_PROJECT_PATH_KEY   @"projectPath"
@@ -22,7 +23,7 @@
 #define SAVE_IS_EXPORT_XCODE    @"isExportKey"
 
 NS_ASSUME_NONNULL_BEGIN
-@interface ExportInfoManager : Singletion
+@interface ExportInfoManager : NSObject
 {
     LocalDataSave *_userData;
     NSDictionary *_saveTpDict;

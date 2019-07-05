@@ -8,13 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "Common.h"
+#import "NSObject+Singletion.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 #define OPEN_CODE_APP_SAVE_KEY @"openCodeAppKey"
 #define OPEN_JSON_APP_SAVE_KEY @"openJsonAppKey"
 
-@interface PreferenceData : Singletion
+@interface PreferenceData : NSObject
 
 - (NSMutableArray*)addAndSave:(NSString*)data withKey:(NSString*)key;
 

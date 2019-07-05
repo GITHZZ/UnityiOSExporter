@@ -22,7 +22,6 @@
 		186088FD1DAA4AE10055E4BB /* DataResManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 186088FC1DAA4AE10055E4BB /* DataResManager.m */; };
 		188DAD111E56F8E300554D6B /* CustomLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 188DAD101E56F8E300554D6B /* CustomLog.m */; };
 		18CA13961D78164C006595E5 /* ViewMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CA13951D78164C006595E5 /* ViewMain.m */; };
-		18DB76441E7FFE22003FDC52 /* Singletion.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DB76431E7FFE22003FDC52 /* Singletion.m */; };
 		18DD5E6C1DAF1C150071B654 /* DetailsInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD5E6B1DAF1C150071B654 /* DetailsInfoView.m */; };
 		18F1027B1DCC2AEB008312E5 /* EventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F1027A1DCC2AEB008312E5 /* EventManager.m */; };
 		5937E44E22C73B8B004FD5AA /* MobileprovisionParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5937E44C22C73B8B004FD5AA /* MobileprovisionParser.m */; };
@@ -30,6 +29,7 @@
 		5937E45522CA0634004FD5AA /* PreferenceData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5937E45422CA0634004FD5AA /* PreferenceData.m */; };
 		593FAEF622B097E700A21F33 /* NSString+Emoji.m in Sources */ = {isa = PBXBuildFile; fileRef = 593FAEF422B097E700A21F33 /* NSString+Emoji.m */; };
 		5964C642229CE262004BDD23 /* PackCammond.m in Sources */ = {isa = PBXBuildFile; fileRef = 5964C641229CE262004BDD23 /* PackCammond.m */; };
+		597AFFA022CDF56A00ECCB37 /* NSObject+Singletion.m in Sources */ = {isa = PBXBuildFile; fileRef = 597AFF9F22CDF56A00ECCB37 /* NSObject+Singletion.m */; };
 		5980B56A22CA45EF0015B6CA /* Libs in Resources */ = {isa = PBXBuildFile; fileRef = 5980B56922CA45EF0015B6CA /* Libs */; };
 		59B1BE3D22C06D030087F869 /* CodeTester.m in Sources */ = {isa = PBXBuildFile; fileRef = 59B1BE3C22C06D030087F869 /* CodeTester.m */; };
 		59CF0C4222B79D08001A1F91 /* PreferenceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 59CF0C4122B79D08001A1F91 /* PreferenceView.m */; };
@@ -86,8 +86,6 @@
 		188DAD101E56F8E300554D6B /* CustomLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomLog.m; sourceTree = "<group>"; };
 		18CA13941D78164C006595E5 /* ViewMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewMain.h; sourceTree = "<group>"; };
 		18CA13951D78164C006595E5 /* ViewMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewMain.m; sourceTree = "<group>"; };
-		18DB76421E7FFE22003FDC52 /* Singletion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Singletion.h; sourceTree = "<group>"; };
-		18DB76431E7FFE22003FDC52 /* Singletion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Singletion.m; sourceTree = "<group>"; };
 		18DD5E6A1DAF1C150071B654 /* DetailsInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsInfoView.h; sourceTree = "<group>"; };
 		18DD5E6B1DAF1C150071B654 /* DetailsInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsInfoView.m; sourceTree = "<group>"; };
 		18F102791DCC2AEB008312E5 /* EventManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventManager.h; sourceTree = "<group>"; };
@@ -103,6 +101,8 @@
 		593FAEF522B097E700A21F33 /* NSString+Emoji.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Emoji.h"; sourceTree = "<group>"; };
 		5964C640229CE262004BDD23 /* PackCammond.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PackCammond.h; sourceTree = "<group>"; };
 		5964C641229CE262004BDD23 /* PackCammond.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PackCammond.m; sourceTree = "<group>"; };
+		597AFF9E22CDF56A00ECCB37 /* NSObject+Singletion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Singletion.h"; sourceTree = "<group>"; };
+		597AFF9F22CDF56A00ECCB37 /* NSObject+Singletion.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Singletion.m"; sourceTree = "<group>"; };
 		5980B56922CA45EF0015B6CA /* Libs */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Libs; path = IpaExporter/Libs; sourceTree = "<group>"; };
 		59A6F5B522BA07E2007A3C25 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		59B1BE3B22C06D030087F869 /* CodeTester.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CodeTester.h; sourceTree = "<group>"; };
@@ -238,19 +238,19 @@
 			isa = PBXGroup;
 			children = (
 				182186401E5ACAD5003599CD /* Common.h */,
+				182DC37B1E8A5AE400912D20 /* Alert.h */,
+				182DC37C1E8A5AE400912D20 /* Alert.m */,
 				5937E44D22C73B8B004FD5AA /* MobileprovisionParser.h */,
 				5937E44C22C73B8B004FD5AA /* MobileprovisionParser.m */,
-				593FAEF522B097E700A21F33 /* NSString+Emoji.h */,
-				593FAEF422B097E700A21F33 /* NSString+Emoji.m */,
 				188DAD0F1E56F8E300554D6B /* CustomLog.h */,
 				188DAD101E56F8E300554D6B /* CustomLog.m */,
 				1828197A1E4C5E2C00CEC719 /* EventTypeDef.h */,
 				18F102791DCC2AEB008312E5 /* EventManager.h */,
 				18F1027A1DCC2AEB008312E5 /* EventManager.m */,
-				18DB76421E7FFE22003FDC52 /* Singletion.h */,
-				18DB76431E7FFE22003FDC52 /* Singletion.m */,
-				182DC37B1E8A5AE400912D20 /* Alert.h */,
-				182DC37C1E8A5AE400912D20 /* Alert.m */,
+				593FAEF522B097E700A21F33 /* NSString+Emoji.h */,
+				593FAEF422B097E700A21F33 /* NSString+Emoji.m */,
+				597AFF9E22CDF56A00ECCB37 /* NSObject+Singletion.h */,
+				597AFF9F22CDF56A00ECCB37 /* NSObject+Singletion.m */,
 				5937E44F22C741F5004FD5AA /* LocalDataSave.h */,
 				5937E45022C741F5004FD5AA /* LocalDataSave.m */,
 			);
@@ -419,8 +419,8 @@
 				18322A8E1DAE193B0049660B /* BuilderCSFileEdit.m in Sources */,
 				18CA13961D78164C006595E5 /* ViewMain.m in Sources */,
 				5937E44E22C73B8B004FD5AA /* MobileprovisionParser.m in Sources */,
+				597AFFA022CDF56A00ECCB37 /* NSObject+Singletion.m in Sources */,
 				18DD5E6C1DAF1C150071B654 /* DetailsInfoView.m in Sources */,
-				18DB76441E7FFE22003FDC52 /* Singletion.m in Sources */,
 				5937E45122C741F5004FD5AA /* LocalDataSave.m in Sources */,
 				182FF6F41E4D936700CC0C7C /* ExportInfoManager.m in Sources */,
 			);

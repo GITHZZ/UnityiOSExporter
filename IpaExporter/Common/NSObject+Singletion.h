@@ -1,19 +1,18 @@
 //
-//  CodeTester.h
+//  NSObject+Instance.h
 //  IpaExporter
 //
-//  Created by 4399 on 6/24/19.
+//  Created by 4399 on 7/4/19.
 //  Copyright © 2019 何遵祖. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "NSObject+Singletion.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CodeTester : NSObject
+@interface NSObject (Singletion)
 
-- (void)run;
++ (instancetype)instance;
 
 @end
 

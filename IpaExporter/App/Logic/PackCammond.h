@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Singletion.h"
+#import "NSObject+Singletion.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PackCammond : Singletion
+@interface PackCammond : NSObject
 
 - (void)startUp;
 - (void)backUpCustomCode;
