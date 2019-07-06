@@ -26,6 +26,7 @@
     NSMutableArray<NSString*> *_embedFrameworksArr;
     NSMutableArray<NSString*> *_libNameArr;
     NSMutableArray<NSString*> *_linkerFlagArr;
+    NSMutableArray<NSString*> *_customSdkArr;
 }
 @end
 
@@ -61,6 +62,9 @@
     if(!_linkerFlagArr)
         _linkerFlagArr = [NSMutableArray arrayWithCapacity:10];
     
+    if(!_customSdkArr)
+        _customSdkArr = [NSMutableArray arrayWithCapacity:10];
+    
     _frameworkTbl.delegate = self;
     _frameworkTbl.dataSource = self;
     _libsTbl.delegate = self;
@@ -69,6 +73,8 @@
     _linkerFlagTbl.dataSource = self;
     _embedTbl.delegate = self;
     _embedTbl.dataSource = self;
+    _sdkChildTbl.delegate = self;
+    _sdkChildTbl.dataSource = self;
     
     _appID.enabled = NO;
     _debugProfileName.enabled = NO;
@@ -106,7 +112,7 @@
     _libNameArr = [_info getValueForKey:Defs_Lib_Names];
     _linkerFlagArr = [_info getValueForKey:Defs_Linker_Flag];
     _embedFrameworksArr = [_info getValueForKey:Defs_Embed_Framework];
-    
+    _customSdkArr = [_info getValueForKey:Defs_Custom_Sdk_Child];
 }
 
 
@@ -152,7 +158,7 @@
     NSString* platform = _platform.stringValue;
     NSString* customSdkPath = _customSDKPath.stringValue;
     
-    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:appName, Defs_App_Name_Key, appID, Defs_App_ID_Key, debugProfileName, Defs_Debug_Profile_Name, debugDevelopTeam, Defs_Debug_Develop_Team, releaseProfileName, Defs_Release_Profile_Name, releaseDevelopTeam,Defs_Release_Develop_Team, platform, Defs_Platform_Name, customSdkPath, Defs_Copy_Dir_Path, s_false, Defs_Is_Selected ,_frameworkNameArr, Defs_Framework_Names, _frameworkIsWeakArr, Defs_Framework_IsWeaks, _libNameArr, Defs_Lib_Names, _linkerFlagArr, Defs_Linker_Flag, _embedFrameworksArr, Defs_Embed_Framework, nil];
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:appName, Defs_App_Name_Key, appID, Defs_App_ID_Key, debugProfileName, Defs_Debug_Profile_Name, debugDevelopTeam, Defs_Debug_Develop_Team, releaseProfileName, Defs_Release_Profile_Name, releaseDevelopTeam,Defs_Release_Develop_Team, platform, Defs_Platform_Name, customSdkPath, Defs_Copy_Dir_Path, s_false, Defs_Is_Selected ,_frameworkNameArr, Defs_Framework_Names, _frameworkIsWeakArr, Defs_Framework_IsWeaks, _libNameArr, Defs_Lib_Names, _linkerFlagArr, Defs_Linker_Flag, _embedFrameworksArr, Defs_Embed_Framework, _customSdkArr, Defs_Custom_Sdk_Child, nil];
 
     DetailsInfoData* info = [[DetailsInfoData alloc] initWithInfoDict:dict];
     if(_isEditMode)
@@ -178,33 +184,33 @@
 
 - (IBAction)cDirectorySelected:(id)sender
 {
-    [self openFolderSelectDialog:EventSelectCopyDirPath
+    [self openFolderSelectDialog:@"SelectCopyDirPath"
                  IsCanSelectFile:NO
-          IsCanSelectDirectories:YES];
+          IsCanSelectDirectories:YES
+          allowMultipleSelection:NO
+                        callback:^(NSOpenPanel *openDlg) {
+                            if([openDlg.identifier isEqualToString:@"SelectCopyDirPath"]){
+                                NSString *selectPath = [[openDlg URL] path];
+                                _customSDKPath.stringValue = selectPath;
+                            }
+                        }];
 }
 
-- (void)openFolderSelectDialog:(EventType)et
+- (void)openFolderSelectDialog:(NSString*)identifier
                IsCanSelectFile:(BOOL)chooseFile
         IsCanSelectDirectories:(BOOL)chooseDirectories
+        allowMultipleSelection:(BOOL)isAllow
+                      callback:(void(^)(NSOpenPanel* openDlg)) callback
 {
     NSOpenPanel* openDlg = [NSOpenPanel openPanel];
+    openDlg.identifier = identifier;
     [openDlg setCanChooseFiles:chooseFile];
     [openDlg setCanChooseDirectories:chooseDirectories];
+    [openDlg setAllowsMultipleSelection:isAllow];
     
     if ([openDlg runModal] == NSModalResponseOK)
     {
-        for(NSURL* url in [openDlg URLs])
-        {
-            NSString* selectPath = [url path];
-            switch (et)
-            {
-                case EventSelectCopyDirPath:
-                    _customSDKPath.stringValue = selectPath;
-                    break;
-                default:
-                    break;
-            }
-        }
+        callback(openDlg);
     }
 }
 
@@ -253,46 +259,49 @@
     }else if([btn.identifier isEqualToString:EmbedFrameworksKey]){
         [_embedFrameworksArr addObject:@""];
         [_embedTbl reloadData];
+    }else if([btn.identifier isEqualToString:Defs_Custom_Sdk_Child]){
+        [self openFolderSelectDialog:@"customSDKChild"
+                     IsCanSelectFile:NO
+              IsCanSelectDirectories:YES
+              allowMultipleSelection:YES
+                            callback:^(NSOpenPanel *openDlg) {
+                                if([openDlg.identifier isEqualToString:@"customSDKChild"]){
+                                    NSArray *urls =[openDlg URLs];
+                                    for(int i = 0; i < urls.count; i++){
+                                        [_customSdkArr addObject:[urls[i] path]];
+                                    }
+                                    [_sdkChildTbl reloadData];
+                                }
+                            }];
     }
 }
 
+#define CHECK_IS_SELECT_ROW(tbl) if([tbl selectedRow] <= -1){return;}
 - (IBAction)tblItemRemove:(id)sender
 {
     NSButton *btn = (NSButton*)sender;
     
     if([btn.identifier isEqualToString:FrameworkKey]){
-        NSInteger row = [_frameworkTbl selectedRow];
-        if(row <= -1){
-            return;
-        }
-        
-        [_frameworkNameArr removeObjectAtIndex:row];
-        [_frameworkIsWeakArr removeObjectAtIndex:row];
+        CHECK_IS_SELECT_ROW(_frameworkTbl)
+        [_frameworkNameArr removeObjectAtIndex:[_frameworkTbl selectedRow]];
+        [_frameworkIsWeakArr removeObjectAtIndex:[_frameworkTbl selectedRow]];
         [_frameworkTbl reloadData];
     }else if([btn.identifier isEqualToString:LibKey]){
-        NSInteger row = [_libsTbl selectedRow];
-        if(row <= -1){
-            return;
-        }
-        
-        [_libNameArr removeObjectAtIndex:row];
+        CHECK_IS_SELECT_ROW(_libsTbl)
+        [_libNameArr removeObjectAtIndex:[_libsTbl selectedRow]];
         [_libsTbl reloadData];
     }else if([btn.identifier isEqualToString:LinkerFlagKey]){
-        NSInteger row = [_linkerFlagTbl selectedRow];
-        if(row <= -1){
-            return;
-        }
-        
-        [_linkerFlagArr removeObjectAtIndex:row];
+        CHECK_IS_SELECT_ROW(_linkerFlagTbl)
+        [_linkerFlagArr removeObjectAtIndex:[_linkerFlagTbl selectedRow]];
         [_linkerFlagTbl reloadData];
     }else if([btn.identifier isEqualToString:EmbedFrameworksKey]){
-        NSInteger row = [_embedTbl selectedRow];
-        if(row <= -1){
-            return;
-        }
-        
-        [_embedFrameworksArr removeObjectAtIndex:row];
+        CHECK_IS_SELECT_ROW(_embedTbl)
+        [_embedFrameworksArr removeObjectAtIndex:[_embedTbl selectedRow]];
         [_embedTbl reloadData];
+    }else if([btn.identifier isEqualToString:Defs_Custom_Sdk_Child]){
+        CHECK_IS_SELECT_ROW(_sdkChildTbl);
+        [_customSdkArr removeObjectAtIndex:[_sdkChildTbl selectedRow]];
+        [_sdkChildTbl reloadData];
     }
 }
 
@@ -307,6 +316,8 @@
         return [_linkerFlagArr count];
     }else if([tableView.identifier isEqualToString:EmbedFrameworksKey]){
         return [_embedFrameworksArr count];
+    }else if([tableView.identifier isEqualToString:Defs_Custom_Sdk_Child]){
+        return [_customSdkArr count];
     }else{
         return 0;
     }
@@ -331,6 +342,8 @@
         return [_linkerFlagArr objectAtIndex:row];
     }else if([columnIdentifier isEqualToString:Defs_Embed_Framework]){
         return [_embedFrameworksArr objectAtIndex:row];
+    }else if([columnIdentifier isEqualToString:Defs_Custom_Sdk_Child]){
+        return [_customSdkArr objectAtIndex:row];
     }
     return nil;
 }

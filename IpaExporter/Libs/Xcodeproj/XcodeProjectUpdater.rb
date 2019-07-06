@@ -10,21 +10,25 @@ class XcodeProjectUpdater
 		@group_sub_path = @group_root_path
 
 		@unity_class_group = new_group(File.join(@group_root_path), PROJECT_RESOURCE_PATH)
+        @sdk_array = $custom_sdk_path.split(",")
+        @retain_count = 0
 
         #怎么这里获取的是个字符串？
         @framework_search_paths_array = [
             "$(inherited)",
         ]
-		@framework_search_paths_array.insert(@framework_search_paths_array.size, PROJECT_RESOURCE_PATH)
 
         @header_search_paths_array = Array.new
         @header_search_paths_array = get_build_setting(@base_target, "HEADER_SEARCH_PATHS")
-		@header_search_paths_array.insert(@header_search_paths_array.size - 1, PROJECT_RESOURCE_PATH)
         
         @library_search_paths_array = Array.new
 		@library_search_paths_array = get_build_setting(@base_target, "LIBRARY_SEARCH_PATHS")
-		@library_search_paths_array.insert(@library_search_paths_array.size - 1, PROJECT_RESOURCE_PATH)
 
+        @library_search_paths_array.insert(@library_search_paths_array.size - 1, PROJECT_RESOURCE_PATH)
+        @framework_search_paths_array.insert(@framework_search_paths_array.size, PROJECT_RESOURCE_PATH)
+        @header_search_paths_array.insert(@header_search_paths_array.size - 1, PROJECT_RESOURCE_PATH)
+        @sdk_array.insert(@sdk_array.size - 1, PROJECT_RESOURCE_PATH)
+        
 		config = File.read($config_path)
 		@setting_hash = JSON.parse(config)
         
@@ -44,7 +48,7 @@ class XcodeProjectUpdater
 
 		#新增引用
 		add_build_phase_files(@target, @unity_class_group, PROJECT_RESOURCE_PATH, @target.new_copy_files_build_phase("Embed Frameworks"))
-	
+        
 		#新增相关查找路径
 		set_search_path()
 
@@ -69,14 +73,18 @@ class XcodeProjectUpdater
 	end 
 
 	def add_build_phase_files(target, group, path, embedFrameworks)
+        @retain_count = @retain_count + 1
+        if @retain_count <= 2 and !@sdk_array.include?(path)
+            return
+        end
+        
 		Dir.foreach(path) do |dir|
 			newPath = "#{path}/#{dir}"
         
             #Classes为特殊文件夹
             #Info.plist也会特殊处理
-			if dir != '.' and dir != '..' and dir != ".DS_Store" 
-				file_type = File::ftype(newPath)
-
+            file_type = File::ftype(newPath)
+            if dir != '.' and dir != '..' and dir != ".DS_Store"
 				if newPath.to_s.end_with?("Info.plist")
                     $project.main_group.find_file_by_path("Info.plist").remove_from_project
                     set_build_setting(@target, "INFOPLIST_FILE", newPath)
@@ -84,16 +92,17 @@ class XcodeProjectUpdater
                 
                 if newPath.to_s.end_with?("Unity-iPhone")
                     copy_unity_iphone_folder(newPath)
-                elsif file_type == "directory" and !newPath.to_s.end_with?(".bundle", ".framework") #add group
+                elsif file_type == "directory" and !newPath.to_s.end_with?(".bundle", ".framework")
+                    #add group
                     @framework_search_paths_array.insert(@framework_search_paths_array.size - 1, newPath)
                     @header_search_paths_array.insert(@header_search_paths_array.size - 1, newPath)
                     @library_search_paths_array.insert(@library_search_paths_array.size - 1, newPath)
-
-					parent_path = @group_sub_path
-					@group_sub_path = "#{@group_sub_path}/#{dir}"
-					new_group = new_group(File.join(@group_sub_path), newPath)
-					
-					add_build_phase_files(target, new_group, newPath, embedFrameworks)
+                    
+                    parent_path = @group_sub_path
+                    @group_sub_path = "#{@group_sub_path}/#{dir}"
+                    new_group = new_group(File.join(@group_sub_path), newPath)
+                    
+                    add_build_phase_files(target, new_group, newPath, embedFrameworks)
 
 					@group_sub_path = parent_path				
                 else #add folder
@@ -112,7 +121,9 @@ class XcodeProjectUpdater
 					end
 				end
 			end
-		end 
+		end
+        
+        @retain_count = @retain_count - 1
 	end 
 
 	#新增framework查找路径
@@ -208,5 +219,14 @@ class XcodeProjectUpdater
 		end
 		return false
 	end
-    
+   
+   def is_pathIncludeArray(path)
+       for item in @sdk_array
+           if path.include?(item)
+               return true
+           end
+       end
+       
+       return false
+   end
 end

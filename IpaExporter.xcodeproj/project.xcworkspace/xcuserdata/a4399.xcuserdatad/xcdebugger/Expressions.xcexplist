@@ -60,24 +60,13 @@
          contextName = "-[MobileprovisionParser createPlistFile]:MobileprovisionParser.m">
       </ContextState>
       <ContextState
-         contextName = "__30-[RubyCammond sureBtnClicked:]_block_invoke_2:RubyCammond.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "detailArray">
-            </PersistentString>
-            <PersistentString
-               value = "data.customSDKPath">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "-[ExportInfoManager reloadPaths]:ExportInfoManager.m">
          <PersistentStrings>
             <PersistentString
-               value = "[obj class]">
+               value = "item">
             </PersistentString>
             <PersistentString
-               value = "item">
+               value = "[obj class]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -89,6 +78,17 @@
             </PersistentString>
             <PersistentString
                value = "menu.identifier">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__30-[RubyCammond sureBtnClicked:]_block_invoke_2:RubyCammond.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "detailArray">
+            </PersistentString>
+            <PersistentString
+               value = "data.customSDKPath">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -124,6 +124,14 @@
       </ContextState>
       <ContextState
          contextName = "-[PreferenceView initFileOpenApp]:PreferenceView.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[PackCammond invokingShellScriptAtPath:withArgs:]:PackCammond.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "args[i]">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "-[DetailsInfoSetting setUpInfo]:DetailsInfoSetting.m">

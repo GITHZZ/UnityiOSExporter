@@ -31,6 +31,7 @@
 @property(nonatomic, readonly) NSMutableArray<NSString*> *libNames;
 @property(nonatomic, readonly) NSMutableArray<NSString*> *linkerFlag;
 @property(nonatomic, readonly) NSMutableArray<NSString*> *embedFramework;
+@property(nonatomic, readonly) NSMutableArray<NSString*> *customSDKChild;
 
 - (id)initWithInfoDict:(NSDictionary*) dic;
 - (void)setValueForKey:(NSString*)key withObj:(id)obj;

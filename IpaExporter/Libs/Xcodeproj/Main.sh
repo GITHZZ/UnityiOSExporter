@@ -13,6 +13,7 @@
 #$13 bundleIdentifier
 #$14 是否release包
 #$15 缓存文件位置
+#$16 需要关联的sdk文件夹
 
 echo "Main.sh脚本执行log"
 #echo "sdk资源文件路径:"${$2}
@@ -71,7 +72,7 @@ sed -i '' "s/:certificate:/${signingCertificate}/g" ${dst_path}
 
 #参数从$2开始
 #减去2就是 rb中取参数的index 例如ARGV.at(2) 就是取$4参数
-ruby -w $1 $2 $3 $4 $5 $6 $7
+ruby -w $1 $2 $3 $4 $5 $6 $7 ${16}
 
 sed -i '' 's/ProvisioningStyle = Automatic;/ProvisioningStyle = Manual;/g' ${xcode_proj_path}"/Unity-iPhone-"${platform_name}".xcodeproj/project.pbxproj"
 
