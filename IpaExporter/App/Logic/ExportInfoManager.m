@@ -127,7 +127,7 @@
     NSMutableArray *array = [_userData dataForKey:saveKey];
     [array addObject:data];
     [_userData setDataForKey:saveKey withData:array];
-    [self saveDataForKey:saveKey];
+    [self saveDataForKey:saveKey withData:array];
 }
 
 - (void)removeDetail:(NSUInteger)index withKey:(NSString*)saveKey
@@ -135,7 +135,7 @@
     NSMutableArray *array = [_userData dataForKey:saveKey];
     if([array count] > 0){
         [array removeObjectAtIndex:index];
-        [self saveDataForKey:saveKey];
+        [self saveDataForKey:saveKey withData:array];
     }
 }
 
@@ -144,7 +144,7 @@
     NSMutableArray *array = [_userData dataForKey:saveKey];
     [array replaceObjectAtIndex:index withObject:object];
     [_userData setDataForKey:saveKey withData:array];
-    [self saveDataForKey:saveKey];
+    [self saveDataForKey:saveKey withData:array];
 }
 
 - (void)setCodeSavePath:(NSString*)path

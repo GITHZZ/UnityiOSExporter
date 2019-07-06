@@ -130,7 +130,7 @@
     //设置参数
     NSString *shellArgsStr = [[NSString alloc] init];
     for(int i = 0; i < [args count]; i++)
-    shellArgsStr = [shellArgsStr stringByAppendingFormat:@"%@\t", args[i]];
+        shellArgsStr = [shellArgsStr stringByAppendingFormat:@"%@\t", args[i]];
     
     NSString *shellStr = [NSString stringWithFormat:@"sh %@ %@", shellScriptPath, shellArgsStr];
     NSString *strReturnFormShell = [self createTerminalTask:shellStr];
@@ -225,6 +225,8 @@
         //$13 bundleIdentifier
         //$14 是否release包
         //$15 缓存文件位置
+        //$16 需要关联的sdk文件夹
+        NSArray *testArray = [NSArray arrayWithObjects:@"1", @"2", @"3",nil];
         NSArray *args = [NSArray arrayWithObjects:
                          rubyMainPath,//$1
                          data.customSDKPath,
@@ -241,6 +243,7 @@
                          data.bundleIdentifier,
                          [NSString stringWithFormat:@"%d",view.info->isRelease],
                          PACK_FOLDER_PATH,
+                         [testArray description],
                          nil];
          
         showLog([[NSString stringWithFormat:@"开始打包 平台:%@", data.platform] UTF8String]);
