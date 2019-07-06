@@ -291,7 +291,7 @@
         NSInteger newState = ![cell state];
         NSString *newStateStr = [NSString stringWithFormat:@"%ld", newState];
         [cell setState: newState];
-        [data setValueForKey:Is_Selected withObj:newStateStr];
+        [data setValueForKey:Defs_Is_Selected withObj:newStateStr];
     
         [[ExportInfoManager instance] updateDetail:row withObject:data withKey:SAVE_DETAIL_ARRARY_KEY];
     }else if([tableView.identifier isEqualToString:PackSceneKey]){

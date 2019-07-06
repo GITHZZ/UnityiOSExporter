@@ -200,7 +200,6 @@
 		18750A9C1D9BBBD000FECCA6 /* Logic */ = {
 			isa = PBXGroup;
 			children = (
-				18FCCBCC1E49CD3900BDF9AC /* Defs.h */,
 				59B1BE3B22C06D030087F869 /* CodeTester.h */,
 				59B1BE3C22C06D030087F869 /* CodeTester.m */,
 				5964C640229CE262004BDD23 /* PackCammond.h */,
@@ -247,12 +246,12 @@
 				1828197A1E4C5E2C00CEC719 /* EventTypeDef.h */,
 				18F102791DCC2AEB008312E5 /* EventManager.h */,
 				18F1027A1DCC2AEB008312E5 /* EventManager.m */,
+				5937E44F22C741F5004FD5AA /* LocalDataSave.h */,
+				5937E45022C741F5004FD5AA /* LocalDataSave.m */,
 				593FAEF522B097E700A21F33 /* NSString+Emoji.h */,
 				593FAEF422B097E700A21F33 /* NSString+Emoji.m */,
 				597AFF9E22CDF56A00ECCB37 /* NSObject+Singletion.h */,
 				597AFF9F22CDF56A00ECCB37 /* NSObject+Singletion.m */,
-				5937E44F22C741F5004FD5AA /* LocalDataSave.h */,
-				5937E45022C741F5004FD5AA /* LocalDataSave.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -262,6 +261,7 @@
 			children = (
 				183780101D766C84004E3BAD /* AppDelegate.h */,
 				183780111D766C84004E3BAD /* AppDelegate.m */,
+				18FCCBCC1E49CD3900BDF9AC /* Defs.h */,
 				18750A9C1D9BBBD000FECCA6 /* Logic */,
 				18CA13931D78163C006595E5 /* View */,
 			);

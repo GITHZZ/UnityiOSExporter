@@ -91,21 +91,21 @@
         return;
     
     if(_isEditMode){
-        _platform.stringValue = [_info getValueForKey:Platform_Name];
-        _appName.stringValue = [_info getValueForKey:App_Name_Key];
+        _platform.stringValue = [_info getValueForKey:Defs_Platform_Name];
+        _appName.stringValue = [_info getValueForKey:Defs_App_Name_Key];
     }
     
-    _appID.stringValue = [_info getValueForKey:App_ID_Key];
-    _debugProfileName.stringValue = [_info getValueForKey:Debug_Profile_Name];
-    _debugDevelopTeam.stringValue = [_info getValueForKey:Debug_Develop_Team];
-    _releaseProfileName.stringValue = [_info getValueForKey:Release_Profile_Name];
-    _releaseDevelopTeam.stringValue = [_info getValueForKey:Release_Develop_Team];
-    _customSDKPath.stringValue = [_info getValueForKey:Copy_Dir_Path];
-    _frameworkNameArr = [_info getValueForKey:Framework_Names];
-    _frameworkIsWeakArr = [_info getValueForKey:Framework_IsWeaks];
-    _libNameArr = [_info getValueForKey:Lib_Names];
-    _linkerFlagArr = [_info getValueForKey:Linker_Flag];
-    _embedFrameworksArr = [_info getValueForKey:Embed_Framework];
+    _appID.stringValue = [_info getValueForKey:Defs_App_ID_Key];
+    _debugProfileName.stringValue = [_info getValueForKey:Defs_Debug_Profile_Name];
+    _debugDevelopTeam.stringValue = [_info getValueForKey:Defs_Debug_Develop_Team];
+    _releaseProfileName.stringValue = [_info getValueForKey:Defs_Release_Profile_Name];
+    _releaseDevelopTeam.stringValue = [_info getValueForKey:Defs_Release_Develop_Team];
+    _customSDKPath.stringValue = [_info getValueForKey:Defs_Copy_Dir_Path];
+    _frameworkNameArr = [_info getValueForKey:Defs_Framework_Names];
+    _frameworkIsWeakArr = [_info getValueForKey:Defs_Framework_IsWeaks];
+    _libNameArr = [_info getValueForKey:Defs_Lib_Names];
+    _linkerFlagArr = [_info getValueForKey:Defs_Linker_Flag];
+    _embedFrameworksArr = [_info getValueForKey:Defs_Embed_Framework];
     
 }
 
@@ -152,7 +152,7 @@
     NSString* platform = _platform.stringValue;
     NSString* customSdkPath = _customSDKPath.stringValue;
     
-    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:appName, App_Name_Key, appID, App_ID_Key, debugProfileName, Debug_Profile_Name, debugDevelopTeam, Debug_Develop_Team, releaseProfileName, Release_Profile_Name, releaseDevelopTeam, Release_Develop_Team, platform, Platform_Name, customSdkPath, Copy_Dir_Path, s_false, Is_Selected ,_frameworkNameArr, Framework_Names, _frameworkIsWeakArr, Framework_IsWeaks, _libNameArr, Lib_Names, _linkerFlagArr, Linker_Flag, _embedFrameworksArr, Embed_Framework, nil];
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:appName, Defs_App_Name_Key, appID, Defs_App_ID_Key, debugProfileName, Defs_Debug_Profile_Name, debugDevelopTeam, Defs_Debug_Develop_Team, releaseProfileName, Defs_Release_Profile_Name, releaseDevelopTeam,Defs_Release_Develop_Team, platform, Defs_Platform_Name, customSdkPath, Defs_Copy_Dir_Path, s_false, Defs_Is_Selected ,_frameworkNameArr, Defs_Framework_Names, _frameworkIsWeakArr, Defs_Framework_IsWeaks, _libNameArr, Defs_Lib_Names, _linkerFlagArr, Defs_Linker_Flag, _embedFrameworksArr, Defs_Embed_Framework, nil];
 
     DetailsInfoData* info = [[DetailsInfoData alloc] initWithInfoDict:dict];
     if(_isEditMode)
@@ -321,15 +321,15 @@
         return nil;
     }
 
-    if([columnIdentifier isEqualToString:Framework_Names]){
+    if([columnIdentifier isEqualToString:Defs_Framework_Names]){
         return [_frameworkNameArr objectAtIndex:row];
-    }else if([columnIdentifier isEqualToString:Framework_IsWeaks]){
+    }else if([columnIdentifier isEqualToString:Defs_Framework_IsWeaks]){
         return [_frameworkIsWeakArr objectAtIndex:row];
-    }else if([columnIdentifier isEqualToString:Lib_Names]){
+    }else if([columnIdentifier isEqualToString:Defs_Lib_Names]){
         return [_libNameArr objectAtIndex:row];
-    }else if([columnIdentifier isEqualToString:Linker_Flag]){
+    }else if([columnIdentifier isEqualToString:Defs_Linker_Flag]){
         return [_linkerFlagArr objectAtIndex:row];
-    }else if([columnIdentifier isEqualToString:Embed_Framework]){
+    }else if([columnIdentifier isEqualToString:Defs_Embed_Framework]){
         return [_embedFrameworksArr objectAtIndex:row];
     }
     return nil;
@@ -341,25 +341,25 @@
     NSString *columnIdentifier=[tableColumn identifier];
     NSString *newValue = (NSString*)object;
     
-    if([columnIdentifier isEqualToString:Framework_Names]){
+    if([columnIdentifier isEqualToString:Defs_Framework_Names]){
         if([[newValue pathExtension] isEqualToString:@"framework"]){
             [_frameworkNameArr replaceObjectAtIndex:row withObject:newValue];
         }else{
             newValue = [newValue stringByAppendingString:@".framework"];
             [_frameworkNameArr replaceObjectAtIndex:row withObject:newValue];
         }
-    }else if([columnIdentifier isEqualToString:Framework_IsWeaks]){
+    }else if([columnIdentifier isEqualToString:Defs_Framework_IsWeaks]){
         [_frameworkIsWeakArr replaceObjectAtIndex:row withObject:newValue];
-    }else if([columnIdentifier isEqualToString:Lib_Names]){
+    }else if([columnIdentifier isEqualToString:Defs_Lib_Names]){
         if([[newValue pathExtension] isEqualToString:@"tbd"]){
             [_libNameArr replaceObjectAtIndex:row withObject:newValue];
         }else{
             newValue = [newValue stringByAppendingString:@".tbd"];
             [_libNameArr replaceObjectAtIndex:row withObject:newValue];
         }
-    }else if([columnIdentifier isEqualToString:Linker_Flag]){
+    }else if([columnIdentifier isEqualToString:Defs_Linker_Flag]){
         [_linkerFlagArr replaceObjectAtIndex:row withObject:newValue];
-    }else if([columnIdentifier isEqualToString:Embed_Framework]){
+    }else if([columnIdentifier isEqualToString:Defs_Embed_Framework]){
         if([[newValue pathExtension] isEqualToString:@"framework"]){
             [_embedFrameworksArr replaceObjectAtIndex:row withObject:newValue];
         }else{

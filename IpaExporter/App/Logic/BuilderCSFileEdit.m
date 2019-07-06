@@ -27,7 +27,7 @@
     BOOL success = [self initWithPath:builderCSPath];
     if(success)
     {
-        NSArray *keyArr = [NSArray arrayWithObjects:Pack_Scene,Export_Path, nil];
+        NSArray *keyArr = [NSArray arrayWithObjects:Defs_Pack_Scene,Export_Path, nil];
         [self replaceVarWithKeyArr:keyArr];
     }
 }
@@ -71,7 +71,7 @@
             
             const char* path = info->exportFolderParh;
             keyStr = [[NSString stringWithUTF8String:path] stringByAppendingFormat:@"/%@",XCODE_PROJ_NAME];
-        }else if([key isEqualToString:Pack_Scene]){
+        }else if([key isEqualToString:Defs_Pack_Scene]){
         
             NSMutableArray *scenes = [ExportInfoManager instance].sceneArray;
             keyStr = [self getReplaceStrFromArray:scenes];
