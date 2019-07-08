@@ -63,10 +63,10 @@
          contextName = "-[ExportInfoManager reloadPaths]:ExportInfoManager.m">
          <PersistentStrings>
             <PersistentString
-               value = "item">
+               value = "[obj class]">
             </PersistentString>
             <PersistentString
-               value = "[obj class]">
+               value = "item">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -135,6 +135,14 @@
       </ContextState>
       <ContextState
          contextName = "-[DetailsInfoSetting setUpInfo]:DetailsInfoSetting.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[DetailsInfoSetting panel:shouldEnableURL:]:DetailsInfoSetting.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "sender.identifier">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
    </ContextStates>
 </VariablesViewState>

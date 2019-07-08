@@ -105,7 +105,7 @@
 "K2E-eO-fMw.title" = "Provisioning Profile Name(Debug)";
 
 /* Class = "NSTextFieldCell"; title = "Copy Directory Path"; ObjectID = "KJb-E2-DoF"; */
-"KJb-E2-DoF.title" = "Copy Directory Path";
+"KJb-E2-DoF.title" = "Copy Directory Root Path";
 
 /* Class = "NSTableColumn"; headerCell.title = "AppName"; ObjectID = "KOm-Yr-Aqe"; */
 "KOm-Yr-Aqe.headerCell.title" = "App Name";

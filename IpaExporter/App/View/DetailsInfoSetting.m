@@ -10,12 +10,7 @@
 #import "Common.h"
 #import "Defs.h"
 
-#define FrameworkKey  @"frameworkTbl"
-#define EmbedFrameworksKey @"embedTbl"
-#define LibKey        @"libsTbl"
-#define LinkerFlagKey @"linkerFlagTbl"
-
-@interface DetailsInfoSetting ()
+@interface DetailsInfoSetting ()<NSOpenSavePanelDelegate>
 {
     BOOL _isSetDataOnShow;
     BOOL _isEditMode;
@@ -65,6 +60,23 @@
     if(!_customSdkArr)
         _customSdkArr = [NSMutableArray arrayWithCapacity:10];
     
+    [self setUpTableInfo];
+    
+    _appID.enabled = NO;
+    _debugProfileName.enabled = NO;
+    _debugDevelopTeam.enabled = NO;
+    _releaseProfileName.enabled = NO;
+    _releaseDevelopTeam.enabled = NO;
+    
+}
+
+- (void)setUpTableInfo
+{
+    _frameworkTbl.identifier = Defs_Frameworks;
+    _libsTbl.identifier = Defs_Libs;
+    _linkerFlagTbl.identifier = Defs_Linker_Flag;
+    _embedTbl.identifier = Defs_Embed_Framework;
+    
     _frameworkTbl.delegate = self;
     _frameworkTbl.dataSource = self;
     _libsTbl.delegate = self;
@@ -75,13 +87,6 @@
     _embedTbl.dataSource = self;
     _sdkChildTbl.delegate = self;
     _sdkChildTbl.dataSource = self;
-    
-    _appID.enabled = NO;
-    _debugProfileName.enabled = NO;
-    _debugDevelopTeam.enabled = NO;
-    _releaseProfileName.enabled = NO;
-    _releaseDevelopTeam.enabled = NO;
-    
 }
 
 - (void)setUpDataInfoOnShow:(DetailsInfoData*)info isEditMode:(BOOL)isEdit
@@ -207,6 +212,7 @@
     [openDlg setCanChooseFiles:chooseFile];
     [openDlg setCanChooseDirectories:chooseDirectories];
     [openDlg setAllowsMultipleSelection:isAllow];
+    [openDlg setDelegate:self];
     
     if ([openDlg runModal] == NSModalResponseOK)
     {
@@ -246,20 +252,26 @@
 - (IBAction)tblItemAdd:(id)sender
 {
     NSButton *btn = (NSButton*)sender;
-    if([btn.identifier isEqualToString:FrameworkKey]){
+    if([btn.identifier isEqualToString:Defs_Frameworks]){
         [_frameworkNameArr addObject:@""];
         [_frameworkIsWeakArr addObject:@""];
         [_frameworkTbl reloadData];
-    }else if([btn.identifier isEqualToString:LibKey]){
+    }else if([btn.identifier isEqualToString:Defs_Libs]){
         [_libNameArr addObject:@""];
         [_libsTbl reloadData];
-    }else if([btn.identifier isEqualToString:LinkerFlagKey]){
+    }else if([btn.identifier isEqualToString:Defs_Linker_Flag]){
         [_linkerFlagArr addObject:@"-ObjC"];
         [_linkerFlagTbl reloadData];
-    }else if([btn.identifier isEqualToString:EmbedFrameworksKey]){
+    }else if([btn.identifier isEqualToString:Defs_Embed_Framework]){
         [_embedFrameworksArr addObject:@""];
         [_embedTbl reloadData];
     }else if([btn.identifier isEqualToString:Defs_Custom_Sdk_Child]){
+        if([_customSDKPath.stringValue isEqualToString:@""]){
+            [[Alert instance] alertTip:@"确定" MessageText:@"错误提示" InformativeText:@"请先选择根路径" callBackFrist:^{}];
+            [_customSDKPath setBackgroundColor:[[NSColor redColor] colorWithAlphaComponent:0.5]];
+            return;
+        }
+        
         [self openFolderSelectDialog:@"customSDKChild"
                      IsCanSelectFile:NO
               IsCanSelectDirectories:YES
@@ -281,20 +293,20 @@
 {
     NSButton *btn = (NSButton*)sender;
     
-    if([btn.identifier isEqualToString:FrameworkKey]){
+    if([btn.identifier isEqualToString:Defs_Frameworks]){
         CHECK_IS_SELECT_ROW(_frameworkTbl)
         [_frameworkNameArr removeObjectAtIndex:[_frameworkTbl selectedRow]];
         [_frameworkIsWeakArr removeObjectAtIndex:[_frameworkTbl selectedRow]];
         [_frameworkTbl reloadData];
-    }else if([btn.identifier isEqualToString:LibKey]){
+    }else if([btn.identifier isEqualToString:Defs_Libs]){
         CHECK_IS_SELECT_ROW(_libsTbl)
         [_libNameArr removeObjectAtIndex:[_libsTbl selectedRow]];
         [_libsTbl reloadData];
-    }else if([btn.identifier isEqualToString:LinkerFlagKey]){
+    }else if([btn.identifier isEqualToString:Defs_Linker_Flag]){
         CHECK_IS_SELECT_ROW(_linkerFlagTbl)
         [_linkerFlagArr removeObjectAtIndex:[_linkerFlagTbl selectedRow]];
         [_linkerFlagTbl reloadData];
-    }else if([btn.identifier isEqualToString:EmbedFrameworksKey]){
+    }else if([btn.identifier isEqualToString:Defs_Embed_Framework]){
         CHECK_IS_SELECT_ROW(_embedTbl)
         [_embedFrameworksArr removeObjectAtIndex:[_embedTbl selectedRow]];
         [_embedTbl reloadData];
@@ -308,13 +320,13 @@
 //返回表格的行数
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView;
 {
-    if([tableView.identifier isEqualToString:FrameworkKey]){
+    if([tableView.identifier isEqualToString:Defs_Frameworks]){
         return [_frameworkNameArr count];
-    }else if([tableView.identifier isEqualToString:LibKey]){
+    }else if([tableView.identifier isEqualToString:Defs_Libs]){
         return [_libNameArr count];
-    }else if([tableView.identifier isEqualToString:LinkerFlagKey]){
+    }else if([tableView.identifier isEqualToString:Defs_Linker_Flag]){
         return [_linkerFlagArr count];
-    }else if([tableView.identifier isEqualToString:EmbedFrameworksKey]){
+    }else if([tableView.identifier isEqualToString:Defs_Embed_Framework]){
         return [_embedFrameworksArr count];
     }else if([tableView.identifier isEqualToString:Defs_Custom_Sdk_Child]){
         return [_customSdkArr count];
@@ -343,7 +355,8 @@
     }else if([columnIdentifier isEqualToString:Defs_Embed_Framework]){
         return [_embedFrameworksArr objectAtIndex:row];
     }else if([columnIdentifier isEqualToString:Defs_Custom_Sdk_Child]){
-        return [_customSdkArr objectAtIndex:row];
+        NSString *folderName = [_customSdkArr objectAtIndex:row];
+        return [folderName lastPathComponent];
     }
     return nil;
 }
@@ -394,5 +407,29 @@
     } callBackSecond:^{
     }];
 }
-  
+
+- (BOOL)panel:(id)sender shouldEnableURL:(NSURL *)url
+{
+    NSOpenPanel *openDlg = (NSOpenPanel*)sender;
+    if(![openDlg.identifier isEqualToString:@"customSDKChild"])
+        return YES;
+    
+    NSString *path = [url path];
+    NSString *rootDir = _customSDKPath.stringValue;
+    
+    return [[path stringByDeletingLastPathComponent] isEqualToString:rootDir] && ![path isEqualToString:rootDir];
+}
+
+- (void) panel:(id)sender didChangeToDirectoryURL:(NSURL *)url
+{
+    NSOpenPanel *openDlg = (NSOpenPanel*)sender;
+    if([openDlg.identifier isEqualToString:@"customSDKChild"])
+    {
+        NSString *path = [url path];
+        NSString *rootDir = _customSDKPath.stringValue;
+        if([path hasPrefix:rootDir])
+            [sender setDirectoryURL:[NSURL URLWithString:path]];
+    }
+}
+
 @end

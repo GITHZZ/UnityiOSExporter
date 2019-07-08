@@ -75,6 +75,8 @@ class XcodeProjectUpdater
 	def add_build_phase_files(target, group, path, embedFrameworks)
         @retain_count = @retain_count + 1
         if @retain_count <= 2 and !@sdk_array.include?(path)
+            remove_build_phase_files_recursively(@target, group)
+            group.clear()
             return
         end
         
