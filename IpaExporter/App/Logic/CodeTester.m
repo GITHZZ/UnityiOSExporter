@@ -69,4 +69,19 @@
     return strReturnFormShell;
 }
 
+- (void)copyTestFolderToProject
+{
+    ExportInfoManager* view = [ExportInfoManager instance];
+
+    [[DataResManager instance] start:view.info];
+    NSString *customCodePath = [LIB_PATH stringByAppendingString:@"/TempCode/Builder/Users"];
+    NSString *codeTestPath = [LIB_PATH stringByAppendingString:@"/CodeTest/Test"];
+    NSString *litJsonPath = [LIB_PATH stringByAppendingString:@"/TempCode/Builder/LitJson"];
+    [[DataResManager instance] appendingFolder:customCodePath];
+    [[DataResManager instance] appendingFolder:codeTestPath];
+    [[DataResManager instance] appendingFolder:litJsonPath];
+
+//    [[DataResManager instance] end];
+}
+
 @end

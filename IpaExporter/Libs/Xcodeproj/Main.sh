@@ -111,7 +111,7 @@ xcodebuild \
 echo "生成ipa包"
 ipa_folder_path=${xcode_proj_path}"/Unity-iPhone-"${platform_name}
 
-if [-d ${ipa_folder_path}]; then
+if [ -d ${ipa_folder_path} ]; then
     rm -r ${ipa_folder_path}
 fi
 

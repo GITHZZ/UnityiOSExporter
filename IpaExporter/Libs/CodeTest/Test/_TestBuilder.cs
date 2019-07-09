@@ -7,7 +7,7 @@ using NUnit.Framework;
 //理论上不允许修改
 namespace IpaExporter
 {
-	public class Builder
+	public class _Builder
 	{
         [Test]
 		public static void BuildApp()

@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface CodeTester : NSObject
 
 - (void)run;
+- (void)copyTestFolderToProject;
 
 @end
 

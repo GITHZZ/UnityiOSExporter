@@ -74,6 +74,12 @@
                                                 <action selector="CodeTest:" target="11a-jN-iuY" id="uBB-XB-3Yg"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="拷贝测试代码到工程" keyEquivalent="T" id="W0H-ze-RhV" userLabel="拷贝测试代码到工程">
+                                            <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="CopyTestCodeToProject:" target="11a-jN-iuY" id="ghx-g6-Zdk"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem title="备份" keyEquivalent="s" id="WPk-V3-lnS">
                                             <connections>
                                                 <action selector="backup:" target="11a-jN-iuY" id="9YJ-hl-7t7"/>
@@ -1459,7 +1465,7 @@
                                     <rect key="frame" x="-100" y="-100" width="593" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="0.96875" horizontal="NO" id="9YB-yJ-KwW">
+                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="0.96888888888888891" horizontal="NO" id="9YB-yJ-KwW">
                                     <rect key="frame" x="594" y="1" width="15" height="417"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>

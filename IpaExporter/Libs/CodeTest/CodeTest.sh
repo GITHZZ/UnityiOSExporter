@@ -11,4 +11,4 @@ cd ${unity_project_path}
 args_config=$(cat ${bundle_res_path}'/TempCode/Builder/Users/_CustomConfig.json'| sed s/[[:space:]]//g | tr -d '\n')
 
 #生成xcode工程
-/Applications/Unity/Unity.app/Contents/MacOS/Unity -runTests -projectPath ${unity_project_path} -testResults ${export_path}/code_test_log.xml -args_${args_config} -testPlatform editmode
+/Applications/Unity/Unity.app/Contents/MacOS/Unity -runEditorTests -projectPath ${unity_project_path} -testResults ${export_path}/code_test_log.xml -args_${args_config} -testPlatform editmode -logFile ${export_path}/code_test_editor_log.txt

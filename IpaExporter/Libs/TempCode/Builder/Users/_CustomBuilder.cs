@@ -6,7 +6,7 @@ using NUnit.Framework;
 
 namespace IpaExporter
 {
-	public class CustomBuilder
+	public class _CustomBuilder
 	{
 		//args 从配置传过来的参数
         public void BuildBefore(JsonData args)

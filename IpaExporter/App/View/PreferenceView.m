@@ -33,6 +33,11 @@
     [[CodeTester instance] run];
 }
 
+- (IBAction)CopyTestCodeToProject:(id)sender
+{
+    [[CodeTester instance]copyTestFolderToProject];
+}
+
 - (IBAction)backup:(id)sender
 {
     [[Alert instance]alertModalFirstBtnTitle:@"确定" SecondBtnTitle:@"取消" MessageText:@"代码备份" InformativeText:@"点击确认备份扩展代码（如果偏好设置没有路径，默认备份到导出路径）" callBackFrist:^{

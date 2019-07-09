@@ -6,7 +6,7 @@ using System.IO;
 //理论上不允许修改
 namespace IpaExporter
 {
-	public class Builder
+	public class _Builder
 	{
 		static void BuildApp()
 		{
@@ -29,7 +29,7 @@ namespace IpaExporter
             //必须参数
 			PlayerSettings.iOS.sdkVersion = iOSSdkVersion.DeviceSDK;
 
-            CustomBuilder customBuilder = new CustomBuilder();
+            _CustomBuilder customBuilder = new _CustomBuilder();
             JsonData jsonObj = JsonMapper.ToObject(args);
             customBuilder.BuildBefore(jsonObj);
             BuildPipeline.BuildPlayer (LEVELS, ${exportPath}, BuildTarget.iOS, BuildOptions.None);
