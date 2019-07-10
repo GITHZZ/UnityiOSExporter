@@ -14,7 +14,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ExtensionsMenu : NSMenuItem
-
 @end
 
 @interface PreferenceView : NSViewController<NSMenuDelegate>

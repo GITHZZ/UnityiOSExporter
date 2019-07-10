@@ -50,6 +50,48 @@
     });
 }
 
+BOOL _isCopyed = NO;
+- (void)copyTestFolderToProject
+{
+    if(_isCopyed){
+        showWarning("文件夹已经存在");
+        return;
+    }
+    
+    _isCopyed = YES;
+    ExportInfoManager* view = [ExportInfoManager instance];
+
+    [[DataResManager instance] start:view.info];
+    NSString *customCodePath = [LIB_PATH stringByAppendingString:@"/TempCode/Builder/Users"];
+    NSString *codeTestPath = [LIB_PATH stringByAppendingString:@"/CodeTest/Test"];
+    NSString *litJsonPath = [LIB_PATH stringByAppendingString:@"/TempCode/Builder/LitJson"];
+    [[DataResManager instance] appendingFolder:customCodePath];
+    [[DataResManager instance] appendingFolder:codeTestPath];
+    [[DataResManager instance] appendingFolder:litJsonPath];
+    
+    NSString *shellStr = [NSString stringWithFormat:@"/Applications/Unity/Unity.app/Contents/MacOS/Unity -projectPath %s", view.info->unityProjPath];
+    [self createTerminalTask:shellStr];
+}
+
+- (void)saveAndRemoveTestFolder
+{
+    if(!_isCopyed){
+        showWarning("未进行拷贝操作，无法保存和删除");
+        return;
+    }
+    
+    _isCopyed = NO;
+    NSString *rootPath = [DataResManager instance].rootPath;
+    rootPath = [rootPath stringByAppendingString:@"/TempCode/Builder/Users"];
+    
+    NSString *backUpPath = [ExportInfoManager instance].codeBackupPath;
+    backUpPath = [backUpPath stringByAppendingString:@"/Users"];
+    
+    [[NSFileManager defaultManager] copyFolderFrom:rootPath toDst:backUpPath];
+    [[DataResManager instance] end];
+    [[PreferenceData instance] restoreCustomCode];
+}
+
 - (NSString*)createTerminalTask:(NSString*)order
 {
     NSTask *shellTask = [[NSTask alloc] init];
@@ -70,45 +112,6 @@
     NSLog(@"The return content from shell script is: %@",strReturnFormShell);
     
     return strReturnFormShell;
-}
-
-BOOL _isCopyed = NO;
-- (void)copyTestFolderToProject
-{
-    if(_isCopyed){
-        showWarning("文件夹已经存在");
-        return;
-    }
-    
-    _isCopyed = YES;
-    ExportInfoManager* view = [ExportInfoManager instance];
-
-    [[DataResManager instance] start:view.info];
-    NSString *customCodePath = [LIB_PATH stringByAppendingString:@"/TempCode/Builder/Users"];
-    NSString *codeTestPath = [LIB_PATH stringByAppendingString:@"/CodeTest/Test"];
-    NSString *litJsonPath = [LIB_PATH stringByAppendingString:@"/TempCode/Builder/LitJson"];
-    [[DataResManager instance] appendingFolder:customCodePath];
-    [[DataResManager instance] appendingFolder:codeTestPath];
-    [[DataResManager instance] appendingFolder:litJsonPath];
-}
-
-- (void)saveAndRemoveTestFolder
-{
-    if(!_isCopyed){
-        showWarning("未进行拷贝操作，无法保存和删除");
-        return;
-    }
-    
-    _isCopyed = NO;
-    NSString *rootPath = [DataResManager instance].rootPath;
-    rootPath = [rootPath stringByAppendingString:@"/TempCode/Builder/Users"];
-    
-    NSString *backUpPath = [ExportInfoManager instance].codeBackupPath;
-    backUpPath = [backUpPath stringByAppendingString:@"/Users"];
-    
-    [[NSFileManager defaultManager] copyFolderFrom:rootPath toDst:backUpPath];
-    [[DataResManager instance] end];
-    [[PreferenceData instance] restoreCustomCode];
 }
 
 @end
