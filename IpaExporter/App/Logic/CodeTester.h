@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)run;
 - (void)copyTestFolderToProject;
+- (void)saveAndRemoveTestFolder;
 
 @end
 

@@ -31,6 +31,7 @@
 		5964C642229CE262004BDD23 /* PackCammond.m in Sources */ = {isa = PBXBuildFile; fileRef = 5964C641229CE262004BDD23 /* PackCammond.m */; };
 		597AFFA022CDF56A00ECCB37 /* NSObject+Singletion.m in Sources */ = {isa = PBXBuildFile; fileRef = 597AFF9F22CDF56A00ECCB37 /* NSObject+Singletion.m */; };
 		5980B56A22CA45EF0015B6CA /* Libs in Resources */ = {isa = PBXBuildFile; fileRef = 5980B56922CA45EF0015B6CA /* Libs */; };
+		59841DC622D4BE0D006CA74F /* NSFileManager+Copy.m in Sources */ = {isa = PBXBuildFile; fileRef = 59841DC522D4BE0D006CA74F /* NSFileManager+Copy.m */; };
 		59B1BE3D22C06D030087F869 /* CodeTester.m in Sources */ = {isa = PBXBuildFile; fileRef = 59B1BE3C22C06D030087F869 /* CodeTester.m */; };
 		59CF0C4222B79D08001A1F91 /* PreferenceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 59CF0C4122B79D08001A1F91 /* PreferenceView.m */; };
 /* End PBXBuildFile section */
@@ -104,6 +105,8 @@
 		597AFF9E22CDF56A00ECCB37 /* NSObject+Singletion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Singletion.h"; sourceTree = "<group>"; };
 		597AFF9F22CDF56A00ECCB37 /* NSObject+Singletion.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Singletion.m"; sourceTree = "<group>"; };
 		5980B56922CA45EF0015B6CA /* Libs */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Libs; path = IpaExporter/Libs; sourceTree = "<group>"; };
+		59841DC422D4BE0D006CA74F /* NSFileManager+Copy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+Copy.h"; sourceTree = "<group>"; };
+		59841DC522D4BE0D006CA74F /* NSFileManager+Copy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+Copy.m"; sourceTree = "<group>"; };
 		59A6F5B522BA07E2007A3C25 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		59B1BE3B22C06D030087F869 /* CodeTester.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CodeTester.h; sourceTree = "<group>"; };
 		59B1BE3C22C06D030087F869 /* CodeTester.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CodeTester.m; sourceTree = "<group>"; };
@@ -252,6 +255,8 @@
 				593FAEF422B097E700A21F33 /* NSString+Emoji.m */,
 				597AFF9E22CDF56A00ECCB37 /* NSObject+Singletion.h */,
 				597AFF9F22CDF56A00ECCB37 /* NSObject+Singletion.m */,
+				59841DC422D4BE0D006CA74F /* NSFileManager+Copy.h */,
+				59841DC522D4BE0D006CA74F /* NSFileManager+Copy.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -411,6 +416,7 @@
 				59CF0C4222B79D08001A1F91 /* PreferenceView.m in Sources */,
 				5964C642229CE262004BDD23 /* PackCammond.m in Sources */,
 				184BEA501DC742FA00CCEC4D /* DetailsInfoSetting.m in Sources */,
+				59841DC622D4BE0D006CA74F /* NSFileManager+Copy.m in Sources */,
 				183780151D766C84004E3BAD /* main.m in Sources */,
 				182FF6F31E4D936700CC0C7C /* DetailsInfoData.m in Sources */,
 				188DAD111E56F8E300554D6B /* CustomLog.m in Sources */,

@@ -8,6 +8,8 @@
 
 #import "PreferenceData.h"
 #import "Defs.h"
+#import "ExportInfoManager.h"
+#import "NSFileManager+Copy.h"
 
 @interface PreferenceData()
 {
@@ -69,6 +71,47 @@
 {
     NSString *filePath = [LIB_PATH stringByAppendingString:@"/TempCode/Builder/Users/_CustomConfig.json"];
     return filePath;
+}
+
+- (void)backUpCustomCode
+{
+    ExportInfoManager *exportManager = [ExportInfoManager instance];
+    NSString *backUpPath = exportManager.codeBackupPath;
+    if(backUpPath == nil || [backUpPath isEqualToString:@""])
+        backUpPath = [NSString stringWithFormat:@"%s", exportManager.info->unityProjPath];
+    
+    NSString *srcPath = [LIB_PATH stringByAppendingString:@"/TempCode/Builder/Users"];
+    NSString *strReturnFormShell = [[NSFileManager defaultManager] copyUseShell:srcPath toDst:backUpPath];
+    
+    if([strReturnFormShell isEqualToString:@""]){
+        showSuccess("备份成功");
+    }else{
+        NSString* logStr = [strReturnFormShell stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        showLog([logStr UTF8String]);
+        showError("备份失败");
+    }
+}
+
+//需要重构下
+- (void)restoreCustomCode
+{
+    ExportInfoManager *exportManager = [ExportInfoManager instance];
+    NSString *backUpPath = exportManager.codeBackupPath;
+    if(backUpPath == nil || [backUpPath isEqualToString:@""])
+        backUpPath = [NSString stringWithFormat:@"%s", exportManager.info->unityProjPath];
+    
+    backUpPath = [backUpPath stringByAppendingString:@"/Users"];
+    NSString* srcPath = [LIB_PATH stringByAppendingString:@"/TempCode/Builder"];
+    NSString *strReturnFormShell = [[NSFileManager defaultManager] copyUseShell:backUpPath toDst:srcPath];
+    
+    if([strReturnFormShell isEqualToString:@""]){
+        showSuccess("恢复成功");
+    }else{
+        NSString* logStr = [strReturnFormShell
+                            stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        showLog([logStr UTF8String]);
+        showError("恢复失败");
+    }
 }
 
 @end

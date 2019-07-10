@@ -12,6 +12,7 @@
 {
     NSString *_unityProjPath;
     NSFileManager* _fileManager;
+    int _startingCount;
 }
 @end
 
@@ -22,6 +23,7 @@
     if (self = [super init])
     {
         _fileManager = [NSFileManager defaultManager];
+        _startingCount = 0;
     }
     
     return self;
@@ -29,6 +31,12 @@
 
 - (void)start:(ExportInfo*)info
 {
+    if(_startingCount >= 1){
+        NSLog(@"没有调用end方法,不允许连续调用start");
+        return;
+    }
+    
+    _startingCount++;
     _unityProjPath = [NSString stringWithUTF8String:info->unityProjPath];
     _rootPath = [_unityProjPath stringByAppendingString:@"/Assets/Editor/ipaExporter"];
     [self copyFolder:_rootPath];
@@ -42,6 +50,7 @@
 
 - (void)end
 {
+    _startingCount--;
     [self removeResFromDstPath:_rootPath];
 }
 

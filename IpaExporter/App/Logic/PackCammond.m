@@ -11,7 +11,6 @@
 #import "ExportInfoManager.h"
 #import "DataResManager.h"
 #import "BuilderCSFileEdit.h"
-
 #import <Cocoa/Cocoa.h>
 
 @interface PackCammond()
@@ -259,50 +258,6 @@
     }
 }
 
-- (void)backUpCustomCode
-{
-    ExportInfoManager *exportManager = [ExportInfoManager instance];
-    NSString *backUpPath = exportManager.codeBackupPath;
-    if(backUpPath == nil || [backUpPath isEqualToString:@""])
-        backUpPath = [NSString stringWithFormat:@"%s", exportManager.info->unityProjPath];
-    
-    NSString *srcPath = [LIB_PATH stringByAppendingString:@"/TempCode/Builder/Users"];
-    NSString *shellStr = [NSString stringWithFormat:@"cp -r %@ %@", srcPath, backUpPath];
-    NSString *strReturnFormShell = [self createTerminalTask:shellStr];
-    
-    if([strReturnFormShell isEqualToString:@""]){
-        showSuccess("备份成功");
-    }else{
-        NSString* logStr = [strReturnFormShell stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        showLog([logStr UTF8String]);
-        showError("备份失败");
-    }
-}
-
-//需要重构下
-- (void)restoreCustomCode
-{
-    ExportInfoManager *exportManager = [ExportInfoManager instance];
-    NSString *backUpPath = exportManager.codeBackupPath;
-    if(backUpPath == nil || [backUpPath isEqualToString:@""])
-        backUpPath = [NSString stringWithFormat:@"%s", exportManager.info->unityProjPath];
-    
-    backUpPath = [backUpPath stringByAppendingString:@"/Users"];
-    NSString* srcPath = [LIB_PATH stringByAppendingString:@"/TempCode/Builder"];
-    NSString *shellStr = [NSString stringWithFormat:@"cp -r %@ %@", backUpPath, srcPath];
-    NSString *strReturnFormShell = [self createTerminalTask:shellStr];
-    
-    if([strReturnFormShell isEqualToString:@""]){
-        showSuccess("恢复成功");
-    }else{
-        NSString* logStr = [strReturnFormShell
-                            stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        showLog([logStr UTF8String]);
-        showError("恢复失败");
-    }
-
-}
-
 - (NSString*)createTerminalTask:(NSString*)order
 {
     NSTask *shellTask = [[NSTask alloc] init];
@@ -334,4 +289,5 @@
     arrayString = [arrayString stringByReplacingOccurrencesOfString:@"  " withString:@""];
     return arrayString;
 }
+
 @end

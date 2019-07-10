@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PreferenceData : NSObject
 
+- (void)backUpCustomCode;
+- (void)restoreCustomCode;
 - (NSMutableArray*)addAndSave:(NSString*)data withKey:(NSString*)key;
 
 @property(nonatomic, readonly, getter=getCodeFilePath) NSString *codeFilePath;

@@ -9,6 +9,9 @@
 #import "CodeTester.h"
 #import "ExportInfoManager.h"
 #import "DataResManager.h"
+#import "NSFileManager+Copy.h"
+#import "PackCammond.h"
+#import "PreferenceData.h"
 
 #import <Cocoa/Cocoa.h>
 
@@ -69,8 +72,15 @@
     return strReturnFormShell;
 }
 
+BOOL _isCopyed = NO;
 - (void)copyTestFolderToProject
 {
+    if(_isCopyed){
+        showWarning("文件夹已经存在");
+        return;
+    }
+    
+    _isCopyed = YES;
     ExportInfoManager* view = [ExportInfoManager instance];
 
     [[DataResManager instance] start:view.info];
@@ -80,8 +90,25 @@
     [[DataResManager instance] appendingFolder:customCodePath];
     [[DataResManager instance] appendingFolder:codeTestPath];
     [[DataResManager instance] appendingFolder:litJsonPath];
+}
 
-//    [[DataResManager instance] end];
+- (void)saveAndRemoveTestFolder
+{
+    if(!_isCopyed){
+        showWarning("未进行拷贝操作，无法保存和删除");
+        return;
+    }
+    
+    _isCopyed = NO;
+    NSString *rootPath = [DataResManager instance].rootPath;
+    rootPath = [rootPath stringByAppendingString:@"/TempCode/Builder/Users"];
+    
+    NSString *backUpPath = [ExportInfoManager instance].codeBackupPath;
+    backUpPath = [backUpPath stringByAppendingString:@"/Users"];
+    
+    [[NSFileManager defaultManager] copyFolderFrom:rootPath toDst:backUpPath];
+    [[DataResManager instance] end];
+    [[PreferenceData instance] restoreCustomCode];
 }
 
 @end

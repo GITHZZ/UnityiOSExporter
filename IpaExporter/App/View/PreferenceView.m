@@ -38,20 +38,25 @@
     [[CodeTester instance]copyTestFolderToProject];
 }
 
+- (IBAction)deletTestCodeFormProject:(id)sender
+{
+    [[CodeTester instance] saveAndRemoveTestFolder];
+}
+
 - (IBAction)backup:(id)sender
 {
     [[Alert instance]alertModalFirstBtnTitle:@"确定" SecondBtnTitle:@"取消" MessageText:@"代码备份" InformativeText:@"点击确认备份扩展代码（如果偏好设置没有路径，默认备份到导出路径）" callBackFrist:^{
-        [[PackCammond instance] restoreCustomCode];
+        [[PreferenceData instance] restoreCustomCode];
     } callBackSecond:^{
     }];
     
-    [[PackCammond instance] backUpCustomCode];
+    [[PreferenceData instance] backUpCustomCode];
 }
 
 - (IBAction)restore:(id)sender
 {
     [[Alert instance]alertModalFirstBtnTitle:@"确定" SecondBtnTitle:@"取消" MessageText:@"代码恢复" InformativeText:@"点击确认恢复扩展代码" callBackFrist:^{
-        [[PackCammond instance] restoreCustomCode];
+        [[PreferenceData instance] restoreCustomCode];
     } callBackSecond:^{
     }];
 }

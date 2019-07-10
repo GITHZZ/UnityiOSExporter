@@ -74,12 +74,20 @@
                                                 <action selector="CodeTest:" target="11a-jN-iuY" id="uBB-XB-3Yg"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="拷贝测试代码到工程" keyEquivalent="T" id="W0H-ze-RhV" userLabel="拷贝测试代码到工程">
+                                        <menuItem isSeparatorItem="YES" id="LMO-vE-1ka"/>
+                                        <menuItem title="拷贝测试代码到工程" keyEquivalent="C" id="W0H-ze-RhV" userLabel="拷贝测试代码到工程">
                                             <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
                                             <connections>
                                                 <action selector="CopyTestCodeToProject:" target="11a-jN-iuY" id="ghx-g6-Zdk"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="保存并删除" keyEquivalent="P" id="AEB-R5-jxH">
+                                            <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="deletTestCodeFormProject:" target="11a-jN-iuY" id="3pb-B8-XJ3"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="nl8-at-5hg"/>
                                         <menuItem title="备份" keyEquivalent="s" id="WPk-V3-lnS">
                                             <connections>
                                                 <action selector="backup:" target="11a-jN-iuY" id="9YJ-hl-7t7"/>
