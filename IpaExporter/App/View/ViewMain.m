@@ -388,6 +388,11 @@
     [_infoLabel scrollRectToVisible:CGRectMake(0, _infoLabel.textContainer.size.height-15, _infoLabel.textContainer.size.width, 10)];
 }
 
+- (IBAction)cleanAllLog:(id)sender
+{
+    [self cleanInfoContent:nil];
+}
+
 - (void)cleanInfoContent:(NSNotification*)notification
 {
     [[_infoLabel textStorage] deleteCharactersInRange:NSMakeRange(0, [_infoLabel textStorage].length)];

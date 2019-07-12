@@ -59,7 +59,7 @@
     //open detail info settings
     NSStoryboard *sb = [NSStoryboard storyboardWithName:@"Main" bundle:nil];
     DetailsInfoSetting *vc = [sb instantiateControllerWithIdentifier:@"detailsInfoSetting"];
-    
+
     if([_dataDict count] > 0){
         DetailsInfoData *info = [_dataDict objectAtIndex:0];
         [vc setUpDataInfoOnShow:info isEditMode:NO];

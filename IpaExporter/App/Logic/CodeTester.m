@@ -70,7 +70,7 @@ BOOL _isCopyed = NO;
     [[DataResManager instance] appendingFolder:litJsonPath];
     
     NSString *shellStr = [NSString stringWithFormat:@"/Applications/Unity/Unity.app/Contents/MacOS/Unity -projectPath %s", view.info->unityProjPath];
-    [self createTerminalTask:shellStr];
+    [self createTerminalTask:shellStr waitUntilExit:NO];
 }
 
 - (void)saveAndRemoveTestFolder
@@ -94,6 +94,11 @@ BOOL _isCopyed = NO;
 
 - (NSString*)createTerminalTask:(NSString*)order
 {
+   return [self createTerminalTask:order waitUntilExit:YES];
+}
+
+- (NSString*)createTerminalTask:(NSString*)order waitUntilExit:(BOOL)isWait
+{
     NSTask *shellTask = [[NSTask alloc] init];
     [shellTask setLaunchPath:@"/bin/sh"];
     
@@ -104,14 +109,20 @@ BOOL _isCopyed = NO;
     [shellTask setStandardOutput:pipe];
     [shellTask setStandardError:pipe];
     [shellTask launch];
-    [shellTask waitUntilExit];
     
-    NSFileHandle *file = [pipe fileHandleForReading];
-    NSData *data = [file readDataToEndOfFile];
-    NSString *strReturnFormShell = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"The return content from shell script is: %@",strReturnFormShell);
+    if(isWait){
+        
+        [shellTask waitUntilExit];
     
-    return strReturnFormShell;
+        NSFileHandle *file = [pipe fileHandleForReading];
+        NSData *data = [file readDataToEndOfFile];
+        NSString *strReturnFormShell = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSLog(@"The return content from shell script is: %@",strReturnFormShell);
+    
+        return strReturnFormShell;
+    }
+    
+    return @"";
 }
 
 @end

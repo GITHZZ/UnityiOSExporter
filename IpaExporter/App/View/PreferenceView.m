@@ -12,7 +12,21 @@
 #import "CodeTester.h"
 #import "PreferenceData.h"
 
+int _viewOpeningCount = 0;
+
 @implementation ExtensionsMenu
+
+- (IBAction)openPreferenceView:(id)sender
+{
+    if(_viewOpeningCount >= 1)
+        return;
+    
+    _viewOpeningCount++;
+    NSStoryboard *sb = [NSStoryboard storyboardWithName:@"Main" bundle:nil];
+    PreferenceView *vc = [sb instantiateControllerWithIdentifier:@"PreferenceView"];
+    NSViewController *mainControler = [[[NSApplication sharedApplication] mainWindow] contentViewController];
+    [mainControler presentViewControllerAsSheet:vc];
+}
 
 - (IBAction)openCustomCodeFile:(id)sender
 {
@@ -35,7 +49,7 @@
 
 - (IBAction)CopyTestCodeToProject:(id)sender
 {
-    [[CodeTester instance]copyTestFolderToProject];
+    [[CodeTester instance] copyTestFolderToProject];
 }
 
 - (IBAction)deletTestCodeFormProject:(id)sender
@@ -49,7 +63,6 @@
         [[PreferenceData instance] backUpCustomCode];
     } callBackSecond:^{
     }];
-    
 }
 
 - (IBAction)restore:(id)sender
@@ -69,8 +82,6 @@
 @end
 
 @implementation PreferenceView
-
-static int _viewOpeningCount = 0;
 
 - (void)viewDidAppear
 {
@@ -119,8 +130,7 @@ static int _viewOpeningCount = 0;
     {
         NSString* selectPath = [[openDlg URL] path];
         _savePath.stringValue = selectPath;
-        [[ExportInfoManager instance] setCodeSavePath:selectPath];
-        [[ExportInfoManager instance] saveDataForKey:SAVE_CODE_SAVE_PATH_KEY];
+        [[ExportInfoManager instance] saveDataForKey:SAVE_CODE_SAVE_PATH_KEY withData:selectPath];
     }
 }
 
@@ -173,6 +183,12 @@ static int _viewOpeningCount = 0;
         [cell addItemsWithTitles:newArr];
         [cell synchronizeTitleAndSelectedItem];
     }
+}
+
+- (IBAction)close:(id)sender
+{
+    _viewOpeningCount--;
+    [self dismissViewController:self];
 }
 
 @end

@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)copyFolderFrom:(NSString*)src toDst:(NSString*)dst isCover:(BOOL)cover;
 
 /**
- 使用shell指令拷贝文件夹，异步
+ 使用shell指令拷贝文件夹，异步,线程阻塞（需要修改）
  @return 返回指令执行内容和相关结果
  */
 - (NSString*)copyUseShell:(NSString*)src toDst:(NSString*)dst;

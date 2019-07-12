@@ -146,11 +146,6 @@
     [self saveDataForKey:saveKey withData:array];
 }
 
-- (void)setCodeSavePath:(NSString*)path
-{
-    _codeBackupPath = path;
-}
-
 - (NSMutableArray*)getDetailArray
 {
     return [_userData dataForKey:SAVE_DETAIL_ARRARY_KEY];
