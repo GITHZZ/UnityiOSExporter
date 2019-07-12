@@ -16,7 +16,7 @@ cd ${unity_project_path}
 args_config=$(cat ${bundle_res_path}'/TempCode/Builder/Users/_CustomConfig.json'| sed s/[[:space:]]//g | tr -d '\n')
 
 #生成xcode工程
-/Applications/Unity/Unity.app/Contents/MacOS/Unity -buildTarget Ios -bacthmode -quit -projectPath ${unity_project_path} -executeMethod IpaExporter.Builder.BuildApp -logFile ${export_path}/xcodeproj_create_log.txt -args_${args_config}
+/Applications/Unity/Unity.app/Contents/MacOS/Unity -buildTarget Ios -bacthmode -quit -projectPath ${unity_project_path} -executeMethod IpaExporter._Builder.BuildApp -logFile ${export_path}/xcodeproj_create_log.txt -args_${args_config}
 
 echo "[配置信息]Unity日志路径:"${export_path}
 
