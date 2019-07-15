@@ -427,12 +427,99 @@
                 </viewController>
                 <customObject id="r2Y-nS-hwe" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="688" y="112"/>
+            <point key="canvasLocation" x="684" y="126"/>
+        </scene>
+        <!--配置恢复-->
+        <scene sceneID="ldr-4D-8yw">
+            <objects>
+                <viewController title="配置恢复" storyboardIdentifier="UserDefaultsSetting" id="SHY-TW-gut" customClass="UserDefaultsSetting" sceneMemberID="viewController">
+                    <view key="view" id="3Q0-is-6fW">
+                        <rect key="frame" x="0.0" y="0.0" width="350" height="180"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="e7P-sk-JQu">
+                                <rect key="frame" x="10" y="127" width="88" height="17"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="选择配置路径:" id="Bhx-Bn-RtI">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="wM3-eG-VGK">
+                                <rect key="frame" x="138" y="155" width="66" height="19"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="配置恢复" id="yW0-01-pCc">
+                                    <font key="font" size="15" name=".PingFangSC-Regular"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" id="Ial-CY-XTO">
+                                <rect key="frame" x="12" y="97" width="318" height="22"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="tat-vs-oQz">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Trx-ud-brT">
+                                <rect key="frame" x="10" y="72" width="337" height="17"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" title="选择打包工具配置存储数据文件，确定后将重新刷新页面" id="hcF-bZ-0FU">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" id="M5f-8o-3pd">
+                                <rect key="frame" x="208" y="4" width="67" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="取消" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Qon-vy-xZB">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="cancelBtnSelect:" target="SHY-TW-gut" id="0ao-L6-Stj"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" id="k0f-Pl-gun">
+                                <rect key="frame" x="6" y="36" width="67" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="浏览" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9US-52-krf">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="plistFileSelect:" target="SHY-TW-gut" id="7YF-BS-Rwt"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" id="D04-tc-DGp">
+                                <rect key="frame" x="269" y="4" width="67" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="确定" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jXC-MH-1Q7">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="sureBtnSelect:" target="SHY-TW-gut" id="SEj-n2-63Q"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="plistPath" destination="Ial-CY-XTO" id="7ha-yx-eeZ"/>
+                    </connections>
+                </viewController>
+                <customObject id="DE8-eo-11d" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1162" y="76"/>
         </scene>
         <!--项目配置-->
         <scene sceneID="yi6-IH-9Ec">
             <objects>
-                <viewController title="项目配置" id="UBb-r6-fzf" customClass="ViewMain" sceneMemberID="viewController">
+                <viewController title="项目配置" storyboardIdentifier="ViewMain" id="UBb-r6-fzf" customClass="ViewMain" sceneMemberID="viewController">
                     <view key="view" autoresizesSubviews="NO" id="Tha-SI-HFf">
                         <rect key="frame" x="0.0" y="0.0" width="683" height="478"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -490,7 +577,7 @@
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="467" height="336"/>
+                                            <size key="minSize" width="449" height="336"/>
                                             <size key="maxSize" width="467" height="10000000"/>
                                             <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         </textView>
@@ -692,26 +779,26 @@
                                 <rect key="frame" x="28" y="22" width="16" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </progressIndicator>
-                            <button identifier="isReleaseBox" id="xvG-e2-1WT">
-                                <rect key="frame" x="477" y="10" width="59" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="正式包" bezelStyle="regularSquare" imagePosition="left" inset="2" id="6A8-Ds-JtB">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system" size="12"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="isReleaseBtnSelect:" target="UBb-r6-fzf" id="qtC-VN-31N"/>
-                                </connections>
-                            </button>
                             <button identifier="isExportXcode" id="dQ7-Ok-DsU">
                                 <rect key="frame" x="478" y="29" width="115" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="导出Xcode工程" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="JYT-Wb-LMu">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system" size="12"/>
+                                    <font key="font" metaFont="cellTitle"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="isReleaseBtnSelect:" target="UBb-r6-fzf" id="IhH-G6-g7c"/>
+                                </connections>
+                            </button>
+                            <button identifier="isReleaseBox" id="xvG-e2-1WT">
+                                <rect key="frame" x="478" y="10" width="59" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="正式包" bezelStyle="regularSquare" imagePosition="left" inset="2" id="6A8-Ds-JtB">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="cellTitle"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="isReleaseBtnSelect:" target="UBb-r6-fzf" id="qtC-VN-31N"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -797,7 +884,6 @@
                                 </view>
                                 <color key="borderColor" white="0.5" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                 <color key="fillColor" white="0.82508370535714282" alpha="1" colorSpace="calibratedWhite"/>
-                                <font key="titleFont" metaFont="smallSystem"/>
                             </box>
                             <scrollView wantsLayer="YES" borderType="line" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" id="sHF-OX-1zI">
                                 <rect key="frame" x="12" y="43" width="660" height="423"/>
@@ -1475,7 +1561,7 @@
                                     <rect key="frame" x="-100" y="-100" width="593" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="0.96888888888888891" horizontal="NO" id="9YB-yJ-KwW">
+                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="9YB-yJ-KwW">
                                     <rect key="frame" x="594" y="1" width="15" height="417"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>

@@ -3,48 +3,54 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "-[ViewMain isReleaseBtnSelect:]:ViewMain.m">
+         contextName = "-[PreferenceView menuDidClose:]:PreferenceView.m">
          <PersistentStrings>
             <PersistentString
-               value = "_isReleaseBox.state">
+               value = "menu">
             </PersistentString>
             <PersistentString
-               value = "_isExportXcode.state">
+               value = "menu.identifier">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[PreferenceView viewDidAppear]:PreferenceView.m">
+         contextName = "-[DetailsInfoSetting panel:shouldEnableURL:]:DetailsInfoSetting.m">
          <PersistentStrings>
             <PersistentString
-               value = "[ExportInfoManager instance].codeSavePath">
+               value = "sender.identifier">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[RubyCammond sureBtnClicked:]:RubyCammond.m">
+         contextName = "-[ViewMain reloadAllInfo]:ViewMain.m">
          <PersistentStrings>
             <PersistentString
-               value = "view.info-&gt;isExportXcode">
+               value = "(NSString*)[unityProjPathArr lastObject]">
+            </PersistentString>
+            <PersistentString
+               value = "[unityProjPathArr lastObject]">
+            </PersistentString>
+            <PersistentString
+               value = "_unityPathBox.stringValue">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "showLog:CustomLog.m">
+         contextName = "-[DataResManager appendingFolder:]:DataResManager.m">
          <PersistentStrings>
             <PersistentString
-               value = "dispatch_queue_get_label(dispatch_get_main_queue()))">
-            </PersistentString>
-            <PersistentString
-               value = "dispatch_queue_get_label(DISPATCH_CURRENT_QUEUE_LABEL)">
+               value = "_root.length">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[DetailsInfoSetting viewDidLoad]:DetailsInfoSetting.m">
+         contextName = "-[LocalDataSave setAllSaveKey:]:LocalDataSave.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[RubyCammond invokingShellScriptAtPath:withArgs:]:RubyCammond.m">
          <PersistentStrings>
             <PersistentString
-               value = "_frameworkNameArr">
+               value = "args[i]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -57,27 +63,27 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "-[DetailsInfoData initWithCoder:]:DetailsInfoData.m">
+      </ContextState>
+      <ContextState
          contextName = "-[MobileprovisionParser createPlistFile]:MobileprovisionParser.m">
       </ContextState>
       <ContextState
-         contextName = "-[ExportInfoManager reloadPaths]:ExportInfoManager.m">
+         contextName = "-[PreferenceView initFileOpenApp]:PreferenceView.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[PackCammond invokingShellScriptAtPath:withArgs:]:PackCammond.m">
          <PersistentStrings>
             <PersistentString
-               value = "[obj class]">
-            </PersistentString>
-            <PersistentString
-               value = "item">
+               value = "args[i]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[PreferenceView menuDidClose:]:PreferenceView.m">
+         contextName = "-[DetailsInfoSetting viewDidLoad]:DetailsInfoSetting.m">
          <PersistentStrings>
             <PersistentString
-               value = "menu">
-            </PersistentString>
-            <PersistentString
-               value = "menu.identifier">
+               value = "_frameworkNameArr">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -93,18 +99,40 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[RubyCammond invokingShellScriptAtPath:withArgs:]:RubyCammond.m">
+         contextName = "-[ExportInfoManager reloadPaths]:ExportInfoManager.m">
          <PersistentStrings>
             <PersistentString
-               value = "args[i]">
+               value = "item">
+            </PersistentString>
+            <PersistentString
+               value = "[obj class]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[DataResManager appendingFolder:]:DataResManager.m">
+         contextName = "-[UserDefaultsSetting sureBtnSelect:]:PreferenceView.m">
          <PersistentStrings>
             <PersistentString
-               value = "_root.length">
+               value = "_plistPath.stringValue">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[PreferenceView viewDidAppear]:PreferenceView.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[ExportInfoManager instance].codeSavePath">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[DetailsInfoSetting setUpInfo]:DetailsInfoSetting.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[RubyCammond sureBtnClicked:]:RubyCammond.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "view.info-&gt;isExportXcode">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -117,30 +145,24 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[DetailsInfoData initWithCoder:]:DetailsInfoData.m">
-      </ContextState>
-      <ContextState
-         contextName = "-[LocalDataSave setAllSaveKey:]:LocalDataSave.m">
-      </ContextState>
-      <ContextState
-         contextName = "-[PreferenceView initFileOpenApp]:PreferenceView.m">
-      </ContextState>
-      <ContextState
-         contextName = "-[PackCammond invokingShellScriptAtPath:withArgs:]:PackCammond.m">
+         contextName = "showLog:CustomLog.m">
          <PersistentStrings>
             <PersistentString
-               value = "args[i]">
+               value = "dispatch_queue_get_label(dispatch_get_main_queue()))">
+            </PersistentString>
+            <PersistentString
+               value = "dispatch_queue_get_label(DISPATCH_CURRENT_QUEUE_LABEL)">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[DetailsInfoSetting setUpInfo]:DetailsInfoSetting.m">
-      </ContextState>
-      <ContextState
-         contextName = "-[DetailsInfoSetting panel:shouldEnableURL:]:DetailsInfoSetting.m">
+         contextName = "-[ViewMain isReleaseBtnSelect:]:ViewMain.m">
          <PersistentStrings>
             <PersistentString
-               value = "sender.identifier">
+               value = "_isReleaseBox.state">
+            </PersistentString>
+            <PersistentString
+               value = "_isExportXcode.state">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

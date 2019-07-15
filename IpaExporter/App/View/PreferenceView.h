@@ -27,4 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface UserDefaultsSetting : NSViewController
+@property (weak) IBOutlet NSTextField *plistPath;
+@end
+
 NS_ASSUME_NONNULL_END

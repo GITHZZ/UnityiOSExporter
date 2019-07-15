@@ -32,6 +32,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (NSString*)copyUseShell:(NSString*)src toDst:(NSString*)dst;
 
+- (void)copyFile:(NSString*)src toDst:(NSString*)dst;
+
 @end
 
 NS_ASSUME_NONNULL_END

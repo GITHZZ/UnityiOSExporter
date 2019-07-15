@@ -44,20 +44,10 @@
     return self;
 }
 
-//如果传nil值 代表全部存储
-- (void)saveAll
+- (void)refresh
 {
-    [self saveDataForKey:nil];
-}
-
-- (void)saveDataForKey:(nullable NSString*)key
-{
-    [_userData saveDataForKey:key];
-}
-
-- (void)saveDataForKey:(NSString*)key withData:(id) data
-{
-    [_userData setAndSaveData:data withKey:key];
+    [_userData refresh];
+    [self reloadPaths];
 }
 
 - (void)reloadPaths
@@ -82,7 +72,7 @@
     {
         [_unityProjPathArr removeObjectAtIndex:0];
     }
-    [_userData setDataForKey:SAVE_PROJECT_PATH_KEY withData:_unityProjPathArr];
+    [_userData setAndSaveData:_unityProjPathArr withKey:SAVE_PROJECT_PATH_KEY];
 }
 
 - (void)replaceUnityProjPath:(NSString*)path
@@ -91,7 +81,7 @@
     id lastObj = [_unityProjPathArr lastObject];
     [_unityProjPathArr replaceObjectAtIndex:[_unityProjPathArr count] - 1 withObject:path];
     [_unityProjPathArr replaceObjectAtIndex:index withObject:lastObj];
-    [_userData setDataForKey:SAVE_PROJECT_PATH_KEY withData:_unityProjPathArr];
+    [_userData setAndSaveData:_unityProjPathArr withKey:SAVE_PROJECT_PATH_KEY];
 }
 
 - (void)addNewExportProjPath:(NSString *)path
@@ -103,7 +93,7 @@
     {
         [_exportPathArr removeLastObject];
     }
-    [_userData setDataForKey:SAVE_EXPORT_PATH_KEY withData:_exportPathArr];
+    [_userData setAndSaveData:_exportPathArr withKey:SAVE_EXPORT_PATH_KEY];
 }
 
 - (void)replaceExportProjPath:(NSString*)path
@@ -112,7 +102,7 @@
     id fristObj = [_exportPathArr objectAtIndex:0];
     [_exportPathArr replaceObjectAtIndex:[_exportPathArr count] - 1 withObject:path];
     [_exportPathArr replaceObjectAtIndex:index withObject:fristObj];
-    [_userData setDataForKey:SAVE_EXPORT_PATH_KEY withData:_exportPathArr];
+    [_userData setAndSaveData:_exportPathArr withKey:SAVE_EXPORT_PATH_KEY];
 }
 
 //包配置 信息表格数据部分
@@ -125,7 +115,6 @@
 {
     NSMutableArray *array = [_userData dataForKey:saveKey];
     [array addObject:data];
-    [_userData setDataForKey:saveKey withData:array];
     [self saveDataForKey:saveKey withData:array];
 }
 
@@ -142,7 +131,6 @@
 {
     NSMutableArray *array = [_userData dataForKey:saveKey];
     [array replaceObjectAtIndex:index withObject:object];
-    [_userData setDataForKey:saveKey withData:array];
     [self saveDataForKey:saveKey withData:array];
 }
 
@@ -156,9 +144,15 @@
     return [_userData dataForKey:SAVE_SCENE_ARRAY_KEY];
 }
 
-- (NSString*)getCodeSavePath
+- (void)setCodeSavePath:(NSString*)path
 {
-    return [_userData dataForKey:SAVE_CODE_SAVE_PATH_KEY];
+    _codeBackupPath = path;
+    [self saveDataForKey:SAVE_CODE_SAVE_PATH_KEY withData:path];
+}
+
+- (void)saveDataForKey:(NSString*)key withData:(id) data
+{
+    [_userData setAndSaveData:data withKey:key];
 }
 
 @end

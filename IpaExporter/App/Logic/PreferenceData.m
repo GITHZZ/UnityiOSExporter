@@ -83,6 +83,12 @@
     NSString *srcPath = [LIB_PATH stringByAppendingString:@"/TempCode/Builder/Users"];
     NSString *strReturnFormShell = [[NSFileManager defaultManager] copyUseShell:srcPath toDst:backUpPath];
     
+    //备份参数测试
+    NSString *path = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) firstObject];
+    NSString *preferencePath = [path stringByAppendingFormat:@"/Preferences/%@.plist", [[NSBundle mainBundle] bundleIdentifier]];
+    NSLog(@"%@", preferencePath);
+    [[NSFileManager defaultManager] copyUseShell:preferencePath toDst:backUpPath];
+    
     if([strReturnFormShell isEqualToString:@""]){
         showSuccess("备份成功");
     }else{

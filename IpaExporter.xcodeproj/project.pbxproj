@@ -576,7 +576,7 @@
 					"$(PROJECT_DIR)/IpaExporter/LuaLib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				PRODUCT_BUNDLE_IDENTIFIER = com.IpaExporter.test;
+				PRODUCT_BUNDLE_IDENTIFIER = com.IpaExporter.app;
 				PRODUCT_NAME = "iOS打包工具";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
@@ -601,7 +601,7 @@
 					"$(PROJECT_DIR)/IpaExporter/LuaLib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				PRODUCT_BUNDLE_IDENTIFIER = com.IpaExporter.test;
+				PRODUCT_BUNDLE_IDENTIFIER = com.IpaExporter.app;
 				PRODUCT_NAME = "iOS打包工具";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};

@@ -87,6 +87,9 @@ sed -i '' 's/container:Unity-iPhone.xcodeproj/container:Unity-iPhone-'${platform
 #进入xcode工程目录
 cd ${xcode_proj_path}
 
+#如果是release模式 不重新生成archive 请务必在debug模式下生成一次
+#待修改
+if [ ${is_release} != "1" ]; then
 echo "清除xcode工程信息"
 xcodebuild \
     clean \
@@ -107,6 +110,7 @@ xcodebuild \
     DEVELOPMENT_TEAM=${team_id} \
     -allowProvisioningUpdates \
     > ${export_log_path}"/xcodebuild_archive_log_"${platform_name}".txt"
+fi
 
 echo "生成ipa包"
 ipa_folder_path=${xcode_proj_path}"/Unity-iPhone-"${platform_name}

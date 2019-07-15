@@ -30,4 +30,6 @@
 - (IBAction)unityPathSelect:(id)sender;
 - (IBAction)exportPathSelect:(id)sender;
 
+- (void)reloadAllInfo;
+
 @end

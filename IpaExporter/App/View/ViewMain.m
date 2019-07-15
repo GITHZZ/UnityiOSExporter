@@ -29,13 +29,22 @@
 
 - (void)viewDidLoad
 {
+    //设置数据源
+    _platformTbl.delegate = self;
+    _packSceneTbl.delegate = self;
+    _platformTbl.dataSource = self;
+    _packSceneTbl.dataSource = self;
+
+    _unityPathBox.delegate = self;
+    _exportPathBox.delegate = self;
+
+    _progressTip.displayedWhenStopped = NO;
+    
     [[ExportInfoManager instance] reloadPaths];
     
     ExportInfo* info = [ExportInfoManager instance].info;
     NSMutableArray* unityProjPathArr = [ExportInfoManager instance].unityProjPathArr;
     NSMutableArray* exportPathArr = [ExportInfoManager instance].exportPathArr;
-    _unityPathBox.delegate = self;
-    _exportPathBox.delegate = self;
     
     if ([unityProjPathArr count] > 0)
     {
@@ -51,19 +60,10 @@
         [_exportPathBox addItemsWithObjectValues:exportPathArr];
     }
     
-    _progressTip.displayedWhenStopped = NO;
-    
-    //设置数据源
-    _platformTbl.delegate = self;
-    _packSceneTbl.delegate = self;
-    _platformTbl.dataSource = self;
-    _packSceneTbl.dataSource = self;
-
     _isReleaseBox.state = info->isRelease;
     _isExportXcode.state = info->isExportXcode;
     
     _useTimeLabel.stringValue = @"";
-    
     [[EventManager instance] regist:EventStopRecordTime
                                func:@selector(stopShowPackTime:)
                                self:self];
@@ -86,6 +86,7 @@
     [_packSceneTbl reloadData];
     
     [self registEvent];
+    [self checkIsShowSetting];
 }
 
 - (void)viewDidDisappear
@@ -120,6 +121,9 @@
     [[EventManager instance] regist:EventCleanInfoContent
                                func:@selector(cleanInfoContent:)
                                self:self];
+    [[EventManager instance] regist:EventSettingFileSelect
+                               func:@selector(reloadAllInfo)
+                               self:self];
     
 }
 
@@ -141,6 +145,46 @@
                                self:self];
     [[EventManager instance] unRegist:EventCleanInfoContent
                                self:self];
+    [[EventManager instance] unRegist:EventSettingFileSelect
+                               self:self];
+}
+
+- (void)reloadAllInfo
+{
+    [_unityPathBox removeAllItems];
+    [_exportPathBox removeAllItems];
+    
+    [[ExportInfoManager instance] refresh];
+    
+    ExportInfo* info = [ExportInfoManager instance].info;
+    NSMutableArray* unityProjPathArr = [ExportInfoManager instance].unityProjPathArr;
+    NSMutableArray* exportPathArr = [ExportInfoManager instance].exportPathArr;
+    
+    if ([unityProjPathArr count] > 0)
+    {
+        _unityPathBox.stringValue = (NSString*)[unityProjPathArr lastObject];
+        info->unityProjPath = [_unityPathBox.stringValue UTF8String];
+        [_unityPathBox addItemsWithObjectValues:unityProjPathArr];
+    }
+    
+    if ([exportPathArr count] > 0)
+    {
+        _exportPathBox.stringValue = (NSString*)[exportPathArr lastObject];
+        info->exportFolderParh = [_exportPathBox.stringValue UTF8String];
+        [_exportPathBox addItemsWithObjectValues:exportPathArr];
+    }
+    
+    _isReleaseBox.state = info->isRelease;
+    _isExportXcode.state = info->isExportXcode;
+    
+    NSMutableArray<DetailsInfoData*> *saveArray = [[ExportInfoManager instance] reLoadDetails:SAVE_DETAIL_ARRARY_KEY];
+    _dataDict = [[NSMutableArray alloc] initWithArray:saveArray];
+    
+    NSMutableArray<NSString*> *saveSceneArr = [[ExportInfoManager instance] reLoadDetails:SAVE_SCENE_ARRAY_KEY];
+    _sceneArray = [[NSMutableArray alloc] initWithArray:saveSceneArr];
+    
+    [_platformTbl reloadData];
+    [_packSceneTbl reloadData];
 }
 
 - (IBAction)sureBtnClick:(id)sender
@@ -190,8 +234,6 @@
                 default:
                     break;
             }
-            
-            [[ExportInfoManager instance] saveAll];
         }
     }
 }
@@ -315,13 +357,11 @@
     {
         info->unityProjPath = [changePath UTF8String];
         [[ExportInfoManager instance] replaceUnityProjPath:changePath];
-        [[ExportInfoManager instance] saveDataForKey:SAVE_PROJECT_PATH_KEY];
     }
     else if([[box identifier] isEqualToString:@"exportPathBox"])
     {
         info->exportFolderParh = [changePath UTF8String];
         [[ExportInfoManager instance] replaceExportProjPath:changePath];
-        [[ExportInfoManager instance] saveDataForKey:SAVE_EXPORT_PATH_KEY];
     }
     else
     {
@@ -451,8 +491,18 @@
         [[ExportInfoManager instance] saveDataForKey:SAVE_IS_EXPORT_XCODE
                                             withData:[NSString stringWithFormat:@"%d",info->isExportXcode]];
     }
-    
-    [[ExportInfoManager instance] saveAll];
 }
-                            
+
+- (void)checkIsShowSetting
+{
+    NSString *path = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) firstObject];
+    NSString *preferencePath = [path stringByAppendingFormat:@"/Preferences/%@.plist", [[NSBundle mainBundle] bundleIdentifier]];
+    if(![[NSFileManager defaultManager] fileExistsAtPath:preferencePath])
+    {
+        NSStoryboard *sb = [NSStoryboard storyboardWithName:@"Main" bundle:nil];
+        DetailsInfoSetting *vc = [sb instantiateControllerWithIdentifier:@"UserDefaultsSetting"];
+        [self presentViewControllerAsSheet:vc];
+    }
+}
+
 @end

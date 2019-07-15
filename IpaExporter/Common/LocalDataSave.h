@@ -68,6 +68,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)removeAll;
 
+//重新加载存储数据
+- (void)refresh;
+
 @end
 
 NS_ASSUME_NONNULL_END

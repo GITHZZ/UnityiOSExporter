@@ -11,6 +11,8 @@
 #import "PackCammond.h"
 #import "CodeTester.h"
 #import "PreferenceData.h"
+#import "ViewMain.h"
+#import "NSFileManager+Copy.h"
 
 int _viewOpeningCount = 0;
 
@@ -114,7 +116,6 @@ int _viewOpeningCount = 0;
 - (IBAction)cleanAllCache:(id)sender
 {
     [[Alert instance]alertModalFirstBtnTitle:@"确定" SecondBtnTitle:@"取消" MessageText:@"数据清除" InformativeText:@"点击确认清除所有数据（所有平台信息）" callBackFrist:^{
-        
     } callBackSecond:^{
     }];
 }
@@ -130,7 +131,7 @@ int _viewOpeningCount = 0;
     {
         NSString* selectPath = [[openDlg URL] path];
         _savePath.stringValue = selectPath;
-        [[ExportInfoManager instance] saveDataForKey:SAVE_CODE_SAVE_PATH_KEY withData:selectPath];
+        [[ExportInfoManager instance] setCodeSavePath:selectPath];
     }
 }
 
@@ -188,6 +189,39 @@ int _viewOpeningCount = 0;
 - (IBAction)close:(id)sender
 {
     _viewOpeningCount--;
+    [self dismissViewController:self];
+}
+
+@end
+
+@implementation UserDefaultsSetting
+
+- (IBAction)plistFileSelect:(id)sender
+{
+    NSOpenPanel* openDlg = [NSOpenPanel openPanel];
+    [openDlg setCanChooseFiles:YES];
+    [openDlg setCanChooseDirectories:NO];
+    [openDlg setAllowedFileTypes:[NSArray arrayWithObjects:@"plist", nil]];
+    
+    if ([openDlg runModal] == NSModalResponseOK)
+    {
+        NSString *plistPath = [[openDlg URL] path];
+        _plistPath.stringValue = plistPath;
+    }
+}
+
+- (IBAction)sureBtnSelect:(id)sender
+{
+    NSString *path = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) firstObject];
+    NSString *preferencePath = [path stringByAppendingFormat:@"/Preferences/%@.plist", [[NSBundle mainBundle] bundleIdentifier]];
+    [[NSFileManager defaultManager] copyFile:_plistPath.stringValue toDst:preferencePath];
+    
+    [self dismissViewController:self];
+    [[EventManager instance] send:EventSettingFileSelect withData:nil];
+}
+
+- (IBAction)cancelBtnSelect:(id)sender
+{
     [self dismissViewController:self];
 }
 

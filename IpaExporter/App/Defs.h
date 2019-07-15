@@ -74,6 +74,7 @@ typedef NS_ENUM(EventType, CustomEventType)
     EventScenePathSelectEnd      = 215,
     EventStartRecordTime         = 216,
     EventStopRecordTime          = 217,
+    EventSettingFileSelect       = 218,
 };
 
 #endif /* Defs_h */

@@ -14,9 +14,11 @@
 
 @interface LocalDataSave()
 {
-    NSUserDefaults* _saveData;
-    NSMutableDictionary<NSString*, id> *_savedict;
     BOOL _keyIsSet;
+    NSString *_plistPath;
+    NSMutableDictionary<NSString*, NSData*> *_saveData;
+    NSMutableDictionary<NSString*, id> *_savedict;
+    NSDictionary *_saveTpDict;
 }
 @end
 
@@ -27,7 +29,10 @@
     if(self=[super init])
     {
         _keyIsSet = NO;
-        _saveData = [NSUserDefaults standardUserDefaults];
+        
+        NSString *path = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) firstObject];
+        _plistPath = [path stringByAppendingFormat:@"/Preferences/%@.plist", [[NSBundle mainBundle] bundleIdentifier]];
+        _saveData = [NSMutableDictionary dictionaryWithContentsOfFile:_plistPath];
     }
     return self;
 }
@@ -35,6 +40,7 @@
 - (void)setAllSaveKey:(NSDictionary*)saveTpDict
 {
     _keyIsSet = YES;
+    _saveTpDict = saveTpDict;
     _savedict = [NSMutableDictionary dictionary];
     NSArray *keyArr = [saveTpDict allKeys];
     for(int i = 0; i < keyArr.count; i++)
@@ -85,7 +91,7 @@
             [_saveData setObject:data forKey:saveKey];
         }
     }
-    [_saveData synchronize];
+    [_saveData writeToFile:_plistPath atomically:YES];
     return YES;
 }
 
@@ -123,6 +129,13 @@
     CHECK_KEY_IS_AVAILABEL(key)
     [_saveData removeObjectForKey:key];
     return YES;
+}
+
+//待优化
+- (void)refresh
+{
+    _saveData = [NSMutableDictionary dictionaryWithContentsOfFile:_plistPath];
+    [self setAllSaveKey:_saveTpDict];
 }
 
 @end

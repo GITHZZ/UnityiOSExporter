@@ -27,7 +27,7 @@
         _fileName = [[profile componentsSeparatedByString:@"."] firstObject];
         
         NSRange range = [path rangeOfString:profile];
-        _rootPath = [path substringToIndex:range.location];
+        _rootPath = [[path substringToIndex:range.location] stringByReplacingOccurrencesOfString:@" " withString:@""];
         
     }
     return self;

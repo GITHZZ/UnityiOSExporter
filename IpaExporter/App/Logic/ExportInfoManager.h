@@ -36,8 +36,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, readonly, getter=getDetailArray) NSMutableArray *detailArray;
 @property(nonatomic, readonly, getter=getSceneArray) NSMutableArray *sceneArray;
 
-- (void)saveAll;
-- (void)saveDataForKey:(nullable NSString*)key;
 - (void)saveDataForKey:(NSString*)key withData:(id) data;
 
 - (void)addNewUnityProjPath:(NSString*)path;
@@ -46,6 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)replaceExportProjPath:(NSString*)path;
 
 //路径配置
+- (void)refresh;
 - (void)reloadPaths;
 
 //包配置 信息表格数据部分
@@ -53,9 +52,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)addDetail:(id)data withKey:(NSString*)saveKey;
 - (void)removeDetail:(NSUInteger)index withKey:(NSString*)saveKey;
 - (void)updateDetail:(NSUInteger)index withObject:(id)object withKey:(NSString*)saveKey;
-- (void)setCodeSavePath:(NSString*)path;
 
 //设置备份存储路径
+- (void)setCodeSavePath:(NSString*)path;
 
 NS_ASSUME_NONNULL_END
 
