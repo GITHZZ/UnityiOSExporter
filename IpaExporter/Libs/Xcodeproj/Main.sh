@@ -89,7 +89,8 @@ cd ${xcode_proj_path}
 
 #如果是release模式 不重新生成archive 请务必在debug模式下生成一次
 #待修改
-if [ ${is_release} != "1" ]; then
+archive_path=${xcode_proj_path}/"bin/Unity-iPhone-"${platform_name}".xcarchive"
+if [ ${is_release} != "1" -o ! -d ${archive_path} ]; then
 echo "清除xcode工程信息"
 xcodebuild \
     clean \

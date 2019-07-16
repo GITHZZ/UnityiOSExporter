@@ -92,7 +92,7 @@ class XcodeProjectUpdater
                     set_build_setting(@target, "INFOPLIST_FILE", newPath)
                 end
                 
-                if newPath.to_s.end_with?("Unity-iPhone")
+                if newPath.to_s.end_with?("Unity-iPhone") or newPath.to_s.include?("LaunchScreen-")
                     copy_unity_iphone_folder(newPath)
                 elsif file_type == "directory" and !newPath.to_s.end_with?(".bundle", ".framework")
                     #add group

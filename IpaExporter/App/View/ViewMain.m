@@ -12,6 +12,7 @@
 #import "ExportInfoManager.h"
 #import "Common.h"
 #import "PreferenceView.h"
+#import "PreferenceData.h"
 
 #define PlatformTblKey @"platformTbl"
 #define PackSceneKey   @"packScene"
@@ -185,6 +186,8 @@
     
     [_platformTbl reloadData];
     [_packSceneTbl reloadData];
+    
+    [[PreferenceData instance] restoreCustomCode];
 }
 
 - (IBAction)sureBtnClick:(id)sender

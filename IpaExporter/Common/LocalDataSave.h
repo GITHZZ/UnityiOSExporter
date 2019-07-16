@@ -10,7 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef id _Nonnull (^Merge)(id originItem, id newItem);
+
 @interface LocalDataSave : NSObject
+
+- (id)initWithPlist:(NSString*)path;
 
 /**
  设置所有需要存储的key还有对应类型,如果该key已经有存储内容,同时也会解析出来
@@ -70,6 +74,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 //重新加载存储数据
 - (void)refresh;
+
+
+/**
+ 将新的plist合并到当前数据
+
+ @param path 新的plist数据
+ @param block 具体合并规则函数,由用户决定如何去合并两个数据(originItem原有数据, newItem新增数据)
+ @return 是否成功
+ */
+- (BOOL)mergeFormPlist:(NSString*)path withBlock:(Merge)block;
 
 @end
 
