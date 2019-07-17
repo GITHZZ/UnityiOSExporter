@@ -34,6 +34,7 @@
     //设置数据源
     _infoTbls.delegate = self;
     _infoTbls.dataSource = self;
+    
 }
 
 - (void)viewDidAppear
@@ -166,6 +167,32 @@
 - (BOOL)tableView:(NSTableView *)aTableView shouldEditTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
     return NO;
+}
+
+BOOL _commandKeyIsDown = NO;
+- (void)keyDown:(NSEvent *)event
+{
+    if(_commandKeyIsDown){
+        if ([event.characters isEqualToString:@"c"]){
+            [[NSPasteboard generalPasteboard] clearContents];
+            [[NSPasteboard generalPasteboard] setString:_selectInfo.toJson forType:NSPasteboardTypeString];
+        }else if([event.characters isEqualToString:@"v"]){
+            NSString *jsonString = [[NSPasteboard generalPasteboard] stringForType:NSPasteboardTypeString];
+            DetailsInfoData *data = [DetailsInfoData initWithJsonString:jsonString];
+            if(data != nil)
+                [self addInfo:data];
+        }
+    }
+}
+
+- (void)flagsChanged:(NSEvent *)event
+{
+    [super flagsChanged:event];
+    if([event modifierFlags] & NSEventModifierFlagCommand){
+        _commandKeyIsDown = YES;
+        return;
+    }
+    _commandKeyIsDown = NO;
 }
 
 @end

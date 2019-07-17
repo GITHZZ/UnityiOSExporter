@@ -3,6 +3,14 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "-[DetailsInfoSetting panel:shouldEnableURL:]:DetailsInfoSetting.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "sender.identifier">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[PreferenceView menuDidClose:]:PreferenceView.m">
          <PersistentStrings>
             <PersistentString
@@ -10,14 +18,6 @@
             </PersistentString>
             <PersistentString
                value = "menu.identifier">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[DetailsInfoSetting panel:shouldEnableURL:]:DetailsInfoSetting.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "sender.identifier">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -102,10 +102,10 @@
          contextName = "-[ExportInfoManager reloadPaths]:ExportInfoManager.m">
          <PersistentStrings>
             <PersistentString
-               value = "item">
+               value = "[obj class]">
             </PersistentString>
             <PersistentString
-               value = "[obj class]">
+               value = "item">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -133,6 +133,17 @@
          <PersistentStrings>
             <PersistentString
                value = "view.info-&gt;isExportXcode">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[DetailsInfoView flagsChanged:]:DetailsInfoView.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "(1048840 &gt;&gt; 20)">
+            </PersistentString>
+            <PersistentString
+               value = "1048576 &gt;&gt; 19">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

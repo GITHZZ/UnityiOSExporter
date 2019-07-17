@@ -33,8 +33,10 @@
 @property(nonatomic, readonly) NSMutableArray<NSString*> *embedFramework;
 @property(nonatomic, readonly) NSMutableArray<NSString*> *customSDKChild;
 
++ (id)initWithJsonString:(NSString *)string;
 - (id)initWithInfoDict:(NSDictionary*) dic;
 - (void)setValueForKey:(NSString*)key withObj:(id)obj;
 - (id)getValueForKey:(NSString*)key;
+- (NSString*)toJson;
 
 @end

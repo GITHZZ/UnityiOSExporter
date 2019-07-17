@@ -18,6 +18,23 @@
 
 @implementation DetailsInfoData
 
++ (id)initWithJsonString:(NSString *)string
+{
+    if(string == nil)
+        return nil;
+    
+    NSData *jsonData = [string dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *err;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                        options:NSJSONReadingMutableContainers
+                                                          error:&err];
+    if(err){
+        NSLog(@"json解析失败：%@",err);
+        return nil;
+    }
+    return [[DetailsInfoData alloc] initWithInfoDict:dic];
+}
+
 - (id)initWithInfoDict:(NSDictionary*) dic
 {
     if(self = [super init])
@@ -92,6 +109,23 @@
 + (BOOL)supportsSecureCoding
 {
     return YES;
+}
+
+- (NSString*)toJson
+{
+    NSString *jsonString = @"";
+    if([NSJSONSerialization isValidJSONObject:_dict])
+    {
+        NSError *error;
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:_dict
+                                                           options:NSJSONWritingPrettyPrinted
+                                                             error:&error];
+        jsonString =[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        if (error) {
+            NSLog(@"Error:%@" , error);
+        }
+    }
+    return jsonString;
 }
 
 @end

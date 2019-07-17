@@ -155,21 +155,21 @@
     [_userData setAndSaveData:data withKey:key];
 }
 
-- (void)test
-{
-    NSString *testString = [_codeBackupPath stringByAppendingString:@"/com.IpaExporter.app.plist"];
-    [_userData mergeFormPlist:testString
-                    withBlock:^id _Nonnull(id  _Nonnull originItem, id  _Nonnull newItem) {
-                        if([originItem isKindOfClass:[NSArray class]] &&
-                           [newItem isKindOfClass:[NSArray class]]){
-                            
-                            NSArray *originArray = (NSArray*)originItem;
-                            NSArray *newArray = (NSArray*)newItem;
-                            originArray = [originArray arrayByAddingObjectsFromArray:newArray];
-                            return originArray;
-                        }
-                        return originItem;
-    }];
-}
+//- (void)test
+//{
+//    NSString *testString = [_codeBackupPath stringByAppendingString:@"/com.IpaExporter.app.plist"];
+//    [_userData mergeFormPlist:testString
+//                    withBlock:^id _Nonnull(id  _Nonnull originItem, id  _Nonnull newItem) {
+//                        if([originItem isKindOfClass:[NSArray class]] &&
+//                           [newItem isKindOfClass:[NSArray class]]){
+//                            
+//                            NSArray *originArray = (NSArray*)originItem;
+//                            NSArray *newArray = (NSArray*)newItem;
+//                            originArray = [originArray arrayByAddingObjectsFromArray:newArray];
+//                            return originArray;
+//                        }
+//                        return originItem;
+//    }];
+//}
 
 @end
