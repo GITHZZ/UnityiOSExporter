@@ -254,7 +254,7 @@
     NSButton *btn = (NSButton*)sender;
     if([btn.identifier isEqualToString:Defs_Frameworks]){
         [_frameworkNameArr addObject:@""];
-        [_frameworkIsWeakArr addObject:@""];
+        [_frameworkIsWeakArr addObject:@"false"];
         [_frameworkTbl reloadData];
     }else if([btn.identifier isEqualToString:Defs_Libs]){
         [_libNameArr addObject:@""];
