@@ -10,7 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MobileprovisionParser : NSObject
+@interface MobileprovisionParser : NSObject{
+@private
+    NSString *_profilePath;
+}
 
 - (id)initWithProfilePath:(NSString*)path;
 - (void)createPlistFile;

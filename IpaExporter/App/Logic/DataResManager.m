@@ -8,14 +8,6 @@
 
 #import "DataResManager.h"
 
-@interface DataResManager()
-{
-    NSString *_unityProjPath;
-    NSFileManager* _fileManager;
-    int _startingCount;
-}
-@end
-
 @implementation DataResManager
 
 - (id)init

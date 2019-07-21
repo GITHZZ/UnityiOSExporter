@@ -17,15 +17,6 @@
 #define PlatformTblKey @"platformTbl"
 #define PackSceneKey   @"packScene"
 
-@interface ViewMain()<NSTableViewDataSource, NSTableViewDelegate, NSComboBoxDelegate>
-{
-    NSMutableArray<NSString*> *_sceneArray;
-    NSTimer *_showTimer;
-    NSTimeInterval _packTime;
-    BOOL _isVisable;
-}
-@end
-
 @implementation ViewMain
 
 - (void)viewDidLoad

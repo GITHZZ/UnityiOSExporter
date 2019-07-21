@@ -11,8 +11,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PackCammond : NSObject
-
+@interface PackCammond : NSObject{
+@private
+    __block BOOL _isExporting;
+}
 - (void)startUp;
 
 @end

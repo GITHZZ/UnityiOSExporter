@@ -11,7 +11,19 @@
 #import "DetailsInfoData.h"
 #import "Common.h"
 
-@interface DetailsInfoSetting : NSViewController<NSTableViewDataSource, NSTableViewDelegate>
+@interface DetailsInfoSetting : NSViewController<NSTableViewDataSource, NSTableViewDelegate,NSOpenSavePanelDelegate>{
+@private
+    BOOL _isSetDataOnShow;
+    BOOL _isEditMode;
+    DetailsInfoData *_info;
+    
+    NSMutableArray<NSString*> *_frameworkNameArr;
+    NSMutableArray<NSString*> *_frameworkIsWeakArr;
+    NSMutableArray<NSString*> *_embedFrameworksArr;
+    NSMutableArray<NSString*> *_libNameArr;
+    NSMutableArray<NSString*> *_linkerFlagArr;
+    NSMutableArray<NSString*> *_customSdkArr;
+}
 
 @property (weak) IBOutlet NSTextField *platform;
 @property (weak) IBOutlet NSTextField *appName;

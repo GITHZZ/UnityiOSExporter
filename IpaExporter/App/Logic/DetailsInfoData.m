@@ -13,9 +13,6 @@
 
 #define Detail_Info_Dict_Coder_Key @"DetailInfoDict"
 
-@interface DetailsInfoData()<NSSecureCoding>
-@end
-
 @implementation DetailsInfoData
 
 + (id)initWithJsonString:(NSString *)string

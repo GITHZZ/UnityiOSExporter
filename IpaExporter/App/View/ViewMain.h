@@ -10,7 +10,13 @@
 #import <Foundation/Foundation.h>
 #import "ExportInfoManager.h"
 
-@interface ViewMain : NSViewController
+@interface ViewMain : NSViewController<NSTableViewDataSource, NSTableViewDelegate, NSComboBoxDelegate>{
+@private
+    NSMutableArray<NSString*> *_sceneArray;
+    NSTimer *_showTimer;
+    NSTimeInterval _packTime;
+    BOOL _isVisable;
+}
 
 @property (readonly) NSMutableArray<DetailsInfoData*>* dataDict;
 

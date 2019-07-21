@@ -12,7 +12,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef id _Nonnull (^Merge)(id originItem, id newItem);
 
-@interface LocalDataSave : NSObject
+@interface LocalDataSave : NSObject{
+@private
+    BOOL _keyIsSet;
+    NSDictionary *_saveTpDict;
+    NSString *_plistPath;
+    NSMutableDictionary<NSString*, NSData*> *_saveData;
+    NSMutableDictionary<NSString*, id> *_savedict;
+}
 
 - (id)initWithPlist:(NSString*)path;
 

@@ -10,15 +10,6 @@
 #import "Common.h"
 #import "ExportInfoManager.h"
 
-@interface BuilderCSFileEdit()
-{
-    NSString* _path;
-    NSFileHandle* _fileHandle;
-    
-    NSMutableString* _content;
-}
-@end
-
 @implementation BuilderCSFileEdit
 
 - (void)startWithDstPath:(NSString*)rootPath

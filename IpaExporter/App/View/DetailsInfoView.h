@@ -14,7 +14,10 @@
 #import "Common.h"
 #import "DetailsInfoSetting.h"
 
-@interface DetailsInfoView : NSViewController<NSTableViewDataSource, NSTableViewDelegate>
+@interface DetailsInfoView : NSViewController<NSTableViewDataSource, NSTableViewDelegate>{
+@private
+    DetailsInfoData *_selectInfo;
+}
 
 @property (readonly) NSMutableArray<DetailsInfoData*>* dataDict;
 @property (weak) IBOutlet NSTableView *infoTbls;

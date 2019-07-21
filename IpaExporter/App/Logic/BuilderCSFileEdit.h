@@ -8,7 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface BuilderCSFileEdit : NSObject
+@interface BuilderCSFileEdit : NSObject{
+@private
+    NSString* _path;
+    NSFileHandle* _fileHandle;
+    NSMutableString* _content;
+}
 
 - (void)startWithDstPath:(NSString*)dstPath;
 

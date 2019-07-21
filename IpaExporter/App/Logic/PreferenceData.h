@@ -15,7 +15,10 @@ NS_ASSUME_NONNULL_BEGIN
 #define OPEN_CODE_APP_SAVE_KEY @"openCodeAppKey"
 #define OPEN_JSON_APP_SAVE_KEY @"openJsonAppKey"
 
-@interface PreferenceData : NSObject
+@interface PreferenceData : NSObject{
+@private
+    LocalDataSave *_saveData;
+}
 
 - (void)backUpCustomCode;
 - (void)restoreCustomCode;

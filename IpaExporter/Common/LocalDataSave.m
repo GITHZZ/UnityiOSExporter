@@ -12,16 +12,6 @@
 #define CHECK_KEY_IS_AVAILABEL(key) \
     if(![_savedict objectForKey:key]){NSLog(@"不存在该存储key:%@", key); return NO;}
 
-@interface LocalDataSave()
-{
-    BOOL _keyIsSet;
-    NSDictionary *_saveTpDict;
-    NSString *_plistPath;
-    NSMutableDictionary<NSString*, NSData*> *_saveData;
-    NSMutableDictionary<NSString*, id> *_savedict;
-}
-@end
-
 @implementation LocalDataSave
 
 - (id)init

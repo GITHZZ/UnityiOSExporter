@@ -25,6 +25,7 @@
 NS_ASSUME_NONNULL_BEGIN
 @interface ExportInfoManager : NSObject
 {
+@private
     LocalDataSave *_userData;
     NSDictionary *_saveTpDict;
 }
@@ -54,7 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)updateDetail:(NSUInteger)index withObject:(id)object withKey:(NSString*)saveKey;
 
 //设置备份存储路径
-- (void)setCodeSavePath:(NSString*)path;- (NSString*)toJson;
+- (void)setCodeSavePath:(NSString*)path;
 
 NS_ASSUME_NONNULL_END
 

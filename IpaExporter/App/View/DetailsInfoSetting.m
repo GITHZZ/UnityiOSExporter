@@ -10,21 +10,6 @@
 #import "Common.h"
 #import "Defs.h"
 
-@interface DetailsInfoSetting ()<NSOpenSavePanelDelegate>
-{
-    BOOL _isSetDataOnShow;
-    BOOL _isEditMode;
-    DetailsInfoData *_info;
-    
-    NSMutableArray<NSString*> *_frameworkNameArr;
-    NSMutableArray<NSString*> *_frameworkIsWeakArr;
-    NSMutableArray<NSString*> *_embedFrameworksArr;
-    NSMutableArray<NSString*> *_libNameArr;
-    NSMutableArray<NSString*> *_linkerFlagArr;
-    NSMutableArray<NSString*> *_customSdkArr;
-}
-@end
-
 @implementation DetailsInfoSetting
 
 - (void)viewDidLoad
@@ -193,6 +178,7 @@
                  IsCanSelectFile:NO
           IsCanSelectDirectories:YES
           allowMultipleSelection:NO
+                 setDirectoryURL:nil
                         callback:^(NSOpenPanel *openDlg) {
                             if([openDlg.identifier isEqualToString:@"SelectCopyDirPath"]){
                                 NSString *selectPath = [[openDlg URL] path];
@@ -205,7 +191,8 @@
                IsCanSelectFile:(BOOL)chooseFile
         IsCanSelectDirectories:(BOOL)chooseDirectories
         allowMultipleSelection:(BOOL)isAllow
-                      callback:(void(^)(NSOpenPanel* openDlg)) callback
+               setDirectoryURL:(nullable NSString*)urlString
+                      callback:(void(^)(NSOpenPanel* openDlg))callback
 {
     NSOpenPanel* openDlg = [NSOpenPanel openPanel];
     openDlg.identifier = identifier;
@@ -213,7 +200,7 @@
     [openDlg setCanChooseDirectories:chooseDirectories];
     [openDlg setAllowsMultipleSelection:isAllow];
     [openDlg setDelegate:self];
-    
+    [openDlg setDirectoryURL:[NSURL URLWithString:urlString]];
     if ([openDlg runModal] == NSModalResponseOK)
     {
         callback(openDlg);
@@ -276,6 +263,7 @@
                      IsCanSelectFile:NO
               IsCanSelectDirectories:YES
               allowMultipleSelection:YES
+                     setDirectoryURL:_customSDKPath.stringValue
                             callback:^(NSOpenPanel *openDlg) {
                                 if([openDlg.identifier isEqualToString:@"customSDKChild"]){
                                     NSArray *urls =[openDlg URLs];
@@ -409,6 +397,18 @@
 }
 
 - (BOOL)panel:(id)sender shouldEnableURL:(NSURL *)url
+{
+    NSOpenPanel *openDlg = (NSOpenPanel*)sender;
+    if(![openDlg.identifier isEqualToString:@"customSDKChild"])
+        return YES;
+    
+    NSString *path = [url path];
+    NSString *rootDir = _customSDKPath.stringValue;
+    
+    return [[path stringByDeletingLastPathComponent] isEqualToString:rootDir] && ![path isEqualToString:rootDir];
+}
+
+- (BOOL)panel:(id)sender validateURL:(NSURL *)url error:(NSError * _Nullable __autoreleasing *)outError
 {
     NSOpenPanel *openDlg = (NSOpenPanel*)sender;
     if(![openDlg.identifier isEqualToString:@"customSDKChild"])

@@ -11,12 +11,6 @@
 #import "ExportInfoManager.h"
 #import "NSFileManager+Copy.h"
 
-@interface PreferenceData()
-{
-    LocalDataSave *_saveData;
-}
-@end
-
 @implementation PreferenceData
 
 - (id)init

@@ -13,12 +13,6 @@
 #import "BuilderCSFileEdit.h"
 #import <Cocoa/Cocoa.h>
 
-@interface PackCammond()
-{
-    __block BOOL _isExporting;
-}
-@end
-
 @implementation PackCammond
 
 - (void)startUp

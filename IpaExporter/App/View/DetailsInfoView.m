@@ -11,12 +11,6 @@
 
 #import "ExportInfoManager.h"
 
-@interface DetailsInfoView()
-{
-    DetailsInfoData *_selectInfo;
-}
-@end
-
 @implementation DetailsInfoView
 
 - (void)viewDidLoad

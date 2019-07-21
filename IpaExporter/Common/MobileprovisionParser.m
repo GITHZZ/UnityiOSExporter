@@ -9,12 +9,6 @@
 #import "MobileprovisionParser.h"
 #import "Defs.h"
 
-@interface MobileprovisionParser()
-{
-    NSString *_profilePath;
-}
-@end
-
 @implementation MobileprovisionParser
 
 - (id)initWithProfilePath:(NSString*)path

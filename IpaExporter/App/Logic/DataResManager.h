@@ -12,7 +12,12 @@
 #import "Defs.h"
 #import "NSObject+Singletion.h"
 
-@interface DataResManager : NSObject
+@interface DataResManager : NSObject{
+@private
+    NSString *_unityProjPath;
+    NSFileManager* _fileManager;
+    int _startingCount;
+}
 
 - (void)start:(ExportInfo*)info;
 - (void)appendingFolder:(NSString*)path;
