@@ -30,7 +30,7 @@
 @property (weak) IBOutlet NSTextField *useTimeLabel;
 @property (weak) IBOutlet NSButton *isExportXcode;
 @property (weak) IBOutlet NSProgressIndicator *progressTip;
-
+@property (weak) IBOutlet NSButton *isExportIpa;
 
 - (IBAction)sureBtnClick:(id)sender;
 - (IBAction)unityPathSelect:(id)sender;

@@ -54,6 +54,7 @@ typedef struct
     const char* exportFolderParh;
     int isRelease;
     int isExportXcode;
+    int isExportIpa;
 }ExportInfo;
 
 typedef NS_ENUM(EventType, CustomEventType)

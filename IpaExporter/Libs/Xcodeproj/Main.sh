@@ -35,6 +35,7 @@ custom_sdk_path=$2
 bundleIdentifier=${13}
 is_release=${14}
 pack_folder_path=${15}
+is_export_ipa=false
 
 #设置打包参数
 provisioning_profile=${debug_provisioning_profile}
@@ -73,6 +74,11 @@ sed -i '' "s/:certificate:/${signingCertificate}/g" ${dst_path}
 #参数从$2开始
 #减去2就是 rb中取参数的index 例如ARGV.at(2) 就是取$4参数
 ruby -w $1 $2 $3 $4 $5 $6 $7 ${16}
+
+#如果不导出ipa就中断
+if [ ! ${is_export_ipa}]; then
+    exit 0
+fi
 
 sed -i '' 's/ProvisioningStyle = Automatic;/ProvisioningStyle = Manual;/g' ${xcode_proj_path}"/Unity-iPhone-"${platform_name}".xcodeproj/project.pbxproj"
 
