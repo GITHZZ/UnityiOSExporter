@@ -11,7 +11,7 @@
 #import "PackCammond.h"
 #import "CodeTester.h"
 #import "PreferenceData.h"
-#import "ViewMain.h"
+#import "GeneralView.h"
 #import "NSFileManager+Copy.h"
 
 int _viewOpeningCount = 0;

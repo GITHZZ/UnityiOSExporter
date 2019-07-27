@@ -35,7 +35,8 @@
                        SAVE_CODE_SAVE_PATH_KEY:@[[NSString class]],
                        SAVE_SCENE_ARRAY_KEY:@[[NSArray class]],
                        SAVE_IS_RELEASE_KEY:@[[NSString class]],
-                       SAVE_IS_EXPORT_XCODE:@[[NSString class]]
+                       SAVE_IS_EXPORT_XCODE:@[[NSString class]],
+                       SAVE_IS_EXPORT_IPA:@[[NSString class]]
                        };
         
         _userData = [[LocalDataSave alloc] init];
@@ -61,6 +62,9 @@
 
     NSString *isExportStr = [_userData dataForKey:SAVE_IS_EXPORT_XCODE];
     _info->isExportXcode = [isExportStr isEqualToString:@""]?1:[isExportStr intValue];
+    
+    NSString *isExportIpa = [_userData dataForKey:SAVE_IS_EXPORT_IPA];
+    _info->isExportIpa = [isExportIpa isEqualToString:@""]?1:[isExportIpa intValue];
 }
 
 - (void)addNewUnityProjPath:(NSString *)path

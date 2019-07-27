@@ -87,11 +87,11 @@ class XcodeProjectUpdater
             #Info.plist也会特殊处理
             file_type = File::ftype(newPath)
             if dir != '.' and dir != '..' and dir != ".DS_Store"
-				if newPath.to_s.end_with?("Info.plist")
+            	if newPath.to_s.end_with?("Info.plist")
                     $project.main_group.find_file_by_path("Info.plist").remove_from_project
                     set_build_setting(@target, "INFOPLIST_FILE", newPath)
                 end
-                
+
                 if newPath.to_s.end_with?("Unity-iPhone") or newPath.to_s.include?("LaunchScreen-")
                     copy_unity_iphone_folder(newPath)
                 elsif file_type == "directory" and !newPath.to_s.end_with?(".bundle", ".framework")
@@ -121,9 +121,9 @@ class XcodeProjectUpdater
 					elsif newPath.to_s.end_with?(".bundle", ".jpg", ".png") 
 						target.resources_build_phase.add_file_reference(file_ref)
 					end
-				end
-			end
-		end
+                end
+            end
+        end
         
         @retain_count = @retain_count - 1
 	end 

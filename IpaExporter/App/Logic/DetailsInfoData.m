@@ -32,6 +32,11 @@
     return [[DetailsInfoData alloc] initWithInfoDict:dic];
 }
 
++ (BOOL)supportsSecureCoding
+{
+    return YES;
+}
+
 - (id)initWithInfoDict:(NSDictionary*) dic
 {
     if(self = [super init])
@@ -101,11 +106,6 @@
 {
     NSMutableDictionary *dict = [decoder decodeObjectForKey:Detail_Info_Dict_Coder_Key];
     return [self initWithInfoDict:dict];
-}
-
-+ (BOOL)supportsSecureCoding
-{
-    return YES;
 }
 
 - (NSString*)toJson

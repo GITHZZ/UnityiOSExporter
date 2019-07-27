@@ -52,7 +52,20 @@
     _debugDevelopTeam.enabled = NO;
     _releaseProfileName.enabled = NO;
     _releaseDevelopTeam.enabled = NO;
+}
+
+- (void)viewDidAppear
+{
+    _sureBtnClicked = NO;
+}
+
+- (void)viewDidDisappear
+{
+    if(_sureBtnClicked)
+        [[EventManager instance] send:EventSetViewMainTab withData:0];
     
+    _isSetDataOnShow = NO;
+    _sureBtnClicked = NO;
 }
 
 - (void)setUpTableInfo
@@ -162,14 +175,16 @@
                          withData:info];
     }
     
-    _isSetDataOnShow = NO;
+    _sureBtnClicked = YES;
     [self dismissViewController:self];
 }
  
 - (IBAction)cancelBtnClickFunction:(id)sender
 {
-    _isSetDataOnShow = NO;
-    [self cancelSetting];
+    [[Alert instance] alertModalFirstBtnTitle:@"确定" SecondBtnTitle:@"取消" MessageText:@"温馨提示" InformativeText:@"你确定要取消操作？本次填写的信息将不会保存。" callBackFrist:^{
+        [self dismissViewController:self];
+    } callBackSecond:^{
+    }];
 }
 
 - (IBAction)cDirectorySelected:(id)sender
@@ -384,11 +399,6 @@
 }
 
 - (IBAction)closeView:(id)sender
-{
-    [self cancelSetting];
-}
-
-- (void)cancelSetting
 {
     [[Alert instance] alertModalFirstBtnTitle:@"确定" SecondBtnTitle:@"取消" MessageText:@"温馨提示" InformativeText:@"你确定要取消操作？本次填写的信息将不会保存。" callBackFrist:^{
         [self dismissViewController:self];

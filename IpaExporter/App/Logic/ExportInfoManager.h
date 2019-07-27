@@ -21,6 +21,7 @@
 #define SAVE_SCENE_ARRAY_KEY    @"scenePath"
 #define SAVE_IS_RELEASE_KEY     @"isRelease"
 #define SAVE_IS_EXPORT_XCODE    @"isExportKey"
+#define SAVE_IS_EXPORT_IPA      @"isExportIpa"
 
 NS_ASSUME_NONNULL_BEGIN
 @interface ExportInfoManager : NSObject

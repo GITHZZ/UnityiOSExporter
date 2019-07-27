@@ -96,7 +96,7 @@
 "IQv-IB-iLA.title" = "iOS打包工具";
 
 /* Class = "NSButtonCell"; title = "导出Xcode工程"; ObjectID = "JYT-Wb-LMu"; */
-"JYT-Wb-LMu.title" = "导出Xcode工程";
+"JYT-Wb-LMu.title" = "导出Xcode基础工程";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "JYs-8B-dZs"; */
 "JYs-8B-dZs.title" = "Text Cell";

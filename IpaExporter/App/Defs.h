@@ -59,7 +59,7 @@ typedef struct
 
 typedef NS_ENUM(EventType, CustomEventType)
 {
-    EventViewMainLoaded          = 200,
+    EventGeneralViewLoaded       = 200,
     EventViewSureClicked         = 201,
     EventUnityPathSelect         = 202,
     EventUnityPathSelectEnd      = 203,
@@ -76,6 +76,7 @@ typedef NS_ENUM(EventType, CustomEventType)
     EventStartRecordTime         = 216,
     EventStopRecordTime          = 217,
     EventSettingFileSelect       = 218,
+    EventSetViewMainTab          = 219,
 };
 
 #endif /* Defs_h */

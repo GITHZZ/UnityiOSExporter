@@ -227,10 +227,10 @@
             </objects>
             <point key="canvasLocation" x="10.5" y="255"/>
         </scene>
-        <!--Tab View Controller-->
+        <!--View Main-->
         <scene sceneID="hfb-70-aou">
             <objects>
-                <tabViewController selectedTabViewItemIndex="0" id="0kR-xD-nHr" sceneMemberID="viewController">
+                <tabViewController selectedTabViewItemIndex="0" id="0kR-xD-nHr" customClass="ViewMain" sceneMemberID="viewController">
                     <tabViewItems>
                         <tabViewItem identifier="" id="V6J-mj-JmF"/>
                         <tabViewItem identifier="" id="P7C-St-LPY"/>
@@ -245,6 +245,7 @@
                     </tabView>
                     <connections>
                         <outlet property="tabView" destination="KfJ-iN-b2h" id="1K6-PK-Rtj"/>
+                        <outlet property="tabs" destination="KfJ-iN-b2h" id="vFJ-7t-rew"/>
                         <segue destination="UBb-r6-fzf" kind="relationship" relationship="tabItems" id="TNJ-dX-kOT"/>
                         <segue destination="ysZ-Di-5bf" kind="relationship" relationship="tabItems" id="8EG-Ri-4Se"/>
                     </connections>
@@ -528,7 +529,7 @@
         <!--项目配置-->
         <scene sceneID="yi6-IH-9Ec">
             <objects>
-                <viewController title="项目配置" storyboardIdentifier="ViewMain" id="UBb-r6-fzf" customClass="ViewMain" sceneMemberID="viewController">
+                <viewController title="项目配置" storyboardIdentifier="GeneralView" id="UBb-r6-fzf" customClass="GeneralView" sceneMemberID="viewController">
                     <view key="view" autoresizesSubviews="NO" id="Tha-SI-HFf">
                         <rect key="frame" x="0.0" y="0.0" width="683" height="478"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -622,7 +623,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <scrollView borderType="line" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="keT-xP-aRZ">
-                                <rect key="frame" x="479" y="80" width="184" height="75"/>
+                                <rect key="frame" x="479" y="79" width="184" height="75"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" id="2jR-8K-RcE">
                                     <rect key="frame" x="1" y="1" width="182" height="73"/>
@@ -666,14 +667,14 @@
                                 </tableHeaderView>
                             </scrollView>
                             <scrollView borderType="line" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="k4Y-f2-uNz">
-                                <rect key="frame" x="479" y="163" width="184" height="202"/>
+                                <rect key="frame" x="479" y="158" width="184" height="207"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" id="YA5-p9-wAu">
-                                    <rect key="frame" x="1" y="1" width="182" height="200"/>
+                                    <rect key="frame" x="1" y="1" width="182" height="205"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView identifier="platformTbl" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" headerView="z4F-DB-VpN" id="j6g-f3-dK9">
-                                            <rect key="frame" x="0.0" y="0.0" width="182" height="177"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="182" height="182"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -685,7 +686,7 @@
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
-                                                    <buttonCell key="dataCell" type="check" title="平台1" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="1Dn-rB-e7c">
+                                                    <buttonCell key="dataCell" type="check" title="平台1" bezelStyle="regularSquare" imagePosition="leading" alignment="left" state="on" inset="2" id="1Dn-rB-e7c">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
                                                     </buttonCell>
@@ -788,17 +789,6 @@
                                 <rect key="frame" x="28" y="22" width="16" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </progressIndicator>
-                            <button identifier="isExportXcode" id="dQ7-Ok-DsU">
-                                <rect key="frame" x="477" y="32" width="115" height="23"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="导出Xcode工程" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="JYT-Wb-LMu">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="cellTitle"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="isReleaseBtnSelect:" target="UBb-r6-fzf" id="IhH-G6-g7c"/>
-                                </connections>
-                            </button>
                             <button identifier="isReleaseBox" id="xvG-e2-1WT">
                                 <rect key="frame" x="477" y="56" width="59" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -810,7 +800,7 @@
                                     <action selector="isReleaseBtnSelect:" target="UBb-r6-fzf" id="qtC-VN-31N"/>
                                 </connections>
                             </button>
-                            <button identifier="isExportXcode" id="jqa-JY-Fis">
+                            <button identifier="isExportIpa" id="jqa-JY-Fis">
                                 <rect key="frame" x="477" y="10" width="115" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="导出ipa包" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="IxT-Fj-Anw">
@@ -819,6 +809,17 @@
                                 </buttonCell>
                                 <connections>
                                     <action selector="isReleaseBtnSelect:" target="UBb-r6-fzf" id="g8m-DF-FIB"/>
+                                </connections>
+                            </button>
+                            <button identifier="isExportXcode" id="dQ7-Ok-DsU">
+                                <rect key="frame" x="477" y="32" width="132" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="导出Xcode基础工程" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="JYT-Wb-LMu">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" size="12" name=".PingFangSC-Regular"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="isReleaseBtnSelect:" target="UBb-r6-fzf" id="IhH-G6-g7c"/>
                                 </connections>
                             </button>
                         </subviews>

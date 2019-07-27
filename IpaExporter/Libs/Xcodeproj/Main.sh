@@ -14,6 +14,7 @@
 #$14 是否release包
 #$15 缓存文件位置
 #$16 需要关联的sdk文件夹
+#$17 是否导出ipa
 
 echo "Main.sh脚本执行log"
 #echo "sdk资源文件路径:"${$2}
@@ -35,7 +36,7 @@ custom_sdk_path=$2
 bundleIdentifier=${13}
 is_release=${14}
 pack_folder_path=${15}
-is_export_ipa=false
+is_export_ipa=${17}
 
 #设置打包参数
 provisioning_profile=${debug_provisioning_profile}
@@ -76,7 +77,8 @@ sed -i '' "s/:certificate:/${signingCertificate}/g" ${dst_path}
 ruby -w $1 $2 $3 $4 $5 $6 $7 ${16}
 
 #如果不导出ipa就中断
-if [ ! ${is_export_ipa}]; then
+if [ ${is_export_ipa} != "1" ]; then
+    echo "** EXPORT XCODE PROJECT SUCCESS **"
     exit 0
 fi
 

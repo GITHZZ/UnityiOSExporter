@@ -13,6 +13,7 @@
 
 @interface DetailsInfoSetting : NSViewController<NSTableViewDataSource, NSTableViewDelegate,NSOpenSavePanelDelegate>{
 @private
+    BOOL _sureBtnClicked;
     BOOL _isSetDataOnShow;
     BOOL _isEditMode;
     DetailsInfoData *_info;

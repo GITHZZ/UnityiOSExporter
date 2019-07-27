@@ -235,6 +235,7 @@
                          [NSString stringWithFormat:@"%d",view.info->isRelease],
                          PACK_FOLDER_PATH,
                          [self convertArrayToString:data.customSDKChild],
+                         [NSString stringWithFormat:@"%d",view.info->isExportIpa],
                          nil];
          
         showLog([[NSString stringWithFormat:@"开始打包 平台:%@", data.platform] UTF8String]);
@@ -245,6 +246,9 @@
         if([shellLog containsString:@"** EXPORT SUCCEEDED **"]){
             [NSApp activateIgnoringOtherApps:YES];
             showSuccess([[NSString stringWithFormat:@"%@平台,打包成功", data.platform] UTF8String]);
+        }else if([shellLog containsString:@"** EXPORT XCODE PROJECT SUCCESS **"]){
+            [NSApp activateIgnoringOtherApps:YES];
+            showSuccess([[NSString stringWithFormat:@"%@生成Xcode成功", data.platform] UTF8String]);
         }else{
             [NSApp activateIgnoringOtherApps:YES];
             showError([[NSString stringWithFormat:@"%@平台,打包失败,日志已经保存在%s路径中", data.platform, view.info->unityProjPath] UTF8String]);
@@ -260,6 +264,7 @@
     //-c 表示将后面的内容当成shellcode来执行、
     [shellTask setArguments:[NSArray arrayWithObjects:@"-c", order, nil]];
     
+    NSError *error;
     NSPipe *pipe = [[NSPipe alloc] init];
     [shellTask setStandardOutput:pipe];
     [shellTask setStandardError:pipe];

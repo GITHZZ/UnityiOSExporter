@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "EventManager.h"
 #import "PackCammond.h"
-#import "ViewMain.h"
+#import "GeneralView.h"
 
 @interface AppDelegate ()
 
