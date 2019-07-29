@@ -32,7 +32,7 @@ namespace IpaExporter
             _CustomBuilder customBuilder = new _CustomBuilder();
             JsonData jsonObj = JsonMapper.ToObject(args);
             customBuilder.BuildBefore(jsonObj);
-            BuildPipeline.BuildPlayer (LEVELS, ${exportPath}, BuildTarget.iOS, BuildOptions.None);
+            BuildPipeline.BuildPlayer (LEVELS, ${exportPath}, BuildTarget.iOS, BuildOptions.AcceptExternalModificationsToPlayer);
             customBuilder.BuildFinish(jsonObj);
 		}
 	}

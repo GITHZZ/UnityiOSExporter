@@ -75,6 +75,7 @@ class XcodeProjectUpdater
 	def add_build_phase_files(target, group, path, embedFrameworks)
         @retain_count = @retain_count + 1
         if @retain_count <= 2 and !@sdk_array.include?(path)
+            @retain_count = @retain_count - 1
             remove_build_phase_files_recursively(@target, group)
             group.clear()
             return
@@ -88,6 +89,21 @@ class XcodeProjectUpdater
             file_type = File::ftype(newPath)
             if dir != '.' and dir != '..' and dir != ".DS_Store"
             	if newPath.to_s.end_with?("Info.plist")
+                    #修改info.plist版本号
+                    #Bundle version
+                    if $is_release then
+                        `/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $(date +%Y%m%d) \" #{newPath}`
+                        
+                        #short version
+                        shortVer = `echo $(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\"\ #{newPath})`
+                        shortVerArr = shortVer.split(".")
+                        if shortVerArr.size <= 2
+                            puts "版本号格式为三位数,请到Info.plist修改"
+                        end
+                        new_version = "#{shortVerArr[0]}.#{shortVerArr[1]}.#{Integer(shortVerArr[2])+1}"
+                        `/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString #{new_version} \" #{newPath}`
+                    end
+                                           
                     $project.main_group.find_file_by_path("Info.plist").remove_from_project
                     set_build_setting(@target, "INFOPLIST_FILE", newPath)
                 end

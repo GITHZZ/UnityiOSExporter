@@ -268,7 +268,7 @@
     NSPipe *pipe = [[NSPipe alloc] init];
     [shellTask setStandardOutput:pipe];
     [shellTask setStandardError:pipe];
-    [shellTask launch];
+    [shellTask launchAndReturnError:&error];
     [shellTask waitUntilExit];
     
     NSFileHandle *file = [pipe fileHandleForReading];

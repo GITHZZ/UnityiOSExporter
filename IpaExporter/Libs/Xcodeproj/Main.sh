@@ -17,26 +17,25 @@
 #$17 是否导出ipa
 
 echo "Main.sh脚本执行log"
-#echo "sdk资源文件路径:"${$2}
-#echo "导出路径(xcode工程和ipa):"${$3}
-#echo "配置文件路径:"${$5}
-
-xcode_proj_name=$7
+custom_sdk_path=$2
 export_path=$3 #export path
-xcode_proj_path=${export_path}"/"${xcode_proj_name}
-export_log_path=${xcode_proj_path}/Logs
 platform_name=$4
-debug_provisioning_profile=$9
+json_path=$5
+unity_proj_path=$6
+xcode_proj_name=$7
 debug_team_id=$8
+debug_provisioning_profile=$9
 release_provisioning_profile=${11}
 release_team_id=${10}
-unity_proj_path=$6
 main_bundle_res_path=${12}
-custom_sdk_path=$2
 bundleIdentifier=${13}
 is_release=${14}
 pack_folder_path=${15}
+sdk_folder_path=${16}
 is_export_ipa=${17}
+
+xcode_proj_path=${export_path}"/"${xcode_proj_name}
+export_log_path=${xcode_proj_path}/Logs
 
 #设置打包参数
 provisioning_profile=${debug_provisioning_profile}
@@ -63,6 +62,7 @@ if [ ! -d ${copy_foler_path}]; then
     mkdir ${copy_foler_path}
 fi
 
+#修改导出配置
 res_path=${main_bundle_res_path}"/Xcodeproj/ExportOptions.plist"
 dst_path=${pack_folder_path}"/"${platform_name}"/ExportOptions.plist"
 cp -f ${res_path} ${dst_path}
@@ -73,8 +73,7 @@ sed -i '' 's/:method:/'${method}'/g' ${dst_path}
 sed -i '' "s/:certificate:/${signingCertificate}/g" ${dst_path}
 
 #参数从$2开始
-#减去2就是 rb中取参数的index 例如ARGV.at(2) 就是取$4参数
-ruby -w $1 $2 $3 $4 $5 $6 $7 ${16}
+ruby -w $1 ${custom_sdk_path} ${export_path} ${platform_name} ${json_path} ${unity_proj_path} ${xcode_proj_name} ${sdk_folder_path} ${is_release}
 
 #如果不导出ipa就中断
 if [ ${is_export_ipa} != "1" ]; then
@@ -98,7 +97,7 @@ cd ${xcode_proj_path}
 #如果是release模式 不重新生成archive 请务必在debug模式下生成一次
 #待修改
 archive_path=${xcode_proj_path}/"bin/Unity-iPhone-"${platform_name}".xcarchive"
-if [ ${is_release} != "1" -o ! -d ${archive_path} ]; then
+#if [ ${is_release} != "1" -o ! -d ${archive_path} ]; then
 echo "清除xcode工程信息"
 xcodebuild \
     clean \
@@ -119,7 +118,7 @@ xcodebuild \
     DEVELOPMENT_TEAM=${team_id} \
     -allowProvisioningUpdates \
     > ${export_log_path}"/xcodebuild_archive_log_"${platform_name}".txt"
-fi
+#fi
 
 echo "生成ipa包"
 ipa_folder_path=${xcode_proj_path}"/Unity-iPhone-"${platform_name}
