@@ -288,6 +288,7 @@
 				183780091D766C84004E3BAD /* Sources */,
 				1837800A1D766C84004E3BAD /* Frameworks */,
 				1837800B1D766C84004E3BAD /* Resources */,
+				59F118F322EF0A4E00E88253 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -407,6 +408,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		59F118F322EF0A4E00E88253 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "plist=${PROJECT_DIR}/${INFOPLIST_FILE}\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $(date +%Y%m%d) \" ${plist}\necho \"生成内部版本号成功\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		183780091D766C84004E3BAD /* Sources */ = {
