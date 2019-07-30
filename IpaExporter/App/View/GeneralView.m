@@ -79,7 +79,6 @@
     [_packSceneTbl reloadData];
     
     [self registEvent];
-    [self checkIsShowSetting];
 }
 
 - (void)viewDidDisappear
@@ -362,7 +361,6 @@
     {
         showLog("未知路径类型%@", changePath);
     }
-    
 }
 
 - (void)addNewInfoContent:(NSNotification*)notification
@@ -489,18 +487,6 @@
         info->isExportIpa = (int)_isExportIpa.state;
         [[ExportInfoManager instance] saveDataForKey:SAVE_IS_EXPORT_IPA
                                             withData:[NSString stringWithFormat:@"%d",info->isExportIpa]];
-    }
-}
-
-- (void)checkIsShowSetting
-{
-    NSString *path = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) firstObject];
-    NSString *preferencePath = [path stringByAppendingFormat:@"/Preferences/%@.plist", [[NSBundle mainBundle] bundleIdentifier]];
-    if(![[NSFileManager defaultManager] fileExistsAtPath:preferencePath])
-    {
-        NSStoryboard *sb = [NSStoryboard storyboardWithName:@"Main" bundle:nil];
-        DetailsInfoSetting *vc = [sb instantiateControllerWithIdentifier:@"UserDefaultsSetting"];
-        [self presentViewControllerAsSheet:vc];
     }
 }
 

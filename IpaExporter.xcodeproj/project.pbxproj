@@ -35,6 +35,7 @@
 		59841DC622D4BE0D006CA74F /* NSFileManager+Copy.m in Sources */ = {isa = PBXBuildFile; fileRef = 59841DC522D4BE0D006CA74F /* NSFileManager+Copy.m */; };
 		59B1BE3D22C06D030087F869 /* CodeTester.m in Sources */ = {isa = PBXBuildFile; fileRef = 59B1BE3C22C06D030087F869 /* CodeTester.m */; };
 		59CF0C4222B79D08001A1F91 /* PreferenceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 59CF0C4122B79D08001A1F91 /* PreferenceView.m */; };
+		59F118F622F0409600E88253 /* VersionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 59F118F522F0409600E88253 /* VersionInfo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +116,8 @@
 		59B1BE3C22C06D030087F869 /* CodeTester.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CodeTester.m; sourceTree = "<group>"; };
 		59CF0C4022B79D08001A1F91 /* PreferenceView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PreferenceView.h; sourceTree = "<group>"; };
 		59CF0C4122B79D08001A1F91 /* PreferenceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PreferenceView.m; sourceTree = "<group>"; };
+		59F118F422F0409600E88253 /* VersionInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VersionInfo.h; sourceTree = "<group>"; };
+		59F118F522F0409600E88253 /* VersionInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VersionInfo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +223,8 @@
 				18322A8D1DAE193B0049660B /* BuilderCSFileEdit.m */,
 				5937E45322CA0634004FD5AA /* PreferenceData.h */,
 				5937E45422CA0634004FD5AA /* PreferenceData.m */,
+				59F118F422F0409600E88253 /* VersionInfo.h */,
+				59F118F522F0409600E88253 /* VersionInfo.m */,
 			);
 			path = Logic;
 			sourceTree = "<group>";
@@ -288,7 +293,7 @@
 				183780091D766C84004E3BAD /* Sources */,
 				1837800A1D766C84004E3BAD /* Frameworks */,
 				1837800B1D766C84004E3BAD /* Resources */,
-				59F118F322EF0A4E00E88253 /* ShellScript */,
+				59F118F322EF0A4E00E88253 /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -410,7 +415,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		59F118F322EF0A4E00E88253 /* ShellScript */ = {
+		59F118F322EF0A4E00E88253 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -419,13 +424,14 @@
 			);
 			inputPaths = (
 			);
+			name = "Run Script";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "plist=${PROJECT_DIR}/${INFOPLIST_FILE}\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $(date +%Y%m%d) \" ${plist}\necho \"生成内部版本号成功\"\n";
+			shellScript = "plist=${PROJECT_DIR}/${INFOPLIST_FILE}\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $(date +%Y%m%d)\" ${plist}\necho \"生成内部版本号成功\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -453,6 +459,7 @@
 				18CA13961D78164C006595E5 /* GeneralView.m in Sources */,
 				5937E44E22C73B8B004FD5AA /* MobileprovisionParser.m in Sources */,
 				597AFFA022CDF56A00ECCB37 /* NSObject+Singletion.m in Sources */,
+				59F118F622F0409600E88253 /* VersionInfo.m in Sources */,
 				18DD5E6C1DAF1C150071B654 /* DetailsInfoView.m in Sources */,
 				5937E45122C741F5004FD5AA /* LocalDataSave.m in Sources */,
 				182FF6F41E4D936700CC0C7C /* ExportInfoManager.m in Sources */,

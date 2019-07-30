@@ -28,6 +28,7 @@
 - (id)initWithPlist:(NSString*)path
 {
     if(self=[super init]){
+        
         _keyIsSet = NO;
         if([[path pathExtension] isEqualToString:@"plist"]){
             _plistPath = path;
