@@ -25,7 +25,6 @@
         _selectInfo = [_dataDict objectAtIndex:0];
     }
     
-    //设置数据源
     _infoTbls.delegate = self;
     _infoTbls.dataSource = self;
     

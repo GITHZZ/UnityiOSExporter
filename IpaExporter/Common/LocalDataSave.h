@@ -13,9 +13,11 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LocalDataSave : NSObject{
 @private
     BOOL _keyIsSet;
+    BOOL _useUserDefault;
     NSDictionary *_saveTpDict;
     NSString *_plistPath;
-    NSMutableDictionary<NSString*, NSData*> *_saveData;
+    NSString *_bundleIdentifier;
+    NSMutableDictionary<NSString*, id> *_saveData;
     NSMutableDictionary<NSString*, id> *_savedict;
 }
 

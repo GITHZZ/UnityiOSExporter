@@ -14,10 +14,29 @@
 
 @implementation LocalDataSave
 
+- (id)init
+{
+    if(self = [super init]){
+        _keyIsSet = NO;
+        _useUserDefault = YES;
+        
+        _bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+        NSData *userData = [[NSUserDefaults standardUserDefaults] objectForKey:_bundleIdentifier];
+        NSError *error;
+        _saveData = [NSKeyedUnarchiver unarchivedObjectOfClasses:[NSSet setWithArray:@[[NSMutableDictionary class], [NSMutableData class]]]
+                                                        fromData:userData
+                                                           error:&error];
+        if(_saveData == nil)
+            _saveData = [NSMutableDictionary dictionary];
+    }
+    return self;
+}
+
 - (id)initWithPlist:(NSString*)path
 {
     if(self=[super init]){
         _keyIsSet = NO;
+        _useUserDefault = NO;
         if([[path pathExtension] isEqualToString:@"plist"]){
             _plistPath = path;
             _saveData = [NSMutableDictionary dictionaryWithContentsOfFile:_plistPath];
@@ -88,7 +107,16 @@
             [_saveData setObject:data forKey:saveKey];
         }
     }
-    [_saveData writeToFile:_plistPath atomically:YES];
+    
+    if(_useUserDefault){
+        NSError *error;
+        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:_saveData requiringSecureCoding:YES error:&error];
+        [[NSUserDefaults standardUserDefaults] setObject:data forKey:_bundleIdentifier];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    else
+        [_saveData writeToFile:_plistPath atomically:YES];
+    
     return YES;
 }
 
