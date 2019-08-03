@@ -7,6 +7,7 @@
 //
 
 #import "VersionInfo.h"
+#import "Defs.h"
 
 @implementation VersionInfo
 
@@ -26,8 +27,7 @@
 
 - (void)checkVersionInfo
 {
-    NSString *documents = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) firstObject];
-    NSString *localVerFile = [NSString stringWithFormat:@"%@/version.txt", documents];
+    NSString *localVerFile = [NSString stringWithFormat:@"%@/version.txt", SETTING_FOLDER];
     NSArray *localVer = [NSArray arrayWithObjects:@"1.0.0", @"0", nil];;
     NSArray *packageVer;
 
@@ -40,8 +40,12 @@
     }else{
         localVer = [[NSString stringWithContentsOfFile:localVerFile encoding:NSUTF8StringEncoding error:nil] componentsSeparatedByString:@"\n"];
 
-        _isUpdate = [self compareShortVersion:packageVer[0] withLocalVer:localVer[0] error:nil] != 0 ||
-                    ![self compareVersion:packageVer[1] withLocalVer:localVer[1] error:nil];
+        NSError *error;
+        _isUpdate = [self compareShortVersion:packageVer[0] withLocalVer:localVer[0] error:&error] != 0 ||
+                    ![self compareVersion:packageVer[1] withLocalVer:localVer[1]];
+        if(error != nil){
+            showError([error.description UTF8String]);
+        }
     }
     
     _version = packageVer[0];
@@ -55,10 +59,13 @@
 {
     NSArray *packageArr = [localVer componentsSeparatedByString:@"."];
     NSArray *localArr = [localVer componentsSeparatedByString:@"."];
-
+    
     //如果版本号不是三位数 就返回
-    if([localArr count] != 3 || [packageArr count] != 3)
+    if([localArr count] != 3 || [packageArr count] != 3){
+        NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"错误版本信息,格式是三位数"                                                                      forKey:NSLocalizedDescriptionKey];
+        *error = [NSError errorWithDomain:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleIdentifier"] code:ContentIllegal userInfo:userInfo];
         return 0;
+    }
     
     for(int i = 0; i < 3; i++){
         int package = [packageArr[i] intValue];
@@ -75,7 +82,7 @@
 }
 
 //格式;任意字符串
-- (BOOL)compareVersion:(NSString*)packageVer withLocalVer:(NSString*)localVer error:(NSError**)error
+- (BOOL)compareVersion:(NSString*)packageVer withLocalVer:(NSString*)localVer
 {
     return [packageVer isEqualToString:localVer];
 }

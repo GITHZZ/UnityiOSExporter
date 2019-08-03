@@ -38,16 +38,15 @@
                        SAVE_IS_EXPORT_XCODE:@[[NSString class]],
                        SAVE_IS_EXPORT_IPA:@[[NSString class]]
                        };
-        
-        _userData = [[LocalDataSave alloc] init];
+        _userData = [[LocalDataSave alloc] initWithPlist:PLIST_PATH];
         [_userData setAllSaveKey:_saveTpDict];
     }
     return self;
 }
 
-- (void)refresh
+- (void)reload
 {
-    [_userData refresh];
+    [_userData reload];
     [self reloadPaths];
 }
 
@@ -158,22 +157,5 @@
 {
     [_userData setAndSaveData:data withKey:key];
 }
-
-//- (void)test
-//{
-//    NSString *testString = [_codeBackupPath stringByAppendingString:@"/com.IpaExporter.app.plist"];
-//    [_userData mergeFormPlist:testString
-//                    withBlock:^id _Nonnull(id  _Nonnull originItem, id  _Nonnull newItem) {
-//                        if([originItem isKindOfClass:[NSArray class]] &&
-//                           [newItem isKindOfClass:[NSArray class]]){
-//                            
-//                            NSArray *originArray = (NSArray*)originItem;
-//                            NSArray *newArray = (NSArray*)newItem;
-//                            originArray = [originArray arrayByAddingObjectsFromArray:newArray];
-//                            return originArray;
-//                        }
-//                        return originItem;
-//    }];
-//}
 
 @end

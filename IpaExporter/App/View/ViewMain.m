@@ -41,9 +41,7 @@
 {
     if([[VersionInfo instance] isUpdate])
     {
-        NSString *path = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) firstObject];
-        NSString *preferencePath = [path stringByAppendingFormat:@"/Preferences/%@.plist", [[NSBundle mainBundle] bundleIdentifier]];
-        if(![[NSFileManager defaultManager] fileExistsAtPath:preferencePath])
+        if(![[NSFileManager defaultManager] fileExistsAtPath:PLIST_PATH])
         {
             NSStoryboard *sb = [NSStoryboard storyboardWithName:@"Main" bundle:nil];
             DetailsInfoSetting *vc = [sb instantiateControllerWithIdentifier:@"UserDefaultsSetting"];

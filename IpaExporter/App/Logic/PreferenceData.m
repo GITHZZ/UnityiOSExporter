@@ -17,7 +17,7 @@
 {
     if(self = [super init])
     {
-        _saveData = [[LocalDataSave alloc] init];
+        _saveData = [[LocalDataSave alloc] initWithPlist:PLIST_PATH];
         [_saveData setAllSaveKey:@{
                                    OPEN_CODE_APP_SAVE_KEY:@[[NSMutableArray class]],
                                    OPEN_JSON_APP_SAVE_KEY:@[[NSMutableArray class]],
@@ -79,7 +79,7 @@
     
     //备份参数测试
     NSString *path = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) firstObject];
-    NSString *preferencePath = [path stringByAppendingFormat:@"/Preferences/%@.plist", [[NSBundle mainBundle] bundleIdentifier]];
+    NSString *preferencePath = [path stringByAppendingFormat:@"/DataSave/%@.plist", [[NSBundle mainBundle] bundleIdentifier]];
     NSLog(@"%@", preferencePath);
     [[NSFileManager defaultManager] copyUseShell:preferencePath toDst:backUpPath];
     

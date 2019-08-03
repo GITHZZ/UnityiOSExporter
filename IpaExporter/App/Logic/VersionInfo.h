@@ -8,8 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 
-NS_ASSUME_NONNULL_BEGIN
+typedef NS_ENUM(int, VersionFailCode){
+    ContentIllegal = -10000
+};
 
+NS_ASSUME_NONNULL_BEGIN
 @interface VersionInfo : NSObject
 {
     NSString *_localVersion;
@@ -22,5 +25,4 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)isUpdate;
 
 @end
-
 NS_ASSUME_NONNULL_END

@@ -12,6 +12,9 @@
 #import <Foundation/Foundation.h>
 #import "Common.h"
 
+#define SETTING_FOLDER [[NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingString:@"/IpaExporter"]
+#define PLIST_PATH [SETTING_FOLDER stringByAppendingFormat:@"/%@.plist", [[NSBundle mainBundle] bundleIdentifier]]
+
 #define XCODE_PROJ_NAME @"xcodeProj"
 #define LIB_PATH [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/Libs"]
 #define PACK_FOLDER_PATH [LIB_PATH stringByAppendingString:@"/Packer"]

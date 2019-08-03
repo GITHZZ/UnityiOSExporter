@@ -146,7 +146,7 @@
     [_unityPathBox removeAllItems];
     [_exportPathBox removeAllItems];
     
-    [[ExportInfoManager instance] refresh];
+    [[ExportInfoManager instance] reload];
     
     ExportInfo* info = [ExportInfoManager instance].info;
     NSMutableArray* unityProjPathArr = [ExportInfoManager instance].unityProjPathArr;

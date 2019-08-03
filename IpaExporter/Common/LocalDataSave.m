@@ -14,21 +14,9 @@
 
 @implementation LocalDataSave
 
-- (id)init
-{
-    if(self=[super init]){
-        _keyIsSet = NO;
-        NSString *path = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) firstObject];
-        _plistPath = [path stringByAppendingFormat:@"/Preferences/%@.plist", [[NSBundle mainBundle] bundleIdentifier]];
-        _saveData = [NSMutableDictionary dictionaryWithContentsOfFile:_plistPath];
-    }
-    return self;
-}
-
 - (id)initWithPlist:(NSString*)path
 {
     if(self=[super init]){
-        
         _keyIsSet = NO;
         if([[path pathExtension] isEqualToString:@"plist"]){
             _plistPath = path;
@@ -38,6 +26,12 @@
         }
     }
     return self;
+}
+
+- (void)reload
+{
+    _saveData = [NSMutableDictionary dictionaryWithContentsOfFile:_plistPath];
+    [self setAllSaveKey:_saveTpDict];
 }
 
 - (void)setAllSaveKey:(NSDictionary*)saveTpDict
@@ -131,45 +125,6 @@
 {
     CHECK_KEY_IS_AVAILABEL(key)
     [_saveData removeObjectForKey:key];
-    return YES;
-}
-
-//待优化
-- (void)refresh
-{
-    _saveData = [NSMutableDictionary dictionaryWithContentsOfFile:_plistPath];
-    [self setAllSaveKey:_saveTpDict];
-}
-
-- (BOOL)mergeFormPlist:(NSString*)path withBlock:(Merge)block
-{
-    if(![[path pathExtension] isEqualToString:@"plist"] || _keyIsSet == NO)
-        return NO;
-    
-    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:path];
-    NSArray *keyArr = [dict allKeys];
-    for(int i = 0; i < [keyArr count]; i++)
-    {
-        NSString *key = keyArr[i];
-        if(![_saveTpDict objectForKey:key])
-            continue;
-        
-        NSSet *set = [NSSet setWithArray:_saveTpDict[key]];
-        NSData *data = (NSData*)[dict objectForKey:key];
-        NSError *error;
-        
-        id item = [NSKeyedUnarchiver unarchivedObjectOfClasses:set fromData:data error:&error];
-        if(error != nil){
-            NSLog(@"%@", error);
-            continue;
-        }
-        
-        //如果不包含这个key 直接赋值
-        id newItem = ![_savedict objectForKey:key] ? item : block(_savedict[key], item);
-        _savedict[key] = newItem;
-    }
-    
-    [self saveAll];
     return YES;
 }
 

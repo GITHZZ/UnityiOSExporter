@@ -212,9 +212,7 @@ int _viewOpeningCount = 0;
 
 - (IBAction)sureBtnSelect:(id)sender
 {
-    NSString *path = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) firstObject];
-    NSString *preferencePath = [path stringByAppendingFormat:@"/Preferences/%@.plist", [[NSBundle mainBundle] bundleIdentifier]];
-    [[NSFileManager defaultManager] copyFile:_plistPath.stringValue toDst:preferencePath];
+    [[NSFileManager defaultManager] copyFile:_plistPath.stringValue toDst:PLIST_PATH];
     
     [self dismissViewController:self];
     [[EventManager instance] send:EventSettingFileSelect withData:nil];

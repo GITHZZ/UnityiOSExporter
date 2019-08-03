@@ -7,9 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "EventManager.h"
-#import "PackCammond.h"
-#import "GeneralView.h"
 
 @interface AppDelegate ()
 
@@ -17,10 +14,12 @@
 
 @implementation AppDelegate
 
+- (void)applicationWillFinishLaunching:(NSNotification *)notification
+{
+}
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    //init
-    [[PackCammond instance] startUp];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification

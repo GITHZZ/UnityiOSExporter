@@ -35,7 +35,14 @@ sdk_folder_path=${16}
 is_export_ipa=${17}
 
 xcode_proj_path=${export_path}"/"${xcode_proj_name}
-export_log_path=${xcode_proj_path}/Logs
+
+export_folder=${export_path}"/export"
+if [ ! -d ${export_folder} ]; then
+    mkdir ${export_folder}
+fi
+
+#log目录
+export_log_path=${export_folder}/Logs
 
 #设置打包参数
 provisioning_profile=${debug_provisioning_profile}
@@ -113,7 +120,7 @@ xcodebuild \
     -scheme "Unity-iPhone" \
     -sdk iphoneos \
     -configuration ${configuration} \
-    -archivePath bin/Unity-iPhone-${platform_name}.xcarchive \
+    -archivePath ${export_folder}/Unity-iPhone-${platform_name}.xcarchive \
     PROVISIONING_PROFILE_SPECIFIER=${provisioning_profile} \
     DEVELOPMENT_TEAM=${team_id} \
     -allowProvisioningUpdates \
@@ -121,17 +128,16 @@ xcodebuild \
 #fi
 
 echo "生成ipa包"
-ipa_folder_path=${xcode_proj_path}"/Unity-iPhone-"${platform_name}
+ipa_folder_path=${export_folder}"/Unity-iPhone-"${platform_name}
 
 if [ -d ${ipa_folder_path} ]; then
     rm -r ${ipa_folder_path}
 fi
-
 mkdir ${ipa_folder_path}
 
 # 将app打包成ipa
 xcodebuild \
     -exportArchive \
-    -archivePath bin/Unity-iPhone-${platform_name}.xcarchive \
+    -archivePath ${export_folder}/Unity-iPhone-${platform_name}.xcarchive \
     -exportOptionsPlist ${dst_path} \
     -exportPath ${ipa_folder_path}

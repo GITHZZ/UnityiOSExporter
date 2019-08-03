@@ -46,7 +46,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)replaceExportProjPath:(NSString*)path;
 
 //路径配置
-- (void)refresh;
+- (void)reload;
 - (void)reloadPaths;
 
 //包配置 信息表格数据部分

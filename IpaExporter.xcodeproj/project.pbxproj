@@ -183,7 +183,6 @@
 		183780131D766C84004E3BAD /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				183780141D766C84004E3BAD /* main.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -274,9 +273,10 @@
 		5937E45222C9AD73004FD5AA /* App */ = {
 			isa = PBXGroup;
 			children = (
+				183780141D766C84004E3BAD /* main.m */,
+				18FCCBCC1E49CD3900BDF9AC /* Defs.h */,
 				183780101D766C84004E3BAD /* AppDelegate.h */,
 				183780111D766C84004E3BAD /* AppDelegate.m */,
-				18FCCBCC1E49CD3900BDF9AC /* Defs.h */,
 				18750A9C1D9BBBD000FECCA6 /* Logic */,
 				18CA13931D78163C006595E5 /* View */,
 			);
