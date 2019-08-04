@@ -16,14 +16,6 @@
     if(self = [super init])
     {
         [self checkVersionInfo];
-        
-        //测试
-        LocalDataSave *t = [[LocalDataSave alloc] init];
-        [t setAllSaveKey:@{
-                           @"k1":@[[NSString class]]
-                           }];
-        [t setDataForKey:@"k1" withData:@"123"];
-        [t saveAll];
     }
     return self;
 }

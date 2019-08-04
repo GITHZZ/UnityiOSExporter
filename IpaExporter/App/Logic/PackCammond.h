@@ -15,9 +15,6 @@ NS_ASSUME_NONNULL_BEGIN
 @private
     __block BOOL _isExporting;
 }
-
-- (void)startUp;
-
 @end
 
 NS_ASSUME_NONNULL_END

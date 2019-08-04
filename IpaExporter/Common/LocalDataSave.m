@@ -16,11 +16,13 @@
 
 - (id)init
 {
-    if(self = [super init]){
+    if(self = [super init])
+    {
         _keyIsSet = NO;
         _useUserDefault = YES;
         
         _bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+        
         NSData *userData = [[NSUserDefaults standardUserDefaults] objectForKey:_bundleIdentifier];
         NSError *error;
         _saveData = [NSKeyedUnarchiver unarchivedObjectOfClasses:[NSSet setWithArray:@[[NSMutableDictionary class], [NSMutableData class]]]

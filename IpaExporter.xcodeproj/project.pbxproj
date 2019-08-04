@@ -12,8 +12,7 @@
 		182FF6F31E4D936700CC0C7C /* DetailsInfoData.m in Sources */ = {isa = PBXBuildFile; fileRef = 182FF6F01E4D936700CC0C7C /* DetailsInfoData.m */; };
 		182FF6F41E4D936700CC0C7C /* ExportInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 182FF6F21E4D936700CC0C7C /* ExportInfoManager.m */; };
 		18322A8E1DAE193B0049660B /* BuilderCSFileEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 18322A8D1DAE193B0049660B /* BuilderCSFileEdit.m */; };
-		183780121D766C84004E3BAD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 183780111D766C84004E3BAD /* AppDelegate.m */; };
-		183780151D766C84004E3BAD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 183780141D766C84004E3BAD /* main.m */; };
+		183780121D766C84004E3BAD /* AppMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 183780111D766C84004E3BAD /* AppMain.m */; };
 		1837801A1D766C84004E3BAD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 183780191D766C84004E3BAD /* Assets.xcassets */; };
 		1837801D1D766C84004E3BAD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1837801B1D766C84004E3BAD /* Main.storyboard */; };
 		183780281D766C84004E3BAD /* IpaExporterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 183780271D766C84004E3BAD /* IpaExporterTests.m */; };
@@ -30,6 +29,7 @@
 		593FAEF622B097E700A21F33 /* NSString+Emoji.m in Sources */ = {isa = PBXBuildFile; fileRef = 593FAEF422B097E700A21F33 /* NSString+Emoji.m */; };
 		594F118922EC1E7E00052774 /* ViewMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 594F118822EC1E7E00052774 /* ViewMain.m */; };
 		5964C642229CE262004BDD23 /* PackCammond.m in Sources */ = {isa = PBXBuildFile; fileRef = 5964C641229CE262004BDD23 /* PackCammond.m */; };
+		5978866C22F6C1C300340436 /* LogicMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 5978866B22F6C1C300340436 /* LogicMain.m */; };
 		597AFFA022CDF56A00ECCB37 /* NSObject+Singletion.m in Sources */ = {isa = PBXBuildFile; fileRef = 597AFF9F22CDF56A00ECCB37 /* NSObject+Singletion.m */; };
 		5980B56A22CA45EF0015B6CA /* Libs in Resources */ = {isa = PBXBuildFile; fileRef = 5980B56922CA45EF0015B6CA /* Libs */; };
 		59841DC622D4BE0D006CA74F /* NSFileManager+Copy.m in Sources */ = {isa = PBXBuildFile; fileRef = 59841DC522D4BE0D006CA74F /* NSFileManager+Copy.m */; };
@@ -70,9 +70,8 @@
 		18322A8C1DAE193B0049660B /* BuilderCSFileEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuilderCSFileEdit.h; sourceTree = "<group>"; };
 		18322A8D1DAE193B0049660B /* BuilderCSFileEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuilderCSFileEdit.m; sourceTree = "<group>"; };
 		1837800D1D766C84004E3BAD /* iOS打包工具.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS打包工具.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		183780101D766C84004E3BAD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		183780111D766C84004E3BAD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		183780141D766C84004E3BAD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		183780101D766C84004E3BAD /* AppMain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppMain.h; sourceTree = "<group>"; };
+		183780111D766C84004E3BAD /* AppMain.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppMain.m; sourceTree = "<group>"; };
 		183780191D766C84004E3BAD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1837801E1D766C84004E3BAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		183780231D766C84004E3BAD /* IpaExporterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IpaExporterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,6 +105,8 @@
 		594F118822EC1E7E00052774 /* ViewMain.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewMain.m; sourceTree = "<group>"; };
 		5964C640229CE262004BDD23 /* PackCammond.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PackCammond.h; sourceTree = "<group>"; };
 		5964C641229CE262004BDD23 /* PackCammond.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PackCammond.m; sourceTree = "<group>"; };
+		5978866A22F6C1C300340436 /* LogicMain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogicMain.h; sourceTree = "<group>"; };
+		5978866B22F6C1C300340436 /* LogicMain.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogicMain.m; sourceTree = "<group>"; };
 		597AFF9E22CDF56A00ECCB37 /* NSObject+Singletion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Singletion.h"; sourceTree = "<group>"; };
 		597AFF9F22CDF56A00ECCB37 /* NSObject+Singletion.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Singletion.m"; sourceTree = "<group>"; };
 		5980B56922CA45EF0015B6CA /* Libs */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Libs; path = IpaExporter/Libs; sourceTree = "<group>"; };
@@ -208,6 +209,8 @@
 		18750A9C1D9BBBD000FECCA6 /* Logic */ = {
 			isa = PBXGroup;
 			children = (
+				5978866A22F6C1C300340436 /* LogicMain.h */,
+				5978866B22F6C1C300340436 /* LogicMain.m */,
 				59B1BE3B22C06D030087F869 /* CodeTester.h */,
 				59B1BE3C22C06D030087F869 /* CodeTester.m */,
 				5964C640229CE262004BDD23 /* PackCammond.h */,
@@ -273,10 +276,9 @@
 		5937E45222C9AD73004FD5AA /* App */ = {
 			isa = PBXGroup;
 			children = (
-				183780141D766C84004E3BAD /* main.m */,
 				18FCCBCC1E49CD3900BDF9AC /* Defs.h */,
-				183780101D766C84004E3BAD /* AppDelegate.h */,
-				183780111D766C84004E3BAD /* AppDelegate.m */,
+				183780101D766C84004E3BAD /* AppMain.h */,
+				183780111D766C84004E3BAD /* AppMain.m */,
 				18750A9C1D9BBBD000FECCA6 /* Logic */,
 				18CA13931D78163C006595E5 /* View */,
 			);
@@ -450,13 +452,13 @@
 				5964C642229CE262004BDD23 /* PackCammond.m in Sources */,
 				184BEA501DC742FA00CCEC4D /* DetailsInfoSetting.m in Sources */,
 				59841DC622D4BE0D006CA74F /* NSFileManager+Copy.m in Sources */,
-				183780151D766C84004E3BAD /* main.m in Sources */,
 				182FF6F31E4D936700CC0C7C /* DetailsInfoData.m in Sources */,
 				188DAD111E56F8E300554D6B /* CustomLog.m in Sources */,
 				186088FD1DAA4AE10055E4BB /* DataResManager.m in Sources */,
-				183780121D766C84004E3BAD /* AppDelegate.m in Sources */,
+				183780121D766C84004E3BAD /* AppMain.m in Sources */,
 				18322A8E1DAE193B0049660B /* BuilderCSFileEdit.m in Sources */,
 				18CA13961D78164C006595E5 /* GeneralView.m in Sources */,
+				5978866C22F6C1C300340436 /* LogicMain.m in Sources */,
 				5937E44E22C73B8B004FD5AA /* MobileprovisionParser.m in Sources */,
 				597AFFA022CDF56A00ECCB37 /* NSObject+Singletion.m in Sources */,
 				59F118F622F0409600E88253 /* VersionInfo.m in Sources */,

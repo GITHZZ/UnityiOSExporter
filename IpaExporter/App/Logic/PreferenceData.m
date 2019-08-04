@@ -77,10 +77,8 @@
     NSString *srcPath = [LIB_PATH stringByAppendingString:@"/TempCode/Builder/Users"];
     NSString *strReturnFormShell = [[NSFileManager defaultManager] copyUseShell:srcPath toDst:backUpPath];
     
-    //备份参数测试
     NSString *path = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) firstObject];
     NSString *preferencePath = [path stringByAppendingFormat:@"/DataSave/%@.plist", [[NSBundle mainBundle] bundleIdentifier]];
-    NSLog(@"%@", preferencePath);
     [[NSFileManager defaultManager] copyUseShell:preferencePath toDst:backUpPath];
     
     if([strReturnFormShell isEqualToString:@""]){
@@ -92,7 +90,6 @@
     }
 }
 
-//需要重构下
 - (void)restoreCustomCode
 {
     ExportInfoManager *exportManager = [ExportInfoManager instance];
@@ -101,14 +98,13 @@
         backUpPath = [NSString stringWithFormat:@"%s", exportManager.info->unityProjPath];
     
     backUpPath = [backUpPath stringByAppendingString:@"/Users"];
-    NSString* srcPath = [LIB_PATH stringByAppendingString:@"/TempCode/Builder"];
+    NSString *srcPath = [LIB_PATH stringByAppendingString:@"/TempCode/Builder"];
     NSString *strReturnFormShell = [[NSFileManager defaultManager] copyUseShell:backUpPath toDst:srcPath];
     
     if([strReturnFormShell isEqualToString:@""]){
         showSuccess("恢复成功");
     }else{
-        NSString* logStr = [strReturnFormShell
-                            stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        NSString* logStr = [strReturnFormShell stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         showLog([logStr UTF8String]);
         showError("恢复失败");
     }

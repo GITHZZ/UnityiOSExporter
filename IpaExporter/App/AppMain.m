@@ -6,7 +6,23 @@
 //  Copyright © 2016年 何遵祖. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import <Cocoa/Cocoa.h>
+#include <stdio.h>
+
+#import "AppMain.h"
+#import "Defs.h"
+#import "LogicMain.h"
+
+int main(int argc, const char * argv[])
+{
+    if(![[NSFileManager defaultManager] fileExistsAtPath:SETTING_FOLDER]){
+        [[NSFileManager defaultManager] createDirectoryAtPath:SETTING_FOLDER withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    
+    [[LogicMain instance] startUp];
+    
+    return NSApplicationMain(argc, argv);
+}
 
 @interface AppDelegate ()
 
@@ -24,7 +40,6 @@
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification
 {
-    // Insert code here to tear down your application
 }
 
 - (void)applicationDidBecomeActive:(NSNotification *)notification
@@ -33,6 +48,7 @@
 
 - (void)applicationWillResignActive:(NSNotification *)notification
 {
+    [[LogicMain instance] applicationWillResignActive:notification];
 }
 
 @end
