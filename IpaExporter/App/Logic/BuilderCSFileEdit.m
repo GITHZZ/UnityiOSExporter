@@ -8,7 +8,6 @@
 
 #import "BuilderCSFileEdit.h"
 #import "Common.h"
-#import "ExportInfoManager.h"
 
 @implementation BuilderCSFileEdit
 
@@ -40,7 +39,7 @@
     }
     
     _lines = [_content componentsSeparatedByString:@"\n"];
-    
+    _view = (ExportInfoManager*)get_instance(@"ExportInfoManager");
     return YES;
 }
 
@@ -49,7 +48,7 @@
  */
 - (void)replaceVarWithKeyArr:(NSArray*)keyArr
 {
-    ExportInfo* info = [ExportInfoManager instance].info;
+    ExportInfo* info = _view.info;
     NSString *replaceFormat = @"\"%@\"";
     NSMutableString* result = [NSMutableString stringWithString:_content];
     
@@ -64,7 +63,7 @@
             keyStr = [[NSString stringWithUTF8String:path] stringByAppendingFormat:@"/%@",XCODE_PROJ_NAME];
         }else if([key isEqualToString:Defs_Pack_Scene]){
         
-            NSMutableArray *scenes = [ExportInfoManager instance].sceneArray;
+            NSMutableArray *scenes = _view.sceneArray;
             keyStr = [self getReplaceStrFromArray:scenes];
         }
         

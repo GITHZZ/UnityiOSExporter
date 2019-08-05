@@ -11,7 +11,5 @@
 int main(int argc, const char * argv[]);
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
-{
-}
 @end
 

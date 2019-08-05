@@ -16,6 +16,5 @@
 #import "Alert.h"
 #import "LocalDataSave.h"
 #import "NSFileManager+Copy.h"
-#import "NSObject+Singletion.h"
 
 #endif /* Common_h */

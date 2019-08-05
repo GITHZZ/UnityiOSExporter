@@ -7,11 +7,9 @@
 //
 
 #import "PackCammond.h"
-#import "Common.h"
-#import "ExportInfoManager.h"
-#import "DataResManager.h"
-#import "BuilderCSFileEdit.h"
 #import <Cocoa/Cocoa.h>
+#import "Common.h"
+#import "LogicManager.h"
 
 @implementation PackCammond
 
@@ -35,6 +33,7 @@
     if(_isExporting)
         return;
     
+    ExportInfoManager *exportManager = (ExportInfoManager*)get_instance(@"ExportInfoManager");
     [[EventManager instance] send:EventCleanInfoContent withData:nil];
     
     _isExporting = true;
@@ -47,13 +46,12 @@
     dispatch_group_t group = dispatch_group_create();
     
     dispatch_group_async(group, queue, ^{
-        ExportInfoManager* view = [ExportInfoManager instance];
-        NSMutableArray<DetailsInfoData*>* detailArray = view.detailArray;
+        NSMutableArray<DetailsInfoData*>* detailArray = exportManager.detailArray;
         
         dispatch_queue_t sq = dispatch_queue_create("exportInfo", DISPATCH_QUEUE_SERIAL);
         
         BOOL result = YES;
-        if(view.info->isExportXcode == 1)
+        if(exportManager.info->isExportXcode == 1)
             result = [self exportXcodeProjInThread:sq];
         else
             showWarning("xcode工程生成已跳过,直接进行平台打包");
@@ -79,7 +77,7 @@
         [NSApp activateIgnoringOtherApps:YES];
         showSuccess("打包结束");
         
-        ExportInfoManager* view = [ExportInfoManager instance];
+        ExportInfoManager* view = (ExportInfoManager*)get_instance(@"ExportInfoManager");
         [[NSWorkspace sharedWorkspace] selectFile:nil inFileViewerRootedAtPath:[NSString stringWithFormat:@"%s/export", view.info->exportFolderParh]];
     });
 }
@@ -138,17 +136,18 @@
 {
     __block BOOL result = YES;
     NSString *xcodeShellPath = [LIB_PATH stringByAppendingString:@"/Xcodeproj/ExportXcode.sh"];
-    ExportInfoManager* view = [ExportInfoManager instance];
+    ExportInfoManager* view = (ExportInfoManager*)get_instance(@"ExportInfoManager");
     
-    [[DataResManager instance] start:view.info];
+    DataResManager *resManager = (DataResManager*)get_instance(@"DataResManager");
+    [resManager start:view.info];
     NSString *srcPath = [LIB_PATH stringByAppendingString:@"/TempCode"];
-    [[DataResManager instance] appendingFolder:srcPath];
+    [resManager appendingFolder:srcPath];
     
     showLog("开始生成xcode工程");
     showLog([[NSString stringWithFormat:@"[配置信息]Unity工程路径:%s", view.info->unityProjPath] UTF8String]);
     
     BuilderCSFileEdit* builderEdit = [[BuilderCSFileEdit alloc] init];
-    [builderEdit startWithDstPath: [DataResManager instance].rootPath];
+    [builderEdit startWithDstPath: resManager.rootPath];
     
     dispatch_sync(sq, ^{
         //生成xcode工程
@@ -156,16 +155,17 @@
         //$2 导出路径
         //$3 沙盒路径
         //$4 代码根目录
+        DataResManager *resManager = (DataResManager*)get_instance(@"DataResManager");
         NSArray *args = [NSArray arrayWithObjects:
                          [NSString stringWithUTF8String:view.info->unityProjPath],
                          [NSString stringWithUTF8String:view.info->exportFolderParh],
                          LIB_PATH,
-                         [DataResManager instance].rootPath,
+                         resManager.rootPath,
                          nil];
         
         NSString *shellLog = [self invokingShellScriptAtPath:xcodeShellPath withArgs:args];
     
-        [[DataResManager instance] end];
+        [resManager end];
         NSString* logStr = [shellLog stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         showLog([logStr UTF8String]);
         
@@ -189,7 +189,7 @@
     NSString *shellPath = [LIB_PATH stringByAppendingString:@"/Xcodeproj/Main.sh"];
     NSString *rubyMainPath = [LIB_PATH stringByAppendingString:@"/Xcodeproj/Main.rb"];
     
-    ExportInfoManager* view = [ExportInfoManager instance];
+    ExportInfoManager* view = (ExportInfoManager*)get_instance(@"ExportInfoManager");
     
      if([data.isSelected isEqualToString:@"1"]){
         //配置json文件

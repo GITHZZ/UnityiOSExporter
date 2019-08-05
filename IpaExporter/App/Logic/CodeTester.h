@@ -7,12 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "NSObject+Singletion.h"
+#import "LogicManager.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CodeTester : NSObject
-
+{
+@private
+    ExportInfoManager* _manager;
+    DataResManager* _dataInst;
+}
 - (void)run;
 - (void)copyTestFolderToProject;
 - (void)saveAndRemoveTestFolder;

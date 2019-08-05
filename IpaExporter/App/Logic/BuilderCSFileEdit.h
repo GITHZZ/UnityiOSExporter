@@ -7,12 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LogicManager.h"
 
-@interface BuilderCSFileEdit : NSObject{
+@interface BuilderCSFileEdit : NSObject
+{
 @private
     NSString* _path;
     NSFileHandle* _fileHandle;
     NSMutableString* _content;
+    ExportInfoManager* _view;
 }
 
 - (void)startWithDstPath:(NSString*)dstPath;

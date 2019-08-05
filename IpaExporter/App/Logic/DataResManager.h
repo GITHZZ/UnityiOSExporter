@@ -10,9 +10,9 @@
 #import <Foundation/Foundation.h>
 #import "Common.h"
 #import "Defs.h"
-#import "NSObject+Singletion.h"
 
-@interface DataResManager : NSObject{
+@interface DataResManager : NSObject
+{
 @private
     NSString *_unityProjPath;
     NSFileManager* _fileManager;

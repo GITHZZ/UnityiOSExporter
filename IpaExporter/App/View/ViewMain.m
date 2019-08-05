@@ -7,12 +7,10 @@
 //
 
 #import "ViewMain.h"
+#import "Defs.h"
 #import "PreferenceView.h"
 #import "DetailsInfoSetting.h"
-#import "Defs.h"
-#import "VersionInfo.h"
-#import "PreferenceData.h"
-#import "Alert.h"
+#import "LogicManager.h"
 
 @implementation ViewMain
 
@@ -39,7 +37,8 @@
 
 - (void)checkIsShowSetting
 {
-    if([[VersionInfo instance] isUpdate])
+    VersionInfo *instance = (VersionInfo*)get_instance(@"VersionInfo");
+    if([instance isUpdate])
     {
         if(![[NSFileManager defaultManager] fileExistsAtPath:PLIST_PATH])
         {
@@ -48,7 +47,7 @@
             [self presentViewControllerAsSheet:vc];
         }else{
             [[Alert instance] alertTip:@"确定" MessageText:@"更新" InformativeText:@"检测到版本更新,点击确认同步代码" callBackFrist:^{
-                [[PreferenceData instance] restoreCustomCode];
+                inst_method_call(@"PreferenceData", restoreCustomCode);
             }];
         }
     }

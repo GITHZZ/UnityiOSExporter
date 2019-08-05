@@ -7,9 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "NSObject+Singletion.h"
 
 @interface Alert : NSObject
+
++ (instancetype)instance;
 
 - (void)alertTip:(NSString *)firstname MessageText:(NSString *)messagetext InformativeText:(NSString *)informativetext callBackFrist:(void(^)())func1;
 

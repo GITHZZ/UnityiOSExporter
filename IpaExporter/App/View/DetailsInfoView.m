@@ -8,8 +8,7 @@
 
 #import "DetailsInfoView.h"
 #import "DetailsInfoData.h"
-
-#import "ExportInfoManager.h"
+#import "LogicManager.h"
 
 @implementation DetailsInfoView
 
@@ -17,7 +16,8 @@
 {
     [super viewDidLoad];
     
-    NSMutableArray* saveArray = [[ExportInfoManager instance] reLoadDetails:SAVE_DETAIL_ARRARY_KEY];
+    ExportInfoManager* manager = (ExportInfoManager*)get_instance(@"ExportInfoManager");
+    NSMutableArray* saveArray = [manager reLoadDetails:SAVE_DETAIL_ARRARY_KEY];
     _dataDict = [[NSMutableArray alloc] initWithArray:saveArray];
     
     if([_dataDict count] > 0)
@@ -80,8 +80,9 @@
 
 - (void)addInfo:(DetailsInfoData*)info
 {
+    ExportInfoManager* manager = (ExportInfoManager*)get_instance(@"ExportInfoManager");
     [_dataDict addObject:info];
-    [[ExportInfoManager instance] addDetail:info withKey:SAVE_DETAIL_ARRARY_KEY];
+    [manager addDetail:info withKey:SAVE_DETAIL_ARRARY_KEY];
     [_infoTbls reloadData];
     
     [[EventManager instance] send:EventDetailsInfoUpdate withData:_dataDict];
@@ -98,8 +99,9 @@
     NSInteger row = [_infoTbls selectedRow];
     if(row > -1)
     {
+        ExportInfoManager* manager = (ExportInfoManager*)get_instance(@"ExportInfoManager");
         [_dataDict removeObjectAtIndex:row];
-        [[ExportInfoManager instance] removeDetail:row withKey:SAVE_DETAIL_ARRARY_KEY];
+        [manager removeDetail:row withKey:SAVE_DETAIL_ARRARY_KEY];
         [_infoTbls reloadData];
 
         [[EventManager instance] send:EventDetailsInfoUpdate withData:_dataDict];
@@ -148,7 +150,8 @@
     [info setValue:newValue forKey:columnIdentifier];
     
     [_dataDict replaceObjectAtIndex:row withObject:info];
-    [[ExportInfoManager instance] updateDetail:row withObject:info withKey:SAVE_DETAIL_ARRARY_KEY];
+    ExportInfoManager* manager = (ExportInfoManager*)get_instance(@"ExportInfoManager");
+    [manager updateDetail:row withObject:info withKey:SAVE_DETAIL_ARRARY_KEY];
 }
 
 - (BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(NSInteger)row

@@ -11,7 +11,7 @@
 
 #import "AppMain.h"
 #import "Defs.h"
-#import "LogicMain.h"
+#import "LogicManager.h"
 
 int main(int argc, const char * argv[])
 {
@@ -19,14 +19,10 @@ int main(int argc, const char * argv[])
         [[NSFileManager defaultManager] createDirectoryAtPath:SETTING_FOLDER withIntermediateDirectories:YES attributes:nil error:nil];
     }
     
-    [[LogicMain instance] startUp];
+    [[LogicManager defaultInstance] startUp];
     
     return NSApplicationMain(argc, argv);
 }
-
-@interface AppDelegate ()
-
-@end
 
 @implementation AppDelegate
 
@@ -48,7 +44,7 @@ int main(int argc, const char * argv[])
 
 - (void)applicationWillResignActive:(NSNotification *)notification
 {
-    [[LogicMain instance] applicationWillResignActive:notification];
+    [[LogicManager defaultInstance] applicationWillResignActive:notification];
 }
 
 @end

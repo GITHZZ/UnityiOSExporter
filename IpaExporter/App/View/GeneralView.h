@@ -16,6 +16,7 @@
     NSTimer *_showTimer;
     NSTimeInterval _packTime;
     BOOL _isVisable;
+    ExportInfoManager* _manager;
 }
 
 @property (readonly) NSMutableArray<DetailsInfoData*>* dataDict;

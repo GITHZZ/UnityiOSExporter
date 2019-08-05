@@ -10,33 +10,41 @@
 #import "ExportInfoManager.h"
 #import "DataResManager.h"
 #import "NSFileManager+Copy.h"
-#import "PackCammond.h"
 #import "PreferenceData.h"
 
 #import <Cocoa/Cocoa.h>
 
 @implementation CodeTester
 
+- (id)init
+{
+    if(self = [super init])
+    {
+        _manager = (ExportInfoManager*)get_instance(@"ExportInfoManager");
+        _dataInst = (DataResManager*)get_instance(@"DataResManager");
+    }
+    return self;
+}
+
 - (void)run
 {
-    ExportInfoManager* view = [ExportInfoManager instance];
     NSString *resourcePath = LIB_PATH;
     NSString *args = [NSString stringWithFormat:@"%s\t%s\t%@",
-                      view.info->unityProjPath,
-                      view.info->exportFolderParh,
+                      _manager.info->unityProjPath,
+                      _manager.info->exportFolderParh,
                       resourcePath];
     
     NSString *shellScriptPath = [NSString stringWithFormat:@"%@/CodeTest/CodeTest.sh", resourcePath];
     NSString *shellStr = [NSString stringWithFormat:@"sh %@ %@", shellScriptPath, args];
     
-    [[DataResManager instance] start:view.info];
+    [_dataInst start:_manager.info];
     
     NSString *customCodePath = [LIB_PATH stringByAppendingString:@"/TempCode/Builder/Users"];
     NSString *codeTestPath = [LIB_PATH stringByAppendingString:@"/CodeTest/Test"];
     NSString *litJsonPath = [LIB_PATH stringByAppendingString:@"/TempCode/Builder/LitJson"];
-    [[DataResManager instance] appendingFolder:customCodePath];
-    [[DataResManager instance] appendingFolder:codeTestPath];
-    [[DataResManager instance] appendingFolder:litJsonPath];
+    [_dataInst appendingFolder:customCodePath];
+    [_dataInst appendingFolder:codeTestPath];
+    [_dataInst appendingFolder:litJsonPath];
     
     dispatch_queue_t queue = dispatch_queue_create(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_group_t group = dispatch_group_create();
@@ -45,8 +53,8 @@
     });
     
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
-        [[NSWorkspace sharedWorkspace] openFile:[NSString stringWithFormat:@"%s/code_test_log.xml", view.info->unityProjPath]];
-        [[DataResManager instance] end];
+        [[NSWorkspace sharedWorkspace] openFile:[NSString stringWithFormat:@"%s/code_test_log.xml", _manager.info->unityProjPath]];
+        [_dataInst end];
     });
 }
 
@@ -59,17 +67,16 @@ BOOL _isCopyed = NO;
     }
     
     _isCopyed = YES;
-    ExportInfoManager* view = [ExportInfoManager instance];
-
-    [[DataResManager instance] start:view.info];
+    
+    [_dataInst start:_manager.info];
     NSString *customCodePath = [LIB_PATH stringByAppendingString:@"/TempCode/Builder/Users"];
     NSString *codeTestPath = [LIB_PATH stringByAppendingString:@"/CodeTest/Test"];
     NSString *litJsonPath = [LIB_PATH stringByAppendingString:@"/TempCode/Builder/LitJson"];
-    [[DataResManager instance] appendingFolder:customCodePath];
-    [[DataResManager instance] appendingFolder:codeTestPath];
-    [[DataResManager instance] appendingFolder:litJsonPath];
+    [_dataInst appendingFolder:customCodePath];
+    [_dataInst appendingFolder:codeTestPath];
+    [_dataInst appendingFolder:litJsonPath];
     
-    NSString *shellStr = [NSString stringWithFormat:@"/Applications/Unity/Unity.app/Contents/MacOS/Unity -projectPath %s", view.info->unityProjPath];
+    NSString *shellStr = [NSString stringWithFormat:@"/Applications/Unity/Unity.app/Contents/MacOS/Unity -projectPath %s", _manager.info->unityProjPath];
     [self createTerminalTask:shellStr waitUntilExit:NO];
 }
 
@@ -81,15 +88,15 @@ BOOL _isCopyed = NO;
     }
     
     _isCopyed = NO;
-    NSString *rootPath = [DataResManager instance].rootPath;
+    NSString *rootPath = _dataInst.rootPath;
     rootPath = [rootPath stringByAppendingString:@"/TempCode/Builder/Users"];
     
-    NSString *backUpPath = [ExportInfoManager instance].codeBackupPath;
+    NSString *backUpPath = _manager.codeBackupPath;
     backUpPath = [backUpPath stringByAppendingString:@"/Users"];
     
     [[NSFileManager defaultManager] copyFolderFrom:rootPath toDst:backUpPath];
-    [[DataResManager instance] end];
-    [[PreferenceData instance] restoreCustomCode];
+    [_dataInst end];
+    inst_method_call(@"PreferenceData", restoreCustomCode);
 }
 
 - (NSString*)createTerminalTask:(NSString*)order

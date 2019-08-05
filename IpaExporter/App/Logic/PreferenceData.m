@@ -8,7 +8,6 @@
 
 #import "PreferenceData.h"
 #import "Defs.h"
-#import "ExportInfoManager.h"
 #import "NSFileManager+Copy.h"
 
 @implementation PreferenceData
@@ -69,7 +68,7 @@
 
 - (void)backUpCustomCode
 {
-    ExportInfoManager *exportManager = [ExportInfoManager instance];
+    ExportInfoManager *exportManager = (ExportInfoManager*)get_instance(@"ExportInfoManager");
     NSString *backUpPath = exportManager.codeBackupPath;
     if(backUpPath == nil || [backUpPath isEqualToString:@""])
         backUpPath = [NSString stringWithFormat:@"%s", exportManager.info->unityProjPath];
@@ -92,7 +91,7 @@
 
 - (void)restoreCustomCode
 {
-    ExportInfoManager *exportManager = [ExportInfoManager instance];
+    ExportInfoManager *exportManager = (ExportInfoManager*)get_instance(@"ExportInfoManager");
     NSString *backUpPath = exportManager.codeBackupPath;
     if(backUpPath == nil || [backUpPath isEqualToString:@""])
         backUpPath = [NSString stringWithFormat:@"%s", exportManager.info->unityProjPath];
@@ -108,6 +107,16 @@
         showLog([logStr UTF8String]);
         showError("恢复失败");
     }
+}
+
+- (NSMutableArray*)getCodeAppArray
+{
+    return _codeAppArray;
+}
+
+- (NSMutableArray*)getJsonAppArray
+{
+    return _jsonAppArray;
 }
 
 @end

@@ -7,9 +7,22 @@
 //
 
 #import "EventManager.h"
+#import <objc/runtime.h>
 
 @implementation EventManager
 
++ (instancetype)instance
+{
+    Class cls = [self class];
+    //动态去取属性方法
+    id instance = objc_getAssociatedObject(cls, @"instance");
+    if(!instance)
+    {
+        instance = [[self allocWithZone:NULL] init];
+        objc_setAssociatedObject(cls, @"instance", instance, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    return instance;
+}
 
 - (void)regist:(EventType)eventType func:(SEL)func self:(id)s
 {

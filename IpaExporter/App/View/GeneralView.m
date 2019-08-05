@@ -32,11 +32,12 @@
 
     _progressTip.displayedWhenStopped = NO;
     
-    [[ExportInfoManager instance] reloadPaths];
+    _manager = (ExportInfoManager*)get_instance(@"ExportInfoManager");
+    [_manager reloadPaths];
     
-    ExportInfo* info = [ExportInfoManager instance].info;
-    NSMutableArray* unityProjPathArr = [ExportInfoManager instance].unityProjPathArr;
-    NSMutableArray* exportPathArr = [ExportInfoManager instance].exportPathArr;
+    ExportInfo* info = _manager.info;
+    NSMutableArray* unityProjPathArr = _manager.unityProjPathArr;
+    NSMutableArray* exportPathArr = _manager.exportPathArr;
     
     if ([unityProjPathArr count] > 0)
     {
@@ -69,10 +70,11 @@
     _isVisable = YES;
     
     //从本地读取存储数据
-    NSMutableArray<DetailsInfoData*> *saveArray = [[ExportInfoManager instance] reLoadDetails:SAVE_DETAIL_ARRARY_KEY];
+    ExportInfoManager* view = (ExportInfoManager*)get_instance(@"ExportInfoManager");
+    NSMutableArray<DetailsInfoData*> *saveArray = [view reLoadDetails:SAVE_DETAIL_ARRARY_KEY];
     _dataDict = [[NSMutableArray alloc] initWithArray:saveArray];
     
-    NSMutableArray<NSString*> *saveSceneArr = [[ExportInfoManager instance] reLoadDetails:SAVE_SCENE_ARRAY_KEY];
+    NSMutableArray<NSString*> *saveSceneArr = [view reLoadDetails:SAVE_SCENE_ARRAY_KEY];
     _sceneArray = [[NSMutableArray alloc] initWithArray:saveSceneArr];
 
     [_platformTbl reloadData];
@@ -146,11 +148,12 @@
     [_unityPathBox removeAllItems];
     [_exportPathBox removeAllItems];
     
-    [[ExportInfoManager instance] reload];
+    ExportInfoManager* view = (ExportInfoManager*)get_instance(@"ExportInfoManager");
+    [view reload];
     
-    ExportInfo* info = [ExportInfoManager instance].info;
-    NSMutableArray* unityProjPathArr = [ExportInfoManager instance].unityProjPathArr;
-    NSMutableArray* exportPathArr = [ExportInfoManager instance].exportPathArr;
+    ExportInfo* info = view.info;
+    NSMutableArray* unityProjPathArr = view.unityProjPathArr;
+    NSMutableArray* exportPathArr = view.exportPathArr;
     
     if ([unityProjPathArr count] > 0)
     {
@@ -169,16 +172,16 @@
     _isReleaseBox.state = info->isRelease;
     _isExportXcode.state = info->isExportXcode;
     
-    NSMutableArray<DetailsInfoData*> *saveArray = [[ExportInfoManager instance] reLoadDetails:SAVE_DETAIL_ARRARY_KEY];
+    NSMutableArray<DetailsInfoData*> *saveArray = [_manager reLoadDetails:SAVE_DETAIL_ARRARY_KEY];
     _dataDict = [[NSMutableArray alloc] initWithArray:saveArray];
     
-    NSMutableArray<NSString*> *saveSceneArr = [[ExportInfoManager instance] reLoadDetails:SAVE_SCENE_ARRAY_KEY];
+    NSMutableArray<NSString*> *saveSceneArr = [_manager reLoadDetails:SAVE_SCENE_ARRAY_KEY];
     _sceneArray = [[NSMutableArray alloc] initWithArray:saveSceneArr];
     
     [_platformTbl reloadData];
     [_packSceneTbl reloadData];
     
-    [[PreferenceData instance] restoreCustomCode];
+    inst_method_call(@"PreferenceData", restoreCustomCode);
 }
 
 - (IBAction)sureBtnClick:(id)sender
@@ -194,7 +197,7 @@
     [openDlg setCanChooseFiles:chooseFile];
     [openDlg setCanChooseDirectories:chooseDirectories];
     
-    ExportInfo* tInfo = [ExportInfoManager instance].info;
+    ExportInfo* tInfo = _manager.info;
     
     if ([openDlg runModal] == NSModalResponseOK)
     {
@@ -206,14 +209,14 @@
             {
                 case EventUnityPathSelectEnd:
                     tInfo->unityProjPath = [selectPath UTF8String];
-                    [ExportInfoManager instance].info = tInfo;
-                    [[ExportInfoManager instance] addNewUnityProjPath:selectPath];
+                    _manager.info = tInfo;
+                    [_manager addNewUnityProjPath:selectPath];
                     _unityPathBox.stringValue = selectPath;
                     break;
                 case EventExportPathSelectEnd:
                     tInfo->exportFolderParh = [selectPath UTF8String];
-                    [ExportInfoManager instance].info = tInfo;
-                    [[ExportInfoManager instance] addNewExportProjPath:selectPath];
+                    _manager.info = tInfo;
+                    [_manager addNewExportProjPath:selectPath];
                     _exportPathBox.stringValue = selectPath;
                     break;
                 case EventScenePathSelectEnd:
@@ -223,7 +226,7 @@
                     }
                     
                     [_sceneArray addObject:selectPath];
-                    [[ExportInfoManager instance] addDetail:selectPath withKey:SAVE_SCENE_ARRAY_KEY];
+                    [_manager addDetail:selectPath withKey:SAVE_SCENE_ARRAY_KEY];
                     [_packSceneTbl reloadData];
                 default:
                     break;
@@ -259,7 +262,7 @@
     if([_sceneArray count] > 0){
         [_sceneArray removeObjectAtIndex:row];
     }
-    [[ExportInfoManager instance] removeDetail:row withKey:SAVE_SCENE_ARRAY_KEY];
+    [_manager removeDetail:row withKey:SAVE_SCENE_ARRAY_KEY];
     [_packSceneTbl reloadData];
 }
 
@@ -329,7 +332,7 @@
         [cell setState: newState];
         [data setValueForKey:Defs_Is_Selected withObj:newStateStr];
     
-        [[ExportInfoManager instance] updateDetail:row withObject:data withKey:SAVE_DETAIL_ARRARY_KEY];
+        [_manager updateDetail:row withObject:data withKey:SAVE_DETAIL_ARRARY_KEY];
     }
 }
 
@@ -345,17 +348,17 @@
 {
     NSComboBox* box = (NSComboBox *)object;
     NSString *changePath = [box stringValue];
-    ExportInfo* info = [ExportInfoManager instance].info;
+    ExportInfo* info = _manager.info;
     
     if([[box identifier] isEqualToString:@"unityPathBox"])
     {
         info->unityProjPath = [changePath UTF8String];
-        [[ExportInfoManager instance] replaceUnityProjPath:changePath];
+        [_manager replaceUnityProjPath:changePath];
     }
     else if([[box identifier] isEqualToString:@"exportPathBox"])
     {
         info->exportFolderParh = [changePath UTF8String];
-        [[ExportInfoManager instance] replaceExportProjPath:changePath];
+        [_manager replaceExportProjPath:changePath];
     }
     else
     {
@@ -474,18 +477,18 @@
 - (IBAction)isReleaseBtnSelect:(id)sender
 {
     NSButton *btn = (NSButton*)sender;
-    ExportInfo* info = [ExportInfoManager instance].info;
+    ExportInfo* info = _manager.info;
     if([btn.identifier isEqualToString:@"isReleaseBox"]){
         info->isRelease = (int)_isReleaseBox.state;
-        [[ExportInfoManager instance] saveDataForKey:SAVE_IS_RELEASE_KEY
+        [_manager saveDataForKey:SAVE_IS_RELEASE_KEY
                                             withData:[NSString stringWithFormat:@"%d",info->isRelease]];
     }else if([btn.identifier isEqualToString:@"isExportXcode"]){
         info->isExportXcode = (int)_isExportXcode.state;
-        [[ExportInfoManager instance] saveDataForKey:SAVE_IS_EXPORT_XCODE
+        [_manager saveDataForKey:SAVE_IS_EXPORT_XCODE
                                             withData:[NSString stringWithFormat:@"%d",info->isExportXcode]];
     }else if([btn.identifier isEqualToString:@"isExportIpa"]){
         info->isExportIpa = (int)_isExportIpa.state;
-        [[ExportInfoManager instance] saveDataForKey:SAVE_IS_EXPORT_IPA
+        [_manager saveDataForKey:SAVE_IS_EXPORT_IPA
                                             withData:[NSString stringWithFormat:@"%d",info->isExportIpa]];
     }
 }

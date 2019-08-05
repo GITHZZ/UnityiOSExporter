@@ -12,7 +12,6 @@
 #import "DetailsInfoData.h"
 #import "Common.h"
 #import "Defs.h"
-#import "NSObject+Singletion.h"
 
 #define SAVE_DETAIL_ARRARY_KEY  @"detailArray"
 #define SAVE_PROJECT_PATH_KEY   @"projectPath"

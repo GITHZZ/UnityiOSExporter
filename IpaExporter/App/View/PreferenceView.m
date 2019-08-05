@@ -7,16 +7,23 @@
 //
 
 #import "PreferenceView.h"
-#import "ExportInfoManager.h"
-#import "PackCammond.h"
-#import "CodeTester.h"
-#import "PreferenceData.h"
 #import "GeneralView.h"
 #import "NSFileManager+Copy.h"
 
 int _viewOpeningCount = 0;
 
 @implementation ExtensionsMenu
+
+
+- (id)init
+{
+    if(self=[super init])
+    {
+        _tester = (CodeTester*)get_instance(@"CodeTester");
+        _dataInst = (PreferenceData*)get_instance(@"PreferenceData");
+    }
+    return self;
+}
 
 - (IBAction)openPreferenceView:(id)sender
 {
@@ -32,37 +39,40 @@ int _viewOpeningCount = 0;
 
 - (IBAction)openCustomCodeFile:(id)sender
 {
-    NSMutableArray *codeAppArray = [PreferenceData instance].codeAppArray;
-    NSString *filePath = [PreferenceData instance].codeFilePath;
+    PreferenceData* dataInst = (PreferenceData*)get_instance(@"PreferenceData");
+    NSMutableArray *codeAppArray = inst_method_call(@"PreferenceData", getCodeAppArray);
+    NSString *filePath = dataInst.codeFilePath;
     [[NSWorkspace sharedWorkspace] openFile:filePath withApplication:[codeAppArray firstObject]];
 }
 
 - (IBAction)openCustomConfig:(id)sender
 {
-    NSMutableArray *jsonAppArray = [PreferenceData instance].jsonAppArray;
-    NSString *filePath = [PreferenceData instance].jsonFilePath;
+    PreferenceData* dataInst = (PreferenceData*)get_instance(@"PreferenceData");
+    NSMutableArray *jsonAppArray = inst_method_call(@"PreferenceData", getJsonAppArray);
+    NSString *filePath = dataInst.jsonFilePath;
     [[NSWorkspace sharedWorkspace] openFile:filePath withApplication:[jsonAppArray firstObject]];
 }
 
 - (IBAction)CodeTest:(id)sender
 {
-    [[CodeTester instance] run];
+    
+    [_tester run];
 }
 
 - (IBAction)CopyTestCodeToProject:(id)sender
 {
-    [[CodeTester instance] copyTestFolderToProject];
+    [_tester copyTestFolderToProject];
 }
 
 - (IBAction)deletTestCodeFormProject:(id)sender
 {
-    [[CodeTester instance] saveAndRemoveTestFolder];
+    [_tester saveAndRemoveTestFolder];
 }
 
 - (IBAction)backup:(id)sender
 {
     [[Alert instance]alertModalFirstBtnTitle:@"确定" SecondBtnTitle:@"取消" MessageText:@"代码备份" InformativeText:@"点击确认备份扩展代码（如果偏好设置没有路径，默认备份到导出路径）" callBackFrist:^{
-        [[PreferenceData instance] backUpCustomCode];
+        [_dataInst backUpCustomCode];
     } callBackSecond:^{
     }];
 }
@@ -70,7 +80,7 @@ int _viewOpeningCount = 0;
 - (IBAction)restore:(id)sender
 {
     [[Alert instance]alertModalFirstBtnTitle:@"确定" SecondBtnTitle:@"取消" MessageText:@"代码恢复" InformativeText:@"点击确认恢复扩展代码" callBackFrist:^{
-        [[PreferenceData instance] restoreCustomCode];
+        [_dataInst restoreCustomCode];
     } callBackSecond:^{
     }];
 }
@@ -90,7 +100,8 @@ int _viewOpeningCount = 0;
     _itemCellDict = [NSMutableDictionary dictionary];
     _viewOpeningCount++;
 
-    NSString *codeSavePath = [ExportInfoManager instance].codeBackupPath;
+    ExportInfoManager* view = (ExportInfoManager*)get_instance(@"ExportInfoManager");
+    NSString *codeSavePath = view.codeBackupPath;
     if(codeSavePath != nil)
         _savePath.stringValue = codeSavePath;
     
@@ -129,16 +140,17 @@ int _viewOpeningCount = 0;
     
     if([openDlg runModal] == NSModalResponseOK)
     {
+        ExportInfoManager* view = (ExportInfoManager*)get_instance(@"ExportInfoManager");
         NSString* selectPath = [[openDlg URL] path];
         _savePath.stringValue = selectPath;
-        [[ExportInfoManager instance] setCodeSavePath:selectPath];
+        [view setCodeSavePath:selectPath];
     }
 }
 
 - (void)initFileOpenApp
 {
-    NSMutableArray *codeAppArray = [PreferenceData instance].codeAppArray;
-    NSMutableArray *jsonAppArray = [PreferenceData instance].jsonAppArray;
+    NSMutableArray *codeAppArray = inst_method_call(@"PreferenceData", getCodeAppArray);
+    NSMutableArray *jsonAppArray = inst_method_call(@"PreferenceData", getJsonAppArray);
     
     [_codeApp removeAllItems];
     [_jsonApp removeAllItems];
@@ -155,6 +167,7 @@ int _viewOpeningCount = 0;
     if(menu.highlightedItem == nil)
         return;
     
+    PreferenceData* dataInst = (PreferenceData*)get_instance(@"PreferenceData");
     NSPopUpButtonCell* cell = _itemCellDict[menu.identifier];
     if([menu.highlightedItem.title containsString:@"其它"]){
         NSOpenPanel* openDlg = [NSOpenPanel openPanel];
@@ -166,19 +179,19 @@ int _viewOpeningCount = 0;
             NSString *selectPath = [[openDlg URL] path];
             NSString *appName = [selectPath lastPathComponent];
             
-            NSMutableArray *newArr = [[PreferenceData instance] addAndSave:appName
+            NSMutableArray *newArr = [dataInst addAndSave:appName
                                                                    withKey:menu.identifier];
             [cell addItemsWithTitles:newArr];
             [cell synchronizeTitleAndSelectedItem];
         }else{
-            NSMutableArray *newArr = [[PreferenceData instance] addAndSave:[[cell itemTitles] firstObject]
+            NSMutableArray *newArr = [dataInst addAndSave:[[cell itemTitles] firstObject]
                                                                    withKey:menu.identifier];
             [cell addItemsWithTitles:newArr];
             [cell synchronizeTitleAndSelectedItem];
         }
     
     }else{
-        NSMutableArray *newArr = [[PreferenceData instance]
+        NSMutableArray *newArr = [dataInst
                                   addAndSave:menu.highlightedItem.title
                                   withKey:menu.identifier];
         [cell addItemsWithTitles:newArr];
