@@ -11,13 +11,9 @@
 
 @implementation VersionInfo
 
-- (id)init
+- (void)initialize
 {
-    if(self = [super init])
-    {
-        [self checkVersionInfo];
-    }
-    return self;
+    [self checkVersionInfo];
 }
 
 - (BOOL)isUpdate

@@ -7,6 +7,7 @@
 //
 
 #import "LogicManager.h"
+#import "NSMutableDictionary+ArraySupport.h"
 
 @implementation LogicManager
 
@@ -25,28 +26,40 @@
 
 - (void)startUp
 {
-    _instanceArray = @[[[CodeTester alloc] init],
-                       [[PackCammond alloc] init],
-                       [[ExportInfoManager alloc] init],
-                       [[DataResManager alloc] init],
-                       [[BuilderCSFileEdit alloc] init],
-                       [[PreferenceData alloc] init],
-                       [[VersionInfo alloc] init]];
+    NSArray *instanceArray = @[
+                                [[CodeTester alloc] init],
+                                [[PackCammond alloc] init],
+                                [[ExportInfoManager alloc] init],
+                                [[DataResManager alloc] init],
+                                [[BuilderCSFileEdit alloc] init],
+                                [[PreferenceData alloc] init],
+                                [[VersionInfo alloc] init]
+                                ];
+    
+    _instanceDict = [NSMutableDictionary dictionaryWithArray:instanceArray];
+    
+    for(int i = 0; i < [instanceArray count]; i++){
+        NSObject* item = instanceArray[i];
+        [item initialize];
+    }
 }
 
-- (id)getInstByClassName:(NSString*)className
+- (id)getInstByClassName:(NSString*)className error:(NSError**)err
 {
-    for (int i = 0; i < [_instanceArray count]; i++) {
-        NSObject* item = _instanceArray[i];
-        if([[item className] isEqualToString:className])
-            return item;
+    err = nil;
+    id obj = [_instanceDict objectForKey:className];
+    if(obj == nil){
+        NSDictionary *userInfo = [NSDictionary dictionaryWithObject:[NSString stringWithFormat: @"%@不存在,请到startUp进行初始化", className]
+                                                             forKey:NSLocalizedDescriptionKey];
+        *err = [NSError errorWithDomain:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleIdentifier"] code:999 userInfo:userInfo];
     }
-    return nil;
+    
+    return obj;
 }
 
 - (void)applicationWillResignActive:(NSNotification *)notification
 {
-    //inst_method_call(@"PreferenceData", backUpCustomCode);
+//    inst_method_call(@"PreferenceData", backUpCustomCode);
 }
 
 @end

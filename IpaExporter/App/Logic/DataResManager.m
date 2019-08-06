@@ -10,15 +10,10 @@
 
 @implementation DataResManager
 
-- (id)init
+- (void)initialize
 {
-    if (self = [super init])
-    {
-        _fileManager = [NSFileManager defaultManager];
-        _startingCount = 0;
-    }
-    
-    return self;
+    _fileManager = [NSFileManager defaultManager];
+    _startingCount = 0;
 }
 
 - (void)start:(ExportInfo*)info

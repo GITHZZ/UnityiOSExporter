@@ -12,33 +12,29 @@
 
 @implementation PreferenceData
 
-- (id)init
+- (void)initialize
 {
-    if(self = [super init])
-    {
-        _saveData = [[LocalDataSave alloc] initWithPlist:PLIST_PATH];
-        [_saveData setAllSaveKey:@{
-                                   OPEN_CODE_APP_SAVE_KEY:@[[NSMutableArray class]],
-                                   OPEN_JSON_APP_SAVE_KEY:@[[NSMutableArray class]],
-                                   }];
-        _codeAppArray = [_saveData dataForKey:OPEN_CODE_APP_SAVE_KEY];
-        _jsonAppArray = [_saveData dataForKey:OPEN_JSON_APP_SAVE_KEY];
-        
-        if(_codeAppArray.count <= 0){
-            [_codeAppArray addObject:@"Sublime Text.app"];
-            [_codeAppArray addObject:@"其它..."];
-        }
-        
-        if(_jsonAppArray.count <= 0){
-            [_jsonAppArray addObject:@"Sublime Text.app"];
-            [_jsonAppArray addObject:@"其它..."];
-        }
-        
-        [_saveData setDataForKey:OPEN_CODE_APP_SAVE_KEY withData:_codeAppArray];
-        [_saveData setDataForKey:OPEN_JSON_APP_SAVE_KEY withData:_jsonAppArray];
-        [_saveData saveAll];
+    _saveData = [[LocalDataSave alloc] initWithPlist:PLIST_PATH];
+    [_saveData setAllSaveKey:@{
+                               OPEN_CODE_APP_SAVE_KEY:@[[NSMutableArray class]],
+                               OPEN_JSON_APP_SAVE_KEY:@[[NSMutableArray class]],
+                               }];
+    _codeAppArray = [_saveData dataForKey:OPEN_CODE_APP_SAVE_KEY];
+    _jsonAppArray = [_saveData dataForKey:OPEN_JSON_APP_SAVE_KEY];
+    
+    if(_codeAppArray.count <= 0){
+        [_codeAppArray addObject:@"Sublime Text.app"];
+        [_codeAppArray addObject:@"其它..."];
     }
-    return self;
+    
+    if(_jsonAppArray.count <= 0){
+        [_jsonAppArray addObject:@"Sublime Text.app"];
+        [_jsonAppArray addObject:@"其它..."];
+    }
+    
+    [_saveData setDataForKey:OPEN_CODE_APP_SAVE_KEY withData:_codeAppArray];
+    [_saveData setDataForKey:OPEN_JSON_APP_SAVE_KEY withData:_jsonAppArray];
+    [_saveData saveAll];
 }
 
 - (NSMutableArray*)addAndSave:(NSString*)data withKey:(NSString*)key;

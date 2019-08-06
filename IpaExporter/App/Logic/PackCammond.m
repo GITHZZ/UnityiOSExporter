@@ -13,18 +13,15 @@
 
 @implementation PackCammond
 
-- (id) init
-{
-    if(self = [super init]){
-        _isExporting = false;
-        
-        [[NSFileManager defaultManager]createDirectoryAtPath:PACK_FOLDER_PATH withIntermediateDirectories:YES attributes:nil error:nil];
-        
-        [[EventManager instance] regist:EventViewSureClicked
-                                   func:@selector(sureBtnClicked:)
-                                   self:self];
-    }
-    return self;
+- (void)initialize
+{    
+    _isExporting = false;
+    
+    [[NSFileManager defaultManager]createDirectoryAtPath:PACK_FOLDER_PATH withIntermediateDirectories:YES attributes:nil error:nil];
+    
+    [[EventManager instance] regist:EventViewSureClicked
+                               func:@selector(sureBtnClicked:)
+                               self:self];
 }
 
 - (void)sureBtnClicked:(NSNotification*)notification

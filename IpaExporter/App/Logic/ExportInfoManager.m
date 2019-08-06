@@ -16,32 +16,28 @@
     free(_info);
 }
 
-- (id)init
+- (void)initialize
 {
-    if(self =[super init])
-    {
-        _info = (ExportInfo*)malloc(sizeof(ExportInfo)); 
-        _info->exportFolderParh = "";
-        _info->unityProjPath = "";
-        
-        _unityProjPathArr = [[NSMutableArray alloc] initWithCapacity:6];
-        _exportPathArr = [[NSMutableArray alloc] initWithCapacity:6];
-        _codeBackupPath = @"";
-        
-        _saveTpDict = @{
-                       SAVE_DETAIL_ARRARY_KEY:@[[NSMutableArray class],[DetailsInfoData class], [NSMutableDictionary class], [NSArray class]],
-                       SAVE_PROJECT_PATH_KEY:@[[NSArray class]],
-                       SAVE_EXPORT_PATH_KEY:@[[NSArray class]],
-                       SAVE_CODE_SAVE_PATH_KEY:@[[NSString class]],
-                       SAVE_SCENE_ARRAY_KEY:@[[NSArray class]],
-                       SAVE_IS_RELEASE_KEY:@[[NSString class]],
-                       SAVE_IS_EXPORT_XCODE:@[[NSString class]],
-                       SAVE_IS_EXPORT_IPA:@[[NSString class]]
-                       };
-        _userData = [[LocalDataSave alloc] initWithPlist:PLIST_PATH];
-        [_userData setAllSaveKey:_saveTpDict];
-    }
-    return self;
+    _info = (ExportInfo*)malloc(sizeof(ExportInfo));
+    _info->exportFolderParh = "";
+    _info->unityProjPath = "";
+    
+    _unityProjPathArr = [[NSMutableArray alloc] initWithCapacity:6];
+    _exportPathArr = [[NSMutableArray alloc] initWithCapacity:6];
+    _codeBackupPath = @"";
+    
+    _saveTpDict = @{
+                   SAVE_DETAIL_ARRARY_KEY:@[[NSMutableArray class],[DetailsInfoData class], [NSMutableDictionary class], [NSArray class]],
+                   SAVE_PROJECT_PATH_KEY:@[[NSArray class]],
+                   SAVE_EXPORT_PATH_KEY:@[[NSArray class]],
+                   SAVE_CODE_SAVE_PATH_KEY:@[[NSString class]],
+                   SAVE_SCENE_ARRAY_KEY:@[[NSArray class]],
+                   SAVE_IS_RELEASE_KEY:@[[NSString class]],
+                   SAVE_IS_EXPORT_XCODE:@[[NSString class]],
+                   SAVE_IS_EXPORT_IPA:@[[NSString class]]
+                   };
+    _userData = [[LocalDataSave alloc] initWithPlist:PLIST_PATH];
+    [_userData setAllSaveKey:_saveTpDict];
 }
 
 - (void)reload

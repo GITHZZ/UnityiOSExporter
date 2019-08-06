@@ -23,6 +23,8 @@
 		18CA13961D78164C006595E5 /* GeneralView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CA13951D78164C006595E5 /* GeneralView.m */; };
 		18DD5E6C1DAF1C150071B654 /* DetailsInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD5E6B1DAF1C150071B654 /* DetailsInfoView.m */; };
 		18F1027B1DCC2AEB008312E5 /* EventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F1027A1DCC2AEB008312E5 /* EventManager.m */; };
+		5928B57022F91CEF003B30CD /* NSObject+LogicBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5928B56F22F91CEF003B30CD /* NSObject+LogicBase.m */; };
+		5928B57322F94C98003B30CD /* NSMutableDictionary+ArraySupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 5928B57222F94C97003B30CD /* NSMutableDictionary+ArraySupport.m */; };
 		5937E44E22C73B8B004FD5AA /* MobileprovisionParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5937E44C22C73B8B004FD5AA /* MobileprovisionParser.m */; };
 		5937E45122C741F5004FD5AA /* LocalDataSave.m in Sources */ = {isa = PBXBuildFile; fileRef = 5937E45022C741F5004FD5AA /* LocalDataSave.m */; };
 		5937E45522CA0634004FD5AA /* PreferenceData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5937E45422CA0634004FD5AA /* PreferenceData.m */; };
@@ -92,6 +94,10 @@
 		18F102791DCC2AEB008312E5 /* EventManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventManager.h; sourceTree = "<group>"; };
 		18F1027A1DCC2AEB008312E5 /* EventManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventManager.m; sourceTree = "<group>"; };
 		18FCCBCC1E49CD3900BDF9AC /* Defs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Defs.h; sourceTree = "<group>"; };
+		5928B56E22F91CEF003B30CD /* NSObject+LogicBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+LogicBase.h"; sourceTree = "<group>"; };
+		5928B56F22F91CEF003B30CD /* NSObject+LogicBase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LogicBase.m"; sourceTree = "<group>"; };
+		5928B57122F94C97003B30CD /* NSMutableDictionary+ArraySupport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+ArraySupport.h"; sourceTree = "<group>"; };
+		5928B57222F94C97003B30CD /* NSMutableDictionary+ArraySupport.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+ArraySupport.m"; sourceTree = "<group>"; };
 		5937E44C22C73B8B004FD5AA /* MobileprovisionParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobileprovisionParser.m; sourceTree = "<group>"; };
 		5937E44D22C73B8B004FD5AA /* MobileprovisionParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobileprovisionParser.h; sourceTree = "<group>"; };
 		5937E44F22C741F5004FD5AA /* LocalDataSave.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalDataSave.h; sourceTree = "<group>"; };
@@ -206,10 +212,10 @@
 		18750A9C1D9BBBD000FECCA6 /* Logic */ = {
 			isa = PBXGroup;
 			children = (
-				59B1BE3B22C06D030087F869 /* CodeTester.h */,
-				59B1BE3C22C06D030087F869 /* CodeTester.m */,
 				5978866A22F6C1C300340436 /* LogicManager.h */,
 				5978866B22F6C1C300340436 /* LogicManager.m */,
+				59B1BE3B22C06D030087F869 /* CodeTester.h */,
+				59B1BE3C22C06D030087F869 /* CodeTester.m */,
 				5964C640229CE262004BDD23 /* PackCammond.h */,
 				5964C641229CE262004BDD23 /* PackCammond.m */,
 				182FF6EF1E4D936700CC0C7C /* DetailsInfoData.h */,
@@ -224,6 +230,10 @@
 				5937E45422CA0634004FD5AA /* PreferenceData.m */,
 				59F118F422F0409600E88253 /* VersionInfo.h */,
 				59F118F522F0409600E88253 /* VersionInfo.m */,
+				5928B56E22F91CEF003B30CD /* NSObject+LogicBase.h */,
+				5928B56F22F91CEF003B30CD /* NSObject+LogicBase.m */,
+				5928B57122F94C97003B30CD /* NSMutableDictionary+ArraySupport.h */,
+				5928B57222F94C97003B30CD /* NSMutableDictionary+ArraySupport.m */,
 			);
 			path = Logic;
 			sourceTree = "<group>";
@@ -438,6 +448,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5937E45522CA0634004FD5AA /* PreferenceData.m in Sources */,
+				5928B57322F94C98003B30CD /* NSMutableDictionary+ArraySupport.m in Sources */,
 				59B1BE3D22C06D030087F869 /* CodeTester.m in Sources */,
 				18F1027B1DCC2AEB008312E5 /* EventManager.m in Sources */,
 				594F118922EC1E7E00052774 /* ViewMain.m in Sources */,
@@ -454,6 +465,7 @@
 				18322A8E1DAE193B0049660B /* BuilderCSFileEdit.m in Sources */,
 				18CA13961D78164C006595E5 /* GeneralView.m in Sources */,
 				5978866C22F6C1C300340436 /* LogicManager.m in Sources */,
+				5928B57022F91CEF003B30CD /* NSObject+LogicBase.m in Sources */,
 				5937E44E22C73B8B004FD5AA /* MobileprovisionParser.m in Sources */,
 				59F118F622F0409600E88253 /* VersionInfo.m in Sources */,
 				18DD5E6C1DAF1C150071B654 /* DetailsInfoView.m in Sources */,

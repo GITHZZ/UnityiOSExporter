@@ -50,7 +50,6 @@
 
 - (IBAction)AddBtnClick:(id)sender
 {
-    //open detail info settings
     NSStoryboard *sb = [NSStoryboard storyboardWithName:@"Main" bundle:nil];
     DetailsInfoSetting *vc = [sb instantiateControllerWithIdentifier:@"detailsInfoSetting"];
 

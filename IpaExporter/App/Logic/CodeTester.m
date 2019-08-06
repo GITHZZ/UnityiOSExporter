@@ -16,14 +16,10 @@
 
 @implementation CodeTester
 
-- (id)init
+- (void)initialize
 {
-    if(self = [super init])
-    {
-        _manager = (ExportInfoManager*)get_instance(@"ExportInfoManager");
-        _dataInst = (DataResManager*)get_instance(@"DataResManager");
-    }
-    return self;
+    _manager = (ExportInfoManager*)get_instance(@"ExportInfoManager");
+    _dataInst = (DataResManager*)get_instance(@"DataResManager");
 }
 
 - (void)run
