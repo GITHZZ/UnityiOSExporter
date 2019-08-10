@@ -69,11 +69,6 @@
                                                 <action selector="openCustomConfig:" target="11a-jN-iuY" id="3DP-lq-TW0"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="用例测试" keyEquivalent="t" id="3o6-5w-Uo6" userLabel="Back">
-                                            <connections>
-                                                <action selector="CodeTest:" target="11a-jN-iuY" id="uBB-XB-3Yg"/>
-                                            </connections>
-                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="LMO-vE-1ka"/>
                                         <menuItem title="拷贝测试代码到工程" keyEquivalent="C" id="W0H-ze-RhV" userLabel="拷贝测试代码到工程">
                                             <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
@@ -104,6 +99,23 @@
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="ShowHelp:" target="11a-jN-iuY" id="hcs-HI-CXQ"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="运行" id="bre-41-VFl" customClass="ExtensionsMenu">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="运行" id="5uI-xB-I2h">
+                                    <items>
+                                        <menuItem title="开始导包" keyEquivalent="r" id="kdp-bt-xSc">
+                                            <connections>
+                                                <action selector="startRun:" target="bre-41-VFl" id="KKJ-TM-tdz"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="用例测试" keyEquivalent="t" id="3o6-5w-Uo6">
+                                            <connections>
+                                                <action selector="CodeTest:" target="bre-41-VFl" id="EbP-Zy-h8D"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -1583,7 +1595,7 @@
                                     <rect key="frame" x="-100" y="-100" width="593" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="0.18074074074074076" horizontal="NO" id="9YB-yJ-KwW">
+                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="9YB-yJ-KwW">
                                     <rect key="frame" x="594" y="1" width="15" height="417"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>

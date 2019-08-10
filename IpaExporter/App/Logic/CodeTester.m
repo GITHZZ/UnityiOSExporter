@@ -29,25 +29,25 @@
                       _manager.info->unityProjPath,
                       _manager.info->exportFolderParh,
                       resourcePath];
-    
+
     NSString *shellScriptPath = [NSString stringWithFormat:@"%@/CodeTest/CodeTest.sh", resourcePath];
     NSString *shellStr = [NSString stringWithFormat:@"sh %@ %@", shellScriptPath, args];
-    
+
     [_dataInst start:_manager.info];
-    
+
     NSString *customCodePath = [LIB_PATH stringByAppendingString:@"/TempCode/Builder/Users"];
     NSString *codeTestPath = [LIB_PATH stringByAppendingString:@"/CodeTest/Test"];
     NSString *litJsonPath = [LIB_PATH stringByAppendingString:@"/TempCode/Builder/LitJson"];
     [_dataInst appendingFolder:customCodePath];
     [_dataInst appendingFolder:codeTestPath];
     [_dataInst appendingFolder:litJsonPath];
-    
+
     dispatch_queue_t queue = dispatch_queue_create(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_group_t group = dispatch_group_create();
     dispatch_group_async(group, queue, ^{
         [self createTerminalTask:shellStr];
     });
-    
+
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
         [[NSWorkspace sharedWorkspace] openFile:[NSString stringWithFormat:@"%s/code_test_log.xml", _manager.info->unityProjPath]];
         [_dataInst end];
@@ -114,7 +114,6 @@ BOOL _isCopyed = NO;
     [shellTask launch];
     
     if(isWait){
-        
         [shellTask waitUntilExit];
     
         NSFileHandle *file = [pipe fileHandleForReading];
@@ -124,7 +123,6 @@ BOOL _isCopyed = NO;
     
         return strReturnFormShell;
     }
-    
     return @"";
 }
 

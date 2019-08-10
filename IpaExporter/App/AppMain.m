@@ -19,7 +19,7 @@ int main(int argc, const char * argv[])
         [[NSFileManager defaultManager] createDirectoryAtPath:SETTING_FOLDER withIntermediateDirectories:YES attributes:nil error:nil];
     }
     
-    [[LogicManager defaultInstance] startUp];
+    [[LogicManager defaultManager] startUp];
     
     return NSApplicationMain(argc, argv);
 }
@@ -44,7 +44,7 @@ int main(int argc, const char * argv[])
 
 - (void)applicationWillResignActive:(NSNotification *)notification
 {
-    [[LogicManager defaultInstance] applicationWillResignActive:notification];
+    [[LogicManager defaultManager] applicationWillResignActive:notification];
 }
 
 @end

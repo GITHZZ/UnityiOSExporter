@@ -11,6 +11,9 @@
 
 @implementation Alert
 
+static AlertFunc _block;
+static AlertFunc _block2;
+
 + (instancetype)instance
 {
     Class cls = [self class];
@@ -24,32 +27,29 @@
     return instance;
 }
 
-- (void)alertTip:(NSString *)firstname MessageText:(NSString *)messagetext InformativeText:(NSString *)informativetext callBackFrist:(void(^)())func1
+- (void)alertTip:(NSString *)firstname MessageText:(NSString *)messagetext InformativeText:(NSString *)informativetext callBackFrist:(AlertFunc)func1
 {
-    
     NSAlert *alert = [[NSAlert alloc] init];
     
+    _block = func1;
     [alert addButtonWithTitle:firstname];
     [alert setMessageText:messagetext];
     [alert setInformativeText:informativetext];
-    
     [alert setAlertStyle:NSAlertStyleWarning];
-    
+
     [alert beginSheetModalForWindow:[NSApplication sharedApplication].keyWindow completionHandler:^(NSInteger result) {
-        //响应window的按钮事件
         if(result == NSAlertFirstButtonReturn)
-        {
-            func1();
-        }
+            _block();
     }];
-    
 }
 
 - (void)alertModalFirstBtnTitle:(NSString *)firstname SecondBtnTitle:(NSString *)secondname MessageText:(NSString *)messagetext InformativeText:(NSString *)informativetext callBackFrist:(void(^)())func1 callBackSecond:(void(^)())func2
 {
-    
     NSAlert *alert = [[NSAlert alloc] init];
-    
+ 
+    _block = func1;
+    _block2 = func2;
+
     [alert addButtonWithTitle:firstname];
     [alert addButtonWithTitle:secondname];
     [alert setMessageText:messagetext];
@@ -57,18 +57,17 @@
     
     [alert setAlertStyle:NSAlertStyleWarning];
 
-    [alert beginSheetModalForWindow:[NSApplication sharedApplication].keyWindow completionHandler:^(NSInteger result) {
-        //响应window的按钮事件
+    [alert beginSheetModalForWindow:[NSApplication sharedApplication].keyWindow completionHandler:^(NSInteger result){
+        
         if(result == NSAlertFirstButtonReturn)
         {
-            func1();
+            _block();
         }
         else if(result == NSAlertSecondButtonReturn )
         {
-            func2();
+            _block2();
         }
     }];
-    
 }
 
 @end

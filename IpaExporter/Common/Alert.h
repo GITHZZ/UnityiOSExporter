@@ -8,7 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface Alert : NSObject
+typedef void(^AlertFunc)();
+@interface Alert : NSObject<NSAlertDelegate,NSWindowDelegate>
 
 + (instancetype)instance;
 

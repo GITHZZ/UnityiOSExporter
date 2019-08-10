@@ -10,6 +10,8 @@
 
 @implementation NSObject (LogicBase)
 
--(void)initialize{}
+-(void)initialize
+{
+}
 
 @end

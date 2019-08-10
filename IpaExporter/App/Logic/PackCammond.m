@@ -79,7 +79,7 @@
     });
 }
 
-- (NSString*)writeConfigToJsonFile:(NSString*)platformName withData:(NSMutableDictionary*)jsonData
+- (NSString*)writeConfigToJsonFile:(NSString*)appName withData:(NSMutableDictionary*)jsonData
 {
     BOOL isVaild = [NSJSONSerialization isValidJSONObject:jsonData];
     if(!isVaild){
@@ -88,8 +88,7 @@
         return @"";
     }
     
-    
-    NSString *resourcePath = [PACK_FOLDER_PATH stringByAppendingFormat:@"/%@/", platformName];
+    NSString *resourcePath = [PACK_FOLDER_PATH stringByAppendingFormat:@"/%@/", appName];
     [[NSFileManager defaultManager]createDirectoryAtPath:resourcePath withIntermediateDirectories:YES attributes:nil error:nil];
     
     NSString *configPath = [resourcePath stringByAppendingString:@"config.json"];
@@ -200,7 +199,7 @@
         jsonData[@"release_signing_identity"] = [NSMutableArray arrayWithObjects:data.releaseProfileName, data.releaseDevelopTeam, nil];
         jsonData[@"product_bundle_identifier"] = data.bundleIdentifier;
         
-        NSString *configPath = [self writeConfigToJsonFile:data.platform withData:jsonData];
+        NSString *configPath = [self writeConfigToJsonFile:data.appName withData:jsonData];
         
         //$1 ruby入口文件路径
         //$2 sdk资源文件路径
@@ -218,6 +217,8 @@
         //$14 是否release包
         //$15 缓存文件位置
         //$16 需要关联的sdk文件夹
+        //$17 是否导出ipa文件
+        //$18 应用名字
         NSArray *args = [NSArray arrayWithObjects:
                          rubyMainPath,//$1
                          data.customSDKPath,
@@ -236,6 +237,7 @@
                          PACK_FOLDER_PATH,
                          [self convertArrayToString:data.customSDKChild],
                          [NSString stringWithFormat:@"%d",view.info->isExportIpa],
+                         data.appName,
                          nil];
          
         showLog([[NSString stringWithFormat:@"开始打包 平台:%@", data.platform] UTF8String]);

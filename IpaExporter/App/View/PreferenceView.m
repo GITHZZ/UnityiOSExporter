@@ -14,17 +14,6 @@ int _viewOpeningCount = 0;
 
 @implementation ExtensionsMenu
 
-
-- (id)init
-{
-    if(self=[super init])
-    {
-        _tester = (CodeTester*)get_instance(@"CodeTester");
-        _dataInst = (PreferenceData*)get_instance(@"PreferenceData");
-    }
-    return self;
-}
-
 - (IBAction)openPreferenceView:(id)sender
 {
     if(_viewOpeningCount >= 1)
@@ -55,24 +44,27 @@ int _viewOpeningCount = 0;
 
 - (IBAction)CodeTest:(id)sender
 {
-    
-    [_tester run];
+    CodeTester *tester = (CodeTester*)get_instance(@"CodeTester");
+    [tester run];
 }
 
 - (IBAction)CopyTestCodeToProject:(id)sender
 {
-    [_tester copyTestFolderToProject];
+    CodeTester *tester = (CodeTester*)get_instance(@"CodeTester");
+    [tester copyTestFolderToProject];
 }
 
 - (IBAction)deletTestCodeFormProject:(id)sender
 {
-    [_tester saveAndRemoveTestFolder];
+    CodeTester *tester = (CodeTester*)get_instance(@"CodeTester");
+    [tester saveAndRemoveTestFolder];
 }
 
 - (IBAction)backup:(id)sender
 {
     [[Alert instance]alertModalFirstBtnTitle:@"确定" SecondBtnTitle:@"取消" MessageText:@"代码备份" InformativeText:@"点击确认备份扩展代码（如果偏好设置没有路径，默认备份到导出路径）" callBackFrist:^{
-        [_dataInst backUpCustomCode];
+        PreferenceData* dataInst = (PreferenceData*)get_instance(@"PreferenceData");
+        [dataInst backUpCustomCode];
     } callBackSecond:^{
     }];
 }
@@ -80,7 +72,8 @@ int _viewOpeningCount = 0;
 - (IBAction)restore:(id)sender
 {
     [[Alert instance]alertModalFirstBtnTitle:@"确定" SecondBtnTitle:@"取消" MessageText:@"代码恢复" InformativeText:@"点击确认恢复扩展代码" callBackFrist:^{
-        [_dataInst restoreCustomCode];
+        PreferenceData* dataInst = (PreferenceData*)get_instance(@"PreferenceData");
+        [dataInst restoreCustomCode];
     } callBackSecond:^{
     }];
 }
@@ -89,6 +82,11 @@ int _viewOpeningCount = 0;
 {
     NSString *filePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/README.md"];
     [[NSWorkspace sharedWorkspace] openFile:filePath];
+}
+
+- (IBAction)startRun:(id)sender
+{
+    [[EventManager instance] send:EventViewSureClicked withData:sender];
 }
 
 @end

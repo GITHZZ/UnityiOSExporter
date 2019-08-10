@@ -19,8 +19,8 @@
 #import "CodeTester.h"
 #import "NSObject+LogicBase.h"
 
-#define get_instance(instanceName) [[LogicManager defaultInstance] getInstByClassName:instanceName error:nil];
-#define inst_method_call(instanceName, methodName) objc_msgSend([[LogicManager defaultInstance] getInstByClassName:instanceName error:nil], @selector(methodName));
+#define get_instance(instanceName) [[LogicManager defaultManager] getInstByClassName:instanceName error:nil];
+#define inst_method_call(instanceName, methodName) objc_msgSend([[LogicManager defaultManager] getInstByClassName:instanceName error:nil], @selector(methodName));
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
     NSMutableDictionary *_instanceDict;
 }
 
-+ (instancetype)defaultInstance;
++ (instancetype)defaultManager;
 - (void)startUp;
 - (id)getInstByClassName:(NSString*)className error:(NSError**)err;
 

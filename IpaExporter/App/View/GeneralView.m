@@ -118,7 +118,6 @@
     [[EventManager instance] regist:EventSettingFileSelect
                                func:@selector(reloadAllInfo)
                                self:self];
-    
 }
 
 - (void)unRegistEvent
