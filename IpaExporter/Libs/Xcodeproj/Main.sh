@@ -46,13 +46,12 @@ current_time=`date "+%Y%m%d%H%M%S"`
 xcode_proj_path=${export_path}"/"${xcode_proj_name}
 
 export_folder=${export_path}"/export"
-ipa_folder_path=${export_folder}"/Unity-iPhone-"${app_name}
-
 if [ ! -d ${export_folder} ]; then
     mkdir ${export_folder}
 fi
 
-#导出ipa目录
+#导出ipa目录1
+ipa_folder_path=${export_folder}"/Unity-iPhone-"${app_name}
 if [ -d ${ipa_folder_path} ]; then
     rm -r ${ipa_folder_path}
 fi
@@ -147,3 +146,8 @@ fi
 src_path=${ipa_folder_path}"/Unity-iPhone.ipa"
 dst_path=${dst_folder_path}"/"${app_name}"_"${current_time}"_"${configuration}".ipa"
 cp -f ${src_path} ${dst_path}
+
+#拷贝archive文件
+src_path=${ipa_folder_path}/Unity-iPhone-${app_name}.xcarchive
+dst_path=${dst_folder_path}"/"${app_name}"_"${current_time}"_"${configuration}".xcarchive"
+cp -f -r ${src_path} ${dst_path}

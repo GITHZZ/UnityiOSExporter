@@ -15,13 +15,16 @@
 
 int main(int argc, const char * argv[])
 {
-    if(![[NSFileManager defaultManager] fileExistsAtPath:SETTING_FOLDER]){
-        [[NSFileManager defaultManager] createDirectoryAtPath:SETTING_FOLDER withIntermediateDirectories:YES attributes:nil error:nil];
+    @autoreleasepool
+    {
+        if(![[NSFileManager defaultManager] fileExistsAtPath:SETTING_FOLDER]){
+            [[NSFileManager defaultManager] createDirectoryAtPath:SETTING_FOLDER withIntermediateDirectories:YES attributes:nil error:nil];
+        }
+        
+        [[LogicManager defaultManager] startUp];
+
+        return NSApplicationMain(argc, argv);
     }
-    
-    [[LogicManager defaultManager] startUp];
-    
-    return NSApplicationMain(argc, argv);
 }
 
 @implementation AppDelegate

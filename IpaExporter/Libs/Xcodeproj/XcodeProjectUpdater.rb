@@ -192,6 +192,10 @@ class XcodeProjectUpdater
 
 		enable_bitCode = @setting_hash["enable_bit_code"]
 		set_build_setting(@target, "ENABLE_BITCODE", enable_bitCode)
+        
+        #替换二进制名字
+        product_name = bundle_identifier.sub('.', '')
+        set_build_setting(@target, "PRODUCT_NAME", product_name)
 	end
 
 	#新增一个xcode-group
