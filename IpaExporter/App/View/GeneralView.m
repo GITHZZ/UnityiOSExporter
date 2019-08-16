@@ -118,7 +118,11 @@
     [[EventManager instance] regist:EventSettingFileSelect
                                func:@selector(reloadAllInfo)
                                self:self];
+    [[EventManager instance] regist:EventOnMenuSelect
+                               func:@selector(onMenuSelect:)
+                               self:self];
 }
+
 
 - (void)unRegistEvent
 {
@@ -139,6 +143,8 @@
     [[EventManager instance] unRegist:EventCleanInfoContent
                                self:self];
     [[EventManager instance] unRegist:EventSettingFileSelect
+                               self:self];
+    [[EventManager instance] unRegist:EventOnMenuSelect
                                self:self];
 }
 
@@ -471,6 +477,22 @@
         [_showTimer invalidate];
         _showTimer = nil;
     }
+}
+
+- (void)onMenuSelect:(NSNotification*)notification
+{
+    NSString *identifier = notification.object;
+    ExportInfo* info = _manager.info;
+    NSButton *btn = [[NSButton alloc] init];
+    btn.identifier = identifier;
+    if([btn.identifier isEqualToString:@"isReleaseBox"])
+        _isReleaseBox.state = (int)(!info->isRelease);
+    else if([btn.identifier isEqualToString:@"isExportXcode"])
+        _isExportXcode.state = (int)(!info->isExportXcode);
+    else if([btn.identifier isEqualToString:@"isExportIpa"])
+        _isExportIpa.state = (int)(!info->isExportIpa);
+    
+    [self isReleaseBtnSelect:btn];
 }
 
 - (IBAction)isReleaseBtnSelect:(id)sender

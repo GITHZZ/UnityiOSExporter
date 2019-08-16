@@ -84,6 +84,12 @@ int _viewOpeningCount = 0;
     [[NSWorkspace sharedWorkspace] openFile:filePath];
 }
 
+- (IBAction)switchState:(id)sender
+{
+    NSMenuItem *item = (NSMenuItem*)sender;
+    [[EventManager instance] send:EventOnMenuSelect withData:item.identifier];
+}
+    
 - (IBAction)startRun:(id)sender
 {
     [[EventManager instance] send:EventViewSureClicked withData:sender];

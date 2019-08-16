@@ -80,6 +80,7 @@ typedef NS_ENUM(EventType, CustomEventType)
     EventStopRecordTime          = 217,
     EventSettingFileSelect       = 218,
     EventSetViewMainTab          = 219,
+    EventOnMenuSelect            = 220,
 };
 
 #endif /* Defs_h */
