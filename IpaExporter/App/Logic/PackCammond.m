@@ -19,64 +19,108 @@
     
     [[NSFileManager defaultManager]createDirectoryAtPath:PACK_FOLDER_PATH withIntermediateDirectories:YES attributes:nil error:nil];
     
-    [[EventManager instance] regist:EventViewSureClicked
-                               func:@selector(sureBtnClicked:)
-                               self:self];
+    EVENT_REGIST(EventViewSureClicked, @selector(sureBtnClicked:));
+ 
+    _commFunc = [NSSet setWithObjects:@"exportXcode", @"editXcode", @"exportIpa", nil];
 }
 
 - (void)sureBtnClicked:(NSNotification*)notification
 {
-    //导出中不走逻辑
+    ExportInfoManager *exportManager = (ExportInfoManager*)get_instance(@"ExportInfoManager");
+    NSMutableArray *comm = [NSMutableArray array];
+    if(exportManager.info->isExportXcode == 1)
+        [comm addObject:@"exportXcode"];
+    else
+        showWarning("xcode工程生成已跳过,直接进行平台打包");
+
+    [comm addObject:@"editXcode"];
+    [comm addObject:@"exportIpa"];
+    [self startExport:comm];
+}
+
+- (void)startExport:(NSArray*)comm
+{
     if(_isExporting)
         return;
     
-    ExportInfoManager *exportManager = (ExportInfoManager*)get_instance(@"ExportInfoManager");
-    [[EventManager instance] send:EventCleanInfoContent withData:nil];
-    
     _isExporting = true;
-    
-    [[EventManager instance] send:EventSetExportButtonState withData:s_false];
-    [[EventManager instance] send:EventStartRecordTime withData:nil];
+
+    EVENT_SEND(EventSetExportButtonState, s_false);
+    EVENT_SEND(EventStartRecordTime, nil);
     
     showLog("开始执行Unity打包脚本");
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_group_t group = dispatch_group_create();
-    
-    dispatch_group_async(group, queue, ^{
-        NSMutableArray<DetailsInfoData*>* detailArray = exportManager.detailArray;
-        
-        dispatch_queue_t sq = dispatch_queue_create("exportInfo", DISPATCH_QUEUE_SERIAL);
-        
-        BOOL result = YES;
-        if(exportManager.info->isExportXcode == 1)
-            result = [self exportXcodeProjInThread:sq];
-        else
-            showWarning("xcode工程生成已跳过,直接进行平台打包");
-        
-        if(result){
-            showLog("开始进行平台打包");
-            for(int i = 0; i < [detailArray count]; i++){
-                dispatch_sync(sq, ^{
-                    DetailsInfoData *data = [detailArray objectAtIndex:i];
-                    [self editXcodeProject:data];
-                });
-            }
-        }else{
-            showError("由于生成xcode报错,打包ipa中断");
-        }
-    });
-    
-    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+    [self runWithCommond:comm withBlock:^{
         _isExporting = false;
-        [[EventManager instance] send:EventSetExportButtonState withData:s_true];
-        [[EventManager instance] send:EventStopRecordTime withData:nil];
+        
+        EVENT_SEND(EventSetExportButtonState, s_true);
+        EVENT_SEND(EventStopRecordTime, nil);
         
         [NSApp activateIgnoringOtherApps:YES];
-        showSuccess("打包结束");
         
         ExportInfoManager* view = (ExportInfoManager*)get_instance(@"ExportInfoManager");
         [[NSWorkspace sharedWorkspace] selectFile:nil inFileViewerRootedAtPath:[NSString stringWithFormat:@"%s/export", view.info->exportFolderParh]];
+    }];
+}
+
+- (void)runWithCommond:(NSArray*)comm withBlock:(void(^)())finCallback
+{
+    dispatch_group_t group = dispatch_group_create();
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_group_async(group, queue, ^{
+       for(int i = 0; i < [comm count]; i++){
+            NSString *order = comm[i];
+            if([_commFunc containsObject:order]){
+                int code = ((int (*)(id, SEL))objc_msgSend)(get_instance(@"PackCammond"), NSSelectorFromString(order));
+                if(code == COMM_EXIT) break; //终止指令
+            }else{
+                NSLog(@"不存在指令%@", order);
+            }
+        }
+        NSLog(@"执行完毕");
     });
+    
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        finCallback();
+    });
+}
+
+- (int)exportXcode
+{
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    BOOL result = [self exportXcodeProjInThread:queue];
+    if(!result){
+        showError("由于生成xcode报错,打包ipa中断");
+        return COMM_EXIT;
+    }
+    return COMM_SUCCESS;
+}
+
+- (int)editXcode
+{
+    showLog("开始xcode工程修改");
+    ExportInfoManager *exportManager = (ExportInfoManager*)get_instance(@"ExportInfoManager");
+    NSMutableArray<DetailsInfoData*>* detailArray = exportManager.detailArray;
+    for(int i = 0; i < [detailArray count]; i++){
+        DetailsInfoData *data = [detailArray objectAtIndex:i];
+        BOOL isSuccess = [self editXcodeForPlatform:data];
+        if(!isSuccess)
+            return COMM_EXIT;
+    }
+    return COMM_SUCCESS;
+}
+
+- (int)exportIpa
+{
+    showLog("开始进行平台打包");
+    ExportInfoManager *exportManager = (ExportInfoManager*)get_instance(@"ExportInfoManager");
+    NSMutableArray<DetailsInfoData*>* detailArray = exportManager.detailArray;
+    for(int i = 0; i < [detailArray count]; i++){
+        DetailsInfoData *data = [detailArray objectAtIndex:i];
+        BOOL isSuccess = [self exportIpaForPlatform:data];
+        if(!isSuccess)
+            return COMM_EXIT;
+    }
+    return COMM_SUCCESS;
 }
 
 - (NSString*)writeConfigToJsonFile:(NSString*)appName withData:(NSMutableDictionary*)jsonData
@@ -180,14 +224,14 @@
     return result;
 }
 
-- (void)editXcodeProject:(DetailsInfoData*)data
+- (BOOL)editXcodeForPlatform:(DetailsInfoData*)data
 {
-    NSString *shellPath = [LIB_PATH stringByAppendingString:@"/Xcodeproj/Main.sh"];
+    NSString *shellPath = [LIB_PATH stringByAppendingString:@"/Xcodeproj/EditXcode.sh"];
     NSString *rubyMainPath = [LIB_PATH stringByAppendingString:@"/Xcodeproj/Main.rb"];
     
     ExportInfoManager* view = (ExportInfoManager*)get_instance(@"ExportInfoManager");
     
-     if([data.isSelected isEqualToString:@"1"]){
+    if([data.isSelected isEqualToString:@"1"]){
         //配置json文件
         NSMutableDictionary *jsonData = [NSMutableDictionary dictionary];
         jsonData[@"frameworks"] = data.frameworkNames;
@@ -198,7 +242,6 @@
         jsonData[@"develop_signing_identity"] = [NSMutableArray arrayWithObjects:data.debugProfileName, data.debugDevelopTeam, nil];
         jsonData[@"release_signing_identity"] = [NSMutableArray arrayWithObjects:data.releaseProfileName, data.releaseDevelopTeam, nil];
         jsonData[@"product_bundle_identifier"] = data.bundleIdentifier;
-        
         NSString *configPath = [self writeConfigToJsonFile:data.appName withData:jsonData];
         
         //$1 ruby入口文件路径
@@ -239,23 +282,64 @@
                          [NSString stringWithFormat:@"%d",view.info->isExportIpa],
                          data.appName,
                          nil];
-         
+        
+        showLog([[NSString stringWithFormat:@"开始修改工程 平台:%@", data.platform] UTF8String]);
+        NSString *shellLog = [self invokingShellScriptAtPath:shellPath withArgs:args];
+        NSString* logStr = [shellLog stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        showLog([logStr UTF8String]);
+        
+        if([shellLog containsString:@"** EDIT XCODE PROJECT SUCCESS **"]){
+            [NSApp activateIgnoringOtherApps:YES];
+            showSuccess([[NSString stringWithFormat:@"%@修改Xcode成功", data.platform] UTF8String]);
+        }
+    }
+    return YES;
+}
+
+- (BOOL)exportIpaForPlatform:(DetailsInfoData*)data
+{
+    NSString *shellPath = [LIB_PATH stringByAppendingString:@"/Xcodeproj/ExportIpa.sh"];
+    NSString *rubyMainPath = [LIB_PATH stringByAppendingString:@"/Xcodeproj/Main.rb"];
+    ExportInfoManager* view = (ExportInfoManager*)get_instance(@"ExportInfoManager");
+    
+    if([data.isSelected isEqualToString:@"1"])
+    {
+        NSArray *args = [NSArray arrayWithObjects:
+                         rubyMainPath,//$1
+                         data.customSDKPath,
+                         [NSString stringWithUTF8String:view.info->exportFolderParh],
+                         data.platform,
+                         @"null",
+                         [NSString stringWithUTF8String:view.info->unityProjPath],
+                         XCODE_PROJ_NAME,
+                         data.debugDevelopTeam,
+                         data.debugProfileName,
+                         data.releaseDevelopTeam,
+                         data.releaseProfileName,
+                         LIB_PATH,
+                         data.bundleIdentifier,
+                         [NSString stringWithFormat:@"%d",view.info->isRelease],
+                         PACK_FOLDER_PATH,
+                         [self convertArrayToString:data.customSDKChild],
+                         [NSString stringWithFormat:@"%d",view.info->isExportIpa],
+                         data.appName,
+                         nil];
+        
         showLog([[NSString stringWithFormat:@"开始打包 平台:%@", data.platform] UTF8String]);
         NSString *shellLog = [self invokingShellScriptAtPath:shellPath withArgs:args];
         NSString* logStr = [shellLog stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         showLog([logStr UTF8String]);
-            
+        
         if([shellLog containsString:@"** EXPORT SUCCEEDED **"]){
             [NSApp activateIgnoringOtherApps:YES];
             showSuccess([[NSString stringWithFormat:@"%@平台,打包成功", data.platform] UTF8String]);
-        }else if([shellLog containsString:@"** EXPORT XCODE PROJECT SUCCESS **"]){
-            [NSApp activateIgnoringOtherApps:YES];
-            showSuccess([[NSString stringWithFormat:@"%@生成Xcode成功", data.platform] UTF8String]);
         }else{
             [NSApp activateIgnoringOtherApps:YES];
             showError([[NSString stringWithFormat:@"%@平台,打包失败,日志已经保存在%s路径中", data.platform, view.info->unityProjPath] UTF8String]);
+            return NO;
         }
     }
+    return YES;
 }
 
 - (NSString*)createTerminalTask:(NSString*)order

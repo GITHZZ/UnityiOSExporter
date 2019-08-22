@@ -794,30 +794,57 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button verticalHuggingPriority="750" id="MuM-5v-eb4">
-                                <rect key="frame" x="334" y="12" width="69" height="26"/>
+                            <button verticalHuggingPriority="750" id="CLT-Vz-NrT">
+                                <rect key="frame" x="20" y="12" width="76" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="square" title="清除日志" bezelStyle="shadowlessSquare" imagePosition="left" alignment="center" borderStyle="border" inset="2" id="Pe7-jI-ViS">
+                                <buttonCell key="cell" type="square" title="清除日志" bezelStyle="shadowlessSquare" imagePosition="left" alignment="center" borderStyle="border" inset="2" id="Daf-lr-O4O">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="cellTitle"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="cleanAllLog:" target="UBb-r6-fzf" id="K25-Xf-npc"/>
+                                    <action selector="cleanAllLog:" target="UBb-r6-fzf" id="ET5-gS-mSj"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" id="5dI-Iy-fBO">
-                                <rect key="frame" x="402" y="12" width="69" height="26"/>
+                            <button verticalHuggingPriority="750" id="AS4-Dg-LWJ">
+                                <rect key="frame" x="170" y="12" width="76" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="square" title="开始导包" bezelStyle="shadowlessSquare" alignment="center" state="on" borderStyle="border" inset="2" id="Wuq-9v-R3r">
+                                <buttonCell key="cell" type="square" title="导出Xcode" bezelStyle="shadowlessSquare" imagePosition="left" alignment="center" borderStyle="border" inset="2" id="b37-hK-PXh">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="cellTitle"/>
+                                    <font key="font" size="12" name=".PingFangSC-Regular"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="exportXcodeCilcked:" target="UBb-r6-fzf" id="3ZA-v8-rq6"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" id="CYb-21-kuR">
+                                <rect key="frame" x="245" y="12" width="76" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="square" title="修改Xcode" bezelStyle="shadowlessSquare" imagePosition="left" alignment="center" borderStyle="border" inset="2" id="MC3-3D-wV9">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" size="12" name=".PingFangSC-Regular"/>
+                                </buttonCell>
+                            </button>
+                            <button verticalHuggingPriority="750" id="3cu-1v-Ig0">
+                                <rect key="frame" x="320" y="12" width="76" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="square" title="导出ipa包" bezelStyle="shadowlessSquare" imagePosition="left" alignment="center" borderStyle="border" inset="2" id="ttN-nT-Ppl">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" size="12" name=".PingFangSC-Regular"/>
+                                </buttonCell>
+                            </button>
+                            <button verticalHuggingPriority="750" id="5dI-Iy-fBO">
+                                <rect key="frame" x="395" y="12" width="76" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="square" title="一键导包" bezelStyle="shadowlessSquare" alignment="center" state="on" borderStyle="border" inset="2" id="Wuq-9v-R3r">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" size="12" name=".PingFangSC-Regular"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="sureBtnClick:" target="UBb-r6-fzf" id="IwF-EW-MKm"/>
                                 </connections>
                             </button>
                             <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" doubleValue="1" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" id="Uqi-6h-UuG">
-                                <rect key="frame" x="28" y="22" width="16" height="16"/>
+                                <rect key="frame" x="647" y="16" width="16" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </progressIndicator>
                             <button identifier="isReleaseBox" id="xvG-e2-1WT">
@@ -853,11 +880,25 @@
                                     <action selector="isReleaseBtnSelect:" target="UBb-r6-fzf" id="IhH-G6-g7c"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" id="MuM-5v-eb4">
+                                <rect key="frame" x="95" y="12" width="76" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="square" title="修改配置" bezelStyle="shadowlessSquare" imagePosition="left" alignment="center" borderStyle="border" inset="2" id="Pe7-jI-ViS">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" size="12" name=".PingFangSC-Regular"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="cleanAllLog:" target="UBb-r6-fzf" id="K25-Xf-npc"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="editXcode" destination="CYb-21-kuR" id="hoU-rX-tjj"/>
                         <outlet property="exportBtn" destination="5dI-Iy-fBO" id="qNj-2T-FDt"/>
+                        <outlet property="exportIpa" destination="3cu-1v-Ig0" id="MWO-yy-UwA"/>
                         <outlet property="exportPathBox" destination="Akw-bp-ehW" id="sv3-B3-rYQ"/>
+                        <outlet property="exportXcode" destination="AS4-Dg-LWJ" id="6Mp-vV-QS0"/>
                         <outlet property="infoLabel" destination="m5b-px-hcQ" id="HxH-Kg-hKZ"/>
                         <outlet property="isExportIpa" destination="jqa-JY-Fis" id="Ug4-C9-znv"/>
                         <outlet property="isExportXcode" destination="dQ7-Ok-DsU" id="CTY-KC-Tbs"/>

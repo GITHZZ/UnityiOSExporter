@@ -9,6 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "EventTypeDef.h"
 
+#define EVENT_REGIST(eventType, selector) \
+    [[EventManager instance] regist:eventType func:selector self:self];
+#define EVENT_UNREGIST(eventType) \
+    [[EventManager instance] unRegist:eventType self:self];
+#define EVENT_SEND(eventType, data) \
+    [[EventManager instance] send:eventType withData:data];
+
 @interface EventManager : NSObject
 
 + (instancetype)instance;

@@ -81,6 +81,7 @@ typedef NS_ENUM(EventType, CustomEventType)
     EventSettingFileSelect       = 218,
     EventSetViewMainTab          = 219,
     EventOnMenuSelect            = 220,
+    EventExportXcodeCilcked      = 221,
 };
 
 #endif /* Defs_h */

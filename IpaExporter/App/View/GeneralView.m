@@ -91,61 +91,30 @@
 
 - (void)registEvent
 {
-    [[EventManager instance] regist:EventDetailsInfoUpdate
-                               func:@selector(detailsInfoDictUpdate:)
-                               self:self];
-    [[EventManager instance] regist:EventAddNewInfoContent
-                               func:@selector(addNewInfoContent:)
-                               self:self];
-    [[EventManager instance] regist:EventAddNewSuccessContent
-                               func:@selector(addNewSuccessContent:)
-                               self:self];
-    [[EventManager instance] regist:EventAddNewWarningContent
-                               func:@selector(addNewWarningContent:)
-                               self:self];
-    [[EventManager instance] regist:EventAddErrorContent
-                               func:@selector(addNewErrorContent:)
-                               self:self];
-    [[EventManager instance] regist:EventSetExportButtonState
-                               func:@selector(setExportBtnState:)
-                               self:self];
-    [[EventManager instance] regist:EventStartRecordTime
-                               func:@selector(startShowPackTime:)
-                               self:self];
-    [[EventManager instance] regist:EventCleanInfoContent
-                               func:@selector(cleanInfoContent:)
-                               self:self];
-    [[EventManager instance] regist:EventSettingFileSelect
-                               func:@selector(reloadAllInfo)
-                               self:self];
-    [[EventManager instance] regist:EventOnMenuSelect
-                               func:@selector(onMenuSelect:)
-                               self:self];
+    EVENT_REGIST(EventDetailsInfoUpdate, @selector(detailsInfoDictUpdate:));
+    EVENT_REGIST(EventAddNewInfoContent, @selector(addNewInfoContent:));
+    EVENT_REGIST(EventAddNewSuccessContent, @selector(addNewSuccessContent:));
+    EVENT_REGIST(EventAddNewWarningContent, @selector(addNewWarningContent:));
+    EVENT_REGIST(EventAddErrorContent, @selector(addNewErrorContent:));
+    EVENT_REGIST(EventSetExportButtonState, @selector(setExportBtnState:));
+    EVENT_REGIST(EventStartRecordTime, @selector(startShowPackTime:));
+    EVENT_REGIST(EventCleanInfoContent, @selector(cleanInfoContent:));
+    EVENT_REGIST(EventSettingFileSelect, @selector(reloadAllInfo));
+    EVENT_REGIST(EventOnMenuSelect, @selector(onMenuSelect:));
 }
-
 
 - (void)unRegistEvent
 {
-    [[EventManager instance] unRegist:EventDetailsInfoUpdate
-                                 self:self];
-    [[EventManager instance] unRegist:EventAddNewInfoContent
-                               self:self];
-    [[EventManager instance] unRegist:EventAddErrorContent
-                               self:self];
-    [[EventManager instance] unRegist:EventAddNewSuccessContent
-                               self:self];
-    [[EventManager instance] unRegist:EventAddNewWarningContent
-                               self:self];
-    [[EventManager instance] unRegist:EventSetExportButtonState
-                                 self:self];
-    [[EventManager instance] unRegist:EventStartRecordTime
-                               self:self];
-    [[EventManager instance] unRegist:EventCleanInfoContent
-                               self:self];
-    [[EventManager instance] unRegist:EventSettingFileSelect
-                               self:self];
-    [[EventManager instance] unRegist:EventOnMenuSelect
-                               self:self];
+    EVENT_UNREGIST(EventDetailsInfoUpdate);
+    EVENT_UNREGIST(EventAddNewInfoContent);
+    EVENT_UNREGIST(EventAddNewSuccessContent);
+    EVENT_UNREGIST(EventAddNewWarningContent);
+    EVENT_UNREGIST(EventAddErrorContent);
+    EVENT_UNREGIST(EventSetExportButtonState);
+    EVENT_UNREGIST(EventStartRecordTime);
+    EVENT_UNREGIST(EventCleanInfoContent);
+    EVENT_UNREGIST(EventSettingFileSelect);
+    EVENT_UNREGIST(EventOnMenuSelect);
 }
 
 - (void)reloadAllInfo
@@ -191,7 +160,7 @@
 
 - (IBAction)sureBtnClick:(id)sender
 {
-    [[EventManager instance] send:EventViewSureClicked withData:sender];
+    EVENT_SEND(EventViewSureClicked, sender);
 }
 
 - (void)openFolderSelectDialog:(EventType)et
@@ -408,8 +377,14 @@
     NSString *isEnable = (NSString*)[notification object];
     if ([isEnable isEqualToString: s_true]) {
         _exportBtn.enabled = YES;
+        _exportXcode.enabled = YES;
+        _editXcode.enabled = YES;
+        _exportIpa.enabled = YES;
     }else{
         _exportBtn.enabled = NO;
+        _exportXcode.enabled = NO;
+        _editXcode.enabled = NO;
+        _exportIpa.enabled = NO;
     }
 }
 
@@ -512,6 +487,11 @@
         [_manager saveDataForKey:SAVE_IS_EXPORT_IPA
                                             withData:[NSString stringWithFormat:@"%d",info->isExportIpa]];
     }
+}
+
+- (IBAction)exportXcodeCilcked:(id)sender
+{
+    EVENT_SEND(EventExportXcodeCilcked, sender);
 }
 
 @end

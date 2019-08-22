@@ -159,7 +159,7 @@
 "WDI-Be-oVq.title" = "添加";
 
 /* Class = "NSButtonCell"; title = "开始导包"; ObjectID = "Wuq-9v-R3r"; */
-"Wuq-9v-R3r.title" = "开始导包";
+"Wuq-9v-R3r.title" = "一键导包";
 
 /* Class = "NSMenuItem"; title = "iOS打包工具 帮助"; ObjectID = "YD9-ML-3pY"; */
 "YD9-ML-3pY.title" = "iOS打包工具 帮助";

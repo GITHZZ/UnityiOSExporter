@@ -32,6 +32,9 @@
 @property (weak) IBOutlet NSButton *isExportXcode;
 @property (weak) IBOutlet NSProgressIndicator *progressTip;
 @property (weak) IBOutlet NSButton *isExportIpa;
+@property (weak) IBOutlet NSButton *exportXcode;
+@property (weak) IBOutlet NSButton *editXcode;
+@property (weak) IBOutlet NSButton *exportIpa;
 
 - (IBAction)sureBtnClick:(id)sender;
 - (IBAction)unityPathSelect:(id)sender;

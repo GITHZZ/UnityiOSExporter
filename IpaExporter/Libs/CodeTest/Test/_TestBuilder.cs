@@ -30,7 +30,7 @@ namespace IpaExporter
             //必须参数
 			PlayerSettings.iOS.sdkVersion = iOSSdkVersion.DeviceSDK;
 
-            CustomBuilder customBuilder = new CustomBuilder();
+            _CustomBuilder customBuilder = new _CustomBuilder();
             JsonData jsonObj = JsonMapper.ToObject(args);
             customBuilder.BuildBefore(jsonObj);
             customBuilder.BuildFinish(jsonObj);

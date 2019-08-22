@@ -10,11 +10,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+#define COMM_SUCCESS 1
+#define COMM_EXIT 0
+
 @interface PackCammond : NSObject
 {
 @private
     __block BOOL _isExporting;
+    NSSet *_commFunc;
 }
+
 @end
 
 NS_ASSUME_NONNULL_END
