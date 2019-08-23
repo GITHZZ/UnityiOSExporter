@@ -10,14 +10,18 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-#define COMM_SUCCESS 1
-#define COMM_EXIT 0
+typedef NSNumber* CammondCode;
+#define CAMM_EXIT @0
+#define CAMM_SUCCESS @1
+#define CAMM_EXPORT_XCODE @2
+#define CAMM_EDIT_XCODE @3
+#define CAMM_EXPORT_IPA @4
 
 @interface PackCammond : NSObject
 {
 @private
     __block BOOL _isExporting;
-    NSSet *_commFunc;
+    NSMutableDictionary *_cammondCode;
 }
 
 @end

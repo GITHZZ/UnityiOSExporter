@@ -794,36 +794,6 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button verticalHuggingPriority="750" id="CLT-Vz-NrT">
-                                <rect key="frame" x="20" y="12" width="76" height="26"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="square" title="清除日志" bezelStyle="shadowlessSquare" imagePosition="left" alignment="center" borderStyle="border" inset="2" id="Daf-lr-O4O">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="cellTitle"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="cleanAllLog:" target="UBb-r6-fzf" id="ET5-gS-mSj"/>
-                                </connections>
-                            </button>
-                            <button verticalHuggingPriority="750" id="AS4-Dg-LWJ">
-                                <rect key="frame" x="170" y="12" width="76" height="26"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="square" title="导出Xcode" bezelStyle="shadowlessSquare" imagePosition="left" alignment="center" borderStyle="border" inset="2" id="b37-hK-PXh">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" size="12" name=".PingFangSC-Regular"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="exportXcodeCilcked:" target="UBb-r6-fzf" id="3ZA-v8-rq6"/>
-                                </connections>
-                            </button>
-                            <button verticalHuggingPriority="750" id="CYb-21-kuR">
-                                <rect key="frame" x="245" y="12" width="76" height="26"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="square" title="修改Xcode" bezelStyle="shadowlessSquare" imagePosition="left" alignment="center" borderStyle="border" inset="2" id="MC3-3D-wV9">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" size="12" name=".PingFangSC-Regular"/>
-                                </buttonCell>
-                            </button>
                             <button verticalHuggingPriority="750" id="3cu-1v-Ig0">
                                 <rect key="frame" x="320" y="12" width="76" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -831,6 +801,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" size="12" name=".PingFangSC-Regular"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="exportIpa:" target="UBb-r6-fzf" id="nSu-un-q7r"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" id="5dI-Iy-fBO">
                                 <rect key="frame" x="395" y="12" width="76" height="26"/>
@@ -870,7 +843,7 @@
                                 </connections>
                             </button>
                             <button identifier="isExportXcode" id="dQ7-Ok-DsU">
-                                <rect key="frame" x="477" y="32" width="132" height="23"/>
+                                <rect key="frame" x="477" y="32" width="165" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="导出Xcode基础工程" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="JYT-Wb-LMu">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -880,10 +853,32 @@
                                     <action selector="isReleaseBtnSelect:" target="UBb-r6-fzf" id="IhH-G6-g7c"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" id="MuM-5v-eb4">
+                            <button verticalHuggingPriority="750" id="CLT-Vz-NrT">
                                 <rect key="frame" x="95" y="12" width="76" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="square" title="修改配置" bezelStyle="shadowlessSquare" imagePosition="left" alignment="center" borderStyle="border" inset="2" id="Pe7-jI-ViS">
+                                <buttonCell key="cell" type="square" title="清除日志" bezelStyle="shadowlessSquare" imagePosition="left" alignment="center" borderStyle="border" inset="2" id="Daf-lr-O4O">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="cellTitle"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="cleanAllLog:" target="UBb-r6-fzf" id="ET5-gS-mSj"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" id="AS4-Dg-LWJ">
+                                <rect key="frame" x="245" y="12" width="76" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="square" title="导出Xcode" bezelStyle="shadowlessSquare" imagePosition="left" alignment="center" borderStyle="border" inset="2" id="b37-hK-PXh">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" size="12" name=".PingFangSC-Regular"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="exportXcodeCilcked:" target="UBb-r6-fzf" id="3ZA-v8-rq6"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" id="MuM-5v-eb4">
+                                <rect key="frame" x="170" y="12" width="76" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="square" title="设置参数" bezelStyle="shadowlessSquare" imagePosition="left" alignment="center" borderStyle="border" inset="2" id="Pe7-jI-ViS">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" size="12" name=".PingFangSC-Regular"/>
                                 </buttonCell>
@@ -894,7 +889,6 @@
                         </subviews>
                     </view>
                     <connections>
-                        <outlet property="editXcode" destination="CYb-21-kuR" id="hoU-rX-tjj"/>
                         <outlet property="exportBtn" destination="5dI-Iy-fBO" id="qNj-2T-FDt"/>
                         <outlet property="exportIpa" destination="3cu-1v-Ig0" id="MWO-yy-UwA"/>
                         <outlet property="exportPathBox" destination="Akw-bp-ehW" id="sv3-B3-rYQ"/>

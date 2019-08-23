@@ -58,11 +58,9 @@
     _isExportIpa.state = info->isExportIpa;
     
     _useTimeLabel.stringValue = @"";
-    [[EventManager instance] regist:EventStopRecordTime
-                               func:@selector(stopShowPackTime:)
-                               self:self];
     
-    [[EventManager instance] send:EventGeneralViewLoaded withData:nil];
+    EVENT_REGIST(EventStopRecordTime, @selector(stopShowPackTime:));
+    EVENT_SEND(EventGeneralViewLoaded, nil);
 }
 
 - (void)viewDidAppear
@@ -492,6 +490,11 @@
 - (IBAction)exportXcodeCilcked:(id)sender
 {
     EVENT_SEND(EventExportXcodeCilcked, sender);
+}
+
+- (IBAction)exportIpa:(id)sender
+{
+    EVENT_SEND(EventExportIpaChilcked, sender);
 }
 
 @end

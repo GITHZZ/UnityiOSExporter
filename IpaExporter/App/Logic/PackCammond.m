@@ -1,5 +1,5 @@
 //
-//  RubyCommand.m
+//  Rubycammand.m
 //  IpaExporter
 //
 //  Created by 4399 on 5/28/19.
@@ -8,7 +8,7 @@
 
 #import "PackCammond.h"
 #import <Cocoa/Cocoa.h>
-#import "Common.h"
+#import "common.h"
 #import "LogicManager.h"
 
 @implementation PackCammond
@@ -16,29 +16,56 @@
 - (void)initialize
 {    
     _isExporting = false;
-    
     [[NSFileManager defaultManager]createDirectoryAtPath:PACK_FOLDER_PATH withIntermediateDirectories:YES attributes:nil error:nil];
     
+    _cammondCode = [@{
+                     CAMM_EXPORT_XCODE:@"exportXcode",
+                     CAMM_EDIT_XCODE:@"editXcode",
+                     CAMM_EXPORT_IPA:@"exportIpa",
+                     }mutableCopy];
+    
     EVENT_REGIST(EventViewSureClicked, @selector(sureBtnClicked:));
- 
-    _commFunc = [NSSet setWithObjects:@"exportXcode", @"editXcode", @"exportIpa", nil];
+    EVENT_REGIST(EventExportXcodeCilcked, @selector(exportXcodeBtnClicked));
+    EVENT_REGIST(EventExportIpaChilcked, @selector(exportIpaChilcked));
+}
+
+- (void)exportXcodeBtnClicked
+{
+    NSMutableArray *camm = [NSMutableArray array];
+    [camm addObject:CAMM_EXPORT_XCODE];
+    [camm addObject:CAMM_EDIT_XCODE];
+    [self startExport:camm];
+}
+
+- (void)exportIpaChilcked
+{
+    NSMutableArray *camm = [NSMutableArray array];
+    [camm addObject:CAMM_EXPORT_IPA];
+    [self startExport:camm];
+}
+
+- (void)editXcodeBtnChilcked
+{
+    NSMutableArray *camm = [NSMutableArray array];
+    [camm addObject:CAMM_EDIT_XCODE];
+    [self startExport:camm];
 }
 
 - (void)sureBtnClicked:(NSNotification*)notification
 {
     ExportInfoManager *exportManager = (ExportInfoManager*)get_instance(@"ExportInfoManager");
-    NSMutableArray *comm = [NSMutableArray array];
+    NSMutableArray *camm = [NSMutableArray array];
     if(exportManager.info->isExportXcode == 1)
-        [comm addObject:@"exportXcode"];
+        [camm addObject:CAMM_EXPORT_XCODE];
     else
         showWarning("xcode工程生成已跳过,直接进行平台打包");
 
-    [comm addObject:@"editXcode"];
-    [comm addObject:@"exportIpa"];
-    [self startExport:comm];
+    [camm addObject:CAMM_EDIT_XCODE];
+    [camm addObject:CAMM_EXPORT_IPA];
+    [self startExport:camm];
 }
 
-- (void)startExport:(NSArray*)comm
+- (void)startExport:(NSArray*)camm
 {
     if(_isExporting)
         return;
@@ -49,7 +76,7 @@
     EVENT_SEND(EventStartRecordTime, nil);
     
     showLog("开始执行Unity打包脚本");
-    [self runWithCommond:comm withBlock:^{
+    [self runWithcammond:camm withBlock:^{
         _isExporting = false;
         
         EVENT_SEND(EventSetExportButtonState, s_true);
@@ -62,16 +89,16 @@
     }];
 }
 
-- (void)runWithCommond:(NSArray*)comm withBlock:(void(^)())finCallback
+- (void)runWithcammond:(NSArray*)camm withBlock:(void(^)())finCallback
 {
     dispatch_group_t group = dispatch_group_create();
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_group_async(group, queue, ^{
-       for(int i = 0; i < [comm count]; i++){
-            NSString *order = comm[i];
-            if([_commFunc containsObject:order]){
-                int code = ((int (*)(id, SEL))objc_msgSend)(get_instance(@"PackCammond"), NSSelectorFromString(order));
-                if(code == COMM_EXIT) break; //终止指令
+       for(int i = 0; i < [camm count]; i++){
+            NSString *order = [_cammondCode objectForKey:camm[i]];
+            if(order != nil){
+                CammondCode code = ((NSNumber* (*)(id, SEL))objc_msgSend)(get_instance(@"PackCammond"), NSSelectorFromString(order));
+                if([code isEqualToNumber:CAMM_EXIT]) break; //终止指令
             }else{
                 NSLog(@"不存在指令%@", order);
             }
@@ -84,18 +111,18 @@
     });
 }
 
-- (int)exportXcode
+- (CammondCode)exportXcode
 {
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     BOOL result = [self exportXcodeProjInThread:queue];
     if(!result){
         showError("由于生成xcode报错,打包ipa中断");
-        return COMM_EXIT;
+        return CAMM_EXIT;
     }
-    return COMM_SUCCESS;
+    return CAMM_SUCCESS;
 }
 
-- (int)editXcode
+- (CammondCode)editXcode
 {
     showLog("开始xcode工程修改");
     ExportInfoManager *exportManager = (ExportInfoManager*)get_instance(@"ExportInfoManager");
@@ -104,12 +131,12 @@
         DetailsInfoData *data = [detailArray objectAtIndex:i];
         BOOL isSuccess = [self editXcodeForPlatform:data];
         if(!isSuccess)
-            return COMM_EXIT;
+            return CAMM_EXIT;
     }
-    return COMM_SUCCESS;
+    return CAMM_SUCCESS;
 }
 
-- (int)exportIpa
+- (CammondCode)exportIpa
 {
     showLog("开始进行平台打包");
     ExportInfoManager *exportManager = (ExportInfoManager*)get_instance(@"ExportInfoManager");
@@ -118,58 +145,9 @@
         DetailsInfoData *data = [detailArray objectAtIndex:i];
         BOOL isSuccess = [self exportIpaForPlatform:data];
         if(!isSuccess)
-            return COMM_EXIT;
+            return CAMM_EXIT;
     }
-    return COMM_SUCCESS;
-}
-
-- (NSString*)writeConfigToJsonFile:(NSString*)appName withData:(NSMutableDictionary*)jsonData
-{
-    BOOL isVaild = [NSJSONSerialization isValidJSONObject:jsonData];
-    if(!isVaild){
-        //showError("json格式有错，请检查");
-        //return error code
-        return @"";
-    }
-    
-    NSString *resourcePath = [PACK_FOLDER_PATH stringByAppendingFormat:@"/%@/", appName];
-    [[NSFileManager defaultManager]createDirectoryAtPath:resourcePath withIntermediateDirectories:YES attributes:nil error:nil];
-    
-    NSString *configPath = [resourcePath stringByAppendingString:@"config.json"];
-    if(![[NSFileManager defaultManager] fileExistsAtPath:configPath]){
-        [[NSFileManager defaultManager] createFileAtPath:configPath contents:nil attributes:nil];
-    }
-    
-    NSOutputStream *outStream = [[NSOutputStream alloc] initToFileAtPath:configPath append:NO];
-    [outStream open];
-    
-    NSError *error;
-    [NSJSONSerialization writeJSONObject:jsonData
-                                toStream:outStream
-                                 options:NSJSONWritingPrettyPrinted
-                                   error:&error];
-    
-    if(error != nil){
-        [outStream close];
-        return @"";
-    }
-    
-    [outStream close];
-    
-    return configPath;
-}
-
-- (id)invokingShellScriptAtPath:(NSString*)shellScriptPath withArgs:(NSArray*)args
-{
-    //设置参数
-    NSString *shellArgsStr = [[NSString alloc] init];
-    for(int i = 0; i < [args count]; i++)
-        shellArgsStr = [shellArgsStr stringByAppendingFormat:@"%@\t", args[i]];
-    
-    NSString *shellStr = [NSString stringWithFormat:@"sh %@ %@", shellScriptPath, shellArgsStr];
-    NSString *strReturnFormShell = [self createTerminalTask:shellStr];
-    
-    return strReturnFormShell;
+    return CAMM_SUCCESS;
 }
 
 - (BOOL)exportXcodeProjInThread:(dispatch_queue_t)sq
@@ -283,14 +261,16 @@
                          data.appName,
                          nil];
         
-        showLog([[NSString stringWithFormat:@"开始修改工程 平台:%@", data.platform] UTF8String]);
+        showLog([[NSString stringWithFormat:@"开始修改工程=>%@(%@)", data.appName, data.platform] UTF8String]);
         NSString *shellLog = [self invokingShellScriptAtPath:shellPath withArgs:args];
         NSString* logStr = [shellLog stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         showLog([logStr UTF8String]);
         
         if([shellLog containsString:@"** EDIT XCODE PROJECT SUCCESS **"]){
             [NSApp activateIgnoringOtherApps:YES];
-            showSuccess([[NSString stringWithFormat:@"%@修改Xcode成功", data.platform] UTF8String]);
+            showSuccess([[NSString stringWithFormat:@"%@(%@)修改Xcode成功", data.appName, data.platform] UTF8String]);
+        }else{
+            return NO;
         }
     }
     return YES;
@@ -325,7 +305,7 @@
                          data.appName,
                          nil];
         
-        showLog([[NSString stringWithFormat:@"开始打包 平台:%@", data.platform] UTF8String]);
+        showLog([[NSString stringWithFormat:@"开始打包=>%@(%@)", data.appName, data.platform] UTF8String]);
         NSString *shellLog = [self invokingShellScriptAtPath:shellPath withArgs:args];
         NSString* logStr = [shellLog stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         showLog([logStr UTF8String]);
@@ -340,6 +320,55 @@
         }
     }
     return YES;
+}
+
+- (NSString*)writeConfigToJsonFile:(NSString*)appName withData:(NSMutableDictionary*)jsonData
+{
+    BOOL isVaild = [NSJSONSerialization isValidJSONObject:jsonData];
+    if(!isVaild){
+        //showError("json格式有错，请检查");
+        //return error code
+        return @"";
+    }
+    
+    NSString *resourcePath = [PACK_FOLDER_PATH stringByAppendingFormat:@"/%@/", appName];
+    [[NSFileManager defaultManager]createDirectoryAtPath:resourcePath withIntermediateDirectories:YES attributes:nil error:nil];
+    
+    NSString *configPath = [resourcePath stringByAppendingString:@"config.json"];
+    if(![[NSFileManager defaultManager] fileExistsAtPath:configPath]){
+        [[NSFileManager defaultManager] createFileAtPath:configPath contents:nil attributes:nil];
+    }
+    
+    NSOutputStream *outStream = [[NSOutputStream alloc] initToFileAtPath:configPath append:NO];
+    [outStream open];
+    
+    NSError *error;
+    [NSJSONSerialization writeJSONObject:jsonData
+                                toStream:outStream
+                                 options:NSJSONWritingPrettyPrinted
+                                   error:&error];
+    
+    if(error != nil){
+        [outStream close];
+        return @"";
+    }
+    
+    [outStream close];
+    
+    return configPath;
+}
+
+- (id)invokingShellScriptAtPath:(NSString*)shellScriptPath withArgs:(NSArray*)args
+{
+    //设置参数
+    NSString *shellArgsStr = [[NSString alloc] init];
+    for(int i = 0; i < [args count]; i++)
+        shellArgsStr = [shellArgsStr stringByAppendingFormat:@"%@\t", args[i]];
+    
+    NSString *shellStr = [NSString stringWithFormat:@"sh %@ %@", shellScriptPath, shellArgsStr];
+    NSString *strReturnFormShell = [self createTerminalTask:shellStr];
+    
+    return strReturnFormShell;
 }
 
 - (NSString*)createTerminalTask:(NSString*)order
