@@ -883,7 +883,7 @@
                                     <font key="font" size="12" name=".PingFangSC-Regular"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="cleanAllLog:" target="UBb-r6-fzf" id="K25-Xf-npc"/>
+                                    <action selector="openCustomConfig:" target="UBb-r6-fzf" id="j69-AI-zTh"/>
                                 </connections>
                             </button>
                         </subviews>

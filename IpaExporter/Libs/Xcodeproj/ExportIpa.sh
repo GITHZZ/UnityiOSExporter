@@ -80,15 +80,7 @@ sed -i '' 's/:profileName:/'${provisioning_profile}'/g' ${dst_path}
 sed -i '' 's/:developTeam:/'${team_id}'/g' ${dst_path}
 sed -i '' 's/:method:/'${method}'/g' ${dst_path}
 sed -i '' "s/:certificate:/${signingCertificate}/g" ${dst_path}
-
 sed -i '' 's/ProvisioningStyle = Automatic;/ProvisioningStyle = Manual;/g' ${xcode_proj_path}"/Unity-iPhone-"${app_name}".xcodeproj/project.pbxproj"
-
-#处理scheme内容
-project_scheme_path=${export_path}"/"${xcode_proj_name}"/Unity-iPhone-"${app_name}".xcodeproj/xcshareddata/xcschemes/Unity-iPhone.xcscheme"
-#echo ${project_scheme_path}
-
-#修改scheme配置
-sed -i '' 's/container:Unity-iPhone.xcodeproj/container:Unity-iPhone-'${app_name}'.xcodeproj/g' ${project_scheme_path}
 
 #生成ipa包 并备份dsym文件
 #进入xcode工程目录

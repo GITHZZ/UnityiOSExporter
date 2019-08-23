@@ -10,12 +10,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NSNumber* CammondCode;
+typedef NSNumber* CammondResult;
 #define CAMM_EXIT @0
 #define CAMM_SUCCESS @1
+
+typedef NSNumber* CammondCode;
 #define CAMM_EXPORT_XCODE @2
 #define CAMM_EDIT_XCODE @3
 #define CAMM_EXPORT_IPA @4
+#define CAMM_GEN_RESFOLDER @5
 
 @interface PackCammond : NSObject
 {

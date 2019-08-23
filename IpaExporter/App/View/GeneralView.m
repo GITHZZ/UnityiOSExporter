@@ -376,12 +376,10 @@
     if ([isEnable isEqualToString: s_true]) {
         _exportBtn.enabled = YES;
         _exportXcode.enabled = YES;
-        _editXcode.enabled = YES;
         _exportIpa.enabled = YES;
     }else{
         _exportBtn.enabled = NO;
         _exportXcode.enabled = NO;
-        _editXcode.enabled = NO;
         _exportIpa.enabled = NO;
     }
 }
@@ -495,6 +493,14 @@
 - (IBAction)exportIpa:(id)sender
 {
     EVENT_SEND(EventExportIpaChilcked, sender);
+}
+
+- (IBAction)openCustomConfig:(id)sender
+{
+    PreferenceData* dataInst = (PreferenceData*)get_instance(@"PreferenceData");
+    NSMutableArray *jsonAppArray = inst_method_call(@"PreferenceData", getJsonAppArray);
+    NSString *filePath = dataInst.jsonFilePath;
+    [[NSWorkspace sharedWorkspace] openFile:filePath withApplication:[jsonAppArray firstObject]];
 }
 
 @end

@@ -47,4 +47,10 @@ xcode_proj_path=${export_path}"/"${xcode_proj_name}
 
 ruby -w $1 ${custom_sdk_path} ${export_path} ${app_name} ${json_path} ${unity_proj_path} ${xcode_proj_name} ${sdk_folder_path} ${is_release}
 
+#处理scheme内容
+project_scheme_path=${export_path}"/"${xcode_proj_name}"/Unity-iPhone-"${app_name}".xcodeproj/xcshareddata/xcschemes/Unity-iPhone.xcscheme"
+#修改scheme配置
+sed -i '' 's/container:Unity-iPhone.xcodeproj/container:Unity-iPhone-'${app_name}'.xcodeproj/g' ${project_scheme_path}
+
+
 echo "** EDIT XCODE PROJECT SUCCESS **"

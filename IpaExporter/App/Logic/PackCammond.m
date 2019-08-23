@@ -22,6 +22,7 @@
                      CAMM_EXPORT_XCODE:@"exportXcode",
                      CAMM_EDIT_XCODE:@"editXcode",
                      CAMM_EXPORT_IPA:@"exportIpa",
+                     CAMM_GEN_RESFOLDER:@"genResFolder",
                      }mutableCopy];
     
     EVENT_REGIST(EventViewSureClicked, @selector(sureBtnClicked:));
@@ -32,6 +33,7 @@
 - (void)exportXcodeBtnClicked
 {
     NSMutableArray *camm = [NSMutableArray array];
+    [camm addObject:CAMM_GEN_RESFOLDER];
     [camm addObject:CAMM_EXPORT_XCODE];
     [camm addObject:CAMM_EDIT_XCODE];
     [self startExport:camm];
@@ -40,14 +42,8 @@
 - (void)exportIpaChilcked
 {
     NSMutableArray *camm = [NSMutableArray array];
+    [camm addObject:CAMM_GEN_RESFOLDER];
     [camm addObject:CAMM_EXPORT_IPA];
-    [self startExport:camm];
-}
-
-- (void)editXcodeBtnChilcked
-{
-    NSMutableArray *camm = [NSMutableArray array];
-    [camm addObject:CAMM_EDIT_XCODE];
     [self startExport:camm];
 }
 
@@ -55,6 +51,8 @@
 {
     ExportInfoManager *exportManager = (ExportInfoManager*)get_instance(@"ExportInfoManager");
     NSMutableArray *camm = [NSMutableArray array];
+    
+    [camm addObject:CAMM_GEN_RESFOLDER];
     if(exportManager.info->isExportXcode == 1)
         [camm addObject:CAMM_EXPORT_XCODE];
     else
@@ -97,7 +95,7 @@
        for(int i = 0; i < [camm count]; i++){
             NSString *order = [_cammondCode objectForKey:camm[i]];
             if(order != nil){
-                CammondCode code = ((NSNumber* (*)(id, SEL))objc_msgSend)(get_instance(@"PackCammond"), NSSelectorFromString(order));
+                CammondResult code = ((NSNumber* (*)(id, SEL))objc_msgSend)(get_instance(@"PackCammond"), NSSelectorFromString(order));
                 if([code isEqualToNumber:CAMM_EXIT]) break; //终止指令
             }else{
                 NSLog(@"不存在指令%@", order);
@@ -111,7 +109,7 @@
     });
 }
 
-- (CammondCode)exportXcode
+- (CammondResult)exportXcode
 {
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     BOOL result = [self exportXcodeProjInThread:queue];
@@ -122,7 +120,7 @@
     return CAMM_SUCCESS;
 }
 
-- (CammondCode)editXcode
+- (CammondResult)editXcode
 {
     showLog("开始xcode工程修改");
     ExportInfoManager *exportManager = (ExportInfoManager*)get_instance(@"ExportInfoManager");
@@ -136,7 +134,7 @@
     return CAMM_SUCCESS;
 }
 
-- (CammondCode)exportIpa
+- (CammondResult)exportIpa
 {
     showLog("开始进行平台打包");
     ExportInfoManager *exportManager = (ExportInfoManager*)get_instance(@"ExportInfoManager");
@@ -150,13 +148,29 @@
     return CAMM_SUCCESS;
 }
 
+- (CammondResult)genResFolder
+{
+    ExportInfoManager *exportManager = (ExportInfoManager*)get_instance(@"ExportInfoManager");
+    NSMutableArray<DetailsInfoData*>* detailArray = exportManager.detailArray;
+    NSError *error;
+    for(int i = 0; i < [detailArray count]; i++){
+        NSString *resourcePath = [PACK_FOLDER_PATH stringByAppendingFormat:@"/%@/", detailArray[i].appName];
+        [[NSFileManager defaultManager]createDirectoryAtPath:resourcePath withIntermediateDirectories:YES attributes:nil error:&error];
+        if(error != nil)
+            return CAMM_EXIT;
+    }
+    
+    return CAMM_SUCCESS;
+}
+
 - (BOOL)exportXcodeProjInThread:(dispatch_queue_t)sq
 {
     __block BOOL result = YES;
+    
     NSString *xcodeShellPath = [LIB_PATH stringByAppendingString:@"/Xcodeproj/ExportXcode.sh"];
     ExportInfoManager* view = (ExportInfoManager*)get_instance(@"ExportInfoManager");
-    
     DataResManager *resManager = (DataResManager*)get_instance(@"DataResManager");
+    
     [resManager start:view.info];
     NSString *srcPath = [LIB_PATH stringByAppendingString:@"/TempCode"];
     [resManager appendingFolder:srcPath];
@@ -221,6 +235,9 @@
         jsonData[@"release_signing_identity"] = [NSMutableArray arrayWithObjects:data.releaseProfileName, data.releaseDevelopTeam, nil];
         jsonData[@"product_bundle_identifier"] = data.bundleIdentifier;
         NSString *configPath = [self writeConfigToJsonFile:data.appName withData:jsonData];
+        
+        if(configPath == nil)
+            return NO;
         
         //$1 ruby入口文件路径
         //$2 sdk资源文件路径
@@ -332,7 +349,10 @@
     }
     
     NSString *resourcePath = [PACK_FOLDER_PATH stringByAppendingFormat:@"/%@/", appName];
-    [[NSFileManager defaultManager]createDirectoryAtPath:resourcePath withIntermediateDirectories:YES attributes:nil error:nil];
+    if(![[NSFileManager defaultManager] fileExistsAtPath:resourcePath]){
+        showError([[NSString stringWithFormat:@"缺少指令CAMM_GEN_RESFOLDER导致%@ 文件夹不存在",resourcePath] UTF8String]);
+        return nil;
+    }
     
     NSString *configPath = [resourcePath stringByAppendingString:@"config.json"];
     if(![[NSFileManager defaultManager] fileExistsAtPath:configPath]){
