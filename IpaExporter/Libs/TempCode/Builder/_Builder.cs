@@ -3,18 +3,20 @@ using UnityEditor;
 using System.Collections;
 using System.IO;
 
-//理论上不允许修改
 namespace IpaExporter
 {
 	public class _Builder
 	{
 		static void BuildApp()
 		{
+//理论上不允许修改------------
             string[] LEVELS = new string[]
             {
                 ${packScene}
             };
-
+            
+            string exportPath = ${exportPath};
+            
 			//获取shell脚本参数
 			string args = "";
 			string[] strs = System.Environment.GetCommandLineArgs(); 
@@ -28,15 +30,13 @@ namespace IpaExporter
 			}
             //必须参数
 			PlayerSettings.iOS.sdkVersion = iOSSdkVersion.DeviceSDK;
-
             _CustomBuilder customBuilder = new _CustomBuilder();
             JsonData jsonObj = JsonMapper.ToObject(args);
-            
-            bool ispack = customBuilder.BuildBefore(jsonObj);
+//理论上不允许修改------------
+
+            bool isPack = customBuilder.BuildApp(jsonObj);
             if(ispack)
-                BuildPipeline.BuildPlayer (LEVELS, ${exportPath}, BuildTarget.iOS, BuildOptions.AcceptExternalModificationsToPlayer);
-            
-            customBuilder.BuildFinish(jsonObj);
+                BuildPipeline.BuildPlayer(LEVELS, exportPath, BuildTarget.iOS, BuildOptions.AcceptExternalModificationsToPlayer);
 		}
 	}
 }

@@ -23,6 +23,9 @@
         NSRange range = [path rangeOfString:profile];
         _rootPath = [[path substringToIndex:range.location] stringByReplacingOccurrencesOfString:@" " withString:@""];
         
+        NSString *fullPath = [NSString stringWithFormat:@"%@/%@.plist", _fileName, _rootPath];
+        if([[NSFileManager defaultManager] fileExistsAtPath:fullPath])
+            [[NSFileManager defaultManager] removeItemAtPath:fullPath error:nil];
     }
     return self;
 }
