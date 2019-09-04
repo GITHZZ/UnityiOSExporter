@@ -182,14 +182,17 @@
                 case EventUnityPathSelectEnd:
                     tInfo->unityProjPath = [selectPath UTF8String];
                     _manager.info = tInfo;
-                    [_manager addNewUnityProjPath:selectPath];
-                    _unityPathBox.stringValue = selectPath;
+
+                    if([_manager addNewUnityProjPath:selectPath])
+                        _unityPathBox.stringValue = selectPath;
+
                     break;
                 case EventExportPathSelectEnd:
                     tInfo->exportFolderParh = [selectPath UTF8String];
                     _manager.info = tInfo;
-                    [_manager addNewExportProjPath:selectPath];
-                    _exportPathBox.stringValue = selectPath;
+                    if([_manager addNewExportProjPath:selectPath])
+                       _exportPathBox.stringValue = selectPath;
+                    
                     break;
                 case EventScenePathSelectEnd:
                     if(![[selectPath pathExtension] isEqualToString:@"unity"]){

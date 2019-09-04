@@ -32,20 +32,14 @@
 
 - (void)viewDidAppear
 {
-    [[EventManager instance] regist:EventDetailsInfoSettingClose
-                               func:@selector(detailsInfoViewClose:)
-                               self:self];
-    [[EventManager instance] regist:EventDetailsInfoSettingEdit
-                               func:@selector(detailsInfoViewEdit:)
-                               self:self];
+    EVENT_REGIST(EventDetailsInfoSettingClose, @selector(detailsInfoViewClose:));
+    EVENT_REGIST(EventDetailsInfoSettingEdit, @selector(detailsInfoViewEdit:));
 }
 
 - (void)viewDidDisappear
 {
-    [[EventManager instance] unRegist:EventDetailsInfoSettingClose
-                                 self:self];
-    [[EventManager instance] unRegist:EventDetailsInfoSettingEdit
-                                 self:self];
+    EVENT_UNREGIST(EventDetailsInfoSettingClose);
+    EVENT_UNREGIST(EventDetailsInfoSettingEdit);
 }
 
 - (IBAction)AddBtnClick:(id)sender

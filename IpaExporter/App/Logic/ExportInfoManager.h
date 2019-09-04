@@ -39,9 +39,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)saveDataForKey:(NSString*)key withData:(id) data;
 
-- (void)addNewUnityProjPath:(NSString*)path;
+- (BOOL)addNewUnityProjPath:(NSString*)path;
 - (void)replaceUnityProjPath:(NSString*)path;
-- (void)addNewExportProjPath:(NSString*)path;
+- (BOOL)addNewExportProjPath:(NSString*)path;
 - (void)replaceExportProjPath:(NSString*)path;
 
 //路径配置

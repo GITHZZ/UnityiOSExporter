@@ -28,15 +28,14 @@ namespace IpaExporter
 					args = s.Split('_')[1];
 				}
 			}
+            
             //必须参数
 			PlayerSettings.iOS.sdkVersion = iOSSdkVersion.DeviceSDK;
             _CustomBuilder customBuilder = new _CustomBuilder();
             JsonData jsonObj = JsonMapper.ToObject(args);
-//理论上不允许修改------------
 
-            bool isPack = customBuilder.BuildApp(jsonObj);
-            if(ispack)
-                BuildPipeline.BuildPlayer(LEVELS, exportPath, BuildTarget.iOS, BuildOptions.AcceptExternalModificationsToPlayer);
+            customBuilder.BuildApp(jsonObj, LEVELS, exportPath);
+//理论上不允许修改------------
 		}
 	}
 }
