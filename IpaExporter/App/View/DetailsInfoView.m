@@ -9,6 +9,7 @@
 #import "DetailsInfoView.h"
 #import "DetailsInfoData.h"
 #import "LogicManager.h"
+#import "NSViewController+LogicSupport.h"
 
 @implementation DetailsInfoView
 

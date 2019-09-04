@@ -74,6 +74,12 @@
                                                 <action selector="CodeTest:" target="11a-jN-iuY" id="6pZ-8G-Ihe"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="打开代码工程" id="D6N-zu-2Z1">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="openCustomCodeFolder:" target="11a-jN-iuY" id="QmP-nS-qhy"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="LMO-vE-1ka"/>
                                         <menuItem title="拷贝测试代码到工程" keyEquivalent="C" id="W0H-ze-RhV" userLabel="拷贝测试代码到工程">
                                             <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>

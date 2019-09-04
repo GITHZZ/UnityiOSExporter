@@ -13,6 +13,7 @@
 #import "Common.h"
 #import "PreferenceView.h"
 #import "PreferenceData.h"
+#import "NSViewController+LogicSupport.h"
 
 #define PlatformTblKey @"platformTbl"
 #define PackSceneKey   @"packScene"
@@ -65,6 +66,8 @@
 
 - (void)viewDidAppear
 {
+    [super onShow];
+    
     _isVisable = YES;
     
     //从本地读取存储数据
@@ -182,7 +185,6 @@
                 case EventUnityPathSelectEnd:
                     tInfo->unityProjPath = [selectPath UTF8String];
                     _manager.info = tInfo;
-
                     if([_manager addNewUnityProjPath:selectPath])
                         _unityPathBox.stringValue = selectPath;
 

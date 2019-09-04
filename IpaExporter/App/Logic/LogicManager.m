@@ -26,21 +26,24 @@
 
 - (void)startUp
 {
-    NSArray *instanceArray = @[[[CodeTester alloc] init],
-                               [[PackCammond alloc] init],
-                               [[ExportInfoManager alloc] init],
-                               [[DataResManager alloc] init],
-                               [[BuilderCSFileEdit alloc] init],
-                               [[PreferenceData alloc] init],
-                               [[VersionInfo alloc] init]
-                                ];
+    _instanceArray =  @[[[CodeTester alloc] init],
+                        [[PackCammond alloc] init],
+                        [[ExportInfoManager alloc] init],
+                        [[DataResManager alloc] init],
+                        [[BuilderCSFileEdit alloc] init],
+                        [[PreferenceData alloc] init],
+                        [[VersionInfo alloc] init]
+                        ];
    
-    _instanceDict = [NSMutableDictionary dictionaryWithArray:instanceArray];
+    _instanceDict = [NSMutableDictionary dictionaryWithArray:_instanceArray];
     
-    for(int i = 0; i < [instanceArray count]; i++){
-        NSObject* item = instanceArray[i];
+    for(int i = 0; i < [_instanceArray count]; i++){
+        NSObject* item = _instanceArray[i];
         [item initialize];
     }
+    
+    EVENT_REGIST(EventViewDidAppear, @selector(viewDidAppear));
+    EVENT_REGIST(EventViewDidDisappear, @selector(viewDidDisappear));
 }
 
 - (id)getInstByClassName:(NSString*)className error:(NSError**)err
@@ -56,8 +59,25 @@
     return obj;
 }
 
+- (void)viewDidAppear
+{
+    for(int i = 0; i < [_instanceArray count]; i++){
+        NSObject* item = _instanceArray[i];
+        [item updateData];
+    }
+}
+
+- (void)viewDidDisappear
+{
+    for(int i = 0; i < [_instanceArray count]; i++){
+        NSObject* item = _instanceArray[i];
+        [item clear];
+    }
+}
+
 - (void)applicationWillResignActive:(NSNotification *)notification
 {
+    
 }
 
 @end

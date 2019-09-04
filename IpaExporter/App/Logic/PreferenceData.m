@@ -37,6 +37,12 @@
     [_saveData saveAll];
 }
 
+- (void)updateData
+{
+    _codeAppArray = [_saveData dataForKey:OPEN_CODE_APP_SAVE_KEY];
+    _jsonAppArray = [_saveData dataForKey:OPEN_JSON_APP_SAVE_KEY];
+}
+
 - (NSMutableArray*)addAndSave:(NSString*)data withKey:(NSString*)key;
 {
     NSMutableArray *array = [_saveData dataForKey:key];
@@ -46,7 +52,7 @@
     [array insertObject:data atIndex:0];
     [_saveData setDataForKey:key withData:array];
     [_saveData saveAll];
-
+    
     return array;
 }
 

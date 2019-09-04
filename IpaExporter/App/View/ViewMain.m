@@ -11,6 +11,7 @@
 #import "PreferenceView.h"
 #import "DetailsInfoSetting.h"
 #import "LogicManager.h"
+#import "NSViewController+LogicSupport.h"
 
 @implementation ViewMain
 
@@ -21,12 +22,16 @@
 
 - (void)viewDidAppear
 {
-    [super viewDidAppear];
+    [super onShow];
     
-    [[EventManager instance] regist:EventSetViewMainTab
-                               func:@selector(setTab:)
-                               self:self];
+    EVENT_REGIST(EventSetViewMainTab, @selector(setTab:));
+
     [self checkIsShowSetting];
+}
+
+- (void)tabView:(NSTabView *)tabView didSelectTabViewItem:(nullable NSTabViewItem *)tabViewItem
+{
+    [super tabView:tabView didSelectTabViewItem:tabViewItem];
 }
 
 - (void)setTab:(NSNotification*)notification

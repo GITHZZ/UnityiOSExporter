@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NSObject (LogicBase)
 
 -(void)initialize;
+-(void)updateData;
+-(void)clear;
 
 @end
 

@@ -26,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LogicManager : NSObject
 {
+    NSArray *_instanceArray;
     NSMutableDictionary *_instanceDict;
 }
 

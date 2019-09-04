@@ -9,6 +9,7 @@
 #import "DetailsInfoSetting.h"
 #import "Common.h"
 #import "Defs.h"
+#import "NSViewController+LogicSupport.h"
 
 @implementation DetailsInfoSetting
 
@@ -109,6 +110,7 @@
     _releaseProfileName.stringValue = [_info getValueForKey:Defs_Release_Profile_Name];
     _releaseDevelopTeam.stringValue = [_info getValueForKey:Defs_Release_Develop_Team];
     _customSDKPath.stringValue = [_info getValueForKey:Defs_Copy_Dir_Path];
+    
     _frameworkNameArr = [_info getValueForKey:Defs_Framework_Names];
     _frameworkIsWeakArr = [_info getValueForKey:Defs_Framework_IsWeaks];
     _libNameArr = [_info getValueForKey:Defs_Lib_Names];

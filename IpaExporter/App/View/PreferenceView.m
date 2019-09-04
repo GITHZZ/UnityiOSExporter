@@ -9,6 +9,7 @@
 #import "PreferenceView.h"
 #import "GeneralView.h"
 #import "NSFileManager+Copy.h"
+#import "NSViewController+LogicSupport.h"
 
 int _viewOpeningCount = 0;
 
@@ -95,12 +96,19 @@ int _viewOpeningCount = 0;
     [[EventManager instance] send:EventViewSureClicked withData:sender];
 }
 
+- (IBAction)openCustomCodeFolder:(id)sender
+{
+    [[NSWorkspace sharedWorkspace] selectFile:nil inFileViewerRootedAtPath:LIB_PATH];
+}
+
 @end
 
 @implementation PreferenceView
 
 - (void)viewDidAppear
 {
+    [super onShow];
+    
     _itemCellDict = [NSMutableDictionary dictionary];
     _viewOpeningCount++;
 
@@ -119,6 +127,7 @@ int _viewOpeningCount = 0;
 
 - (void)viewDidDisappear
 {
+    [super onHide];
     _viewOpeningCount--;
 }
 
@@ -164,6 +173,7 @@ int _viewOpeningCount = 0;
     
     _itemCellDict[OPEN_CODE_APP_SAVE_KEY] = _codeApp;
     _itemCellDict[OPEN_JSON_APP_SAVE_KEY] = _jsonApp;
+    
 }
 
 - (void)menuDidClose:(NSMenu *)menu
@@ -183,13 +193,11 @@ int _viewOpeningCount = 0;
             NSString *selectPath = [[openDlg URL] path];
             NSString *appName = [selectPath lastPathComponent];
             
-            NSMutableArray *newArr = [dataInst addAndSave:appName
-                                                                   withKey:menu.identifier];
+            NSMutableArray *newArr = [dataInst addAndSave:appName withKey:menu.identifier];
             [cell addItemsWithTitles:newArr];
             [cell synchronizeTitleAndSelectedItem];
         }else{
-            NSMutableArray *newArr = [dataInst addAndSave:[[cell itemTitles] firstObject]
-                                                                   withKey:menu.identifier];
+            NSMutableArray *newArr = [dataInst addAndSave:[[cell itemTitles] firstObject] withKey:menu.identifier];
             [cell addItemsWithTitles:newArr];
             [cell synchronizeTitleAndSelectedItem];
         }
