@@ -9,7 +9,6 @@
 #import "DetailsInfoSetting.h"
 #import "Common.h"
 #import "Defs.h"
-#import "NSViewController+LogicSupport.h"
 
 @implementation DetailsInfoSetting
 
@@ -29,7 +28,7 @@
     
     if(!_frameworkNameArr)
         _frameworkNameArr = [NSMutableArray arrayWithCapacity:10];
-
+    
     if(!_frameworkIsWeakArr)
         _frameworkIsWeakArr = [NSMutableArray arrayWithCapacity:10];
     
@@ -62,7 +61,7 @@
 - (void)viewDidDisappear
 {
     if(_sureBtnClicked)
-        [[EventManager instance] send:EventSetViewMainTab withData:0];
+        EVENT_SEND(EventSetViewMainTab, 0);
     
     _isSetDataOnShow = NO;
     _sureBtnClicked = NO;
@@ -165,15 +164,10 @@
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:appName, Defs_App_Name_Key, appID, Defs_App_ID_Key, debugProfileName, Defs_Debug_Profile_Name, debugDevelopTeam, Defs_Debug_Develop_Team, releaseProfileName, Defs_Release_Profile_Name, releaseDevelopTeam,Defs_Release_Develop_Team, platform, Defs_Platform_Name, customSdkPath, Defs_Copy_Dir_Path, s_false, Defs_Is_Selected ,_frameworkNameArr, Defs_Framework_Names, _frameworkIsWeakArr, Defs_Framework_IsWeaks, _libNameArr, Defs_Lib_Names, _linkerFlagArr, Defs_Linker_Flag, _embedFrameworksArr, Defs_Embed_Framework, _customSdkArr, Defs_Custom_Sdk_Child, nil];
 
     DetailsInfoData* info = [[DetailsInfoData alloc] initWithInfoDict:dict];
-    if(_isEditMode)
-    {
-        [[EventManager instance] send:EventDetailsInfoSettingEdit
-                             withData:info];
-    }
-    else
-    {
-        [[EventManager instance] send:EventDetailsInfoSettingClose
-                         withData:info];
+    if(_isEditMode){
+        EVENT_SEND(EventDetailsInfoSettingEdit, info);
+    }else{
+        EVENT_SEND(EventDetailsInfoSettingClose, info);
     }
     
     _sureBtnClicked = YES;
@@ -217,8 +211,8 @@
     [openDlg setAllowsMultipleSelection:isAllow];
     [openDlg setDelegate:self];
     [openDlg setDirectoryURL:[NSURL URLWithString:urlString]];
-    if ([openDlg runModal] == NSModalResponseOK)
-    {
+
+    if ([openDlg runModal] == NSModalResponseOK){
         callback(openDlg);
     }
 }

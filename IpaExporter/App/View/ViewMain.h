@@ -10,9 +10,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 @interface ViewMain : NSTabViewController
+{
+    NSSet *_subView;
+    NSMutableArray<NSViewController*> *_subViewQueue;
+}
 
 @property (weak) IBOutlet NSTabView *tabs;
 
 @end
-
 NS_ASSUME_NONNULL_END

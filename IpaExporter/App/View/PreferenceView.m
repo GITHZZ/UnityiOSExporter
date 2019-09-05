@@ -9,7 +9,6 @@
 #import "PreferenceView.h"
 #import "GeneralView.h"
 #import "NSFileManager+Copy.h"
-#import "NSViewController+LogicSupport.h"
 
 int _viewOpeningCount = 0;
 
@@ -21,10 +20,8 @@ int _viewOpeningCount = 0;
         return;
     
     _viewOpeningCount++;
-    NSStoryboard *sb = [NSStoryboard storyboardWithName:@"Main" bundle:nil];
-    PreferenceView *vc = [sb instantiateControllerWithIdentifier:@"PreferenceView"];
-    NSViewController *mainControler = [[[NSApplication sharedApplication] mainWindow] contentViewController];
-    [mainControler presentViewControllerAsSheet:vc];
+    
+    EVENT_SEND(EventShowSubView, @"PreferenceView");
 }
 
 - (IBAction)openCustomCodeFile:(id)sender
@@ -88,12 +85,12 @@ int _viewOpeningCount = 0;
 - (IBAction)switchState:(id)sender
 {
     NSMenuItem *item = (NSMenuItem*)sender;
-    [[EventManager instance] send:EventOnMenuSelect withData:item.identifier];
+    EVENT_SEND(EventOnMenuSelect, item.identifier);
 }
     
 - (IBAction)startRun:(id)sender
 {
-    [[EventManager instance] send:EventViewSureClicked withData:sender];
+    EVENT_SEND(EventViewSureClicked, sender);
 }
 
 - (IBAction)openCustomCodeFolder:(id)sender
@@ -107,8 +104,6 @@ int _viewOpeningCount = 0;
 
 - (void)viewDidAppear
 {
-    [super onShow];
-    
     _itemCellDict = [NSMutableDictionary dictionary];
     _viewOpeningCount++;
 
@@ -127,7 +122,6 @@ int _viewOpeningCount = 0;
 
 - (void)viewDidDisappear
 {
-    [super onHide];
     _viewOpeningCount--;
 }
 
@@ -214,7 +208,8 @@ int _viewOpeningCount = 0;
 - (IBAction)close:(id)sender
 {
     _viewOpeningCount--;
-    [self dismissViewController:self];
+//    [self dismissViewController:self];
+    EVENT_SEND(EventHideSubView, self);
 }
 
 @end
@@ -238,9 +233,8 @@ int _viewOpeningCount = 0;
 - (IBAction)sureBtnSelect:(id)sender
 {
     [[NSFileManager defaultManager] copyFile:_plistPath.stringValue toDst:PLIST_PATH];
-    
     [self dismissViewController:self];
-    [[EventManager instance] send:EventSettingFileSelect withData:nil];
+    EVENT_SEND(EventSettingFileSelect, nil);
 }
 
 - (IBAction)cancelBtnSelect:(id)sender

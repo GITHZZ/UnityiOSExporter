@@ -11,27 +11,60 @@
 #import "PreferenceView.h"
 #import "DetailsInfoSetting.h"
 #import "LogicManager.h"
-#import "NSViewController+LogicSupport.h"
 
 @implementation ViewMain
 
 - (void)viewDidLoad
 {
+    //子界面
+    _subView = [NSSet setWithObjects:@"PreferenceView", @"DetailsInfoSetting",nil];
+    _subViewQueue = [NSMutableArray array];
+    
     [super viewDidLoad];
 }
 
 - (void)viewDidAppear
 {
-    [super onShow];
-    
     EVENT_REGIST(EventSetViewMainTab, @selector(setTab:));
-
+    EVENT_REGIST(EventShowSubView, @selector(showSubView:));
+    EVENT_REGIST(EventHideSubView, @selector(hideSubView:))
+    
     [self checkIsShowSetting];
+}
+
+- (void)showSubView:(NSNotification*)notification
+{
+    NSString *viewName = (NSString*)notification.object;
+    if(![_subView containsObject:viewName])
+        return;
+   
+    NSStoryboard *sb = [NSStoryboard storyboardWithName:@"Main" bundle:nil];
+    NSViewController *vc = [sb instantiateControllerWithIdentifier:viewName];
+    NSViewController *mainControler = [[[NSApplication sharedApplication] mainWindow] contentViewController];
+
+    EVENT_SEND(EventViewDidAppear, vc);
+    [mainControler presentViewControllerAsSheet:vc];
+    
+    [_subViewQueue addObject:vc];
+}
+
+- (void)hideSubView:(NSNotification*)notification
+{
+    if(_subViewQueue.count <= 0)
+        return;
+    
+    NSViewController *vc = _subViewQueue.lastObject;
+    [vc dismissController:vc];
+    
+    EVENT_SEND(EventViewDidDisappear, vc);
 }
 
 - (void)tabView:(NSTabView *)tabView didSelectTabViewItem:(nullable NSTabViewItem *)tabViewItem
 {
     [super tabView:tabView didSelectTabViewItem:tabViewItem];
+    
+    EVENT_SEND(EventViewDidDisappear, nil);
+    EVENT_SEND(EventViewDidAppear,nil);
 }
 
 - (void)setTab:(NSNotification*)notification

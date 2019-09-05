@@ -13,7 +13,6 @@
 #import "Common.h"
 #import "PreferenceView.h"
 #import "PreferenceData.h"
-#import "NSViewController+LogicSupport.h"
 
 #define PlatformTblKey @"platformTbl"
 #define PackSceneKey   @"packScene"
@@ -66,8 +65,6 @@
 
 - (void)viewDidAppear
 {
-    [super onShow];
-    
     _isVisable = YES;
     
     //从本地读取存储数据
@@ -259,7 +256,6 @@
     else if([tableView.identifier isEqualToString:PackSceneKey]){
         return [_sceneArray count];
     }
-    
     return 0;
 }
 
@@ -301,7 +297,6 @@
 - (void)tableView:(NSTableView *)tableView setObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
     NSButtonCell* cell = [tableColumn dataCellForRow:row];
-    
     if([tableView.identifier isEqualToString:PlatformTblKey]){
         DetailsInfoData *data = (DetailsInfoData*)[_dataDict objectAtIndex:row];
         NSInteger newState = ![cell state];

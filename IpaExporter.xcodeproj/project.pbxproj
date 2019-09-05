@@ -37,7 +37,6 @@
 		59B1BE3D22C06D030087F869 /* CodeTester.m in Sources */ = {isa = PBXBuildFile; fileRef = 59B1BE3C22C06D030087F869 /* CodeTester.m */; };
 		59CF0C4222B79D08001A1F91 /* PreferenceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 59CF0C4122B79D08001A1F91 /* PreferenceView.m */; };
 		59F118F622F0409600E88253 /* VersionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 59F118F522F0409600E88253 /* VersionInfo.m */; };
-		59F12150231F66D100276A39 /* NSViewController+LogicSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 59F1214F231F66D100276A39 /* NSViewController+LogicSupport.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,8 +122,6 @@
 		59CF0C4122B79D08001A1F91 /* PreferenceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PreferenceView.m; sourceTree = "<group>"; };
 		59F118F422F0409600E88253 /* VersionInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VersionInfo.h; sourceTree = "<group>"; };
 		59F118F522F0409600E88253 /* VersionInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VersionInfo.m; sourceTree = "<group>"; };
-		59F1214E231F66D100276A39 /* NSViewController+LogicSupport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSViewController+LogicSupport.h"; sourceTree = "<group>"; };
-		59F1214F231F66D100276A39 /* NSViewController+LogicSupport.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSViewController+LogicSupport.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -254,8 +251,6 @@
 				184BEA4F1DC742FA00CCEC4D /* DetailsInfoSetting.m */,
 				59CF0C4022B79D08001A1F91 /* PreferenceView.h */,
 				59CF0C4122B79D08001A1F91 /* PreferenceView.m */,
-				59F1214E231F66D100276A39 /* NSViewController+LogicSupport.h */,
-				59F1214F231F66D100276A39 /* NSViewController+LogicSupport.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -471,7 +466,6 @@
 				18CA13961D78164C006595E5 /* GeneralView.m in Sources */,
 				5978866C22F6C1C300340436 /* LogicManager.m in Sources */,
 				5928B57022F91CEF003B30CD /* NSObject+LogicBase.m in Sources */,
-				59F12150231F66D100276A39 /* NSViewController+LogicSupport.m in Sources */,
 				5937E44E22C73B8B004FD5AA /* MobileprovisionParser.m in Sources */,
 				59F118F622F0409600E88253 /* VersionInfo.m in Sources */,
 				18DD5E6C1DAF1C150071B654 /* DetailsInfoView.m in Sources */,
