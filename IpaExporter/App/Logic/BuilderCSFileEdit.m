@@ -58,12 +58,19 @@
         NSString *keyStr = [NSString stringWithFormat:@"//木有任何数据"];
         
         if([key isEqualToString:Export_Path]){
-            
             const char* path = info->exportFolderParh;
             keyStr = [[NSString stringWithUTF8String:path] stringByAppendingFormat:@"/%@",XCODE_PROJ_NAME];
         }else if([key isEqualToString:Defs_Pack_Scene]){
-        
-            NSMutableArray *scenes = _view.sceneArray;
+            NSMutableArray *fullScenesPath = _view.sceneArray;
+            NSString *projPath = [NSString stringWithFormat:@"%s", info->unityProjPath];
+            
+            NSMutableArray *scenes = [NSMutableArray array];
+            for(int i = 0; i < fullScenesPath.count; i++){
+                NSString *path = fullScenesPath[i];
+                NSString *relativePath = [path substringFromIndex:[projPath length] + 1];
+                [scenes addObject:relativePath];
+            }
+            
             keyStr = [self getReplaceStrFromArray:scenes];
         }
         
@@ -98,7 +105,6 @@
         NSString *name = array[i];
         [classArr addObject:name];
     }
-    
     NSString *keyStr = [classArr componentsJoinedByString:@",\n"];
     return keyStr;
 }
@@ -118,7 +124,6 @@
         else
             newStr = [newStr stringByAppendingFormat:@"%@,\n", classStr];
     }
-    
     return newStr;
 }
 

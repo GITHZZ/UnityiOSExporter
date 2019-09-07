@@ -69,14 +69,16 @@ class XcodeProjectUpdater
 			elsif file.real_path.to_s.end_with?(".bundle", ".jpg", ".png") 
 				target.resources_build_phase.remove_file_reference(file)
 			end
-		end 
+		end
+        
+        group.remove_from_project
 	end 
 
 	def add_build_phase_files(target, group, path, embedFrameworks)
         @retain_count = @retain_count + 1
         if @retain_count <= 2 and !@sdk_array.include?(path)
             @retain_count = @retain_count - 1
-            remove_build_phase_files_recursively(@target, group)
+            remove_build_phase_files_recursively(target, group)
             group.clear()
             return
         end

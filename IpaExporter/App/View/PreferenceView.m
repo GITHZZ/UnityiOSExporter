@@ -208,7 +208,6 @@ int _viewOpeningCount = 0;
 - (IBAction)close:(id)sender
 {
     _viewOpeningCount--;
-//    [self dismissViewController:self];
     EVENT_SEND(EventHideSubView, self);
 }
 
