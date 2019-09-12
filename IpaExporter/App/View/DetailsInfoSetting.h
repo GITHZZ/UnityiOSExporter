@@ -8,10 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 #import <Foundation/Foundation.h>
-#import "DetailsInfoData.h"
-#import "Common.h"
 
-@interface DetailsInfoSetting : NSViewController<NSTableViewDataSource, NSTableViewDelegate,NSOpenSavePanelDelegate>{
+@class DetailsInfoData;
+
+@interface DetailsInfoSetting : NSViewController<NSTableViewDataSource,NSTableViewDelegate,NSOpenSavePanelDelegate>{
 @private
     BOOL _sureBtnClicked;
     BOOL _isSetDataOnShow;
@@ -45,4 +45,3 @@
 - (void)setUpDataInfoOnShow:(DetailsInfoData*)info isEditMode:(BOOL)isEdit;
 
 @end
-

@@ -8,9 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 #import <Foundation/Foundation.h>
-#import "ExportInfoManager.h"
 
-@interface GeneralView : NSViewController<NSTableViewDataSource, NSTableViewDelegate, NSComboBoxDelegate>{
+@class ExportInfoManager;
+@class DetailsInfoData;
+
+@interface GeneralView : NSViewController<NSTableViewDataSource, NSTableViewDelegate, NSComboBoxDelegate, NSOpenSavePanelDelegate>{
 @private
     NSMutableArray<NSString*> *_sceneArray;
     NSTimer *_showTimer;

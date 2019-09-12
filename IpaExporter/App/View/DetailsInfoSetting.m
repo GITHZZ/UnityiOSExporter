@@ -9,6 +9,8 @@
 #import "DetailsInfoSetting.h"
 #import "Common.h"
 #import "Defs.h"
+#import "DetailsInfoData.h"
+#import "Common.h"
 
 @implementation DetailsInfoSetting
 

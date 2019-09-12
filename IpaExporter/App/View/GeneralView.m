@@ -13,6 +13,7 @@
 #import "Common.h"
 #import "PreferenceView.h"
 #import "PreferenceData.h"
+#import "ExportInfoManager.h"
 
 #define PlatformTblKey @"platformTbl"
 #define PackSceneKey   @"packScene"
@@ -164,10 +165,16 @@
 - (void)openFolderSelectDialog:(EventType)et
                IsCanSelectFile:(BOOL)chooseFile
         IsCanSelectDirectories:(BOOL)chooseDirectories
+                    identifier:(NSString*)identifier
 {
+    NSString *unityProjPath = [NSString stringWithUTF8String:_manager.info->unityProjPath];
+    
     NSOpenPanel* openDlg = [NSOpenPanel openPanel];
+    [openDlg setDelegate:self];
+    [openDlg setIdentifier:identifier];
     [openDlg setCanChooseFiles:chooseFile];
     [openDlg setCanChooseDirectories:chooseDirectories];
+    [openDlg setDirectoryURL:[NSURL URLWithString:unityProjPath]];
     
     ExportInfo* tInfo = _manager.info;
     
@@ -194,14 +201,20 @@
                     
                     break;
                 case EventScenePathSelectEnd:
-                    if(![[selectPath pathExtension] isEqualToString:@"unity"]){
+                    if(![selectPath hasSuffix:@"unity"]){
                         showError("**[加入新打包场景失败]：选择场景文件必须为unity后缀文件");
+                        return;
+                    }
+                    
+                    if(![selectPath hasPrefix:unityProjPath]){
+                        showError("**[加入新打包场景失败]：选择场景文件必须在unity工程下选择");
                         return;
                     }
                     
                     [_sceneArray addObject:selectPath];
                     [_manager addDetail:selectPath withKey:SAVE_SCENE_ARRAY_KEY];
                     [_packSceneTbl reloadData];
+                    break;
                 default:
                     break;
             }
@@ -213,21 +226,24 @@
 {
     [self openFolderSelectDialog:EventUnityPathSelectEnd
                  IsCanSelectFile:NO
-          IsCanSelectDirectories:YES];
+          IsCanSelectDirectories:YES
+                      identifier:@"unityPath"];
 }
 
 - (IBAction)exportPathSelect:(id)sender
 {
     [self openFolderSelectDialog:EventExportPathSelectEnd
                  IsCanSelectFile:NO
-          IsCanSelectDirectories:YES];
+          IsCanSelectDirectories:YES
+                      identifier:@"exportPath"];
 }
 
 - (IBAction)scenePathSelect:(id)sender
 {
     [self openFolderSelectDialog:EventScenePathSelectEnd
                  IsCanSelectFile:YES
-          IsCanSelectDirectories:NO];
+          IsCanSelectDirectories:NO
+                      identifier:@"scenePath"];
 }
 
 - (IBAction)removeScenePath:(id)sender
@@ -314,7 +330,6 @@
     //bug:延迟到下一帧取数据
     [self performSelector:@selector(readComboValue:) withObject:[notification object] afterDelay:0];
 }
-
 
 - (void)readComboValue:(id)object
 {
@@ -501,6 +516,16 @@
     NSMutableArray *jsonAppArray = inst_method_call(@"PreferenceData", getJsonAppArray);
     NSString *filePath = dataInst.jsonFilePath;
     [[NSWorkspace sharedWorkspace] openFile:filePath withApplication:[jsonAppArray firstObject]];
+}
+
+- (void)panel:(id)sender didChangeToDirectoryURL:(NSURL *)url
+{
+    NSOpenPanel *openDlg = (NSOpenPanel*)sender;
+    if([openDlg.identifier isEqualToString:@"scenePath"])
+    {
+        NSString *unityProjPath = [NSString stringWithUTF8String:_manager.info->unityProjPath];
+        [sender setDirectoryURL:[NSURL URLWithString:unityProjPath]];
+    }
 }
 
 @end

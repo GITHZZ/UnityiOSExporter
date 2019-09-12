@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
 #import "Common.h"
-#import "LocalDataSave.h"
 #import "LogicManager.h"
 
 NS_ASSUME_NONNULL_BEGIN

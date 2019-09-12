@@ -10,6 +10,9 @@
 #import "DetailsInfoData.h"
 #import "LogicManager.h"
 
+#import "Common.h"
+#import "DetailsInfoSetting.h"
+
 @implementation DetailsInfoView
 
 - (void)viewDidLoad
