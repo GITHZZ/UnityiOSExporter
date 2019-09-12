@@ -185,7 +185,8 @@ class XcodeProjectUpdater
 		set_build_setting(@target, "DEVELOPMENT_TEAM", develop_signing_identity[1], "Debug")
 		set_build_setting(@target, "CODE_SIGN_IDENTITY[sdk=iphoneos*]", "iPhone Developer", "Debug")
         set_build_setting(@target, "PRODUCT_BUNDLE_IDENTIFIER", bundle_identifier, "Debug")
-
+        set_build_setting(@target, "GCC_PREPROCESSOR_DEFINITIONS", "DEBUG=1", "Debug")
+                                           
 		release_signing_identity = @setting_hash["release_signing_identity"]
 		set_build_setting(@target, "PROVISIONING_PROFILE_SPECIFIER", release_signing_identity[0], "Release")
 		set_build_setting(@target, "DEVELOPMENT_TEAM", release_signing_identity[1], "Release")

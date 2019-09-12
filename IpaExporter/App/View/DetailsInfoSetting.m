@@ -161,7 +161,23 @@
     NSString* platform = _platform.stringValue;
     NSString* customSdkPath = _customSDKPath.stringValue;
     
-    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:appName, Defs_App_Name_Key, appID, Defs_App_ID_Key, debugProfileName, Defs_Debug_Profile_Name, debugDevelopTeam, Defs_Debug_Develop_Team, releaseProfileName, Defs_Release_Profile_Name, releaseDevelopTeam,Defs_Release_Develop_Team, platform, Defs_Platform_Name, customSdkPath, Defs_Copy_Dir_Path, s_false, Defs_Is_Selected ,_frameworkNameArr, Defs_Framework_Names, _frameworkIsWeakArr, Defs_Framework_IsWeaks, _libNameArr, Defs_Lib_Names, _linkerFlagArr, Defs_Linker_Flag, _embedFrameworksArr, Defs_Embed_Framework, _customSdkArr, Defs_Custom_Sdk_Child, nil];
+                         //value  key
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
+                          appName, Defs_App_Name_Key,
+                          appID, Defs_App_ID_Key,
+                          debugProfileName, Defs_Debug_Profile_Name,
+                          debugDevelopTeam, Defs_Debug_Develop_Team,
+                          releaseProfileName, Defs_Release_Profile_Name,
+                          releaseDevelopTeam,Defs_Release_Develop_Team,
+                          platform, Defs_Platform_Name,
+                          customSdkPath, Defs_Copy_Dir_Path,
+                          s_true, Defs_Is_Selected ,
+                          _frameworkNameArr, Defs_Framework_Names,
+                          _frameworkIsWeakArr, Defs_Framework_IsWeaks,
+                          _libNameArr, Defs_Lib_Names,
+                          _linkerFlagArr, Defs_Linker_Flag,
+                          _embedFrameworksArr, Defs_Embed_Framework,
+                          _customSdkArr, Defs_Custom_Sdk_Child, nil];
 
     DetailsInfoData* info = [[DetailsInfoData alloc] initWithInfoDict:dict];
     if(_isEditMode){
@@ -425,7 +441,7 @@
     return [[path stringByDeletingLastPathComponent] isEqualToString:rootDir] && ![path isEqualToString:rootDir];
 }
 
-- (void) panel:(id)sender didChangeToDirectoryURL:(NSURL *)url
+- (void)panel:(id)sender didChangeToDirectoryURL:(NSURL *)url
 {
     NSOpenPanel *openDlg = (NSOpenPanel*)sender;
     if([openDlg.identifier isEqualToString:@"customSDKChild"])
