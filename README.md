@@ -16,11 +16,12 @@
 * **5.删除平台信息，依据用户选择当前行删除。**
 * **6.依据用户选择当前行选择进行信息编辑。**
 
-平台具体信息编辑界面如下:  
+平台具体信息编辑界面如下:   
+
 ![857e346ff936adba912b740bd32a11ad.png](https://github.com/GITHZZ/UnityiOSExporter/blob/master/Doc/doc3.png)
 ![27a276bd1f39c67f5061d902876ca971.png](https://github.com/GITHZZ/UnityiOSExporter/blob/master/Doc/doc4.png)
 ![1353e16520e015483e7b58c25e0e8b8f.png](https://github.com/GITHZZ/UnityiOSExporter/blob/master/Doc/doc5.png)
-![71484fb0fef124f023e183f6fa00c7f9.png](https://github.com/GITHZZ/UnityiOSExporter/blob/master/Doc/doc6.png)
+![71484fb0fef124f023e183f6fa00c7f9.png](https://github.com/GITHZZ/UnityiOSExporter/blob/master/Doc/doc6.png)  
 自上而下的进行参数解析:
 * platformName - 平台名字 该名字用户自定义，用户区分平台
 * AppName - 应用名字 该名字由用户定义，用于定义包名。
