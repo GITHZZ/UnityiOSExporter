@@ -17,7 +17,11 @@
 - (void)viewDidLoad
 {
     //子界面
-    _subView = [NSSet setWithObjects:@"PreferenceView", @"DetailsInfoSetting",nil];
+    _subView = [NSSet setWithObjects:\
+                @"PreferenceView",
+                @"DetailsInfoSetting",
+                @"SceneSelectView",
+                nil];
     _subViewQueue = [NSMutableArray array];
     
     [super viewDidLoad];
@@ -40,9 +44,10 @@
    
     NSStoryboard *sb = [NSStoryboard storyboardWithName:@"Main" bundle:nil];
     NSViewController *vc = [sb instantiateControllerWithIdentifier:viewName];
+    vc.identifier = viewName;
     NSViewController *mainControler = [[[NSApplication sharedApplication] mainWindow] contentViewController];
 
-    EVENT_SEND(EventViewDidAppear, vc);
+    EVENT_SEND(EventViewWillAppear, vc);
     [mainControler presentViewControllerAsSheet:vc];
     
     [_subViewQueue addObject:vc];
@@ -64,7 +69,7 @@
     [super tabView:tabView didSelectTabViewItem:tabViewItem];
     
     EVENT_SEND(EventViewDidDisappear, nil);
-    EVENT_SEND(EventViewDidAppear,nil);
+    EVENT_SEND(EventViewWillAppear,nil);
 }
 
 - (void)setTab:(NSNotification*)notification

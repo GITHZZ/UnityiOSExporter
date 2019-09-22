@@ -33,7 +33,7 @@
 @property (weak) IBOutlet NSTextField *debugDevelopTeam;
 @property (weak) IBOutlet NSTextField *releaseProfileName;
 @property (weak) IBOutlet NSTextField *releaseDevelopTeam;
-@property (weak) IBOutlet NSComboBox *customSDKPath;
+@property (weak) IBOutlet NSTextField *customSDKPath;
 @property (weak) IBOutlet NSView *detailView;
 @property (weak) IBOutlet NSButton *sureBtn;
 @property (weak) IBOutlet NSTableView *frameworkTbl;

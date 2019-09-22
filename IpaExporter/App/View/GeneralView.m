@@ -27,7 +27,8 @@
     _packSceneTbl.delegate = self;
     _platformTbl.dataSource = self;
     _packSceneTbl.dataSource = self;
-
+    _packSceneTbl.enabled = NO;
+    
     _unityPathBox.delegate = self;
     _exportPathBox.delegate = self;
 
@@ -100,6 +101,7 @@
     EVENT_REGIST(EventCleanInfoContent, @selector(cleanInfoContent:));
     EVENT_REGIST(EventSettingFileSelect, @selector(reloadAllInfo));
     EVENT_REGIST(EventOnMenuSelect, @selector(onMenuSelect:));
+    EVENT_REGIST(EventSelectSceneClicked, @selector(selectSceneClicked:));
 }
 
 - (void)unRegistEvent
@@ -114,6 +116,8 @@
     EVENT_UNREGIST(EventCleanInfoContent);
     EVENT_UNREGIST(EventSettingFileSelect);
     EVENT_UNREGIST(EventOnMenuSelect);
+    EVENT_UNREGIST(EventSelectSceneClicked);
+
 }
 
 - (void)reloadAllInfo
@@ -201,25 +205,31 @@
                     
                     break;
                 case EventScenePathSelectEnd:
-                    if(![selectPath hasSuffix:@"unity"]){
-                        showError("**[加入新打包场景失败]：选择场景文件必须为unity后缀文件");
-                        return;
-                    }
-                    
-                    if(![selectPath hasPrefix:unityProjPath]){
-                        showError("**[加入新打包场景失败]：选择场景文件必须在unity工程下选择");
-                        return;
-                    }
-                    
-                    [_sceneArray addObject:selectPath];
-                    [_manager addDetail:selectPath withKey:SAVE_SCENE_ARRAY_KEY];
-                    [_packSceneTbl reloadData];
+                    [self addNewScenePath:selectPath];
                     break;
                 default:
                     break;
             }
         }
     }
+}
+
+- (void)addNewScenePath:(NSString*)path
+{
+    NSString *unityProjPath = [NSString stringWithUTF8String:_manager.info->unityProjPath];
+    if(![path hasSuffix:@"unity"]){
+        showError("[加入新打包场景失败]：选择场景文件必须为unity后缀文件");
+        return;
+    }
+    
+    if(![path hasPrefix:unityProjPath]){
+        showError("[加入新打包场景失败]：选择场景文件必须在unity工程下选择");
+        return;
+    }
+    
+    [_sceneArray addObject:path];
+    [_manager addDetail:path withKey:SAVE_SCENE_ARRAY_KEY];
+    [_packSceneTbl reloadData];
 }
 
 - (IBAction)unityPathSelect:(id)sender
@@ -238,12 +248,28 @@
                       identifier:@"exportPath"];
 }
 
+- (void)selectSceneClicked:(NSNotification*)notification
+{
+    NSArray *sceneArr = [_manager getSceneArray];
+    for (int i = (int)[sceneArr count] - 1; i >= 0 ; i--) {
+        [_sceneArray removeObjectAtIndex:i];
+        [_manager removeDetail:i withKey:SAVE_SCENE_ARRAY_KEY];
+    }
+    
+    NSArray *selectScene = (NSArray*)notification.object;
+    for (NSString *path in selectScene) {
+        [self addNewScenePath:path];
+    }
+}
+
 - (IBAction)scenePathSelect:(id)sender
 {
-    [self openFolderSelectDialog:EventScenePathSelectEnd
-                 IsCanSelectFile:YES
-          IsCanSelectDirectories:NO
-                      identifier:@"scenePath"];
+    if(strlen(_manager.info->unityProjPath) == 0){
+        showError("请选择工程路径");
+        return;
+    }
+    
+    EVENT_SEND(EventShowSubView, @"SceneSelectView");
 }
 
 - (IBAction)removeScenePath:(id)sender

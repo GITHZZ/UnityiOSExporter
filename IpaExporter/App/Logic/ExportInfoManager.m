@@ -8,6 +8,7 @@
 
 #import "ExportInfoManager.h"
 #import <objc/runtime.h>
+#import "Common.h"
 
 @implementation ExportInfoManager
 
@@ -186,6 +187,13 @@
         }
     }
     return NO;
+}
+
+- (NSArray*)getAllUnityScenePath
+{
+    NSString *unityProjPath = [NSString stringWithUTF8String:_info->unityProjPath];
+    NSArray *sceneArr = [[NSFileManager defaultManager] searchByExtension:@"unity" withDir:unityProjPath];
+    return sceneArr;
 }
 
 @end

@@ -42,7 +42,7 @@
         [item initialize];
     }
     
-    EVENT_REGIST(EventViewDidAppear, @selector(viewDidAppear));
+    EVENT_REGIST(EventViewWillAppear, @selector(viewDidAppear));
     EVENT_REGIST(EventViewDidDisappear, @selector(viewDidDisappear));
 }
 

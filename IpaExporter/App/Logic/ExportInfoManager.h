@@ -56,6 +56,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 //设置备份存储路径
 - (void)setCodeSavePath:(NSString*)path;
+- (NSArray*)getAllUnityScenePath;
 
 NS_ASSUME_NONNULL_END
 

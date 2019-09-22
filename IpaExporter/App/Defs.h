@@ -83,10 +83,11 @@ typedef NS_ENUM(EventType, CustomEventType)
     EventOnMenuSelect            = 220,
     EventExportXcodeCilcked      = 221,
     EventExportIpaChilcked       = 222,
-    EventViewDidAppear           = 223,
+    EventViewWillAppear           = 223,
     EventViewDidDisappear        = 224,
     EventShowSubView             = 225,
     EventHideSubView             = 226,
+    EventSelectSceneClicked      = 227,
 };
 
 #endif /* Defs_h */

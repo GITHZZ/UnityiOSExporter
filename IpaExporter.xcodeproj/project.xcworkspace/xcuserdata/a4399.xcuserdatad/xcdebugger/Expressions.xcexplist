@@ -102,10 +102,10 @@
          contextName = "-[ExportInfoManager reloadPaths]:ExportInfoManager.m">
          <PersistentStrings>
             <PersistentString
-               value = "[obj class]">
+               value = "item">
             </PersistentString>
             <PersistentString
-               value = "item">
+               value = "[obj class]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -127,6 +127,14 @@
       </ContextState>
       <ContextState
          contextName = "-[DetailsInfoSetting setUpInfo]:DetailsInfoSetting.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[NSFileManager(Search) searchByExtension:withDir:]:NSFileManager+Search.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[curPath stringByDeletingLastPathComponent]">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "-[RubyCammond sureBtnClicked:]:RubyCammond.m">

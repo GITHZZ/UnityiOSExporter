@@ -32,6 +32,8 @@
 		594F118922EC1E7E00052774 /* ViewMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 594F118822EC1E7E00052774 /* ViewMain.m */; };
 		5964C642229CE262004BDD23 /* PackCammond.m in Sources */ = {isa = PBXBuildFile; fileRef = 5964C641229CE262004BDD23 /* PackCammond.m */; };
 		5978866C22F6C1C300340436 /* LogicManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5978866B22F6C1C300340436 /* LogicManager.m */; };
+		597AA75D233723F200F6F16B /* SceneSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 597AA75C233723F200F6F16B /* SceneSelectView.m */; };
+		597AA76023372EF600F6F16B /* NSFileManager+Search.m in Sources */ = {isa = PBXBuildFile; fileRef = 597AA75F23372EF600F6F16B /* NSFileManager+Search.m */; };
 		5980B56A22CA45EF0015B6CA /* Libs in Resources */ = {isa = PBXBuildFile; fileRef = 5980B56922CA45EF0015B6CA /* Libs */; };
 		59841DC622D4BE0D006CA74F /* NSFileManager+Copy.m in Sources */ = {isa = PBXBuildFile; fileRef = 59841DC522D4BE0D006CA74F /* NSFileManager+Copy.m */; };
 		59B1BE3D22C06D030087F869 /* CodeTester.m in Sources */ = {isa = PBXBuildFile; fileRef = 59B1BE3C22C06D030087F869 /* CodeTester.m */; };
@@ -112,6 +114,10 @@
 		5964C641229CE262004BDD23 /* PackCammond.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PackCammond.m; sourceTree = "<group>"; };
 		5978866A22F6C1C300340436 /* LogicManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogicManager.h; sourceTree = "<group>"; };
 		5978866B22F6C1C300340436 /* LogicManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogicManager.m; sourceTree = "<group>"; };
+		597AA75B233723F200F6F16B /* SceneSelectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneSelectView.h; sourceTree = "<group>"; };
+		597AA75C233723F200F6F16B /* SceneSelectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneSelectView.m; sourceTree = "<group>"; };
+		597AA75E23372EF600F6F16B /* NSFileManager+Search.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+Search.h"; sourceTree = "<group>"; };
+		597AA75F23372EF600F6F16B /* NSFileManager+Search.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+Search.m"; sourceTree = "<group>"; };
 		5980B56922CA45EF0015B6CA /* Libs */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Libs; path = IpaExporter/Libs; sourceTree = "<group>"; };
 		59841DC422D4BE0D006CA74F /* NSFileManager+Copy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+Copy.h"; sourceTree = "<group>"; };
 		59841DC522D4BE0D006CA74F /* NSFileManager+Copy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+Copy.m"; sourceTree = "<group>"; };
@@ -251,6 +257,8 @@
 				184BEA4F1DC742FA00CCEC4D /* DetailsInfoSetting.m */,
 				59CF0C4022B79D08001A1F91 /* PreferenceView.h */,
 				59CF0C4122B79D08001A1F91 /* PreferenceView.m */,
+				597AA75B233723F200F6F16B /* SceneSelectView.h */,
+				597AA75C233723F200F6F16B /* SceneSelectView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -274,6 +282,8 @@
 				593FAEF422B097E700A21F33 /* NSString+Emoji.m */,
 				59841DC422D4BE0D006CA74F /* NSFileManager+Copy.h */,
 				59841DC522D4BE0D006CA74F /* NSFileManager+Copy.m */,
+				597AA75E23372EF600F6F16B /* NSFileManager+Search.h */,
+				597AA75F23372EF600F6F16B /* NSFileManager+Search.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -468,8 +478,10 @@
 				5928B57022F91CEF003B30CD /* NSObject+LogicBase.m in Sources */,
 				5937E44E22C73B8B004FD5AA /* MobileprovisionParser.m in Sources */,
 				59F118F622F0409600E88253 /* VersionInfo.m in Sources */,
+				597AA75D233723F200F6F16B /* SceneSelectView.m in Sources */,
 				18DD5E6C1DAF1C150071B654 /* DetailsInfoView.m in Sources */,
 				5937E45122C741F5004FD5AA /* LocalDataSave.m in Sources */,
+				597AA76023372EF600F6F16B /* NSFileManager+Search.m in Sources */,
 				182FF6F41E4D936700CC0C7C /* ExportInfoManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

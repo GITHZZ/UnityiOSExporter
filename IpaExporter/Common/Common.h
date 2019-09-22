@@ -16,5 +16,6 @@
 #import "Alert.h"
 #import "LocalDataSave.h"
 #import "NSFileManager+Copy.h"
+#import "NSFileManager+Search.h"
 
 #endif /* Common_h */
