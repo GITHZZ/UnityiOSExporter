@@ -18,10 +18,13 @@
 #define PlatformTblKey @"platformTbl"
 #define PackSceneKey   @"packScene"
 
+
 @implementation GeneralView
 
 - (void)viewDidLoad
 {
+    _viewOpeningCount = 0;
+    
     //设置数据源
     _platformTbl.delegate = self;
     _packSceneTbl.delegate = self;
@@ -102,6 +105,7 @@
     EVENT_REGIST(EventSettingFileSelect, @selector(reloadAllInfo));
     EVENT_REGIST(EventOnMenuSelect, @selector(onMenuSelect:));
     EVENT_REGIST(EventSelectSceneClicked, @selector(selectSceneClicked:));
+    EVENT_REGIST(EventViewDidDisappear, @selector(viewDidClose:));
 }
 
 - (void)unRegistEvent
@@ -117,7 +121,7 @@
     EVENT_UNREGIST(EventSettingFileSelect);
     EVENT_UNREGIST(EventOnMenuSelect);
     EVENT_UNREGIST(EventSelectSceneClicked);
-
+    EVENT_UNREGIST(EventViewDidDisappear);
 }
 
 - (void)reloadAllInfo
@@ -262,8 +266,20 @@
     }
 }
 
+- (void)viewDidClose:(NSNotification*)notificatioin
+{
+    NSViewController *control = (NSViewController*)notificatioin.object;
+    if([control.identifier isEqualToString:@"SceneSelectView"])
+        _viewOpeningCount--;
+}
+
 - (IBAction)scenePathSelect:(id)sender
 {
+    if(_viewOpeningCount >= 1)
+        return;
+    
+    _viewOpeningCount++;
+    
     if(strlen(_manager.info->unityProjPath) == 0){
         showError("请选择工程路径");
         return;

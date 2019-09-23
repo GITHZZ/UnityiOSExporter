@@ -19,6 +19,7 @@
     NSTimeInterval _packTime;
     BOOL _isVisable;
     ExportInfoManager* _manager;
+    int _viewOpeningCount;
 }
 
 @property (readonly) NSMutableArray<DetailsInfoData*>* dataDict;

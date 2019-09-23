@@ -10,9 +10,6 @@
 #import "Defs.h"
 #import "LogicManager.h"
 
-@interface SceneSelectView ()
-
-@end
 
 @implementation SceneSelectView
 
@@ -24,20 +21,28 @@
     _unitySceneTbl.dataSource = self;
     
     _exportManager = (ExportInfoManager*)get_instance(@"ExportInfoManager");
-    _sceneArray = [NSMutableArray arrayWithArray:[_exportManager getAllUnityScenePath]];
-    
-    NSString *unityProjPath = [NSString stringWithUTF8String:_exportManager.info->unityProjPath];
-    NSMutableArray *array = [NSMutableArray array];
-    for (NSString *path in [_exportManager getSceneArray]) {
-        NSString *relaPath = [path substringFromIndex:[unityProjPath length] + 1];
-        [array addObject:relaPath];
-    }
-    _selectScene = [NSMutableSet setWithArray:array];
 }
 
 - (void)viewDidAppear
 {
-    [_unitySceneTbl reloadData];
+    //获取数据
+    dispatch_group_t group = dispatch_group_create();
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_group_async(group, queue, ^{
+        _sceneArray = [NSMutableArray arrayWithArray:[_exportManager getAllUnityScenePath]];
+        NSString *unityProjPath = [NSString stringWithUTF8String:_exportManager.info->unityProjPath];
+        NSMutableArray *array = [NSMutableArray array];
+        for (NSString *path in [_exportManager getSceneArray]) {
+            NSString *relaPath = [path substringFromIndex:[unityProjPath length] + 1];
+            [array addObject:relaPath];
+        }
+        _selectScene = [NSMutableSet setWithArray:array];
+    });
+    
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        [_unitySceneTbl reloadData];
+    });
+    
 }
 
 - (void)viewWillDisappear
@@ -106,12 +111,12 @@
     }
     
     EVENT_SEND(EventSelectSceneClicked, array);
-    [self dismissController:self];
+    EVENT_SEND(EventHideSubView, self);
 }
 
 - (IBAction)cancelBtnClick:(id)sender
 {
-    [self dismissController:self];
+    EVENT_SEND(EventHideSubView, self);
 }
 
 @end
