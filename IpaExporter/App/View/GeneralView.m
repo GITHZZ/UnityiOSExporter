@@ -175,23 +175,17 @@
         IsCanSelectDirectories:(BOOL)chooseDirectories
                     identifier:(NSString*)identifier
 {
-    NSString *unityProjPath = [NSString stringWithUTF8String:_manager.info->unityProjPath];
-    
     NSOpenPanel* openDlg = [NSOpenPanel openPanel];
     [openDlg setDelegate:self];
     [openDlg setIdentifier:identifier];
+    [openDlg setAllowsMultipleSelection:NO];
     [openDlg setCanChooseFiles:chooseFile];
     [openDlg setCanChooseDirectories:chooseDirectories];
-    [openDlg setDirectoryURL:[NSURL URLWithString:unityProjPath]];
-    
+
     ExportInfo* tInfo = _manager.info;
-    
-    if ([openDlg runModal] == NSModalResponseOK)
-    {
-        for(NSURL* url in [openDlg URLs])
-        {
-            NSString* selectPath = [url path];
-            
+    [openDlg beginSheetModalForWindow:[[self view] window] completionHandler:^(NSModalResponse result) {
+        if(result == NSModalResponseOK){
+            NSString* selectPath = [[openDlg URL] path];
             switch (et)
             {
                 case EventUnityPathSelectEnd:
@@ -199,13 +193,13 @@
                     _manager.info = tInfo;
                     if([_manager addNewUnityProjPath:selectPath])
                         _unityPathBox.stringValue = selectPath;
-
+                    
                     break;
                 case EventExportPathSelectEnd:
                     tInfo->exportFolderParh = [selectPath UTF8String];
                     _manager.info = tInfo;
                     if([_manager addNewExportProjPath:selectPath])
-                       _exportPathBox.stringValue = selectPath;
+                        _exportPathBox.stringValue = selectPath;
                     
                     break;
                 case EventScenePathSelectEnd:
@@ -215,7 +209,7 @@
                     break;
             }
         }
-    }
+    }];
 }
 
 - (void)addNewScenePath:(NSString*)path
@@ -558,16 +552,6 @@
     NSMutableArray *jsonAppArray = inst_method_call(@"PreferenceData", getJsonAppArray);
     NSString *filePath = dataInst.jsonFilePath;
     [[NSWorkspace sharedWorkspace] openFile:filePath withApplication:[jsonAppArray firstObject]];
-}
-
-- (void)panel:(id)sender didChangeToDirectoryURL:(NSURL *)url
-{
-    NSOpenPanel *openDlg = (NSOpenPanel*)sender;
-    if([openDlg.identifier isEqualToString:@"scenePath"])
-    {
-        NSString *unityProjPath = [NSString stringWithUTF8String:_manager.info->unityProjPath];
-        [sender setDirectoryURL:[NSURL URLWithString:unityProjPath]];
-    }
 }
 
 @end

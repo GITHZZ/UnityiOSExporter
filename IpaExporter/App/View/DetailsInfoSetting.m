@@ -230,9 +230,11 @@
     [openDlg setDelegate:self];
     [openDlg setDirectoryURL:[NSURL URLWithString:urlString]];
 
-    if ([openDlg runModal] == NSModalResponseOK){
-        callback(openDlg);
-    }
+    [openDlg beginSheetModalForWindow:[[self view] window] completionHandler:^(NSModalResponse result) {
+        if(result == NSModalResponseOK){
+            callback(openDlg);
+        }
+    }];
 }
 
 - (IBAction)mobileprovisionSelect:(id)sender
@@ -243,25 +245,26 @@
     [openDlg setCanChooseDirectories:NO];
     [openDlg setAllowedFileTypes:[NSArray arrayWithObjects:@"mobileprovision", nil]];
     
-    if ([openDlg runModal] == NSModalResponseOK)
-    {
-        for(NSURL* url in [openDlg URLs])
-        {
-            NSString* selectPath = [url path];
-            MobileprovisionParser* parser = [[MobileprovisionParser alloc] initWithProfilePath:selectPath];
-            [parser createPlistFile];
-            [parser parsePlistFile];
-            
-            if([button.identifier isEqualToString:@"debug"]){
-                _appID.stringValue = parser.bundleIdentifier;
-                _debugProfileName.stringValue = parser.fileName;
-                _debugDevelopTeam.stringValue = parser.teamID;
-            }else if([button.identifier isEqualToString:@"release"]){
-                _releaseProfileName.stringValue = parser.fileName;
-                _releaseDevelopTeam.stringValue = parser.teamID;
+    [openDlg beginSheetModalForWindow:[[self view] window] completionHandler:^(NSModalResponse result) {
+        if(result == NSModalResponseOK){
+            for(NSURL* url in [openDlg URLs])
+            {
+                NSString* selectPath = [url path];
+                MobileprovisionParser* parser = [[MobileprovisionParser alloc] initWithProfilePath:selectPath];
+                [parser createPlistFile];
+                [parser parsePlistFile];
+                
+                if([button.identifier isEqualToString:@"debug"]){
+                    _appID.stringValue = parser.bundleIdentifier;
+                    _debugProfileName.stringValue = parser.fileName;
+                    _debugDevelopTeam.stringValue = parser.teamID;
+                }else if([button.identifier isEqualToString:@"release"]){
+                    _releaseProfileName.stringValue = parser.fileName;
+                    _releaseDevelopTeam.stringValue = parser.teamID;
+                }
             }
         }
-    }
+    }];
 }
 
 - (IBAction)tblItemAdd:(id)sender

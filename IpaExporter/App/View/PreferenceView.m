@@ -144,14 +144,15 @@ int _viewOpeningCount = 0;
     [openDlg setCanChooseFiles:NO];
     [openDlg setCanChooseDirectories:YES];
     [openDlg setAllowsMultipleSelection:NO];
+    [openDlg beginSheetModalForWindow:[[self view] window] completionHandler:^(NSModalResponse result) {
+        if(result == NSModalResponseOK){
+            ExportInfoManager* view = (ExportInfoManager*)get_instance(@"ExportInfoManager");
+            NSString* selectPath = [[openDlg URL] path];
+            _savePath.stringValue = selectPath;
+            [view setCodeSavePath:selectPath];
+        }
+    }];
     
-    if([openDlg runModal] == NSModalResponseOK)
-    {
-        ExportInfoManager* view = (ExportInfoManager*)get_instance(@"ExportInfoManager");
-        NSString* selectPath = [[openDlg URL] path];
-        _savePath.stringValue = selectPath;
-        [view setCodeSavePath:selectPath];
-    }
 }
 
 - (void)initFileOpenApp

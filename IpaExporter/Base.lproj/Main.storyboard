@@ -951,15 +951,6 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="PSH-1f-El2">
-                                <rect key="frame" x="14" y="244" width="124" height="17"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="选择可以打包的场景" id="SQF-tY-B6u">
-                                    <font key="font" size="13" name=".PingFangSC-Regular"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <button verticalHuggingPriority="750" id="LZy-jR-8LC">
                                 <rect key="frame" x="405" y="5" width="88" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -982,9 +973,23 @@
                                     <action selector="cancelBtnClick:" target="rct-kh-WuW" id="lC3-04-gTK"/>
                                 </connections>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="PSH-1f-El2">
+                                <rect key="frame" x="14" y="244" width="124" height="17"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="选择可以打包的场景" id="SQF-tY-B6u">
+                                    <font key="font" size="13" name=".PingFangSC-Regular"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" id="ZpX-xx-Sn7">
+                                <rect key="frame" x="16" y="15" width="16" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            </progressIndicator>
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="progress" destination="ZpX-xx-Sn7" id="cHF-cA-nN9"/>
                         <outlet property="unitySceneTbl" destination="TdU-aY-TMW" id="f6m-rz-auS"/>
                     </connections>
                 </viewController>

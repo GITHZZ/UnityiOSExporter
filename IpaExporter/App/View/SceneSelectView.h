@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
     ExportInfoManager *_exportManager;
 }
 @property (weak) IBOutlet NSTableView *unitySceneTbl;
+@property (weak) IBOutlet NSProgressIndicator *progress;
 
 @end
 
