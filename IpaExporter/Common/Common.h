@@ -15,7 +15,6 @@
 #import "MobileprovisionParser.h"
 #import "Alert.h"
 #import "LocalDataSave.h"
-#import "NSFileManager+Copy.h"
-#import "NSFileManager+Search.h"
+#import "NSFileManager+Extern.h"
 
 #endif /* Common_h */

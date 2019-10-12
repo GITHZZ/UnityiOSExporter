@@ -36,4 +36,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface NSFileManager (Search)
+
+- (NSArray*)searchByExtension:(NSString*)extension withDir:(NSString*)searchDir;
+
+@end
+
 NS_ASSUME_NONNULL_END

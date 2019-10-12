@@ -8,7 +8,7 @@
 
 #import "PreferenceData.h"
 #import "Defs.h"
-#import "NSFileManager+Copy.h"
+#import "NSFileManager+Extern.h"
 
 @implementation PreferenceData
 

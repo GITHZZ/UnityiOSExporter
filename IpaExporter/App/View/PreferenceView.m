@@ -8,7 +8,7 @@
 
 #import "PreferenceView.h"
 #import "GeneralView.h"
-#import "NSFileManager+Copy.h"
+#import "NSFileManager+Extern.h"
 
 int _viewOpeningCount = 0;
 
@@ -74,6 +74,13 @@ int _viewOpeningCount = 0;
         [dataInst restoreCustomCode];
     } callBackSecond:^{
     }];
+}
+
+- (IBAction)editCustomShell:(id)sender
+{
+    NSMutableArray *codeAppArray = inst_method_call(@"PreferenceData", getCodeAppArray);
+    NSString *filePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/Libs/Xcodeproj/CustomShell.sh"];
+    [[NSWorkspace sharedWorkspace] openFile:filePath withApplication:[codeAppArray firstObject]];
 }
 
 - (IBAction)ShowHelp:(id)sender

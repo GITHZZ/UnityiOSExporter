@@ -23,6 +23,7 @@
                      CAMM_EDIT_XCODE:@"editXcode",
                      CAMM_EXPORT_IPA:@"exportIpa",
                      CAMM_GEN_RESFOLDER:@"genResFolder",
+                     CAMM_RUN_CUSTOM_SHELL:@"runCustomShell",
                      }mutableCopy];
     
     EVENT_REGIST(EventViewSureClicked, @selector(sureBtnClicked:));
@@ -36,6 +37,7 @@
     [camm addObject:CAMM_GEN_RESFOLDER];
     [camm addObject:CAMM_EXPORT_XCODE];
     [camm addObject:CAMM_EDIT_XCODE];
+    [camm addObject:CAMM_RUN_CUSTOM_SHELL];
     [self startExport:camm];
 }
 
@@ -59,6 +61,7 @@
         showWarning("xcode工程生成已跳过,直接进行平台打包");
 
     [camm addObject:CAMM_EDIT_XCODE];
+    [camm addObject:CAMM_RUN_CUSTOM_SHELL];
     [camm addObject:CAMM_EXPORT_IPA];
     [self startExport:camm];
 }
@@ -74,7 +77,7 @@
     EVENT_SEND(EventStartRecordTime, nil);
     
     showLog("开始执行Unity打包脚本");
-    [self runWithcammond:camm withBlock:^{
+    [self runWithCammond:camm withBlock:^{
         _isExporting = false;
         
         EVENT_SEND(EventSetExportButtonState, s_true);
@@ -87,7 +90,7 @@
     }];
 }
 
-- (void)runWithcammond:(NSArray*)camm withBlock:(void(^)())finCallback
+- (void)runWithCammond:(NSArray*)camm withBlock:(void(^)())finCallback
 {
     dispatch_group_t group = dispatch_group_create();
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -163,6 +166,21 @@
     return CAMM_SUCCESS;
 }
 
+- (CammondResult)runCustomShell
+{
+    ExportInfoManager *exportManager = (ExportInfoManager*)get_instance(@"ExportInfoManager");
+    NSMutableArray<DetailsInfoData*>* detailArray = exportManager.detailArray;
+    for(int i = 0; i < [detailArray count]; i++){
+        DetailsInfoData *data = [detailArray objectAtIndex:i];
+        NSString *shellPath = [LIB_PATH stringByAppendingString:@"/Xcodeproj/CustomShell.sh"];
+        NSString *shellLog = [self runShellWithData:data withPath:shellPath];
+        BOOL isSuccess = [shellLog containsString:@"CUSTOM_RUN_SUCCESS"];
+        if(!isSuccess)
+            return CAMM_EXIT;
+    }
+    return CAMM_SUCCESS;
+}
+
 - (BOOL)exportXcodeProjInThread:(dispatch_queue_t)sq
 {
     __block BOOL result = YES;
@@ -204,11 +222,9 @@
         if([logStr containsString:@"Completed 'Build.Player.iOSSupport'"] ||
            (![logStr containsString:@"error CS"])){
             showSuccess("导出xcode成功");
-            [NSApp activateIgnoringOtherApps:YES];
         }else{
             result = NO;
             showError("导出xcode失败，具体请查看log文件");
-            [NSApp activateIgnoringOtherApps:YES];
             [[NSWorkspace sharedWorkspace] openFile:[NSString stringWithFormat:@"%s/xcodeproj_create_log.txt", view.info->exportFolderParh]];
         }
     });
@@ -219,6 +235,20 @@
 - (BOOL)editXcodeForPlatform:(DetailsInfoData*)data
 {
     NSString *shellPath = [LIB_PATH stringByAppendingString:@"/Xcodeproj/EditXcode.sh"];
+    NSString *shellLog = [self runShellWithData:data withPath:shellPath];
+    
+    if([shellLog containsString:@"** EDIT XCODE PROJECT SUCCESS **"]){
+            [NSApp activateIgnoringOtherApps:YES];
+            showSuccess([[NSString stringWithFormat:@"%@(%@)修改Xcode成功", data.appName, data.platform] UTF8String]);
+    }else{
+        return NO;
+    }
+    return YES;
+}
+
+- (NSString*)runShellWithData:(DetailsInfoData*)data withPath:(NSString*)path
+{
+    NSString *shellPath = path;
     NSString *rubyMainPath = [LIB_PATH stringByAppendingString:@"/Xcodeproj/Main.rb"];
     
     ExportInfoManager* view = (ExportInfoManager*)get_instance(@"ExportInfoManager");
@@ -282,15 +312,9 @@
         NSString *shellLog = [self invokingShellScriptAtPath:shellPath withArgs:args];
         NSString* logStr = [shellLog stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         showLog([logStr UTF8String]);
-        
-        if([shellLog containsString:@"** EDIT XCODE PROJECT SUCCESS **"]){
-            [NSApp activateIgnoringOtherApps:YES];
-            showSuccess([[NSString stringWithFormat:@"%@(%@)修改Xcode成功", data.appName, data.platform] UTF8String]);
-        }else{
-            return NO;
-        }
+        return shellLog;
     }
-    return YES;
+    return @"";
 }
 
 - (BOOL)exportIpaForPlatform:(DetailsInfoData*)data

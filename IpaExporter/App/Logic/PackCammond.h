@@ -19,6 +19,7 @@ typedef NSNumber* CammondCode;
 #define CAMM_EDIT_XCODE @3
 #define CAMM_EXPORT_IPA @4
 #define CAMM_GEN_RESFOLDER @5
+#define CAMM_RUN_CUSTOM_SHELL @6
 
 @interface PackCammond : NSObject
 {

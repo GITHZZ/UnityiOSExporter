@@ -6,7 +6,7 @@
          contextName = "-[DetailsInfoSetting panel:shouldEnableURL:]:DetailsInfoSetting.m">
          <PersistentStrings>
             <PersistentString
-               value = "sender.identifier">
+               value = "openDlg.identifier">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

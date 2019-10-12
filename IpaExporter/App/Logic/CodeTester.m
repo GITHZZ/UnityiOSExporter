@@ -9,7 +9,7 @@
 #import "CodeTester.h"
 #import "ExportInfoManager.h"
 #import "DataResManager.h"
-#import "NSFileManager+Copy.h"
+#import "NSFileManager+Extern.h"
 #import "PreferenceData.h"
 
 #import <Cocoa/Cocoa.h>
