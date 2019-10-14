@@ -49,7 +49,7 @@ if [ ! -d ${export_folder} ]; then
 mkdir ${export_folder}
 fi
 
-#导出ipa目录1
+#导出ipa目录
 ipa_folder_path=${export_folder}"/Unity-iPhone-"${app_name}
 if [ -d ${ipa_folder_path} ]; then
 rm -r ${ipa_folder_path}

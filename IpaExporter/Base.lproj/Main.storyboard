@@ -77,6 +77,30 @@
                                                 <action selector="openCustomConfig:" target="11a-jN-iuY" id="3DP-lq-TW0"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="测试" id="rvb-F2-Qm2">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <menu key="submenu" title="测试" id="MMh-Yu-tuk">
+                                                <items>
+                                                    <menuItem title="用例测试" keyEquivalent="t" id="3o6-5w-Uo6">
+                                                        <connections>
+                                                            <action selector="CodeTest:" target="11a-jN-iuY" id="6pZ-8G-Ihe"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="拷贝测试代码到工程" keyEquivalent="C" id="W0H-ze-RhV" userLabel="拷贝测试代码到工程">
+                                                        <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
+                                                        <connections>
+                                                            <action selector="CopyTestCodeToProject:" target="11a-jN-iuY" id="ghx-g6-Zdk"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="保存并删除" keyEquivalent="P" id="AEB-R5-jxH">
+                                                        <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
+                                                        <connections>
+                                                            <action selector="deletTestCodeFormProject:" target="11a-jN-iuY" id="3pb-B8-XJ3"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                </items>
+                                            </menu>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="LMO-vE-1ka"/>
                                         <menuItem title="备份" keyEquivalent="s" id="WPk-V3-lnS">
                                             <connections>
@@ -95,25 +119,13 @@
                                                 <action selector="editCustomShell:" target="11a-jN-iuY" id="9iH-0h-H7R"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="测试脚本" keyEquivalent="E" id="xk6-tR-Zcy">
+                                            <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="testCustomShell:" target="11a-jN-iuY" id="lsU-Cf-Dz6"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="E8f-i5-5ua"/>
-                                        <menuItem title="用例测试" keyEquivalent="t" id="3o6-5w-Uo6">
-                                            <connections>
-                                                <action selector="CodeTest:" target="11a-jN-iuY" id="6pZ-8G-Ihe"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="拷贝测试代码到工程" keyEquivalent="C" id="W0H-ze-RhV" userLabel="拷贝测试代码到工程">
-                                            <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
-                                            <connections>
-                                                <action selector="CopyTestCodeToProject:" target="11a-jN-iuY" id="ghx-g6-Zdk"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="保存并删除" keyEquivalent="P" id="AEB-R5-jxH">
-                                            <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
-                                            <connections>
-                                                <action selector="deletTestCodeFormProject:" target="11a-jN-iuY" id="3pb-B8-XJ3"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="nl8-at-5hg"/>
                                         <menuItem title="说明" id="L3B-4Q-eDH">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>

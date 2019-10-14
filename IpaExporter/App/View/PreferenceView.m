@@ -83,6 +83,11 @@ int _viewOpeningCount = 0;
     [[NSWorkspace sharedWorkspace] openFile:filePath withApplication:[codeAppArray firstObject]];
 }
 
+- (IBAction)testCustomShell:(id)sender
+{
+    EVENT_SEND(EventTestCustomShell, nil);
+}
+
 - (IBAction)ShowHelp:(id)sender
 {
     NSString *filePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/README.md"];

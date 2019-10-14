@@ -29,6 +29,7 @@
     EVENT_REGIST(EventViewSureClicked, @selector(sureBtnClicked:));
     EVENT_REGIST(EventExportXcodeCilcked, @selector(exportXcodeBtnClicked));
     EVENT_REGIST(EventExportIpaChilcked, @selector(exportIpaChilcked));
+    EVENT_REGIST(EventTestCustomShell, @selector(testCustomShell));
 }
 
 - (void)exportXcodeBtnClicked
@@ -64,6 +65,13 @@
     [camm addObject:CAMM_RUN_CUSTOM_SHELL];
     [camm addObject:CAMM_EXPORT_IPA];
     [self startExport:camm];
+}
+
+- (void)testCustomShell
+{
+    [self startExport:@[
+        CAMM_GEN_RESFOLDER,
+        CAMM_RUN_CUSTOM_SHELL]];
 }
 
 - (void)startExport:(NSArray*)camm
@@ -172,7 +180,7 @@
     NSMutableArray<DetailsInfoData*>* detailArray = exportManager.detailArray;
     for(int i = 0; i < [detailArray count]; i++){
         DetailsInfoData *data = [detailArray objectAtIndex:i];
-        NSString *shellPath = [LIB_PATH stringByAppendingString:@"/Xcodeproj/CustomShell.sh"];
+        NSString *shellPath = [LIB_PATH stringByAppendingString:@"/TempCode/Builder/Users/_CustomShell.sh"];
         NSString *shellLog = [self runShellWithData:data withPath:shellPath];
         BOOL isSuccess = [shellLog containsString:@"CUSTOM_RUN_SUCCESS"];
         if(!isSuccess)
