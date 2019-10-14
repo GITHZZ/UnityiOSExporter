@@ -79,7 +79,7 @@ int _viewOpeningCount = 0;
 - (IBAction)editCustomShell:(id)sender
 {
     NSMutableArray *codeAppArray = inst_method_call(@"PreferenceData", getCodeAppArray);
-    NSString *filePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/Libs/Xcodeproj/CustomShell.sh"];
+    NSString *filePath = [LIB_PATH stringByAppendingString:@"/TempCode/Builder/Users/_CustomShell.sh"];
     [[NSWorkspace sharedWorkspace] openFile:filePath withApplication:[codeAppArray firstObject]];
 }
 

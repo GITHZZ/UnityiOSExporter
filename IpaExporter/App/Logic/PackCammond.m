@@ -13,17 +13,22 @@
 
 @implementation PackCammond
 
+#define CAMM_REGIST() NSMutableArray *camm = [NSMutableArray array]
+#define CAMM_ADD(code) [camm addObject:code]
+#define CAMM_START() [self startExport:camm]
+
 - (void)initialize
 {    
     _isExporting = false;
     [[NSFileManager defaultManager]createDirectoryAtPath:PACK_FOLDER_PATH withIntermediateDirectories:YES attributes:nil error:nil];
     
     _cammondCode = [@{
-                     CAMM_EXPORT_XCODE:@"exportXcode",
-                     CAMM_EDIT_XCODE:@"editXcode",
-                     CAMM_EXPORT_IPA:@"exportIpa",
-                     CAMM_GEN_RESFOLDER:@"genResFolder",
-                     CAMM_RUN_CUSTOM_SHELL:@"runCustomShell",
+                     CAMM_CODE_EXPORT_XCODE:@"exportXcode",
+                     CAMM_CODE_EDIT_XCODE:@"editXcode",
+                     CAMM_CODE_EXPORT_IPA:@"exportIpa",
+                     CAMM_CODE_GEN_RESFOLDER:@"genResFolder",
+                     CAMM_CODE_RUN_CUSTOM_SHELL:@"runCustomShell",
+                     CAMM_CODE_ACTIVE_WND_TOP:@"activateIgnoringOtherApps",
                      }mutableCopy];
     
     EVENT_REGIST(EventViewSureClicked, @selector(sureBtnClicked:));
@@ -34,44 +39,48 @@
 
 - (void)exportXcodeBtnClicked
 {
-    NSMutableArray *camm = [NSMutableArray array];
-    [camm addObject:CAMM_GEN_RESFOLDER];
-    [camm addObject:CAMM_EXPORT_XCODE];
-    [camm addObject:CAMM_EDIT_XCODE];
-    [camm addObject:CAMM_RUN_CUSTOM_SHELL];
-    [self startExport:camm];
+    CAMM_REGIST();
+    CAMM_ADD(CAMM_CODE_GEN_RESFOLDER);
+    CAMM_ADD(CAMM_CODE_EXPORT_XCODE);
+    CAMM_ADD(CAMM_CODE_EDIT_XCODE);
+    CAMM_ADD(CAMM_CODE_RUN_CUSTOM_SHELL);
+    CAMM_ADD(CAMM_CODE_ACTIVE_WND_TOP);
+    CAMM_START();
 }
 
 - (void)exportIpaChilcked
 {
-    NSMutableArray *camm = [NSMutableArray array];
-    [camm addObject:CAMM_GEN_RESFOLDER];
-    [camm addObject:CAMM_EXPORT_IPA];
-    [self startExport:camm];
+    CAMM_REGIST();
+    CAMM_ADD(CAMM_CODE_GEN_RESFOLDER);
+    CAMM_ADD(CAMM_CODE_EXPORT_IPA);
+    CAMM_ADD(CAMM_CODE_ACTIVE_WND_TOP);
+    CAMM_START();
 }
 
 - (void)sureBtnClicked:(NSNotification*)notification
 {
     ExportInfoManager *exportManager = (ExportInfoManager*)get_instance(@"ExportInfoManager");
-    NSMutableArray *camm = [NSMutableArray array];
+    CAMM_REGIST();
     
-    [camm addObject:CAMM_GEN_RESFOLDER];
+    CAMM_ADD(CAMM_CODE_GEN_RESFOLDER);
     if(exportManager.info->isExportXcode == 1)
-        [camm addObject:CAMM_EXPORT_XCODE];
+        CAMM_ADD(CAMM_CODE_EXPORT_XCODE);
     else
         showWarning("xcode工程生成已跳过,直接进行平台打包");
 
-    [camm addObject:CAMM_EDIT_XCODE];
-    [camm addObject:CAMM_RUN_CUSTOM_SHELL];
-    [camm addObject:CAMM_EXPORT_IPA];
-    [self startExport:camm];
+    CAMM_ADD(CAMM_CODE_EDIT_XCODE);
+    CAMM_ADD(CAMM_CODE_RUN_CUSTOM_SHELL);
+    CAMM_ADD(CAMM_CODE_EXPORT_IPA);
+    CAMM_ADD(CAMM_CODE_ACTIVE_WND_TOP);
+    CAMM_START();
 }
 
 - (void)testCustomShell
 {
-    [self startExport:@[
-        CAMM_GEN_RESFOLDER,
-        CAMM_RUN_CUSTOM_SHELL]];
+    CAMM_REGIST();
+    CAMM_ADD(CAMM_CODE_GEN_RESFOLDER);
+    CAMM_ADD(CAMM_CODE_RUN_CUSTOM_SHELL);
+    CAMM_START();
 }
 
 - (void)startExport:(NSArray*)camm
@@ -90,11 +99,6 @@
         
         EVENT_SEND(EventSetExportButtonState, s_true);
         EVENT_SEND(EventStopRecordTime, nil);
-        
-        [NSApp activateIgnoringOtherApps:YES];
-        
-        ExportInfoManager* view = (ExportInfoManager*)get_instance(@"ExportInfoManager");
-        [[NSWorkspace sharedWorkspace] selectFile:nil inFileViewerRootedAtPath:[NSString stringWithFormat:@"%s/export", view.info->exportFolderParh]];
     }];
 }
 
@@ -189,6 +193,16 @@
     return CAMM_SUCCESS;
 }
 
+- (CammondResult)activateIgnoringOtherApps
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [NSApp activateIgnoringOtherApps:YES];
+        ExportInfoManager* view = (ExportInfoManager*)get_instance(@"ExportInfoManager");
+        [[NSWorkspace sharedWorkspace] selectFile:nil inFileViewerRootedAtPath:[NSString stringWithFormat:@"%s/export", view.info->exportFolderParh]];
+    });
+    return CAMM_SUCCESS;
+}
+
 - (BOOL)exportXcodeProjInThread:(dispatch_queue_t)sq
 {
     __block BOOL result = YES;
@@ -246,7 +260,6 @@
     NSString *shellLog = [self runShellWithData:data withPath:shellPath];
     
     if([shellLog containsString:@"** EDIT XCODE PROJECT SUCCESS **"]){
-            [NSApp activateIgnoringOtherApps:YES];
             showSuccess([[NSString stringWithFormat:@"%@(%@)修改Xcode成功", data.appName, data.platform] UTF8String]);
     }else{
         return NO;
@@ -360,10 +373,8 @@
         showLog([logStr UTF8String]);
         
         if([shellLog containsString:@"** EXPORT SUCCEEDED **"]){
-            [NSApp activateIgnoringOtherApps:YES];
             showSuccess([[NSString stringWithFormat:@"%@平台,打包成功", data.platform] UTF8String]);
         }else{
-            [NSApp activateIgnoringOtherApps:YES];
             showError([[NSString stringWithFormat:@"%@平台,打包失败,日志已经保存在%s路径中", data.platform, view.info->unityProjPath] UTF8String]);
             return NO;
         }

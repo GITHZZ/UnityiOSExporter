@@ -36,6 +36,7 @@
     [self checkIsShowSetting];
 }
 
+
 - (void)showSubView:(NSNotification*)notification
 {
     NSString *viewName = (NSString*)notification.object;

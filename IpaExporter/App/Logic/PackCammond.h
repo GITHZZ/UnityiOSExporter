@@ -15,11 +15,12 @@ typedef NSNumber* CammondResult;
 #define CAMM_SUCCESS @1
 
 typedef NSNumber* CammondCode;
-#define CAMM_EXPORT_XCODE @2
-#define CAMM_EDIT_XCODE @3
-#define CAMM_EXPORT_IPA @4
-#define CAMM_GEN_RESFOLDER @5
-#define CAMM_RUN_CUSTOM_SHELL @6
+#define CAMM_CODE_EXPORT_XCODE @2
+#define CAMM_CODE_EDIT_XCODE @3
+#define CAMM_CODE_EXPORT_IPA @4
+#define CAMM_CODE_GEN_RESFOLDER @5
+#define CAMM_CODE_RUN_CUSTOM_SHELL @6
+#define CAMM_CODE_ACTIVE_WND_TOP @7
 
 @interface PackCammond : NSObject
 {
