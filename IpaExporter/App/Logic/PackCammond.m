@@ -15,7 +15,7 @@
 
 #define CAMM_REGIST() NSMutableArray *camm = [NSMutableArray array]
 #define CAMM_ADD(code) [camm addObject:code]
-#define CAMM_START() [self startExport:camm]
+#define CAMM_RUN() [self startExport:camm]
 
 - (void)initialize
 {    
@@ -23,14 +23,14 @@
     [[NSFileManager defaultManager]createDirectoryAtPath:PACK_FOLDER_PATH withIntermediateDirectories:YES attributes:nil error:nil];
     
     _cammondCode = [@{
-                     CAMM_CODE_EXPORT_XCODE:@"exportXcode",
-                     CAMM_CODE_EDIT_XCODE:@"editXcode",
-                     CAMM_CODE_EXPORT_IPA:@"exportIpa",
-                     CAMM_CODE_GEN_RESFOLDER:@"genResFolder",
-                     CAMM_CODE_RUN_CUSTOM_SHELL:@"runCustomShell",
-                     CAMM_CODE_ACTIVE_WND_TOP:@"activateIgnoringOtherApps",
+                     CODE_EXPORT_XCODE:@"exportXcode",
+                     CODE_EDIT_XCODE:@"editXcode",
+                     CODE_EXPORT_IPA:@"exportIpa",
+                     CODE_GEN_RESFOLDER:@"genResFolder",
+                     CODE_RUN_CUSTOM_SHELL:@"runCustomShell",
+                     CODE_ACTIVE_WND_TOP:@"activateIgnoringOtherApps",
                      }mutableCopy];
-    
+
     EVENT_REGIST(EventViewSureClicked, @selector(sureBtnClicked:));
     EVENT_REGIST(EventExportXcodeCilcked, @selector(exportXcodeBtnClicked));
     EVENT_REGIST(EventExportIpaChilcked, @selector(exportIpaChilcked));
@@ -40,21 +40,21 @@
 - (void)exportXcodeBtnClicked
 {
     CAMM_REGIST();
-    CAMM_ADD(CAMM_CODE_GEN_RESFOLDER);
-    CAMM_ADD(CAMM_CODE_EXPORT_XCODE);
-    CAMM_ADD(CAMM_CODE_EDIT_XCODE);
-    CAMM_ADD(CAMM_CODE_RUN_CUSTOM_SHELL);
-    CAMM_ADD(CAMM_CODE_ACTIVE_WND_TOP);
-    CAMM_START();
+    CAMM_ADD(CODE_GEN_RESFOLDER);
+    CAMM_ADD(CODE_EXPORT_XCODE);
+    CAMM_ADD(CODE_EDIT_XCODE);
+    CAMM_ADD(CODE_RUN_CUSTOM_SHELL);
+    CAMM_ADD(CODE_ACTIVE_WND_TOP);
+    CAMM_RUN();
 }
 
 - (void)exportIpaChilcked
 {
     CAMM_REGIST();
-    CAMM_ADD(CAMM_CODE_GEN_RESFOLDER);
-    CAMM_ADD(CAMM_CODE_EXPORT_IPA);
-    CAMM_ADD(CAMM_CODE_ACTIVE_WND_TOP);
-    CAMM_START();
+    CAMM_ADD(CODE_GEN_RESFOLDER);
+    CAMM_ADD(CODE_EXPORT_IPA);
+    CAMM_ADD(CODE_ACTIVE_WND_TOP);
+    CAMM_RUN();
 }
 
 - (void)sureBtnClicked:(NSNotification*)notification
@@ -62,25 +62,25 @@
     ExportInfoManager *exportManager = (ExportInfoManager*)get_instance(@"ExportInfoManager");
     CAMM_REGIST();
     
-    CAMM_ADD(CAMM_CODE_GEN_RESFOLDER);
+    CAMM_ADD(CODE_GEN_RESFOLDER);
     if(exportManager.info->isExportXcode == 1)
-        CAMM_ADD(CAMM_CODE_EXPORT_XCODE);
+        CAMM_ADD(CODE_EXPORT_XCODE);
     else
         showWarning("xcode工程生成已跳过,直接进行平台打包");
 
-    CAMM_ADD(CAMM_CODE_EDIT_XCODE);
-    CAMM_ADD(CAMM_CODE_RUN_CUSTOM_SHELL);
-    CAMM_ADD(CAMM_CODE_EXPORT_IPA);
-    CAMM_ADD(CAMM_CODE_ACTIVE_WND_TOP);
-    CAMM_START();
+    CAMM_ADD(CODE_EDIT_XCODE);
+    CAMM_ADD(CODE_RUN_CUSTOM_SHELL);
+    CAMM_ADD(CODE_EXPORT_IPA);
+    CAMM_ADD(CODE_ACTIVE_WND_TOP);
+    CAMM_RUN();
 }
 
 - (void)testCustomShell
 {
     CAMM_REGIST();
-    CAMM_ADD(CAMM_CODE_GEN_RESFOLDER);
-    CAMM_ADD(CAMM_CODE_RUN_CUSTOM_SHELL);
-    CAMM_START();
+    CAMM_ADD(CODE_GEN_RESFOLDER);
+    CAMM_ADD(CODE_RUN_CUSTOM_SHELL);
+    CAMM_RUN();
 }
 
 - (void)startExport:(NSArray*)camm
@@ -241,8 +241,10 @@
         NSString* logStr = [shellLog stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         showLog([logStr UTF8String]);
         
-        if([logStr containsString:@"Completed 'Build.Player.iOSSupport'"] ||
-           (![logStr containsString:@"error CS"])){
+        NSString *xcodePath = [NSString stringWithFormat:@"%s/%@/Unity-iPhone.xcodeproj", view.info->exportFolderParh, XCODE_PROJ_NAME];
+        BOOL projectExisted = [[NSFileManager defaultManager] fileExistsAtPath:xcodePath];
+        BOOL notError = [logStr containsString:@"Completed 'Build.Player.iOSSupport'"] || ![logStr containsString:@"error CS"];
+        if(projectExisted && notError){
             showSuccess("导出xcode成功");
         }else{
             result = NO;

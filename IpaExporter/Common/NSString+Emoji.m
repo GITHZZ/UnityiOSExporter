@@ -196,7 +196,7 @@ static NSDictionary * s_cheatCodesToUnicode = nil;
                                  @"🌀": @":cyclone:",
                                  @"🌁": @":foggy:",
                                  @"🌊": @":ocean:",
-                                 @"🐱": @":cat:",
+                                 //@"🐱": @":cat:",
                                  @"🐶": @":dog:",
                                  @"🐭": @":mouse:",
                                  @"🐹": @":hamster:",

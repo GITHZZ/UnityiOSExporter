@@ -17,6 +17,10 @@
 #$17 是否导出ipa
 #$18 应用名字
 
+#测试自定义脚本获取简单的json参数
+#bundle_res_path=${12}
+#isTest=$(cat ${bundle_res_path}'/TempCode/Builder/Users/_CustomConfig.json'| awk -F: '/isVest/{print $2}' | sed 's/,//g')
+
 #运行自定义脚本命令
 #project_path=$6
 #python $6"/test.py" $1 $2

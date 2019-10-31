@@ -13,6 +13,15 @@
 #import "Defs.h"
 #import "LogicManager.h"
 
+int printf(const char * __restrict format, ...)
+{
+    va_list args;
+    va_start(args, format);
+    NSLogv([NSString stringWithUTF8String:format], args);
+    va_end(args);
+    return 1;
+}
+
 int main(int argc, const char * argv[])
 {
     @autoreleasepool
@@ -22,7 +31,7 @@ int main(int argc, const char * argv[])
         }
         
         [[LogicManager defaultManager] startUp];
-
+        
         return NSApplicationMain(argc, argv);
     }
 }
