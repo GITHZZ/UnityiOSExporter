@@ -17,7 +17,7 @@
     BOOL success = [self initWithPath:builderCSPath];
     if(success)
     {
-        NSArray *keyArr = [NSArray arrayWithObjects:Defs_Pack_Scene,Export_Path, nil];
+        NSArray *keyArr = [NSArray arrayWithObjects:Defs_Pack_Scene,Export_Path,Export_Xcode_Path,nil];
         [self replaceVarWithKeyArr:keyArr];
     }
 }
@@ -58,6 +58,8 @@
         NSString *keyStr = [NSString stringWithFormat:@"//木有任何数据"];
         
         if([key isEqualToString:Export_Path]){
+            keyStr = [NSString stringWithUTF8String:info->exportFolderParh];
+        }if([key isEqualToString:@"exportXcodePath"]){
             const char* path = info->exportFolderParh;
             keyStr = [[NSString stringWithUTF8String:path] stringByAppendingFormat:@"/%@",XCODE_PROJ_NAME];
         }else if([key isEqualToString:Defs_Pack_Scene]){

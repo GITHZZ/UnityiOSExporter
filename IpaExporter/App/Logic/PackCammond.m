@@ -29,6 +29,7 @@
                      CODE_GEN_RESFOLDER:@"genResFolder",
                      CODE_RUN_CUSTOM_SHELL:@"runCustomShell",
                      CODE_ACTIVE_WND_TOP:@"activateIgnoringOtherApps",
+                     CODE_BACKUP_XCODE:@"backupXcode",
                      }mutableCopy];
 
     EVENT_REGIST(EventViewSureClicked, @selector(sureBtnClicked:));
@@ -40,6 +41,7 @@
 - (void)exportXcodeBtnClicked
 {
     CAMM_REGIST();
+    CAMM_ADD(CODE_BACKUP_XCODE);
     CAMM_ADD(CODE_GEN_RESFOLDER);
     CAMM_ADD(CODE_EXPORT_XCODE);
     CAMM_ADD(CODE_EDIT_XCODE);
@@ -62,6 +64,7 @@
     ExportInfoManager *exportManager = (ExportInfoManager*)get_instance(@"ExportInfoManager");
     CAMM_REGIST();
     
+    CAMM_ADD(CODE_BACKUP_XCODE);
     CAMM_ADD(CODE_GEN_RESFOLDER);
     if(exportManager.info->isExportXcode == 1)
         CAMM_ADD(CODE_EXPORT_XCODE);
@@ -203,6 +206,26 @@
     return CAMM_SUCCESS;
 }
 
+- (CammondResult)backupXcode
+{
+    ExportInfoManager *view = (ExportInfoManager*)get_instance(@"ExportInfoManager");
+    NSString *xcodeProjPath = [NSString stringWithFormat:@"%s/%@", view.info->exportFolderParh, XCODE_PROJ_NAME];
+    if([[NSFileManager defaultManager] fileExistsAtPath:xcodeProjPath]){
+        NSDate *currentDate = [NSDate date];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"YYYY.MM.dd-hh:mm"];
+        NSString *dateString = [dateFormatter stringFromDate:currentDate];
+        NSString *backUpProjPath = [NSString stringWithFormat:@"%s/%@-%@", view.info->exportFolderParh, XCODE_PROJ_NAME, dateString];
+
+        NSTask *task = [[NSTask alloc] init];
+        [task setLaunchPath:@"/bin/bash"];
+        [task setArguments:@[@"-c", [NSString stringWithFormat:@"mv %@ %@", xcodeProjPath, backUpProjPath]]];
+        [task launch];
+    }
+    
+    return CAMM_SUCCESS;
+}
+
 - (BOOL)exportXcodeProjInThread:(dispatch_queue_t)sq
 {
     __block BOOL result = YES;
@@ -242,8 +265,9 @@
         showLog([logStr UTF8String]);
         
         NSString *xcodePath = [NSString stringWithFormat:@"%s/%@/Unity-iPhone.xcodeproj", view.info->exportFolderParh, XCODE_PROJ_NAME];
+
         BOOL projectExisted = [[NSFileManager defaultManager] fileExistsAtPath:xcodePath];
-        BOOL notError = [logStr containsString:@"Completed 'Build.Player.iOSSupport'"] || ![logStr containsString:@"error CS"];
+        BOOL notError = [logStr containsString:@"*****SUCCESS*****"];
         if(projectExisted && notError){
             showSuccess("导出xcode成功");
         }else{

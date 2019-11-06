@@ -21,6 +21,7 @@ typedef NSNumber* CammondCode;
 #define CODE_GEN_RESFOLDER @5
 #define CODE_RUN_CUSTOM_SHELL @6
 #define CODE_ACTIVE_WND_TOP @7
+#define CODE_BACKUP_XCODE @8
 
 @interface PackCammond : NSObject
 {

@@ -26,14 +26,13 @@ namespace IpaExporter
 
             //测试传近进来参数是否正确
             Assert.AreEqual(true, args.StartsWith("{") && args.EndsWith("}"));
-            
-            //必须参数
-			PlayerSettings.iOS.sdkVersion = iOSSdkVersion.DeviceSDK;
 
+            //必须参数
+            PlayerSettings.iOS.sdkVersion = iOSSdkVersion.DeviceSDK;
             _CustomBuilder customBuilder = new _CustomBuilder();
             JsonData jsonObj = JsonMapper.ToObject(args);
-            customBuilder.BuildBefore(jsonObj);
-            customBuilder.BuildFinish(jsonObj);
+
+            customBuilder.BuildApp(jsonObj, LEVELS, exportPath);
 		}
 	}
 }

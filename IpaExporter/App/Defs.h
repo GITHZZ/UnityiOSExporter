@@ -23,6 +23,7 @@
 
 //view main key
 #define Export_Path @"exportPath"
+#define Export_Xcode_Path @"exportXcodePath"
 
 //detail view key
 #define Defs_Platform_Name            @"platform"

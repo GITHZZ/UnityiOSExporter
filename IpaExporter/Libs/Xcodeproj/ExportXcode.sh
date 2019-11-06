@@ -20,5 +20,10 @@ args_config=$(cat ${bundle_res_path}'/TempCode/Builder/Users/_CustomConfig.json'
 
 echo "[配置信息]Unity日志路径:"${export_path}
 
-grep "Completed 'Build.Player.iOSSupport'" ${export_path}/xcodeproj_create_log.txt
 grep "error CS" ${export_path}/xcodeproj_create_log.txt
+
+result_file_path=${export_path}"/xcodeproj_create_Result.txt"
+if [ -f ${result_file_path} ]; then
+    grep "SUCCESS" ${result_file_path}
+    rm ${result_file_path}
+fi
