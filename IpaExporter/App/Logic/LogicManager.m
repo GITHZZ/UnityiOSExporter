@@ -75,8 +75,18 @@
     }
 }
 
-- (void)applicationWillResignActive:(NSNotification *)notification
+- (void)applicationDelegateCallBack:(AppDelegateType)tp
+                   withNotification:(NSNotification *)notification
 {
+    switch (tp)
+    {
+        case ApplicationWillFinishLaunching:
+        case ApplicationDidFinishLaunching:
+        case ApplicationWillTerminate:
+        case ApplicationDidBecomeActive:
+        case ApplicationWillResignActive:
+        default:
+            break;
+    }
 }
-
 @end

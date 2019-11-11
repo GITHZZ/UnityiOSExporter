@@ -60,13 +60,7 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="扩展" id="yDk-O8-Mh2">
                                     <items>
-                                        <menuItem title="打开代码工程" id="D6N-zu-2Z1">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="openCustomCodeFolder:" target="11a-jN-iuY" id="QmP-nS-qhy"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="打开代码编辑文件" keyEquivalent="o" id="9FO-Mk-xqG">
+                                        <menuItem title="打开代码文件" keyEquivalent="o" id="9FO-Mk-xqG">
                                             <connections>
                                                 <action selector="openCustomCodeFile:" target="11a-jN-iuY" id="O0e-IH-mMP"/>
                                             </connections>
@@ -101,7 +95,19 @@
                                                 </items>
                                             </menu>
                                         </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="LMO-vE-1ka"/>
+                                        <menuItem isSeparatorItem="YES" id="wyB-pv-AJb"/>
+                                        <menuItem title="编辑自定义Shell脚本" keyEquivalent="e" id="GHj-WY-Iyg">
+                                            <connections>
+                                                <action selector="editCustomShell:" target="11a-jN-iuY" id="9iH-0h-H7R"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="运行脚本" keyEquivalent="E" id="xk6-tR-Zcy">
+                                            <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="testCustomShell:" target="11a-jN-iuY" id="lsU-Cf-Dz6"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="E8f-i5-5ua"/>
                                         <menuItem title="备份" keyEquivalent="s" id="WPk-V3-lnS">
                                             <connections>
                                                 <action selector="backup:" target="11a-jN-iuY" id="9YJ-hl-7t7"/>
@@ -113,19 +119,7 @@
                                                 <action selector="restore:" target="11a-jN-iuY" id="Og1-Tt-aKI"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="wyB-pv-AJb"/>
-                                        <menuItem title="编辑自定义Shell脚本" keyEquivalent="e" id="GHj-WY-Iyg">
-                                            <connections>
-                                                <action selector="editCustomShell:" target="11a-jN-iuY" id="9iH-0h-H7R"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="测试脚本" keyEquivalent="E" id="xk6-tR-Zcy">
-                                            <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
-                                            <connections>
-                                                <action selector="testCustomShell:" target="11a-jN-iuY" id="lsU-Cf-Dz6"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="E8f-i5-5ua"/>
+                                        <menuItem isSeparatorItem="YES" id="LMO-vE-1ka"/>
                                         <menuItem title="说明" id="L3B-4Q-eDH">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
@@ -161,6 +155,32 @@
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="switchState:" target="bre-41-VFl" id="wlb-1K-Zcn"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="开发者" id="07m-4T-qLU" userLabel="开发" customClass="ExtensionsMenu">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="开发者" id="wAt-6j-k6O">
+                                    <items>
+                                        <menuItem title="打开代码工程" id="n66-JT-Fng">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="openCustomCodeFolder:" target="07m-4T-qLU" id="hwO-uw-hhH"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="测试指令" id="Arr-uK-Qw7" userLabel="测试指令">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="testCode:" target="07m-4T-qLU" id="A4z-FB-TJN"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="yEE-xH-cay"/>
+                                        <menuItem title="说明" id="6C8-4v-V4P">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="ShowHelp:" target="11a-jN-iuY" id="EDf-PP-Qs5"/>
                                             </connections>
                                         </menuItem>
                                     </items>

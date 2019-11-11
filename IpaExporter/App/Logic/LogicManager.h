@@ -33,8 +33,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)defaultManager;
 - (void)startUp;
 - (id)getInstByClassName:(NSString*)className error:(NSError**)err;
-
-- (void)applicationWillResignActive:(NSNotification *)notification;
+- (void)applicationDelegateCallBack:(AppDelegateType)tp
+                   withNotification:(NSNotification *)notification;
 
 @end
 

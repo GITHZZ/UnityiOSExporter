@@ -88,6 +88,11 @@ int _viewOpeningCount = 0;
     EVENT_SEND(EventTestCustomShell, nil);
 }
 
+- (IBAction)testCode:(id)sender
+{
+    inst_method_call(@"PackCammond", testCode);
+}
+
 - (IBAction)ShowHelp:(id)sender
 {
     NSString *filePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/README.md"];

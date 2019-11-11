@@ -92,4 +92,13 @@ typedef NS_ENUM(EventType, CustomEventType)
     EventTestCustomShell         = 228,
 };
 
+typedef NS_ENUM(int, AppDelegateType)
+{
+    ApplicationWillFinishLaunching = 0,
+    ApplicationDidFinishLaunching,
+    ApplicationWillTerminate,
+    ApplicationDidBecomeActive,
+    ApplicationWillResignActive,
+};
+
 #endif /* Defs_h */

@@ -9,6 +9,7 @@ namespace IpaExporter
 	{
 		static void BuildApp()
 		{
+            
 //理论上不允许修改------------
             string[] LEVELS = new string[]
             {
@@ -34,9 +35,6 @@ namespace IpaExporter
             if (File.Exists(path))
                 File.Delete(path);//删除文件
 
-            //创建结果标记文件
-            FileStream fs = new FileStream(path, FileMode.OpenOrCreate, FileAccess.ReadWrite);
-
             //必须参数
 			PlayerSettings.iOS.sdkVersion = iOSSdkVersion.DeviceSDK;
             _CustomBuilder customBuilder = new _CustomBuilder();
@@ -45,6 +43,8 @@ namespace IpaExporter
             customBuilder.BuildApp(jsonObj, LEVELS, exportXcodePath);
             
             //如果成功写入结果到文件
+            //创建结果标记文件
+            FileStream fs = new FileStream(path, FileMode.OpenOrCreate, FileAccess.ReadWrite);
             StreamWriter writer = new StreamWriter(fs);
             writer.WriteLine("*****SUCCESS*****");
             writer.Close();

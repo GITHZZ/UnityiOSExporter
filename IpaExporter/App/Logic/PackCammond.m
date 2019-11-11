@@ -86,6 +86,13 @@
     CAMM_RUN();
 }
 
+- (void)testCode
+{
+    CAMM_REGIST();
+    CAMM_ADD(CODE_EDIT_XCODE);
+    CAMM_RUN();
+}
+
 - (void)startExport:(NSArray*)camm
 {
     if(_isExporting)
@@ -114,7 +121,14 @@
             NSString *order = [_cammondCode objectForKey:camm[i]];
             if(order != nil){
                 CammondResult code = ((NSNumber* (*)(id, SEL))objc_msgSend)(get_instance(@"PackCammond"), NSSelectorFromString(order));
-                if([code isEqualToNumber:CAMM_EXIT]) break; //终止指令
+                if([code isEqualToNumber:CAMM_EXIT]){
+                    showError([[NSString stringWithFormat:@"%@---指令执行失败", order] UTF8String]);
+                    return; //终止指令
+                }
+                if([code isEqualToNumber:CAMM_BREAK])
+                    break;
+                if([code isEqualToNumber:CAMM_CONTINUE])
+                    continue;
             }else{
                 NSLog(@"不存在指令%@", order);
             }
@@ -145,9 +159,11 @@
     NSMutableArray<DetailsInfoData*>* detailArray = exportManager.detailArray;
     for(int i = 0; i < [detailArray count]; i++){
         DetailsInfoData *data = [detailArray objectAtIndex:i];
-        BOOL isSuccess = [self editXcodeForPlatform:data];
-        if(!isSuccess)
-            return CAMM_EXIT;
+        CammondResult result = [self editXcodeForPlatform:data];
+        if([result isEqualToNumber:CAMM_CONTINUE])
+            continue;
+        else
+            return result;
     }
     return CAMM_SUCCESS;
 }
@@ -189,7 +205,8 @@
         DetailsInfoData *data = [detailArray objectAtIndex:i];
         NSString *shellPath = [LIB_PATH stringByAppendingString:@"/TempCode/Builder/Users/_CustomShell.sh"];
         NSString *shellLog = [self runShellWithData:data withPath:shellPath];
-        BOOL isSuccess = [shellLog containsString:@"CUSTOM_RUN_SUCCESS"];
+        BOOL isSuccess = [shellLog containsString:@"CUSTOM_RUN_SUCCESS"] ||
+                         [shellLog containsString:@"PLATFORM_NOT_SELECT"];
         if(!isSuccess)
             return CAMM_EXIT;
     }
@@ -280,17 +297,19 @@
     return result;
 }
 
-- (BOOL)editXcodeForPlatform:(DetailsInfoData*)data
+- (CammondResult)editXcodeForPlatform:(DetailsInfoData*)data
 {
     NSString *shellPath = [LIB_PATH stringByAppendingString:@"/Xcodeproj/EditXcode.sh"];
     NSString *shellLog = [self runShellWithData:data withPath:shellPath];
     
     if([shellLog containsString:@"** EDIT XCODE PROJECT SUCCESS **"]){
             showSuccess([[NSString stringWithFormat:@"%@(%@)修改Xcode成功", data.appName, data.platform] UTF8String]);
+    }else if([shellLog containsString:@"PLATFORM_NOT_SELECT"]){
+        return CAMM_CONTINUE;
     }else{
-        return NO;
+        return CAMM_EXIT;
     }
-    return YES;
+    return CAMM_SUCCESS;
 }
 
 - (NSString*)runShellWithData:(DetailsInfoData*)data withPath:(NSString*)path
@@ -361,7 +380,7 @@
         showLog([logStr UTF8String]);
         return shellLog;
     }
-    return @"";
+    return @"PLATFORM_NOT_SELECT";
 }
 
 - (BOOL)exportIpaForPlatform:(DetailsInfoData*)data
@@ -412,7 +431,7 @@
 {
     BOOL isVaild = [NSJSONSerialization isValidJSONObject:jsonData];
     if(!isVaild){
-        //showError("json格式有错，请检查");
+        showError("json格式有错，请检查");
         //return error code
         return @"";
     }

@@ -40,23 +40,27 @@ int main(int argc, const char * argv[])
 
 - (void)applicationWillFinishLaunching:(NSNotification *)notification
 {
+    [[LogicManager defaultManager] applicationDelegateCallBack:ApplicationWillFinishLaunching withNotification:notification];
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    [[LogicManager defaultManager] applicationDelegateCallBack:ApplicationDidFinishLaunching withNotification:aNotification];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification
 {
+    [[LogicManager defaultManager] applicationDelegateCallBack:ApplicationWillTerminate withNotification:aNotification];
 }
 
 - (void)applicationDidBecomeActive:(NSNotification *)notification
 {
+    [[LogicManager defaultManager] applicationDelegateCallBack:ApplicationDidBecomeActive withNotification:notification];
 }
 
 - (void)applicationWillResignActive:(NSNotification *)notification
 {
-    [[LogicManager defaultManager] applicationWillResignActive:notification];
+    [[LogicManager defaultManager] applicationDelegateCallBack:ApplicationWillResignActive withNotification:notification];
 }
 
 @end
