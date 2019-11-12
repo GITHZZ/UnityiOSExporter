@@ -35,6 +35,12 @@
 
 - (void)viewDidAppear
 {
+    if([_dataDict count] > 0)
+    {
+       NSInteger row = [_infoTbls selectedRow];
+       _selectInfo = [_dataDict objectAtIndex:row];
+    }
+    
     EVENT_REGIST(EventDetailsInfoSettingClose, @selector(detailsInfoViewClose:));
     EVENT_REGIST(EventDetailsInfoSettingEdit, @selector(detailsInfoViewEdit:));
 }
@@ -86,8 +92,11 @@
 
 - (void)editInfo:(DetailsInfoData*)info
 {
-    [self removeInfo];
-    [self addInfo:info];
+    NSInteger row = [_infoTbls selectedRow];
+    ExportInfoManager* manager = (ExportInfoManager*)get_instance(@"ExportInfoManager");
+    [_dataDict replaceObjectAtIndex:row withObject:info];
+    [manager updateDetail:row withObject:info withKey:SAVE_DETAIL_ARRARY_KEY];
+    [_infoTbls reloadData];
 }
 
 - (void)removeInfo
