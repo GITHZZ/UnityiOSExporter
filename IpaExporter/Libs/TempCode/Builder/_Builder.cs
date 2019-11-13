@@ -3,6 +3,7 @@ using UnityEditor;
 using System.Collections;
 using System.IO;
 
+//注意:${xxx} xxx代表是objc方法
 namespace IpaExporter
 {
 	public class _Builder
@@ -13,11 +14,11 @@ namespace IpaExporter
 //理论上不允许修改------------
             string[] LEVELS = new string[]
             {
-                ${packScene}
+                ${objcfunc_getPackScenePath} //form objc
             };
             
-            string exportPath = ${exportPath};
-            string exportXcodePath = ${exportXcodePath};
+            string exportPath = ${objcfunc_getExportPath};
+            string exportXcodePath = ${objcfunc_getXcodeExportPath};
             
 			//获取shell脚本参数
 			string args = "";

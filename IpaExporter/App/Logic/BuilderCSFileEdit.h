@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "LogicManager.h"
 
+
+/// 编辑修改C#里面的TempCode/Builder/_Builder.cs文件
 @interface BuilderCSFileEdit : NSObject
 {
 @private
