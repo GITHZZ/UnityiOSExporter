@@ -108,8 +108,8 @@
     
     if(error != nil)
     {
-        NSLog(@"*[DataResManager 144]:移除目标路径文件失败:%@ 错误原因:%@", dst, error);
-        NSLog(@"*[DataResManager 145]:%@", [error userInfo]);
+        showError("*[DataResManager 144]:移除目标路径文件失败:%@ 错误原因:%@", dst, error);
+        showError("*[DataResManager 145]:%@", [error userInfo]);
     }
 }
 
@@ -126,8 +126,8 @@
                                       error:&error];
         if(error != nil)
         {
-            NSLog(@"*拷贝文件夹失败 原因:%@", error);
-            NSLog(@"%@", [error userInfo]);
+            showError("拷贝文件夹失败 原因:%@", error);
+            showError("%@", [error userInfo]);
         }
     }
 }
@@ -139,7 +139,7 @@
     if(error != nil)
     {
         showError("拷贝文件失败 原因:%@", error);
-        NSLog(@"%@", [error userInfo]);
+        showError("%@", [error userInfo]);
     }
 }
 

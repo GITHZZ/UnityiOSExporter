@@ -49,8 +49,8 @@
     });
 
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
-        [[NSWorkspace sharedWorkspace] openFile:[NSString stringWithFormat:@"%s/code_test_log.xml", _manager.info->unityProjPath]];
-        [_dataInst end];
+        [[NSWorkspace sharedWorkspace] openFile:[NSString stringWithFormat:@"%s/code_test_log.xml", self->_manager.info->unityProjPath]];
+        [self->_dataInst end];
     });
 }
 

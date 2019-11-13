@@ -38,6 +38,8 @@
     EVENT_REGIST(EventTestCustomShell, @selector(testCustomShell));
 }
 
+#pragma mark -
+#pragma mark Cammond regist
 - (void)exportXcodeBtnClicked
 {
     CAMM_REGIST();
@@ -47,7 +49,10 @@
     CAMM_ADD(CODE_EDIT_XCODE);
     CAMM_ADD(CODE_RUN_CUSTOM_SHELL);
     CAMM_ADD(CODE_ACTIVE_WND_TOP);
-    CAMM_RUN();
+    
+    [self checkConfigInfo:^{
+        CAMM_RUN();
+    }];
 }
 
 - (void)exportIpaChilcked
@@ -75,7 +80,10 @@
     CAMM_ADD(CODE_RUN_CUSTOM_SHELL);
     CAMM_ADD(CODE_EXPORT_IPA);
     CAMM_ADD(CODE_ACTIVE_WND_TOP);
-    CAMM_RUN();
+    
+    [self checkConfigInfo:^{
+        CAMM_RUN();
+    }];
 }
 
 - (void)testCustomShell
@@ -93,6 +101,8 @@
     CAMM_RUN();
 }
 
+#pragma mark -
+#pragma mark Cammond driver
 - (void)startExport:(NSArray*)camm
 {
     if(_isExporting)
@@ -105,20 +115,20 @@
     
     showLog("开始执行Unity打包脚本");
     [self runWithCammond:camm withBlock:^{
-        _isExporting = false;
+        self->_isExporting = false;
         
         EVENT_SEND(EventSetExportButtonState, s_true);
         EVENT_SEND(EventStopRecordTime, nil);
     }];
 }
 
-- (void)runWithCammond:(NSArray*)camm withBlock:(void(^)())finCallback
+- (void)runWithCammond:(NSArray*)camm withBlock:(void(^)(void))finCallback
 {
     dispatch_group_t group = dispatch_group_create();
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_group_async(group, queue, ^{
        for(int i = 0; i < [camm count]; i++){
-            NSString *order = [_cammondCode objectForKey:camm[i]];
+           NSString *order = [self->_cammondCode objectForKey:camm[i]];
             if(order != nil){
                 CammondResult code = ((NSNumber* (*)(id, SEL))objc_msgSend)(get_instance(@"PackCammond"), NSSelectorFromString(order));
                 if([code isEqualToNumber:CAMM_EXIT]){
@@ -243,6 +253,8 @@
     return CAMM_SUCCESS;
 }
 
+#pragma mark -
+#pragma mark Support
 - (BOOL)exportXcodeProjInThread:(dispatch_queue_t)sq
 {
     __block BOOL result = YES;
@@ -332,8 +344,9 @@
         jsonData[@"product_bundle_identifier"] = data.bundleIdentifier;
         NSString *configPath = [self writeConfigToJsonFile:data.appName withData:jsonData];
         
+        
         if(configPath == nil)
-            return NO;
+            return @"";
         
         //$1 ruby入口文件路径
         //$2 sdk资源文件路径
@@ -512,4 +525,21 @@
     return arrayString;
 }
 
+- (void)checkConfigInfo:(void(^)(void))sureCallback
+{
+    NSString *plistPath = [NSString stringWithFormat:@"%@/TempCode/Builder/Users/_CustomConfig.plist", LIB_PATH];
+    NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
+    NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@"[ _`~!@#$%^&*()+=|{}':;',\\[\\].<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。，、？]|\n|\r|\t"];
+    NSString *desc = [[data description] stringByTrimmingCharactersInSet:set];
+    desc = [desc stringByReplacingOccurrencesOfString:@"    " withString:@""];
+    desc = [desc stringByReplacingOccurrencesOfString:@";" withString:@""];
+    
+    if(data.count <= 0){
+        sureCallback();
+    }else{
+        [[Alert instance] alertModalFirstBtnTitle:@"确定" SecondBtnTitle:@"取消" MessageText:@"请确认传给C#代码参数信息" InformativeText:desc callBackFrist:^{
+            sureCallback();
+          } callBackSecond:^{}];
+    }
+}
 @end

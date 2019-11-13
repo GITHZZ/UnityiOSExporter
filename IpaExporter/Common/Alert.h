@@ -8,13 +8,13 @@
 
 #import <Cocoa/Cocoa.h>
 
-typedef void(^AlertFunc)();
+typedef void(^AlertFunc)(void);
 @interface Alert : NSObject<NSAlertDelegate,NSWindowDelegate>
 
 + (instancetype)instance;
 
-- (void)alertTip:(NSString *)firstname MessageText:(NSString *)messagetext InformativeText:(NSString *)informativetext callBackFrist:(void(^)())func1;
+- (void)alertTip:(NSString *)firstname MessageText:(NSString *)messagetext InformativeText:(NSString *)informativetext callBackFrist:(void(^)(void))func1;
 
-- (void)alertModalFirstBtnTitle:(NSString *)firstname SecondBtnTitle:(NSString *)secondname MessageText:(NSString *)messagetext InformativeText:(NSString *)informativetext callBackFrist:(void(^)())func1 callBackSecond:(void(^)())func2;
+- (void)alertModalFirstBtnTitle:(NSString *)firstname SecondBtnTitle:(NSString *)secondname MessageText:(NSString *)messagetext InformativeText:(NSString *)informativetext callBackFrist:(void(^)(void))func1 callBackSecond:(void(^)(void))func2;
 
 @end

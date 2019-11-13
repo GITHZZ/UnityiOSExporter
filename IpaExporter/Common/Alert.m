@@ -43,7 +43,7 @@ static AlertFunc _block2;
     }];
 }
 
-- (void)alertModalFirstBtnTitle:(NSString *)firstname SecondBtnTitle:(NSString *)secondname MessageText:(NSString *)messagetext InformativeText:(NSString *)informativetext callBackFrist:(void(^)())func1 callBackSecond:(void(^)())func2
+- (void)alertModalFirstBtnTitle:(NSString *)firstname SecondBtnTitle:(NSString *)secondname MessageText:(NSString *)messagetext InformativeText:(NSString *)informativetext callBackFrist:(void(^)(void))func1 callBackSecond:(void(^)(void))func2
 {
     NSAlert *alert = [[NSAlert alloc] init];
  

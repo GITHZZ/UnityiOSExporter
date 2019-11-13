@@ -190,16 +190,16 @@
             {
                 case EventUnityPathSelectEnd:
                     tInfo->unityProjPath = [selectPath UTF8String];
-                    _manager.info = tInfo;
-                    if([_manager addNewUnityProjPath:selectPath])
-                        _unityPathBox.stringValue = selectPath;
+                    self->_manager.info = tInfo;
+                    if([self->_manager addNewUnityProjPath:selectPath])
+                        self->_unityPathBox.stringValue = selectPath;
                     
                     break;
                 case EventExportPathSelectEnd:
                     tInfo->exportFolderParh = [selectPath UTF8String];
-                    _manager.info = tInfo;
-                    if([_manager addNewExportProjPath:selectPath])
-                        _exportPathBox.stringValue = selectPath;
+                    self->_manager.info = tInfo;
+                    if([self->_manager addNewExportProjPath:selectPath])
+                        self->_exportPathBox.stringValue = selectPath;
                     
                     break;
                 case EventScenePathSelectEnd:
@@ -467,9 +467,9 @@
     _packTime = 0.0f;
     
     _showTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 repeats:YES block:^(NSTimer * _Nonnull timer) {
-        _packTime += timer.timeInterval;
-        int min=(int)_packTime / 60;
-        int sec=(int)_packTime % 60;
+        self->_packTime += timer.timeInterval;
+        int min=(int)self->_packTime / 60;
+        int sec=(int)self->_packTime % 60;
         
         NSString *minStr;
         NSString *secStr;
@@ -485,7 +485,7 @@
             secStr = [NSString stringWithFormat:@"%d", sec];
         }
         
-        _useTimeLabel.stringValue = [NSString stringWithFormat:@"本次打包用时 %@:%@", minStr, secStr];
+        self->_useTimeLabel.stringValue = [NSString stringWithFormat:@"本次打包用时 %@:%@", minStr, secStr];
     }];
 }
 
@@ -549,9 +549,8 @@
 - (IBAction)openCustomConfig:(id)sender
 {
     PreferenceData* dataInst = (PreferenceData*)get_instance(@"PreferenceData");
-    NSMutableArray *jsonAppArray = inst_method_call(@"PreferenceData", getJsonAppArray);
     NSString *filePath = dataInst.jsonFilePath;
-    [[NSWorkspace sharedWorkspace] openFile:filePath withApplication:[jsonAppArray firstObject]];
+    [[NSWorkspace sharedWorkspace] openFile:filePath];
 }
 
 @end

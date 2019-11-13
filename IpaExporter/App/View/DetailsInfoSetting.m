@@ -210,7 +210,7 @@
                         callback:^(NSOpenPanel *openDlg) {
                             if([openDlg.identifier isEqualToString:@"SelectCopyDirPath"]){
                                 NSString *selectPath = [[openDlg URL] path];
-                                _customSDKPath.stringValue = selectPath;
+                                self->_customSDKPath.stringValue = selectPath;
                             }
                         }];
 }
@@ -255,12 +255,12 @@
                 [parser parsePlistFile];
                 
                 if([button.identifier isEqualToString:@"debug"]){
-                    _appID.stringValue = parser.bundleIdentifier;
-                    _debugProfileName.stringValue = parser.fileName;
-                    _debugDevelopTeam.stringValue = parser.teamID;
+                    self->_appID.stringValue = parser.bundleIdentifier;
+                    self->_debugProfileName.stringValue = parser.fileName;
+                    self->_debugDevelopTeam.stringValue = parser.teamID;
                 }else if([button.identifier isEqualToString:@"release"]){
-                    _releaseProfileName.stringValue = parser.fileName;
-                    _releaseDevelopTeam.stringValue = parser.teamID;
+                    self->_releaseProfileName.stringValue = parser.fileName;
+                    self->_releaseDevelopTeam.stringValue = parser.teamID;
                 }
             }
         }
@@ -299,9 +299,9 @@
                                 if([openDlg.identifier isEqualToString:@"customSDKChild"]){
                                     NSArray *urls =[openDlg URLs];
                                     for(int i = 0; i < urls.count; i++){
-                                        [_customSdkArr addObject:[urls[i] path]];
+                                        [self->_customSdkArr addObject:[urls[i] path]];
                                     }
-                                    [_sdkChildTbl reloadData];
+                                    [self->_sdkChildTbl reloadData];
                                 }
                             }];
     }

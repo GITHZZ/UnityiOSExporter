@@ -415,7 +415,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Gi-Yc-Mht">
-                                <rect key="frame" x="157" y="224" width="302" height="17"/>
+                                <rect key="frame" x="157" y="221" width="302" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" sendsActionOnEndEditing="YES" placeholderString="选择存储路径" drawsBackground="YES" id="k8M-Fh-60E">
                                     <font key="font" usesAppearanceFont="YES"/>
@@ -1852,7 +1852,7 @@
                                     <rect key="frame" x="-100" y="-100" width="593" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="9YB-yJ-KwW">
+                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="0.28044280442804426" horizontal="NO" id="9YB-yJ-KwW">
                                     <rect key="frame" x="594" y="1" width="15" height="417"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -1915,10 +1915,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="500" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView fixedFrame="YES" borderType="line" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xfS-Cy-Jcb">
+                            <scrollView borderType="line" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xfS-Cy-Jcb">
                                 <rect key="frame" x="16" y="42" width="471" height="194"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <clipView key="contentView" ambiguous="YES" id="9pw-qN-lTL">
+                                <clipView key="contentView" id="9pw-qN-lTL">
                                     <rect key="frame" x="1" y="1" width="469" height="192"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -1954,9 +1953,8 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gXr-Si-tD6">
-                                <rect key="frame" x="405" y="5" width="88" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gXr-Si-tD6">
+                                <rect key="frame" x="405" y="5" width="88" height="33"/>
                                 <buttonCell key="cell" type="push" title="确定" bezelStyle="rounded" alignment="center" state="mixed" borderStyle="border" allowsMixedState="YES" imageScaling="proportionallyDown" inset="2" id="WvJ-Zn-jUf">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                     <font key="font" size="13" name=".PingFangTC-Regular"/>
@@ -1965,9 +1963,8 @@
                                     <action selector="SureBtnClick:" target="KNa-GE-EN5" id="KZf-rI-ohH"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oz2-mI-QF2">
-                                <rect key="frame" x="317" y="6" width="88" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oz2-mI-QF2">
+                                <rect key="frame" x="338" y="5" width="67" height="33"/>
                                 <buttonCell key="cell" type="push" title="取消" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MQJ-4X-99E">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" size="13" name=".PingFangTC-Regular"/>
@@ -1976,20 +1973,42 @@
                                     <action selector="cancelBtnClick:" target="KNa-GE-EN5" id="4Nj-yb-DLO"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aQg-ad-bro">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aQg-ad-bro">
                                 <rect key="frame" x="14" y="244" width="124" height="17"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="17" id="lGA-dH-c99"/>
+                                </constraints>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="选择可以打包的场景" id="DrJ-xd-0P8">
                                     <font key="font" size="13" name=".PingFangSC-Regular"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="OH7-Fi-L8E">
+                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="OH7-Fi-L8E">
                                 <rect key="frame" x="16" y="15" width="16" height="16"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </progressIndicator>
                         </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="aQg-ad-bro" secondAttribute="trailing" constant="20" symbolic="YES" id="0Zb-Ll-uEO"/>
+                            <constraint firstItem="oz2-mI-QF2" firstAttribute="baseline" secondItem="gXr-Si-tD6" secondAttribute="baseline" id="0hb-B2-aWG"/>
+                            <constraint firstAttribute="bottom" secondItem="OH7-Fi-L8E" secondAttribute="bottom" constant="15" id="1nd-hG-UXK"/>
+                            <constraint firstItem="oz2-mI-QF2" firstAttribute="top" secondItem="xfS-Cy-Jcb" secondAttribute="bottom" constant="8" id="5KI-s5-JpU"/>
+                            <constraint firstItem="oz2-mI-QF2" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="OH7-Fi-L8E" secondAttribute="trailing" constant="8" symbolic="YES" id="6kw-eZ-IJi"/>
+                            <constraint firstItem="xfS-Cy-Jcb" firstAttribute="top" secondItem="aQg-ad-bro" secondAttribute="bottom" constant="8" symbolic="YES" id="KBq-uG-Z26"/>
+                            <constraint firstAttribute="bottom" secondItem="xfS-Cy-Jcb" secondAttribute="bottom" constant="42" id="Ktt-my-MiB"/>
+                            <constraint firstItem="OH7-Fi-L8E" firstAttribute="centerY" secondItem="gXr-Si-tD6" secondAttribute="centerY" id="PxU-V3-w1e"/>
+                            <constraint firstItem="aQg-ad-bro" firstAttribute="leading" secondItem="xfS-Cy-Jcb" secondAttribute="leading" id="S8g-2D-rqQ"/>
+                            <constraint firstAttribute="trailing" secondItem="oz2-mI-QF2" secondAttribute="trailing" constant="101" id="VaL-gK-f2r"/>
+                            <constraint firstItem="OH7-Fi-L8E" firstAttribute="centerY" secondItem="oz2-mI-QF2" secondAttribute="centerY" id="WCv-6c-Mld"/>
+                            <constraint firstItem="gXr-Si-tD6" firstAttribute="leading" secondItem="oz2-mI-QF2" secondAttribute="trailing" constant="12" symbolic="YES" id="X3s-dN-2KY"/>
+                            <constraint firstItem="aQg-ad-bro" firstAttribute="leading" secondItem="Dvs-yJ-iMT" secondAttribute="leading" constant="16" id="bd0-88-Yaq"/>
+                            <constraint firstItem="OH7-Fi-L8E" firstAttribute="top" secondItem="xfS-Cy-Jcb" secondAttribute="bottom" constant="11" id="bsN-Q1-7XA"/>
+                            <constraint firstAttribute="trailing" secondItem="xfS-Cy-Jcb" secondAttribute="trailing" constant="13" id="ehG-yi-tuO"/>
+                            <constraint firstItem="xfS-Cy-Jcb" firstAttribute="trailing" secondItem="gXr-Si-tD6" secondAttribute="trailing" id="kNP-5v-tkn"/>
+                            <constraint firstItem="aQg-ad-bro" firstAttribute="leading" secondItem="OH7-Fi-L8E" secondAttribute="leading" id="uCn-LS-mt8"/>
+                            <constraint firstItem="xfS-Cy-Jcb" firstAttribute="top" secondItem="aQg-ad-bro" secondAttribute="bottom" constant="8" id="vYU-yS-QFk"/>
+                            <constraint firstItem="aQg-ad-bro" firstAttribute="top" secondItem="Dvs-yJ-iMT" secondAttribute="top" constant="9" id="vcr-Bh-9EA"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="progress" destination="OH7-Fi-L8E" id="noO-aa-59v"/>

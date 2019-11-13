@@ -11,6 +11,9 @@ bundle_res_path=$3
 
 #--------------生成母包工程
 #
+#将自定义参数配置plist转换成json
+plutil -convert json ${bundle_res_path}'/TempCode/Builder/Users/_CustomConfig.plist' -o ${bundle_res_path}'/TempCode/Builder/Users/_CustomConfig.json'
+
 pkill Unity
 cd ${unity_project_path}
 args_config=$(cat ${bundle_res_path}'/TempCode/Builder/Users/_CustomConfig.json'| sed s/[[:space:]]//g | tr -d '\n')

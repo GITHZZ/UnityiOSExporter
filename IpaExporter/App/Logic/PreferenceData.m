@@ -64,7 +64,7 @@
 
 - (NSString*)getJsonFilePath
 {
-    NSString *filePath = [LIB_PATH stringByAppendingString:@"/TempCode/Builder/Users/_CustomConfig.json"];
+    NSString *filePath = [LIB_PATH stringByAppendingString:@"/TempCode/Builder/Users/_CustomConfig.plist"];
     return filePath;
 }
 

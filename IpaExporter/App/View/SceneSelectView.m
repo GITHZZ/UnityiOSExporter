@@ -32,19 +32,19 @@
     dispatch_group_t group = dispatch_group_create();
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_group_async(group, queue, ^{
-        _sceneArray = [NSMutableArray arrayWithArray:[_exportManager getAllUnityScenePath]];
-        NSString *unityProjPath = [NSString stringWithUTF8String:_exportManager.info->unityProjPath];
+        self->_sceneArray = [NSMutableArray arrayWithArray:[self->_exportManager getAllUnityScenePath]];
+        NSString *unityProjPath = [NSString stringWithUTF8String:self->_exportManager.info->unityProjPath];
         NSMutableArray *array = [NSMutableArray array];
-        for (NSString *path in [_exportManager getSceneArray]) {
+        for (NSString *path in [self->_exportManager getSceneArray]) {
             NSString *relaPath = [path substringFromIndex:[unityProjPath length] + 1];
             [array addObject:relaPath];
         }
-        _selectScene = [NSMutableSet setWithArray:array];
+        self->_selectScene = [NSMutableSet setWithArray:array];
     });
     
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
-        [_progress stopAnimation:nil];
-        [_unitySceneTbl reloadData];
+        [self->_progress stopAnimation:nil];
+        [self->_unitySceneTbl reloadData];
     });
     
 }

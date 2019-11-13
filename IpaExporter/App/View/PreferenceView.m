@@ -165,7 +165,7 @@ int _viewOpeningCount = 0;
         if(result == NSModalResponseOK){
             ExportInfoManager* view = (ExportInfoManager*)get_instance(@"ExportInfoManager");
             NSString* selectPath = [[openDlg URL] path];
-            _savePath.stringValue = selectPath;
+            self->_savePath.stringValue = selectPath;
             [view setCodeSavePath:selectPath];
         }
     }];
