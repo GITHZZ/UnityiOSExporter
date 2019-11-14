@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 {
 @private
     ExportInfoManager* _manager;
-    DataResManager* _dataInst;
+    UnityAssetManager* _dataInst;
 }
 - (void)run;
 - (void)copyTestFolderToProject;

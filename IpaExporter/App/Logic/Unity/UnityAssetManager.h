@@ -11,7 +11,8 @@
 #import "Common.h"
 #import "Defs.h"
 
-@interface DataResManager : NSObject
+
+@interface UnityAssetManager : NSObject
 {
 @private
     NSString *_unityProjPath;

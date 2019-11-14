@@ -18,11 +18,14 @@
 		183780281D766C84004E3BAD /* IpaExporterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 183780271D766C84004E3BAD /* IpaExporterTests.m */; };
 		183780331D766C85004E3BAD /* IpaExporterUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 183780321D766C85004E3BAD /* IpaExporterUITests.m */; };
 		184BEA501DC742FA00CCEC4D /* DetailsInfoSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 184BEA4F1DC742FA00CCEC4D /* DetailsInfoSetting.m */; };
-		186088FD1DAA4AE10055E4BB /* DataResManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 186088FC1DAA4AE10055E4BB /* DataResManager.m */; };
+		186088FD1DAA4AE10055E4BB /* UnityAssetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 186088FC1DAA4AE10055E4BB /* UnityAssetManager.m */; };
 		188DAD111E56F8E300554D6B /* CustomLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 188DAD101E56F8E300554D6B /* CustomLog.m */; };
 		18CA13961D78164C006595E5 /* GeneralView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CA13951D78164C006595E5 /* GeneralView.m */; };
 		18DD5E6C1DAF1C150071B654 /* DetailsInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD5E6B1DAF1C150071B654 /* DetailsInfoView.m */; };
 		18F1027B1DCC2AEB008312E5 /* EventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F1027A1DCC2AEB008312E5 /* EventManager.m */; };
+		59141DE6237D468D003D4EAE /* EditXcode.sh in Resources */ = {isa = PBXBuildFile; fileRef = 59141DE3237D468C003D4EAE /* EditXcode.sh */; };
+		59141DE7237D468D003D4EAE /* ExportIpa.sh in Resources */ = {isa = PBXBuildFile; fileRef = 59141DE4237D468C003D4EAE /* ExportIpa.sh */; };
+		59141DE8237D468D003D4EAE /* ExportXcode.sh in Resources */ = {isa = PBXBuildFile; fileRef = 59141DE5237D468D003D4EAE /* ExportXcode.sh */; };
 		5928B57022F91CEF003B30CD /* NSObject+LogicBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5928B56F22F91CEF003B30CD /* NSObject+LogicBase.m */; };
 		5928B57322F94C98003B30CD /* NSMutableDictionary+ArraySupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 5928B57222F94C97003B30CD /* NSMutableDictionary+ArraySupport.m */; };
 		5937E44E22C73B8B004FD5AA /* MobileprovisionParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5937E44C22C73B8B004FD5AA /* MobileprovisionParser.m */; };
@@ -30,6 +33,10 @@
 		5937E45522CA0634004FD5AA /* PreferenceData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5937E45422CA0634004FD5AA /* PreferenceData.m */; };
 		593FAEF622B097E700A21F33 /* NSString+Emoji.m in Sources */ = {isa = PBXBuildFile; fileRef = 593FAEF422B097E700A21F33 /* NSString+Emoji.m */; };
 		594F118922EC1E7E00052774 /* ViewMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 594F118822EC1E7E00052774 /* ViewMain.m */; };
+		5955274A237CF0A100067C93 /* _Builder.cs in Resources */ = {isa = PBXBuildFile; fileRef = 59552749237CF0A000067C93 /* _Builder.cs */; };
+		59552750237D001800067C93 /* _CustomConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5955274D237D001800067C93 /* _CustomConfig.plist */; };
+		59552751237D001800067C93 /* _CustomBuilder.cs in Resources */ = {isa = PBXBuildFile; fileRef = 5955274E237D001800067C93 /* _CustomBuilder.cs */; };
+		59552752237D001800067C93 /* _CustomShell.sh in Resources */ = {isa = PBXBuildFile; fileRef = 5955274F237D001800067C93 /* _CustomShell.sh */; };
 		5964C642229CE262004BDD23 /* PackCammond.m in Sources */ = {isa = PBXBuildFile; fileRef = 5964C641229CE262004BDD23 /* PackCammond.m */; };
 		5978866C22F6C1C300340436 /* LogicManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5978866B22F6C1C300340436 /* LogicManager.m */; };
 		597AA75D233723F200F6F16B /* SceneSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 597AA75C233723F200F6F16B /* SceneSelectView.m */; };
@@ -84,8 +91,8 @@
 		183780341D766C85004E3BAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		184BEA4E1DC742FA00CCEC4D /* DetailsInfoSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsInfoSetting.h; sourceTree = "<group>"; };
 		184BEA4F1DC742FA00CCEC4D /* DetailsInfoSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsInfoSetting.m; sourceTree = "<group>"; };
-		186088FB1DAA4AE10055E4BB /* DataResManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataResManager.h; sourceTree = "<group>"; };
-		186088FC1DAA4AE10055E4BB /* DataResManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataResManager.m; sourceTree = "<group>"; };
+		186088FB1DAA4AE10055E4BB /* UnityAssetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnityAssetManager.h; sourceTree = "<group>"; };
+		186088FC1DAA4AE10055E4BB /* UnityAssetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnityAssetManager.m; sourceTree = "<group>"; };
 		188DAD0F1E56F8E300554D6B /* CustomLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomLog.h; sourceTree = "<group>"; };
 		188DAD101E56F8E300554D6B /* CustomLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomLog.m; sourceTree = "<group>"; };
 		18CA13941D78164C006595E5 /* GeneralView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralView.h; sourceTree = "<group>"; };
@@ -95,6 +102,9 @@
 		18F102791DCC2AEB008312E5 /* EventManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventManager.h; sourceTree = "<group>"; };
 		18F1027A1DCC2AEB008312E5 /* EventManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventManager.m; sourceTree = "<group>"; };
 		18FCCBCC1E49CD3900BDF9AC /* Defs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Defs.h; sourceTree = "<group>"; };
+		59141DE3237D468C003D4EAE /* EditXcode.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = EditXcode.sh; path = IpaExporter/Libs/Xcodeproj/EditXcode.sh; sourceTree = SOURCE_ROOT; };
+		59141DE4237D468C003D4EAE /* ExportIpa.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = ExportIpa.sh; path = IpaExporter/Libs/Xcodeproj/ExportIpa.sh; sourceTree = SOURCE_ROOT; };
+		59141DE5237D468D003D4EAE /* ExportXcode.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = ExportXcode.sh; path = IpaExporter/Libs/Xcodeproj/ExportXcode.sh; sourceTree = SOURCE_ROOT; };
 		5928B56E22F91CEF003B30CD /* NSObject+LogicBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+LogicBase.h"; sourceTree = "<group>"; };
 		5928B56F22F91CEF003B30CD /* NSObject+LogicBase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LogicBase.m"; sourceTree = "<group>"; };
 		5928B57122F94C97003B30CD /* NSMutableDictionary+ArraySupport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+ArraySupport.h"; sourceTree = "<group>"; };
@@ -109,6 +119,10 @@
 		593FAEF522B097E700A21F33 /* NSString+Emoji.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Emoji.h"; sourceTree = "<group>"; };
 		594F118722EC1E7E00052774 /* ViewMain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewMain.h; sourceTree = "<group>"; };
 		594F118822EC1E7E00052774 /* ViewMain.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewMain.m; sourceTree = "<group>"; };
+		59552749237CF0A000067C93 /* _Builder.cs */ = {isa = PBXFileReference; lastKnownFileType = text; name = _Builder.cs; path = IpaExporter/Libs/TempCode/Builder/_Builder.cs; sourceTree = SOURCE_ROOT; };
+		5955274D237D001800067C93 /* _CustomConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = _CustomConfig.plist; path = IpaExporter/Libs/TempCode/Builder/Users/_CustomConfig.plist; sourceTree = SOURCE_ROOT; };
+		5955274E237D001800067C93 /* _CustomBuilder.cs */ = {isa = PBXFileReference; lastKnownFileType = text; name = _CustomBuilder.cs; path = IpaExporter/Libs/TempCode/Builder/Users/_CustomBuilder.cs; sourceTree = SOURCE_ROOT; };
+		5955274F237D001800067C93 /* _CustomShell.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = _CustomShell.sh; path = IpaExporter/Libs/TempCode/Builder/Users/_CustomShell.sh; sourceTree = SOURCE_ROOT; };
 		5964C640229CE262004BDD23 /* PackCammond.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PackCammond.h; sourceTree = "<group>"; };
 		5964C641229CE262004BDD23 /* PackCammond.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PackCammond.m; sourceTree = "<group>"; };
 		5978866A22F6C1C300340436 /* LogicManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogicManager.h; sourceTree = "<group>"; };
@@ -219,16 +233,10 @@
 				5978866B22F6C1C300340436 /* LogicManager.m */,
 				59B1BE3B22C06D030087F869 /* CodeTester.h */,
 				59B1BE3C22C06D030087F869 /* CodeTester.m */,
-				5964C640229CE262004BDD23 /* PackCammond.h */,
-				5964C641229CE262004BDD23 /* PackCammond.m */,
 				182FF6EF1E4D936700CC0C7C /* DetailsInfoData.h */,
 				182FF6F01E4D936700CC0C7C /* DetailsInfoData.m */,
 				182FF6F11E4D936700CC0C7C /* ExportInfoManager.h */,
 				182FF6F21E4D936700CC0C7C /* ExportInfoManager.m */,
-				186088FB1DAA4AE10055E4BB /* DataResManager.h */,
-				186088FC1DAA4AE10055E4BB /* DataResManager.m */,
-				18322A8C1DAE193B0049660B /* BuilderCSFileEdit.h */,
-				18322A8D1DAE193B0049660B /* BuilderCSFileEdit.m */,
 				5937E45322CA0634004FD5AA /* PreferenceData.h */,
 				5937E45422CA0634004FD5AA /* PreferenceData.m */,
 				59F118F422F0409600E88253 /* VersionInfo.h */,
@@ -237,6 +245,8 @@
 				5928B56F22F91CEF003B30CD /* NSObject+LogicBase.m */,
 				5928B57122F94C97003B30CD /* NSMutableDictionary+ArraySupport.h */,
 				5928B57222F94C97003B30CD /* NSMutableDictionary+ArraySupport.m */,
+				59141DE2237D465B003D4EAE /* Cammond */,
+				59552746237CF02400067C93 /* Unity */,
 			);
 			path = Logic;
 			sourceTree = "<group>";
@@ -283,6 +293,18 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		59141DE2237D465B003D4EAE /* Cammond */ = {
+			isa = PBXGroup;
+			children = (
+				5964C640229CE262004BDD23 /* PackCammond.h */,
+				5964C641229CE262004BDD23 /* PackCammond.m */,
+				59141DE3237D468C003D4EAE /* EditXcode.sh */,
+				59141DE4237D468C003D4EAE /* ExportIpa.sh */,
+				59141DE5237D468D003D4EAE /* ExportXcode.sh */,
+			);
+			path = Cammond;
+			sourceTree = "<group>";
+		};
 		5937E45222C9AD73004FD5AA /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -293,6 +315,21 @@
 				18CA13931D78163C006595E5 /* View */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		59552746237CF02400067C93 /* Unity */ = {
+			isa = PBXGroup;
+			children = (
+				186088FB1DAA4AE10055E4BB /* UnityAssetManager.h */,
+				186088FC1DAA4AE10055E4BB /* UnityAssetManager.m */,
+				18322A8C1DAE193B0049660B /* BuilderCSFileEdit.h */,
+				18322A8D1DAE193B0049660B /* BuilderCSFileEdit.m */,
+				59552749237CF0A000067C93 /* _Builder.cs */,
+				5955274E237D001800067C93 /* _CustomBuilder.cs */,
+				5955274D237D001800067C93 /* _CustomConfig.plist */,
+				5955274F237D001800067C93 /* _CustomShell.sh */,
+			);
+			path = Unity;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -404,9 +441,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				1837801A1D766C84004E3BAD /* Assets.xcassets in Resources */,
+				59141DE8237D468D003D4EAE /* ExportXcode.sh in Resources */,
+				59141DE6237D468D003D4EAE /* EditXcode.sh in Resources */,
 				0E211BC622BAB29C00334CC0 /* README.md in Resources */,
+				59552752237D001800067C93 /* _CustomShell.sh in Resources */,
+				5955274A237CF0A100067C93 /* _Builder.cs in Resources */,
 				1837801D1D766C84004E3BAD /* Main.storyboard in Resources */,
 				5980B56A22CA45EF0015B6CA /* Libs in Resources */,
+				59552750237D001800067C93 /* _CustomConfig.plist in Resources */,
+				59552751237D001800067C93 /* _CustomBuilder.cs in Resources */,
+				59141DE7237D468D003D4EAE /* ExportIpa.sh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -464,7 +508,7 @@
 				184BEA501DC742FA00CCEC4D /* DetailsInfoSetting.m in Sources */,
 				182FF6F31E4D936700CC0C7C /* DetailsInfoData.m in Sources */,
 				188DAD111E56F8E300554D6B /* CustomLog.m in Sources */,
-				186088FD1DAA4AE10055E4BB /* DataResManager.m in Sources */,
+				186088FD1DAA4AE10055E4BB /* UnityAssetManager.m in Sources */,
 				183780121D766C84004E3BAD /* AppMain.m in Sources */,
 				18322A8E1DAE193B0049660B /* BuilderCSFileEdit.m in Sources */,
 				18CA13961D78164C006595E5 /* GeneralView.m in Sources */,

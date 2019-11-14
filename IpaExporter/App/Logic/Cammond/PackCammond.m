@@ -261,7 +261,7 @@
     
     NSString *xcodeShellPath = [LIB_PATH stringByAppendingString:@"/Xcodeproj/ExportXcode.sh"];
     ExportInfoManager* view = (ExportInfoManager*)get_instance(@"ExportInfoManager");
-    DataResManager *resManager = (DataResManager*)get_instance(@"DataResManager");
+    UnityAssetManager *resManager = (UnityAssetManager*)get_instance(@"UnityAssetManager");
     
     [resManager start:view.info];
     NSString *srcPath = [LIB_PATH stringByAppendingString:@"/TempCode"];
@@ -279,7 +279,7 @@
         //$2 导出路径
         //$3 沙盒路径
         //$4 代码根目录
-        DataResManager *resManager = (DataResManager*)get_instance(@"DataResManager");
+        UnityAssetManager *resManager = (UnityAssetManager*)get_instance(@"UnityAssetManager");
         NSArray *args = [NSArray arrayWithObjects:
                          [NSString stringWithUTF8String:view.info->unityProjPath],
                          [NSString stringWithUTF8String:view.info->exportFolderParh],

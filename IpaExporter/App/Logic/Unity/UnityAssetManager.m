@@ -6,9 +6,9 @@
 //  Copyright © 2016年 何遵祖. All rights reserved.
 //
 
-#import "DataResManager.h"
+#import "UnityAssetManager.h"
 
-@implementation DataResManager
+@implementation UnityAssetManager
 
 - (void)initialize
 {
@@ -83,7 +83,7 @@
     }
     else
     {
-        NSLog(@"*[DataResManager]:错误的参数类型");
+        NSLog(@"*[UnityAssetManager]:错误的参数类型");
         NSLog(@"%@", src);
         NSLog(@"%@", dst);
     }
@@ -108,8 +108,8 @@
     
     if(error != nil)
     {
-        showError("*[DataResManager 144]:移除目标路径文件失败:%@ 错误原因:%@", dst, error);
-        showError("*[DataResManager 145]:%@", [error userInfo]);
+        showError("*[UnityAssetManager 144]:移除目标路径文件失败:%@ 错误原因:%@", dst, error);
+        showError("*[UnityAssetManager 145]:%@", [error userInfo]);
     }
 }
 

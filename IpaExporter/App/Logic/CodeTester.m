@@ -8,7 +8,7 @@
 
 #import "CodeTester.h"
 #import "ExportInfoManager.h"
-#import "DataResManager.h"
+#import "UnityAssetManager.h"
 #import "NSFileManager+Extern.h"
 #import "PreferenceData.h"
 
@@ -19,7 +19,7 @@
 - (void)initialize
 {
     _manager = (ExportInfoManager*)get_instance(@"ExportInfoManager");
-    _dataInst = (DataResManager*)get_instance(@"DataResManager");
+    _dataInst = (UnityAssetManager*)get_instance(@"UnityAssetManager");
 }
 
 - (void)run

@@ -10,15 +10,14 @@ namespace IpaExporter
 	{
 		static void BuildApp()
 		{
-            
 //理论上不允许修改------------
             string[] LEVELS = new string[]
             {
-                ${objcfunc_getPackScenePath} //form objc
+                ${objcfunc_BuilderCSFileEdit_getPackScenePath} //form objc
             };
             
-            string exportPath = ${objcfunc_getExportPath};
-            string exportXcodePath = ${objcfunc_getXcodeExportPath};
+            string exportPath = ${objcfunc_BuilderCSFileEdit_getExportPath};
+            string exportXcodePath = ${objcfunc_BuilderCSFileEdit_getXcodeExportPath};
             
 			//获取shell脚本参数
 			string args = "";
@@ -40,7 +39,7 @@ namespace IpaExporter
 			PlayerSettings.iOS.sdkVersion = iOSSdkVersion.DeviceSDK;
             _CustomBuilder customBuilder = new _CustomBuilder();
             JsonData jsonObj = JsonMapper.ToObject(args);
-
+            
             customBuilder.BuildApp(jsonObj, LEVELS, exportXcodePath);
             
             //如果成功写入结果到文件

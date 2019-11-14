@@ -29,7 +29,7 @@
     _instanceArray =  @[[[CodeTester alloc] init],
                         [[PackCammond alloc] init],
                         [[ExportInfoManager alloc] init],
-                        [[DataResManager alloc] init],
+                        [[UnityAssetManager alloc] init],
                         [[BuilderCSFileEdit alloc] init],
                         [[PreferenceData alloc] init],
                         [[VersionInfo alloc] init]
@@ -89,4 +89,5 @@
             break;
     }
 }
+
 @end

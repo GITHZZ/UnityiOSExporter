@@ -12,7 +12,7 @@
 
 #import "PackCammond.h"
 #import "ExportInfoManager.h"
-#import "DataResManager.h"
+#import "UnityAssetManager.h"
 #import "BuilderCSFileEdit.h"
 #import "PreferenceData.h"
 #import "VersionInfo.h"

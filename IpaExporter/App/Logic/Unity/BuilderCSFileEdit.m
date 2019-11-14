@@ -53,13 +53,13 @@
     return YES;
 }
 
-/*
+/**
  通过key来取和替换变量
  
  #define CS_PACKSCENE_KEY        @"getPackScenePath"
  #define CS_EXPORTPATH_KEY       @"getExportPath"
  #define CS_EXPORTXCODEPATH_KEY  @"getXcodeExportPath"
-
+ 
  */
 - (void)replaceVarWithKeyArr:(NSArray*)keyArr
 {
@@ -75,7 +75,7 @@
         if(instMethod != NULL){
             keyStr = ((NSString *(*)(id, SEL))objc_msgSend)(self, NSSelectorFromString(key));
           
-            [result replaceOccurrencesOfString:[NSString stringWithFormat:@"${objcfunc_%@}", key]
+            [result replaceOccurrencesOfString:[NSString stringWithFormat:@"${objcfunc_BuilderCSFileEdit_%@}", key]
                                         withString:[NSString stringWithFormat:replaceFormat, keyStr]
                                            options:NSLiteralSearch
                                              range:NSMakeRange(0, [result length])];
@@ -126,7 +126,7 @@
     return [self getReplaceStrFromArray:scenes];
 }
 
-//多个选项转成字符串
+///多个选项转成字符串
 - (NSString*)getReplaceStrFromArray:(NSArray<NSString*> *) array
 {
     NSMutableArray *classArr = [[NSMutableArray alloc] initWithCapacity:10];
