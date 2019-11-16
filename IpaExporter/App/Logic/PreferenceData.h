@@ -13,24 +13,25 @@
 NS_ASSUME_NONNULL_BEGIN
 
 #define OPEN_CODE_APP_SAVE_KEY @"openCodeAppKey"
-#define OPEN_JSON_APP_SAVE_KEY @"openJsonAppKey"
+#define OPEN_SIMPLE_SEARCH @"openSimpleSearch"
 
 @interface PreferenceData : NSObject
 {
 @private
     LocalDataSave *_saveData;
     NSMutableArray *_codeAppArray;
-    NSMutableArray *_jsonAppArray;
+    NSString *_openSimpleSearch;
 }
 
 - (void)backUpCustomCode;
 - (void)restoreCustomCode;
 - (NSMutableArray*)addAndSave:(NSString*)data withKey:(NSString*)key;
 - (NSMutableArray*)getCodeAppArray;
-- (NSMutableArray*)getJsonAppArray;
+- (void)setOpenSimpleSearch:(BOOL)state;
 
 @property(nonatomic, readonly, getter=getCodeFilePath) NSString *codeFilePath;
 @property(nonatomic, readonly, getter=getJsonFilePath) NSString *jsonFilePath;
+@property(nonatomic, readonly, getter=getIsOpenSimpleSearch) BOOL isSimpleSearch;
 
 @end
 

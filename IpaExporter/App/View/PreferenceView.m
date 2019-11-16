@@ -35,9 +35,8 @@ int _viewOpeningCount = 0;
 - (IBAction)openCustomConfig:(id)sender
 {
     PreferenceData* dataInst = (PreferenceData*)get_instance(@"PreferenceData");
-    NSMutableArray *jsonAppArray = inst_method_call(@"PreferenceData", getJsonAppArray);
     NSString *filePath = dataInst.jsonFilePath;
-    [[NSWorkspace sharedWorkspace] openFile:filePath withApplication:[jsonAppArray firstObject]];
+    [[NSWorkspace sharedWorkspace] openFile:filePath];
 }
 
 - (IBAction)CodeTest:(id)sender
@@ -131,8 +130,6 @@ int _viewOpeningCount = 0;
     
     [[_codeApp menu] setIdentifier:OPEN_CODE_APP_SAVE_KEY];
     [[_codeApp menu] setDelegate:self];
-    [[_jsonApp menu] setIdentifier:OPEN_JSON_APP_SAVE_KEY];
-    [[_jsonApp menu] setDelegate:self];
     
     [self initFileOpenApp];
 }
@@ -141,19 +138,6 @@ int _viewOpeningCount = 0;
 {
     _viewOpeningCount--;
 }
-
-- (IBAction)openCustomCodeFolder:(id)sender
-{
-    NSString *resPath = [LIB_PATH stringByAppendingString:@"/TempCode/Builder/Users"];
-    [[NSWorkspace sharedWorkspace] selectFile:nil inFileViewerRootedAtPath:resPath];
-}
-
-- (IBAction)cleanAllCache:(id)sender
-{
-    [[Alert instance]alertModalFirstBtnTitle:@"确定" SecondBtnTitle:@"取消" MessageText:@"数据清除" InformativeText:@"点击确认清除所有数据（所有平台信息）" callBackFrist:^{
-    } callBackSecond:^{
-    }];
-}
     
 - (IBAction)savePathSelect:(id)sender
 {
@@ -161,6 +145,7 @@ int _viewOpeningCount = 0;
     [openDlg setCanChooseFiles:NO];
     [openDlg setCanChooseDirectories:YES];
     [openDlg setAllowsMultipleSelection:NO];
+    
     [openDlg beginSheetModalForWindow:[[self view] window] completionHandler:^(NSModalResponse result) {
         if(result == NSModalResponseOK){
             ExportInfoManager* view = (ExportInfoManager*)get_instance(@"ExportInfoManager");
@@ -175,17 +160,14 @@ int _viewOpeningCount = 0;
 - (void)initFileOpenApp
 {
     NSMutableArray *codeAppArray = inst_method_call(@"PreferenceData", getCodeAppArray);
-    NSMutableArray *jsonAppArray = inst_method_call(@"PreferenceData", getJsonAppArray);
     
     [_codeApp removeAllItems];
-    [_jsonApp removeAllItems];
-
     [_codeApp addItemsWithTitles:codeAppArray];
-    [_jsonApp addItemsWithTitles:jsonAppArray];
     
     _itemCellDict[OPEN_CODE_APP_SAVE_KEY] = _codeApp;
-    _itemCellDict[OPEN_JSON_APP_SAVE_KEY] = _jsonApp;
     
+    PreferenceData *data = get_instance(@"PreferenceData");
+    _isSimpleSearch.state = data.isSimpleSearch;
 }
 
 - (void)menuDidClose:(NSMenu *)menu
@@ -225,6 +207,9 @@ int _viewOpeningCount = 0;
 
 - (IBAction)close:(id)sender
 {
+    PreferenceData* dataInst = (PreferenceData*)get_instance(@"PreferenceData");
+    [dataInst setOpenSimpleSearch:_isSimpleSearch.state];
+    
     _viewOpeningCount--;
     EVENT_SEND(EventHideSubView, self);
 }

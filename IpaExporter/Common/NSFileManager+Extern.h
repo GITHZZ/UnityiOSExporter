@@ -40,6 +40,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSArray*)searchByExtension:(NSString*)extension withDir:(NSString*)searchDir;
 
+
+/// 根据后缀查找文件
+/// @param extension 文件类型
+/// @param searchDir 查找文件夹路径
+/// @param append 需要添加结果信息 例如搜索到路径是A 如果传入append 就变成append/A
+- (NSArray*)searchByExtension:(NSString*)extension withDir:(NSString*)searchDir appendPath:(NSString*)append;
+
 @end
 
 NS_ASSUME_NONNULL_END

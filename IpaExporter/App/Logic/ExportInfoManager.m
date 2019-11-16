@@ -7,6 +7,7 @@
 //
 
 #import "ExportInfoManager.h"
+#import "PreferenceData.h"
 #import <objc/runtime.h>
 #import "Common.h"
 
@@ -191,8 +192,16 @@
 
 - (NSArray*)getAllUnityScenePath
 {
+    PreferenceData *dataInst = get_instance(@"PreferenceData");
     NSString *unityProjPath = [NSString stringWithUTF8String:_info->unityProjPath];
-    NSArray *sceneArr = [[NSFileManager defaultManager] searchByExtension:@"unity" withDir:unityProjPath];
+    NSString *appendString = @"";
+    
+    if(dataInst.isSimpleSearch){
+        appendString = @"Assets/Scene/";
+        unityProjPath = [unityProjPath stringByAppendingFormat:@"/%@",appendString];
+    }
+    
+    NSArray *sceneArr = [[NSFileManager defaultManager] searchByExtension:@"unity" withDir:unityProjPath appendPath:appendString];
     return sceneArr;
 }
 

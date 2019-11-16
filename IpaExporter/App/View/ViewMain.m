@@ -17,7 +17,7 @@
 - (void)viewDidLoad
 {
     //子界面
-    _subView = [NSSet setWithObjects:\
+    _subView = [NSSet setWithObjects:
                 @"PreferenceView",
                 @"DetailsInfoSetting",
                 @"SceneSelectView",
@@ -63,6 +63,7 @@
     [vc dismissController:vc];
     
     EVENT_SEND(EventViewDidDisappear, vc);
+    [_subViewQueue removeObject:vc];
 }
 
 - (void)tabView:(NSTabView *)tabView didSelectTabViewItem:(nullable NSTabViewItem *)tabViewItem

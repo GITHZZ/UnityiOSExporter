@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (weak) IBOutlet NSTextField *savePath;
 @property (weak) IBOutlet NSPopUpButtonCell *codeApp;
-@property (weak) IBOutlet NSPopUpButtonCell *jsonApp;
+@property (weak) IBOutlet NSButton *isSimpleSearch;
 
 @end
 

@@ -46,12 +46,10 @@
         [self->_progress stopAnimation:nil];
         [self->_unitySceneTbl reloadData];
     });
-    
 }
 
 - (void)viewWillDisappear
 {
-    
 }
 
 //返回表格的行数

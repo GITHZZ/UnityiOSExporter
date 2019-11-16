@@ -121,6 +121,11 @@
 
 - (NSArray*)searchByExtension:(NSString*)extension withDir:(NSString*)searchDir
 {
+    return [self searchByExtension:extension withDir:searchDir appendPath:@""];
+}
+
+- (NSArray*)searchByExtension:(NSString*)extension withDir:(NSString*)searchDir appendPath:(NSString*)append
+{
     NSMutableArray *array = [NSMutableArray array];
     BOOL isDir;
     [self fileExistsAtPath:searchDir isDirectory:&isDir];
@@ -133,7 +138,7 @@
     NSDirectoryEnumerator *dirEnum = [self enumeratorAtPath: searchDir];//枚举目录的内容
     while ((curPath = [dirEnum nextObject]) != nil) {
         if ([[curPath pathExtension] isEqualToString: extension]) {
-            [array addObject:curPath];
+            [array addObject:[append stringByAppendingString:curPath]];
         }
     }
     return array;
