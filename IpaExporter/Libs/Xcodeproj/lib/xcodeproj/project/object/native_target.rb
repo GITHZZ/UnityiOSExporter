@@ -42,7 +42,7 @@ module Xcodeproj
         #        the key of the build setting.
         #
         # @param [Bool] resolve_against_xcconfig
-        #        wether the resolved setting should take in consideration any
+        #        whether the resolved setting should take in consideration any
         #        configuration file present.
         #
         # @return [Hash{String => String}] The value of the build setting
@@ -60,7 +60,7 @@ module Xcodeproj
               if target_val.is_a? String
                 target_val.gsub(Regexp.union(Constants::INHERITED_KEYWORDS), proj_val)
               else
-                target_val.map { |value| Constants::INHERITED_KEYWORDS.include?(value) ? proj_val : value }.flatten
+                target_val.flat_map { |value| Constants::INHERITED_KEYWORDS.include?(value) ? proj_val : value }
               end
             else
               target_val || proj_val
@@ -74,6 +74,10 @@ module Xcodeproj
         # @param [String] key
         #        the key of the build setting.
         #
+        # @param [Boolean] resolve_against_xcconfig
+        #        whether the resolved setting should take in consideration any
+        #        configuration file present.
+        #
         # @raise  If the build setting has multiple values.
         #
         # @note   As it is common not to have a setting with no value for
@@ -83,8 +87,8 @@ module Xcodeproj
         #
         # @return [String] The value of the build setting.
         #
-        def common_resolved_build_setting(key)
-          values = resolved_build_setting(key).values.compact.uniq
+        def common_resolved_build_setting(key, resolve_against_xcconfig: false)
+          values = resolved_build_setting(key, resolve_against_xcconfig).values.compact.uniq
           if values.count <= 1
             values.first
           else
@@ -373,8 +377,7 @@ module Xcodeproj
 
         def add_system_library_extension(names, extension)
           Array(names).each do |name|
-            # changebyhzz delete .#{extension}
-            path = "usr/lib/#{name}"
+            path = "usr/lib/lib#{name}.#{extension}"
             files = project.frameworks_group.files
             unless reference = files.find { |ref| ref.path == path }
               reference = project.frameworks_group.new_file(path, :sdk_root)

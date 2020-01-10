@@ -87,7 +87,7 @@ module Xcodeproj
           setting = build_settings[key]
           setting = resolve_variable_substitution(key, setting, root_target)
 
-          config_setting = base_configuration_reference && config[key]
+          config_setting = config[key]
           config_setting = resolve_variable_substitution(key, config_setting, root_target)
 
           project_setting = project.build_configuration_list[name]
@@ -139,7 +139,7 @@ module Xcodeproj
           inherited = config_value || default
 
           return build_setting_value.gsub(Regexp.union(Constants::INHERITED_KEYWORDS), inherited) if build_setting_value.is_a? String
-          build_setting_value.map { |value| Constants::INHERITED_KEYWORDS.include?(value) ? inherited : value }.flatten
+          build_setting_value.flat_map { |value| Constants::INHERITED_KEYWORDS.include?(value) ? inherited : value }
         end
 
         def resolve_variable_substitution(key, value, root_target)
@@ -210,9 +210,15 @@ module Xcodeproj
         end
 
         def config
-          @config ||= Xcodeproj::Config.new(base_configuration_reference.real_path).to_hash.tap do |hash|
-            normalize_array_settings(hash)
-          end
+          return {} unless base_configuration_reference
+          @config ||=
+            if base_configuration_reference.real_path.exist?
+              Xcodeproj::Config.new(base_configuration_reference.real_path).to_hash.tap do |hash|
+                normalize_array_settings(hash)
+              end
+            else
+              {}
+            end
         end
 
         #---------------------------------------------------------------------#

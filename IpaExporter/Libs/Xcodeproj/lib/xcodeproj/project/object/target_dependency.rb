@@ -26,6 +26,14 @@ module Xcodeproj
         #
         attribute :name, String
 
+        # @return [String] the platform filter for this target dependency.
+        #
+        attribute :platform_filter, String
+
+        # @return [String] the product reference for this target dependency.
+        #
+        attribute :product_ref, String
+
         public
 
         # @!group AbstractObject Hooks

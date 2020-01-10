@@ -18,7 +18,6 @@
 #define PlatformTblKey @"platformTbl"
 #define PackSceneKey   @"packScene"
 
-
 @implementation GeneralView
 
 - (void)viewDidLoad

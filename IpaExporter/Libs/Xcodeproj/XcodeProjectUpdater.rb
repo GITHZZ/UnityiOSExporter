@@ -47,7 +47,9 @@ class XcodeProjectUpdater
 		end 
 
 		#新增引用
-		add_build_phase_files(@target, @unity_class_group, PROJECT_RESOURCE_PATH, @target.new_copy_files_build_phase("Embed Frameworks"))
+		embedBuildPhases = @target.new_copy_files_build_phase("Embed Frameworks")
+		embedBuildPhases.symbol_dst_subfolder_spec = :frameworks  #暂时只支持framework类型 后续扩展
+		add_build_phase_files(@target, @unity_class_group, PROJECT_RESOURCE_PATH, embedBuildPhases)
         
 		#新增相关查找路径
 		set_search_path()
