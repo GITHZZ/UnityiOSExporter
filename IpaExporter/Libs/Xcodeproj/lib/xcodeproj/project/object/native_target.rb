@@ -377,7 +377,9 @@ module Xcodeproj
 
         def add_system_library_extension(names, extension)
           Array(names).each do |name|
-            path = "usr/lib/lib#{name}.#{extension}"
+            # changebyhzz delete .#{extension}
+            path = "usr/lib/#{name}"
+            # path = "usr/lib/lib#{name}.#{extension}"
             files = project.frameworks_group.files
             unless reference = files.find { |ref| ref.path == path }
               reference = project.frameworks_group.new_file(path, :sdk_root)

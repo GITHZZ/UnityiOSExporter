@@ -136,7 +136,8 @@ class XcodeProjectUpdater
 						target.frameworks_build_phases.add_file_reference(file_ref)
 						
 						if is_embedFrameworks(newPath)
-							embedFrameworks.add_file_reference(file_ref)
+							build_file = embedFrameworks.add_file_reference(file_ref)
+							build_file.settings = { 'ATTRIBUTES' => ['CodeSignOnCopy'] }
 						end
 					elsif newPath.to_s.end_with?(".bundle", ".jpg", ".png") 
 						target.resources_build_phase.add_file_reference(file_ref)
@@ -153,6 +154,7 @@ class XcodeProjectUpdater
 		set_build_setting(@target, "FRAMEWORK_SEARCH_PATHS", @framework_search_paths_array)
 		set_build_setting(@target, "HEADER_SEARCH_PATHS", @header_search_paths_array)
 		set_build_setting(@target, "LIBRARY_SEARCH_PATHS", @library_search_paths_array)
+		set_build_setting(@target, "LD_RUNPATH_SEARCH_PATHS", "$(inherited) @executable_path/Frameworks")
 	end
 
 	#用于替换图标和LaunchImage图

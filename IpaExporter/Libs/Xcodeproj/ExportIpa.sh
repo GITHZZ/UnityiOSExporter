@@ -40,7 +40,7 @@ team_id=${debug_team_id}
 configuration="Debug"
 method="development"
 signingCertificate='iPhone Developer'
-current_time=`date "+%Y%m%d%H%M%S"`
+current_time=`date "+%Y%m%d_%H%M%S"`
 
 xcode_proj_path=${export_path}"/"${xcode_proj_name}
 
