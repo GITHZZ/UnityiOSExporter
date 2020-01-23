@@ -96,7 +96,7 @@ class XcodeProjectUpdater
                     #修改info.plist版本号
                     #Bundle version
                     if $is_release then
-                        `/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $(date +%Y%m%d) \" #{newPath}`
+                        `/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $(date +%Y%m%d)\" #{newPath}`
                         
                         #short version
                         shortVer = `echo $(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\"\ #{newPath})`
@@ -105,7 +105,7 @@ class XcodeProjectUpdater
                             puts "版本号格式为三位数,请到Info.plist修改"
                         end
                         new_version = "#{shortVerArr[0]}.#{shortVerArr[1]}.#{Integer(shortVerArr[2])+1}"
-                        `/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString #{new_version} \" #{newPath}`
+                        `/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString #{new_version}\"#{newPath}`
                     end
                                            
                     $project.main_group.find_file_by_path("Info.plist").remove_from_project
