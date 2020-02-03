@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0E211BC622BAB29C00334CC0 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 0E211BC522BAB29C00334CC0 /* README.md */; };
+		0E7FB17623E7AF28006980FD /* DragDropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E7FB17523E7AF28006980FD /* DragDropView.m */; };
 		182DC37D1E8A5AE400912D20 /* Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = 182DC37C1E8A5AE400912D20 /* Alert.m */; };
 		182FF6F31E4D936700CC0C7C /* DetailsInfoData.m in Sources */ = {isa = PBXBuildFile; fileRef = 182FF6F01E4D936700CC0C7C /* DetailsInfoData.m */; };
 		182FF6F41E4D936700CC0C7C /* ExportInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 182FF6F21E4D936700CC0C7C /* ExportInfoManager.m */; };
@@ -66,6 +67,8 @@
 
 /* Begin PBXFileReference section */
 		0E211BC522BAB29C00334CC0 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		0E7FB17423E7AF28006980FD /* DragDropView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DragDropView.h; sourceTree = "<group>"; };
+		0E7FB17523E7AF28006980FD /* DragDropView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DragDropView.m; sourceTree = "<group>"; };
 		0EE0A4C722B943D200DBB300 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0EE0A4C922B943E200DBB300 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		182186401E5ACAD5003599CD /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
@@ -289,6 +292,8 @@
 				593FAEF422B097E700A21F33 /* NSString+Emoji.m */,
 				59841DC422D4BE0D006CA74F /* NSFileManager+Extern.h */,
 				597AA7612339B0A400F6F16B /* NSFileManager+Extern.m */,
+				0E7FB17423E7AF28006980FD /* DragDropView.h */,
+				0E7FB17523E7AF28006980FD /* DragDropView.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -505,6 +510,7 @@
 				182DC37D1E8A5AE400912D20 /* Alert.m in Sources */,
 				59CF0C4222B79D08001A1F91 /* PreferenceView.m in Sources */,
 				5964C642229CE262004BDD23 /* PackCammond.m in Sources */,
+				0E7FB17623E7AF28006980FD /* DragDropView.m in Sources */,
 				184BEA501DC742FA00CCEC4D /* DetailsInfoSetting.m in Sources */,
 				182FF6F31E4D936700CC0C7C /* DetailsInfoData.m in Sources */,
 				188DAD111E56F8E300554D6B /* CustomLog.m in Sources */,

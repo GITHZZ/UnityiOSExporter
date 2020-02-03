@@ -366,6 +366,7 @@
         //$16 需要关联的sdk文件夹
         //$17 是否导出ipa文件
         //$18 应用名字
+        //$19 bundleIdentifier - release
         NSArray *args = [NSArray arrayWithObjects:
                          rubyMainPath,//$1
                          data.customSDKPath,
@@ -385,6 +386,7 @@
                          [self convertArrayToString:data.customSDKChild],
                          [NSString stringWithFormat:@"%d",view.info->isExportIpa],
                          data.appName,
+                         data.appidRelease,
                          nil];
         
         showLog([[NSString stringWithFormat:@"开始修改工程=>%@(%@)", data.appName, data.platform] UTF8String]);

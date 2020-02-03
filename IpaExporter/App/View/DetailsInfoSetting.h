@@ -8,10 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 #import <Foundation/Foundation.h>
+#import "DragDropView.h"
 
 @class DetailsInfoData;
 
-@interface DetailsInfoSetting : NSViewController<NSTableViewDataSource,NSTableViewDelegate,NSOpenSavePanelDelegate>{
+@interface DetailsInfoSetting : NSViewController<NSTableViewDataSource,NSTableViewDelegate,NSOpenSavePanelDelegate, DragDropViewDelegate>{
 @private
     BOOL _sureBtnClicked;
     BOOL _isSetDataOnShow;
@@ -31,6 +32,7 @@
 @property (weak) IBOutlet NSTextField *appID;
 @property (weak) IBOutlet NSTextField *debugProfileName;
 @property (weak) IBOutlet NSTextField *debugDevelopTeam;
+@property (weak) IBOutlet NSTextField *appIdRelease;
 @property (weak) IBOutlet NSTextField *releaseProfileName;
 @property (weak) IBOutlet NSTextField *releaseDevelopTeam;
 @property (weak) IBOutlet NSTextField *customSDKPath;

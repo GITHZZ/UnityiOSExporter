@@ -16,6 +16,7 @@
 #$16 需要关联的sdk文件夹
 #$17 是否导出ipa
 #$18 应用名字
+#$19 bundleIdentifier - release
 
 echo "Main.sh脚本执行log"
 custom_sdk_path=$2
@@ -34,6 +35,7 @@ pack_folder_path=${15}
 sdk_folder_path=${16}
 is_export_ipa=${17}
 app_name=${18}
+bundleIdentifier_release=${19}
 
 provisioning_profile=${debug_provisioning_profile}
 team_id=${debug_team_id}
@@ -57,6 +59,7 @@ fi
 mkdir ${ipa_folder_path}
 
 if [ ${is_release} == "1" ]; then
+bundleIdentifier=${bundleIdentifier_release}
 provisioning_profile=${release_provisioning_profile}
 team_id=${release_team_id}
 configuration="Release"

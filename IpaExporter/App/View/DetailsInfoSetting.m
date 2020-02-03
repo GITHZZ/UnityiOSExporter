@@ -49,6 +49,7 @@
     [self setUpTableInfo];
     
     _appID.enabled = NO;
+    _appIdRelease.enabled = NO;
     _debugProfileName.enabled = NO;
     _debugDevelopTeam.enabled = NO;
     _releaseProfileName.enabled = NO;
@@ -108,6 +109,7 @@
     _appID.stringValue = [_info getValueForKey:Defs_App_ID_Key];
     _debugProfileName.stringValue = [_info getValueForKey:Defs_Debug_Profile_Name];
     _debugDevelopTeam.stringValue = [_info getValueForKey:Defs_Debug_Develop_Team];
+    _appIdRelease.stringValue = [_info getValueForKey:Defs_App_ID_Key_Release];
     _releaseProfileName.stringValue = [_info getValueForKey:Defs_Release_Profile_Name];
     _releaseDevelopTeam.stringValue = [_info getValueForKey:Defs_Release_Develop_Team];
     _customSDKPath.stringValue = [_info getValueForKey:Defs_Copy_Dir_Path];
@@ -162,6 +164,7 @@
     NSString* releaseDevelopTeam = _releaseDevelopTeam.stringValue;
     NSString* platform = _platform.stringValue;
     NSString* customSdkPath = _customSDKPath.stringValue;
+    NSString *appIdRelease = _appIdRelease.stringValue;
     
                          //value  key
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -179,7 +182,8 @@
                           _libNameArr, Defs_Lib_Names,
                           _linkerFlagArr, Defs_Linker_Flag,
                           _embedFrameworksArr, Defs_Embed_Framework,
-                          _customSdkArr, Defs_Custom_Sdk_Child, nil];
+                          _customSdkArr, Defs_Custom_Sdk_Child,
+                          appIdRelease, Defs_App_ID_Key_Release, nil];
 
     DetailsInfoData* info = [[DetailsInfoData alloc] initWithInfoDict:dict];
     if(_isEditMode){
@@ -259,6 +263,7 @@
                     self->_debugProfileName.stringValue = parser.fileName;
                     self->_debugDevelopTeam.stringValue = parser.teamID;
                 }else if([button.identifier isEqualToString:@"release"]){
+                    self->_appIdRelease.stringValue = parser.bundleIdentifier;
                     self->_releaseProfileName.stringValue = parser.fileName;
                     self->_releaseDevelopTeam.stringValue = parser.teamID;
                 }
@@ -456,6 +461,42 @@
         if([path hasPrefix:rootDir])
             [sender setDirectoryURL:[NSURL URLWithString:path]];
     }
+}
+
+- (NSDragOperation)dragDropViewDraggingEntered:(nonnull NSArray *)fileUrlList withIdentifier:(NSString*)identifier {
+    for (int i = 0; [fileUrlList count]; i++) {
+        NSURL *url = fileUrlList[0];
+        NSString *path = [url path];
+        
+        if ([[path pathExtension] isEqualToString:@"mobileprovision"]) {
+            return NSDragOperationLink;
+        }
+    }
+    return NSDragOperationNone;
+}
+
+- (BOOL)dragDropViewFileList:(nonnull NSArray *)fileUrlList withIdentifier:(NSString*)identifier {
+    for (int i = 0; i <= [fileUrlList count]; i++) {
+        NSURL *url = fileUrlList[0];
+        NSString *path = [url path];
+        
+        if ([[path pathExtension] isEqualToString:@"mobileprovision"]){
+            MobileprovisionParser* parser = [[MobileprovisionParser alloc] initWithProfilePath:path];
+            [parser createPlistFile];
+            [parser parsePlistFile];
+                
+            if([identifier isEqualToString:@"mobileprovisionDebug"]){
+                self.appID.stringValue = parser.bundleIdentifier;
+                self.debugProfileName.stringValue = parser.fileName;
+                self.debugDevelopTeam.stringValue = parser.teamID;
+            }else if([identifier isEqualToString:@"mobileprovisionRelease"]){
+                self.appIdRelease.stringValue = parser.bundleIdentifier;
+                self.releaseProfileName.stringValue = parser.fileName;
+                self.releaseDevelopTeam.stringValue = parser.teamID;
+            }
+        }
+    }
+    return YES;
 }
 
 @end

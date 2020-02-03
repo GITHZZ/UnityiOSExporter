@@ -41,7 +41,12 @@
         _useUserDefault = NO;
         if([[path pathExtension] isEqualToString:@"plist"]){
             _plistPath = path;
-            _saveData = [NSMutableDictionary dictionaryWithContentsOfFile:_plistPath];
+            if(![[NSFileManager defaultManager] fileExistsAtPath:_plistPath]){
+                _saveData = [NSMutableDictionary dictionary];
+                [_saveData writeToFile:_plistPath atomically:YES];
+            }else{
+                _saveData = [NSMutableDictionary dictionaryWithContentsOfFile:_plistPath];
+            }
         }else{
             NSLog(@"%@:文件错误,非plist文件",path);
         }
@@ -116,9 +121,9 @@
         [[NSUserDefaults standardUserDefaults] setObject:data forKey:_bundleIdentifier];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
-    else
+    else{
         [_saveData writeToFile:_plistPath atomically:YES];
-    
+    }
     return YES;
 }
 

@@ -29,6 +29,7 @@
 #define Defs_Platform_Name            @"platform"
 #define Defs_App_Name_Key             @"appName"
 #define Defs_App_ID_Key               @"bundleIdentifier"
+#define Defs_App_ID_Key_Release       @"appidRelease"
 #define Defs_Code_Sign_Identity_Key   @"codeSignIdentity"
 #define Defs_Provisioning_Profile_key @"provisioningProfile"
 #define Defs_Linker_Flag              @"linkerFlag"
