@@ -73,6 +73,7 @@
     
     //从本地读取存储数据
     ExportInfoManager* view = (ExportInfoManager*)get_instance(@"ExportInfoManager");
+
     NSMutableArray<DetailsInfoData*> *saveArray = [view reLoadDetails:SAVE_DETAIL_ARRARY_KEY];
     _dataDict = [[NSMutableArray alloc] initWithArray:saveArray];
     
@@ -192,7 +193,7 @@
                     self->_manager.info = tInfo;
                     if([self->_manager addNewUnityProjPath:selectPath])
                         self->_unityPathBox.stringValue = selectPath;
-                    
+                        [self removeAllSaveScene];
                     break;
                 case EventExportPathSelectEnd:
                     tInfo->exportFolderParh = [selectPath UTF8String];
@@ -376,6 +377,7 @@
     {
         info->unityProjPath = [changePath UTF8String];
         [_manager replaceUnityProjPath:changePath];
+        [self removeAllSaveScene];
     }
     else if([[box identifier] isEqualToString:@"exportPathBox"])
     {
@@ -386,6 +388,17 @@
     {
         showLog("未知路径类型%@", changePath);
     }
+}
+
+//修改了打包工程 清空选择的场景-先这么干 后面改
+- (void)removeAllSaveScene
+{
+    for (int i = 0; i < [_sceneArray count]; i++) {
+        NSString *path = _sceneArray[i];
+        [_sceneArray removeObject:path];
+        [_manager removeDetail:i withKey:SAVE_SCENE_ARRAY_KEY];
+    }
+    [_packSceneTbl reloadData];
 }
 
 - (void)addNewInfoContent:(NSNotification*)notification

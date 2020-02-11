@@ -114,7 +114,6 @@ DEVELOPMENT_TEAM=${team_id} \
 > ${ipa_folder_path}"/xcodebuild_archive_log_"${app_name}".log"
 #fi
 
-echo "生成ipa包"
 # 将app打包成ipa
 xcodebuild \
 -exportArchive \

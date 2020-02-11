@@ -10,7 +10,6 @@
 #import "Defs.h"
 #import "LogicManager.h"
 
-
 @implementation SceneSelectView
 
 - (void)viewDidLoad
@@ -46,10 +45,6 @@
         [self->_progress stopAnimation:nil];
         [self->_unitySceneTbl reloadData];
     });
-}
-
-- (void)viewWillDisappear
-{
 }
 
 //返回表格的行数

@@ -1528,7 +1528,7 @@
                                                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M0E-X9-F1f">
                                                     <rect key="frame" x="247" y="1060" width="272" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" placeholderString="右侧选择文件" drawsBackground="YES" id="wW8-S9-ymx">
+                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" placeholderString="右侧或者拖动此处选择文件" drawsBackground="YES" id="wW8-S9-ymx">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1564,7 +1564,7 @@
                                                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9xh-OZ-hz8">
                                                     <rect key="frame" x="248" y="970" width="272" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="右侧选择文件" drawsBackground="YES" id="Bmg-V7-kll">
+                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="右侧或者拖动此处选择文件" drawsBackground="YES" id="Bmg-V7-kll">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1811,7 +1811,7 @@
                                                     </textFieldCell>
                                                 </textField>
                                                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rzp-rg-JBV">
-                                                    <rect key="frame" x="247" y="1000" width="272" height="22"/>
+                                                    <rect key="frame" x="248" y="1000" width="272" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="com.productName(必填)" drawsBackground="YES" id="SEO-wd-xmF">
                                                         <font key="font" metaFont="system"/>
@@ -1820,14 +1820,14 @@
                                                     </textFieldCell>
                                                 </textField>
                                                 <customView identifier="mobileprovisionDebug" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uBL-bd-F1Z" customClass="DragDropView">
-                                                    <rect key="frame" x="247" y="1030" width="271" height="82"/>
+                                                    <rect key="frame" x="248" y="1030" width="271" height="82"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="D2q-A7-o8O" id="xzG-bU-VBE"/>
                                                     </connections>
                                                 </customView>
                                                 <customView identifier="mobileprovisionRelease" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LH1-WR-zXY" customClass="DragDropView">
-                                                    <rect key="frame" x="248" y="940" width="271" height="82"/>
+                                                    <rect key="frame" x="249" y="940" width="271" height="82"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="D2q-A7-o8O" id="G91-Ja-Wi7"/>
@@ -1842,7 +1842,7 @@
                                     <rect key="frame" x="-100" y="-100" width="593" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="0.11008111239860952" horizontal="NO" id="9YB-yJ-KwW">
+                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="9YB-yJ-KwW">
                                     <rect key="frame" x="593" y="1" width="16" height="417"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
