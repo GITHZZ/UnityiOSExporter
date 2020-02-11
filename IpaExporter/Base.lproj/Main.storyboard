@@ -1761,14 +1761,14 @@
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                 </textField>
-                                                <scrollView fixedFrame="YES" borderType="line" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rCV-lC-4d1">
+                                                <scrollView fixedFrame="YES" borderType="line" autohidesScrollers="YES" horizontalLineScroll="25" horizontalPageScroll="10" verticalLineScroll="25" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rCV-lC-4d1">
                                                     <rect key="frame" x="247" y="740" width="272" height="149"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <clipView key="contentView" ambiguous="YES" id="Arh-Mw-Y7M">
                                                         <rect key="frame" x="1" y="1" width="270" height="147"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
-                                                            <tableView identifier="customSDKChild" verticalHuggingPriority="750" ambiguous="YES" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" id="4QC-qD-uGl">
+                                                            <tableView identifier="customSDKChild" verticalHuggingPriority="750" ambiguous="YES" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="23" rowSizeStyle="automatic" viewBased="YES" id="4QC-qD-uGl">
                                                                 <rect key="frame" x="0.0" y="0.0" width="270" height="147"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <size key="intercellSpacing" width="3" height="2"/>
@@ -1831,6 +1831,20 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="D2q-A7-o8O" id="G91-Ja-Wi7"/>
+                                                    </connections>
+                                                </customView>
+                                                <customView identifier="rootPathSelect" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yYa-hB-9No" customClass="DragDropView">
+                                                    <rect key="frame" x="247" y="900" width="271" height="23"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="D2q-A7-o8O" id="da7-KZ-17v"/>
+                                                    </connections>
+                                                </customView>
+                                                <customView identifier="folderSelect" ambiguous="YES" id="LOL-ys-2nD" customClass="DragDropView">
+                                                    <rect key="frame" x="247" y="740" width="272" height="149"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="D2q-A7-o8O" id="hdJ-tJ-nC5"/>
                                                     </connections>
                                                 </customView>
                                             </subviews>

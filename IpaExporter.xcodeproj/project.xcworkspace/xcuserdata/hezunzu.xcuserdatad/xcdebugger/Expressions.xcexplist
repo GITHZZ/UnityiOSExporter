@@ -3,10 +3,16 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "-[DetailsInfoData getValueForKey:]:DetailsInfoData.m">
+         contextName = "-[DetailsInfoSetting dragDropViewDraggingEntered:withIdentifier:]:DetailsInfoSetting.m">
          <PersistentStrings>
             <PersistentString
-               value = "ivar_getName(*ivar)">
+               value = "path">
+            </PersistentString>
+            <PersistentString
+               value = "[path pathExtension]">
+            </PersistentString>
+            <PersistentString
+               value = "[url path]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -15,6 +21,22 @@
          <PersistentStrings>
             <PersistentString
                value = "button.identifier">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[DragDropView getUrlArrayFromDragInfo:]:DragDropView.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "pboard.pasteboardItems.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[DetailsInfoData getValueForKey:]:DetailsInfoData.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "ivar_getName(*ivar)">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

@@ -464,22 +464,33 @@
 }
 
 - (NSDragOperation)dragDropViewDraggingEntered:(nonnull NSArray *)fileUrlList withIdentifier:(NSString*)identifier {
-    for (int i = 0; [fileUrlList count]; i++) {
-        NSURL *url = fileUrlList[0];
+    for (int i = 0; i < [fileUrlList count]; i++) {
+        NSURL *url = fileUrlList[i];
         NSString *path = [url path];
         
-        if ([[path pathExtension] isEqualToString:@"mobileprovision"]) {
+        BOOL isDir;
+        [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir];
+        if (([identifier isEqualToString:@"mobileprovisionDebug"] ||
+            [identifier isEqualToString:@"mobileprovisionRelease"]) &&
+            [[path pathExtension] isEqualToString:@"mobileprovision"]) {
             return NSDragOperationLink;
+        }else if(isDir){
+            if([identifier isEqualToString:@"rootPathSelect"])
+                return NSDragOperationLink;
+            else if ([identifier isEqualToString:@"folderSelect"])
+                return NSDragOperationCopy;
         }
     }
     return NSDragOperationNone;
 }
 
 - (BOOL)dragDropViewFileList:(nonnull NSArray *)fileUrlList withIdentifier:(NSString*)identifier {
-    for (int i = 0; i <= [fileUrlList count]; i++) {
-        NSURL *url = fileUrlList[0];
+    for (int i = 0; i < [fileUrlList count]; i++) {
+        NSURL *url = fileUrlList[i];
         NSString *path = [url path];
         
+        BOOL isDir;
+        [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir];
         if ([[path pathExtension] isEqualToString:@"mobileprovision"]){
             MobileprovisionParser* parser = [[MobileprovisionParser alloc] initWithProfilePath:path];
             [parser createPlistFile];
@@ -493,6 +504,19 @@
                 self.appIdRelease.stringValue = parser.bundleIdentifier;
                 self.releaseProfileName.stringValue = parser.fileName;
                 self.releaseDevelopTeam.stringValue = parser.teamID;
+            }
+        }else if(isDir){
+            if([identifier isEqualToString:@"rootPathSelect"])
+                _customSDKPath.stringValue = path;
+            else if ([identifier isEqualToString:@"folderSelect"]){
+                if([_customSDKPath.stringValue isEqualToString:@""]){
+                    [[Alert instance] alertTip:@"确定" MessageText:@"错误提示" InformativeText:@"请先选择根路径" callBackFrist:^{}];
+                    [_customSDKPath setBackgroundColor:[[NSColor redColor] colorWithAlphaComponent:0.5]];
+                    break;
+                }
+                
+                [_customSdkArr addObject:path];
+                [_sdkChildTbl reloadData];
             }
         }
     }

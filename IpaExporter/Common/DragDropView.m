@@ -7,6 +7,7 @@
 //
 
 #import "DragDropView.h"
+#import <objc/runtime.h>
 
 @implementation DragDropView
 
@@ -50,10 +51,9 @@
             [array addObject:url];
         }
     }else{
-        NSArray *list = [pboard propertyListForType:NSPasteboardTypeFileURL];
-        for (NSString *str in list) {
-            NSURL *url = [NSURL fileURLWithPath:str];
-            [array addObject:url];
+        for(NSPasteboardItem *item in pboard.pasteboardItems){
+            NSString *urlStr = [item propertyListForType:NSPasteboardTypeFileURL];
+            [array addObject:[NSURL URLWithString:urlStr]];
         }
     }
     return array;
