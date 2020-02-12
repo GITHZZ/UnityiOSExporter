@@ -54,6 +54,7 @@
         
     NSDictionary *plist = [[NSDictionary alloc] initWithContentsOfFile:filePath];
     
+    _fileName = plist[@"Name"];
     _appIDName = plist[@"AppIDName"];
     _teamID = plist[@"ApplicationIdentifierPrefix"][0];
     _creationDate = plist[@"CreationDate"];
