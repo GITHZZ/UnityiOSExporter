@@ -425,6 +425,7 @@
                          [self convertArrayToString:data.customSDKChild],
                          [NSString stringWithFormat:@"%d",view.info->isExportIpa],
                          data.appName,
+                         data.appidRelease,
                          nil];
         
         showLog([[NSString stringWithFormat:@"开始打包=>%@(%@)", data.appName, data.platform] UTF8String]);

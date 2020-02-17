@@ -95,11 +95,16 @@ class XcodeProjectUpdater
             	if newPath.to_s.end_with?("Info.plist")
                     #修改info.plist版本号
                     #Bundle version
+                    print("===========================")
+                    print($is_release)
                     if $is_release then
                         `/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $(date +%Y%m%d)\" #{newPath}`
                         
                         #short version
                         shortVer = `echo $(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\"\ #{newPath})`
+                        if shortVer == "$(MARKETING_VERSION)"
+                            shortVer = "1.0.0"
+                            
                         shortVerArr = shortVer.split(".")
                         if shortVerArr.size <= 2
                             puts "版本号格式为三位数,请到Info.plist修改"

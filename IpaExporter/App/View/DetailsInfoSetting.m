@@ -156,14 +156,14 @@
         return;
     }
     
-    NSString* appName = _appName.stringValue;
-    NSString* appID = _appID.stringValue;
-    NSString* debugProfileName = _debugProfileName.stringValue;
-    NSString* debugDevelopTeam = _debugDevelopTeam.stringValue;
-    NSString* releaseProfileName = _releaseProfileName.stringValue;
-    NSString* releaseDevelopTeam = _releaseDevelopTeam.stringValue;
-    NSString* platform = _platform.stringValue;
-    NSString* customSdkPath = _customSDKPath.stringValue;
+    NSString *appName = _appName.stringValue;
+    NSString *appID = _appID.stringValue;
+    NSString *debugProfileName = _debugProfileName.stringValue;
+    NSString *debugDevelopTeam = _debugDevelopTeam.stringValue;
+    NSString *releaseProfileName = _releaseProfileName.stringValue;
+    NSString *releaseDevelopTeam = _releaseDevelopTeam.stringValue;
+    NSString *platform = _platform.stringValue;
+    NSString *customSdkPath = _customSDKPath.stringValue;
     NSString *appIdRelease = _appIdRelease.stringValue;
     
                          //value  key
