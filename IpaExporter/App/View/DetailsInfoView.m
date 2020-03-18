@@ -58,7 +58,7 @@
 
     if([_dataDict count] > 0){
         DetailsInfoData *info = [_dataDict objectAtIndex:0];
-        [vc setUpDataInfoOnShow:info isEditMode:NO];
+        [vc setUpDataInfoOnShow:[info mutableCopy] isEditMode:NO];
     }
     
     [self presentViewControllerAsSheet:vc];
@@ -93,6 +93,11 @@
 - (void)editInfo:(DetailsInfoData*)info
 {
     NSInteger row = [_infoTbls selectedRow];
+    if (row == -1) {//代表没有内容 自动添加
+        [self addInfo:info];
+        return;
+    }
+    
     ExportInfoManager* manager = (ExportInfoManager*)get_instance(@"ExportInfoManager");
     [_dataDict replaceObjectAtIndex:row withObject:info];
     [manager updateDetail:row withObject:info withKey:SAVE_DETAIL_ARRARY_KEY];

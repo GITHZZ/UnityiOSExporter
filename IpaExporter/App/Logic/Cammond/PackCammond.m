@@ -242,7 +242,7 @@
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"YYYY.MM.dd-hh:mm"];
         NSString *dateString = [dateFormatter stringFromDate:currentDate];
-        NSString *backUpProjPath = [NSString stringWithFormat:@"%s/%@-%@", view.info->exportFolderParh, XCODE_PROJ_NAME, dateString];
+        NSString *backUpProjPath = [NSString stringWithFormat:@"%s/%@-%@", view.info->exportFolderParh,XCODE_PROJ_NAME, dateString];
 
         NSTask *task = [[NSTask alloc] init];
         [task setLaunchPath:@"/bin/bash"];

@@ -99,13 +99,21 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "-[DetailsInfoView editInfo:]:DetailsInfoView.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "_dataDict">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[ExportInfoManager reloadPaths]:ExportInfoManager.m">
          <PersistentStrings>
             <PersistentString
-               value = "item">
+               value = "[obj class]">
             </PersistentString>
             <PersistentString
-               value = "[obj class]">
+               value = "item">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -137,10 +145,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[RubyCammond sureBtnClicked:]:RubyCammond.m">
+         contextName = "-[DetailsInfoSetting sureBtnClickFuncion:]:DetailsInfoSetting.m">
          <PersistentStrings>
             <PersistentString
-               value = "view.info-&gt;isExportXcode">
+               value = "_dict">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -152,6 +160,14 @@
             </PersistentString>
             <PersistentString
                value = "1048576 &gt;&gt; 19">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[RubyCammond sureBtnClicked:]:RubyCammond.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "view.info-&gt;isExportXcode">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -182,6 +198,14 @@
             </PersistentString>
             <PersistentString
                value = "_isExportXcode.state">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[DetailsInfoView detailsInfoViewEdit:]:DetailsInfoView.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "_dataDict">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

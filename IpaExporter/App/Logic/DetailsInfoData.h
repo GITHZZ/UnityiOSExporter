@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DetailsInfoData : NSObject<NSSecureCoding>
+@interface DetailsInfoData : NSObject<NSSecureCoding, NSMutableCopying, NSCopying>
 
 @property(nonatomic, readonly) NSMutableDictionary *dict;
 

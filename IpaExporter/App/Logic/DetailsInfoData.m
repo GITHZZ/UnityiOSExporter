@@ -125,4 +125,23 @@
     return jsonString;
 }
 
+- (id)copyWithZone:(NSZone *)zone
+{
+    return [[DetailsInfoData allocWithZone:zone] init];
+}
+
+- (id)mutableCopyWithZone:(nullable NSZone *)zone
+{
+    NSMutableDictionary *newDict = [NSMutableDictionary dictionary];
+    NSEnumerator *enumerator = [_dict keyEnumerator];
+    id key;
+    while ((key = [enumerator nextObject])) {
+        id value = _dict[key];
+        [newDict setObject:[value mutableCopy] forKey:key];
+    }
+    
+    DetailsInfoData *newData = [[DetailsInfoData alloc] initWithInfoDict:newDict];
+    return newData;
+}
+
 @end
