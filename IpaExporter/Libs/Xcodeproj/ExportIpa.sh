@@ -44,7 +44,21 @@ method="development"
 signingCertificate='iPhone Developer'
 current_time=`date "+%Y%m%d_%H%M%S"`
 
+#自动修改备份文件夹
 xcode_proj_path=${export_path}"/"${xcode_proj_name}
+xcode_proj_path_backup=${export_path}"/""Unity-iPhone-"${app_name}
+echo ${xcode_proj_path_backup}
+
+pre_app_path=$(find ${xcode_proj_path} -name "Unity-iPhone-*.xcodeproj")
+pre_app_name=${pre_app_path/${xcode_proj_path}/''}
+pre_app_name=${pre_app_name/".xcodeproj"/''}
+pre_app_name=${pre_app_name//"\/"/''}
+
+if [ -d ${xcode_proj_path} ]; then
+    mv ${xcode_proj_path} ${export_path}"/"${pre_app_name}
+fi
+
+mv ${xcode_proj_path_backup} ${xcode_proj_path}
 
 export_folder=${export_path}"/export"
 if [ ! -d ${export_folder} ]; then

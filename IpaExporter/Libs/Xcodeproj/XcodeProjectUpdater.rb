@@ -93,12 +93,14 @@ class XcodeProjectUpdater
             file_type = File::ftype(newPath)
             if dir != '.' and dir != '..' and dir != ".DS_Store"
             	if newPath.to_s.end_with?("Info.plist")
+                    puts "修改info.plist版本号"
                     #修改info.plist版本号
                     #Bundle version
                     
+                    #set display name
+                    app_name = $app_name
+                    `/usr/libexec/PlistBuddy -c \"Set :CFBundleDisplayName #{app_name}\" #{newPath}`
                     if $is_release == 1 then
-                        `/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $(date +%Y%m%d)\" #{newPath}`
-                        
                         #short version
                         shortVer = `echo $(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\"\ #{newPath})`
                      

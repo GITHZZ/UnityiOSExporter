@@ -23,5 +23,6 @@
 @property (weak) IBOutlet NSTableView *infoTbls;
 
 - (IBAction)removeBtnClick:(id)sender;
+- (IBAction)testBtnClick:(id)sender;
 
 @end

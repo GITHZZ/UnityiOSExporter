@@ -72,6 +72,13 @@
     }];
 }
 
+- (IBAction)testBtnClick:(id)sender
+{
+    [[Alert instance] alertModalFirstBtnTitle:@"确定" SecondBtnTitle:@"取消" MessageText:@"温馨提示" InformativeText:@"只是简单的测试按钮！" callBackFrist:^{
+    } callBackSecond:^{
+    }];
+}
+
 - (IBAction)editDetailInfo:(id)sender
 {
     NSStoryboard *sb = [NSStoryboard storyboardWithName:@"Main" bundle:nil];

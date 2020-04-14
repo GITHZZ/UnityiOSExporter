@@ -45,7 +45,7 @@ current_time=`date "+%Y%m%d%H%M%S"`
 
 xcode_proj_path=${export_path}"/"${xcode_proj_name}
 
-ruby -w $1 ${custom_sdk_path} ${export_path} ${app_name} ${json_path} ${unity_proj_path} ${xcode_proj_name} ${sdk_folder_path} ${is_release}
+ruby -w $1 ${custom_sdk_path} ${export_path} ${app_name} ${json_path} ${unity_proj_path} ${xcode_proj_name} ${sdk_folder_path} ${is_release} ${app_name}
 
 #处理scheme内容
 project_scheme_path=${export_path}"/"${xcode_proj_name}"/Unity-iPhone-"${app_name}".xcodeproj/xcshareddata/xcschemes/Unity-iPhone.xcscheme"

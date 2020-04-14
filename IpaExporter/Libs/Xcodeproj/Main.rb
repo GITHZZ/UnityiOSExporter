@@ -17,6 +17,7 @@ $config_path = ARGV.at(3)
 $xcode_proj_name = ARGV.at(5)
 $custom_sdk_path = ARGV.at(6)
 $is_release = ARGV.at(7)
+$app_name = ARGV.at(8)
 
 $project_folder_path = "#{$xcode_proj_root_path}/#{$xcode_proj_name}"
 $templete_project_path = "#{$project_folder_path}/Unity-iPhone.xcodeproj"
