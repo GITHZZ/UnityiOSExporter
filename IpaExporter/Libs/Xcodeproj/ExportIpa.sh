@@ -49,6 +49,7 @@ xcode_proj_path=${export_path}"/"${xcode_proj_name}
 xcode_proj_path_backup=${export_path}"/""Unity-iPhone-"${app_name}
 echo ${xcode_proj_path_backup}
 
+#提取应用名字
 pre_app_path=$(find ${xcode_proj_path} -name "Unity-iPhone-*.xcodeproj")
 pre_app_name=${pre_app_path/${xcode_proj_path}/''}
 pre_app_name=${pre_app_name/".xcodeproj"/''}

@@ -323,6 +323,7 @@
     
     id itemCell;
     if([tableView.identifier isEqualToString:PlatformTblKey]){
+        		
         DetailsInfoData *info = [_dataDict objectAtIndex:row];
         NSString* title = [NSString stringWithFormat:@"%@(%@)", info.appName, info.platform];
         NSButtonCell* cell = [tableColumn dataCellForRow:row];
@@ -331,10 +332,12 @@
     
         NSString *isSelect = info.isSelected;
         if(isSelect == nil)
-            isSelect = s_true;
-    
-        [cell setState:[isSelect integerValue]];
+            isSelect = s_false;
+        
+        [cell setState:[info.isSelected intValue]];
+        
         itemCell = cell;
+        
     }else if([tableView.identifier isEqualToString:PackSceneKey]){
         if([_sceneArray count] > 0){
             NSString *item = [_sceneArray objectAtIndex:row];
@@ -348,15 +351,15 @@
 //修改行内容
 - (void)tableView:(NSTableView *)tableView setObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
-    NSButtonCell* cell = [tableColumn dataCellForRow:row];
     if([tableView.identifier isEqualToString:PlatformTblKey]){
         DetailsInfoData *data = (DetailsInfoData*)[_dataDict objectAtIndex:row];
-        NSInteger newState = ![cell state];
+        NSInteger newState = ![data.isSelected intValue];
         NSString *newStateStr = [NSString stringWithFormat:@"%ld", newState];
-        [cell setState: newState];
         [data setValueForKey:Defs_Is_Selected withObj:newStateStr];
-    
+        
         [_manager updateDetail:row withObject:data withKey:SAVE_DETAIL_ARRARY_KEY];
+        
+        [_platformTbl reloadData];
     }
 }
 

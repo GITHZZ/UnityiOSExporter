@@ -20,6 +20,8 @@
     BOOL _isVisable;
     ExportInfoManager* _manager;
     int _viewOpeningCount;
+    
+    NSInteger _selectCellRow;
 }
 
 @property (readonly) NSMutableArray<DetailsInfoData*>* dataDict;

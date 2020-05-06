@@ -66,6 +66,17 @@
          contextName = "-[DetailsInfoData initWithCoder:]:DetailsInfoData.m">
       </ContextState>
       <ContextState
+         contextName = "-[GeneralView tableView:setObjectValue:forTableColumn:row:]:GeneralView.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[tableView selectedColumn]">
+            </PersistentString>
+            <PersistentString
+               value = "cell.title">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[MobileprovisionParser createPlistFile]:MobileprovisionParser.m">
       </ContextState>
       <ContextState
@@ -110,10 +121,10 @@
          contextName = "-[ExportInfoManager reloadPaths]:ExportInfoManager.m">
          <PersistentStrings>
             <PersistentString
-               value = "[obj class]">
+               value = "item">
             </PersistentString>
             <PersistentString
-               value = "item">
+               value = "[obj class]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -141,6 +152,14 @@
          <PersistentStrings>
             <PersistentString
                value = "[curPath stringByDeletingLastPathComponent]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[GeneralView tableView:objectValueForTableColumn:row:]:GeneralView.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "row">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -176,6 +195,14 @@
          <PersistentStrings>
             <PersistentString
                value = "resourcePath">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GLOBAL">
+         <PersistentStrings>
+            <PersistentString
+               value = "[tableColumn dataCellForRow:0]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
