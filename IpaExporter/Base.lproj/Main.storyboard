@@ -570,7 +570,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bOI-9j-hSV">
-                                <rect key="frame" x="26" y="433" width="93" height="17"/>
+                                <rect key="frame" x="26" y="438" width="93" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Unity工程路径:" id="eS4-Vg-wQm">
                                     <font key="font" metaFont="system"/>
@@ -579,7 +579,7 @@
                                 </textFieldCell>
                             </textField>
                             <comboBox identifier="unityPathBox" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Nj-li-1LG">
-                                <rect key="frame" x="125" y="429" width="469" height="26"/>
+                                <rect key="frame" x="125" y="434" width="469" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="c0X-5v-iEZ">
                                     <font key="font" metaFont="system"/>
@@ -588,7 +588,7 @@
                                 </comboBoxCell>
                             </comboBox>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zaT-kr-TX3">
-                                <rect key="frame" x="604" y="427" width="35" height="35"/>
+                                <rect key="frame" x="604" y="436" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <shadow key="shadow">
                                     <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -602,7 +602,7 @@
                                 </connections>
                             </button>
                             <comboBox identifier="exportPathBox" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Akw-bp-ehW">
-                                <rect key="frame" x="125" y="388" width="469" height="26"/>
+                                <rect key="frame" x="125" y="403" width="469" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="HUJ-Dk-eV8">
                                     <font key="font" metaFont="system"/>
@@ -611,18 +611,18 @@
                                 </comboBoxCell>
                             </comboBox>
                             <scrollView fixedFrame="YES" borderType="line" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JpA-3x-Re1">
-                                <rect key="frame" x="20" y="32" width="451" height="338"/>
+                                <rect key="frame" x="20" y="34" width="451" height="362"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="AbN-fo-fnQ">
-                                    <rect key="frame" x="1" y="1" width="449" height="336"/>
+                                    <rect key="frame" x="1" y="1" width="449" height="360"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView ambiguous="YES" editable="NO" importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="m5b-px-hcQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="465" height="336"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="465" height="360"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="449" height="336"/>
+                                            <size key="minSize" width="449" height="360"/>
                                             <size key="maxSize" width="467" height="10000000"/>
                                             <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         </textView>
@@ -646,7 +646,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="39Z-zC-gVA">
-                                <rect key="frame" x="11" y="375" width="661" height="5"/>
+                                <rect key="frame" x="11" y="396" width="661" height="5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="SFd-IF-add">
@@ -702,14 +702,14 @@
                                 </tableHeaderView>
                             </scrollView>
                             <scrollView fixedFrame="YES" borderType="line" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k4Y-f2-uNz">
-                                <rect key="frame" x="479" y="158" width="184" height="212"/>
+                                <rect key="frame" x="479" y="158" width="184" height="206"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" ambiguous="YES" id="YA5-p9-wAu">
-                                    <rect key="frame" x="1" y="1" width="182" height="210"/>
+                                    <rect key="frame" x="1" y="1" width="182" height="204"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView identifier="platformTbl" verticalHuggingPriority="750" ambiguous="YES" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" headerView="z4F-DB-VpN" id="j6g-f3-dK9">
-                                            <rect key="frame" x="0.0" y="0.0" width="182" height="187"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="182" height="181"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -745,7 +745,7 @@
                                 </tableHeaderView>
                             </scrollView>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j7u-mb-jji">
-                                <rect key="frame" x="604" y="386" width="35" height="35"/>
+                                <rect key="frame" x="604" y="401" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <shadow key="shadow">
                                     <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -759,7 +759,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fn0-v4-hM0">
-                                <rect key="frame" x="58" y="393" width="61" height="17"/>
+                                <rect key="frame" x="58" y="408" width="61" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="导出路径:" id="w0O-nt-xo8">
                                     <font key="font" metaFont="system"/>
@@ -879,6 +879,15 @@
                                     <action selector="openCustomConfig:" target="UBb-r6-fzf" id="j69-AI-zTh"/>
                                 </connections>
                             </button>
+                            <searchField wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lAO-oK-hrF">
+                                <rect key="frame" x="479" y="368" width="184" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="sk4-XA-pvN">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </searchFieldCell>
+                            </searchField>
                         </subviews>
                     </view>
                     <connections>
@@ -891,6 +900,7 @@
                         <outlet property="isExportXcode" destination="dQ7-Ok-DsU" id="CTY-KC-Tbs"/>
                         <outlet property="isReleaseBox" destination="xvG-e2-1WT" id="PUj-Ol-F6y"/>
                         <outlet property="packSceneTbl" destination="ZbA-ss-hWz" id="wc4-ru-k69"/>
+                        <outlet property="platformSearchLabel" destination="lAO-oK-hrF" id="Zwj-5T-Bce"/>
                         <outlet property="platformTbl" destination="j6g-f3-dK9" id="ArY-sr-jcd"/>
                         <outlet property="progressTip" destination="Uqi-6h-UuG" id="ehs-Do-bsa"/>
                         <outlet property="unityPathBox" destination="1Nj-li-1LG" id="hkd-4f-rAv"/>

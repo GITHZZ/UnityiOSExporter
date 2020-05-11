@@ -12,7 +12,7 @@
 @class ExportInfoManager;
 @class DetailsInfoData;
 
-@interface GeneralView : NSViewController<NSTableViewDataSource, NSTableViewDelegate, NSComboBoxDelegate, NSOpenSavePanelDelegate>{
+@interface GeneralView : NSViewController<NSTableViewDataSource, NSTableViewDelegate, NSComboBoxDelegate, NSOpenSavePanelDelegate, NSSearchFieldDelegate>{
 @private
     NSMutableArray<NSString*> *_sceneArray;
     NSTimer *_showTimer;
@@ -22,6 +22,7 @@
     int _viewOpeningCount;
     
     NSInteger _selectCellRow;
+    NSMutableSet *_platShowItems;
 }
 
 @property (readonly) NSMutableArray<DetailsInfoData*>* dataDict;
@@ -39,6 +40,7 @@
 @property (weak) IBOutlet NSButton *isExportIpa;
 @property (weak) IBOutlet NSButton *exportXcode;
 @property (weak) IBOutlet NSButton *exportIpa;
+@property (weak) IBOutlet NSSearchField *platformSearchLabel;
 
 - (IBAction)sureBtnClick:(id)sender;
 - (IBAction)unityPathSelect:(id)sender;

@@ -33,6 +33,7 @@
 @property(nonatomic, readonly) NSMutableArray<NSString*> *linkerFlag;
 @property(nonatomic, readonly) NSMutableArray<NSString*> *embedFramework;
 @property(nonatomic, readonly) NSMutableArray<NSString*> *customSDKChild;
+@property(nonatomic, readonly) NSString *uidStr;
 
 + (id)initWithJsonString:(NSString *)string;
 - (id)initWithInfoDict:(NSDictionary*) dic;

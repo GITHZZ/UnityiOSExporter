@@ -63,8 +63,8 @@
 
 - (void)viewDidDisappear
 {
-    if(_sureBtnClicked)
-        EVENT_SEND(EventSetViewMainTab, 0);
+//    if(_sureBtnClicked)
+//        EVENT_SEND(EventSetViewMainTab, 0);
     
     _isSetDataOnShow = NO;
     _sureBtnClicked = NO;
@@ -104,6 +104,7 @@
     if(_isEditMode){
         _platform.stringValue = [_info getValueForKey:Defs_Platform_Name];
         _appName.stringValue = [_info getValueForKey:Defs_App_Name_Key];
+        _uidStr = _info.uidStr;
     }
     
     _appID.stringValue = [_info getValueForKey:Defs_App_ID_Key];
@@ -176,14 +177,15 @@
                           releaseDevelopTeam,Defs_Release_Develop_Team,
                           platform, Defs_Platform_Name,
                           customSdkPath, Defs_Copy_Dir_Path,
-                          s_true, Defs_Is_Selected ,
+                          s_false, Defs_Is_Selected ,
                           _frameworkNameArr, Defs_Framework_Names,
                           _frameworkIsWeakArr, Defs_Framework_IsWeaks,
                           _libNameArr, Defs_Lib_Names,
                           _linkerFlagArr, Defs_Linker_Flag,
                           _embedFrameworksArr, Defs_Embed_Framework,
                           _customSdkArr, Defs_Custom_Sdk_Child,
-                          appIdRelease, Defs_App_ID_Key_Release, nil];
+                          appIdRelease, Defs_App_ID_Key_Release,
+                          _uidStr, Defs_uidStr, nil];
 
     DetailsInfoData* info = [[DetailsInfoData alloc] initWithInfoDict:dict];
     if(_isEditMode){

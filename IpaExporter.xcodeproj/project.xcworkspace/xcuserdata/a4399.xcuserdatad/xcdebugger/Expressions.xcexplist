@@ -47,6 +47,23 @@
          contextName = "-[LocalDataSave setAllSaveKey:]:LocalDataSave.m">
       </ContextState>
       <ContextState
+         contextName = "-[NSString(RKMatch) isMatch:]:NSString+RKMatch.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[subString hash]">
+            </PersistentString>
+            <PersistentString
+               value = "keyword">
+            </PersistentString>
+            <PersistentString
+               value = "keyLength + i">
+            </PersistentString>
+            <PersistentString
+               value = "keyHash">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[RubyCammond invokingShellScriptAtPath:withArgs:]:RubyCammond.m">
          <PersistentStrings>
             <PersistentString
@@ -68,6 +85,9 @@
       <ContextState
          contextName = "-[GeneralView tableView:setObjectValue:forTableColumn:row:]:GeneralView.m">
          <PersistentStrings>
+            <PersistentString
+               value = "[data.isSelected intValue] ">
+            </PersistentString>
             <PersistentString
                value = "[tableView selectedColumn]">
             </PersistentString>
@@ -161,6 +181,12 @@
             <PersistentString
                value = "row">
             </PersistentString>
+            <PersistentString
+               value = "title">
+            </PersistentString>
+            <PersistentString
+               value = "[info.isSelected intValue]">
+            </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
@@ -199,12 +225,7 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "GLOBAL">
-         <PersistentStrings>
-            <PersistentString
-               value = "[tableColumn dataCellForRow:0]">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "-[PackCammond editXcode]:PackCammond.m">
       </ContextState>
       <ContextState
          contextName = "showLog:CustomLog.m">

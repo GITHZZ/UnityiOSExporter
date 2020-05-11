@@ -24,6 +24,7 @@
 		18CA13961D78164C006595E5 /* GeneralView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CA13951D78164C006595E5 /* GeneralView.m */; };
 		18DD5E6C1DAF1C150071B654 /* DetailsInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD5E6B1DAF1C150071B654 /* DetailsInfoView.m */; };
 		18F1027B1DCC2AEB008312E5 /* EventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F1027A1DCC2AEB008312E5 /* EventManager.m */; };
+		590C1FD1246400950068C93F /* NSString+RKMatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 590C1FD0246400950068C93F /* NSString+RKMatch.m */; };
 		59141DE6237D468D003D4EAE /* EditXcode.sh in Resources */ = {isa = PBXBuildFile; fileRef = 59141DE3237D468C003D4EAE /* EditXcode.sh */; };
 		59141DE7237D468D003D4EAE /* ExportIpa.sh in Resources */ = {isa = PBXBuildFile; fileRef = 59141DE4237D468C003D4EAE /* ExportIpa.sh */; };
 		59141DE8237D468D003D4EAE /* ExportXcode.sh in Resources */ = {isa = PBXBuildFile; fileRef = 59141DE5237D468D003D4EAE /* ExportXcode.sh */; };
@@ -105,6 +106,8 @@
 		18F102791DCC2AEB008312E5 /* EventManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventManager.h; sourceTree = "<group>"; };
 		18F1027A1DCC2AEB008312E5 /* EventManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventManager.m; sourceTree = "<group>"; };
 		18FCCBCC1E49CD3900BDF9AC /* Defs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Defs.h; sourceTree = "<group>"; };
+		590C1FCF246400950068C93F /* NSString+RKMatch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+RKMatch.h"; sourceTree = "<group>"; };
+		590C1FD0246400950068C93F /* NSString+RKMatch.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+RKMatch.m"; sourceTree = "<group>"; };
 		59141DE3237D468C003D4EAE /* EditXcode.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = EditXcode.sh; path = IpaExporter/Libs/Xcodeproj/EditXcode.sh; sourceTree = SOURCE_ROOT; };
 		59141DE4237D468C003D4EAE /* ExportIpa.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = ExportIpa.sh; path = IpaExporter/Libs/Xcodeproj/ExportIpa.sh; sourceTree = SOURCE_ROOT; };
 		59141DE5237D468D003D4EAE /* ExportXcode.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = ExportXcode.sh; path = IpaExporter/Libs/Xcodeproj/ExportXcode.sh; sourceTree = SOURCE_ROOT; };
@@ -290,6 +293,8 @@
 				5937E45022C741F5004FD5AA /* LocalDataSave.m */,
 				593FAEF522B097E700A21F33 /* NSString+Emoji.h */,
 				593FAEF422B097E700A21F33 /* NSString+Emoji.m */,
+				590C1FCF246400950068C93F /* NSString+RKMatch.h */,
+				590C1FD0246400950068C93F /* NSString+RKMatch.m */,
 				59841DC422D4BE0D006CA74F /* NSFileManager+Extern.h */,
 				597AA7612339B0A400F6F16B /* NSFileManager+Extern.m */,
 				0E7FB17423E7AF28006980FD /* DragDropView.h */,
@@ -525,6 +530,7 @@
 				597AA7622339B0A400F6F16B /* NSFileManager+Extern.m in Sources */,
 				597AA75D233723F200F6F16B /* SceneSelectView.m in Sources */,
 				18DD5E6C1DAF1C150071B654 /* DetailsInfoView.m in Sources */,
+				590C1FD1246400950068C93F /* NSString+RKMatch.m in Sources */,
 				5937E45122C741F5004FD5AA /* LocalDataSave.m in Sources */,
 				182FF6F41E4D936700CC0C7C /* ExportInfoManager.m in Sources */,
 			);

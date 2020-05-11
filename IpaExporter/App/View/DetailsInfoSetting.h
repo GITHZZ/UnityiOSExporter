@@ -25,6 +25,8 @@
     NSMutableArray<NSString*> *_libNameArr;
     NSMutableArray<NSString*> *_linkerFlagArr;
     NSMutableArray<NSString*> *_customSdkArr;
+    
+    NSString *_uidStr;
 }
 
 @property (weak) IBOutlet NSTextField *platform;

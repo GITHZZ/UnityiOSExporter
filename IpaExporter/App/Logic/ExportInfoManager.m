@@ -129,7 +129,13 @@
 - (void)addDetail:(id)data withKey:(NSString*)saveKey
 {
     NSMutableArray *array = [_userData dataForKey:saveKey];
-    [array addObject:data];
+    if ([saveKey isEqualToString:SAVE_DETAIL_ARRARY_KEY]) {
+        DetailsInfoData *platInfo = (DetailsInfoData*)data;
+        [platInfo setValueForKey:Defs_uidStr withObj:[NSString stringWithFormat:@"%ld", [array count]]];
+        [array addObject:platInfo];
+    }else{
+        [array addObject:data];
+    }
     [self saveDataForKey:saveKey withData:array];
 }
 
@@ -148,6 +154,7 @@
     [array replaceObjectAtIndex:index withObject:object];
     [self saveDataForKey:saveKey withData:array];
 }
+
 
 - (NSMutableArray*)getDetailArray
 {

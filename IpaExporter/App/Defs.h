@@ -49,6 +49,7 @@
 #define Defs_Pack_Scene               @"packScene"
 #define Defs_Export_Config_Path       @"ipaPlistPath"
 #define Defs_Custom_Sdk_Child         @"customSDKChild"
+#define Defs_uidStr                   @"uidStr"
 
 #define s_true  @"1"
 #define s_false @"0"

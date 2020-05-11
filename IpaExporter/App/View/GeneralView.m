@@ -15,6 +15,8 @@
 #import "PreferenceData.h"
 #import "ExportInfoManager.h"
 
+#import "NSString+RKMatch.h"
+
 #define PlatformTblKey @"platformTbl"
 #define PackSceneKey   @"packScene"
 
@@ -22,9 +24,12 @@
 
 - (void)viewDidLoad
 {
+    _selectCellRow = -1;
     _viewOpeningCount = 0;
     
     //设置数据源
+    _platShowItems = [NSMutableSet set];
+    
     _platformTbl.delegate = self;
     _packSceneTbl.delegate = self;
     _platformTbl.dataSource = self;
@@ -33,7 +38,9 @@
     
     _unityPathBox.delegate = self;
     _exportPathBox.delegate = self;
-
+    
+    _platformSearchLabel.delegate = self;
+    
     _progressTip.displayedWhenStopped = NO;
     
     _manager = (ExportInfoManager*)get_instance(@"ExportInfoManager");
@@ -94,7 +101,7 @@
 
 - (void)registEvent
 {
-    EVENT_REGIST(EventDetailsInfoUpdate, @selector(detailsInfoDictUpdate:));
+    //EVENT_REGIST(EventDetailsInfoUpdate, @selector(detailsInfoDictUpdate:));
     EVENT_REGIST(EventAddNewInfoContent, @selector(addNewInfoContent:));
     EVENT_REGIST(EventAddNewSuccessContent, @selector(addNewSuccessContent:));
     EVENT_REGIST(EventAddNewWarningContent, @selector(addNewWarningContent:));
@@ -110,7 +117,7 @@
 
 - (void)unRegistEvent
 {
-    EVENT_UNREGIST(EventDetailsInfoUpdate);
+    //EVENT_UNREGIST(EventDetailsInfoUpdate);
     EVENT_UNREGIST(EventAddNewInfoContent);
     EVENT_UNREGIST(EventAddNewSuccessContent);
     EVENT_UNREGIST(EventAddNewWarningContent);
@@ -324,18 +331,27 @@
     id itemCell;
     if([tableView.identifier isEqualToString:PlatformTblKey]){
         		
-        DetailsInfoData *info = [_dataDict objectAtIndex:row];
-        NSString* title = [NSString stringWithFormat:@"%@(%@)", info.appName, info.platform];
+        DetailsInfoData *data = [_dataDict objectAtIndex:row];
+        NSString* title = [NSString stringWithFormat:@"%@(%@)", data.appName, data.platform];
         NSButtonCell* cell = [tableColumn dataCellForRow:row];
         cell.tag = row;
         cell.title = title;
     
-        NSString *isSelect = info.isSelected;
+        NSString *isSelect = data.isSelected;
         if(isSelect == nil)
             isSelect = s_false;
         
-        [cell setState:[info.isSelected intValue]];
+        [cell setState:[data.isSelected intValue]];
         
+        //单选模式就走这里
+//        if (_selectCellRow == row || [info.isSelected isEqualToString:@"1"]) {
+//            if(_selectCellRow == -1){
+//                _selectCellRow = row;
+//            }
+//            [cell setState:NSControlStateValueOn];
+//        }else{
+//            [cell setState:NSControlStateValueOff];
+//        }
         itemCell = cell;
         
     }else if([tableView.identifier isEqualToString:PackSceneKey]){
@@ -358,6 +374,15 @@
         [data setValueForKey:Defs_Is_Selected withObj:newStateStr];
         
         [_manager updateDetail:row withObject:data withKey:SAVE_DETAIL_ARRARY_KEY];
+        
+        //单选模式就走这里逻辑
+//        if (_selectCellRow != -1) {
+//            DetailsInfoData *data = [_dataDict objectAtIndex:_selectCellRow];
+//            if(data != nil){
+//                [data setValueForKey:Defs_Is_Selected withObj:@"0"];
+//            }
+//        }
+//        _selectCellRow = row;
         
         [_platformTbl reloadData];
     }
@@ -566,6 +591,54 @@
     PreferenceData* dataInst = (PreferenceData*)get_instance(@"PreferenceData");
     NSString *filePath = dataInst.jsonFilePath;
     [[NSWorkspace sharedWorkspace] openFile:filePath];
+}
+
+BOOL _startSearching = NO;
+NSMutableArray<DetailsInfoData*> *_saveData;//only read
+- (void)searchFieldDidStartSearching:(NSSearchField *)sender{
+    _startSearching = YES;
+    
+    ExportInfoManager* dataManager = (ExportInfoManager*)get_instance(@"ExportInfoManager");
+    _saveData = [dataManager reLoadDetails:SAVE_DETAIL_ARRARY_KEY];
+    [_dataDict removeAllObjects];
+    
+    [self startSearchPlatformInfo];
+}
+
+- (void)searchFieldDidEndSearching:(NSSearchField *)sender{
+    _startSearching = NO;
+    [_platShowItems removeAllObjects];
+    
+    ExportInfoManager* dataManager = (ExportInfoManager*)get_instance(@"ExportInfoManager");
+    NSMutableArray<DetailsInfoData*> *saveArray = [dataManager reLoadDetails:SAVE_DETAIL_ARRARY_KEY];
+    [_dataDict removeAllObjects];
+    _dataDict = [[NSMutableArray alloc] initWithArray:saveArray];
+
+    [_platformTbl reloadData];
+    
+}
+
+- (void)controlTextDidChange:(NSNotification *)obj{
+    [self startSearchPlatformInfo];
+}
+
+- (void)startSearchPlatformInfo
+{
+    if(!_startSearching) return;
+    
+    int addCount = 0;
+    NSString *keyword = [_platformSearchLabel stringValue];
+    for (int i = 0; i < [_saveData count]; i++) {
+        DetailsInfoData *data = (DetailsInfoData*)[_saveData objectAtIndex:i];
+        NSString *title = [NSString stringWithFormat:@"%@%@", data.appName, data.platform];
+        if ([title isMatch:keyword] && ![_dataDict containsObject:data]) {
+            addCount++;
+            [_dataDict addObject:data];
+        }
+    }
+    
+    if(addCount > 0)
+        [_platformTbl reloadData];
 }
 
 @end

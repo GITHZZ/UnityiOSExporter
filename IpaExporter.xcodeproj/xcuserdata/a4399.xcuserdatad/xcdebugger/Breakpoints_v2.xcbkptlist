@@ -7,15 +7,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "AD57ADBB-5CB0-4460-8F3B-59BBA1862E27"
+            uuid = "63524B42-EFB4-4445-BC00-6279CA0F8DAA"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IpaExporter/App/View/GeneralView.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
             landmarkName = "-reloadAllInfo"
             landmarkType = "7">
          </BreakpointContent>

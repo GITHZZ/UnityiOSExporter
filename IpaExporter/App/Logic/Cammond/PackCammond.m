@@ -302,7 +302,7 @@
         }else{
             result = NO;
             showError("导出xcode失败，具体请查看log文件");
-            [[NSWorkspace sharedWorkspace] openFile:[NSString stringWithFormat:@"%s/xcodeproj_create_log.txt", view.info->exportFolderParh]];
+            [[NSWorkspace sharedWorkspace] openFile:[NSString stringWithFormat:@"%s/xcodeproj_create_log.log", view.info->exportFolderParh]];
         }
     });
     
