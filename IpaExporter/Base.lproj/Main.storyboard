@@ -787,26 +787,15 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3cu-1v-Ig0">
-                                <rect key="frame" x="320" y="12" width="76" height="26"/>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Gk-7J-TlO">
+                                <rect key="frame" x="243" y="13" width="78" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="square" title="导出ipa包" bezelStyle="shadowlessSquare" imagePosition="left" alignment="center" borderStyle="border" inset="2" id="ttN-nT-Ppl">
+                                <buttonCell key="cell" type="square" title="设置参数" bezelStyle="shadowlessSquare" imagePosition="left" alignment="center" borderStyle="border" inset="2" id="yke-oj-gaj">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="label" size="12"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="exportIpa:" target="UBb-r6-fzf" id="nSu-un-q7r"/>
-                                </connections>
-                            </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5dI-Iy-fBO">
-                                <rect key="frame" x="395" y="12" width="76" height="26"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="square" title="一健打包" bezelStyle="shadowlessSquare" alignment="center" state="on" borderStyle="border" inset="2" id="Wuq-9v-R3r">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" size="12" name=".PingFangSC-Regular"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="sureBtnClick:" target="UBb-r6-fzf" id="IwF-EW-MKm"/>
+                                    <action selector="openCustomConfig:" target="UBb-r6-fzf" id="tdY-ya-TEl"/>
                                 </connections>
                             </button>
                             <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" doubleValue="1" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="Uqi-6h-UuG">
@@ -846,39 +835,6 @@
                                     <action selector="isReleaseBtnSelect:" target="UBb-r6-fzf" id="IhH-G6-g7c"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CLT-Vz-NrT">
-                                <rect key="frame" x="95" y="12" width="76" height="26"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="square" title="清除日志" bezelStyle="shadowlessSquare" imagePosition="left" alignment="center" borderStyle="border" inset="2" id="Daf-lr-O4O">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="label" size="12"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="cleanAllLog:" target="UBb-r6-fzf" id="ET5-gS-mSj"/>
-                                </connections>
-                            </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AS4-Dg-LWJ">
-                                <rect key="frame" x="245" y="12" width="76" height="26"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="square" title="导出Xcode" bezelStyle="shadowlessSquare" imagePosition="left" alignment="center" borderStyle="border" inset="2" id="b37-hK-PXh">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="label" size="12"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="exportXcodeCilcked:" target="UBb-r6-fzf" id="3ZA-v8-rq6"/>
-                                </connections>
-                            </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MuM-5v-eb4">
-                                <rect key="frame" x="170" y="12" width="76" height="26"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="square" title="设置参数" bezelStyle="shadowlessSquare" imagePosition="left" alignment="center" borderStyle="border" inset="2" id="Pe7-jI-ViS">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="label" size="12"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="openCustomConfig:" target="UBb-r6-fzf" id="j69-AI-zTh"/>
-                                </connections>
-                            </button>
                             <searchField wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lAO-oK-hrF">
                                 <rect key="frame" x="479" y="368" width="184" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -888,10 +844,42 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </searchFieldCell>
                             </searchField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3cu-1v-Ig0">
+                                <rect key="frame" x="395" y="13" width="76" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="square" title="导出ipa包" bezelStyle="shadowlessSquare" imagePosition="left" alignment="center" borderStyle="border" inset="2" id="ttN-nT-Ppl">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="label" size="12"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="exportIpa:" target="UBb-r6-fzf" id="nSu-un-q7r"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AS4-Dg-LWJ">
+                                <rect key="frame" x="320" y="13" width="76" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="square" title="导出Xcode" bezelStyle="shadowlessSquare" imagePosition="left" alignment="center" borderStyle="border" inset="2" id="b37-hK-PXh">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="label" size="12"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="exportXcodeCilcked:" target="UBb-r6-fzf" id="3ZA-v8-rq6"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CLT-Vz-NrT">
+                                <rect key="frame" x="168" y="13" width="76" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="square" title="清除日志" bezelStyle="shadowlessSquare" imagePosition="left" alignment="center" borderStyle="border" inset="2" id="Daf-lr-O4O">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="label" size="12"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="cleanAllLog:" target="UBb-r6-fzf" id="ET5-gS-mSj"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
-                        <outlet property="exportBtn" destination="5dI-Iy-fBO" id="qNj-2T-FDt"/>
                         <outlet property="exportIpa" destination="3cu-1v-Ig0" id="MWO-yy-UwA"/>
                         <outlet property="exportPathBox" destination="Akw-bp-ehW" id="sv3-B3-rYQ"/>
                         <outlet property="exportXcode" destination="AS4-Dg-LWJ" id="6Mp-vV-QS0"/>
@@ -1866,7 +1854,7 @@
                                     <rect key="frame" x="-100" y="-100" width="593" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="9YB-yJ-KwW">
+                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="9YB-yJ-KwW">
                                     <rect key="frame" x="594" y="1" width="15" height="417"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>

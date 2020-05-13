@@ -42,17 +42,28 @@
 #pragma mark Cammond regist
 - (void)exportXcodeBtnClicked
 {
-    CAMM_REGIST();
-    CAMM_ADD(CODE_BACKUP_XCODE);
-    CAMM_ADD(CODE_GEN_RESFOLDER);
-    CAMM_ADD(CODE_EXPORT_XCODE);
-    CAMM_ADD(CODE_RUN_CUSTOM_SHELL);
-    CAMM_ADD(CODE_EDIT_XCODE);
-    CAMM_ADD(CODE_ACTIVE_WND_TOP);
-    
-    [self checkConfigInfo:^{
+    NSString *desc = [NSString string];
+    ExportInfoManager *exportManager = (ExportInfoManager*)get_instance(@"ExportInfoManager");
+    NSMutableArray<DetailsInfoData*>* detailArray = exportManager.detailArray;
+    for (int i = 0; i < [detailArray count]; i++) {
+        DetailsInfoData *data = detailArray[i];
+        if ([data.isSelected isEqualToString:s_true]) {
+            NSString *platDesc = [NSString stringWithFormat:@"%@(%@)", data.platform, data.appName];
+            desc = [desc stringByAppendingFormat:@"%@\n", platDesc];
+        }
+    }
+
+    [[Alert instance] alertModalFirstBtnTitle:@"确定" SecondBtnTitle:@"取消" MessageText:@"请确认生成工程平台" InformativeText:desc callBackFrist:^{
+        
+        CAMM_REGIST();
+        CAMM_ADD(CODE_BACKUP_XCODE);
+        CAMM_ADD(CODE_GEN_RESFOLDER);
+        CAMM_ADD(CODE_EXPORT_XCODE);
+        CAMM_ADD(CODE_RUN_CUSTOM_SHELL);
+        CAMM_ADD(CODE_EDIT_XCODE);
+        CAMM_ADD(CODE_ACTIVE_WND_TOP);
         CAMM_RUN();
-    }];
+    } callBackSecond:^{}];
 }
 
 - (void)exportIpaChilcked
@@ -80,10 +91,7 @@
     CAMM_ADD(CODE_EDIT_XCODE);
     CAMM_ADD(CODE_EXPORT_IPA);
     CAMM_ADD(CODE_ACTIVE_WND_TOP);
-    
-    [self checkConfigInfo:^{
-        CAMM_RUN();
-    }];
+    CAMM_RUN();
 }
 
 - (void)testCustomShell
@@ -154,12 +162,39 @@
 - (CammondResult)exportXcode
 {
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    BOOL result = [self exportXcodeProjInThread:queue];
-    if(!result){
-        showError("由于生成xcode报错,打包ipa中断");
-        return CAMM_EXIT;
+    ExportInfoManager *exportManager = (ExportInfoManager*)get_instance(@"ExportInfoManager");
+    NSMutableArray<DetailsInfoData*>* detailArray = exportManager.detailArray;
+    for (int i = 0; i < [detailArray count]; i++) {
+        DetailsInfoData *data = [detailArray objectAtIndex:i];
+        BOOL result = [self exportXcodeProjInThread:queue withData:data];
+        if(!result){
+            showError("由于生成xcode报错,打包ipa中断");
+            //return CAMM_EXIT;
+        }
     }
     return CAMM_SUCCESS;
+}
+
+- (NSString*)checkConfigInfo:(DetailsInfoData*)data
+{
+    NSDictionary *plistInfo = [self getCustomConfig:data];
+    NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@"[ _`~!@#$%^&*()+=|{}':;',\\[\\].<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。，、？]|\n|\r|\t"];
+    NSString *desc = [[plistInfo description] stringByTrimmingCharactersInSet:set];
+    desc = [desc stringByReplacingOccurrencesOfString:@"    " withString:@""];
+    desc = [desc stringByReplacingOccurrencesOfString:@";" withString:@""];
+    
+    return [NSString stringWithFormat:@"\n%@自定义参数信息:\n%@", data.appName ,desc];
+}
+
+- (NSDictionary*)getCustomConfig:(DetailsInfoData*)data
+{
+    NSString *plistPath = [NSString stringWithFormat:@"%@/TempCode/Builder/Users/_CustomConfig.plist", LIB_PATH];
+    NSMutableDictionary *plistInfo = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
+    NSDictionary* config = [plistInfo objectForKey:data.appName];
+    if(config != nil){
+        return config;
+    }
+    return [NSDictionary dictionary];
 }
 
 - (CammondResult)editXcode
@@ -255,8 +290,14 @@
 
 #pragma mark -
 #pragma mark Support
-- (BOOL)exportXcodeProjInThread:(dispatch_queue_t)sq
+- (BOOL)exportXcodeProjInThread:(dispatch_queue_t)sq withData:(DetailsInfoData*)data
 {
+    if([data.isSelected isEqualToString:s_false])
+        return YES;
+    
+    NSString *desc = [self checkConfigInfo:data];
+    showLog([desc UTF8String]);
+    
     __block BOOL result = YES;
     
     NSString *xcodeShellPath = [LIB_PATH stringByAppendingString:@"/Xcodeproj/ExportXcode.sh"];
@@ -526,24 +567,6 @@
     arrayString = [arrayString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
     arrayString = [arrayString stringByReplacingOccurrencesOfString:@"  " withString:@""];
     return arrayString;
-}
-
-- (void)checkConfigInfo:(void(^)(void))sureCallback
-{
-    NSString *plistPath = [NSString stringWithFormat:@"%@/TempCode/Builder/Users/_CustomConfig.plist", LIB_PATH];
-    NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
-    NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@"[ _`~!@#$%^&*()+=|{}':;',\\[\\].<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。，、？]|\n|\r|\t"];
-    NSString *desc = [[data description] stringByTrimmingCharactersInSet:set];
-    desc = [desc stringByReplacingOccurrencesOfString:@"    " withString:@""];
-    desc = [desc stringByReplacingOccurrencesOfString:@";" withString:@""];
-    
-    if(data.count <= 0){
-        sureCallback();
-    }else{
-        [[Alert instance] alertModalFirstBtnTitle:@"确定" SecondBtnTitle:@"取消" MessageText:@"请确认传给C#代码参数信息" InformativeText:desc callBackFrist:^{
-            sureCallback();
-          } callBackSecond:^{}];
-    }
 }
 
 @end

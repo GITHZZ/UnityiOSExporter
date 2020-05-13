@@ -11,6 +11,7 @@
 #import "Defs.h"
 #import "DetailsInfoData.h"
 #import "Common.h"
+#import "PreferenceData.h"
 
 @implementation DetailsInfoSetting
 
