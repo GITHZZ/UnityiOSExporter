@@ -8,6 +8,8 @@
 unity_project_path=$1
 export_path=$2
 bundle_res_path=$3
+product_name=$5
+xcode_base_projName=$6
 
 #--------------生成母包工程
 #
@@ -21,7 +23,12 @@ args_config=$(cat ${bundle_res_path}'/TempCode/Builder/Users/_CustomConfig.json'
 unity_log_file=${export_path}'/xcodeproj_create_log.log'
 
 #生成xcode工程
-/Applications/Unity/Unity.app/Contents/MacOS/Unity -buildTarget Ios -bacthmode -quit -projectPath ${unity_project_path} -executeMethod IpaExporter._Builder.BuildApp -logFile ${unity_log_file} -args_${args_config}
+/Applications/Unity/Unity.app/Contents/MacOS/Unity -buildTarget Ios -bacthmode -quit -projectPath ${unity_project_path} -executeMethod IpaExporter._Builder.BuildApp -logFile ${unity_log_file} -args_${args_config} -productName_${product_name}
+
+#修改工程名字
+xcode_base_projPath=${export_path}/${xcode_base_projName}
+xcode_projPath=${export_path}"/"${xcode_base_projName}"-"${product_name}
+mv ${xcode_base_projPath} ${xcode_projPath}
 
 echo "[配置信息]Unity日志路径:"${export_path}
 

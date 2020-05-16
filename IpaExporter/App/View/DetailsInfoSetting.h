@@ -29,7 +29,7 @@
     NSString *_uidStr;
 }
 
-@property (weak) IBOutlet NSTextField *platform;
+@property (weak) IBOutlet NSTextField *productName;
 @property (weak) IBOutlet NSTextField *appName;
 @property (weak) IBOutlet NSTextField *appID;
 @property (weak) IBOutlet NSTextField *debugProfileName;

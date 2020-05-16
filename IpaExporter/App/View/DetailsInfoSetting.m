@@ -64,8 +64,8 @@
 
 - (void)viewDidDisappear
 {
-//    if(_sureBtnClicked)
-//        EVENT_SEND(EventSetViewMainTab, 0);
+    if(_sureBtnClicked)
+        EVENT_SEND(EventSetViewMainTab, 0);
     
     _isSetDataOnShow = NO;
     _sureBtnClicked = NO;
@@ -103,7 +103,7 @@
         return;
     
     if(_isEditMode){
-        _platform.stringValue = [_info getValueForKey:Defs_Platform_Name];
+        _productName.stringValue = [_info getValueForKey:Defs_Product_Name];
         _appName.stringValue = [_info getValueForKey:Defs_App_Name_Key];
         _uidStr = _info.uidStr;
     }
@@ -139,7 +139,7 @@
 
 - (BOOL)checkAndShowTipIfInputNull
 {
-    int code = ([self checkOneInputIsNull:_platform]&
+    int code = ([self checkOneInputIsNull:_productName]&
                 [self checkOneInputIsNull:_appName]&
                 [self checkOneInputIsNull:_appID]&
                 [self checkOneInputIsNull:_debugProfileName]&
@@ -164,7 +164,7 @@
     NSString *debugDevelopTeam = _debugDevelopTeam.stringValue;
     NSString *releaseProfileName = _releaseProfileName.stringValue;
     NSString *releaseDevelopTeam = _releaseDevelopTeam.stringValue;
-    NSString *platform = _platform.stringValue;
+    NSString *productName = _productName.stringValue;
     NSString *customSdkPath = _customSDKPath.stringValue;
     NSString *appIdRelease = _appIdRelease.stringValue;
     
@@ -176,9 +176,9 @@
                           debugDevelopTeam, Defs_Debug_Develop_Team,
                           releaseProfileName, Defs_Release_Profile_Name,
                           releaseDevelopTeam,Defs_Release_Develop_Team,
-                          platform, Defs_Platform_Name,
+                          productName, Defs_Product_Name,
                           customSdkPath, Defs_Copy_Dir_Path,
-                          s_false, Defs_Is_Selected ,
+                          s_true, Defs_Is_Selected ,
                           _frameworkNameArr, Defs_Framework_Names,
                           _frameworkIsWeakArr, Defs_Framework_IsWeaks,
                           _libNameArr, Defs_Lib_Names,

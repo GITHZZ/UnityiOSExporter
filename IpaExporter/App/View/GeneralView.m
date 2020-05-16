@@ -332,7 +332,7 @@
     if([tableView.identifier isEqualToString:PlatformTblKey]){
         		
         DetailsInfoData *data = [_dataDict objectAtIndex:row];
-        NSString* title = [NSString stringWithFormat:@"%@(%@)", data.appName, data.platform];
+        NSString* title = [NSString stringWithFormat:@"%@(%@)", data.appName, data.productName];
         NSButtonCell* cell = [tableColumn dataCellForRow:row];
         cell.tag = row;
         cell.title = title;
@@ -630,7 +630,7 @@ NSMutableArray<DetailsInfoData*> *_saveData;//only read
     NSString *keyword = [_platformSearchLabel stringValue];
     for (int i = 0; i < [_saveData count]; i++) {
         DetailsInfoData *data = (DetailsInfoData*)[_saveData objectAtIndex:i];
-        NSString *title = [NSString stringWithFormat:@"%@%@", data.appName, data.platform];
+        NSString *title = [NSString stringWithFormat:@"%@%@", data.appName, data.productName];
         if ([title isMatch:keyword] && ![_dataDict containsObject:data]) {
             addCount++;
             [_dataDict addObject:data];

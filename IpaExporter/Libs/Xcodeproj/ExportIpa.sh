@@ -21,7 +21,7 @@
 echo "Main.sh脚本执行log"
 custom_sdk_path=$2
 export_path=$3 #export path
-platform_name=$4
+product_name=$4
 unity_proj_path=$6
 xcode_proj_name=$7
 debug_team_id=$8
@@ -44,22 +44,8 @@ method="development"
 signingCertificate='iPhone Developer'
 current_time=`date "+%Y%m%d_%H%M%S"`
 
-#自动修改备份文件夹
-xcode_proj_path=${export_path}"/"${xcode_proj_name}
-xcode_proj_path_backup=${export_path}"/""Unity-iPhone-"${app_name}
-echo ${xcode_proj_path_backup}
-
-#提取应用名字
-pre_app_path=$(find ${xcode_proj_path} -name "Unity-iPhone-*.xcodeproj")
-pre_app_name=${pre_app_path/${xcode_proj_path}/''}
-pre_app_name=${pre_app_name/".xcodeproj"/''}
-pre_app_name=${pre_app_name//"\/"/''}
-
-if [ -d ${xcode_proj_path} ]; then
-    mv ${xcode_proj_path} ${export_path}"/"${pre_app_name}
-fi
-
-mv ${xcode_proj_path_backup} ${xcode_proj_path}
+xcode_proj_path=${export_path}"/"${xcode_proj_name}"-"${product_name}
+echo ${xcode_proj_path}
 
 export_folder=${export_path}"/export"
 if [ ! -d ${export_folder} ]; then
@@ -67,7 +53,7 @@ mkdir ${export_folder}
 fi
 
 #导出ipa目录
-ipa_folder_path=${export_folder}"/Unity-iPhone-"${app_name}
+ipa_folder_path=${export_folder}"/Unity-iPhone-"${product_name}
 if [ -d ${ipa_folder_path} ]; then
 rm -r ${ipa_folder_path}
 fi
@@ -98,31 +84,31 @@ sed -i '' 's/:profileName:/'${provisioning_profile}'/g' ${dst_path}
 sed -i '' 's/:developTeam:/'${team_id}'/g' ${dst_path}
 sed -i '' 's/:method:/'${method}'/g' ${dst_path}
 sed -i '' "s/:certificate:/${signingCertificate}/g" ${dst_path}
-sed -i '' 's/ProvisioningStyle = Automatic;/ProvisioningStyle = Manual;/g' ${xcode_proj_path}"/Unity-iPhone-"${app_name}".xcodeproj/project.pbxproj"
+sed -i '' 's/ProvisioningStyle = Automatic;/ProvisioningStyle = Manual;/g' ${xcode_proj_path}"/Unity-iPhone-"${product_name}".xcodeproj/project.pbxproj"
 
 #生成ipa包 并备份dsym文件
 #进入xcode工程目录
 cd ${xcode_proj_path}
 
 #如果是release模式 不重新生成archive 请务必在debug模式下生成一次
-archive_path=${xcode_proj_path}/"bin/Unity-iPhone-"${app_name}".xcarchive"
+archive_path=${xcode_proj_path}/"bin/Unity-iPhone-"${product_name}".xcarchive"
 #if [ ${is_release} != "1" -o ! -d ${archive_path} ]; then
 echo "清除xcode工程信息"
 xcodebuild \
 clean \
 -scheme "Unity-iPhone" \
 -configuration ${configuration} \
--project "Unity-iPhone-"${app_name}".xcodeproj" \
+-project "Unity-iPhone-"${product_name}".xcodeproj" \
 > ${ipa_folder_path}"/xcodebuild_clean_log_"${app_name}".log"
 
 echo "生成arvhive工程"
 xcodebuild \
 archive \
--project "Unity-iPhone-"${app_name}".xcodeproj" \
+-project "Unity-iPhone-"${product_name}".xcodeproj" \
 -scheme "Unity-iPhone" \
 -sdk iphoneos \
 -configuration ${configuration} \
--archivePath ${ipa_folder_path}/Unity-iPhone-${app_name}.xcarchive \
+-archivePath ${ipa_folder_path}/Unity-iPhone-${product_name}.xcarchive \
 PROVISIONING_PROFILE_SPECIFIER=${provisioning_profile} \
 DEVELOPMENT_TEAM=${team_id} \
 -allowProvisioningUpdates \
@@ -132,7 +118,7 @@ DEVELOPMENT_TEAM=${team_id} \
 # 将app打包成ipa
 xcodebuild \
 -exportArchive \
--archivePath ${ipa_folder_path}/Unity-iPhone-${app_name}.xcarchive \
+-archivePath ${ipa_folder_path}/Unity-iPhone-${product_name}.xcarchive \
 -exportOptionsPlist ${dst_path} \
 -exportPath ${ipa_folder_path}
 

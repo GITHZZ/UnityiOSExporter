@@ -26,7 +26,7 @@
 #define Export_Xcode_Path @"exportXcodePath"
 
 //detail view key
-#define Defs_Platform_Name            @"platform"
+#define Defs_Product_Name             @"productName"
 #define Defs_App_Name_Key             @"appName"
 #define Defs_App_ID_Key               @"bundleIdentifier"
 #define Defs_App_ID_Key_Release       @"appidRelease"

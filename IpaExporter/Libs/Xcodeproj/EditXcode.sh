@@ -20,7 +20,7 @@
 echo "Main.sh脚本执行log"
 custom_sdk_path=$2
 export_path=$3 #export path
-platform_name=$4
+product_name=$4
 json_path=$5
 unity_proj_path=$6
 xcode_proj_name=$7
@@ -43,14 +43,15 @@ method="development"
 signingCertificate='iPhone Developer'
 current_time=`date "+%Y%m%d%H%M%S"`
 
-xcode_proj_path=${export_path}"/"${xcode_proj_name}
+xcode_proj_path=${export_path}"/"${xcode_proj_name}"-"${product_name}
 
-ruby -w $1 ${custom_sdk_path} ${export_path} ${app_name} ${json_path} ${unity_proj_path} ${xcode_proj_name} ${sdk_folder_path} ${is_release} ${app_name}
+ruby -w $1 ${custom_sdk_path} ${export_path} ${product_name} ${json_path} ${unity_proj_path} ${xcode_proj_name} ${sdk_folder_path} ${is_release} ${app_name}
 
 #处理scheme内容
-project_scheme_path=${export_path}"/"${xcode_proj_name}"/Unity-iPhone-"${app_name}".xcodeproj/xcshareddata/xcschemes/Unity-iPhone.xcscheme"
+project_scheme_path=${xcode_proj_path}"/Unity-iPhone-"${product_name}".xcodeproj/xcshareddata/xcschemes/Unity-iPhone.xcscheme"
 #修改scheme配置
-sed -i '' 's/container:Unity-iPhone.xcodeproj/container:Unity-iPhone-'${app_name}'.xcodeproj/g' ${project_scheme_path}
+sed -i '' 's/container:Unity-iPhone.xcodeproj/container:Unity-iPhone-'${product_name}'.xcodeproj/g' ${project_scheme_path}
 
+echo ${project_scheme_path}
 
 echo "** EDIT XCODE PROJECT SUCCESS **"

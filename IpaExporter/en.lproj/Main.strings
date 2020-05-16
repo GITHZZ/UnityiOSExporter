@@ -108,7 +108,7 @@
 "KJb-E2-DoF.title" = "Copy Directory Path";
 
 /* Class = "NSTableColumn"; headerCell.title = "AppName"; ObjectID = "KOm-Yr-Aqe"; */
-"KOm-Yr-Aqe.headerCell.title" = "AppName";
+"KOm-Yr-Aqe.headerCell.title" = "ProductName";
 
 /* Class = "NSMenuItem"; title = "Show All"; ObjectID = "Kd2-mp-pUS"; */
 "Kd2-mp-pUS.title" = "Show All";

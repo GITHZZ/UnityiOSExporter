@@ -108,7 +108,7 @@
 "KJb-E2-DoF.title" = "Copy Directory Root Path";
 
 /* Class = "NSTableColumn"; headerCell.title = "AppName"; ObjectID = "KOm-Yr-Aqe"; */
-"KOm-Yr-Aqe.headerCell.title" = "App Name";
+"KOm-Yr-Aqe.headerCell.title" = "ProductName";
 
 /* Class = "NSMenuItem"; title = "Show All"; ObjectID = "Kd2-mp-pUS"; */
 "Kd2-mp-pUS.title" = "全部显示";
@@ -165,7 +165,7 @@
 "YD9-ML-3pY.title" = "iOS打包工具 帮助";
 
 /* Class = "NSTextFieldCell"; title = "平台名字"; ObjectID = "YSp-VN-jpn"; */
-"YSp-VN-jpn.title" = "Platform Name";
+"YSp-VN-jpn.title" = "AppName";
 
 /* Class = "NSButtonCell"; title = "打开"; ObjectID = "Ybn-0h-k5F"; */
 "Ybn-0h-k5F.title" = "打开";
@@ -189,7 +189,7 @@
 "cBw-iG-9ec.placeholderString" = "自定义Xcode相关第三方资源路径";
 
 /* Class = "NSTableColumn"; headerCell.title = "平台名字"; ObjectID = "dAT-I4-BW2"; */
-"dAT-I4-BW2.headerCell.title" = "Platform Name";
+"dAT-I4-BW2.headerCell.title" = "AppName";
 
 /* Class = "NSTextFieldCell"; placeholderString = "example.framework"; ObjectID = "dzq-On-thU"; */
 "dzq-On-thU.placeholderString" = "example.framework";
@@ -243,7 +243,7 @@
 "raI-fM-Kj6.placeholderString" = "包名字";
 
 /* Class = "NSTextFieldCell"; title = "AppName"; ObjectID = "raI-fM-Kj6"; */
-"raI-fM-Kj6.title" = "App Name";
+"raI-fM-Kj6.title" = "ProductName";
 
 /* Class = "NSMenuItem"; title = "Paste and Match Style"; ObjectID = "sLW-7g-18s"; */
 "sLW-7g-18s.title" = "粘贴并匹配样式";

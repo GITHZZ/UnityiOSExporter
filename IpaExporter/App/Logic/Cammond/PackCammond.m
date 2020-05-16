@@ -48,7 +48,7 @@
     for (int i = 0; i < [detailArray count]; i++) {
         DetailsInfoData *data = detailArray[i];
         if ([data.isSelected isEqualToString:s_true]) {
-            NSString *platDesc = [NSString stringWithFormat:@"%@(%@)", data.platform, data.appName];
+            NSString *platDesc = [NSString stringWithFormat:@"%@(%@)", data.productName, data.appName];
             desc = [desc stringByAppendingFormat:@"%@\n", platDesc];
         }
     }
@@ -169,7 +169,7 @@
         BOOL result = [self exportXcodeProjInThread:queue withData:data];
         if(!result){
             showError("由于生成xcode报错,打包ipa中断");
-            //return CAMM_EXIT;
+            return CAMM_EXIT;
         }
     }
     return CAMM_SUCCESS;
@@ -190,7 +190,7 @@
 {
     NSString *plistPath = [NSString stringWithFormat:@"%@/TempCode/Builder/Users/_CustomConfig.plist", LIB_PATH];
     NSMutableDictionary *plistInfo = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
-    NSDictionary* config = [plistInfo objectForKey:data.appName];
+    NSDictionary* config = [plistInfo objectForKey:data.productName];
     if(config != nil){
         return config;
     }
@@ -320,12 +320,16 @@
         //$2 导出路径
         //$3 沙盒路径
         //$4 代码根目录
+        //$5 二进制名字
+        //$6 xcode工程名称
         UnityAssetManager *resManager = (UnityAssetManager*)get_instance(@"UnityAssetManager");
         NSArray *args = [NSArray arrayWithObjects:
                          [NSString stringWithUTF8String:view.info->unityProjPath],
                          [NSString stringWithUTF8String:view.info->exportFolderParh],
                          LIB_PATH,
                          resManager.rootPath,
+                         data.productName,
+                         XCODE_PROJ_NAME,
                          nil];
         
         NSString *shellLog = [self invokingShellScriptAtPath:xcodeShellPath withArgs:args];
@@ -334,9 +338,10 @@
         NSString* logStr = [shellLog stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         showLog([logStr UTF8String]);
         
-        NSString *xcodePath = [NSString stringWithFormat:@"%s/%@/Unity-iPhone.xcodeproj", view.info->exportFolderParh, XCODE_PROJ_NAME];
-
-        BOOL projectExisted = [[NSFileManager defaultManager] fileExistsAtPath:xcodePath];
+        NSString *xcodePath = [NSString stringWithFormat:@"%s/%@", view.info->exportFolderParh, XCODE_PROJ_NAME];
+        
+        NSString *fullProjPath = [NSString stringWithFormat:@"%@-%@/Unity-iPhone.xcodeproj", xcodePath, data.productName];
+        BOOL projectExisted = [[NSFileManager defaultManager] fileExistsAtPath:fullProjPath];
         BOOL notError = [logStr containsString:@"*****SUCCESS*****"];
         if(projectExisted && notError){
             showSuccess("导出xcode成功");
@@ -356,7 +361,7 @@
     NSString *shellLog = [self runShellWithData:data withPath:shellPath];
     
     if([shellLog containsString:@"** EDIT XCODE PROJECT SUCCESS **"]){
-            showSuccess([[NSString stringWithFormat:@"%@(%@)修改Xcode成功", data.appName, data.platform] UTF8String]);
+            showSuccess([[NSString stringWithFormat:@"%@(%@)修改Xcode成功", data.appName, data.productName] UTF8String]);
     }else if([shellLog containsString:@"PLATFORM_NOT_SELECT"]){
         return CAMM_CONTINUE;
     }else{
@@ -395,7 +400,7 @@
         //$4 平台名称
         //$5 configPath 配置路径
         //$6 unity工程路径
-        //$7 xcode工程名称 目前固定xcodeProj
+        //$7 xcode工程基础名称
         //$8 开发者teamid（debug）
         //$9 开发者签名文件名字（debug）
         //$10 开发者teamid（release）
@@ -412,7 +417,7 @@
                          rubyMainPath,//$1
                          data.customSDKPath,
                          [NSString stringWithUTF8String:view.info->exportFolderParh],
-                         data.platform,
+                         data.productName,
                          configPath,
                          [NSString stringWithUTF8String:view.info->unityProjPath],
                          XCODE_PROJ_NAME,
@@ -430,7 +435,7 @@
                          data.appidRelease,
                          nil];
         
-        showLog([[NSString stringWithFormat:@"开始修改工程=>%@(%@)", data.appName, data.platform] UTF8String]);
+        showLog([[NSString stringWithFormat:@"开始修改工程=>%@(%@)", data.appName, data.productName] UTF8String]);
         NSString *shellLog = [self invokingShellScriptAtPath:shellPath withArgs:args];
         NSString* logStr = [shellLog stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         showLog([logStr UTF8String]);
@@ -451,7 +456,7 @@
                          rubyMainPath,//$1
                          data.customSDKPath,
                          [NSString stringWithUTF8String:view.info->exportFolderParh],
-                         data.platform,
+                         data.productName,
                          @"null",
                          [NSString stringWithUTF8String:view.info->unityProjPath],
                          XCODE_PROJ_NAME,
@@ -469,15 +474,15 @@
                          data.appidRelease,
                          nil];
         
-        showLog([[NSString stringWithFormat:@"开始打包=>%@(%@)", data.appName, data.platform] UTF8String]);
+        showLog([[NSString stringWithFormat:@"开始打包=>%@(%@)", data.appName, data.productName] UTF8String]);
         NSString *shellLog = [self invokingShellScriptAtPath:shellPath withArgs:args];
         NSString* logStr = [shellLog stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         showLog([logStr UTF8String]);
         
         if([shellLog containsString:@"** EXPORT SUCCEEDED **"]){
-            showSuccess([[NSString stringWithFormat:@"%@平台,打包成功", data.platform] UTF8String]);
+            showSuccess([[NSString stringWithFormat:@"%@,打包成功", data.appName] UTF8String]);
         }else{
-            showError([[NSString stringWithFormat:@"%@平台,打包失败,日志已经保存在%s路径中", data.platform, view.info->unityProjPath] UTF8String]);
+            showError([[NSString stringWithFormat:@"%@,打包失败,日志已经保存在%s路径中", data.appName, view.info->unityProjPath] UTF8String]);
             return NO;
         }
     }

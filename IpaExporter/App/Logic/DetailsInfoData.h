@@ -12,8 +12,8 @@
 
 @property(nonatomic, readonly) NSMutableDictionary *dict;
 
-@property(nonatomic, readonly) NSString *platform;
 @property(nonatomic, readonly) NSString *appName;
+@property(nonatomic, readonly) NSString *productName;
 @property(nonatomic, readonly) NSString *bundleIdentifier;
 @property(nonatomic, readonly) NSString *appidRelease;
 @property(nonatomic, readonly) NSString *codeSignIdentity;

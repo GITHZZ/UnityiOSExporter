@@ -40,6 +40,8 @@
 		59552751237D001800067C93 /* _CustomBuilder.cs in Resources */ = {isa = PBXBuildFile; fileRef = 5955274E237D001800067C93 /* _CustomBuilder.cs */; };
 		59552752237D001800067C93 /* _CustomShell.sh in Resources */ = {isa = PBXBuildFile; fileRef = 5955274F237D001800067C93 /* _CustomShell.sh */; };
 		5964C642229CE262004BDD23 /* PackCammond.m in Sources */ = {isa = PBXBuildFile; fileRef = 5964C641229CE262004BDD23 /* PackCammond.m */; };
+		59702758246E745A002E7854 /* XcodeProjectUpdater.rb in Resources */ = {isa = PBXBuildFile; fileRef = 59702757246E745A002E7854 /* XcodeProjectUpdater.rb */; };
+		5970275A246E7472002E7854 /* Main.rb in Resources */ = {isa = PBXBuildFile; fileRef = 59702759246E7472002E7854 /* Main.rb */; };
 		5978866C22F6C1C300340436 /* LogicManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5978866B22F6C1C300340436 /* LogicManager.m */; };
 		597AA75D233723F200F6F16B /* SceneSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 597AA75C233723F200F6F16B /* SceneSelectView.m */; };
 		597AA7622339B0A400F6F16B /* NSFileManager+Extern.m in Sources */ = {isa = PBXBuildFile; fileRef = 597AA7612339B0A400F6F16B /* NSFileManager+Extern.m */; };
@@ -131,6 +133,8 @@
 		5955274F237D001800067C93 /* _CustomShell.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = _CustomShell.sh; path = IpaExporter/Libs/TempCode/Builder/Users/_CustomShell.sh; sourceTree = SOURCE_ROOT; };
 		5964C640229CE262004BDD23 /* PackCammond.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PackCammond.h; sourceTree = "<group>"; };
 		5964C641229CE262004BDD23 /* PackCammond.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PackCammond.m; sourceTree = "<group>"; };
+		59702757246E745A002E7854 /* XcodeProjectUpdater.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = XcodeProjectUpdater.rb; path = IpaExporter/Libs/Xcodeproj/XcodeProjectUpdater.rb; sourceTree = SOURCE_ROOT; };
+		59702759246E7472002E7854 /* Main.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = Main.rb; path = IpaExporter/Libs/Xcodeproj/Main.rb; sourceTree = SOURCE_ROOT; };
 		5978866A22F6C1C300340436 /* LogicManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogicManager.h; sourceTree = "<group>"; };
 		5978866B22F6C1C300340436 /* LogicManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogicManager.m; sourceTree = "<group>"; };
 		597AA75B233723F200F6F16B /* SceneSelectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneSelectView.h; sourceTree = "<group>"; };
@@ -308,9 +312,11 @@
 			children = (
 				5964C640229CE262004BDD23 /* PackCammond.h */,
 				5964C641229CE262004BDD23 /* PackCammond.m */,
-				59141DE3237D468C003D4EAE /* EditXcode.sh */,
-				59141DE4237D468C003D4EAE /* ExportIpa.sh */,
 				59141DE5237D468D003D4EAE /* ExportXcode.sh */,
+				59141DE3237D468C003D4EAE /* EditXcode.sh */,
+				59702759246E7472002E7854 /* Main.rb */,
+				59702757246E745A002E7854 /* XcodeProjectUpdater.rb */,
+				59141DE4237D468C003D4EAE /* ExportIpa.sh */,
 			);
 			path = Cammond;
 			sourceTree = "<group>";
@@ -452,6 +458,7 @@
 			files = (
 				1837801A1D766C84004E3BAD /* Assets.xcassets in Resources */,
 				59141DE8237D468D003D4EAE /* ExportXcode.sh in Resources */,
+				5970275A246E7472002E7854 /* Main.rb in Resources */,
 				59141DE6237D468D003D4EAE /* EditXcode.sh in Resources */,
 				0E211BC622BAB29C00334CC0 /* README.md in Resources */,
 				59552752237D001800067C93 /* _CustomShell.sh in Resources */,
@@ -461,6 +468,7 @@
 				59552750237D001800067C93 /* _CustomConfig.plist in Resources */,
 				59552751237D001800067C93 /* _CustomBuilder.cs in Resources */,
 				59141DE7237D468D003D4EAE /* ExportIpa.sh in Resources */,
+				59702758246E745A002E7854 /* XcodeProjectUpdater.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

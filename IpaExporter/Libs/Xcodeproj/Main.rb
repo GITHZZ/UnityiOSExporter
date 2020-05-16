@@ -12,18 +12,18 @@ require "fileutils"
 require_relative "XcodeProjectUpdater"
 
 $xcode_proj_root_path = ARGV.at(1)
-$platform_name = ARGV.at(2)
+$product_name = ARGV.at(2)
 $config_path = ARGV.at(3)
 $xcode_proj_name = ARGV.at(5)
 $custom_sdk_path = ARGV.at(6)
 $is_release = ARGV.at(7)
 $app_name = ARGV.at(8)
 
-$project_folder_path = "#{$xcode_proj_root_path}/#{$xcode_proj_name}"
+$project_folder_path = "#{$xcode_proj_root_path}/#{$xcode_proj_name}-#{$product_name}"
 $templete_project_path = "#{$project_folder_path}/Unity-iPhone.xcodeproj"
-$project_path = "#{$project_folder_path}/Unity-iPhone-#{$platform_name}.xcodeproj"
+$project_path = "#{$project_folder_path}/Unity-iPhone-#{$product_name}.xcodeproj"
 $base_proj_path = "#{$project_folder_path}/Unity-iPhone.xcodeproj"
-$log_file_path = "#{$xcode_proj_root_path}/xcodeproj_log_#{$platform_name}.txt"
+$log_file_path = "#{$xcode_proj_root_path}/xcodeproj_log_#{$product_name}.log"
 
 if !(File::exist?($log_file_path))
     File.new($log_file_path, 'w')

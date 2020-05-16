@@ -21,6 +21,7 @@ namespace IpaExporter
             
 			//获取shell脚本参数
 			string args = "";
+            string productName = "";
 			string[] strs = System.Environment.GetCommandLineArgs(); 
 			foreach(var s in strs)
 			{
@@ -29,6 +30,11 @@ namespace IpaExporter
                     //参数必须是json格式
 					args = s.Split('_')[1];
 				}
+    
+                if(s.Contains("-productName"))
+                {
+                    productName = s.Split('_')[1];
+                }
 			}
             
             string path = string.Format("{0}/{1}", exportPath, "xcodeproj_create_Result.txt");
@@ -38,9 +44,17 @@ namespace IpaExporter
             //必须参数
 			PlayerSettings.iOS.sdkVersion = iOSSdkVersion.DeviceSDK;
             _CustomBuilder customBuilder = new _CustomBuilder();
-            JsonData jsonObj = JsonMapper.ToObject(args);
             
-            customBuilder.BuildApp(jsonObj, LEVELS, exportXcodePath);
+            //获取配置信息
+            JsonData allPlatformInfo = JsonMapper.ToObject(args);
+            JsonData platformItem = new JsonData();
+            if(allPlatformInfo.Keys.Contains(productName)){
+                platformItem = allPlatformInfo[productName];
+            }else{
+                Debug.LogError("不存在" + productName + "配置信息");
+            }
+            
+            customBuilder.BuildApp(platformItem, LEVELS, exportXcodePath);
             
             //如果成功写入结果到文件
             //创建结果标记文件
