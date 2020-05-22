@@ -207,7 +207,7 @@ class XcodeProjectUpdater
 		set_build_setting(@target, "ENABLE_BITCODE", enable_bitCode)
         
         #替换二进制名字
-        product_name = bundle_identifier.gsub("\.","")
+        product_name = $product_name
         set_build_setting(@target, "PRODUCT_NAME", product_name)
 	end
 

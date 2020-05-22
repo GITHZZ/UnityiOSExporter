@@ -173,7 +173,13 @@
                                         <menuItem title="重新生成xcodeproj" id="Arr-uK-Qw7" userLabel="测试指令">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="testCode:" target="07m-4T-qLU" id="A4z-FB-TJN"/>
+                                                <action selector="editXcodeClicked:" target="07m-4T-qLU" id="YT4-jc-f0s"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="代码测试" id="xMY-fP-rpa" userLabel="测试指令">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="testCode:" target="07m-4T-qLU" id="cZu-S2-5OF"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="yEE-xH-cay"/>

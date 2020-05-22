@@ -92,6 +92,7 @@ typedef NS_ENUM(EventType, CustomEventType)
     EventHideSubView             = 226,
     EventSelectSceneClicked      = 227,
     EventTestCustomShell         = 228,
+    EventEditXcodeClicked        = 229,
 };
 
 typedef NS_ENUM(int, AppDelegateType)

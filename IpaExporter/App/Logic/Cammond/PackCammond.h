@@ -22,7 +22,7 @@ typedef NSNumber* CammondCode;
 #define CODE_RUN_CUSTOM_SHELL   @16
 #define CODE_ACTIVE_WND_TOP     @32
 #define CODE_BACKUP_XCODE       @64
-
+#define CODE_XCODE_SIGN         @128
 
 NS_ASSUME_NONNULL_BEGIN
 

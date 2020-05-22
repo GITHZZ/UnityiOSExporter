@@ -30,6 +30,7 @@
 		59141DE8237D468D003D4EAE /* ExportXcode.sh in Resources */ = {isa = PBXBuildFile; fileRef = 59141DE5237D468D003D4EAE /* ExportXcode.sh */; };
 		5928B57022F91CEF003B30CD /* NSObject+LogicBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5928B56F22F91CEF003B30CD /* NSObject+LogicBase.m */; };
 		5928B57322F94C98003B30CD /* NSMutableDictionary+ArraySupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 5928B57222F94C97003B30CD /* NSMutableDictionary+ArraySupport.m */; };
+		5928B5A624768334005EA4E0 /* XcodeSigningEdit.rb in Resources */ = {isa = PBXBuildFile; fileRef = 5928B5A524768333005EA4E0 /* XcodeSigningEdit.rb */; };
 		5937E44E22C73B8B004FD5AA /* MobileprovisionParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5937E44C22C73B8B004FD5AA /* MobileprovisionParser.m */; };
 		5937E45122C741F5004FD5AA /* LocalDataSave.m in Sources */ = {isa = PBXBuildFile; fileRef = 5937E45022C741F5004FD5AA /* LocalDataSave.m */; };
 		5937E45522CA0634004FD5AA /* PreferenceData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5937E45422CA0634004FD5AA /* PreferenceData.m */; };
@@ -117,6 +118,7 @@
 		5928B56F22F91CEF003B30CD /* NSObject+LogicBase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LogicBase.m"; sourceTree = "<group>"; };
 		5928B57122F94C97003B30CD /* NSMutableDictionary+ArraySupport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+ArraySupport.h"; sourceTree = "<group>"; };
 		5928B57222F94C97003B30CD /* NSMutableDictionary+ArraySupport.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+ArraySupport.m"; sourceTree = "<group>"; };
+		5928B5A524768333005EA4E0 /* XcodeSigningEdit.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = XcodeSigningEdit.rb; path = IpaExporter/Libs/Xcodeproj/XcodeSigningEdit.rb; sourceTree = SOURCE_ROOT; };
 		5937E44C22C73B8B004FD5AA /* MobileprovisionParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobileprovisionParser.m; sourceTree = "<group>"; };
 		5937E44D22C73B8B004FD5AA /* MobileprovisionParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobileprovisionParser.h; sourceTree = "<group>"; };
 		5937E44F22C741F5004FD5AA /* LocalDataSave.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalDataSave.h; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 				59141DE3237D468C003D4EAE /* EditXcode.sh */,
 				59702759246E7472002E7854 /* Main.rb */,
 				59702757246E745A002E7854 /* XcodeProjectUpdater.rb */,
+				5928B5A524768333005EA4E0 /* XcodeSigningEdit.rb */,
 				59141DE4237D468C003D4EAE /* ExportIpa.sh */,
 			);
 			path = Cammond;
@@ -461,6 +464,7 @@
 				5970275A246E7472002E7854 /* Main.rb in Resources */,
 				59141DE6237D468D003D4EAE /* EditXcode.sh in Resources */,
 				0E211BC622BAB29C00334CC0 /* README.md in Resources */,
+				5928B5A624768334005EA4E0 /* XcodeSigningEdit.rb in Resources */,
 				59552752237D001800067C93 /* _CustomShell.sh in Resources */,
 				5955274A237CF0A100067C93 /* _Builder.cs in Resources */,
 				1837801D1D766C84004E3BAD /* Main.storyboard in Resources */,
@@ -712,7 +716,7 @@
 					"$(PROJECT_DIR)/IpaExporter/LuaLib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 2.0.5;
+				MARKETING_VERSION = 3.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.IpaExporter.app;
 				PRODUCT_NAME = "iOS打包工具";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -740,7 +744,7 @@
 					"$(PROJECT_DIR)/IpaExporter/LuaLib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 2.0.5;
+				MARKETING_VERSION = 3.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.IpaExporter.app;
 				PRODUCT_NAME = "iOS打包工具";
 				PROVISIONING_PROFILE_SPECIFIER = "";

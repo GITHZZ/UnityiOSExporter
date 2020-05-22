@@ -129,10 +129,10 @@ mkdir ${dst_folder_path}
 fi
 
 src_path=${ipa_folder_path}"/Unity-iPhone.ipa"
-dst_path=${dst_folder_path}"/"${app_name}"_"${current_time}"_"${configuration}".ipa"
+dst_path=${dst_folder_path}"/"${product_name}"_"${current_time}"_"${configuration}".ipa"
 cp -f ${src_path} ${dst_path}
 
 #拷贝archive文件
-src_path=${ipa_folder_path}/Unity-iPhone-${app_name}.xcarchive
-dst_path=${dst_folder_path}"/"${app_name}"_"${current_time}"_"${configuration}".xcarchive"
+src_path=${ipa_folder_path}/Unity-iPhone-${product_name}.xcarchive
+dst_path=${dst_folder_path}"/"${product_name}"_"${current_time}"_"${configuration}".xcarchive"
 cp -f -r ${src_path} ${dst_path}

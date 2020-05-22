@@ -75,6 +75,12 @@ int _viewOpeningCount = 0;
     }];
 }
 
+
+- (IBAction)editXcodeClicked:(id)sender
+{
+    EVENT_SEND(EventEditXcodeClicked, nil);
+}
+
 - (IBAction)editCustomShell:(id)sender
 {
     NSMutableArray *codeAppArray = inst_method_call(@"PreferenceData", getCodeAppArray);

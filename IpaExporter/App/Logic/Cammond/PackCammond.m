@@ -30,12 +30,14 @@
                      CODE_RUN_CUSTOM_SHELL:@"runCustomShell",
                      CODE_ACTIVE_WND_TOP:@"activateIgnoringOtherApps",
                      CODE_BACKUP_XCODE:@"backupXcode",
+                     CODE_XCODE_SIGN:@"xcodeSigning"
                      }mutableCopy];
 
     EVENT_REGIST(EventViewSureClicked, @selector(sureBtnClicked:));
     EVENT_REGIST(EventExportXcodeCilcked, @selector(exportXcodeBtnClicked));
     EVENT_REGIST(EventExportIpaChilcked, @selector(exportIpaChilcked));
     EVENT_REGIST(EventTestCustomShell, @selector(testCustomShell));
+    EVENT_REGIST(EventEditXcodeClicked, @selector(editXcodeProj));
 }
 
 #pragma mark -
@@ -56,7 +58,7 @@
     [[Alert instance] alertModalFirstBtnTitle:@"确定" SecondBtnTitle:@"取消" MessageText:@"请确认生成工程平台" InformativeText:desc callBackFrist:^{
         
         CAMM_REGIST();
-        CAMM_ADD(CODE_BACKUP_XCODE);
+        //CAMM_ADD(CODE_BACKUP_XCODE);
         CAMM_ADD(CODE_GEN_RESFOLDER);
         CAMM_ADD(CODE_EXPORT_XCODE);
         CAMM_ADD(CODE_RUN_CUSTOM_SHELL);
@@ -64,6 +66,14 @@
         CAMM_ADD(CODE_ACTIVE_WND_TOP);
         CAMM_RUN();
     } callBackSecond:^{}];
+}
+
+- (void)editXcodeProj
+{
+    CAMM_REGIST();
+    CAMM_ADD(CODE_RUN_CUSTOM_SHELL);
+    CAMM_ADD(CODE_EDIT_XCODE);
+    CAMM_RUN();
 }
 
 - (void)exportIpaChilcked
@@ -105,9 +115,11 @@
 - (void)testCode
 {
     CAMM_REGIST();
-    CAMM_ADD(CODE_EDIT_XCODE);
+    CAMM_ADD(CODE_GEN_RESFOLDER);
+    CAMM_ADD(CODE_XCODE_SIGN);
     CAMM_RUN();
 }
+
 
 #pragma mark -
 #pragma mark Cammond driver
@@ -213,6 +225,21 @@
     return CAMM_SUCCESS;
 }
 
+- (CammondResult)xcodeSigning
+{
+    showLog("开始进行设置xcode证书");
+    NSString *shellPath = [LIB_PATH stringByAppendingString:@"/Xcodeproj/XcodeSigningEdit.sh"];
+    NSString *rubyPath = [LIB_PATH stringByAppendingString:@"/Xcodeproj/XcodeSigningEdit.rb"];
+    ExportInfoManager *exportManager = (ExportInfoManager*)get_instance(@"ExportInfoManager");
+    NSMutableArray<DetailsInfoData*>* detailArray = exportManager.detailArray;
+    for(int i = 0; i < [detailArray count]; i++){
+        DetailsInfoData *data = [detailArray objectAtIndex:i];
+        NSString *shellLog = [self runShellWithData:data shellPath:shellPath rubyPath:rubyPath];
+        //showLog([shellLog UTF8String]);
+    }
+    return CAMM_SUCCESS;
+}
+
 - (CammondResult)exportIpa
 {
     showLog("开始进行平台打包");
@@ -268,6 +295,26 @@
     return CAMM_SUCCESS;
 }
 
+- (CammondResult)backupXcodeWithData:(DetailsInfoData*)data
+{
+    ExportInfoManager *view = (ExportInfoManager*)get_instance(@"ExportInfoManager");
+    NSString *xcodeProjPath = [NSString stringWithFormat:@"%s/%@-%@", view.info->exportFolderParh, XCODE_PROJ_NAME, data.productName];
+    if([[NSFileManager defaultManager] fileExistsAtPath:xcodeProjPath]){
+        NSDate *currentDate = [NSDate date];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"YYYY.MM.dd-hh:mm"];
+        NSString *dateString = [dateFormatter stringFromDate:currentDate];
+        NSString *backUpProjPath = [NSString stringWithFormat:@"%@-%@", xcodeProjPath, dateString];
+
+        NSTask *task = [[NSTask alloc] init];
+        [task setLaunchPath:@"/bin/bash"];
+        [task setArguments:@[@"-c", [NSString stringWithFormat:@"mv %@ %@", xcodeProjPath, backUpProjPath]]];
+        [task launch];
+    }
+    
+    return CAMM_SUCCESS;
+}
+
 - (CammondResult)backupXcode
 {
     ExportInfoManager *view = (ExportInfoManager*)get_instance(@"ExportInfoManager");
@@ -294,6 +341,8 @@
 {
     if([data.isSelected isEqualToString:s_false])
         return YES;
+    
+    [self backupXcodeWithData:data];
     
     NSString *desc = [self checkConfigInfo:data];
     showLog([desc UTF8String]);
@@ -372,74 +421,78 @@
 
 - (NSString*)runShellWithData:(DetailsInfoData*)data withPath:(NSString*)path
 {
-    NSString *shellPath = path;
     NSString *rubyMainPath = [LIB_PATH stringByAppendingString:@"/Xcodeproj/Main.rb"];
-    
+    return [self runShellWithData:data shellPath:path rubyPath:rubyMainPath];
+}
+
+- (NSString*)runShellWithData:(DetailsInfoData*)data shellPath:(NSString*)path rubyPath:(NSString*)rubyPath
+{
+    NSString *shellPath = path;
     ExportInfoManager* view = (ExportInfoManager*)get_instance(@"ExportInfoManager");
-    
+
     if([data.isSelected isEqualToString:@"1"]){
-        //配置json文件
-        NSMutableDictionary *jsonData = [NSMutableDictionary dictionary];
-        jsonData[@"frameworks"] = data.frameworkNames;
-        jsonData[@"embedFrameworks"] = data.embedFramework;
-        jsonData[@"Libs"] = data.libNames;
-        jsonData[@"linker_flags"] = data.linkerFlag;
-        jsonData[@"enable_bit_code"] = @"NO";
-        jsonData[@"develop_signing_identity"] = [NSMutableArray arrayWithObjects:data.debugProfileName, data.debugDevelopTeam, nil];
-        jsonData[@"release_signing_identity"] = [NSMutableArray arrayWithObjects:data.releaseProfileName, data.releaseDevelopTeam, nil];
-        jsonData[@"product_bundle_identifier"] = data.bundleIdentifier;
-        NSString *configPath = [self writeConfigToJsonFile:data.appName withData:jsonData];
-        
-        
-        if(configPath == nil)
-            return @"";
-        
-        //$1 ruby入口文件路径
-        //$2 sdk资源文件路径
-        //$3 导出ipa和xcode工程路径
-        //$4 平台名称
-        //$5 configPath 配置路径
-        //$6 unity工程路径
-        //$7 xcode工程基础名称
-        //$8 开发者teamid（debug）
-        //$9 开发者签名文件名字（debug）
-        //$10 开发者teamid（release）
-        //$11 开发者签名文件名字（release）
-        //$12 沙盒文件路径
-        //$13 bundleIdentifier
-        //$14 是否release包
-        //$15 缓存文件位置
-        //$16 需要关联的sdk文件夹
-        //$17 是否导出ipa文件
-        //$18 应用名字
-        //$19 bundleIdentifier - release
-        NSArray *args = [NSArray arrayWithObjects:
-                         rubyMainPath,//$1
-                         data.customSDKPath,
-                         [NSString stringWithUTF8String:view.info->exportFolderParh],
-                         data.productName,
-                         configPath,
-                         [NSString stringWithUTF8String:view.info->unityProjPath],
-                         XCODE_PROJ_NAME,
-                         data.debugDevelopTeam,
-                         data.debugProfileName,
-                         data.releaseDevelopTeam,
-                         data.releaseProfileName,
-                         LIB_PATH,
-                         data.bundleIdentifier,
-                         [NSString stringWithFormat:@"%d",view.info->isRelease],
-                         PACK_FOLDER_PATH,
-                         [self convertArrayToString:data.customSDKChild],
-                         [NSString stringWithFormat:@"%d",view.info->isExportIpa],
-                         data.appName,
-                         data.appidRelease,
-                         nil];
-        
-        showLog([[NSString stringWithFormat:@"开始修改工程=>%@(%@)", data.appName, data.productName] UTF8String]);
-        NSString *shellLog = [self invokingShellScriptAtPath:shellPath withArgs:args];
-        NSString* logStr = [shellLog stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        showLog([logStr UTF8String]);
-        return shellLog;
+       //配置json文件
+       NSMutableDictionary *jsonData = [NSMutableDictionary dictionary];
+       jsonData[@"frameworks"] = data.frameworkNames;
+       jsonData[@"embedFrameworks"] = data.embedFramework;
+       jsonData[@"Libs"] = data.libNames;
+       jsonData[@"linker_flags"] = data.linkerFlag;
+       jsonData[@"enable_bit_code"] = @"NO";
+       jsonData[@"develop_signing_identity"] = [NSMutableArray arrayWithObjects:data.debugProfileName, data.debugDevelopTeam, nil];
+       jsonData[@"release_signing_identity"] = [NSMutableArray arrayWithObjects:data.releaseProfileName, data.releaseDevelopTeam, nil];
+       jsonData[@"product_bundle_identifier"] = data.bundleIdentifier;
+       NSString *configPath = [self writeConfigToJsonFile:data.appName withData:jsonData];
+       
+       
+       if(configPath == nil)
+           return @"";
+       
+       //$1 ruby入口文件路径
+       //$2 sdk资源文件路径
+       //$3 导出ipa和xcode工程路径
+       //$4 平台名称
+       //$5 configPath 配置路径
+       //$6 unity工程路径
+       //$7 xcode工程基础名称
+       //$8 开发者teamid（debug）
+       //$9 开发者签名文件名字（debug）
+       //$10 开发者teamid（release）
+       //$11 开发者签名文件名字（release）
+       //$12 沙盒文件路径
+       //$13 bundleIdentifier
+       //$14 是否release包
+       //$15 缓存文件位置
+       //$16 需要关联的sdk文件夹
+       //$17 是否导出ipa文件
+       //$18 应用名字
+       //$19 bundleIdentifier - release
+       NSArray *args = [NSArray arrayWithObjects:
+                        rubyPath,//$1
+                        data.customSDKPath,
+                        [NSString stringWithUTF8String:view.info->exportFolderParh],
+                        data.productName,
+                        configPath,
+                        [NSString stringWithUTF8String:view.info->unityProjPath],
+                        XCODE_PROJ_NAME,
+                        data.debugDevelopTeam,
+                        data.debugProfileName,
+                        data.releaseDevelopTeam,
+                        data.releaseProfileName,
+                        LIB_PATH,
+                        data.bundleIdentifier,
+                        [NSString stringWithFormat:@"%d",view.info->isRelease],
+                        PACK_FOLDER_PATH,
+                        [self convertArrayToString:data.customSDKChild],
+                        [NSString stringWithFormat:@"%d",view.info->isExportIpa],
+                        data.appName,
+                        data.appidRelease,
+                        nil];
+       
+       showLog([[NSString stringWithFormat:@"开始修改工程=>%@(%@)", data.appName, data.productName] UTF8String]);
+       NSString *shellLog = [self invokingShellScriptAtPath:shellPath withArgs:args];
+       NSString* logStr = [shellLog stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+       showLog([logStr UTF8String]);
+       return shellLog;
     }
     return @"PLATFORM_NOT_SELECT";
 }
