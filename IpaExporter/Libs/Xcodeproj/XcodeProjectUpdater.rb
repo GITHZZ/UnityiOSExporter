@@ -92,27 +92,18 @@ class XcodeProjectUpdater
             #Info.plist也会特殊处理
             file_type = File::ftype(newPath)
             if dir != '.' and dir != '..' and dir != ".DS_Store"
-            	if newPath.to_s.end_with?("Info.plist")
+            	if dir == "Info.plist"
                     puts "修改info.plist版本号"
                     #修改info.plist版本号
                     #Bundle version
                     
                     #set display name
                     app_name = $app_name
+                    
+                    #设置info.plist版本信息
                     `/usr/libexec/PlistBuddy -c \"Set :CFBundleDisplayName #{app_name}\" #{newPath}`
-                    if $is_release == 1 then
-                        #short version
-                        shortVer = `echo $(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\"\ #{newPath})`
-                     
-                        shortVerArr = shortVer.split(".")
-                        if shortVerArr.size <= 2
-                            shortVerArr = Array["1", "0", "0"]
-                            puts "版本号格式错误,将自动设置成1.0.0版本"
-                            #为什么不会往下运行
-                        end
-                        new_version = "#{shortVerArr[0]}.#{shortVerArr[1]}.#{Integer(shortVerArr[2])+1}"
-                        `/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString #{new_version}\"#{newPath}`
-                    end
+                    `/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString 1.0.0\" #{newPath}`
+                    `/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion 1.0.0\" #{newPath}`
                                            
                     $project.main_group.find_file_by_path("Info.plist").remove_from_project
                     set_build_setting(@target, "INFOPLIST_FILE", newPath)

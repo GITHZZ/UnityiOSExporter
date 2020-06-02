@@ -13,6 +13,8 @@
 
 @implementation PackCammond
 
+#define SHELL_ARGS_NULL @"null"
+
 #define CAMM_REGIST() NSMutableArray *camm = [NSMutableArray array]
 #define CAMM_ADD(code) [camm addObject:code]
 #define CAMM_RUN() [self startExport:camm]
@@ -80,6 +82,7 @@
 {
     CAMM_REGIST();
     CAMM_ADD(CODE_GEN_RESFOLDER);
+    CAMM_ADD(CODE_XCODE_SIGN);
     CAMM_ADD(CODE_EXPORT_IPA);
     CAMM_ADD(CODE_ACTIVE_WND_TOP);
     CAMM_RUN();
@@ -185,28 +188,6 @@
         }
     }
     return CAMM_SUCCESS;
-}
-
-- (NSString*)checkConfigInfo:(DetailsInfoData*)data
-{
-    NSDictionary *plistInfo = [self getCustomConfig:data];
-    NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@"[ _`~!@#$%^&*()+=|{}':;',\\[\\].<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。，、？]|\n|\r|\t"];
-    NSString *desc = [[plistInfo description] stringByTrimmingCharactersInSet:set];
-    desc = [desc stringByReplacingOccurrencesOfString:@"    " withString:@""];
-    desc = [desc stringByReplacingOccurrencesOfString:@";" withString:@""];
-    
-    return [NSString stringWithFormat:@"\n%@自定义参数信息:\n%@", data.appName ,desc];
-}
-
-- (NSDictionary*)getCustomConfig:(DetailsInfoData*)data
-{
-    NSString *plistPath = [NSString stringWithFormat:@"%@/TempCode/Builder/Users/_CustomConfig.plist", LIB_PATH];
-    NSMutableDictionary *plistInfo = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
-    NSDictionary* config = [plistInfo objectForKey:data.productName];
-    if(config != nil){
-        return config;
-    }
-    return [NSDictionary dictionary];
 }
 
 - (CammondResult)editXcode
@@ -510,7 +491,7 @@
                          data.customSDKPath,
                          [NSString stringWithUTF8String:view.info->exportFolderParh],
                          data.productName,
-                         @"null",
+                         SHELL_ARGS_NULL,
                          [NSString stringWithUTF8String:view.info->unityProjPath],
                          XCODE_PROJ_NAME,
                          data.debugDevelopTeam,
@@ -625,6 +606,28 @@
     arrayString = [arrayString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
     arrayString = [arrayString stringByReplacingOccurrencesOfString:@"  " withString:@""];
     return arrayString;
+}
+
+- (NSString*)checkConfigInfo:(DetailsInfoData*)data
+{
+    NSDictionary *plistInfo = [self getCustomConfig:data];
+    NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@"[ _`~!@#$%^&*()+=|{}':;',\\[\\].<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。，、？]|\n|\r|\t"];
+    NSString *desc = [[plistInfo description] stringByTrimmingCharactersInSet:set];
+    desc = [desc stringByReplacingOccurrencesOfString:@"    " withString:@""];
+    desc = [desc stringByReplacingOccurrencesOfString:@";" withString:@""];
+    
+    return [NSString stringWithFormat:@"\n%@自定义参数信息:\n%@", data.appName ,desc];
+}
+
+- (NSDictionary*)getCustomConfig:(DetailsInfoData*)data
+{
+    NSString *plistPath = [NSString stringWithFormat:@"%@/TempCode/Builder/Users/_CustomConfig.plist", LIB_PATH];
+    NSMutableDictionary *plistInfo = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
+    NSDictionary* config = [plistInfo objectForKey:data.productName];
+    if(config != nil){
+        return config;
+    }
+    return [NSDictionary dictionary];
 }
 
 @end
