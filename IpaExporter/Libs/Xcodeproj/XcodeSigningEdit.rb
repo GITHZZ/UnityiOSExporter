@@ -43,6 +43,7 @@ config = File.read($config_path)
 
 #设置证书信息
 bundle_identifier = @setting_hash["product_bundle_identifier"]
+bundle_identifier_release = @setting_hash["product_bundle_identifier_release"]
 develop_signing_identity = @setting_hash["develop_signing_identity"]
 
 set_build_setting(@target, "PROVISIONING_PROFILE_SPECIFIER", develop_signing_identity[0], "Debug")
@@ -55,6 +56,6 @@ release_signing_identity = @setting_hash["release_signing_identity"]
 set_build_setting(@target, "PROVISIONING_PROFILE_SPECIFIER", release_signing_identity[0], "Release")
 set_build_setting(@target, "DEVELOPMENT_TEAM", release_signing_identity[1], "Release")
 set_build_setting(@target, "CODE_SIGN_IDENTITY[sdk=iphoneos*]", "iPhone Distribution", "Release")
-set_build_setting(@target, "PRODUCT_BUNDLE_IDENTIFIER", bundle_identifier, "Release")
+set_build_setting(@target, "PRODUCT_BUNDLE_IDENTIFIER", bundle_identifier_release, "Release")
 
 $project.save

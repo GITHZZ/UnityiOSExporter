@@ -15,7 +15,7 @@
 @property(nonatomic, readonly) NSString *appName;
 @property(nonatomic, readonly) NSString *productName;
 @property(nonatomic, readonly) NSString *bundleIdentifier;
-@property(nonatomic, readonly) NSString *appidRelease;
+@property(nonatomic, readonly) NSString *appidRelease;//bundleIdentifier release
 @property(nonatomic, readonly) NSString *codeSignIdentity;
 @property(nonatomic, readonly) NSString *provisioningProfile;
 @property(nonatomic, readonly) NSString *frameworks;

@@ -412,42 +412,44 @@
     ExportInfoManager* view = (ExportInfoManager*)get_instance(@"ExportInfoManager");
 
     if([data.isSelected isEqualToString:@"1"]){
-       //配置json文件
-       NSMutableDictionary *jsonData = [NSMutableDictionary dictionary];
-       jsonData[@"frameworks"] = data.frameworkNames;
-       jsonData[@"embedFrameworks"] = data.embedFramework;
-       jsonData[@"Libs"] = data.libNames;
-       jsonData[@"linker_flags"] = data.linkerFlag;
-       jsonData[@"enable_bit_code"] = @"NO";
-       jsonData[@"develop_signing_identity"] = [NSMutableArray arrayWithObjects:data.debugProfileName, data.debugDevelopTeam, nil];
-       jsonData[@"release_signing_identity"] = [NSMutableArray arrayWithObjects:data.releaseProfileName, data.releaseDevelopTeam, nil];
-       jsonData[@"product_bundle_identifier"] = data.bundleIdentifier;
-       NSString *configPath = [self writeConfigToJsonFile:data.appName withData:jsonData];
+        //配置json文件
+        NSMutableDictionary *jsonData = [NSMutableDictionary dictionary];
+        jsonData[@"frameworks"] = data.frameworkNames;
+        jsonData[@"embedFrameworks"] = data.embedFramework;
+        jsonData[@"Libs"] = data.libNames;
+        jsonData[@"linker_flags"] = data.linkerFlag;
+        jsonData[@"enable_bit_code"] = @"NO";
+        jsonData[@"develop_signing_identity"] = [NSMutableArray arrayWithObjects:data.debugProfileName, data.debugDevelopTeam, nil];
+        jsonData[@"release_signing_identity"] = [NSMutableArray arrayWithObjects:data.releaseProfileName, data.releaseDevelopTeam, nil];
+        
+        jsonData[@"product_bundle_identifier"] = data.bundleIdentifier;
+        jsonData[@"product_bundle_identifier_release"] = data.appidRelease;
+        NSString *configPath = [self writeConfigToJsonFile:data.appName withData:jsonData];
        
        
-       if(configPath == nil)
+        if(configPath == nil)
            return @"";
-       
-       //$1 ruby入口文件路径
-       //$2 sdk资源文件路径
-       //$3 导出ipa和xcode工程路径
-       //$4 平台名称
-       //$5 configPath 配置路径
-       //$6 unity工程路径
-       //$7 xcode工程基础名称
-       //$8 开发者teamid（debug）
-       //$9 开发者签名文件名字（debug）
-       //$10 开发者teamid（release）
-       //$11 开发者签名文件名字（release）
-       //$12 沙盒文件路径
-       //$13 bundleIdentifier
-       //$14 是否release包
-       //$15 缓存文件位置
-       //$16 需要关联的sdk文件夹
-       //$17 是否导出ipa文件
-       //$18 应用名字
-       //$19 bundleIdentifier - release
-       NSArray *args = [NSArray arrayWithObjects:
+
+        //$1 ruby入口文件路径
+        //$2 sdk资源文件路径
+        //$3 导出ipa和xcode工程路径
+        //$4 平台名称
+        //$5 configPath 配置路径
+        //$6 unity工程路径
+        //$7 xcode工程基础名称
+        //$8 开发者teamid（debug）
+        //$9 开发者签名文件名字（debug）
+        //$10 开发者teamid（release）
+        //$11 开发者签名文件名字（release）
+        //$12 沙盒文件路径
+        //$13 bundleIdentifier
+        //$14 是否release包
+        //$15 缓存文件位置
+        //$16 需要关联的sdk文件夹
+        //$17 是否导出ipa文件
+        //$18 应用名字
+        //$19 bundleIdentifier - release
+        NSArray *args = [NSArray arrayWithObjects:
                         rubyPath,//$1
                         data.customSDKPath,
                         [NSString stringWithUTF8String:view.info->exportFolderParh],
@@ -468,13 +470,14 @@
                         data.appName,
                         data.appidRelease,
                         nil];
-       
-       showLog([[NSString stringWithFormat:@"开始修改工程=>%@(%@)", data.appName, data.productName] UTF8String]);
-       NSString *shellLog = [self invokingShellScriptAtPath:shellPath withArgs:args];
-       NSString* logStr = [shellLog stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-       showLog([logStr UTF8String]);
-       return shellLog;
+
+        showLog([[NSString stringWithFormat:@"开始修改工程=>%@(%@)", data.appName, data.productName] UTF8String]);
+        NSString *shellLog = [self invokingShellScriptAtPath:shellPath withArgs:args];
+        NSString* logStr = [shellLog stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        showLog([logStr UTF8String]);
+        return shellLog;
     }
+    
     return @"PLATFORM_NOT_SELECT";
 }
 
