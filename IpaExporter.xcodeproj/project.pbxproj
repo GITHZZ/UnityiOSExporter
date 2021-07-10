@@ -419,7 +419,7 @@
 				TargetAttributes = {
 					1837800C1D766C84004E3BAD = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = V98ZP94KS5;
+						DevelopmentTeam = N7E5NPKU2A;
 						ProvisioningStyle = Automatic;
 					};
 					183780221D766C84004E3BAD = {
@@ -700,10 +700,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = V98ZP94KS5;
+				DEVELOPMENT_TEAM = N7E5NPKU2A;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -717,7 +717,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MARKETING_VERSION = 3.0.4;
-				PRODUCT_BUNDLE_IDENTIFIER = com.IpaExporter.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.app.ipaExporter;
 				PRODUCT_NAME = "iOS打包工具";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
@@ -727,10 +727,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = V98ZP94KS5;
+				DEVELOPMENT_TEAM = N7E5NPKU2A;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -745,7 +745,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MARKETING_VERSION = 3.0.4;
-				PRODUCT_BUNDLE_IDENTIFIER = com.IpaExporter.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.app.ipaExporter;
 				PRODUCT_NAME = "iOS打包工具";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
